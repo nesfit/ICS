@@ -1,39 +1,38 @@
 # Seminář C# - ICS
 
-# Vyučující
-* [Jan Pluskal](http://www.fit.vutbr.cz/~ipluskal/)
-* [Roman Jašek]()
-* [Martin Dybal](https://www.dybal.it/)
-* [Jiří Pokorný]()
-* [Adam Jež]()
-* [Tibor Jašek]()
-* [Michal Mrnušťík]()
-
-
 # Aktuality k předmětu 
+  - **08.01.2019** | *Jan Pluskal* | Při vytváření repozitáře respektujte shéma ze [zadání](/Project/README.md) *https://ics-2019-team00.visualstudio.com*. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit. Pokud máte vytvořeno pod soukromými účty, je třeba vytvořit projekt znovu pod univerzitními a pushnout existující repozitář tak, aby Vám zůstala historie včetně správných časů commitů. Pokud bude kolize s existujícím účtem, použijte url *https://ics-2019-team00-01.visualstudio.com*.
   - **03.12.2018** | *Jan Pluskal* | Byl vytvořen repozitář.
 
 # Rozvrh
-
 | Typ                                  | Místnost | Čas            |
 | ------------------------------------ |----------| -------------- |
 | Přednáška                            | D105     | Po 15:00-16:50 |
 | Demonstrační cvičení (dobrovolné)    | D105     | Čt 18:00-19:50 |
 
+| Datum |                                                 Téma cvičení | 
+| ----- | ------------------------------------------------------------ | 
+| 7.2.  | Práce s Visual Studio 2017, Azure DevOps                     | 
+| 21.2. | Objektově orientované programování, úvod do Entity Framework | 
+| 7.3.  | Entity framework, zásady Clean Code, SOLID                   | 
+| 21.3. | Základy WPF, návrhový vzor MVVM                              | 
+| 4.4.  | WPF frontend, binding                                        | 
+| 18.4. | Bonusové cvičení                                             | 
+
 # Přednášky
 1. Úvod do jazyka C# a platformy .NET, základní syntaxe jazyka, instalace a představení Visual Studia.
 2. Úvod do Objektově Orientované Programování a pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika.
 3. Představení základních knihovních funkcí (BCL) a dotazování za pomocí vestavěního nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL).
-4. Návrhové vzory pro práci s vytvářením, strukturováním a chováním - Gang of Four (GoF) v kontextu C#.
-5. Continous Integration v prostředí Azure DevOps a testování aplikací - smoke, unit, integrační, UI a akceptační testy.
-6. Propojení aplikace s databází pro zajištění persistence pomocí ORM rozšíření Entity Framework s návrhovými vzory UnitOfWork a Repository.
-7. Psaní čistého, udržovatelného kódu s respektováním Clean Code, S.O.L.I.D. zásad. Ukázky refaktorizace a práce s legacy kódem.
-8. Návrhový vzor Model-View-ViewModel (MVVM) a architektura desktopových aplikací. Mapování databázových entit na modelové třídy.
-9. Základní koncepty tvorby uživatelského rozhraní pomocí Windows Presentation Foundation (WPF).
+4. Propojení aplikace s databází pro zajištění persistence pomocí ORM rozšíření Entity Framework s návrhovými vzory UnitOfWork a Repository.
+5. Psaní čistého, udržovatelného kódu s respektováním Clean Code, S.O.L.I.D. zásad. Ukázky refaktorizace a práce s legacy kódem.
+6. Návrhový vzor Model-View-ViewModel (MVVM) a architektura desktopových aplikací. Mapování databázových entit na modelové třídy.
+7. Continous Integration v prostředí Azure DevOps a testování aplikací - smoke, unit, integrační, UI a akceptační testy.
+8. Základní koncepty tvorby uživatelského rozhraní pomocí Windows Presentation Foundation (WPF).
+9. Návrhové vzory pro práci s vytvářením, strukturováním a chováním - Gang of Four (GoF) v kontextu C#.
 10. WPF za pomoci MVVM, tvorba komponenty a stylování aplikací.
 11. Paralelní a asynchroní programování proces, vlákno, úloha z pohledu C# a použitého .NET frameworku.
-12. Nástroje pro správu paměti a profilaci výkonu.
-13. Multiplatformní programování .NET Standard, .NET Core. Konteinerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm.
+12. Multiplatformní programování .NET Standard, .NET Core. Konteinerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm.
+12. *Dobrovolná přednáška* **D0206 13:00-14:50 29.4.2019** -- Nástroje pro správu paměti a profilaci výkonu.
 
 
 # Demonstrační Cvičení 
@@ -66,6 +65,15 @@ Dobrovolné demonstrační cvičení se koná každý sudý týden. Cvičení bu
 |      Typ výuky     | Maximální bodový zisk |
 | ------------------ | --------------------- |
 | Projekt            |                   100 |
+
+# Vyučující
+* [Jan Pluskal](http://www.fit.vutbr.cz/~ipluskal/)
+* [Roman Jašek]()
+* [Martin Dybal](https://www.dybal.it/)
+* [Jiří Pokorný]()
+* [Adam Jež]()
+* [Tibor Jašek]()
+* [Michal Mrnušťík]()
 
 # Užitečné odkazy
 * [Entity framework tutorial](http://www.entityframeworktutorial.net/code-first/entity-framework-code-first.aspx)
