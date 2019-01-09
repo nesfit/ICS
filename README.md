@@ -67,13 +67,15 @@ Dobrovolné demonstrační cvičení se koná každý sudý týden. Cvičení bu
 | Projekt            |                   100 |
 
 # Vyučující
-* [Jan Pluskal](http://www.fit.vutbr.cz/~ipluskal/)
-* [Roman Jašek]()
 * [Martin Dybal](https://www.dybal.it/)
-* [Jiří Pokorný]()
-* [Adam Jež]()
+* [Roman Jašek]()
 * [Tibor Jašek]()
+* [Adam Jež]()
+* [Viliam Letavay]()
 * [Michal Mrnušťík]()
+* [Jan Pluskal](http://www.fit.vutbr.cz/~ipluskal/)
+* [Jiří Pokorný]()
+* [Patrik Švikruha]()
 
 # Užitečné odkazy
 * [Entity framework tutorial](http://www.entityframeworktutorial.net/code-first/entity-framework-code-first.aspx)
