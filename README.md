@@ -1,25 +1,17 @@
 # Seminář C# - ICS
 
 # Aktuality k předmětu 
-  - **08.01.2019** | *Jan Pluskal* | Při vytváření repozitáře respektujte shéma ze [zadání](/Project/README.md) *https://ics-2019-team00.visualstudio.com*, https://ics-iw5-2019-team00.visualstudio.com. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit. Pokud máte vytvořeno pod soukromými účty, je třeba vytvořit projekt znovu pod univerzitními a pushnout existující repozitář tak, aby Vám zůstala historie včetně správných časů commitů. Pokud bude kolize s existujícím účtem, použijte url *https://ics-2019-team00-01.visualstudio.com*.
+  - **08.01.2019** | *Jan Pluskal* | Při vytváření repozitáře respektujte shéma ze [zadání](/Project/README.md) *https://ics-2019-team00.visualstudio.com*, https://ics-iw5-2019-team00.visualstudio.com. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit. 
+    * Pokud máte vytvořeno pod soukromými účty, je třeba vytvořit projekt znovu pod univerzitními a pushnout existující repozitář tak, aby Vám zůstala historie včetně správných časů commitů. 
+    * Pokud bude kolize s existujícím účtem, použijte suffix *https://ics-2019-team00-01.visualstudio.com*.
   - **03.12.2018** | *Jan Pluskal* | Byl vytvořen repozitář.
 
-# Rozvrh
+# Přednášky
+
 | Typ                                  | Místnost | Čas            |
 | ------------------------------------ |----------| -------------- |
 | Přednáška                            | D105     | Po 15:00-16:50 |
-| Demonstrační cvičení (dobrovolné)    | D105     | Čt 18:00-19:50 |
 
-| Datum |                                                 Téma cvičení | 
-| ----- | ------------------------------------------------------------ | 
-| 7.2.  | Práce s Visual Studio 2017, Azure DevOps                     | 
-| 21.2. | Objektově orientované programování, úvod do Entity Framework | 
-| 7.3.  | Entity framework, zásady Clean Code, SOLID                   | 
-| 21.3. | Základy WPF, návrhový vzor MVVM                              | 
-| 4.4.  | WPF frontend, binding                                        | 
-| 18.4. | Bonusové cvičení                                             | 
-
-# Přednášky
 1. Úvod do jazyka C# a platformy .NET, základní syntaxe jazyka, instalace a představení Visual Studia.
 2. Úvod do Objektově Orientované Programování a pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika.
 3. Představení základních knihovních funkcí (BCL) a dotazování za pomocí vestavěního nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL).
@@ -31,12 +23,24 @@
 9. Návrhové vzory pro práci s vytvářením, strukturováním a chováním - Gang of Four (GoF) v kontextu C#.
 10. WPF za pomoci MVVM, tvorba komponenty a stylování aplikací.
 11. Paralelní a asynchroní programování proces, vlákno, úloha z pohledu C# a použitého .NET frameworku.
-12. Multiplatformní programování .NET Standard, .NET Core. Konteinerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm.
+12. Multiplatformní programování .NET Standard, .NET Core. Kontejnerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm.
 12. *Dobrovolná přednáška* **D0206 13:00-14:50 29.4.2019** -- Nástroje pro správu paměti a profilaci výkonu.
 
-
 # Demonstrační Cvičení 
-Dobrovolné demonstrační cvičení se koná každý sudý týden. Cvičení bude probíhat od prvního týdne semestru. Značení týdne sudý/lichý je podle kalendáře (ISO 8601). [Jaky je tyden?](https://jakyjetyden.cz/)
+Dobrovolná cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení na kterém budete moct cvičení aktivně zůčastnit. Bude potřeba vývojové prostředí ideálně Visual Studio 2017. Cvičení začínají od prvního týdne semestru a konajíse jednou za 14 dní.
+
+| Typ                                  | Místnost | Čas            |
+| ------------------------------------ |----------| -------------- |
+| Demonstrační cvičení (dobrovolné)    | D105     | Čt 18:00-19:50 |
+
+| Datum |                                                 Téma cvičení | 
+| ----- | ------------------------------------------------------------ | 
+| 7.2.  | Práce s Visual Studio 2017, Azure DevOps                     | 
+| 21.2. | Objektově orientované programování, úvod do Entity Framework | 
+| 7.3.  | Entity framework, zásady Clean Code, SOLID                   | 
+| 21.3. | Základy WPF, návrhový vzor MVVM                              | 
+| 4.4.  | WPF frontend, binding                                        | 
+| 18.4. | Bonusové cvičení                                             | 
 
 # Nástroje použity ve cvičeních
 
@@ -53,7 +57,6 @@ Dobrovolné demonstrační cvičení se koná každý sudý týden. Cvičení bu
 |[Entity Framework 6 Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition)| Doplněk| View Entity Data Model|
 |[OzCode](https://www.oz-code.com/)| Doplněk| Advanced debugging tools |
 |[GitFlow](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio2017)| Doplněk| GitFlow|
-
 
 # Q&A
 * Q: Je možné vypracovat projekt v menším počtu členů?
@@ -80,6 +83,7 @@ Dobrovolné demonstrační cvičení se koná každý sudý týden. Cvičení bu
 * [Patrik Švikruha]()
 
 # Užitečné odkazy
+* [WPF-Tutorial](https://wpf-tutorial.com/)
 * [Entity framework tutorial](http://www.entityframeworktutorial.net/code-first/entity-framework-code-first.aspx)
 * [R. C. Martin SOLID](https://youtu.be/TMuno5RZNeE?t=757) Bob Martin SOLID Principles of Object Oriented and Agile Design 
 * [Resharper features](https://www.jetbrains.com/resharper/features/) and how to use them.
