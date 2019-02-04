@@ -17,19 +17,19 @@
 
 +++
 
-1. [Organizace kurzu](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_00#/)
-2. [Úvod do jazyka C# a platformy .NET](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_01#/)
+0. [Organizace kurzu](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_00#/)
+1. [Úvod do jazyka C# a platformy .NET](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_01#/)
    * základní syntaxe jazyka, instalace a představení Visual Studia
-3. [Úvod do Objektově Orientované Programování](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_02#/)
+2. [Úvod do Objektově Orientované Programování](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_02#/)
    * pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika
-4. [Představení základních knihovních funkcí (BCL)](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_03#/)
+3. [Představení základních knihovních funkcí (BCL)](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_03#/)
    * dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL)
-5. [Propojení aplikace s databází](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_04#/)
+4. [Propojení aplikace s databází](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_04#/)
    * zajištění persistence pomocí ORM rozšíření Entity Framework s návrhovými vzory UnitOfWork a Repository
-6. [Psaní čistého, udržovatelného kódu](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_05#/)
+5. [Psaní čistého, udržovatelného kódu](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_05#/)
    * respektováním Clean Code, S.O.L.I.D. zásad
    * ukázky refaktorizace a práce s legacy kódem
-7. [Návrhový vzor Model-View-ViewModel (MVVM)](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_06#/)
+6. [Návrhový vzor Model-View-ViewModel (MVVM)](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_06#/)
    * architektura desktopových aplikací
    * mapování databázových entit na modelové třídy
 
