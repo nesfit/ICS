@@ -1,8 +1,15 @@
-﻿# Object-oriented programming and advanced constructs in C#
+﻿@snap[midpoint span-100]
+
+# Object-oriented programming and advanced constructs in C#
 ## OOP, Exceptions, events, delegates, lambda expressions and generics
-<div class="right">
-[ Michal Orlicek <xorlic00@stud.fit.vutbr.cz> ]
-</div>
+
+@snapend
+
+@snap[south-east span-40]
+
+[ Jan Pluskal <ipluskal@fit.vutbr.cz> ]
+
+@snapend
 
 ---
 ## Object Oriented Programming (OOP)
