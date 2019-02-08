@@ -1,4 +1,4 @@
-﻿@snap[midpoint span-100]
+﻿@snap[north span-100]
 
 # Object-oriented programming and advanced constructs in C#
 
