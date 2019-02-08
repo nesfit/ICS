@@ -1,0 +1,14 @@
+#
+# GitPitch Slideshow Custom Settings
+#
+# For details, visit Wiki:
+# https://github.com/gitpitch/gitpitch/wiki/Slideshow-Settings
+#
+theme : simple
+theme-override : /Lectures/Assets/css/PITCHME.css
+highlight : vs
+logo : /Lectures/Assets/img/logo.png
+published : true
+remote-control: true
+mathjax : TeX-MML-AM_HTMLorMML-full
+footnote : "C# course - Michal Orlicek <xorlic00@stud.fit.vutbr.cz>"
