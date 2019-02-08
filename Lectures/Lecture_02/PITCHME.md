@@ -1,4 +1,4 @@
-﻿@snap[north span-100]
+﻿@snap[midpoint span-100]
 
 # Object-oriented programming and advanced constructs in C#
 
@@ -7,6 +7,9 @@
 @snap[midpoint span-100]
 
 ## OOP, Exceptions, events, delegates, lambda expressions and generics
+
+@snapend
+
 
 @snap[south-east span-40]
 
