@@ -5,10 +5,11 @@
 # https://github.com/gitpitch/gitpitch/wiki/Slideshow-Settings
 #
 theme : simple
-theme-override : /Lectures/Assets/css/PITCHME.css
+theme-override : /Lectures/GitPitch/assets/css/PITCHME.css
 highlight : vs
-logo : /Lectures/Assets/img/logo.png
-published : true
+code-line-numbers : true
+logo : /Lectures/GitPitch/assets/image/logo.png
+published : false
 remote-control: true
 mathjax : TeX-MML-AM_HTMLorMML-full
-footnote : "C# course - Michal Orlicek <xorlic00@stud.fit.vutbr.cz>"
+footnote : "ICS - The C# Programming Language"
