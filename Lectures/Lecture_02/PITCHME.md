@@ -4,12 +4,7 @@
 
 @snapend
 
-@snap[midpoint span-100]
-
 ## OOP, Exceptions, events, delegates, lambda expressions and generics
-
-@snapend
-
 
 @snap[south-east span-40]
 
