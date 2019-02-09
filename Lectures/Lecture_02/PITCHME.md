@@ -54,10 +54,11 @@
   * A language construct that **facilitates the bundling of data with the methods** (or other functions) operating on that data
 
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=OOP Sample
++++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=Encapsulation Sample
 @[6-25]
 @[8-14]
 
++++
 #### Inheritance
 * Create objects that are built upon existing objects
 * Specify a new implementation to maintain the same behavior
