@@ -12,13 +12,11 @@
 
 [ Jan Pluskal <ipluskal@fit.vutbr.cz> ]
 
-
-
 ---
 ## Object Oriented Programming (OOP)
 * First appearance in **SIMULA 67**
 * Abstraction of real word 
-* Real object (dog) has some properties (**length, color of coat, ...**) and an ability to do something (**bark, bite**)
+* Real object (dog) has some properties (**length, a color of coat, ...**) and an ability to do something (**bark, bite**)
 * OOP Object interconnects data and behavior together
   * **Behavior** is described by **procedures** and **functions**, both called in OOP as **methods**
   * Data is stored in object's **member variable (field)**
@@ -28,7 +26,7 @@
 @[3-14]
 @[5-6]
 @[8-11, 13]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture02/Assets/sln/Example/Dog.cs)
+[Code sample](https://github.com/nesad/ICS/tree/master/Lectures/Lecture_02/Assets/slnExample/Dog.cs)
 
 +++
 ### Three Principles of OOP
@@ -56,13 +54,13 @@
 @[3-6]
 @[3-4, 6]
 @[5]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture02/Assets/sln/Example/Animal.cs)
+[Code sample](https://github.com/nesad/ICS/tree/master/Lectures/Lecture_02/Assets/slnExample/Animal.cs)
 
 +++?code=/Lectures/Lecture02/Assets/sln/Example/Dog.cs&lang=C#&title=Inheritance Sample
 @[3-14]
 @[3-4, 14]
 @[8-11]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture02/Assets/sln/Example/Dog.cs)
+[Code sample](https://github.com/nesad/ICS/tree/master/Lectures/Lecture_02/Assets/slnExample/Dog.cs)
 
 +++
 ##### Inheritance and Subtyping
@@ -72,7 +70,7 @@
   * **inheritance**:
     * only *reuses implementation and establishes* a **syntactic relationship**
     * not necessarily a **semantic relationship**, inheritance does not ensure behavioral subtyping
-* **Subtyping** is also known as **interface inheritance** whereas inheritance as defined here is known as implementation inheritance or code inheritance
+* **Subtyping** is also known as **interface inheritance** whereas inheritance, as defined here, is known as implementation inheritance or code inheritance
 * Still, **inheritance** is a commonly used mechanism for establishing subtype relationships
 
 +++
@@ -304,14 +302,14 @@
 ### Constructor
 * Run initialization code on a class or struct
 * Defined like a method
-  * Method name and return type are reduced to the name of the enclosing typeanu
-* Constructors of *base* class are accessible
+  * Method name and return type are reduced to the name of the enclosing type
+* Constructors of the *base* class are accessible
 
 +++?code=/Lectures/Lecture02/Assets/sln/Example/Panda.cs&lang=C#&title=Constructor Sample
 @[3-10]
 @[6-7, 9]
 @[5, 8]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture02/Assets/sln/Example/Panda.cs)
+[Code sample](https://github.com/nesad/ICS/tree/master/Lectures/Lecture_02/Assets/slnExample/Panda.cs)
 
 +++
 #### Implicit Parameterless Constructor
@@ -339,7 +337,7 @@
 @[7-10]
 @[11-14]
 @[5-14]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture02/Assets/sln/Example/UnknownCat.cs)
+[Code sample](https://github.com/nesad/ICS/tree/master/Lectures/Lecture_02/Assets/slnExample/UnknownCat.cs)
 
 +++?code=/Lectures/Lecture02/Assets/sln/Example/Cat.cs&lang=C#&title=Constructor Overloading Sample
 @[3-15]
@@ -347,11 +345,11 @@
 @[7-9]
 @[11-14]
 @[7-14]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture02/Assets/sln/Example/Cat.cs)
+[Code sample](https://github.com/nesad/ICS/tree/master/Lectures/Lecture_02/Assets/slnExample/Cat.cs)
 
 +++?code=/Lectures/Lecture02/Assets/sln/Tests/Constructor.cs&lang=C#&title=Constructor Overloading Test
 @[9-13]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture02/Assets/sln/Tests/Constructor.cs)
+[Code sample](https://github.com/nesad/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/Constructor.cs)
 
 +++
 ### Deconstructors
@@ -366,7 +364,7 @@
 @[5]
 @[7-11]
 @[13-17]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture02/Assets/sln/Example/Rectangle.cs)
+[Code sample](https://github.com/nesad/ICS/tree/master/Lectures/Lecture_02/Assets/slnExample/Rectangle.cs)
 
 +++
 #### Call Deconstructor
@@ -455,7 +453,7 @@ public abstract class Asset
   public abstract decimal NetValue { get; }
 }
 
-public class Stock : Asset
+public class Stock: Asset
 {
   public long SharesOwned;
   public decimal CurrentPrice;
@@ -492,7 +490,7 @@ public class Stock : Asset
 @[11]
 @[12]
 @[13]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture02/Assets/sln/Tests/UpCast.cs)
+[Code sample](https://github.com/nesad/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/UpCast.cs)
 
 +++
 #### Downcast
@@ -508,7 +506,7 @@ public class Stock : Asset
 @[18-22]
 @[20]
 @[21]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture02/Assets/sln/Tests/DownCast.cs)
+[Code sample](https://github.com/nesad/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/DownCast.cs)
 
 +++
 #### Operator `as`
@@ -520,7 +518,7 @@ public class Stock : Asset
 @[9-13]
 @[11]
 @[12]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture02/Assets/sln/Tests/AsOperator.cs)
+[Code sample](https://github.com/nesad/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/AsOperator.cs)
 
 +++
 #### Operator `is`
@@ -532,7 +530,7 @@ public class Stock : Asset
 @[9-13]
 @[11]
 @[12]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture02/Assets/sln/Tests/IsOperator.cs)
+[Code sample](https://github.com/nesad/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/IsOperator.cs)
 
 +++?code=/Lectures/Lecture02/Assets/sln/Tests/PatternMatching.cs&lang=C#&title=IS Pattern Matching Example
 @[6-28]
@@ -544,7 +542,7 @@ public class Stock : Asset
 @[22]
 @[23-24, 26]
 @[25]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture02/Assets/sln/Tests/PatternMatching.cs)
+[Code sample](https://github.com/nesad/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/PatternMatching.cs)
 
 +++
 ### Sealed
@@ -555,7 +553,7 @@ public class Stock : Asset
 ```C#
 class Animal { }
  
-sealed class Cat : Animal { }
+sealed class Cat: Animal { }
  
 //Compile-time error
 public class Kitten : Cat {}
@@ -578,7 +576,7 @@ public class Kitten : Cat {}
 ### Partial
 * Allows split across multiple files
 * Each participant must have the `partial` declaration
-* Typically ised in WPF, Winforms
+* Typically used in WPF, Winforms
   * one file is auto-generated
   * one file is human edited
 
@@ -732,7 +730,7 @@ class Flea : Insect, ICarnivore { }
 
 ---
 ## Generics
-* C# has two mechanism for reusable code across different types
+* C# has two mechanisms for reusable code across different types
   * *Inheritance* - expresses reusability with a *base type*
   * *Generics* - express reusability with a “template” that contains “placeholder” types
     * Type safe code
@@ -741,7 +739,7 @@ class Flea : Insect, ICarnivore { }
 +++
 ### Generics Types
 * declares type parameters—placeholder types to be filled in by the consumer of the generic type
-  * i.e. `Stack<T>`, designed to stack instances of type `T`:
+  * i.e., `Stack<T>`, designed to stack instances of type `T`:
     ```C#
     public class Stack<T>
     {
@@ -786,7 +784,7 @@ public class Stack<T>
 +++
 ### Why Geneerics
 * **Reusable across different types**
-  * i.e. we need a stack for multiple types:
+  * i.e., we need a stack for multiple types:
     * Generics
     * Separate version of the class for every required element type
       *  (e.i., `IntStack`, `StringStack` etc..)
@@ -848,11 +846,11 @@ int i = (int)stack.Pop(); // Downcast - runtime error
 @[27-30]
 @[33-36]
 @[11-24]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture02/Assets/sln/Example/CovarianceContravariance.cs)
+[Code sample](https://github.com/nesad/ICS/tree/master/Lectures/Lecture_02/Assets/slnExample/CovarianceContravariance.cs)
 
 +++
 ## Boxing/Unboxing
-* C#'s type system is unified such that a value of any type can be treated as an `object`
+* C#'s type system is unified such that a value of any type can be treated as an `object`.
 * Every type in C# directly or indirectly derives from the `object` class type, and `object` is the ultimate *base class* of all types
 * Values of reference types are treated as objects simply by viewing the values as type object
 * Values of value types are treated as objects by performing **boxing** and **unboxing** operations
@@ -862,7 +860,7 @@ int i = (int)stack.Pop(); // Downcast - runtime error
 @[10]
 @[11]
 @[12]
-[Code sample](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture02/Assets/sln/Tests/Boxing.cs)
+[Code sample](https://github.com/nesad/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/Boxing.cs)
 
 ---
 ## Exceptions
@@ -908,7 +906,7 @@ finally
   * If the `catch` block successfully finishes
     * If present, Execution is passed to `finally` block
     * Execution moves to the next statement after the `try` statement
-* If exeption isn't in `try statement:
+* If exception isn't in `try statement:
   * Execution jumps back to the caller of the function and test is repeated
 * If no function takes responsibility for the exception, an error dialog box is displayed to the user, and the program terminates
 
@@ -1069,7 +1067,7 @@ catch (FormatException ex)
 * `System.InvalidOperationException`
   * Thrown when the state of an object is unsuitable for a method to successfully execute
 * `System.NotSupportedException`
-  * Thrown to indicate that a particular functionality is not supported
+  * Thrown to indicate that particular functionality is not supported
 * `System.NotImplementedException`
   * Thrown to indicate that a function has not yet been implemented
 * `System.ObjectDisposedException`
@@ -1251,7 +1249,7 @@ class Foo
 +++
 #### `delegate` vs `interface`
 * A problem that can be solved with a delegate can also be solved with an interface
-* Delegate design may be a better if:
+* Delegate design may be better if:
   * The interface defines only a single method
   * Multicast capability is needed
   * The subscriber needs to implement the interface multiple times
@@ -1404,7 +1402,7 @@ int total = totalLength ("hello", "world"); // 10;
 * *Outer variables* referenced by a lambda expression are called *captured variables*
 * *Lambda expression* that captures variables is called a *closure*
 * *Captured variables* 
-  * Are evaluated when the delegate is actually *invoked*
+  * Are evaluated when the delegate is *invoked*
   * Have their lifetimes *extended* to that of the delegate
 
 ```C#
@@ -1446,7 +1444,7 @@ static void Main()
 ```
 
 +++
-### Lambda Expressions vs Local Methods
+### Lambda Expressions vs. Local Methods
 * Local methods functionality overlaps with that overlaps lambda expressions
 * Local methods advantages:
   * Recursive without ugly hacks
