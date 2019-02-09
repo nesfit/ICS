@@ -22,7 +22,7 @@
   * Data is stored in object's **member variable (field)**
   * **Methods** and **fields** together create objects
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Example/Dog.cs&lang=C#&title=OOP Sample
++++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=OOP Sample
 @[6-24]
 @[8]
 @[9-10]
@@ -31,7 +31,7 @@
 @[23]
 @[6-24]
 
-[Code sample](https://github.com/pluskal/ICS/blob/master/Lectures/Lecture_02/Assets/sln/Example/Dog.cs)
+[Code sample](https://github.com/pluskal/ICS/blob/master/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
 
 +++
 ### Three Principles of OOP
@@ -55,17 +55,17 @@
 * Reuse code and to independently extend original software via public classes
 * An *inherited class* is called a **subclass** of its **parent class** or **superclass** or **base class**
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Example/Animal.cs&lang=C#&title=Inheritance Sample
++++?code=/Lectures/Lecture_02/Assets/sln/Examples/Animal.cs&lang=C#&title=Inheritance Sample
 @[3-6]
 @[3-4, 6]
 @[5]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/Animal.cs)
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Animal.cs)
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Example/Dog.cs&lang=C#&title=Inheritance Sample
++++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=Inheritance Sample
 @[3-14]
 @[3-4, 14]
 @[8-11]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/Dog.cs)
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
 
 +++
 ##### Inheritance and Subtyping
@@ -310,11 +310,11 @@
   * Method name and return type are reduced to the name of the enclosing type
 * Constructors of the *base* class are accessible
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Example/Panda.cs&lang=C#&title=Constructor Sample
++++?code=/Lectures/Lecture_02/Assets/sln/Examples/Panda.cs&lang=C#&title=Constructor Sample
 @[3-10]
 @[6-7, 9]
 @[5, 8]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/Panda.cs)
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Panda.cs)
 
 +++
 #### Implicit Parameterless Constructor
@@ -336,21 +336,21 @@
   * `this` - refers to *this* type instance 
   * `base` - refers to *base* class type instance
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Example/UnknownCat.cs&lang=C#&title=Constructor Overloading Sample
++++?code=/Lectures/Lecture_02/Assets/sln/Examples/UnknownCat.cs&lang=C#&title=Constructor Overloading Sample
 @[3-20]
 @[5]
 @[7-10]
 @[11-14]
 @[5-14]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/UnknownCat.cs)
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/UnknownCat.cs)
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Example/Cat.cs&lang=C#&title=Constructor Overloading Sample
++++?code=/Lectures/Lecture_02/Assets/sln/Examples/Cat.cs&lang=C#&title=Constructor Overloading Sample
 @[3-15]
 @[5]
 @[7-9]
 @[11-14]
 @[7-14]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/Cat.cs)
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Cat.cs)
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Tests/Constructor.cs&lang=C#&title=Constructor Overloading Test
 @[9-13]
@@ -364,12 +364,12 @@
   * Be called **Deconstruct**
   * Have one or more out parameters
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Example/Rectangle.cs&lang=C#&title=Deconstructor Sample
++++?code=/Lectures/Lecture_02/Assets/sln/Examples/Rectangle.cs&lang=C#&title=Deconstructor Sample
 @[3-18]
 @[5]
 @[7-11]
 @[13-17]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/Rectangle.cs)
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Rectangle.cs)
 
 +++
 #### Call Deconstructor
@@ -846,12 +846,12 @@ int i = (int)stack.Pop(); // Downcast - runtime error
 * **Invariance** use only of the same type as initially specified.
   *  Invariant generic type parameter is neither **covariant** nor **contravariant**.
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Example/CovarianceContravariance.cs&lang=C#&title=Covariance Contravariance Example
++++?code=/Lectures/Lecture_02/Assets/sln/Examples/CovarianceContravariance.cs&lang=C#&title=Covariance Contravariance Example
 @[11]
 @[27-30]
 @[33-36]
 @[11-24]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/CovarianceContravariance.cs)
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/CovarianceContravariance.cs)
 
 +++
 ## Boxing/Unboxing
