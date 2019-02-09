@@ -23,13 +23,13 @@
   * **Methods** and **fields** together create objects
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=OOP Sample
-@[6-24]
+@[6-25]
 @[8]
-@[9-10]
-@[12-16]
-@[18-21]
-@[23]
-@[6-24]
+@[10-14]
+@[16-17]
+@[19-22]
+@[24]
+@[6-25]
 
 [Code sample](https://github.com/pluskal/ICS/blob/master/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
 
@@ -52,8 +52,11 @@
 * Definitions:
   * A language mechanism for **restricting direct access** to some of the **object's components**
   * A language construct that **facilitates the bundling of data with the methods** (or other functions) operating on that data
+  * 
++++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=OOP Sample
+@[6-25]
+@[8-14]
 
-+++
 #### Inheritance
 * Create objects that are built upon existing objects
 * Specify a new implementation to maintain the same behavior
