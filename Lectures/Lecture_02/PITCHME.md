@@ -22,11 +22,11 @@
   * Data is stored in object's **member variable (field)**
   * **Methods** and **fields** together create objects
 
-+++?code=/Lectures/Lecture02/Assets/sln/Example/Dog.cs&lang=C#&title=OOP Sample
++++?code=/Lectures/Lecture_02/Assets/sln/Example/Dog.cs&lang=C#&title=OOP Sample
 @[3-14]
 @[5-6]
 @[8-11, 13]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/Dog.cs)
+[Code sample](https://github.com/pluskal/ICS/blob/master/Lectures/Lecture_02/Assets/sln/Example/Dog.cs)
 
 +++
 ### Three Principles of OOP
@@ -50,13 +50,13 @@
 * Reuse code and to independently extend original software via public classes
 * An *inherited class* is called a **subclass** of its **parent class** or **superclass** or **base class**
 
-+++?code=/Lectures/Lecture02/Assets/sln/Example/Animal.cs&lang=C#&title=Inheritance Sample
++++?code=/Lectures/Lecture_02/Assets/sln/Example/Animal.cs&lang=C#&title=Inheritance Sample
 @[3-6]
 @[3-4, 6]
 @[5]
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/Animal.cs)
 
-+++?code=/Lectures/Lecture02/Assets/sln/Example/Dog.cs&lang=C#&title=Inheritance Sample
++++?code=/Lectures/Lecture_02/Assets/sln/Example/Dog.cs&lang=C#&title=Inheritance Sample
 @[3-14]
 @[3-4, 14]
 @[8-11]
@@ -305,7 +305,7 @@
   * Method name and return type are reduced to the name of the enclosing type
 * Constructors of the *base* class are accessible
 
-+++?code=/Lectures/Lecture02/Assets/sln/Example/Panda.cs&lang=C#&title=Constructor Sample
++++?code=/Lectures/Lecture_02/Assets/sln/Example/Panda.cs&lang=C#&title=Constructor Sample
 @[3-10]
 @[6-7, 9]
 @[5, 8]
@@ -331,7 +331,7 @@
   * `this` - refers to *this* type instance 
   * `base` - refers to *base* class type instance
 
-+++?code=/Lectures/Lecture02/Assets/sln/Example/UnknownCat.cs&lang=C#&title=Constructor Overloading Sample
++++?code=/Lectures/Lecture_02/Assets/sln/Example/UnknownCat.cs&lang=C#&title=Constructor Overloading Sample
 @[3-20]
 @[5]
 @[7-10]
@@ -339,7 +339,7 @@
 @[5-14]
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/UnknownCat.cs)
 
-+++?code=/Lectures/Lecture02/Assets/sln/Example/Cat.cs&lang=C#&title=Constructor Overloading Sample
++++?code=/Lectures/Lecture_02/Assets/sln/Example/Cat.cs&lang=C#&title=Constructor Overloading Sample
 @[3-15]
 @[5]
 @[7-9]
@@ -347,7 +347,7 @@
 @[7-14]
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/Cat.cs)
 
-+++?code=/Lectures/Lecture02/Assets/sln/Tests/Constructor.cs&lang=C#&title=Constructor Overloading Test
++++?code=/Lectures/Lecture_02/Assets/sln/Tests/Constructor.cs&lang=C#&title=Constructor Overloading Test
 @[9-13]
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/Constructor.cs)
 
@@ -359,7 +359,7 @@
   * Be called **Deconstruct**
   * Have one or more out parameters
 
-+++?code=/Lectures/Lecture02/Assets/sln/Example/Rectangle.cs&lang=C#&title=Deconstructor Sample
++++?code=/Lectures/Lecture_02/Assets/sln/Example/Rectangle.cs&lang=C#&title=Deconstructor Sample
 @[3-18]
 @[5]
 @[7-11]
@@ -484,7 +484,7 @@ public class Stock: Asset
 * Creates a *base* class reference from a *subclass* reference
 * Only *members* provided by given *base* class can be accessed through upcasted reference
 
-+++?code=/Lectures/Lecture02/Assets/sln/Tests/UpCast.cs&lang=C#&title=Upcast Example
++++?code=/Lectures/Lecture_02/Assets/sln/Tests/UpCast.cs&lang=C#&title=Upcast Example
 @[6-15]
 @[9-14]
 @[11]
@@ -497,7 +497,7 @@ public class Stock: Asset
 * Creates a *subclass* reference from a *base* class reference
 * It **fails**, if *base* class instance is not compatible with *inherited* one
 
-+++?code=/Lectures/Lecture02/Assets/sln/Tests/DownCast.cs&lang=C#&title=Downcast Example
++++?code=/Lectures/Lecture_02/Assets/sln/Tests/DownCast.cs&lang=C#&title=Downcast Example
 @[7-23]
 @[10-15]
 @[12]
@@ -513,7 +513,7 @@ public class Stock: Asset
 * Downcasts
 * Return `null` if fails
 
-+++?code=/Lectures/Lecture02/Assets/sln/Tests/AsOperator.cs&lang=C#&title=AS Operator Example
++++?code=/Lectures/Lecture_02/Assets/sln/Tests/AsOperator.cs&lang=C#&title=AS Operator Example
 @[6-14]
 @[9-13]
 @[11]
@@ -525,14 +525,14 @@ public class Stock: Asset
 * Tests whether a reference conversion would succeed
 * Usually before downcast
 
-+++?code=/Lectures/Lecture02/Assets/sln/Tests/IsOperator.cs&lang=C#&title=IS Operator Example
++++?code=/Lectures/Lecture_02/Assets/sln/Tests/IsOperator.cs&lang=C#&title=IS Operator Example
 @[6-14]
 @[9-13]
 @[11]
 @[12]
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/IsOperator.cs)
 
-+++?code=/Lectures/Lecture02/Assets/sln/Tests/PatternMatching.cs&lang=C#&title=IS Pattern Matching Example
++++?code=/Lectures/Lecture_02/Assets/sln/Tests/PatternMatching.cs&lang=C#&title=IS Pattern Matching Example
 @[6-28]
 @[9-17]
 @[11]
@@ -841,7 +841,7 @@ int i = (int)stack.Pop(); // Downcast - runtime error
 * **Invariance** use only of the same type as initially specified.
   *  Invariant generic type parameter is neither **covariant** nor **contravariant**.
 
-+++?code=/Lectures/Lecture02/Assets/sln/Example/CovarianceContravariance.cs&lang=C#&title=Covariance Contravariance Example
++++?code=/Lectures/Lecture_02/Assets/sln/Example/CovarianceContravariance.cs&lang=C#&title=Covariance Contravariance Example
 @[11]
 @[27-30]
 @[33-36]
@@ -855,7 +855,7 @@ int i = (int)stack.Pop(); // Downcast - runtime error
 * Values of reference types are treated as objects simply by viewing the values as type object
 * Values of value types are treated as objects by performing **boxing** and **unboxing** operations
 
-+++?code=/Lectures/Lecture02/Assets/sln/Tests/Boxing.cs&lang=C#&title=Boxing Sample
++++?code=/Lectures/Lecture_02/Assets/sln/Tests/Boxing.cs&lang=C#&title=Boxing Sample
 @[8-15]
 @[10]
 @[11]
