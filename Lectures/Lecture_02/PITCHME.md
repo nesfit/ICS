@@ -26,7 +26,7 @@
 @[3-14]
 @[5-6]
 @[8-11, 13]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnExample/Dog.cs)
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/Dog.cs)
 
 +++
 ### Three Principles of OOP
@@ -54,13 +54,13 @@
 @[3-6]
 @[3-4, 6]
 @[5]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnExample/Animal.cs)
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/Animal.cs)
 
 +++?code=/Lectures/Lecture02/Assets/sln/Example/Dog.cs&lang=C#&title=Inheritance Sample
 @[3-14]
 @[3-4, 14]
 @[8-11]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnExample/Dog.cs)
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/Dog.cs)
 
 +++
 ##### Inheritance and Subtyping
@@ -309,7 +309,7 @@
 @[3-10]
 @[6-7, 9]
 @[5, 8]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnExample/Panda.cs)
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/Panda.cs)
 
 +++
 #### Implicit Parameterless Constructor
@@ -337,7 +337,7 @@
 @[7-10]
 @[11-14]
 @[5-14]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnExample/UnknownCat.cs)
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/UnknownCat.cs)
 
 +++?code=/Lectures/Lecture02/Assets/sln/Example/Cat.cs&lang=C#&title=Constructor Overloading Sample
 @[3-15]
@@ -345,7 +345,7 @@
 @[7-9]
 @[11-14]
 @[7-14]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnExample/Cat.cs)
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/Cat.cs)
 
 +++?code=/Lectures/Lecture02/Assets/sln/Tests/Constructor.cs&lang=C#&title=Constructor Overloading Test
 @[9-13]
@@ -364,7 +364,7 @@
 @[5]
 @[7-11]
 @[13-17]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnExample/Rectangle.cs)
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/Rectangle.cs)
 
 +++
 #### Call Deconstructor
@@ -846,7 +846,7 @@ int i = (int)stack.Pop(); // Downcast - runtime error
 @[27-30]
 @[33-36]
 @[11-24]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnExample/CovarianceContravariance.cs)
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Example/CovarianceContravariance.cs)
 
 +++
 ## Boxing/Unboxing
