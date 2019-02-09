@@ -34,7 +34,7 @@
 [Code sample](https://github.com/pluskal/ICS/blob/master/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
 
 +++
-### Three Principles of OOP
+## Three Principles of OOP
 
 @snap[north-east span-10]
 ![](/Lectures/GitPitch/assets/image/Overview_small.png)
@@ -60,7 +60,7 @@
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
 
 +++
-#### Inheritance
+### Inheritance
 * Create objects that are built upon existing objects
 * Specify a new implementation to maintain the same behavior
 * Reuse code and to independently extend original software via public classes
@@ -80,7 +80,7 @@
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
 
 +++
-##### Inheritance and Subtyping
+#### Inheritance and Subtyping
 * In some languages inheritance and subtyping are no different
 * Generally in statically-typed class-based OO languages, such as (C++, C#, Java), whereas in others they differ
   * **subtyping** *establishes an is-a relationship*
@@ -91,12 +91,12 @@
 * Still, **inheritance** is a commonly used mechanism for establishing subtype relationships
 
 +++
-#### Polymorphism
+### Polymorphism
 * Is the provision of a *single interface* to *entities of different types*
 * A polymorphic type is one whose operations can also be applied to values of some other type, or types
 
 +++
-##### Polymorphism Types
+#### Polymorphism Types
 * **Ad hoc polymorphism**:
   * **Function overloading**
   * *Function denotes different and potentially heterogeneous implementations* depending on a limited range of *individually specified types and combinations*
