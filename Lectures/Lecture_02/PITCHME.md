@@ -148,7 +148,7 @@
   ```
 
 +++
-### Static / non static
+### Static/non static
 * `static` classes - **only one** instance for an **AppDomain**
   * *static members* belong to the **class** not the *object*   
 * **non static** - classes are **instantiated** during program run
@@ -158,9 +158,9 @@
 ### Class may contain
 | | |
 |-|-|
-|Preceding the keyword class |Attributes and class modifier |
-|Following YourClass Name    |Generic type parameters, a base class, and interfaces|
-|Within the braces           |Methods, properties, indexers, events, fields, constructors...|
+|*Preceding* **the class keyword** |Attributes and class modifier |
+|*Following* **the class Name**    |Generic type parameters, a base class, and interfaces|
+|*Within* **the class body**       |Methods, properties, indexers, events, fields, constructors...|
 
 +++
 ### Class Components
