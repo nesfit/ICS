@@ -52,7 +52,8 @@
 * Definitions:
   * A language mechanism for **restricting direct access** to some of the **object's components**
   * A language construct that **facilitates the bundling of data with the methods** (or other functions) operating on that data
-  * 
+
+
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=OOP Sample
 @[6-25]
 @[8-14]
