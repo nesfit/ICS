@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace Lecture02.Tests
+namespace Tests
 {
     public class Boxing
     {

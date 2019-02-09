@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Specialized;
+
+namespace Examples
+{
+    public class Dog: Pet
+    {
+        private Int32 _age;          // Class member - filed
+                                     // Class member - auto-generated property
+        public override String Name { get; protected set; } = "Dog";
+
+        public int Age               // Class member - property
+        {
+            get => _age;
+            set => _age = value;
+        }
+
+        public override string Cry() // Class member - method
+        {
+            return "Woof!";
+        }
+
+        public void Bite() { }       // Class member - method
+    }
+}

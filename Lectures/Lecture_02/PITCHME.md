@@ -23,9 +23,14 @@
   * **Methods** and **fields** together create objects
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Example/Dog.cs&lang=C#&title=OOP Sample
-@[3-14]
-@[5-6]
-@[8-11, 13]
+@[6-24]
+@[8]
+@[9-10]
+@[12-16]
+@[18-21]
+@[23]
+@[6-24]
+
 [Code sample](https://github.com/pluskal/ICS/blob/master/Lectures/Lecture_02/Assets/sln/Example/Dog.cs)
 
 +++

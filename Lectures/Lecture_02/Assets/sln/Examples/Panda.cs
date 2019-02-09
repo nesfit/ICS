@@ -1,11 +1,11 @@
-﻿namespace Example
+﻿namespace Examples
 {
     public class Panda
     {
-        string name; // Field
+        string _name; // Field
         public Panda(string n) // Constructor
         {
-            name = n; // Initialization code 
+            _name = n; // Initialization code 
         }
     }
 }
