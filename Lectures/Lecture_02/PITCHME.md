@@ -164,11 +164,16 @@
 
 +++
 ### Class Components
-* **field** – a member variable
-* **property** – an accessor for a field
-* **method** - named procedure of function
-* **event** - notifies object change
-* **constructor** - **method** that run initialization code
+* **fields** – a member variable
+* **properties** – methods that are accessed as if they were fields
+* **constants** - fields or properties whose values are set at compile time and cannot be changed
+* **methods** - named procedures or functions
+* **events** - notifies object state changes
+* **operators** - overloaded operators
+* **indexeres** - allows object to be index as an array
+* **constructors** - **method** that run initialization code
+* **finalizer** - **methods** called during object destruction
+* **nested types** - types declared within a class scope
 
 +++
 ### Field
