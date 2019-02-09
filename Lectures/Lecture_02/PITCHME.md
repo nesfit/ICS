@@ -138,9 +138,9 @@
 
 ---
 ## Class
-* Most common kind of reference type
-* Construction plan for an object
-* Encapsulates *data* and *behavior*
+* The most common of reference types
+* Think about it s a *construction plan for an object*
+* **Encapsulates** *data* and *behavior*
   ```C#
   class YourClassName
   {
@@ -149,8 +149,10 @@
 
 +++
 ### Static / non static
-* `static` - **only one** instance for program run
-* *non static* - classes are **instanciated** during program run
+* `static` classes - **only one** instance for an **AppDomain**
+  * *static members* belong to the **class** not the *object*   
+* **non static** - classes are **instantiated** during program run
+  * *non static members* belongs to the *object*   
 
 +++
 ### Class may contain
@@ -173,7 +175,7 @@
 * Variable that is a member of a *class* or *struct*
 * Initialization
   * Optional
-  * Noninitialized has a *default* value (`0, \0, null, false`)
+  * Non-initiated has a *default* value (`0, \0, null, false`)
   * Before a constructor call
     ```C#
     class Octopus
