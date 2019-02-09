@@ -66,9 +66,10 @@
 * An *inherited class* is called a **subclass** of its **parent class** or **superclass** or **base class**
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Animal.cs&lang=C#&title=Inheritance Sample
-@[3-6]
-@[3-4, 6]
-@[5]
+@[6-25]
+@[16-17]
+@[19-22]
+@[6-25]
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Animal.cs)
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=Inheritance Sample
