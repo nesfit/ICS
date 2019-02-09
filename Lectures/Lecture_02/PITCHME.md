@@ -35,6 +35,11 @@
 
 +++
 ### Three Principles of OOP
+
+@snap[north-east span-10]
+![](/Lectures/GitPitch/assets/image/Overview_small.png)
+@snapend
+
 * OOP interconnects **data** and **logic**
   * **Encapsulation**
   * **Inheritance**
