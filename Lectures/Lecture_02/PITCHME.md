@@ -503,32 +503,32 @@ public class Stock: Asset
 {
   public long SharesOwned;
   public decimal CurrentPrice;
-  // Override like a virtual method.
+  /// Overrode, like a virtual method.
   public override decimal NetValue => CurrentPrice * SharesOwned;
 }
 ```
 
 +++
 ### Virtual
-* Can be overridden by subclasses 
-* To provide a specialized implementation
+* Implementation can be overridden in subclasses 
+* To provide a specialized/concrete implementation
 * Mechanism of **late binding**
 * Virtual can be:
-  * Methods
-  * Properties
-  * Indexers
-  * Events
+  * **Methods**
+  * **Properties**
+  * **Indexers**
+  * **Events**
 
 +++ 
-### Type Compatibilty
-* Easeup usage of *subtypes*, ergo *virtual methods*
+### Type Compatibility
+* Ease-up usage of *subtypes*, ergo *virtual methods*
 * Compatibility of *types* of `class`, `struct` instances
-* Determines to which type reference can be assigned reference of another type
+* Determines, into which type reference can be assigned another type reference
 
 +++
-#### Upcast
+#### Up-cast
 * Creates a *base* class reference from a *subclass* reference
-* Only *members* provided by given *base* class can be accessed through upcasted reference
+* Only *members* provided by given *base* class can be accessed through up-casted reference
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Tests/UpCast.cs&lang=C#&title=Upcast Example
 @[6-15]
@@ -539,7 +539,7 @@ public class Stock: Asset
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/UpCast.cs)
 
 +++
-#### Downcast
+#### Down-cast
 * Creates a *subclass* reference from a *base* class reference
 * It **fails**, if *base* class instance is not compatible with *inherited* one
 
@@ -557,7 +557,7 @@ public class Stock: Asset
 +++
 #### Operator `as`
 * Downcasts
-* Return `null` if fails
+* Returns `null`, if failed
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Tests/AsOperator.cs&lang=C#&title=AS Operator Example
 @[6-14]
@@ -593,8 +593,8 @@ public class Stock: Asset
 +++
 ### Sealed
 * Restricts
-  * Inderitance of `class`
-  * Override of *method*
+  * Inheritance of `class`
+  * Overrode of *method*
 
 ```C#
 class Animal { }
