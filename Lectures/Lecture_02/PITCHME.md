@@ -339,16 +339,19 @@ public string Name {
 +++
 #### Expression-bodied Property
 * With only get accessor:
-  ```C#
-  public string Name => _name;
-  ```
+
+```C#
+public string Name => _name;
+```
+
 * With set accessor:
-  ```C#
-  public string Name {
-    get => return _name;
-    set => _name = value;
-  }
-  ```
+
+```C#
+public string Name {
+  get => return _name;
+  set => _name = value;
+}
+```
 
 +++
 ### Constructor
