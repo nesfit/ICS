@@ -204,13 +204,13 @@
 * *Procedures* and *functions* are in OOP called *methods*
 * Can access to members of `class` or `struct`
 * Can
-  * accept parameters - *values*, *reference types*, `ref`
+  * accept parameters - *values*, *reference types*, `ref`, `in`
   * return result - in return type (`return`), or `ref` or `out` parameters
 
 +++
 #### Method Modifiers
 * `static`
-* access - `public, internal, private, protected`
+* access - `public, internal, private, protected, protected internal, private protected`
 * inheritance - `new, virtual, abstract, override, sealed, partial`
 * unsafe code - `unsafe, extern`
 * asynchronous - `async`
@@ -230,6 +230,19 @@
   ```C#
   void Foo(int x) => Console.WriteLine(x);
   ```
+
++++
+#### Method Signatures
+* Methods are declared in a *class* or *struct* by specifying:
+  *  the **access level** such as public or private,
+  *  **optional modifiers** such as abstract or sealed,
+  *  the **return value**,
+  *  the **name** of the method,
+  *  and any method **parameters**. 
+* These parts together are the **signature of the method**.
+
+* A **return type** *is not part of the signature* for the purposes of method **overloading**. 
+* A **return type** *is part of the signature* when determining the compatibility between a **delegate** and the method that it points to.
 
 +++
 #### Method Overloads
