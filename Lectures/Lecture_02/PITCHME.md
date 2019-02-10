@@ -771,38 +771,41 @@ class Flea : Insect, ICarnivore { }
 * Support of Intellisense in Visual Studio
 * Keyword `dynamic` overcomes type safety mechanisms, and type is resolved in *runtime*
 * Benefits:
-  * Elimination of type issues in  *compile time*
+  * Elimination of type issues in *compile time*
   * Sandboxing protects object state against outer modifications
 
 ---
 ## Generics
-* C# has two mechanisms for reusable code across different types
+* C# has two mechanisms for *reusable code across different types*
   * *Inheritance* - expresses reusability with a *base type*
-  * *Generics* - express reusability with a “template” that contains “placeholder” types
-    * Type safe code
-    * Reduce casting and boxing
+  * *Generics* - express reusability with a *"template"* that contains "placeholder" types
+    * *Type safe* code
+    * *Reduce casting and boxing*
 
 +++
 ### Generics Types
-* declares type parameters—placeholder types to be filled in by the consumer of the generic type
+* Declares type parameter/placeholder types to be filled in by the consumer of the generic type
   * i.e., `Stack<T>`, designed to stack instances of type `T`:
-    ```C#
-    public class Stack<T>
-    {
-      int position;
-      T[] data = new T[100];
-      public void Push (T obj) => data[position++] = obj;
-      public T Pop() => data[--position];
-    }
-    ```
-    used as
-    ```C#
-    var stack = new Stack<int>();
-    stack.Push (5);
-    stack.Push (10);
-    int x = stack.Pop(); // x is 10
-    int y = stack.Pop(); // y is 5
-    ```
+
+```C#
+public class Stack<T>
+{
+  int position;
+  T[] data = new T[100];
+  public void Push (T obj) => data[position++] = obj;
+  public T Pop() => data[--position];
+}
+```
+
+usage:
+
+```C#
+var stack = new Stack<int>();
+stack.Push (5);
+stack.Push (10);
+int x = stack.Pop(); // x is 10
+int y = stack.Pop(); // y is 5
+```
 
 +++
 ### Generics Open/Close Types
@@ -811,9 +814,9 @@ class Flea : Insect, ICarnivore { }
   * During a *runtime* all generics are of *closed type*
 
 ```C#
-var stack = new Stack<T>(); // Illegal: What is T?
+var stack = new Stack<T>(); // Compile-time error outside generic type or method
 ```
-inside a class  its legal
+
 
 ```
 public class Stack<T>
@@ -821,7 +824,7 @@ public class Stack<T>
  ...
  public Stack<T> Clone()
  {
- Stack<T> clone = new Stack<T>(); // Legal
+ Stack<T> clone = new Stack<T>();
  ...
  }
 }
