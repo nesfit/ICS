@@ -355,9 +355,9 @@ public string Name {
 
 +++
 ### Constructor
-* Run initialization code on a class or struct
+* Run initialization code on a **class** or **struct**
 * Defined like a method
-  * Method name and return type are reduced to the name of the enclosing type
+  * Method *name and return type* are reduced to the *name of the enclosing type*
 * Constructors of the *base* class are accessible
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Panda.cs&lang=C#&title=Constructor Sample
