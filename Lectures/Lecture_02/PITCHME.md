@@ -178,7 +178,7 @@
 +++
 ### Field
 * Variable that is a member of a *class* or *struct*
-* Initialization
+* *Initialization*
   * Optional
   * Non-initiated has a *default* value (`0, \0, null, false`)
   * Before a constructor call
