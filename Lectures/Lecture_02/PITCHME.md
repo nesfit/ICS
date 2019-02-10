@@ -456,7 +456,7 @@ var (width, height) = rect;
 
 +++
 ### Finalizer
-* Runs on instance that is no more referenced before is garbage collected
+* Runs on an instance of an object when it is referenced no more before the garbage collection
 * `override`s `System.Object`'s method `Finalize()`
 
 ```C#
