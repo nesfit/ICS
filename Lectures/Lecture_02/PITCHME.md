@@ -123,18 +123,18 @@
 ### Access Modifiers
 * Used for limiting access to *implementation details*
 * Ensure *encapsulation* and leads to safe code
-* If a modifier is omitted, the most restrictive one is used
+* **If a modifier is omitted, the most restrictive one is used**
 
 +++
 
 | Modifier | Visibility |
 |-|-|
-|`public` | accessed *everywhere* |
-|`private` | accessed only in the **same** *class* or *struct* |
-|`protected` | accessed only by code in the **same** *class*, or in a *class* **that is derived** from that class |
-|`internal` | accessed in the **same assembly**, but not from another assembly |
-|`protected internal` | accessed in the assembly in which it is declared, or from within a **derived** *class* in another assembly |
-|`private protected` |  accessed **only within its declaring assembly**, by code in the same class or in a type that is derived from that class |
+|`public` | accessible *everywhere* |
+|`private` | accessible only in the **same** *class* or *struct* |
+|`protected` | accessible only in the **same** *class*, or in a *class* **that is derived** from the same class |
+|`internal` | accessible in the **same assembly**, but not from another assemblies |
+|`protected internal` | accessible in the **same assembly** in which it is declared, **or** from within a **derived** *class* in another assembly (*internal* **OR** *protected*) |
+|`private protected` |  accessible **only within its declaring assembly**, in the **same** *class*, **and** in a *class* **that is derived** from the same *class* (*internal* **AND** *protected*) |
 
 ---
 ## Class
@@ -170,7 +170,7 @@
 * **methods** - named *procedures or functions*
 * **events** - *notifies* object state changes
 * **operators** - overloaded operators
-* **indexeres** - allows object to *be index as an array*
+* **indexers** - allows object to *be index as an array*
 * **constructors** - **methods** that run initialization code
 * **finalizer** - **method** called during object destruction
 * **nested types** - *types declared within* a class scope
@@ -193,7 +193,7 @@
 +++
 #### Field Modifiers
 * `static`
-* access - `public, internal, private, protected`
+* access - `public, internal, private, protected, protected internal, private protected`
 * inheritance - `new`
 * unsafe code - `unsafe`
 * `readonly` - cannot be changed after construction
