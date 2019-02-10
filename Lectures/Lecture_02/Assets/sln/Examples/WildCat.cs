@@ -1,14 +1,14 @@
 ﻿namespace Examples
 {
-    public class UnknownCat: Pet
+    public class WildCat: Pet
     {
-        public UnknownCat()
+        public WildCat()
         {
         }
 
-        public UnknownCat(string name)
+        public WildCat(string name):base(name)
         {
-            Name = name;
+            
         }
 
         public override string Cry()

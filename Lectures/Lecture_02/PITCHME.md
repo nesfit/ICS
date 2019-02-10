@@ -379,20 +379,20 @@ public string Name {
 
 +++
 #### Constructor Overloading
-* Type can have multiple constructors
-* The same rules as method overloading
+* Type can have *multiple constructors*
+* The same rules as method *overloading*
 * Protects against code duplication and increases readability
 * Keywords
   * `this` - refers to *this* type instance 
   * `base` - refers to *base* class type instance
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Examples/UnknownCat.cs&lang=C#&title=Constructor Overloading Sample
++++?code=/Lectures/Lecture_02/Assets/sln/Examples/WildCat.cs&lang=C#&title=Constructor Overloading Sample
 @[3-20]
 @[5]
 @[7-10]
 @[11-14]
 @[5-14]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/UnknownCat.cs)
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/WildCat.cs)
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Cat.cs&lang=C#&title=Constructor Overloading Sample
 @[3-15]

@@ -8,7 +8,7 @@ namespace Lecture02.Tests
         [Fact]
         public void WithoutPatternMatchingTest()
         {
-            var unknownCat = new UnknownCat();
+            var unknownCat = new WildCat();
             if (unknownCat is Cat)
             {
                 Assert.NotNull(unknownCat as Cat);
@@ -19,7 +19,7 @@ namespace Lecture02.Tests
         [Fact]
         public void PatternMatchingTest()
         {
-            var unknownCat = new UnknownCat();
+            var unknownCat = new WildCat();
             if (unknownCat is Cat cat)
             {
                 Assert.NotNull(cat);

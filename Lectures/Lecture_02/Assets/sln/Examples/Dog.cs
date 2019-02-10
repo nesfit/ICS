@@ -14,7 +14,7 @@ namespace Examples
         }
 
         // Class member - auto-generated property
-        public override String Name { get; protected set; } = "Dog";
+        public String Breed { get; protected set; } = "Akita";
 
         public override string Cry() // Class member - method
         {
