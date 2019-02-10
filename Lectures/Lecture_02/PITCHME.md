@@ -246,7 +246,7 @@
 
 +++
 #### Method Overloads
-* Return type is not a part of the signature for overloading purpose
+* **Return type** is not a part of the signature for overloading purpose
   ```C#
   void Foo (int x) {...}
   int  Foo (int x) {...} // Compile-time error
@@ -259,7 +259,7 @@
 
 +++
 #### Local Methods
-* Defines a method inside another method
+* Defines a **method** *inside another method*
 * Is visible only to the enclosing method
 * Can access the local variables and parameters of the enclosing method
   ```C#
@@ -274,7 +274,7 @@
 
 +++
 ### Property
-* Similar to a *field*, but **it encloses it with access methods**
+* Similar to a *field*, but **encloses it with an access method**
 * It is a safety mechanism that unifies *read* and *write* operations
 * Hides *implementation details*
 
@@ -282,7 +282,18 @@
 #### Read-only and Calculated Property
 * *Read-only* if it specifies only a `get` accessor
 * *Write-only* if it specifies only a `set` accessor
-  * Rarely used
+ ```C#
+private decimal foo;
+public decimal Foo1
+{
+  get { return foo; }
+}
+public decimal Foo2
+{
+  private set { foo = Math.Round (value, 2); }
+}
+```
+
 
 +++
 #### Get and Set Accessibility
