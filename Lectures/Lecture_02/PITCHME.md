@@ -429,34 +429,26 @@ var rect = new Rectangle (3, 4);
 Console.WriteLine (width + " " + height); // 3 4
 ```
 
-<div class="center">
 or
-</div>
 
 ```C#
 float width, height;
 rect.Deconstruct (out width, out height);
 ```
 
-<div class="center">
 or
-</div>
 
 ```C#
 rect.Deconstruct (out var width, out var height);
 ```
 
-<div class="center">
 or
-</div>
 
 ```C#
 (var width, var height) = rect;
 ```
 
-<div class="center">
-or simply
-</div>
+or
 
 ```C#
 var (width, height) = rect;
