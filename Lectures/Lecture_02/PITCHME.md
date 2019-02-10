@@ -282,6 +282,7 @@
 #### Read-only and Calculated Property
 * *Read-only* if it specifies only a `get` accessor
 * *Write-only* if it specifies only a `set` accessor
+
 ```C#
 private decimal foo;
 public decimal Foo1
@@ -301,14 +302,15 @@ public decimal Foo2
 * Typical use:
   * `public` property 
   * `internal` or `private` access modifier on the *setter*
-    ```C#
-    private decimal foo;
-    public decimal Foo
-    {
-      get { return foo; }
-      private set { foo = Math.Round (value, 2); }
-    }
-    ```
+
+```C#
+private decimal foo;
+public decimal Foo
+{
+  get { return foo; }
+  private set { foo = Math.Round (value, 2); }
+}
+```
 
 +++
 #### Property Modifiers
