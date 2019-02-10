@@ -689,10 +689,10 @@ int colorNumber = (int)HorseColor.Chestnut;
 HorseColor.TryParse("Chestnut", out HorseColor color);
 ...
 [Flags] public enum HorseType { None = 0, Racing = 1, 
-Breeding = 2, ForSosages = 4, Dead = 8 }
+Breeding = 2, ForSausages = 4, Dead = 8 }
 ...
 HorseType type = HorseType.Racing | HorseType.Breeding;
-type |= HorseType.ForSosages;
+type |= HorseType.ForSausages ;
 Console.WriteLine(type); //Racing, Breeding, ForSosages
 ```
 
@@ -701,12 +701,12 @@ Console.WriteLine(type); //Racing, Breeding, ForSosages
 * Declares only *specification*, not *implementation* of its members
 * All members are `public`
 * `class` or `struct` can implement **multiple** `interface`s
-* Implementation is provided by `class` or `struct` that implementates particular `interface`
+* Implementation is provided by `class` or `struct` that implements particular `interface`
 * `interface` can declare
-  * methods
-  * properties
-  * events
-  * indexers
+  * **methods**
+  * **properties**
+  * **events**
+  * **indexers**
 
 ```C#
 // Defined in System.Collections
