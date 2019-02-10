@@ -610,17 +610,17 @@ public class Kitten : Cat {}
 * Object (`System.Object`) is a common `base` class of all types
 * Each type can be cast to `System.Object`
 * `System.Object` methods:
-  * ToString()
-  * Equals()
-  * GetHashCode()
-  * GetType()
-* To get instance type:
+  * `ToString()`
+  * `Equals()`
+  * `GetHashCode()`
+  * `GetType()`
+* To get type:
   * during *runtime* - `Object.GetType()`
   * during *compile time* - `typeof(object)`
 
 +++
-### Partial
-* Allows split across multiple files
+### Partial class/method
+* Allows to split declaration across multiple files
 * Each participant must have the `partial` declaration
 * Typically used in WPF, Winforms
   * one file is auto-generated
@@ -648,13 +648,13 @@ partial class PaymentForm // In hand-authored file
 * Similar to a class, with the following key differences:
   * A `struct` is a **value type**, whereas a class is a **reference type**
   * A `struct` does not support inheritance (other than implicitly deriving from `System.ValueType`)
-* Can have all the members a class can, except:
-  * A parameterless constructor
+* Can have all the members as class, except:
+  * A parameter-less constructor (is implicit)
   * Field initializers
   * A finalizer
   * Virtual or protected members
 * Each constructor has to initialize all `struct`'s members
-* Cannot initialize members in declaration
+* Members cannot be initialized in `struct`'s declaration
 
 ```C#
 public struct Point
@@ -681,16 +681,16 @@ Point p2 = new Point (); // p2.x and p2.y will be 0
   * *single variable* may contain *multiple values*
 
 ```C#
-private enum HorseColor { Siml = 0, Palomino = 5, Ryzak = 10 }
-
-HorseColor color = HorseColor.Siml;
-int colorNumber = (int)HorseColor.Ryzak;
-
-HorseColor.TryParse("Ryzak", out HorseColor color);
-
+private enum HorseColor { Bay = 0, Palomino = 5, Chestnut = 10 }
+...
+HorseColor color = HorseColor.Bay;
+int colorNumber = (int)HorseColor.Chestnut;
+...
+HorseColor.TryParse("Chestnut", out HorseColor color);
+...
 [Flags] public enum HorseType { None = 0, Racing = 1, 
 Breeding = 2, ForSosages = 4, Dead = 8 }
-
+...
 HorseType type = HorseType.Racing | HorseType.Breeding;
 type |= HorseType.ForSosages;
 Console.WriteLine(type); //Racing, Breeding, ForSosages
