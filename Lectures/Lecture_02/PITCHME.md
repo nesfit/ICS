@@ -246,7 +246,7 @@
 
 +++
 #### Method Overloads
-* Return type is not a part of the signature
+* Return type is not a part of the signature for overloading purpose
   ```C#
   void Foo (int x) {...}
   int  Foo (int x) {...} // Compile-time error
