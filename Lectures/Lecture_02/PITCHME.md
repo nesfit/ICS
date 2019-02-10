@@ -282,7 +282,7 @@
 #### Read-only and Calculated Property
 * *Read-only* if it specifies only a `get` accessor
 * *Write-only* if it specifies only a `set` accessor
- ```C#
+```C#
 private decimal foo;
 public decimal Foo1
 {
