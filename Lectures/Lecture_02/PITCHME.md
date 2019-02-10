@@ -374,7 +374,7 @@ public string Name {
 
 +++
 #### Constructor Modifiers
-* Access - `public, internal, private, protected`
+* Access - `public, internal, private, protected, protected internal`
 * Unsafe code - `unsafe, extern`
 
 +++
