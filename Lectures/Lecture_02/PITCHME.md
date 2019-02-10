@@ -485,11 +485,10 @@ class Dog {
 ### Abstract Class
 * **Can never be instantiated**
 * Only its concrete subclasses can be instantiated
-* Cannot be sealed it must be possible to inherit from it
-* Able to define abstract members:
-  * Like virtual members, except they don’t provide a default implementation
-  * Implementation must be provided by the subclass unless that subclass is also declared
-abstract
+* Cannot be `sealed`, it must be inheritable
+* Is able to define `abstract` members:
+  * Like `virtual` members, except they don’t provide a default implementation
+  * Implementation must be provided by the **subclass** unless that **subclass** is also declared `abstract`
 
 +++
 ### Abstract Class Example
