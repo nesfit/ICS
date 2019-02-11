@@ -518,6 +518,7 @@ public class Stock: Asset
   public override decimal NetValue => CurrentPrice * SharesOwned;
 }
 ```
+@[1-5]
 
 +++
 ### Virtual
