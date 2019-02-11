@@ -737,9 +737,6 @@ Console.WriteLine(type); //Racing, Breeding, ForSosages
 @[8-9,13]
 @[1-13]
 
-
-
-
 ---
 ## Interface
 * Declares only *specification*, not *implementation* of its members
@@ -783,6 +780,9 @@ class Eagle : Bird, IFlying, ICarnivore { }
 class Bee : Insect, IFlying { }
 class Flea : Insect, ICarnivore { }
 ```
+@[1-3]
+@[5-6]
+@[1-12]
 
 * Because animals might share some implementation of their taxonomy, it is possible to declare `Bird` and `Insect` as `abstract class`.
 * But, their food intake and whether they fly or not might differ. It is best to declare these properties as `interfaces`, `IFlying` and `ICarnivore`.
@@ -798,15 +798,18 @@ class Flea : Insect, ICarnivore { }
 * *Multiple inheritance* is not supported
 * *Multiple* `interface` *implementation* is supported
 
-  ```C#
-  public interface IBoy {
-    string Name {get;}
-  }
-  
-  public class Boy: IBoy {
-    public string Name { }
-  }
-  ```
+```C#
+public interface IBoy {
+  string Name {get;}
+}
+
+public class Boy: IBoy {
+  public string Name { }
+}
+```
+@[1-3]
+@[5-7]
+@[1-7]
 
 +++
 #### Type Safety and Security
@@ -847,9 +850,14 @@ usage:
 var stack = new Stack<int>();
 stack.Push (5);
 stack.Push (10);
-int x = stack.Pop(); // x is 10
-int y = stack.Pop(); // y is 5
+Assert.Equal(10,stack.Pop());
+Assert.Equal(5,stack.Pop());
 ```
+@[1]
+@[2]
+@[3]
+@[3,4]
+@[2,5]
 
 +++
 ### Generics Open/Close Types
