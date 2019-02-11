@@ -731,6 +731,13 @@ Console.WriteLine(type); //Racing, Breeding, ForSosages
 @[1-3]
 @[1, 4]
 @[1, 6]
+@[8-9]
+@[8-9,11]
+@[11,12]
+@[8-9,13]
+@[1-13]
+
+
 
 
 ---
