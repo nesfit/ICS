@@ -225,17 +225,22 @@
 #### Method Types
 * Method contains only one expression
 * Classical method:
-  ```C#
-  int Foo(int x) { return x * 2; }
-  ```
+
+```C#
+int Foo(int x) { return x * 2; }
+```
+
 * Expression-bodied method:
-  ```C#
-  int Foo(int x) => x * 2;
-  ```
+
+```C#
+int Foo(int x) => x * 2;
+```
+
 * Method witch empty return type (`void`):
-  ```C#
-  void Foo(int x) => Console.WriteLine(x);
-  ```
+
+```C#
+void Foo(int x) => Console.WriteLine(x);
+```
 
 +++
 #### Method Signatures
