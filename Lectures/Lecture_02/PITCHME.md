@@ -551,6 +551,7 @@ public class Stock: Asset
 @[11]
 @[12]
 @[13]
+@[6-15]
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/UpCast.cs)
 
 +++
@@ -564,9 +565,11 @@ public class Stock: Asset
 @[12]
 @[13]
 @[14]
+@[10-15]
 @[18-22]
 @[20]
 @[21]
+@[18-22]
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/DownCast.cs)
 
 +++
@@ -579,6 +582,7 @@ public class Stock: Asset
 @[9-13]
 @[11]
 @[12]
+@[9-13]
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/AsOperator.cs)
 
 +++
@@ -591,6 +595,7 @@ public class Stock: Asset
 @[9-13]
 @[11]
 @[12]
+@[9-13]
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/IsOperator.cs)
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Tests/PatternMatching.cs&lang=C#&title=IS Pattern Matching Example
@@ -599,10 +604,12 @@ public class Stock: Asset
 @[11]
 @[12-13,15]
 @[14,16]
+@[9-17]
 @[20-27]
 @[22]
 @[23-24, 26]
 @[25]
+@[20-27]
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/PatternMatching.cs)
 
 +++
@@ -657,6 +664,11 @@ partial class PaymentForm // In hand-authored file
   }
 }
 ```
+@[1-5]
+@[4]
+@[6-14]
+@[9-13]
+@[1-14]
 
 ---
 ## Struct
