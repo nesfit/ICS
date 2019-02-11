@@ -858,6 +858,7 @@ Assert.Equal(5,stack.Pop());
 @[10]
 @[10,11]
 @[9,12]
+@[1,12]
 
 +++
 ### Generics Open/Close Types
