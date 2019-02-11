@@ -1218,8 +1218,8 @@ class Test
   static void Main()
   {
     Transformer transformer = Square; // Create delegate instance
-    int result = transformer(3); // Invoke delegate
-    Console.WriteLine (result); // 9
+    int result = transformer(3);      // Invoke delegate
+    Console.WriteLine (result);       // 9
   }
   static int Square (int x) => x * x;
 }
@@ -1276,6 +1276,16 @@ class Test
   static int Square (int x) => x * x;
 }
 ```
+@[1]
+@[2-9]
+@[4-8]
+@[10-20]
+@[19]
+@[14]
+@[15]
+@[14,15,4-8]
+@[1-20]
+
 The `Transform` method is a higher-order function (it’s a function that takes a function as an argument).
 
 +++
