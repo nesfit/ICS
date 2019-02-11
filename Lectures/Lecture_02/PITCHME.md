@@ -72,12 +72,11 @@
 @[5]
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Animal.cs)
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=Inheritance Sample
-@[6-25]
-@[16-17]
-@[19-22]
-@[6-25]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
++++?code=/Lectures/Lecture_02/Assets/sln/Examples/Pet.cs&lang=C#&title=Inheritance Sample
+@[3-16]
+@[3]
+@[3-16]
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Pet.cs)
 
 +++
 #### Inheritance and Subtyping
