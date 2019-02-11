@@ -1339,6 +1339,11 @@ class Test
        percentComplete.ToString());
 }
 ```
+@[10-11]
+@[13-15]
+@[3-8]
+@[1-16]
+
 
 +++
 ### Instance Method/Target Example
@@ -1365,6 +1370,16 @@ class Foo
     => Console.WriteLine (percentComplete);
 }
 ```
+@[1]
+@[4-11]
+@[6]
+@[7,15-16]
+@[8,15-16]
+@[9]
+@[10]
+@[1-17]
+
+
 
 +++
 #### `delegate` vs `interface`
@@ -1507,6 +1522,7 @@ int total = totalLength ("hello", "world"); // 10;
 ```
 
 * ```Func<T,TResult> Delegate```
+
 ```C#
 public delegate TResult Func<in T,out TResult>(T arg);
 ```
@@ -1591,8 +1607,8 @@ public void Foo (Func<int,bool> predicate) { ... }
   static void Main()
   {
     (string,int) person = GetPerson(); // Could use 'var' here if we want
-    Console.WriteLine (person.Item1); // Bob
-    Console.WriteLine (person.Item2); // 23
+    Console.WriteLine (person.Item1);  // Bob
+    Console.WriteLine (person.Item2);  // 23
   }
   ```
 
@@ -1604,7 +1620,7 @@ static void Main()
 {
   var person = GetPerson();
   Console.WriteLine (person.Name); // Bob
-  Console.WriteLine (person.Age); // 23
+  Console.WriteLine (person.Age);  // 23
 }
 ```
 
