@@ -853,9 +853,9 @@ stack.Push (10);
 Assert.Equal(10,stack.Pop());
 Assert.Equal(5,stack.Pop());
 ```
-@[1]
-@[2]
-@[3]
+@[8]
+@[9]
+@[10]
 @[3,4]
 @[2,5]
 
