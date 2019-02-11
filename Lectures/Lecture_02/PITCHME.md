@@ -683,6 +683,7 @@ partial class PaymentForm // In hand-authored file
 * Each constructor has to initialize all `struct`'s members
 * Members cannot be initialized in `struct`'s declaration
 
++++
 ```C#
 public struct Point
 {
@@ -697,6 +698,10 @@ public struct Point
 Point p1 = new Point (1, 1); // p1.x and p1.y will be 1
 Point p2 = new Point (); // p2.x and p2.y will be 0
 ```
+@[1-9]
+@[11]
+@[12]
+@[1-12]
 
 ---
 ## Enums, Flags 
