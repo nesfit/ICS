@@ -1180,6 +1180,8 @@ catch (FormatException ex)
   * When a (usually numeric) argument is out of range (usually too big or too small)
 * `System.InvalidOperationException`
   * Thrown when the state of an object is unsuitable for a method to successfully execute
+
++++
 * `System.NotSupportedException`
   * Thrown to indicate that particular functionality is not supported
 * `System.NotImplementedException`
