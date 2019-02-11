@@ -78,6 +78,13 @@
 @[3-16]
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Pet.cs)
 
++++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=Inheritance Sample
+@[6-25]
+@[6]
+@[19=22]
+@[6-25]
+[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
+
 +++
 #### Inheritance and Subtyping
 * In some languages inheritance and subtyping are no different
