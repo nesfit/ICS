@@ -968,6 +968,7 @@ static void Swap<T> (ref T a, ref T b) {
 @[10]
 @[11]
 @[12]
+@[8-15]
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/Boxing.cs)
 
 ---
@@ -1132,6 +1133,7 @@ class Test
 +++
 ### Rethrow Examples
 * Rethrow the same exception
+
 ```C#
 try { ... }
 catch (Exception ex)
@@ -1141,7 +1143,9 @@ catch (Exception ex)
   throw; // Rethrow the same exception
 }
 ```
+
 * Rethrow a more specific exception
+
 ```C#
 try
 {
