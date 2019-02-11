@@ -964,7 +964,7 @@ finally
   * the process is terminated and error message is displayed to the user
 
 @snap[south-east]
-(SOURCE)[https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/exceptions/]
+[SOURCE](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/exceptions/)
 @snapped
 
 +++
