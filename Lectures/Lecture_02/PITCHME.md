@@ -31,7 +31,7 @@
 @[24]
 @[6-25]
 
-[Code sample](https://github.com/pluskal/ICS/blob/master/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
 
 +++
 ## Three Principles of OOP
@@ -57,7 +57,7 @@
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=Encapsulation Sample
 @[6-25]
 @[8-14]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
+[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
 
 +++
 ### Inheritance
@@ -70,20 +70,20 @@
 @[3-6]
 @[3-4, 6]
 @[5]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Animal.cs)
+[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Animal.cs)
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Pet.cs&lang=C#&title=Inheritance Sample
 @[3-16]
 @[3]
 @[3-16]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Pet.cs)
+[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Pet.cs)
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=Inheritance Sample
 @[6-25]
 @[6]
 @[19-22]
 @[6-25]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
+[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
 
 +++
 #### Inheritance and Subtyping
@@ -375,7 +375,7 @@ public string Name {
 @[3-10]
 @[6-7, 9]
 @[5, 8]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Panda.cs)
+[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Panda.cs)
 
 +++
 #### Implicit Parameterless Constructor
@@ -403,7 +403,7 @@ public string Name {
 @[7-10]
 @[11-14]
 @[5-14]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/WildCat.cs)
+[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/WildCat.cs)
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Cat.cs&lang=C#&title=Constructor Overloading Sample
 @[3-15]
@@ -411,11 +411,11 @@ public string Name {
 @[7-9]
 @[11-14]
 @[7-14]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Cat.cs)
+[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Cat.cs)
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Tests/Constructor.cs&lang=C#&title=Constructor Overloading Test
 @[9-13]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/Constructor.cs)
+[Code sample](/Lectures/Lecture_02/Assets/slnTests/Constructor.cs)
 
 +++
 ### Deconstructors
@@ -430,7 +430,7 @@ public string Name {
 @[5]
 @[7-11]
 @[13-17]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Rectangle.cs)
+[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Rectangle.cs)
 
 +++
 #### Call Deconstructor
@@ -552,7 +552,7 @@ public class Stock: Asset
 @[12]
 @[13]
 @[6-15]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/UpCast.cs)
+[Code sample](/Lectures/Lecture_02/Assets/slnTests/UpCast.cs)
 
 +++
 #### Down-cast
@@ -570,7 +570,7 @@ public class Stock: Asset
 @[20]
 @[21]
 @[18-22]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/DownCast.cs)
+[Code sample](/Lectures/Lecture_02/Assets/slnTests/DownCast.cs)
 
 +++
 #### Operator `as`
@@ -583,7 +583,7 @@ public class Stock: Asset
 @[11]
 @[12]
 @[9-13]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/AsOperator.cs)
+[Code sample](/Lectures/Lecture_02/Assets/slnTests/AsOperator.cs)
 
 +++
 #### Operator `is`
@@ -596,7 +596,7 @@ public class Stock: Asset
 @[11]
 @[12]
 @[9-13]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/IsOperator.cs)
+[Code sample](/Lectures/Lecture_02/Assets/slnTests/IsOperator.cs)
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Tests/PatternMatching.cs&lang=C#&title=IS Pattern Matching Example
 @[6-28]
@@ -610,7 +610,7 @@ public class Stock: Asset
 @[23-24, 26]
 @[25]
 @[20-27]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/PatternMatching.cs)
+[Code sample](/Lectures/Lecture_02/Assets/slnTests/PatternMatching.cs)
 
 +++
 ### Sealed
@@ -954,7 +954,7 @@ static void Swap<T> (ref T a, ref T b) {
 @[27-30]
 @[33-36]
 @[11-24]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/CovarianceContravariance.cs)
+[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/CovarianceContravariance.cs)
 
 +++
 ## Boxing/Unboxing
@@ -969,7 +969,7 @@ static void Swap<T> (ref T a, ref T b) {
 @[11]
 @[12]
 @[8-15]
-[Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/slnTests/Boxing.cs)
+[Code sample](/Lectures/Lecture_02/Assets/slnTests/Boxing.cs)
 
 ---
 ## Exceptions

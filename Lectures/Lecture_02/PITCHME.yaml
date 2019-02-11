@@ -9,7 +9,7 @@ theme-override : /Lectures/GitPitch/assets/css/PITCHME.css
 highlight : vs
 code-line-numbers : true
 logo : /Lectures/GitPitch/assets/image/logo.png
-published : false
+published : true
 remote-control: true
 mathjax : TeX-MML-AM_HTMLorMML-full
 footnote : "ICS - The C# Programming Language"
