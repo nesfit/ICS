@@ -905,7 +905,7 @@ static void Swap<T> (ref T a, ref T b) {
 
 +++
 ## Boxing/Unboxing
-* C#'s type system is unified such that a value of any type can be treated as an `object`.
+* C#'s type system is unified such that a value of *any type can be treated as an `object`*.
 * Every type in C# directly or indirectly derives from the `object` class type, and `object` is the ultimate *base class* of all types
 * Values of reference types are treated as objects simply by viewing the values as type object
 * Values of value types are treated as objects by performing **boxing** and **unboxing** operations
@@ -919,19 +919,18 @@ static void Swap<T> (ref T a, ref T b) {
 
 ---
 ## Exceptions
-* Built-in error handling
-* Helps to clean-up code
+* C# has (**structured exception handling**)[https://docs.microsoft.com/en-us/windows/desktop/debug/structured-exception-handling]
+* Improves code readability
 * `try` block
   * Must be followed by:
     * `catch` block
     * `finally` block
     * or both
 * `catch` block
-  * Executes when an error occurs in the `try` block
-  * Has access to an Exception object that contains information about the error
+  * *Executes when an error occurs* in the `try` block
+  * Has access to the *exception object that contains information about the error*
 * `finally` block
-  * Executes after execution leaves the try block (or if present, the catch block)
-  * Whether or not an error occurred
+  * *Executes always*, whether or not an error occurred
 
 +++
 ### `try`, `catch`, `finally` example
@@ -950,20 +949,23 @@ catch (ExceptionB ex)
 }
 finally
 {
- ... // cleanup code
+ ... // cleanup code - unmanaged resources
 }
 ```
 
 +++
-### Exception `thrown`
-* If exception is in `try` statement:
+### Exception Handling
+* If exception is `throw`n in `try` statement:
   * Execution is passed to the compatible `catch` block
   * If the `catch` block successfully finishes
     * If present, Execution is passed to `finally` block
     * Execution moves to the next statement after the `try` statement
-* If exception isn't in `try statement:
-  * Execution jumps back to the caller of the function and test is repeated
-* If no function takes responsibility for the exception, an error dialog box is displayed to the user, and the program terminates
+* If exception isn't in `try` statement, or is not `catch`ed by any `catch` block in the *callstack*:
+  * the process is terminated and error message is displayed to the user
+
+@snap[south-east]
+(SOURCE)[https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/exceptions/]
+@snapped
 
 +++
 ### The `catch` block
