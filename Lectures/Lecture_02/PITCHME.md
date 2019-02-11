@@ -519,6 +519,9 @@ public class Stock: Asset
 }
 ```
 @[1-5]
+@[7-12]
+@[12]
+@[1-13]
 
 +++
 ### Virtual
