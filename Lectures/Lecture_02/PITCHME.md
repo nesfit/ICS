@@ -824,20 +824,23 @@ public class Stack<T>
  ...
  public Stack<T> Clone()
  {
- Stack<T> clone = new Stack<T>();
+ Stack<T> clone = new Stack<T>(); // Legal
  ...
  }
 }
 ```
 
 +++
-### Why Geneerics
+### Why Generics
 * **Reusable across different types**
-  * i.e., we need a stack for multiple types:
-    * Generics
-    * Separate version of the class for every required element type
+  * i.e., we need a *stack* for multiple types, we can use:
+    * **Generics**, or
+    * Have a separate version, of the same class, for every encapsulated type, or
       *  (e.i., `IntStack`, `StringStack` etc..)
-    * Stack that is generalized by using object:
+    * Have *stack* that is generalized by using object:
+      * ValueType requires boxing, 
+      * down-casting that cannot not be checked at compile time
+
 ```C#
 public class ObjectStack
 {
@@ -847,12 +850,13 @@ public class ObjectStack
   public object Pop() => data[--position];
 }
 ```
-Require boxing and downcasting that could not be checked at compile time
+
 ```C#
 ObjectStack stack = new ObjectStack();
 stack.Push ("s"); // Wrong type, but no error!
 int i = (int)stack.Pop(); // Downcast - runtime error
 ```
+
 `ObjectStack` is functionally equivalent to `Stack<object>`
 
 +++
@@ -860,23 +864,25 @@ int i = (int)stack.Pop(); // Downcast - runtime error
 * Several basic algorithms can be implemented using *generic methods*.
 * *Signature* of generic method contains generic type parameter.
 * *Generic method* may contain multiple *generic parameters*
-  ```C#
-  static void Swap<T> (ref T a, ref T b) {
-    T temp = a;
-    a = b;
-    b = temp;
-  }
-  ```
+
+```C#
+static void Swap<T> (ref T a, ref T b) {
+  T temp = a;
+  a = b;
+  b = temp;
+}
+```
 
 +++
 ### Generic Constraints
 * Parameters can be restricted with:
-  * `where T :` base class
-  * `where T :` interface 
-  * `where T :` class 
-  * `where T :` struct 
-  * `where T :` new() 
-  * `where U : T` 
+  * `where T : <base class name>` - T must be or derive from the specified base class.
+  * `where T : <interface name>` - T must be or implement the specified interface
+  * `where T : class` - T must be a reference type
+  * `where T : struct` - T must be a value type, not nullable
+  * `where T : new()` - T must have a public parameterless constructor
+  * `where T : U` - T must be or derive from the argument supplied for U
+  * `where T : unmanaged` - T must not be reference type, and must not contain any reference type members at any level of nesting
 
 
 ---
