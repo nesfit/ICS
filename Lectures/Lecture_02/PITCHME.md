@@ -1625,10 +1625,13 @@ static void Main()
 ```
 
 ---
-## References:
+## References
 [C# 7.0 in a Nutshell: The Definitive Reference](https://www.amazon.com/C-7-0-Nutshell-Definitive-Reference/dp/1491987650)  
 [Types and Programming Languages](https://www.amazon.com/Types-Programming-Languages-MIT-Press/dp/0262162091)  
 [Object-Oriented Analysis and Design with Applications](https://www.amazon.com/Object-Oriented-Analysis-Design-Applications-3rd/dp/020189551X)  
 [Database Systems: A Practical Approach to Design, Implementation and Management](https://www.amazon.com/Database-Systems-Practical-Implementation-Management/dp/0321210255)  
 [C# in Depth](https://www.amazon.com/C-Depth-3rd-Jon-Skeet/dp/161729134X)  
 [Microsoft documentation](https://docs.microsoft.com)
+
+## Credits
+* Michal Orlíček - for slides preparation
