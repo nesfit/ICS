@@ -919,7 +919,7 @@ static void Swap<T> (ref T a, ref T b) {
 
 ---
 ## Exceptions
-* C# has (**structured exception handling**)[https://docs.microsoft.com/en-us/windows/desktop/debug/structured-exception-handling]
+* C# has [**structured exception handling*](https://docs.microsoft.com/en-us/windows/desktop/debug/structured-exception-handling)
 * Improves code readability
 * `try` block
   * Must be followed by:
