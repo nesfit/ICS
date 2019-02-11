@@ -971,10 +971,8 @@ finally
 ### The `catch` block
 * Specifies what type of exception to catch
   * This must either be `System.Exception` or a subclass of `System.Exception`
-* Can handle multiple exception types with multiple catch clauses
 * Only one catch clause executes for a given exception
-  * Only one catch clause executes for a given exception
-  *  If you want to catch more general exceptions you must put the more specific handlers first
+  *  More specific handler needs to be declared before general one
 
 +++
 #### Multiple `catch` Clauses Example
@@ -1028,10 +1026,10 @@ class Test
 
 +++
 ### The `finally` Block
-* Always executes
+* Executes always
   * Whether or not an exception is thrown
   * Whether or not the `try` block runs to completion
-* Typically used for cleanup code
+* Typically used to handle unmanaged resource
 
 +++
 #### The `finally` Block Example
@@ -1053,6 +1051,8 @@ static void ReadFile()
 }
 ```
 
+If object implements IDisposable, use `using` clause!
+
 +++
 ### Throwing Exceptions Example
 ```C#
@@ -1061,7 +1061,7 @@ class Test
   static void Display (string name)
   {
     if (name == null)
-      throw new ArgumentNullException (nameof (name));
+      throw new ArgumentNullException (nameof(name));
     Console.WriteLine (name);
   }
 
@@ -1078,14 +1078,14 @@ class Test
 
 +++
 ### Rethrow Examples
-* Rethrow same exception
+* Rethrow the same exception
 ```C#
 try { ... }
 catch (Exception ex)
 {
   // Log error
   ...
-  throw; // Rethrow same exception
+  throw; // Rethrow the same exception
 }
 ```
 * Rethrow a more specific exception
@@ -1128,7 +1128,7 @@ catch (FormatException ex)
 * `System.NotImplementedException`
   * Thrown to indicate that a function has not yet been implemented
 * `System.ObjectDisposedException`
-  * Thrown when the object upon which the function is called has been disposed
+  * Thrown when the object, upon which the function is called, has been disposed
 * `NullReferenceException`
   * The CLR throws this exception
   * Thrown when you attempt to access a member of an object whose value is null
@@ -1136,18 +1136,14 @@ catch (FormatException ex)
 
 ---
 ## Delegates
-* An object that knows how to call a method
-* Defines:
-  * method's return type
-  * method's parameter types 
+* Is a type that represents references to methods with a particular *parameter list* and *return type*.
+* When you instantiate a delegate, you can associate its instance with any method with a *compatible signature and return type*.
 
 ```C#
 delegate int Transformer (int x);
 ```
 
-<div class="center">
 is compatible with
-</div>
 
 ```C#
 static int Square (int x) => x * x;
@@ -1157,6 +1153,7 @@ static int Square (int x) => x * x;
 ### Delegates Example
 ```C#
 delegate int Transformer (int x);
+...
 class Test
 {
   static void Main()
@@ -1170,35 +1167,27 @@ class Test
 ```
 
 +++
-### Delegates Shorthands
+### Delegates Shorthand
 
-<div class="center">
 The statement:
-</div>
 
 ```C#
 Transformer transformer = Square;
 ```
 
-<div class="center">
-is shorthand for:
-</div>
+is equivalent:
 
 ```C#
 Transformer transformer = new Transformer (Square);
 ```
 
-<div class="center">
 The expression:
-</div>
 
 ```C#
 transformer(3)
 ```
 
-<div class="center">
-is shorthand for:
-</div>
+is equivalent:
 
 ```C#
 transformer.Invoke(3)
@@ -1230,9 +1219,8 @@ class Test
 ```
 The `Transform` method is a higher-order function (it’s a function that takes a function as an argument).
 
-
 +++
-#### Multicast Delegates
+### Multicast Delegates
 * Delegate instance can reference a list of target methods
 * The `+` and `+=` operators combine delegate instances
 * The `-` and `-=` operators remove delegate instances
@@ -1246,7 +1234,7 @@ d += SomeMethod2;
   * Preceding methods return values are discarded
 
 +++
-### Multicast Delegates Example
+#### Multicast Delegates Example - Invocation
 ```C#
 public delegate void ProgressReporter (int percentComplete);
 public class Util
@@ -1263,7 +1251,7 @@ public class Util
 ```
 
 +++
-### Multicast Delegates Example
+#### Multicast Delegates Example - Declaration
 ```C#
 class Test
 {
@@ -1273,8 +1261,10 @@ class Test
     progressReporter += WriteProgressToFile;
     Util.HardWork (p);
   }
+
   static void WriteProgressToConsole (int percentComplete)
     => Console.WriteLine (percentComplete);
+
   static void WriteProgressToFile (int percentComplete)
     => System.IO.File.WriteAllText ("progress.txt",
        percentComplete.ToString());
@@ -1282,7 +1272,11 @@ class Test
 ```
 
 +++
-#### Instance Method Target Example
+### Instance Method/Target Example
+
+* `Delegate.Method` - Gets the method represented by the delegate.
+* `Delegate.Target` - Gets the class instance on which the current delegate invokes the instance method.
+
 ```C#
 public delegate void ProgressReporter (int percentComplete);
 class Test
@@ -1307,13 +1301,14 @@ class Foo
 #### `delegate` vs `interface`
 * A problem that can be solved with a delegate can also be solved with an interface
 * Delegate design may be better if:
-  * The interface defines only a single method
+  * The interface would define only a single method
   * Multicast capability is needed
   * The subscriber needs to implement the interface multiple times
 
 +++
 #### Delegate Compatibility
-* All are incompatible with one another
+* All delegates are incompatible with one another
+
 ```C#
 delegate void Delegate1();
 delegate void Delegate2();
@@ -1324,8 +1319,7 @@ Delegate2 delegate2 = delegate1; // Compile-time error
 
 +++
 #### Delegate Equality
-* Delegates are equal if they reference the same methods in the
-same order
+* Delegates are equal if they reference the same methods in the same order
 ```C#
 delegate void Delegate();
 ...
@@ -1349,7 +1343,7 @@ public class Broadcaster
 ```
 
 +++
-#### Standard Event Pattern
+### Standard Event Pattern
 * Used to provide consistency across Framework and user code
 * Standard Event Pattern `EventArgs`
   * `System.EventArgs`
@@ -1371,11 +1365,11 @@ public class PriceChangedEventArgs : System.EventArgs
 ```
 
 +++
-##### Standard Event Pattern Delegate
+##### Standard Event Pattern - Delegate
 * name must end with `EventHandler`
 * two arguments
   * the first a subclass`object` *(broadcaster)*
-  * the second a subclass of `EventArgs` *(extra informations)*
+  * the second a subclass of `EventArgs` *(extra information)*
 * return type `void`
 * .NET defines a generic delegate `System.EventHandler<>`
   * can be used when an event doesn’t carry extra information
@@ -1386,7 +1380,7 @@ public delegate void EventHandler<TEventArgs>
 ```
 
 +++
-#### Standard Event Pattern Example
+#### Standard Event Pattern - Example
 ```C#
 public class Stock
 {
@@ -1404,28 +1398,28 @@ public class Stock
 ### Event Modifiers
 * `virtual`
 * `override`
-* `abstract`
+* `abstract` - the compiler will not generate the `add` and `remove` event accessor 
 * `sealed`
 * `static`
 
 ---
 ## Lambda Expressions
 * From C# 3.0
-* Unnamed method written in place of a delegate instance
+* *Anonymous function* written in place of a delegate instance
 * Form **(parameters) => expression-or-statement-block**
-  ```
+  ```C#
   x => x * x;
   ```
 * parameter `x`
 * expression `x * x`
-  ```
+  ```C#
   x => { return x * x; };
   ```
 * Parameter `x`
 * Statement block `{ return x * x; }`
 
 +++
-### Labda Expressions Usage Example
+### Lambda Expressions Usage Example
   ```C#
   delegate int Transformer (int i);
   ...
@@ -1441,6 +1435,11 @@ public class Stock
 ```C#
 Func<string,string,int> totalLength = (s1, s2) => s1.Length + s2.Length;
 int total = totalLength ("hello", "world"); // 10;
+```
+
+* ```Func<T,TResult> Delegate```
+```C#
+public delegate TResult Func<in T,out TResult>(T arg);
 ```
 
 +++ 
@@ -1460,7 +1459,7 @@ int total = totalLength ("hello", "world"); // 10;
 * *Lambda expression* that captures variables is called a *closure*
 * *Captured variables* 
   * Are evaluated when the delegate is *invoked*
-  * Have their lifetimes *extended* to that of the delegate
+  * Have their lifetime is *extended* to that of the delegate
 
 ```C#
 int factor = 5;
@@ -1502,11 +1501,11 @@ static void Main()
 
 +++
 ### Lambda Expressions vs. Local Methods
-* Local methods functionality overlaps with that overlaps lambda expressions
+* Local methods functionality overlaps with lambda expressions
 * Local methods advantages:
   * Recursive without ugly hacks
   * Avoid the clutter of specifying a delegate type
-  * Incur slightly less overhead
+  * Incurs slightly less overhead
 * In many cases you *need* a delegate
   * i.e., a method with a delegate-typed parameter:
 
