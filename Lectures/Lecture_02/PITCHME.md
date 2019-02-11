@@ -81,7 +81,7 @@
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=Inheritance Sample
 @[6-25]
 @[6]
-@[19=22]
+@[19-22]
 @[6-25]
 [Code sample](https://github.com/pluskal/ICS/tree/master/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
 
