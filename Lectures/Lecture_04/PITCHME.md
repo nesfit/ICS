@@ -192,7 +192,8 @@ public class Student
     public byte[]  Photo { get; set; }
     public decimal Height { get; set; }
     public float Weight { get; set; }
-    public ICollection<Lecture> Lectures { get; set; }
+    public virtual Address Address { get; set; }
+    public virtual ICollection<Lecture> Lectures { get; set; }
 }
 ```
 ---
@@ -205,6 +206,7 @@ public class Student
     * Maps to a **single column** in the database table
   * **Navigation Property**
     * **Represents a relationship** to another entity
+    * Must be `virtual`
     * Two types
       * *Reference Navigation Property*
         * Includes a property of entity type
@@ -215,19 +217,6 @@ public class Student
 
 ---
 
-### Entity states
-* EF API maintains the state of each entity during an its lifetime
-* **Each entity has a state** based on the operation performed on it via the `DbContext`
-* Represented by an enum [`Microsoft.EntityFrameworkCore.EntityState`](https://docs.microsoft.com/en-us/ef/core/api/microsoft.entityframeworkcore.entitystate) (in EF Core)
-* Tracking can be requested through `Entry()` method on `DbSet<>`
-* Enum values
-  1. *Added*
-  2. *Modified*
-  3. *Deleted*
-  4. *Unchanged*
-  5. *Detached*
-
----
 
 ## DbContext
 
@@ -265,6 +254,184 @@ public class TodosDbContext : DbContext
 @[1-14]
 @[3-9]
 @[11-13]
+
+---
+
+## Conventions
+* **Default rules** to builds a model based on your domain 
+  * **Tables** for all `DbSet<TEntity>` properties in a context class 
+  * **Columns** for all the scalar properties of an entity class
+  * **Not null** collumn by default
+  * **Nullable** collumn by nullable primitive types properties
+  * **Primary key** for property named `Id` or `<Entity Class Name>Id` (case insensitive)
+  * **Foreign Key** for reference navigation property named
+    * `<Reference Navigation Property Name>Id`
+    * `<Reference Navigation Property Name><Principal Primary Key Property Name>`
+
+---
+
+## Fluent API Configuration
+* Based on a *Fluent API* design pattern ([Fluent Interface](https://en.wikipedia.org/wiki/Fluent_interface))
+* Result is formulated by [method chaining](https://en.wikipedia.org/wiki/Method_chaining)
+* **ModelBuilder class** acts as a *Fluent API*
+  * Provides **more configuration options than data annotation attributes**
+* **Higher precedence than data annotation attributes**
+
+---
+
+## Fluent API Congiguration
+* **Model Configuration**
+  * Configures an EF model to database mappings
+  * Default Schema, DB functions, additional data annotation attributes and entities to be excluded from mapping
+* **Entity Configuration**
+  * Configures entity to table and relationships mapping 
+  * e.g. PrimaryKey, AlternateKey, Index, table name, one-to-one, one-to-many, many-to-many relationships...
+* **Property Configuration**
+  * Configures property to column mapping 
+  * e.g. column name, default value, nullability, Foreignkey, data type, concurrency column...
+
+---
+
+## Fluent API Sample
+```C#
+public class SchoolDbContext: DbContext 
+{
+    public DbSet<StudentEntity> Students { get; set; }
+        
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        //Write Fluent API configurations here
+
+        //Property Configurations
+        modelBuilder.Entity<StudentEntity>()
+                .Property(s => s.StudentId)
+                .HasColumnName("Id")
+                .HasDefaultValue(0)
+                .IsRequired();
+    }
+}
+```
+@[5-15]
+@[9]
+@[10]
+@[11]
+@[12]
+@[13]
+@[14]
+@[5-15]
+
+
+---
+
+### Entity states
+* EF API maintains the state of each entity during an its lifetime
+* **Each entity has a state** based on the operation performed on it via the `DbContext`
+* Represented by an enum [`Microsoft.EntityFrameworkCore.EntityState`](https://docs.microsoft.com/en-us/ef/core/api/microsoft.entityframeworkcore.entitystate) (in EF Core)
+* Tracking can be requested through `Entry()` method on `DbSet<>`
+* Enum values
+  1. *Added*
+  2. *Modified*
+  3. *Deleted*
+  4. *Unchanged*
+  5. *Detached*
+
+---
+
+## Entity Relationships
+* One-to-One
+* One-to-Many
+* Many-to-Many
+
+@snap[south-east span+40]
+![](/Lectures/Assets/img/MagnifyingGlass.png)
+@snapend
+
+---
+## One-to-One Relationships
+* Default conventions
+  * Reference **navigation property at both sides**
+* Fluent Api
+  * Only useful when if foreign key **property does not follow the convention**
+
+```C#
+// AddressOfStudentId does not follow the convention
+modelBuilder.Entity<StudentEntity>()
+    .HasOne<AddressEntity>(s => s.Address)
+    .WithOne(ad => ad.Student)
+    .HasForeignKey<StudentAddress>(ad => ad.AddressOfStudentId);
+```
+---
+
+### One-to-Many Relationships
+* Default conventions
+  * There are more options
+* Fluent Api
+
+```C#
+modelBuilder.Entity<Student>()
+    .HasOne<Grade>(s => s.Grade)
+    .WithMany(g => g.Students)
+    .HasForeignKey(s => s.CurrentGradeId);
+```
+@[1]
+@[2]
+@[3]
+@[4]
+@[1-4]
+
+---
+### Default Convertions
+* *1*
+
+```C#
+public class Student
+{
+    public Grade Grade { get; set; }
+}
+
+public class Grade{}
+```
+
+* *2*
+
+```C#
+public class Student{}
+
+public class Grade
+{
+    public ICollection<Student> Students { get; set; } 
+}
+```
+
+---
+### Default Convertions
+* *3*
+
+```C#
+public class Student
+{
+    public Grade Grade { get; set; }
+}
+
+public class Grade
+{
+    public ICollection<Student> Students { get; set; }
+}
+```
+
+* *4*
+
+```C#
+public class Student
+{
+    public int GradeId { get; set; }
+    public Grade Grade { get; set; }
+}
+public class Grade
+{
+    public ICollection<Student> Students { get; set; }
+}
+```
 
 ---
 
@@ -363,7 +530,7 @@ public class Person
     public int Id { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public ICollection<Todo> AssignedTodos { get; set; }
+    public virtual ICollection<Todo> AssignedTodos { get; set; }
 }
 ```
 

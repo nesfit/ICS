@@ -7,7 +7,7 @@ namespace FIT.EFCore.Sample.DAL.Tests
 {
     public class TodosDbContextTests
     {
-        private IDbContextFactory dbContextFactory;
+        private readonly IDbContextFactory dbContextFactory;
 
         public TodosDbContextTests()
         {
@@ -34,8 +34,20 @@ namespace FIT.EFCore.Sample.DAL.Tests
             //Assert
             using (var dbContext = dbContextFactory.CreateDbContext())
             {
-                var retrievedPerson = dbContext.People.First(t => t.Id == person.Id);
-                Assert.NotNull(retrievedPerson);
+                Person retrievedPerson = null;
+                try
+                {
+                    retrievedPerson = dbContext.People.First(t => t.Id == person.Id);
+                    Assert.NotNull(retrievedPerson);
+                }
+                finally
+                {
+                    //Teardown
+                    if (retrievedPerson != null)
+                    {
+                        dbContext.People.Remove(retrievedPerson);
+                    }
+                }
             }
         }
 
@@ -65,9 +77,21 @@ namespace FIT.EFCore.Sample.DAL.Tests
             //Assert
             using (var dbContext = dbContextFactory.CreateDbContext())
             {
-                var retrievedPerson = dbContext.People.First(t => t.Id == person.Id);
-                Assert.NotNull(retrievedPerson);
-                Assert.Equal("Smith", retrievedPerson.LastName);
+                Person retrievedPerson = null;
+                try
+                {
+                    retrievedPerson = dbContext.People.First(t => t.Id == person.Id);
+                    Assert.NotNull(retrievedPerson);
+                    Assert.Equal("Smith", retrievedPerson.LastName);
+                }
+                finally
+                {
+                    //Teardown
+                    if (retrievedPerson != null)
+                    {
+                        dbContext.People.Remove(retrievedPerson);
+                    }
+                }
             }
         }
 
@@ -126,14 +150,24 @@ namespace FIT.EFCore.Sample.DAL.Tests
             //Assert
             using (var dbContext = dbContextFactory.CreateDbContext())
             {
-                var retrievedTodo = dbContext.Todos
-                    .Include(t => t.AssignedPerson)
-                    .First(t => t.Id == todo.Id);
-                Assert.NotNull(retrievedTodo);
-                Assert.NotNull(retrievedTodo.AssignedPerson);
-                var retrievedPerson = dbContext.People
-                    .First(p => p.Id == todo.AssignedPerson.Id);
-                Assert.NotNull(retrievedPerson);
+                Todo retrievedTodo = null;
+                try
+                {
+                    retrievedTodo = dbContext.Todos
+                        .Include(t => t.AssignedPerson)
+                        .First(t => t.Id == todo.Id);
+                    Assert.NotNull(retrievedTodo);
+                    Assert.NotNull(retrievedTodo.AssignedPerson);
+                    var retrievedPerson = dbContext.People
+                        .First(p => p.Id == todo.AssignedPerson.Id);
+                    Assert.NotNull(retrievedPerson);
+                }
+                finally
+                {
+                    //Teardown
+                    if (retrievedTodo != null)
+                        dbContext.Remove(retrievedTodo);
+                }
             }
         }
     }
