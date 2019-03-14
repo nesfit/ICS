@@ -86,7 +86,7 @@ Odevzdávání projektu má **3 fáze**. V každé fázi se hodnotí jiné vlas
 
 Je silně doporučováno projekty v průběhu semestru konzultovat po přednášce/cvičení, předejdete tak případným komplikacím při odevzdání.
 
-### Fáze 1 – objektový návrh (10 bodů) – odevzdání 10. 3. 2018 23:59:59
+### Fáze 1 – objektový návrh (20 bodů) – odevzdání 10. 3. 2018 23:59:59
 
 V téhle fázi se zaměříme na *datový návrh*. Vyžaduje se po Vás, aby datový návrh splňoval zadání a nevynechal žádnou podstatnou část. Zamyslete se nad vazbami mezi jednotlivými entitami v datovém modelu. V následující fázi budete entity nahrávat do databáze, takže myslete na jejich propojení již nyní. V této fázi budeme chtít, abyste **odevzdali kód**, kde budete mít *entitní třídy*, které budou obsahovat všechny vlastnosti, které budete dále potřebovat a vazby mezi třídami. **Nestačí tedy odevzdat diagram tříd, nebo nějakou jinou reprezentaci.** Budeme požadovat kód v jazyce C\#.
 
@@ -106,7 +106,7 @@ Hodnotíme:
 -   nastavení automatizovaného buildu (kód je přeložitelný, pipeline nekončí chybou)
 
 
-### Fáze 2 – databáze, repozitáře a mapování (20 bodů) – 7. 4. 2018 23:59:59
+### Fáze 2 – databáze, repozitáře a mapování (30 bodů) – 7. 4. 2018 23:59:59
 
 Aplikace již nepracuje jen s daty uvedenými ve zdrojových souborech. Je napojena na databázi a pracuje s ní. Vytvořte napojení datových tříd pomocí Entity Frameworku na databázi. 
 
@@ -139,7 +139,7 @@ Hodnotíme:
 
 -   -   -   
 
-### Fáze 3 – WPF frontend, data binding (40 bodů) – 24 hodin před obhajobou
+### Fáze 3 – WPF frontend, data binding (50 bodů) – 24 hodin před obhajobou
 V této fázi se od Vás již požaduje vytvoření WPF aplikace. Napište backend aplikace (vytvoření View-Modelů), která bude napojena na Vámi navržené datové modely z 2. fáze, které jsou zapouzdřeny v repozitáři/fasádě. A dále frontend (View), která bude zobrazovat data předpřipravená ve view-modelech. Zamyslete se nad tím, jakým způsobem je vhodné jednotlivá data zobrazovat.
 
 Využijte *binding* v XAML kódu (vyvarujte se code-behind). Účelem není jenom udělat aplikaci, která funguje, ale také aplikaci, která je správně navržena a může být dále jednoduše upravitelná a rozšířitelná. Dbejte tedy zásad probíraných ve cvičeních.
