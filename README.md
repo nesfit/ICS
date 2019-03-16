@@ -78,7 +78,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 | 7.2.  | Práce s Visual Studio 2017, Azure DevOps                     | 
 | 21.2. | Objektově orientované programování, úvod do Entity Framework | 
 | 7.3.  | Entity framework, zásady Clean Code, SOLID                   | 
-| 21.3. | Základy WPF, návrhový vzor MVVM                              | 
+| 28.3. | Základy WPF, návrhový vzor MVVM                              | 
 | 4.4.  | WPF frontend, binding                                        | 
 | 18.4. | Bonusové cvičení                                             | 
 
