@@ -1,0 +1,67 @@
+pool:
+  vmImage: Hosted
+  demands:
+  - DotNetFramework
+  - msbuild
+  - visualstudio
+  - vstest
+  - Cmd
+
+#Your build pipeline references the ‘BuildPlatform’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
+variables:
+  BuildConfiguration: 'Release'
+
+steps:
+- task: PowerShell@1
+  displayName: 'Update Version'
+  inputs:
+    scriptName: '$/Examples/AutomatedBuilds/BankCalculators/UpdateVersion.ps1'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    restoreSolution: '$/Examples/AutomatedBuilds/BankCalculators/BankCalculators.sln'
+
+- task: VSBuild@1
+  displayName: 'Build BankCalculators.sln'
+  inputs:
+    solution: '$/Examples/AutomatedBuilds/BankCalculators/BankCalculators.sln'
+    vsVersion: 15.0
+    platform: '$(BuildPlatform)'
+    configuration: '$(BuildConfiguration)'
+    clean: true
+
+- task: VSTest@1
+  displayName: 'Unit tests'
+  inputs:
+    testAssembly: '**\*Engine.Tests.dll;-:**\obj\**'
+    codeCoverageEnabled: true
+    pathtoCustomTestAdapters: '$(Build.SourcesDirectory)\packages\'
+
+- task: VSTest@1
+  displayName: 'JavaScript tests'
+  inputs:
+    testAssembly: '**\**\ShowPreviewTests.js'
+    codeCoverageEnabled: true
+    pathtoCustomTestAdapters: '$(Build.SourcesDirectory)\TestRunners\Chutzpah\'
+
+- task: BatchScript@1
+  displayName: 'Create web deployment package'
+  inputs:
+    filename: '$/Examples/AutomatedBuilds/BankCalculators/Web/WebCalculator/createInstaller.cmd'
+    modifyEnvironment: false
+    workingFolder: '$/Examples/AutomatedBuilds/BankCalculators/Web/WebCalculator'
+
+- task: AzureRmWebAppDeployment@4
+  displayName: 'Azure App Service Deploy: BankCalculator'
+  inputs:
+    azureSubscription: 'Visual Studio Premium with MSDN (d15f724f-d79e-4a0e-b315-0a29f1256932)'
+    WebAppName: BankCalculator
+    packageForLinux: '$(Build.SourcesDirectory)\Output\Release\WebPackage\WebCalculator.zip'
+
+- task: CopyPublishBuildArtifacts@1
+  displayName: 'Publish Artifact: WebPackage and coverage'
+  inputs:
+    Contents: '**\Output\**\WebPackage;'
+    ArtifactName: WebPackage
+    ArtifactType: Container

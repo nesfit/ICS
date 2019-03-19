@@ -1,0 +1,9 @@
+{
+  "Framework": "qunit",
+  "RootReferencePathMode": "SettingsFileDirectory",
+  "TestFileTimeout": "60000",
+  "TestHarnessLocationMode": "TestFileAdjacent",
+  "EnableCodeCoverage": "true",
+  "CodeCoverageIncludes": ["*ShowPreview.js"],
+  "CodeCoverageExcludes": ["*jquery*.js"]
+}
