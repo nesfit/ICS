@@ -28,22 +28,19 @@
    * dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL)
 4. [Propojení aplikace s databází](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_04#/)
    * zajištění persistence pomocí ORM rozšíření Entity Framework s návrhovými vzory UnitOfWork a Repository
-5. [Psaní čistého, udržovatelného kódu](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_05#/)
-   * respektováním Clean Code, S.O.L.I.D. zásad
-   * ukázky refaktorizace a práce s legacy kódem
-5. 1. [Psaní čistého, udržovatelného kódu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_05#/)   
+5. 1. Psaní čistého, udržovatelného kódu
       * respektováním Clean Code, S.O.L.I.D. zásad
       * ukázky refaktorizace a práce s legacy kódem  
-   2. [Swagger](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_05#/)
+   2. Swagger
       * Vytvoření Webové služby pomocí OpenAPI
       * *Dobrovolná přednáška* **IW5 D0206 13:00-14:50 4.3.2019**
-6. [Návrhový vzor Model-View-ViewModel (MVVM)](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_06#/)
+6. Návrhový vzor Model-View-ViewModel (MVVM)
    * architektura desktopových aplikací
    * mapování databázových entit na modelové třídy
 
 +++
 
-7. [Continous Integration v prostředí Azure DevOps](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_07#/)
+7. Continous Integration v prostředí Azure DevOps
    * testování aplikací - smoke, unit, integrační, UI a akceptační testy
 8. [Základní koncepty tvorby uživatelského rozhraní](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_08#/)
    * Windows Presentation Foundation (WPF)
