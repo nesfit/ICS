@@ -51,14 +51,14 @@
       * respektováním Clean Code, S.O.L.I.D. zásad
       * ukázky refaktorizace a práce s legacy kódem  
     2. [Paralelní a asynchronní programování](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_11#/)
-      * Vytvoření Webové služby pomocí OpenAPI
-      * *Dobrovolná přednáška* **IW5 D0206 13:00-14:50 4.3.2019**    
+      * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
+      * *Dobrovolná přednáška* **IW5 D0206 13:00-14:50 15.4.2019**    
 12. Velikonoční pondělí    
 13. 1. [Multiplatformní programování](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_13#/)
        * .NET Standard, .NET Core. 
        * kontejnerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm
     2. [Nástroje pro správu paměti a profilaci výkonu](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_12#/)
-       * Dobrovolná přednáška* **IW5 D0206 13:00-14:50 29.4.2019**
+       * *Dobrovolná přednáška* **IW5 D0206 13:00-14:50 29.4.2019**
 --- 
 # Cvičení 
 Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení na kterém budete moct cvičení aktivně zúčastnit. Bude potřeba vývojové prostředí ideálně Visual Studio 2017. Cvičení začínají od prvního týdne semestru a konají se jednou za 14 dní.
