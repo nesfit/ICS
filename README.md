@@ -48,11 +48,11 @@
    * vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#
 10. Zrušeno - děkanský půlden
 11. 1. [WPF za pomoci MVVM](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_10#/)
-      * respektováním Clean Code, S.O.L.I.D. zásad
-      * ukázky refaktorizace a práce s legacy kódem  
+       * respektováním Clean Code, S.O.L.I.D. zásad
+       * ukázky refaktorizace a práce s legacy kódem  
     2. [Paralelní a asynchronní programování](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_11#/)
-      * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
-      * *Dobrovolná přednáška* **IW5 D0206 13:00-14:50 15.4.2019**    
+       * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
+       * *Dobrovolná přednáška* **IW5 D0206 13:00-14:50 15.4.2019**    
 12. Velikonoční pondělí    
 13. 1. [Multiplatformní programování](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_13#/)
        * .NET Standard, .NET Core. 
