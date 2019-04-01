@@ -46,19 +46,18 @@
    * Windows Presentation Foundation (WPF)
 9. [Návrhové vzory](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_09#/)
    * vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#
-10. [WPF za pomoci MVVM](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_10#/)
-    * tvorba komponenty a stylování aplikací
-11. [Paralelní a asynchronní programování](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_11#/)
-    * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
-12. [Multiplatformní programování](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_13#/)
-    * .NET Standard, .NET Core. 
-    * kontejnerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm
-12. [Nástroje pro správu paměti a profilaci výkonu](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_12#/)
-    
-12. 1. [Multiplatformní programování](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_13#/)
+10. Zrušeno - děkanský půlden
+11. 1. [WPF za pomoci MVVM](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_10#/)
+      * respektováním Clean Code, S.O.L.I.D. zásad
+      * ukázky refaktorizace a práce s legacy kódem  
+    2. [Paralelní a asynchronní programování](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_11#/)
+      * Vytvoření Webové služby pomocí OpenAPI
+      * *Dobrovolná přednáška* **IW5 D0206 13:00-14:50 4.3.2019**    
+12. Velikonoční pondělí    
+13. 1. [Multiplatformní programování](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_13#/)
        * .NET Standard, .NET Core. 
        * kontejnerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm
-    2. [Nástroje pro správu paměti a profilaci výkonu](https://gitpitch.com/fitiw/5?grs=github&t=white&p=Lectures%2FLecture_12#/)
+    2. [Nástroje pro správu paměti a profilaci výkonu](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_12#/)
        * Dobrovolná přednáška* **IW5 D0206 13:00-14:50 29.4.2019**
 --- 
 # Cvičení 
