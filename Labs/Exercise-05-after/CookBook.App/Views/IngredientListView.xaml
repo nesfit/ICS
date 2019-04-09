@@ -1,0 +1,35 @@
+﻿<local:UserControlBase x:Class="CookBook.App.Views.IngredientListView"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                       xmlns:local="clr-namespace:CookBook.App.Views"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
+                       xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                       xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
+                       d:DataContext="{d:DesignInstance viewModels:IngredientListViewModel}"
+                       d:DesignHeight="450"
+                       d:DesignWidth="800"
+                       mc:Ignorable="d"
+                       DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=IngredientListViewModel}">
+    <Grid x:Name="Root">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Content="{x:Static texts:TextResources.IngredientList_ButtonNewIngredient}" Command="{Binding IngredientNewCommand}" />
+        <ListBox x:Name="IngredientsListBox" Grid.Row="1" ItemsSource="{Binding Ingredients}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding IngredientSelectedCommand}"
+                                           CommandParameter="{Binding ElementName=IngredientsListBox, Path=SelectedItem}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label x:Name="TestLabel" Content="{Binding Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</local:UserControlBase>
