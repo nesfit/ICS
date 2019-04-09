@@ -1,6 +1,6 @@
 ﻿namespace CookBook.BL.Models
 {
-    public class IngredientDetailModel : BaseModel
+    public class IngredientDetailModel : ModelBase
     {
         public string Name { get; set; }
         public string Description { get; set; }

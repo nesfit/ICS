@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CookBook.BL.Models
 {
-    public class IngredientListModel : BaseModel
+    public class IngredientListModel : ModelBase
     {
         public string Name { get; set; }
     }
