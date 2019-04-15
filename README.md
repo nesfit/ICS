@@ -82,7 +82,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 | ---- |----------| --------------------------------------- |
 | 1    |    10.3. | Objektový návrh                         |
 | 2    |     7.4. | EF, MVVM                                |
-| 3    |    25.4. | Finalizace aplikace a následná obhajoba |
+| 3    |    Den před odevzdáním | Finalizace aplikace a následná obhajoba |
 
 * Tým může být sestaven pouze ze studentů, kteří mají zapsaný pouze předmět IW5, ICS a nebo těch co mají zapsané předměty oba. Není možné vytvoření týmů obsahující členy z obou kategorií.
 * Při obhajobě:
