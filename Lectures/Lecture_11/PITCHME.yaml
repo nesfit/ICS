@@ -1,0 +1,8 @@
+theme : simple
+theme-override : /FIT/Assets/css/PITCHME.css
+highlight : vs
+logo : /FIT/Assets/img/logo.png
+published : true
+remote-control: true
+mathjax : TeX-MML-AM_HTMLorMML-full
+footnote : "Content by Michal Mrnuštík | Designed by Michal Orlicek"
