@@ -192,8 +192,8 @@ public class Student
     public byte[]  Photo { get; set; }
     public decimal Height { get; set; }
     public float Weight { get; set; }
-    public virtual Address Address { get; set; }
-    public virtual ICollection<Lecture> Lectures { get; set; }
+    public Address Address { get; set; }
+    public ICollection<Lecture> Lectures { get; set; }
 }
 ```
 ---
@@ -206,7 +206,7 @@ public class Student
     * Maps to a **single column** in the database table
   * **Navigation Property**
     * **Represents a relationship** to another entity
-    * Must be `virtual`
+    * Must be `virtual` in case you want to use Lazy Loading, otherwise it need to be `Include`d manually
     * Two types
       * *Reference Navigation Property*
         * Includes a property of entity type
