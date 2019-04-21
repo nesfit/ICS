@@ -120,6 +120,11 @@ namespace CookBook.BL.Repositories
 
         private void SynchronizeCollections(DbContext dbContext, TEntity entity)
         {
+            if (CollectionsToBeSynchronized == null)
+            {
+                return;
+            }
+
             IQueryable<TEntity> query = dbContext.Set<TEntity>();
             TEntity entityInDb;
             using (var dbContextGetById = DbContextFactory.CreateDbContext())
