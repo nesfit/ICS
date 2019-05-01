@@ -44,16 +44,16 @@
    * testování aplikací - smoke, unit, integrační, UI a akceptační testy
 8. [Základní koncepty tvorby uživatelského rozhraní](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_08#/)
    * Windows Presentation Foundation (WPF)
-9. [Návrhové vzory](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_09#/)
+9. Návrhové vzory
    * vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#
 10. Zrušeno - děkanský půlden
-11. [Paralelní a asynchronní programování](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_11#/)
+11. Paralelní a asynchronní programování
        * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku 
 12. Velikonoční pondělí    
-13. 1. [Multiplatformní programování](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_13#/)
+13. 1. Multiplatformní programování
        * .NET Standard, .NET Core. 
        * kontejnerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm
-    2. [Nástroje pro správu paměti a profilaci výkonu](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_12#/)
+    2. Nástroje pro správu paměti a profilaci výkonu
        * *Dobrovolná přednáška* **IW5 D0206 13:00-14:50 29.4.2019**
 --- 
 # Cvičení 
