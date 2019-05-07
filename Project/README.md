@@ -214,9 +214,3 @@ Aplikace musí splňovat
  - Vytvoření uživatele
  - Správa členů týmu
     - Možnost přidat a odebrat člena 
-
-## Finální odevzdání
-
-Po skončení obhajoby bude nutné ještě nahrát váš program do informačního systému. **Bez nahraného programu nemůžeme týmu udělit bodové hodnocení.**
-
-Zdrojový kód očistěte o všechny nepotřebné soubory, které neverzujete (adresáře obj, bin, packages... viz .gitignore).
