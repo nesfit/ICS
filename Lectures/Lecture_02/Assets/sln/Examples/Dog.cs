@@ -5,7 +5,7 @@ namespace Examples
 {
     public class Dog: Pet
     {
-        private Int32 _age;          // Class member - filed
+        private Int32 _age;          // Class member - field
 
         public int Age               // Class member - property
         {
