@@ -183,7 +183,7 @@ streamWriter.WriteLine("Hello world");
 ## Threads in .NET Core
 
 - represented via `Thread` class
-- current `Thread` can be get through `Thread.CurrentThread`
+- possible to get current `Thread` using `Thread.CurrentThread`
 - should never be created directly!
 - for waiting `Join()` method is present
 
@@ -364,7 +364,7 @@ source.AsParallel()
 
 ---
 
-## Asynchronous programming in C#
+## Asynchronous programming in C# 
 
 - three options:
     - Asynchronous Programming Model (APM)
@@ -474,8 +474,8 @@ public async Task<int> LoadResult(INetwork network)
 
 ## async/await
 
-- method marked has async has to be `void` or return `Task`
-- when you can return `Task`
+- method marked `async` has to be `void` or return `Task`
+- returning `Task` is preferrable
 - `await` can be used only inside methods marked as `async`
 - if `Task` is not awaited the execution will continue
 

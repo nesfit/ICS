@@ -12,7 +12,7 @@
 
 ---
 ## .NET Standard
-* Formal specification of .NET APIs 
+* Formal specification of .NET APIs
 * Intended to be available on all .NET implementations
 * Establishes greater uniformity in the .NET ecosystem
 * [.NET Standard github](https://github.com/dotnet/standard)
@@ -145,7 +145,7 @@
 ```C#
 Type type = typeof(String);
 
-MethodInfo methodInfo = 
+MethodInfo methodInfo =
 type.GetMethod("Substring", new Type[] { typeof(int), typeof(int) });
 
 Object result = methodInfo.Invoke("Hello, World!", new Object[] { 7, 5 });
@@ -158,7 +158,7 @@ Console.WriteLine("{0} returned \"{1}\".", methodInfo, result);
 * Provides the **base class for value types**
 
 ```C#
-public static bool IsFloat(ValueType value) 
+public static bool IsFloat(ValueType value)
 {
     return (value is float | value is double | value is Decimal);
 }
@@ -190,7 +190,7 @@ catch (System.OverflowException) {
 
 +++
 ## Bit Converter
-* `class BitConverter` 
+* `class BitConverter`
 * **Converts:**
   * *Base data types* to an *array of bytes*
     * `GetBytes(Boolean)`, `GetBytes(Int32)` `GetBytes(Char)`...
@@ -225,7 +225,7 @@ Console.WriteLine(BitConverter.ToString(sampleByteArray)); //01
 
 ```URI
           userinfo     host        port
-          ┌─┴────┐ ┌────┴────────┐ ┌┴┐ 
+          ┌─┴────┐ ┌────┴────────┐ ┌┴┐
   https://john.doe@www.example.com:123/forum/questions/?tag=networking#top
   └─┬─┘ └───────┬────────────────────┘└─┬─────────────┘└──┬──────────┘└┬─┘
   scheme     authority                 path              query     fragment
@@ -247,11 +247,11 @@ scheme     path
   scheme    authority  path
 ```
 
-+++ 
++++
 ### URI Standard
 * `class Uri`- representation of URI
 * `UriBuilder` - custom URI constructors
-* Another classes:
+* Other classes:
   * `UriFormatException`, `UriTypeConverter`, `FtpStyleUriParser`, `HttpStyleUriParser`...
 * Enums:
   * `UriComponents`, `UriFormat`, `UriHostNameType`...
@@ -355,7 +355,7 @@ for (var i = 1; i <= 10; i++)
 +++
 ## Version
 * `class Version`
-* Represents the **version number** of 
+* Represents the **version number** of
   * *Assembly*
   * *Operating system*
   * *Common language runtime*
@@ -374,7 +374,7 @@ Console.WriteLine("CLR Version {0}", version.ToString());
 ```
 
 +++
-## Another important classes
+## Other important classes
 * `class Buffer` - manipulates arrays of primitive types
 * `class Environment` - information about the current environment and platform
 * `class Lazy<T>` - support for lazy initialization
@@ -422,12 +422,12 @@ delegate TResult Func<in T1,in T2,out TResult>(T1 arg1, T2 arg2); //has two para
   * ⋮
 
 +++
-## Another important delegates
-* `delegate int Comparison<in T>(T x, T y)` 
+## Other important delegates
+* `delegate int Comparison<in T>(T x, T y)`
   * Method that **compares** two objects of the same type
-* `delegate void AsyncCallback(IAsyncResult ar)` 
+* `delegate void AsyncCallback(IAsyncResult ar)`
   * Method to be called when a corresponding **asynchronous operation completes**
-* `delegate TOutput Converter<in TInput,out TOutput>(TInput input)` 
+* `delegate TOutput Converter<in TInput,out TOutput>(TInput input)`
   * Method that **converts** an object from one type to another type
 
 ---
@@ -438,7 +438,7 @@ delegate TResult Func<in T1,in T2,out TResult>(T1 arg1, T2 arg2); //has two para
 * **Dictioniary**
   * Stores *key and value* pairs
 * **Stack**
-  * Stores the values in *Last In First Out* style 
+  * Stores the values in *Last In First Out* style
 * **Queue**
   * Stores the values in *First In First Out* style
 * **Set**
@@ -450,7 +450,7 @@ delegate TResult Func<in T1,in T2,out TResult>(T1 arg1, T2 arg2); //has two para
 
 +++
 ## Generic vs non-generic collections
-* **Recommended to use generic collecions**
+* **Recommended to use generic collections**
   * **Type safety**
   * **Better performance** (no need to box the elements)
 
@@ -487,7 +487,7 @@ delegate TResult Func<in T1,in T2,out TResult>(T1 arg1, T2 arg2); //has two para
 @snapend
 
 +++
-## ArrayList 
+## ArrayList
 * `class ArrayList`
 * Using an array whose **size is dynamically increased** as required
 * Implements the `IList` interface
@@ -553,11 +553,11 @@ delegate TResult Func<in T1,in T2,out TResult>(T1 arg1, T2 arg2); //has two para
 [Code sample](/Lectures/Lecture_03/Assets/sln/Tests/HashtableTest.cs)
 
 +++
-## Another Collections 
+## Other Collections
 * `class BitArray`
   * Compact **array of bit values**, which are represented as Booleans
 * `class SortedList`
-  * **Collection of key/value pairs** that are **sorted** by the keys 
+  * **Collection of key/value pairs** that are **sorted** by the keys
 
 ```C#
 bool[] boolArray = new bool[5] { true, false, true, true, false };
@@ -601,7 +601,7 @@ sortedList.Add("First", "Hello");
 * Provides methods to
   * Search
   * Sort
-  * Manipulate 
+  * Manipulate
 * **Type Parameter** `T`
   * The type of elements in the list
 * `class SortedList<TKey,TValue>`
@@ -619,8 +619,8 @@ sortedList.Add("First", "Hello");
 +++
 ## Generic Stack
 * `class Stack<T>`
-* Variable size 
-* **Last-in-first-out** collection 
+* Variable size
+* **Last-in-first-out** collection
   * Instances of the **same specified type**
 
 +++?code=/Lectures/Lecture_03/Assets/sln/Tests/GenericStackTest.cs&lang=C#&title=Generic Stack Sample
@@ -633,7 +633,7 @@ sortedList.Add("First", "Hello");
 +++
 ## Generic Queue
 * `class Queue<T>`
-* Variable size 
+* Variable size
 * **First-in, first-out** collection
 * Collection of instances of the **same specified type**
 
@@ -647,7 +647,7 @@ sortedList.Add("First", "Hello");
 +++
 ## Generic Dictionary
 * `class Dictionary<TKey,TValue>`
-* Variable size 
+* Variable size
 * **First-in, first-out** collection
 * Collection of instances of the **same specified type**
 * `class Dictionary<TKey,TValue>.KeyCollection`
@@ -656,7 +656,7 @@ sortedList.Add("First", "Hello");
   * Collection of values in dictionary
 * `class SortedDictionary<TKey,TValue>`
   * Dictionary that is sorted on the key
-* **Type Parameters** 
+* **Type Parameters**
   * `TKey` - the type of the keys in the dictionary
   * `TValue` - the type of the values in the dictionary
 
@@ -667,31 +667,11 @@ sortedList.Add("First", "Hello");
 @[9-20]
 [Code sample](/Lectures/Lecture_03/Assets/sln/Tests/GenericDictionaryTest.cs)
 
-+++ 
-## HashSet
-* `class HashSet<T>` 
-* **Set** of values
-* Contains **no duplicate** elements
-* Elements are in **no particular order**
-* Provides *high-performance set operations*
-* `class SortedSet<T>`
-  * Hashset that is maintained in sorted order
-
-+++?code=/Lectures/Lecture_03/Assets/sln/Tests/HashSetTest.cs&lang=C#&title=HashSet Sample
-@[9-18]
-@[11-13]
-@[15-17]
-@[9-18]
-[Code sample](/Lectures/Lecture_03/Assets/sln/Tests/HashSetTest.cs)
-
 +++
-## Generic Interfaces
-|  Interface | Description |
-|:-:|:- |
-| `ICollection<T>` | Defines methods for generic collections |
-| `IDictionary<TKey,TValue>` | Define methods for generic dictionaries |
-| `IList<T>` | Define methods for generic lists |
-| `ISet<T>` | Define methods for generic sets |
+## HashSet
+* `class HashSet<T>`
+* **Set** of values
+* `ISet<T>` | Define methods for generic sets |
 | `IReadOnlyCollection<T>` | Define methods for generic read-only collections |
 | `IReadOnlyDictionary<TKey,TValue>` | Define methods for generic read-only dictionaries |
 | `IReadOnlyList<T>` | Define methods for generic read-only lists |
@@ -722,12 +702,12 @@ string path1 = @"c:\temp\MyTest.txt";
 string path2 = @"c:\temp\MyTest";
 string path3 = @"temp";
 
-if (Path.HasExtension(path1)) 
+if (Path.HasExtension(path1))
 {
     Console.WriteLine("{path1} has an extension.");
 }
 
-if (!Path.HasExtension(path2)) 
+if (!Path.HasExtension(path2))
 {
     Console.WriteLine("{path2} has no extension.");
 }
@@ -747,8 +727,8 @@ Console.WriteLine($"{Path.GetTempFileName()} is a file available for use.");
     * **DirecoryInfo**
     * **FileInfo**
 * *Static methods* perform *security checks on all methods*
-* For **one action** is **static variant** better than instance one
-* For **reuse** is better **instance one**, because the security check will not always be necessary
+* For **one action** a **static variant** is better than an instance one
+* For **reuse** an **instance one** is better, because the security check will not always be necessary
 
 +++
 ## Directory and File
@@ -810,7 +790,7 @@ Console.WriteLine($"{Path.GetTempFileName()} is a file available for use.");
 
 +++
 ## Data Streams
-* `Stream Class` 
+* `Stream Class`
 * Abstract base class of all streams
 * **Abstraction of a sequence of bytes**, such as
     * *File*
@@ -866,7 +846,7 @@ using (FileStream fileStream = File.OpenRead(@"c:\test.txt"))
 [Code sample](/Lectures/Lecture_03/Assets/sln/Examples/StreamReaderSample.cs)
 
 +++
-## Another readers and writers
+## Other readers and writers
 |  Class | Description |
 |:-:|:- |
 | `StringReader` | Reads from a string |
@@ -880,7 +860,7 @@ using (FileStream fileStream = File.OpenRead(@"c:\test.txt"))
 ## `System.IO.Pipes` Namespace
 * `using System.IO.Pipes`
 * [Documentation](https://docs.microsoft.com/en-us/dotnet/api/system.io.pipes?view=netstandard-2.0)
-* Types that provide a means for interprocess communication through anonymous and/or named pipes
+* Types that provide means for interprocess communication through anonymous and/or named pipes
 * **Synchronous** and **asynchronous read** and **write** operations
 * `class PipeStream` - base class for Pipes
   * `class NamedPipeServerStream` - server side of a named pipe stream
@@ -917,7 +897,7 @@ using (FileStream fileStream = File.OpenRead(@"c:\test.txt"))
 ![](/Lectures/Assets/img/MagnifyingGlass.png)
 @snapend
 
-+++ 
++++
 ## BigInteger
 * `struct BigInteger`
 * Nonprimitive integral type that supports **arbitrarily large integers**
@@ -997,7 +977,7 @@ dynamic x = "c#";
 x++;
 x.FakeMethod();
 ```
- 
+
 +++?code=/Lectures/Lecture_03/Assets/sln/Examples/DynamicParameter.cs&lang=C#&title=Dynamic Parameter Sample
 @[5-27]
 @[7-10]
@@ -1110,7 +1090,7 @@ x.FakeMethod();
 * **For example`\b(?<word>\w+)\s+(\k<word>)\b`**
   * Regular expression to check for repeated occurrences of words in a string
   * Can be interpreted as:
- 
+
 | Pattern | Description |
 |:-:|:- |
 | `\b` | Start the match at a word boundary |
@@ -1151,11 +1131,11 @@ x.FakeMethod();
 +++
 ### Fluent syntax
 ```C#
-string[] names = { "Tom", "Dick", "Harry", "Mary", "Jay" }; 
-IEnumerable<string> query = names 
-  .Where(n => n.Contains("a")) 
-  .OrderBy(n => n.Length) 
-  .Select(n => n.ToUpper()); 
+string[] names = { "Tom", "Dick", "Harry", "Mary", "Jay" };
+IEnumerable<string> query = names
+  .Where(n => n.Contains("a"))
+  .OrderBy(n => n.Length)
+  .Select(n => n.ToUpper());
 
 foreach (string name in query) Console.WriteLine(name);
 ```
@@ -1166,7 +1146,7 @@ foreach (string name in query) Console.WriteLine(name);
 ### Query syntax diagram
 
 ```C#
-string[] names = { "Tom", "Dick", "Harry", "Mary", "Jay" }; 
+string[] names = { "Tom", "Dick", "Harry", "Mary", "Jay" };
 
 IEnumerable<string> query =
     from n in names
@@ -1193,7 +1173,7 @@ IEnumerable<string> query =
 
 +++
 ### Subqueries
-* It is able to use LING query inside LINQ query
+* It is possible to use LINQ query inside LINQ query
 
 ```C#
 var musos = { "David Gilmour", "Roger Waters", "Rick Wright",
@@ -1253,7 +1233,8 @@ Filtering is an operation to restrict the result set to the point where it shows
 
 +++
 ### LINQ Join Operators
-Joining refers to an operation which directly targets data sources with difficult to follow relationships with each other in a direct way are targeted.
+Joining refers to an operation which directly targets data sources with difficult to follow relationships with each other in a direct way.
+<!-- Toto je dosť nezrozumiteľné. -->
 
 | Operator | Description |
 |:-:|:- |
@@ -1285,7 +1266,7 @@ Projection is an operation in which an object is transformed into an altogether 
 | Operator | Description |
 |:-:|:- |
 | `Select` | The operator projects values on basis of a transform function |
-| `SelectMany` | The operator project the sequences of values which are based on a transform function as well as flattens them into a single sequence |
+| `SelectMany` | The operator projects the sequences of values which are based on a transform function as well as flattens them into a single sequence |
 
 +++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqProjectionOperatorsTest.cs&lang=C#&title=LINQ Projection Operators Sample
 @[10-23]
@@ -1307,8 +1288,8 @@ A sorting operation allows ordering the elements of a sequence on basis of a sin
 
 | Operator | Description |
 |:-:|:- |
-| `OrderBy` | The operator sort values in an ascending order |
-| `OrderByDescending` | The operator sort values in a descending order |
+| `OrderBy` | The operator sorts values in an ascending order |
+| `OrderByDescending` | The operator sorts values in a descending order |
 | `ThenBy` | Executes a secondary sorting in an ascending order |
 | `ThenByDescending` | Executes a secondary sorting in a descending order |
 | `Reverse` | Performs a reversal of the order of the elements in a collection |
@@ -1340,7 +1321,7 @@ The operators put data into some groups based on a common shared attribute.
 | Operator | Description |
 |:-:|:- |
 | `GroupBy` | Organize a sequence of items in groups and return them as an `IEnumerable` collection of type `IGrouping<key, element>` |
-| `ToLookup` | Execute a grouping operation in which a sequence of key pairs are returned |
+| `ToLookup` | Execute a grouping operation in which a sequence of key pairs is returned |
 
 +++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqGroupingOperatorsTest.cs&lang=C#&title=LINQ Grouping Operators Sample
 @[9-29]
@@ -1357,7 +1338,7 @@ The operators put data into some groups based on a common shared attribute.
 [Code sample](/Lectures/Lecture_03/Assets/sln/Tests/LinqGroupingOperatorsTest.cs)
 
 +++
-### LINQ Conversions Operators
+### LINQ Conversion Operators
 The operators change the type of input objects and are used in a diverse range of applications.
 
 | Operator | Description |
@@ -1365,9 +1346,9 @@ The operators change the type of input objects and are used in a diverse range o
 | `AsEnumerable` | Returns the input typed as `IEnumerable<T>` |
 | `AsQueryable` | A (generic) `IEnumerable` is converted to a (generic) `IQueryable` |
 | `Cast` | Performs casting of elements of a collection to a specified type |
-| `OfType` | Filters values on basis of their, depending on their capability to be cast to a particular type |
+| `OfType` | Filters values on basis of their type, depending on their capability to be cast to a particular type |
 | `ToArray` | Forces query execution and does conversion of a collection to an array |
-| `ToDictionary` | On basis of a key selector function set elements into a `Dictionary<TKey, TValue>` and forces execution of a LINQ query |
+| `ToDictionary` | On basis of a key selector function transforms elements into a `Dictionary<TKey, TValue>` and forces execution of a LINQ query |
 | `ToList` | Forces execution of a query by converting a collection to a `List<T>` |
 
 +++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqConversionsOperatorsTest.cs&lang=C#&title=LINQ Conversions Operators Sample
@@ -1410,11 +1391,11 @@ The operators change the type of input objects and are used in a diverse range o
 
 +++
 ### LINQ Concatenation Operators
-Performs concatenation of two sequences and is quite similar to the Union operator in terms of its operation except of the fact that this does not remove duplicates.
+Performs concatenation of two sequences and is quite similar to the Union operator in terms of its operation except for the fact that this does not remove duplicates.
 
 | Operator | Description |
 |:-:|:- |
-| `Concat` | Two sequences are concatenated for the formation of a single one sequence. |
+| `Concat` | Two sequences are concatenated into a single one. |
 
 +++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqConcatenationOperatorTest.cs&lang=C#&title=LINQ Concatenation Operator Sample
 @[9-19]
@@ -1436,7 +1417,7 @@ Performs any type of desired aggregation and allows creating custom aggregations
 | `LongCount` | Counts the elements satisfying a predicate function within a huge collection |
 | `Max` | Find out the maximum value within a collection |
 | `Min` | Find out the minimum value existing within a collection |
-| `Sum` | Find out the sum of a values within a collection |
+| `Sum` | Calculate the sum of values within a collection |
 
 +++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqAggregationOperatorsTest.cs&lang=C#&title=LINQ Aggregation Operators Sample
 @[10-17]
@@ -1480,6 +1461,7 @@ Performs any type of desired aggregation and allows creating custom aggregations
 ### LINQ Quantifier Operators
 These operators return a Boolean value when some or all elements within a sequence satisfy a specific condition.
 
+<!-- Any a Contains sú strašne krkolomné -->
 | Operator | Description |
 |:-:|:- |
 | `All` | Returns `True` if all elements of a sequence satisfy a predicate condition |
@@ -1503,14 +1485,14 @@ These operators return a Boolean value when some or all elements within a sequen
 
 +++
 ### LINQ Partition Operators
-Divide an input sequence into two separate sections without rearranging the elements of the sequence and then returning one of them.
+Divide an input sequence into two parts without rearranging the elements of the sequence and then return one of them.
 
 | Operator | Description |
 |:-:|:- |
 | `Skip` | Skips some specified number of elements within a sequence and returns the remaining ones |
-| `SkipWhile` | Same as that of Skip with the only exception that number of elements to skip are specified by a condition |
+| `SkipWhile` | Same as Skip with exception that the number of elements to skip is specified by a condition |
 | `Take` | Take a specified number of elements from a sequence and skip the remaining ones |
-| `TakeWhile` | Same as that of Take except the fact that number of elements to take are specified by a condition |
+| `TakeWhile` | Same as Take except that the number of elements to take is specified by a condition |
 
 
 +++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqPartitionOperatorsTest.cs&lang=C#&title=LINQ Partition Operators Sample
@@ -1543,9 +1525,9 @@ A new sequence of values is created by generational operators.
 | Operator | Description |
 |:-:|:- |
 | `DefaultIfEmpty` | When applied to an empty sequence, generate a default element within a sequence |
-| `Empty` | Returns an empty sequence of values and is the most simplest generational operator |
+| `Empty` | Returns an empty sequence of values and is the simplest generational operator |
 | `Range` | Generates a collection having a sequence of integers or numbers |
-| `Repeat` | Generates a sequence containing repeated values of a specific length |
+| `Repeat` | Generates a sequence of a specific length containing repeated values |
 
 +++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqGenerationOperationsTest.cs&lang=C#&title=LINQ Generation Operators Sample
 @[9-18]
@@ -1570,12 +1552,14 @@ A new sequence of values is created by generational operators.
 +++
 ### LINQ Set Operators
 There are four operators for the set operations, each yielding a result based on different criteria.
+<!-- Toto prakticky nič nehovorí -->
 
 | Operator | Description |
 |:-:|:- |
-| `Distinct` | Results a list of unique values from a collection by filtering duplicate data if any |
-| `Except` | Compares the values of two collections and return the ones from one collection who are not in the other collection |
-| `Intersect` | Returns the set of values found to be identical in two separate collections |
+| `Distinct` | Returns a list of unique values from a collection by filtering duplicate data if any |
+| `Except` | Compares the values of two collections and returns the ones from one collection which are not in the other collection |
+<!-- (A - B)? (B - A)? nedeterministické? -->
+| `Intersect` | Returns the set of values contained in both collections |
 | `Union` | Combines content of two different collections into a single list without any duplicate content |
 
 +++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqSetOperationsTest.cs&lang=C#&title=LINQ Set Operators Sample
@@ -1603,7 +1587,7 @@ There are four operators for the set operations, each yielding a result based on
 
 +++
 ### LINQ Equality
-Compares two sentences (enumerable) and determines if they are an exact match or not.
+Compares two sequences (enumerable) and determines if they are an exact match or not.
 
 | Operator | Description |
 |:-:|:- |
@@ -1624,10 +1608,10 @@ All standard query element operators return a single element from a collection.
 
 | Operator | Description |
 |:-:|:- |
-| `ElementAt` | Returns an element present within a specific index in a collection |
-| `ElementAtOrDefault` | Same as `ElementAt` except of the fact that it also returns a default value in case the specific index is out of range |
-| `First` | Retrieves the first element within a collection or the first element satisfying a specific condition |
-| `FirstOrDefault` | Same as `First` except the fact that it also returns a default value in case there is no existence of such elements |
+| `ElementAt` | Returns an element present at a specific index in a collection |
+| `ElementAtOrDefault` | Same as `ElementAt` except that it also returns a default value in case the specific index is out of range |
+| `First` | Retrieves the first element of a collection or the first element satisfying a specific condition |
+| `FirstOrDefault` | Same as `First` except that it also returns a default value in case there is no existence of such elements |
 
 +++
 ### LINQ Element Operators
@@ -1636,9 +1620,9 @@ All standard query element operators return a single element from a collection.
 | Operator | Description |
 |:-:|:- |
 | `Last` | Retrieves the last element present in a collection or the last element satisfying a specific condition |
-| `LastOrDefault` | Same as `Last` except the fact that it also returns a default value in case there is no existence of any such element |
-| `Single` | Returns the lone element of a collection or the lone element that satisfy a certain condition |
-| `SingleOrDefault` | Same as `Single` except that it also returns a default value if there is no existence of any such lone element |
+| `LastOrDefault` | Same as `Last` except that it also returns a default value in case there is no existence of any such element |
+| `Single` | Returns the lone element of a collection or the lone element that satisfies a certain condition |
+| `SingleOrDefault` | Same as `Single` except that it also returns a default value if there is no such element |
 
 +++?code=/Lectures/Lecture_03/Assets/sln/Tests/LinqElementOperatorsTest.cs&lang=C#&title=LINQ Element Operators Sample
 @[10-17]
@@ -1683,15 +1667,15 @@ All standard query element operators return a single element from a collection.
 * E.g. `Where`:
 
 ```C#
-public static IEnumerable<TSource> Where<TSource>( 
-	this IEnumerable<TSource> source, Func<TSource, bool> predicate) 
-{ 
-    // Check of input parameters ... 
-    foreach (TSource item in source) 
-    { 
-        if (predicate(item)) 
-        { 
-            yield return item; 
+public static IEnumerable<TSource> Where<TSource>(
+	this IEnumerable<TSource> source, Func<TSource, bool> predicate)
+{
+    // Check of input parameters ...
+    foreach (TSource item in source)
+    {
+        if (predicate(item))
+        {
+            yield return item;
         }
     }
 }
@@ -1726,26 +1710,26 @@ Console.WriteLine("\nConnection: {0}",dc.Connection);
 +++
 ### Output
 ```SQL
-Customers from London:  
-    Thomas Hardy  
-    Victoria Ashworth  
-    Elizabeth Brown  
-    Ann Devon  
-    Simon Crowther  
-    Marie Bertrand  
-    Hari Kumar  
-    Dominique Perrier  
+Customers from London:
+    Thomas Hardy
+    Victoria Ashworth
+    Elizabeth Brown
+    Ann Devon
+    Simon Crowther
+    Marie Bertrand
+    Hari Kumar
+    Dominique Perrier
 
-Command Text:  
-SELECT [t0].[CustomerID], [t0].[CompanyName], [t0].[ContactName], [t0].[ContactT  
-itle], [t0].[Address], [t0].[City], [t0].[Region], [t0].[PostalCode], [t0].[Coun  
-try], [t0].[Phone], [t0].[Fax]  
-FROM [dbo].[Customers] AS [t0]  
-WHERE [t0].[City] = @p0  
-  
-Command Type: Text  
-  
-Connection: System.Data.SqlClient.SqlConnection  
+Command Text:
+SELECT [t0].[CustomerID], [t0].[CompanyName], [t0].[ContactName], [t0].[ContactT
+itle], [t0].[Address], [t0].[City], [t0].[Region], [t0].[PostalCode], [t0].[Coun
+try], [t0].[Phone], [t0].[Fax]
+FROM [dbo].[Customers] AS [t0]
+WHERE [t0].[City] = @p0
+
+Command Type: Text
+
+Connection: System.Data.SqlClient.SqlConnection
 ```
 
 +++
@@ -1856,31 +1840,31 @@ Connection: System.Data.SqlClient.SqlConnection
 +++
 ## Reading XML with the XPath input
 ```XML
-<bookstore>  
-    <book genre="autobiography" publicationdate="1981-03-22" ISBN="1-861003-11-0">  
-        <title>The Autobiography of Benjamin Franklin</title>  
-        <author>  
-            <first-name>Benjamin</first-name>  
-            <last-name>Franklin</last-name>  
-        </author>  
-        <price>8.99</price>  
-    </book>  
-    <book genre="novel" publicationdate="1967-11-17" ISBN="0-201-63361-2">  
-        <title>The Confidence Man</title>  
-        <author>  
-            <first-name>Herman</first-name>  
-            <last-name>Melville</last-name>  
-        </author>  
-        <price>11.99</price>  
-    </book>  
-    <book genre="philosophy" publicationdate="1991-02-15" ISBN="1-861001-57-6">  
-        <title>The Gorgias</title>  
-        <author>  
-            <name>Plato</name>  
-        </author>  
-        <price>9.99</price>  
-    </book>  
-</bookstore>  
+<bookstore>
+    <book genre="autobiography" publicationdate="1981-03-22" ISBN="1-861003-11-0">
+        <title>The Autobiography of Benjamin Franklin</title>
+        <author>
+            <first-name>Benjamin</first-name>
+            <last-name>Franklin</last-name>
+        </author>
+        <price>8.99</price>
+    </book>
+    <book genre="novel" publicationdate="1967-11-17" ISBN="0-201-63361-2">
+        <title>The Confidence Man</title>
+        <author>
+            <first-name>Herman</first-name>
+            <last-name>Melville</last-name>
+        </author>
+        <price>11.99</price>
+    </book>
+    <book genre="philosophy" publicationdate="1991-02-15" ISBN="1-861001-57-6">
+        <title>The Gorgias</title>
+        <author>
+            <name>Plato</name>
+        </author>
+        <price>9.99</price>
+    </book>
+</bookstore>
 ```
 
 +++?code=/Lectures/Lecture_03/Assets/sln/Examples/XPathSample.cs&lang=C#&title=Reading XML with the XPath Sample
@@ -1924,19 +1908,19 @@ Connection: System.Data.SqlClient.SqlConnection
 
 ---
 ## References:
-[C# 7.0 in a Nutshell: The Definitive Reference](https://www.amazon.com/C-7-0-Nutshell-Definitive-Reference/dp/1491987650)  
-[Microsoft documentation](https://docs.microsoft.com)  
-[Microsoft documentation github](https://github.com/MicrosoftDocs)  
-[.NET Standard web](http://immo.landwerth.net)  
-[.NET Standard github](https://github.com/dotnet/standard)  
-[Tutorials Point](https://www.tutorialspoint.com)  
-[Regex Storm](http://regexstorm.net/tester)  
+[C# 7.0 in a Nutshell: The Definitive Reference](https://www.amazon.com/C-7-0-Nutshell-Definitive-Reference/dp/1491987650)
+[Microsoft documentation](https://docs.microsoft.com)
+[Microsoft documentation github](https://github.com/MicrosoftDocs)
+[.NET Standard web](http://immo.landwerth.net)
+[.NET Standard github](https://github.com/dotnet/standard)
+[Tutorials Point](https://www.tutorialspoint.com)
+[Regex Storm](http://regexstorm.net/tester)
 [Wikipedia](https://en.wikipedia.org)
 
 +++
 ## Refences to images used:
-[.NET Standard version table](http://immo.landwerth.net/netstandard-versions/)  
-[Introduction to .NET Standard](https://blogs.msdn.microsoft.com/dotnet/2016/09/26/introducing-net-standard/)  
+[.NET Standard version table](http://immo.landwerth.net/netstandard-versions/)
+[Introduction to .NET Standard](https://blogs.msdn.microsoft.com/dotnet/2016/09/26/introducing-net-standard/)
 [Stanford University](https://www.stanford.edu/)
 
 +++
