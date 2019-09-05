@@ -1,16 +1,16 @@
 # Seminář C# - ICS, Organizational Details
 
---- 
-# Aktuality k předmětu 
+---
+# Aktuality k předmětu
 <!---  - **18.04.2019** | *Jan Pluskal* | [Registrace](http://goo.gl/mj3ODO) obhajoby projektů - autentizace xlogin00@vutbr.cz. Odevzdání projektu proveďte do WISu jako zip archív bez obj, bin, packages. V případě FEKTu není třeba odevzdávat. --->
  - **20.02.2019** | *Jan Pluskal* | [Visual Studio 2017 Enterprise](https://aka.ms/devtoolsforteaching) je nově dostupné v Azure Dev Tools for Teaching. Přihlášení je nutné s loginem z domény VUT, tj xlogin00@vutbr.cz
   - **07.02.2019** | *Jan Pluskal* | Pokud chcete tvořit smíšené týmy ICS/IW5 a dobrovolně si vzít těžší variantu projektu, můžete tak učinit.
   - **08.01.2019** | *Jan Pluskal* | Při vytváření repozitáře respektujte schéma ze [zadání](/Project/README.md) *https://dev.azure.com/ics-2019-team0000/project*, nebo *https://dev.azure.com/ics-iw5-2019-team0000/project*. Je nezbytně nutné použít Vaše účty z doménu *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
-    * Pokud máte vytvořeno pod soukromými účty, je třeba vytvořit projekt znovu pod univerzitními a pushnout existující repozitář tak, aby Vám zůstala historie včetně správných časů commitů. 
+    * Pokud máte vytvořeno pod soukromými účty, je třeba vytvořit projekt znovu pod univerzitními a pushnout existující repozitář tak, aby Vám zůstala historie včetně správných časů commitů.
     * Pokud bude kolize s existující organizací, použijte suffix *team0000-01*.
   - **08.01.2019** | *Jan Pluskal* | Registrace týmů na projekty pro **FIT** je ve WISu.
 
---- 
+---
 # Přednášky
 
 | Typ                                  | Místnost | Čas            |
@@ -30,7 +30,7 @@
    * zajištění persistence pomocí ORM rozšíření Entity Framework s návrhovými vzory UnitOfWork a Repository
 5. 1. Psaní čistého, udržovatelného kódu
       * respektováním Clean Code, S.O.L.I.D. zásad
-      * ukázky refaktorizace a práce s legacy kódem  
+      * ukázky refaktorizace a práce s legacy kódem
    2. Swagger
       * Vytvoření Webové služby pomocí OpenAPI
       * *Dobrovolná přednáška* **IW5 D0206 13:00-14:50 4.3.2019**
@@ -47,16 +47,16 @@
 9. Návrhové vzory
    * vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#
 10. Zrušeno - děkanský půlden
-11. Paralelní a asynchronní programování
-       * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku 
-12. Velikonoční pondělí    
+11. [Paralelní a asynchronní programování](https://gitpitch.com/nesfit/ics?grs=github&t=white&p=Lectures%2FLecture_11#/)
+       * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
+12. Velikonoční pondělí
 13. 1. Multiplatformní programování
-       * .NET Standard, .NET Core. 
+       * .NET Standard, .NET Core.
        * kontejnerizace aplikací pomocí Docker a jejich orchestrace Kubernetes, Docker Swarm
     2. Nástroje pro správu paměti a profilaci výkonu
        * *Dobrovolná přednáška* **IW5 D0206 13:00-14:50 29.4.2019**
---- 
-# Cvičení 
+---
+# Cvičení
 Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení na kterém budete moct cvičení aktivně zúčastnit. Bude potřeba vývojové prostředí ideálně Visual Studio 2017. Cvičení začínají od prvního týdne semestru a konají se jednou za 14 dní.
 
 | Typ                                  | Místnost | Čas            |
@@ -65,18 +65,18 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 
 +++
 
-| Datum |                                                 Téma cvičení | 
-| ----- | ------------------------------------------------------------ | 
-| 7.2.  | Práce s Visual Studio 2017, Azure DevOps                     | 
-| 21.2. | Objektově orientované programování, úvod do Entity Framework | 
-| 7.3.  | Entity framework, zásady Clean Code, SOLID                   | 
-| 28.3. | Základy WPF, návrhový vzor MVVM                              | 
-| 4.4.  | WPF frontend, binding                                        | 
-| 18.4. | Bonusové cvičení                                             | 
+| Datum |                                                 Téma cvičení |
+| ----- | ------------------------------------------------------------ |
+| 7.2.  | Práce s Visual Studio 2017, Azure DevOps                     |
+| 21.2. | Objektově orientované programování, úvod do Entity Framework |
+| 7.3.  | Entity framework, zásady Clean Code, SOLID                   |
+| 28.3. | Základy WPF, návrhový vzor MVVM                              |
+| 4.4.  | WPF frontend, binding                                        |
+| 18.4. | Bonusové cvičení                                             |
 
 ---
 # Projekt
-* Projekt bude vypracovaný v 4-5ti členném týmu. 
+* Projekt bude vypracovaný v 4-5ti členném týmu.
 
 | Fáze | Deadline |                                   Obsah |
 | ---- |----------| --------------------------------------- |
@@ -91,7 +91,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
   * nemusíte chodit v obleku...,
   * projekt musí bezpodmínečně obsahovat **Must have features!**
 
---- 
+---
 # Nástroje použity ve cvičeních
 
 | Nástroj  |  Typ   | Popis |
@@ -113,7 +113,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 |[OzCode](https://www.oz-code.com/)| Doplněk| Advanced debugging tools |
 |[GitFlow](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio2017)| Doplněk| GitFlow|
 
---- 
+---
 # Q&A
 
 * Q: Je možné vypracovat projekt v menším počtu členů?
@@ -124,7 +124,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 * A:
 
 ```XML
-<connectionStrings> 
+<connectionStrings>
   <add name="TasksContext"
        connectionString="Data Source=(LocalDB)\MSSQLLocalDB;
                          Initial Catalog=TasksDB;
@@ -141,7 +141,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 | ------------------ | --------------------- |
 | Projekt            |                   100 |
 
---- 
+---
 # Vyučující
 * [Martin Dybal](https://www.dybal.it/)
 * [Roman Jašek]()
@@ -153,15 +153,15 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 * [Jiří Pokorný]()
 * [Patrik Švikruha]()
 
---- 
+---
 # Užitečné odkazy
 * [WPF-Tutorial](https://wpf-tutorial.com/)
 * [Entity framework tutorial](http://www.entityframeworktutorial.net/code-first/entity-framework-code-first.aspx)
-* [R. C. Martin SOLID](https://youtu.be/TMuno5RZNeE?t=757) Bob Martin SOLID Principles of Object Oriented and Agile Design 
+* [R. C. Martin SOLID](https://youtu.be/TMuno5RZNeE?t=757) Bob Martin SOLID Principles of Object Oriented and Agile Design
 * [Resharper features](https://www.jetbrains.com/resharper/features/) and how to use them.
 * [Pro Git book](https://git-scm.com/book/en/v2)
 
---- 
+---
 # Užitečná literatura
 * [C# 7.0 in a Nutshell](http://www.albahari.com/nutshell/about.aspx), Ben Albahari, Joseph Albahari
 * [Clean Code: A Handbook of Agile Software Craftsmanship](https://books.google.cz/books?id=hjEFCAAAQBAJ), Robert C. Martin
