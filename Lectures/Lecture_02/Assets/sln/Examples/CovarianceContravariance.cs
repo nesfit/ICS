@@ -23,13 +23,13 @@ namespace Examples
         }
     }
 
-    ///Contravariance
+    ///Covariance
     public interface IRetreiver<out T>
     {
         IEnumerable<T> GetItems();
     }
 
-    ///Covariance
+    ///Contravariance
     public interface IDepositor<in T>
     {
         void StoreItems(T item);
