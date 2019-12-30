@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CookBook.BL\CookBook.BL.csproj" />
     <ProjectReference Include="..\CookBook.DAL\CookBook.DAL.csproj" />
   </ItemGroup>
 

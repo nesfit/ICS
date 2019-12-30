@@ -16,10 +16,4 @@
     <ProjectReference Include="..\CookBook.DAL\CookBook.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="WindowsBase">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\WindowsBase.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
