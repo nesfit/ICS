@@ -94,7 +94,7 @@ namespace CookBook.BL.Repositories
                     query = ListIncludes(query);
                 }
 
-                return query.Select(e => MapListModel(e)).ToArray();
+                return query.AsEnumerable().Select(e => MapListModel(e)).ToArray();
             }
         }
 
