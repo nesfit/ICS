@@ -23,9 +23,6 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\CookBook.App\CookBook.App.csproj" />
     <ProjectReference Include="..\CookBook.BL\CookBook.BL.csproj" />
   </ItemGroup>
