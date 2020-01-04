@@ -1,7 +1,6 @@
 ﻿using System;
 using CookBook.DAL.Enums;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CookBook.DAL.Entities
