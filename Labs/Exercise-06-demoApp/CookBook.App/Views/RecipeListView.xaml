@@ -8,9 +8,9 @@
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                        xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
                        mc:Ignorable="d"
-                       d:DataContext="{d:DesignInstance viewModels:RecipesListViewModel}"
+                       d:DataContext="{d:DesignInstance viewModels:RecipeListViewModel}"
                        d:DesignHeight="300" d:DesignWidth="400"
-                       DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=RecipeListViewModel}">
+                       >
     <Grid x:Name="Root">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

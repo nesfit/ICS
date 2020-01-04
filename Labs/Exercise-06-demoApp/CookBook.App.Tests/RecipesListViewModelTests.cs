@@ -14,7 +14,7 @@ namespace CookBook.App.Tests
     {
         private readonly Mock<IRecipeRepository> recipeRepositoryMock;
         private readonly Mock<Mediator> mediatorMock;
-        private readonly RecipesListViewModel recipesListViewModelSUT;
+        private readonly RecipeListViewModel _recipeListViewModelSUT;
 
         public RecipesListViewModelTests()
         {
@@ -24,7 +24,7 @@ namespace CookBook.App.Tests
             recipeRepositoryMock.Setup(repository => repository.GetAll())
                 .Returns(() => new List<RecipeListModel>());
 
-            this.recipesListViewModelSUT = new RecipesListViewModel(recipeRepositoryMock.Object, mediatorMock.Object);
+            this._recipeListViewModelSUT = new RecipeListViewModel(recipeRepositoryMock.Object, mediatorMock.Object);
         }
 
         [Fact]
@@ -32,7 +32,7 @@ namespace CookBook.App.Tests
         {
             //Arrange
             //Act
-            recipesListViewModelSUT.Load();
+            _recipeListViewModelSUT.Load();
 
             //Assert
             recipeRepositoryMock.Verify(repository => repository.GetAll(), Times.Once);
@@ -44,11 +44,11 @@ namespace CookBook.App.Tests
             //Arrange
 
             //Act
-            recipesListViewModelSUT.Load();
+            _recipeListViewModelSUT.Load();
 
             //Assert
             recipeRepositoryMock.Verify(repository => repository.GetAll(), Times.Once);
-            Assert.Empty(recipesListViewModelSUT.Recipes);
+            Assert.Empty(_recipeListViewModelSUT.Recipes);
         }
 
         [Fact]
@@ -59,10 +59,10 @@ namespace CookBook.App.Tests
                 .Returns(() => new List<RecipeListModel>(){new RecipeListModel()});
 
             //Act
-            recipesListViewModelSUT.Load();
+            _recipeListViewModelSUT.Load();
 
             //Assert
-            Assert.True(recipesListViewModelSUT.Recipes.Count == 1);
+            Assert.True(_recipeListViewModelSUT.Recipes.Count == 1);
         }
 
         [Fact]
@@ -94,7 +94,7 @@ namespace CookBook.App.Tests
         {
             //Arrange
             //Act
-            recipesListViewModelSUT.RecipeSelectedCommand.Execute(new RecipeListModel());
+            _recipeListViewModelSUT.RecipeSelectedCommand.Execute(new RecipeListModel());
 
             //Assert
             mediatorMock.Verify(mediator => mediator.Send(It.IsAny<RecipeSelectedMessage>()),Times.Once);
@@ -106,7 +106,7 @@ namespace CookBook.App.Tests
             //Arrange
 
             //Act
-            recipesListViewModelSUT.RecipeNewCommand.Execute(null);
+            _recipeListViewModelSUT.RecipeNewCommand.Execute(null);
 
             //Assert
             mediatorMock.Verify(mediator => mediator.Send(It.IsAny<RecipeNewMessage>()), Times.Once);

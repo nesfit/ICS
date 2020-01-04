@@ -10,12 +10,12 @@ using CookBook.BL.Services;
 
 namespace CookBook.App.ViewModels
 {
-    public class RecipesListViewModel : ViewModelBase
+    public class RecipeListViewModel : ViewModelBase, IRecipeListViewModel
     {
         private readonly IMediator mediator;
         private readonly IRecipeRepository recipesRepository;
 
-        public RecipesListViewModel(IRecipeRepository recipesRepository, IMediator mediator)
+        public RecipeListViewModel(IRecipeRepository recipesRepository, IMediator mediator)
         {
             this.recipesRepository = recipesRepository;
             this.mediator = mediator;

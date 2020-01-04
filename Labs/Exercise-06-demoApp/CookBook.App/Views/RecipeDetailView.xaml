@@ -11,7 +11,7 @@
                        mc:Ignorable="d"
                        d:DataContext="{d:DesignInstance viewModels:RecipeDetailViewModel}"
                        d:DesignHeight="300" d:DesignWidth="400"
-                       DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=RecipeDetailViewModel}">
+                       >
     <Grid Visibility="{Binding Model, Converter={StaticResource NullToVisibilityConverter}}" Width="250">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -70,7 +70,7 @@
                 </ListView.View>
             </ListView>
 
-            <local:IngredientAmountDetailView Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" />
+            <local:IngredientAmountDetailView Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" DataContext="{Binding IngredientAmountDetailViewModel}" />
         </Grid>
     </Grid>
 </local:UserControlBase>

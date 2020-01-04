@@ -12,17 +12,21 @@ using CookBook.BL.Services;
 
 namespace CookBook.App.ViewModels
 {
-    public class RecipeDetailViewModel : ViewModelBase
+    public class RecipeDetailViewModel : ViewModelBase, IRecipeDetailViewModel
     {
         private readonly IMediator mediator;
         private readonly IMessageDialogService _messageDialogService;
         private readonly IRecipeRepository recipesRepository;
 
-        public RecipeDetailViewModel(IRecipeRepository recipesRepository, IMessageDialogService messageDialogService, IMediator mediator)
+        public RecipeDetailViewModel(IRecipeRepository recipesRepository, 
+            IMessageDialogService messageDialogService, 
+            IMediator mediator, 
+            IIngredientAmountDetailViewModel ingredientAmountDetailViewModel)
         {
             this.recipesRepository = recipesRepository;
             this._messageDialogService = messageDialogService;
             this.mediator = mediator;
+            IngredientAmountDetailViewModel = ingredientAmountDetailViewModel;
 
             SaveCommand = new RelayCommand(Save, CanSave);
             DeleteCommand = new RelayCommand(Delete);
@@ -44,6 +48,8 @@ namespace CookBook.App.ViewModels
             new ObservableCollection<IngredientAmountDetailModel>();
 
         public ICommand IngredientSelectedCommand { get; }
+
+        public IIngredientAmountDetailViewModel IngredientAmountDetailViewModel { get; }
 
         private void IngredientAmountSelected(IngredientAmountDetailModel ingredientAmountDetailModel) => mediator.Send(new IngredientAmountSelectedMessage {IngredientAmountDetailModel = ingredientAmountDetailModel});
 

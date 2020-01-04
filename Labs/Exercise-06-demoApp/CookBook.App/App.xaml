@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:converters="clr-namespace:CookBook.App.Converters"
              xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
-             xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
-             StartupUri="Views/MainWindow.xaml">
+             xmlns:texts="clr-namespace:CookBook.App.Resources.Texts">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -19,7 +18,6 @@
 
                 <ResourceDictionary>
                     <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
-                    <viewModels:ViewModelLocator x:Key="ViewModelLocator" />
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

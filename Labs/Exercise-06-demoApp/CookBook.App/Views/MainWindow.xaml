@@ -6,10 +6,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:CookBook.App.Views"
     xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
+    xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
     Title="MainWindow"
     Width="800"
     Height="450"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
+    >
     <TabControl>
         <TabItem Header="{x:Static texts:TextResources.TabHeader_Ingredients}">
             <Grid>
@@ -17,8 +20,8 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <views:IngredientListView Grid.Column="0" />
-                <views:IngredientDetailView Grid.Column="1" />
+                <views:IngredientListView Grid.Column="0" DataContext="{Binding IngredientListViewModel}" />
+                <views:IngredientDetailView Grid.Column="1" DataContext="{Binding IngredientDetailViewModel}" />
             </Grid>
         </TabItem>
         <TabItem Header="{x:Static texts:TextResources.TabHeader_Recipes}">
@@ -29,10 +32,10 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <views:RecipeListView Grid.Column="0" />
-                <views:RecipeDetailView Grid.Column="1" />
-                <views:IngredientListView Grid.Column="2" />
-                <views:IngredientDetailView Grid.Column="3" />
+                <views:RecipeListView Grid.Column="0" DataContext="{Binding RecipeListViewModel}"  />
+                <views:RecipeDetailView Grid.Column="1" DataContext="{Binding RecipeDetailViewModel}"  />
+                <views:IngredientListView Grid.Column="2" DataContext="{Binding IngredientListViewModel}"  />
+                <views:IngredientDetailView Grid.Column="3" DataContext="{Binding IngredientDetailViewModel}"  />
             </Grid>
         </TabItem>
     </TabControl>

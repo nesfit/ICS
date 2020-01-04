@@ -8,7 +8,7 @@ using CookBook.BL.Services;
 
 namespace CookBook.App.ViewModels
 {
-    public class IngredientAmountDetailViewModel : ViewModelBase
+    public class IngredientAmountDetailViewModel : ViewModelBase, IIngredientAmountDetailViewModel
     {
         private readonly IIngredientRepository ingredientRepository;
         private readonly IMediator mediator;
