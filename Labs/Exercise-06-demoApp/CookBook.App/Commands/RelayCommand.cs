@@ -5,23 +5,23 @@ namespace CookBook.App.Commands
 {
     public class RelayCommand : ICommand
     {
-        private readonly Func<Object, Boolean> canExecuteAction;
-        private readonly Action<Object> executeAction;
+        private readonly Func<object, bool> canExecuteAction;
+        private readonly Action<object> executeAction;
 
-        public RelayCommand(Action<Object> executeAction, Func<Object, Boolean> canExecuteAction = null)
+        public RelayCommand(Action<object> executeAction, Func<object, bool> canExecuteAction = null)
         {
             this.executeAction = executeAction;
             this.canExecuteAction = canExecuteAction;
         }
 
-        public RelayCommand(Action executeAction, Func<Boolean> canExecuteAction = null)
+        public RelayCommand(Action executeAction, Func<bool> canExecuteAction = null)
             : this(p => executeAction(), p => canExecuteAction?.Invoke() ?? true)
         {
         }
 
-        public Boolean CanExecute(Object parameter) => canExecuteAction?.Invoke(parameter) ?? true;
+        public bool CanExecute(object parameter) => canExecuteAction?.Invoke(parameter) ?? true;
 
-        public void Execute(Object parameter)
+        public void Execute(object parameter)
         {
             executeAction?.Invoke(parameter);
         }
@@ -35,16 +35,16 @@ namespace CookBook.App.Commands
 
     public class RelayCommand<T> : ICommand
     {
-        private readonly Func<T, Boolean> canExecute;
+        private readonly Func<T, bool> canExecute;
         private readonly Action<T> execute;
 
-        public RelayCommand(Action<T> execute, Func<T, Boolean> canExecute = null)
+        public RelayCommand(Action<T> execute, Func<T, bool> canExecute = null)
         {
             this.execute = execute;
             this.canExecute = canExecute;
         }
 
-        public Boolean CanExecute(Object parameter)
+        public bool CanExecute(object parameter)
         {
             if (parameter is T typedParameter)
             {
@@ -54,7 +54,7 @@ namespace CookBook.App.Commands
             return false;
         }
 
-        public void Execute(Object parameter)
+        public void Execute(object parameter)
         {
             if (parameter is T typedParameter)
             {

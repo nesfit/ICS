@@ -9,7 +9,7 @@ namespace CookBook.App.Views
     {
         protected UserControlBase() => Loaded += OnLoaded;
 
-        private void OnLoaded(Object sender, RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
             if (DataContext is IViewModel viewModel)
             {
