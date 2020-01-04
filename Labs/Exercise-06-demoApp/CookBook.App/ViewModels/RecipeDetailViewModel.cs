@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using CookBook.App.Commands;
-using CookBook.App.Services;
+using CookBook.App.Services.MessageDialog;
 using CookBook.BL.Interfaces;
 using CookBook.BL.Messages;
 using CookBook.BL.Models;
@@ -15,13 +15,13 @@ namespace CookBook.App.ViewModels
     public class RecipeDetailViewModel : ViewModelBase
     {
         private readonly IMediator mediator;
-        private readonly IMessageBoxService messageBoxService;
+        private readonly IMessageDialogService _messageDialogService;
         private readonly IRecipeRepository recipesRepository;
 
-        public RecipeDetailViewModel(IRecipeRepository recipesRepository, IMessageBoxService messageBoxService, IMediator mediator)
+        public RecipeDetailViewModel(IRecipeRepository recipesRepository, IMessageDialogService messageDialogService, IMediator mediator)
         {
             this.recipesRepository = recipesRepository;
-            this.messageBoxService = messageBoxService;
+            this._messageDialogService = messageDialogService;
             this.mediator = mediator;
 
             SaveCommand = new RelayCommand(Save, CanSave);
@@ -63,13 +63,25 @@ namespace CookBook.App.ViewModels
         {
             if (Model.Id != Guid.Empty)
             {
+                var delete = _messageDialogService.Show(
+                    $"Delete",
+                    $"Do you want to delete {Model?.Name}?.",
+                    MessageDialogButtonConfiguration.YesNo,
+                    MessageDialogResult.No);
+
+                if(delete == MessageDialogResult.No) return;
+
                 try
                 {
                     recipesRepository.Delete(Model.Id);
                 }
                 catch
                 {
-                    messageBoxService.Show($"Deleting of {Model?.Name} failed!", "Deleting failed", MessageBoxButton.OK);
+                    var _ = _messageDialogService.Show(
+                        $"Deleting of {Model?.Name} failed!", 
+                        "Deleting failed", 
+                        MessageDialogButtonConfiguration.OK,
+                        MessageDialogResult.OK);
                 }
 
                 mediator.Send(new RecipeDeletedMessage {Id = Model.Id});

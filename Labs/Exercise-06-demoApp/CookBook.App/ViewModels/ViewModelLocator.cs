@@ -1,4 +1,4 @@
-﻿using CookBook.App.Services;
+﻿using CookBook.App.Services.MessageDialog;
 using CookBook.BL.Interfaces;
 using CookBook.BL.Repositories;
 using CookBook.BL.Services;
@@ -11,7 +11,7 @@ namespace CookBook.App.ViewModels
     {
         private readonly IIngredientRepository ingredientRepository;
         private readonly IMediator mediator;
-        private readonly IMessageBoxService messageBoxService;
+        private readonly IMessageDialogService _messageDialogService;
         private readonly IRecipeRepository recipesRepository;
 
         public ViewModelLocator()
@@ -28,7 +28,7 @@ namespace CookBook.App.ViewModels
             mediator = new Mediator();
             ingredientRepository = new IngredientRepository(dbContextFactory);
             recipesRepository = new RecipeRepository(dbContextFactory);
-            messageBoxService = new MessageBoxService();
+            _messageDialogService = new MessageDialogService();
         }
 
 
@@ -37,9 +37,9 @@ namespace CookBook.App.ViewModels
         public RecipesListViewModel RecipeListViewModel => new RecipesListViewModel(recipesRepository, mediator);
 
         public IngredientDetailViewModel IngredientDetailViewModel =>
-            new IngredientDetailViewModel(ingredientRepository, messageBoxService, mediator);
+            new IngredientDetailViewModel(ingredientRepository, _messageDialogService, mediator);
 
-        public RecipeDetailViewModel RecipeDetailViewModel => new RecipeDetailViewModel(recipesRepository, messageBoxService, mediator);
+        public RecipeDetailViewModel RecipeDetailViewModel => new RecipeDetailViewModel(recipesRepository, _messageDialogService, mediator);
 
         public IngredientAmountDetailViewModel IngredientAmountDetailViewModel =>
             new IngredientAmountDetailViewModel(ingredientRepository, mediator);
