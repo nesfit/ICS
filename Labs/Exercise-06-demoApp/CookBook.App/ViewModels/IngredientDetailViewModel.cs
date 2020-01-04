@@ -55,7 +55,7 @@ namespace CookBook.App.ViewModels
             Model = null;
         }
 
-        private Boolean CanSave() =>
+        private bool CanSave() =>
             Model != null
             && !string.IsNullOrWhiteSpace(Model.Name)
             && !string.IsNullOrWhiteSpace(Model.Description);

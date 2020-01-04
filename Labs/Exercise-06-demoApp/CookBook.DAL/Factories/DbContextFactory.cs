@@ -5,7 +5,7 @@ namespace CookBook.DAL.Factories
 {
     public class DbContextFactory : IDbContextFactory
     {
-        private String connectionString;
+        private string connectionString;
 
         public DbContextFactory(string connectionString)
         {

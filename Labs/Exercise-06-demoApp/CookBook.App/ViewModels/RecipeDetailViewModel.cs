@@ -59,7 +59,7 @@ namespace CookBook.App.ViewModels
             Ingredients.Add(ingredientAmountNewMessage.Model);
         }
 
-        private void Delete(Object obj)
+        private void Delete(object obj)
         {
             if (Model.Id != Guid.Empty)
             {
@@ -78,7 +78,7 @@ namespace CookBook.App.ViewModels
             Model = null;
         }
 
-        private Boolean CanSave() =>
+        private bool CanSave() =>
             Model != null
             && !string.IsNullOrWhiteSpace(Model.Name)
             && !string.IsNullOrWhiteSpace(Model.Description)

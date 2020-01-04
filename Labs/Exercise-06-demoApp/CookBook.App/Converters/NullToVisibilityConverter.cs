@@ -7,8 +7,8 @@ namespace CookBook.App.Converters
 {
     public class NullToVisibilityConverter : IValueConverter
     {
-        public Object Convert(Object value, Type targetType, Object parameter, CultureInfo culture) => value == null ? Visibility.Hidden : Visibility.Visible;
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) => value == null ? Visibility.Hidden : Visibility.Visible;
 
-        public Object ConvertBack(Object value, Type targetType, Object parameter, CultureInfo culture) => throw new NotImplementedException();
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
     }
 }

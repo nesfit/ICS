@@ -22,8 +22,8 @@ namespace CookBook.BL.Repositories
         protected readonly Func<TDetailModel, TEntity> MapEntity;
         protected readonly Func<TEntity, TListModel> MapListModel;
 
-        protected readonly Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, Object>> DetailIncludes;
-        protected readonly Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, Object>> ListIncludes;
+        protected readonly Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> DetailIncludes;
+        protected readonly Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> ListIncludes;
 
 
         public RepositoryBase(IDbContextFactory dbContextFactory,
@@ -31,8 +31,8 @@ namespace CookBook.BL.Repositories
             Func<TEntity, TListModel> mapListModel,
             Func<TEntity, TDetailModel> mapDetailModel,
             Func<TEntity, IEnumerable<IEntity>>[] collectionsToBeSynchronized,
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, Object>> detailIncludes,
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, Object>> listIncludes)
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> detailIncludes,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> listIncludes)
         {
             this.DbContextFactory = dbContextFactory;
             this.MapEntity = mapEntity;

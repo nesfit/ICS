@@ -10,7 +10,7 @@ namespace CookBook.BL.Repositories
 
         private sealed class IdEqualityComparer : IEqualityComparer<IEntity>
         {
-            public Boolean Equals(IEntity x, IEntity y)
+            public bool Equals(IEntity x, IEntity y)
             {
                 if (ReferenceEquals(x, y))
                 {
@@ -35,7 +35,7 @@ namespace CookBook.BL.Repositories
                 return x.Id.Equals(y.Id);
             }
 
-            public Int32 GetHashCode(IEntity obj) => obj.Id.GetHashCode();
+            public int GetHashCode(IEntity obj) => obj.Id.GetHashCode();
         }
     }
 }

@@ -5,6 +5,6 @@ namespace CookBook.App.Services
 {
     public interface IMessageBoxService
     {
-        MessageBoxResult Show(String messageBoxText, String caption, MessageBoxButton button);
+        MessageBoxResult Show(string messageBoxText, string caption, MessageBoxButton button);
     }
 }
