@@ -38,6 +38,7 @@
     <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="3.1.0" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="3.1.0" />
     <PackageReference Include="Microsoft.Extensions.FileSystemGlobbing" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.0" />
@@ -65,5 +66,13 @@
   <ItemGroup>
     <Compile Remove="Properties\Annotations.cs" />
     <Compile Remove="Views\IngredientAmountView.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="AppSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 </Project>

@@ -12,17 +12,21 @@ using CookBook.BL.Services;
 
 namespace CookBook.App.ViewModels
 {
-    public class RecipeDetailViewModel : ViewModelBase
+    public class RecipeDetailViewModel : ViewModelBase, IRecipeDetailViewModel
     {
-        private readonly IMediator mediator;
+        private readonly IMediator _mediator;
         private readonly IMessageDialogService _messageDialogService;
-        private readonly IRecipeRepository recipesRepository;
+        private readonly IRecipeRepository _recipesRepository;
 
-        public RecipeDetailViewModel(IRecipeRepository recipesRepository, IMessageDialogService messageDialogService, IMediator mediator)
+        public RecipeDetailViewModel(IRecipeRepository recipesRepository, 
+            IMessageDialogService messageDialogService, 
+            IMediator mediator, 
+            IIngredientAmountDetailViewModel ingredientAmountDetailViewModel)
         {
-            this.recipesRepository = recipesRepository;
+            this._recipesRepository = recipesRepository;
             this._messageDialogService = messageDialogService;
-            this.mediator = mediator;
+            this._mediator = mediator;
+            IngredientAmountDetailViewModel = ingredientAmountDetailViewModel;
 
             SaveCommand = new RelayCommand(Save, CanSave);
             DeleteCommand = new RelayCommand(Delete);
@@ -45,7 +49,9 @@ namespace CookBook.App.ViewModels
 
         public ICommand IngredientSelectedCommand { get; }
 
-        private void IngredientAmountSelected(IngredientAmountDetailModel ingredientAmountDetailModel) => mediator.Send(new IngredientAmountSelectedMessage {IngredientAmountDetailModel = ingredientAmountDetailModel});
+        public IIngredientAmountDetailViewModel IngredientAmountDetailViewModel { get; }
+
+        private void IngredientAmountSelected(IngredientAmountDetailModel ingredientAmountDetailModel) => _mediator.Send(new IngredientAmountSelectedMessage {IngredientAmountDetailModel = ingredientAmountDetailModel});
 
         private void DeleteIngredientAmount(IngredientAmountDeleteMessage ingredientAmountDeleteMessage)
         {
@@ -73,7 +79,7 @@ namespace CookBook.App.ViewModels
 
                 try
                 {
-                    recipesRepository.Delete(Model.Id);
+                    _recipesRepository.Delete(Model.Id);
                 }
                 catch
                 {
@@ -84,7 +90,7 @@ namespace CookBook.App.ViewModels
                         MessageDialogResult.OK);
                 }
 
-                mediator.Send(new RecipeDeletedMessage {Id = Model.Id});
+                _mediator.Send(new RecipeDeletedMessage {Id = Model.Id});
             }
 
             Model = null;
@@ -98,8 +104,8 @@ namespace CookBook.App.ViewModels
 
         private void Save()
         {
-            Model = recipesRepository.InsertOrUpdate(Model);
-            mediator.Send(new RecipeUpdatedMessage {Id = Model.Id});
+            Model = _recipesRepository.InsertOrUpdate(Model);
+            _mediator.Send(new RecipeUpdatedMessage {Id = Model.Id});
 
             Model = null;
             Ingredients = null;
@@ -113,7 +119,7 @@ namespace CookBook.App.ViewModels
 
         private void RecipeSelected(RecipeSelectedMessage recipeSelectedMessage)
         {
-            Model = recipesRepository.GetById(recipeSelectedMessage.Id);
+            Model = _recipesRepository.GetById(recipeSelectedMessage.Id);
             Ingredients = new ObservableCollection<IngredientAmountDetailModel>(Model.Ingredients);
         }
     }

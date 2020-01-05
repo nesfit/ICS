@@ -11,13 +11,13 @@ namespace CookBook.BL.Repositories.Obsolete
     [Obsolete]
     public class IngredientRepositoryObsolete 
     {
-        private readonly IDbContextFactory dbContextFactory;
+        private readonly IDbContextFactory _dbContextFactory;
 
-        public IngredientRepositoryObsolete(IDbContextFactory dbContextFactory) => this.dbContextFactory = dbContextFactory;
+        public IngredientRepositoryObsolete(IDbContextFactory dbContextFactory) => this._dbContextFactory = dbContextFactory;
 
         public IEnumerable<IngredientListModel> GetAll()
         {
-            using (var dbContext = dbContextFactory.CreateDbContext())
+            using (var dbContext = _dbContextFactory.CreateDbContext())
             {
                 return dbContext.Ingredients
                     .Select(e => IngredientMapper.MapListModel(e))
@@ -27,7 +27,7 @@ namespace CookBook.BL.Repositories.Obsolete
 
         public IngredientDetailModel GetById(Guid id)
         {
-            using (var dbContext = dbContextFactory.CreateDbContext())
+            using (var dbContext = _dbContextFactory.CreateDbContext())
             {
                 var entity = dbContext.Ingredients.First(t => t.Id == id);
                 return IngredientMapper.MapDetailModel(entity);
@@ -36,7 +36,7 @@ namespace CookBook.BL.Repositories.Obsolete
 
         public IngredientDetailModel Create(IngredientDetailModel model)
         {
-            using (var dbContext = dbContextFactory.CreateDbContext())
+            using (var dbContext = _dbContextFactory.CreateDbContext())
             {
                 var entity = IngredientMapper.MapEntity(model);
                 dbContext.Ingredients.Add(entity);
@@ -47,7 +47,7 @@ namespace CookBook.BL.Repositories.Obsolete
 
         public void Update(IngredientDetailModel model)
         {
-            using (var dbContext = dbContextFactory.CreateDbContext())
+            using (var dbContext = _dbContextFactory.CreateDbContext())
             {
                 var entity = IngredientMapper.MapEntity(model);
                 dbContext.Ingredients.Update(entity);
@@ -57,7 +57,7 @@ namespace CookBook.BL.Repositories.Obsolete
 
         public void Delete(Guid id)
         {
-            using (var dbContext = dbContextFactory.CreateDbContext())
+            using (var dbContext = _dbContextFactory.CreateDbContext())
             {
                 var entity = dbContext.Ingredients.First(t => t.Id == id);
                 dbContext.Remove(entity);

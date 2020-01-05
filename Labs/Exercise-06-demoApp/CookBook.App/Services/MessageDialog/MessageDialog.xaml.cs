@@ -6,7 +6,7 @@ namespace CookBook.App.Services.MessageDialog
 {
     public partial class MessageDialog : Window
     {
-        private MessageDialogResult result;
+        private MessageDialogResult _result;
 
         public MessageDialog(string title, string text, MessageDialogResult defaultResult,
             MessageDialogButtonConfiguration buttonConfiguration)
@@ -14,7 +14,7 @@ namespace CookBook.App.Services.MessageDialog
             InitializeComponent();
             Title = title;
             textBlock.Text = text;
-            result = defaultResult;
+            _result = defaultResult;
             InitializeButtons(buttonConfiguration);
         }
 
@@ -45,14 +45,14 @@ namespace CookBook.App.Services.MessageDialog
         {
             if (!(e.Source is Button button)) return;
 
-            result = (MessageDialogResult) button.Tag;
+            _result = (MessageDialogResult) button.Tag;
             Close();
         }
 
         public new MessageDialogResult ShowDialog()
         {
             base.ShowDialog();
-            return result;
+            return _result;
         }
     }
 }

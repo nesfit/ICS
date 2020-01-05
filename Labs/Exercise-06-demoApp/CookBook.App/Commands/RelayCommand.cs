@@ -5,13 +5,13 @@ namespace CookBook.App.Commands
 {
     public class RelayCommand : ICommand
     {
-        private readonly Func<object, bool> canExecuteAction;
-        private readonly Action<object> executeAction;
+        private readonly Func<object, bool> _canExecuteAction;
+        private readonly Action<object> _executeAction;
 
         public RelayCommand(Action<object> executeAction, Func<object, bool> canExecuteAction = null)
         {
-            this.executeAction = executeAction;
-            this.canExecuteAction = canExecuteAction;
+            this._executeAction = executeAction;
+            this._canExecuteAction = canExecuteAction;
         }
 
         public RelayCommand(Action executeAction, Func<bool> canExecuteAction = null)
@@ -19,11 +19,11 @@ namespace CookBook.App.Commands
         {
         }
 
-        public bool CanExecute(object parameter) => canExecuteAction?.Invoke(parameter) ?? true;
+        public bool CanExecute(object parameter) => _canExecuteAction?.Invoke(parameter) ?? true;
 
         public void Execute(object parameter)
         {
-            executeAction?.Invoke(parameter);
+            _executeAction?.Invoke(parameter);
         }
 
         public event EventHandler CanExecuteChanged
@@ -35,20 +35,20 @@ namespace CookBook.App.Commands
 
     public class RelayCommand<T> : ICommand
     {
-        private readonly Func<T, bool> canExecute;
-        private readonly Action<T> execute;
+        private readonly Func<T, bool> _canExecute;
+        private readonly Action<T> _execute;
 
         public RelayCommand(Action<T> execute, Func<T, bool> canExecute = null)
         {
-            this.execute = execute;
-            this.canExecute = canExecute;
+            this._execute = execute;
+            this._canExecute = canExecute;
         }
 
         public bool CanExecute(object parameter)
         {
             if (parameter is T typedParameter)
             {
-                return canExecute?.Invoke(typedParameter) ?? true;
+                return _canExecute?.Invoke(typedParameter) ?? true;
             }
 
             return false;
@@ -58,7 +58,7 @@ namespace CookBook.App.Commands
         {
             if (parameter is T typedParameter)
             {
-                execute?.Invoke(typedParameter);
+                _execute?.Invoke(typedParameter);
             }
         }
 
