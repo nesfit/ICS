@@ -14,17 +14,17 @@ namespace CookBook.BL.Tests
 {
     public class RecipeRepositoryTests : IClassFixture<RecipeRepositoryTestsFixture>, IDisposable
     {
-        private readonly RecipeRepositoryTestsFixture recipeRepositoryTestsFixture;
+        private readonly RecipeRepositoryTestsFixture _recipeRepositoryTestsFixture;
 
-        private RecipeRepository RepositorySUT => recipeRepositoryTestsFixture.Repository;
+        private RecipeRepository RepositorySUT => _recipeRepositoryTestsFixture.Repository;
 
         public RecipeRepositoryTests(RecipeRepositoryTestsFixture recipeRepositoryTestsFixture, ITestOutputHelper output)
         {
             var converter = new XUnitTestOutputConverter(output);
             Console.SetOut(converter);
-            this.recipeRepositoryTestsFixture = recipeRepositoryTestsFixture;
+            this._recipeRepositoryTestsFixture = recipeRepositoryTestsFixture;
 
-            this.recipeRepositoryTestsFixture.PrepareDatabase();
+            this._recipeRepositoryTestsFixture.PrepareDatabase();
         }
 
         [Fact]
@@ -211,7 +211,7 @@ namespace CookBook.BL.Tests
 
         public void Dispose()
         {
-            this.recipeRepositoryTestsFixture.TearDownDatabase();
+            this._recipeRepositoryTestsFixture.TearDownDatabase();
         }
      }
 }

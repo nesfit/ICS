@@ -6,13 +6,13 @@ namespace CookBook.BL.Tests.Obsolete
 {
     public class IngredientRepositoryObsoleteTests : IClassFixture<IngredientRepositoryObsoleteTestsFixture>, IDisposable
     {
-        private readonly IngredientRepositoryObsoleteTestsFixture fixture;
+        private readonly IngredientRepositoryObsoleteTestsFixture _fixture;
 
         public IngredientRepositoryObsoleteTests(IngredientRepositoryObsoleteTestsFixture fixture)
         {
-            this.fixture = fixture;
+            this._fixture = fixture;
 
-            this.fixture.PrepareDatabase();
+            this._fixture.PrepareDatabase();
         }
 
         [Fact]
@@ -24,16 +24,16 @@ namespace CookBook.BL.Tests.Obsolete
                 Name = "Ingredience 1"
             };
 
-            var returnedModel = fixture.Repository.Create(model);
+            var returnedModel = _fixture.Repository.Create(model);
 
             Assert.NotNull(returnedModel);
 
-            fixture.Repository.Delete(returnedModel.Id);
+            _fixture.Repository.Delete(returnedModel.Id);
         }
 
         public void Dispose()
         {
-            fixture.TearDownDatabase();
+            _fixture.TearDownDatabase();
         }
     }
 }

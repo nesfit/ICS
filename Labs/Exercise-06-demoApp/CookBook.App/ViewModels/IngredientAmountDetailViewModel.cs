@@ -10,17 +10,16 @@ namespace CookBook.App.ViewModels
 {
     public class IngredientAmountDetailViewModel : ViewModelBase, IIngredientAmountDetailViewModel
     {
-        private readonly IIngredientRepository ingredientRepository;
-        private readonly IMediator mediator;
-        private IngredientDetailModel ingredientModel;
-        private IngredientAmountDetailModel model;
+        private readonly IIngredientRepository _ingredientRepository;
+        private readonly IMediator _mediator;
+        private IngredientAmountDetailModel _model;
 
         public IngredientAmountDetailViewModel(
             IIngredientRepository ingredientRepository,
             IMediator mediator)
         {
-            this.ingredientRepository = ingredientRepository;
-            this.mediator = mediator;
+            this._ingredientRepository = ingredientRepository;
+            this._mediator = mediator;
             SaveCommand = new RelayCommand(Save, CanSave);
             DeleteCommand = new RelayCommand(Delete);
             IngredientNewCommand = new RelayCommand(IngredientNew);
@@ -35,10 +34,10 @@ namespace CookBook.App.ViewModels
 
         public IngredientAmountDetailModel Model
         {
-            get => model;
+            get => _model;
             set
             {
-                model = value;
+                _model = value;
                 OnPropertyChanged();
             }
         }
@@ -49,7 +48,7 @@ namespace CookBook.App.ViewModels
 
         private void IngredientSelected(IngredientSelectedMessage ingredientSelectedMessage)
         {
-            var ingredientDetail = ingredientRepository.GetById(ingredientSelectedMessage.Id);
+            var ingredientDetail = _ingredientRepository.GetById(ingredientSelectedMessage.Id);
             Model = new IngredientAmountDetailModel
             {
                 IngredientId = ingredientDetail.Id,
@@ -60,13 +59,13 @@ namespace CookBook.App.ViewModels
 
         private void IngredientNew()
         {
-            mediator.Send(new IngredientNewMessage());
+            _mediator.Send(new IngredientNewMessage());
             Model = null;
         }
 
         private void Delete()
         {
-            mediator.Send(new IngredientAmountDeleteMessage {Model = Model});
+            _mediator.Send(new IngredientAmountDeleteMessage {Model = Model});
 
             Model = null;
         }
@@ -80,7 +79,7 @@ namespace CookBook.App.ViewModels
 
         private void Save()
         {
-            mediator.Send(new IngredientAmountNewMessage {Model = Model});
+            _mediator.Send(new IngredientAmountNewMessage {Model = Model});
 
             Model = null;
         }

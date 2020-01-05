@@ -13,17 +13,17 @@ namespace CookBook.BL.Tests.Obsolete
     [Obsolete]
     public class RecipeRepositoryObsoleteTests : IClassFixture<RecipeRepositoryObsoleteTestsFixture>, IDisposable
     {
-        private readonly RecipeRepositoryObsoleteTestsFixture recipeRepositoryTestsFixture;
+        private readonly RecipeRepositoryObsoleteTestsFixture _recipeRepositoryTestsFixture;
 
-        private RecipeRepositoryObsolete RepositorySUT => recipeRepositoryTestsFixture.Repository;
+        private RecipeRepositoryObsolete RepositorySUT => _recipeRepositoryTestsFixture.Repository;
 
         public RecipeRepositoryObsoleteTests(RecipeRepositoryObsoleteTestsFixture recipeRepositoryTestsFixture, ITestOutputHelper output)
         {
             var converter = new XUnitTestOutputConverter(output);
             Console.SetOut(converter);
-            this.recipeRepositoryTestsFixture = recipeRepositoryTestsFixture;
+            this._recipeRepositoryTestsFixture = recipeRepositoryTestsFixture;
 
-            this.recipeRepositoryTestsFixture.PrepareDatabase();
+            this._recipeRepositoryTestsFixture.PrepareDatabase();
         }
 
         [Fact]
@@ -210,7 +210,7 @@ namespace CookBook.BL.Tests.Obsolete
 
         public void Dispose()
         {
-            this.recipeRepositoryTestsFixture.TearDownDatabase();
+            this._recipeRepositoryTestsFixture.TearDownDatabase();
         }
     }
 }

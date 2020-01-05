@@ -11,13 +11,13 @@ namespace CookBook.App.ViewModels
 {
     public class IngredientListViewModel : ViewModelBase, IIngredientListViewModel
     {
-        private readonly IIngredientRepository ingredientRepository;
-        private readonly IMediator mediator;
+        private readonly IIngredientRepository _ingredientRepository;
+        private readonly IMediator _mediator;
 
         public IngredientListViewModel(IIngredientRepository ingredientRepository, IMediator mediator)
         {
-            this.ingredientRepository = ingredientRepository;
-            this.mediator = mediator;
+            this._ingredientRepository = ingredientRepository;
+            this._mediator = mediator;
 
             IngredientSelectedCommand = new RelayCommand<IngredientListModel>(IngredientSelected);
             IngredientNewCommand = new RelayCommand(IngredientNew);
@@ -31,9 +31,9 @@ namespace CookBook.App.ViewModels
         public ICommand IngredientSelectedCommand { get; }
         public ICommand IngredientNewCommand { get; }
 
-        private void IngredientNew() => mediator.Send(new IngredientNewMessage());
+        private void IngredientNew() => _mediator.Send(new IngredientNewMessage());
 
-        private void IngredientSelected(IngredientListModel ingredient) => mediator.Send(new IngredientSelectedMessage {Id = ingredient.Id});
+        private void IngredientSelected(IngredientListModel ingredient) => _mediator.Send(new IngredientSelectedMessage {Id = ingredient.Id});
 
         private void IngredientUpdated(IngredientUpdatedMessage ingredient) => Load();
 
@@ -42,7 +42,7 @@ namespace CookBook.App.ViewModels
         public override void Load()
         {
             Ingredients.Clear();
-            var ingredients = ingredientRepository.GetAll();
+            var ingredients = _ingredientRepository.GetAll();
             Ingredients.AddRange(ingredients);
         }
     }

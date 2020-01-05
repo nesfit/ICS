@@ -14,9 +14,9 @@ namespace CookBook.BL.Repositories.Obsolete
 
     public class RecipeRepositoryObsolete
     {
-        private readonly IDbContextFactory dbContextFactory;
+        private readonly IDbContextFactory _dbContextFactory;
 
-        public RecipeRepositoryObsolete(IDbContextFactory dbContextFactory) => this.dbContextFactory = dbContextFactory;
+        public RecipeRepositoryObsolete(IDbContextFactory dbContextFactory) => this._dbContextFactory = dbContextFactory;
 
 
         public void Delete(RecipeDetailModel detailModel)
@@ -26,7 +26,7 @@ namespace CookBook.BL.Repositories.Obsolete
 
         public void Delete(Guid id)
         {
-            using (var dbContext = dbContextFactory.CreateDbContext())
+            using (var dbContext = _dbContextFactory.CreateDbContext())
             {
                 Delete(dbContext, id);
                 dbContext.SaveChanges();
@@ -35,7 +35,7 @@ namespace CookBook.BL.Repositories.Obsolete
 
         public RecipeDetailModel GetById(Guid entityId)
         {
-            using (var dbContext = dbContextFactory.CreateDbContext())
+            using (var dbContext = _dbContextFactory.CreateDbContext())
             {
                 return RecipeMapper.MapToDetailModel(GetById(dbContext, entityId));
             }
@@ -43,7 +43,7 @@ namespace CookBook.BL.Repositories.Obsolete
 
         public RecipeDetailModel InsertOrUpdate(RecipeDetailModel detailModel)
         {
-            using (var dbContext = dbContextFactory.CreateDbContext())
+            using (var dbContext = _dbContextFactory.CreateDbContext())
             {
                 var entity = RecipeMapper.MapToEntity(detailModel);
 
@@ -62,7 +62,7 @@ namespace CookBook.BL.Repositories.Obsolete
 
         public IEnumerable<RecipeListModel> GetAll()
         {
-            using (var dbContext = dbContextFactory.CreateDbContext())
+            using (var dbContext = _dbContextFactory.CreateDbContext())
             {
                 IQueryable<RecipeEntity> query = dbContext.Set<RecipeEntity>();
 
@@ -93,7 +93,7 @@ namespace CookBook.BL.Repositories.Obsolete
         {
             IQueryable<RecipeEntity> query = dbContext.Set<RecipeEntity>();
             RecipeEntity entityInDb;
-            using (var dbContextGetById = dbContextFactory.CreateDbContext())
+            using (var dbContextGetById = _dbContextFactory.CreateDbContext())
             {
                 entityInDb = GetById(dbContextGetById, entity.Id);
                 if (entityInDb == null)

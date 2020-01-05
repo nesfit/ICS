@@ -20,14 +20,14 @@ namespace CookBook.App
     /// </summary>
     public partial class App : Application
     {
-        private readonly IHost host;
+        private readonly IHost _host;
 
         public App()
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("cs");
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("cs");
 
-            host = Host.CreateDefaultBuilder()
+            _host = Host.CreateDefaultBuilder()
                 .ConfigureAppConfiguration(ConfigureAppConfiguration)
                 .ConfigureServices((context, services) => { ConfigureServices(context.Configuration, services); })
                 .Build();
@@ -61,9 +61,9 @@ namespace CookBook.App
 
         protected override async void OnStartup(StartupEventArgs e)
         {
-            await host.StartAsync();
+            await _host.StartAsync();
 
-            var dbContextFactory = host.Services.GetRequiredService<IDbContextFactory>();
+            var dbContextFactory = _host.Services.GetRequiredService<IDbContextFactory>();
 
 #if DEBUG
             await using (var dbx = dbContextFactory.CreateDbContext())
@@ -72,7 +72,7 @@ namespace CookBook.App
             }
 #endif
 
-            var mainWindow = host.Services.GetRequiredService<MainWindow>();
+            var mainWindow = _host.Services.GetRequiredService<MainWindow>();
             mainWindow.Show();
 
             base.OnStartup(e);
@@ -80,9 +80,9 @@ namespace CookBook.App
 
         protected override async void OnExit(ExitEventArgs e)
         {
-            using (host)
+            using (_host)
             {
-                await host.StopAsync(TimeSpan.FromSeconds(5));
+                await _host.StopAsync(TimeSpan.FromSeconds(5));
             }
 
             base.OnExit(e);

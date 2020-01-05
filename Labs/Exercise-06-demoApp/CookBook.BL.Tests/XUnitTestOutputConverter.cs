@@ -6,17 +6,17 @@ namespace CookBook.BL.Tests
 {
     class XUnitTestOutputConverter : TextWriter
     {
-        readonly ITestOutputHelper output;
-        public XUnitTestOutputConverter(ITestOutputHelper output) => this.output = output;
+        readonly ITestOutputHelper _output;
+        public XUnitTestOutputConverter(ITestOutputHelper output) => this._output = output;
         public override Encoding Encoding => Encoding.UTF8;
 
         public override void WriteLine(string message)
         {
-            output.WriteLine(message);
+            _output.WriteLine(message);
         }
         public override void WriteLine(string format, params object[] args)
         {
-            output.WriteLine(format, args);
+            _output.WriteLine(format, args);
         }
     }
 }

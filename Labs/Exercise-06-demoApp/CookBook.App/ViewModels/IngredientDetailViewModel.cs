@@ -12,8 +12,8 @@ namespace CookBook.App.ViewModels
 {
     public class IngredientDetailViewModel : ViewModelBase, IIngredientDetailViewModel
     {
-        private readonly IIngredientRepository ingredientRepository;
-        private readonly IMediator mediator;
+        private readonly IIngredientRepository _ingredientRepository;
+        private readonly IMediator _mediator;
         private readonly IMessageDialogService _messageDialogService;
 
         public IngredientDetailViewModel(
@@ -21,9 +21,9 @@ namespace CookBook.App.ViewModels
             IMessageDialogService messageDialogService,
             IMediator mediator)
         {
-            this.ingredientRepository = ingredientRepository;
+            this._ingredientRepository = ingredientRepository;
             this._messageDialogService = messageDialogService;
-            this.mediator = mediator;
+            this._mediator = mediator;
 
             SaveCommand = new RelayCommand(Save, CanSave);
             DeleteCommand = new RelayCommand(Delete);
@@ -44,14 +44,14 @@ namespace CookBook.App.ViewModels
 
         private void IngredientSelected(IngredientSelectedMessage ingredientSelectedMessage)
         {
-            Model = ingredientRepository.GetById(ingredientSelectedMessage.Id);
+            Model = _ingredientRepository.GetById(ingredientSelectedMessage.Id);
         }
 
         public void Save()
         {
-            Model = ingredientRepository.InsertOrUpdate(Model);
+            Model = _ingredientRepository.InsertOrUpdate(Model);
 
-            mediator.Send(new IngredientUpdatedMessage {Id = Model.Id});
+            _mediator.Send(new IngredientUpdatedMessage {Id = Model.Id});
             Model = null;
         }
 
@@ -74,7 +74,7 @@ namespace CookBook.App.ViewModels
 
                 try
                 {
-                    ingredientRepository.Delete(Model.Id);
+                    _ingredientRepository.Delete(Model.Id);
                 }
                 catch
                 {
@@ -85,7 +85,7 @@ namespace CookBook.App.ViewModels
                       MessageDialogResult.OK);
                 }
 
-                mediator.Send(new IngredientDeletedMessage {Id = Model.Id});
+                _mediator.Send(new IngredientDeletedMessage {Id = Model.Id});
             }
 
             Model = null;

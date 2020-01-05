@@ -5,16 +5,16 @@ namespace CookBook.DAL.Factories
 {
     public class DbContextFactory : IDbContextFactory
     {
-        private string connectionString;
+        private string _connectionString;
 
         public DbContextFactory(string connectionString)
         {
-            this.connectionString = connectionString;
+            this._connectionString = connectionString;
         }
         public CookBookDbContext CreateDbContext()
         {
             var optionsBuilder = new DbContextOptionsBuilder<CookBookDbContext>();
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer(_connectionString);
             return new CookBookDbContext(optionsBuilder.Options);
         }
     }
