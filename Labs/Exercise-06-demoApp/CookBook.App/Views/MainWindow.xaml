@@ -8,35 +8,37 @@
     xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
     xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
     Title="MainWindow"
-    Width="800"
-    Height="450"
+    Width="909"
+    Height="650"
     mc:Ignorable="d"
-    d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
-    >
-    <TabControl>
-        <TabItem Header="{x:Static texts:TextResources.TabHeader_Ingredients}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <views:IngredientListView Grid.Column="0" DataContext="{Binding IngredientListViewModel}" />
-                <views:IngredientDetailView Grid.Column="1" DataContext="{Binding IngredientDetailViewModel}" />
-            </Grid>
-        </TabItem>
-        <TabItem Header="{x:Static texts:TextResources.TabHeader_Recipes}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <views:RecipeListView Grid.Column="0" DataContext="{Binding RecipeListViewModel}"  />
-                <views:RecipeDetailView Grid.Column="1" DataContext="{Binding RecipeDetailViewModel}"  />
-                <views:IngredientListView Grid.Column="2" DataContext="{Binding IngredientListViewModel}"  />
-                <views:IngredientDetailView Grid.Column="3" DataContext="{Binding IngredientDetailViewModel}"  />
-            </Grid>
-        </TabItem>
-    </TabControl>
+    d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Margin="10" Foreground="DarkBlue" FontSize="40" Grid.ColumnSpan="2">
+            <Bold Foreground="DarkOrange">Cook</Bold>Book
+        </TextBlock>
+
+        <views:RecipeListView x:Name="Navigation"
+                              Grid.Row="1" 
+                              Grid.Column="0"  
+                              DataContext="{Binding RecipeListViewModel}" />
+
+        <StackPanel x:Name="Detail"
+                    Orientation="Horizontal" 
+                    Grid.Row="1" 
+                    Grid.Column="1" 
+                    HorizontalAlignment="Left">
+            <views:RecipeDetailView DataContext="{Binding RecipeDetailViewModel}" />
+            <views:IngredientListView DataContext="{Binding IngredientListViewModel}" />
+            <views:IngredientDetailView  DataContext="{Binding IngredientDetailViewModel}" />
+        </StackPanel>
+    </Grid>
 </Window>
