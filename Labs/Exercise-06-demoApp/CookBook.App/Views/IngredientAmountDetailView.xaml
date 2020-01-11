@@ -6,6 +6,8 @@
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                        xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
                        xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
+                       xmlns:enums="clr-namespace:CookBook.BL.Enums;assembly=CookBook.BL"
+                       xmlns:extensions="clr-namespace:CookBook.App.Extensions"
                        d:DesignHeight="450"
                        d:DesignWidth="800"
                        mc:Ignorable="d"
@@ -39,13 +41,12 @@
             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Model.Amount, UpdateSourceTrigger=PropertyChanged}" />
             
             <Label Grid.Row="1" Grid.Column="0" Content="{x:Static texts:TextResources.IngredientAmountDetail_LabelUnit}" />
-            <TextBox Grid.Row="1"
-                     Grid.Column="1"
-                     VerticalAlignment="Top"
-                     Text="{Binding Model.Unit, UpdateSourceTrigger=PropertyChanged}"
-                     TextAlignment="Left"
-                     TextWrapping="Wrap"
-                     AcceptsReturn="True" />
+            <ComboBox Grid.Row="1"
+                      Grid.Column="1"
+                      VerticalAlignment="Top"
+                      MinWidth="150"
+                      ItemsSource="{Binding Source={extensions:EnumBindingSource {x:Type enums:Unit}}}"
+                      SelectedItem="{Binding Model.Unit, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Grid.Row="2" Grid.Column="0" Content="{x:Static texts:TextResources.IngredientDetail_LabelName}" />
             <TextBox Grid.Row="2" Grid.Column="1"

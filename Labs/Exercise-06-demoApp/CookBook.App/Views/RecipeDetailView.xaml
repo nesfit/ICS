@@ -8,6 +8,8 @@
                        xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
                        xmlns:interactions="http://schemas.microsoft.com/xaml/behaviors"
                        xmlns:models="clr-namespace:CookBook.BL.Models;assembly=CookBook.BL"
+                       xmlns:extensions="clr-namespace:CookBook.App.Extensions"
+                       xmlns:enums="clr-namespace:CookBook.BL.Enums;assembly=CookBook.BL"
                        mc:Ignorable="d"
                        d:DataContext="{d:DesignInstance viewModels:RecipeDetailViewModel}"
                        d:DesignHeight="300" d:DesignWidth="400"
@@ -50,7 +52,10 @@
             <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Model.Duration, UpdateSourceTrigger=PropertyChanged}" />
 
             <Label Grid.Row="3" Grid.Column="0" Content="{x:Static texts:TextResources.RecipeDetail_LabelFoodType}" />
-            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Model.FoodType, UpdateSourceTrigger=PropertyChanged}" />
+            <!--<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Model.FoodType, UpdateSourceTrigger=PropertyChanged}" />-->
+            <ComboBox Grid.Row="3" Grid.Column="1"  MinWidth="150"
+                      ItemsSource="{Binding Source={extensions:EnumBindingSource {x:Type enums:FoodType}}}"
+                      SelectedItem="{Binding Model.FoodType, UpdateSourceTrigger=PropertyChanged}"/>
 
             <ListView x:Name="IngredientsListBox" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Ingredients}">
                 <interactions:Interaction.Triggers>
