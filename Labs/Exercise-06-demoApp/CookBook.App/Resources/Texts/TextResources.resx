@@ -166,7 +166,7 @@
     <value>Name</value>
   </data>
   <data name="RecipeList_ButtonNewRecipe" xml:space="preserve">
-    <value>Add New Recipes</value>
+    <value>Add New Recipe</value>
   </data>
   <data name="TabHeader_Ingredients" xml:space="preserve">
     <value>Ingredients</value>

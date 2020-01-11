@@ -205,7 +205,7 @@ namespace CookBook.App.Resources.Texts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add New Recipes.
+        ///   Looks up a localized string similar to Add New Recipe.
         /// </summary>
         public static string RecipeList_ButtonNewRecipe {
             get {

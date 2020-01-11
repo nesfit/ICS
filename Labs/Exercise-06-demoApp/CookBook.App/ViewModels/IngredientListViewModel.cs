@@ -39,7 +39,7 @@ namespace CookBook.App.ViewModels
 
         private void IngredientDeleted(IngredientDeletedMessage ingredient) => Load();
 
-        public override void Load()
+        public void Load()
         {
             Ingredients.Clear();
             var ingredients = _ingredientRepository.GetAll();
