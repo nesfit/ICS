@@ -44,6 +44,8 @@ namespace CookBook.App.ViewModels
 
         public ICommand SaveCommand { get; }
 
+        public Guid RecipeId { get; set; }
+
         private void IngredientAmountSelected(IngredientAmountSelectedMessage ingredientAmountSelectedMessage) => Model = ingredientAmountSelectedMessage.IngredientAmountDetailModel;
 
         private void IngredientSelected(IngredientSelectedMessage ingredientSelectedMessage)
@@ -79,7 +81,7 @@ namespace CookBook.App.ViewModels
 
         private void Save()
         {
-            _mediator.Send(new IngredientAmountNewMessage {Model = Model});
+            _mediator.Send(new IngredientAmountNewMessage(RecipeId, Model));
 
             Model = null;
         }

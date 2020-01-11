@@ -41,7 +41,7 @@ namespace CookBook.App.ViewModels
 
         private void RecipeSelected(RecipeListModel recipeListModel) => _mediator.Send(new RecipeSelectedMessage {Id = recipeListModel.Id});
 
-        public override void Load()
+        public void Load()
         {
             Recipes.Clear();
             var recipes = _recipesRepository.GetAll();

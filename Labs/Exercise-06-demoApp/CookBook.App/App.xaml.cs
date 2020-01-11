@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Threading;
 using System.Windows;
+using CookBook.App.Factories;
 using CookBook.App.Services.MessageDialog;
 using CookBook.App.ViewModels;
 using CookBook.App.Views;
@@ -51,11 +52,11 @@ namespace CookBook.App
 
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<IIngredientListViewModel, IngredientListViewModel>();
-            services.AddSingleton<IIngredientDetailViewModel, IngredientDetailViewModel>();
+            services.AddFactory<IIngredientDetailViewModel, IngredientDetailViewModel>();
             services.AddSingleton<IRecipeListViewModel, RecipeListViewModel>();
-            services.AddSingleton<IRecipeDetailViewModel, RecipeDetailViewModel>();
-            services.AddSingleton<IIngredientAmountDetailViewModel, IngredientAmountDetailViewModel>();
-
+            services.AddFactory<IRecipeDetailViewModel, RecipeDetailViewModel>();
+            services.AddFactory<IIngredientAmountDetailViewModel, IngredientAmountDetailViewModel>();
+            
             services.AddSingleton<IDbContextFactory>(provider => new DbContextFactory(configuration.GetConnectionString("DefaultConnection")));
         }
 

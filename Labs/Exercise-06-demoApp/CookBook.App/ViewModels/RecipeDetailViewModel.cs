@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Windows;
 using System.Windows.Input;
 using CookBook.App.Commands;
 using CookBook.App.Services.MessageDialog;
 using CookBook.BL.Interfaces;
 using CookBook.BL.Messages;
 using CookBook.BL.Models;
-using CookBook.BL.Repositories;
 using CookBook.BL.Services;
 
 namespace CookBook.App.ViewModels
@@ -18,22 +16,21 @@ namespace CookBook.App.ViewModels
         private readonly IMessageDialogService _messageDialogService;
         private readonly IRecipeRepository _recipesRepository;
 
-        public RecipeDetailViewModel(IRecipeRepository recipesRepository, 
-            IMessageDialogService messageDialogService, 
-            IMediator mediator, 
+        public RecipeDetailViewModel(
+            IRecipeRepository recipesRepository,
+            IMessageDialogService messageDialogService,
+            IMediator mediator,
             IIngredientAmountDetailViewModel ingredientAmountDetailViewModel)
         {
-            this._recipesRepository = recipesRepository;
-            this._messageDialogService = messageDialogService;
-            this._mediator = mediator;
+            _recipesRepository = recipesRepository;
+            _messageDialogService = messageDialogService;
+            _mediator = mediator;
             IngredientAmountDetailViewModel = ingredientAmountDetailViewModel;
 
             SaveCommand = new RelayCommand(Save, CanSave);
             DeleteCommand = new RelayCommand(Delete);
             IngredientSelectedCommand = new RelayCommand<IngredientAmountDetailModel>(IngredientAmountSelected);
 
-            mediator.Register<RecipeSelectedMessage>(RecipeSelected);
-            mediator.Register<RecipeNewMessage>(RecipeNew);
             mediator.Register<IngredientAmountNewMessage>(NewIngredientAmount);
             mediator.Register<IngredientAmountDeleteMessage>(DeleteIngredientAmount);
         }
@@ -42,8 +39,6 @@ namespace CookBook.App.ViewModels
 
         public RelayCommand SaveCommand { get; }
 
-        public RecipeDetailModel Model { get; set; }
-
         public ObservableCollection<IngredientAmountDetailModel> Ingredients { get; set; } =
             new ObservableCollection<IngredientAmountDetailModel>();
 
@@ -51,7 +46,19 @@ namespace CookBook.App.ViewModels
 
         public IIngredientAmountDetailViewModel IngredientAmountDetailViewModel { get; }
 
-        private void IngredientAmountSelected(IngredientAmountDetailModel ingredientAmountDetailModel) => _mediator.Send(new IngredientAmountSelectedMessage {IngredientAmountDetailModel = ingredientAmountDetailModel});
+        public RecipeDetailModel Model { get; set; }
+
+
+        public void Load(Guid id)
+        {
+            Model = _recipesRepository.GetById(id) ?? new RecipeDetailModel();
+            Ingredients = new ObservableCollection<IngredientAmountDetailModel>(Model?.Ingredients);
+            IngredientAmountDetailViewModel.RecipeId = Model.Id;
+        }
+
+        private void IngredientAmountSelected(IngredientAmountDetailModel ingredientAmountDetailModel) =>
+            _mediator.Send(new IngredientAmountSelectedMessage
+                {IngredientAmountDetailModel = ingredientAmountDetailModel});
 
         private void DeleteIngredientAmount(IngredientAmountDeleteMessage ingredientAmountDeleteMessage)
         {
@@ -61,6 +68,8 @@ namespace CookBook.App.ViewModels
 
         private void NewIngredientAmount(IngredientAmountNewMessage ingredientAmountNewMessage)
         {
+            if(ingredientAmountNewMessage.RecipeId != Model?.Id) return;
+
             Model.Ingredients.Add(ingredientAmountNewMessage.Model);
             Ingredients.Add(ingredientAmountNewMessage.Model);
         }
@@ -70,12 +79,12 @@ namespace CookBook.App.ViewModels
             if (Model.Id != Guid.Empty)
             {
                 var delete = _messageDialogService.Show(
-                    $"Delete",
+                    "Delete",
                     $"Do you want to delete {Model?.Name}?.",
                     MessageDialogButtonConfiguration.YesNo,
                     MessageDialogResult.No);
 
-                if(delete == MessageDialogResult.No) return;
+                if (delete == MessageDialogResult.No) return;
 
                 try
                 {
@@ -84,16 +93,14 @@ namespace CookBook.App.ViewModels
                 catch
                 {
                     var _ = _messageDialogService.Show(
-                        $"Deleting of {Model?.Name} failed!", 
-                        "Deleting failed", 
+                        $"Deleting of {Model?.Name} failed!",
+                        "Deleting failed",
                         MessageDialogButtonConfiguration.OK,
                         MessageDialogResult.OK);
                 }
 
                 _mediator.Send(new RecipeDeletedMessage {Id = Model.Id});
             }
-
-            Model = null;
         }
 
         private bool CanSave() =>
@@ -106,21 +113,6 @@ namespace CookBook.App.ViewModels
         {
             Model = _recipesRepository.InsertOrUpdate(Model);
             _mediator.Send(new RecipeUpdatedMessage {Id = Model.Id});
-
-            Model = null;
-            Ingredients = null;
-        }
-
-        private void RecipeNew(RecipeNewMessage recipeNewMessage)
-        {
-            Model = new RecipeDetailModel();
-            Ingredients = new ObservableCollection<IngredientAmountDetailModel>();
-        }
-
-        private void RecipeSelected(RecipeSelectedMessage recipeSelectedMessage)
-        {
-            Model = _recipesRepository.GetById(recipeSelectedMessage.Id);
-            Ingredients = new ObservableCollection<IngredientAmountDetailModel>(Model.Ingredients);
         }
     }
 }

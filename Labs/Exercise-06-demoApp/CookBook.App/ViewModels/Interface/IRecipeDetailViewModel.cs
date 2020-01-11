@@ -1,6 +1,9 @@
-﻿namespace CookBook.App.ViewModels
+﻿using System;
+using CookBook.BL.Models;
+
+namespace CookBook.App.ViewModels
 {
-    public interface IRecipeDetailViewModel
+    public interface IRecipeDetailViewModel : IDetailViewModel<RecipeDetailModel>
     {
     }
 }

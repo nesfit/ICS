@@ -1,6 +1,6 @@
 ﻿namespace CookBook.App.ViewModels
 {
-    public interface IRecipeListViewModel
+    public interface IRecipeListViewModel : IListViewModel
     {
     }
 }

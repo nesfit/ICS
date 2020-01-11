@@ -27,32 +27,23 @@ namespace CookBook.App.ViewModels
 
             SaveCommand = new RelayCommand(Save, CanSave);
             DeleteCommand = new RelayCommand(Delete);
-
-            mediator.Register<IngredientSelectedMessage>(IngredientSelected);
-            mediator.Register<IngredientNewMessage>(IngredientNew);
         }
 
         public IngredientDetailModel Model { get; set; }
+        public void Load(Guid id)
+        {
+            Model = _ingredientRepository.GetById(id) ?? new IngredientDetailModel();
+        }
+
         public ICommand SaveCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
 
-
-        private void IngredientNew(IngredientNewMessage ingredientNewMessage)
-        {
-            Model = new IngredientDetailModel();
-        }
-
-        private void IngredientSelected(IngredientSelectedMessage ingredientSelectedMessage)
-        {
-            Model = _ingredientRepository.GetById(ingredientSelectedMessage.Id);
-        }
-
+        
         public void Save()
         {
             Model = _ingredientRepository.InsertOrUpdate(Model);
 
             _mediator.Send(new IngredientUpdatedMessage {Id = Model.Id});
-            Model = null;
         }
 
         private bool CanSave() =>
@@ -87,8 +78,6 @@ namespace CookBook.App.ViewModels
 
                 _mediator.Send(new IngredientDeletedMessage {Id = Model.Id});
             }
-
-            Model = null;
         }
     }
 }
