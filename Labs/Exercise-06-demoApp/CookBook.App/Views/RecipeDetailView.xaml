@@ -52,7 +52,6 @@
             <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Model.Duration, UpdateSourceTrigger=PropertyChanged}" />
 
             <Label Grid.Row="3" Grid.Column="0" Content="{x:Static texts:TextResources.RecipeDetail_LabelFoodType}" />
-            <!--<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Model.FoodType, UpdateSourceTrigger=PropertyChanged}" />-->
             <ComboBox Grid.Row="3" Grid.Column="1"  MinWidth="150"
                       ItemsSource="{Binding Source={extensions:EnumBindingSource {x:Type enums:FoodType}}}"
                       SelectedItem="{Binding Model.FoodType, UpdateSourceTrigger=PropertyChanged}"/>
