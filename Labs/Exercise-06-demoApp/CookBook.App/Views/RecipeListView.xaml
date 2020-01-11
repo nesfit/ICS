@@ -8,17 +8,21 @@
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                        xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
                        mc:Ignorable="d"
+                       Background="{StaticResource DefaultComponentBackgroundBrush}"
                        d:DataContext="{d:DesignInstance viewModels:RecipeListViewModel}"
                        d:DesignHeight="300" d:DesignWidth="400"
                        >
-    <Grid x:Name="Root">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Content="{x:Static texts:TextResources.RecipeList_ButtonNewRecipe}"
+        <Button Grid.Row="0" 
+                Content="{x:Static texts:TextResources.RecipeList_ButtonNewRecipe}"
                 Command="{Binding RecipeNewCommand}" />
-        <ListBox x:Name="RecipesListBox" Grid.Row="1" ItemsSource="{Binding Recipes}">
+        <ListBox x:Name="RecipesListBox" 
+                 Grid.Row="1" 
+                 ItemsSource="{Binding Recipes}">
             <interactions:Interaction.Triggers>
                 <interactions:EventTrigger EventName="SelectionChanged">
                     <interactions:InvokeCommandAction Command="{Binding RecipeSelectedCommand}"

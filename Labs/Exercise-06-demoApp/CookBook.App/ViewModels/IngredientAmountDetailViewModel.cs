@@ -67,7 +67,7 @@ namespace CookBook.App.ViewModels
 
         private void Delete()
         {
-            _mediator.Send(new IngredientAmountDeleteMessage {Model = Model});
+            _mediator.Send(new IngredientAmountDeleteMessage(RecipeId, Model));
 
             Model = null;
         }

@@ -11,6 +11,7 @@
                        d:DesignHeight="450"
                        d:DesignWidth="800"
                        mc:Ignorable="d"
+                       Background="{StaticResource DefaultComponentBackgroundBrush}"
                        >
     <Grid x:Name="Root">
         <Grid.RowDefinitions>

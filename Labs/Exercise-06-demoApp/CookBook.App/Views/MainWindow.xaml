@@ -11,6 +11,7 @@
     Width="1000"
     Height="650"
     mc:Ignorable="d"
+    Background="{StaticResource DefaultWindowBackgroundBrush}"
     d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
     <Grid>
         <Grid.RowDefinitions>
@@ -41,19 +42,10 @@
 
         <TabControl x:Name="RecipeDetail"
                     ItemsSource="{Binding RecipeDetailViewModels}"
-                    SelectedItem="{Binding SelectedRecipeDetailViewModel, Mode=TwoWay}" 
+                    SelectedItem="{Binding SelectedRecipeDetailViewModel, Mode=TwoWay}"
                     Grid.Row="1" 
                     Grid.Column="1" 
                     HorizontalAlignment="Left">
-            <TabControl.ItemContainerStyle>
-                <Style TargetType="TabItem">
-                    <Style.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="FontWeight" Value="Bold"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </TabControl.ItemContainerStyle>
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -82,25 +74,15 @@
                     Grid.Row="1" 
                     Grid.Column="2" 
                     HorizontalAlignment="Right">
-            <TabControl.ItemContainerStyle>
-                <Style TargetType="TabItem">
-                    <Style.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="FontWeight" Value="Bold"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </TabControl.ItemContainerStyle>
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Model.Name}" Margin="5"/>
+                        <TextBlock Text="{Binding Model.Name}" Margin="5" FontSize="12"/>
                         <Button Content="X" Command="{Binding RelativeSource=
                                   {RelativeSource FindAncestor,
                                   AncestorType={x:Type TabControl}},
                                   Path=DataContext.CloseIngredientDetailTabCommand}"
-                                CommandParameter="{Binding}"
-                                Width="20" Height="20" FontWeight="Bold" FontSize="12"
+                                CommandParameter="{Binding}" FontWeight="Bold" FontSize="12"
                                 Foreground="White" Padding="0">
                         </Button>
                     </StackPanel>

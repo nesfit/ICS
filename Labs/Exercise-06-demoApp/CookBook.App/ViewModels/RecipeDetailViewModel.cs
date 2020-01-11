@@ -62,6 +62,8 @@ namespace CookBook.App.ViewModels
 
         private void DeleteIngredientAmount(IngredientAmountDeleteMessage ingredientAmountDeleteMessage)
         {
+            if (ingredientAmountDeleteMessage.RecipeId != Model?.Id) return;
+
             Model.Ingredients.Remove(ingredientAmountDeleteMessage.Model);
             Ingredients.Remove(ingredientAmountDeleteMessage.Model);
         }

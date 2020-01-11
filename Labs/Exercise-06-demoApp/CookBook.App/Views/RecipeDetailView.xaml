@@ -12,6 +12,7 @@
                        xmlns:enums="clr-namespace:CookBook.BL.Enums;assembly=CookBook.BL"
                        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                        mc:Ignorable="d"
+                       Background="{StaticResource DefaultComponentBackgroundBrush}"
                        d:DataContext="{d:DesignInstance viewModels:RecipeDetailViewModel}"
                        d:DesignHeight="300" d:DesignWidth="400"
                        >
@@ -60,7 +61,12 @@
                       ItemsSource="{Binding Source={extensions:EnumBindingSource {x:Type enums:FoodType}}}"
                       SelectedItem="{Binding Model.FoodType, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <ListView x:Name="IngredientsListBox" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Ingredients}">
+            <ListView x:Name="IngredientsListBox" 
+                      Grid.Row="4" 
+                      Grid.Column="0" 
+                      Grid.ColumnSpan="2" 
+                      Focusable="False"
+                      ItemsSource="{Binding Ingredients}">
                 <interactions:Interaction.Triggers>
                     <interactions:EventTrigger EventName="SelectionChanged">
                         <interactions:InvokeCommandAction Command="{Binding IngredientSelectedCommand}"
