@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CookBook.App.Commands;
+using CookBook.App.Wrappers;
 using CookBook.BL.Extensions;
 using CookBook.BL.Interfaces;
 using CookBook.BL.Messages;
@@ -22,8 +23,8 @@ namespace CookBook.App.ViewModels
             IngredientSelectedCommand = new RelayCommand<IngredientListModel>(IngredientSelected);
             IngredientNewCommand = new RelayCommand(IngredientNew);
 
-            mediator.Register<IngredientUpdatedMessage>(IngredientUpdated);
-            mediator.Register<IngredientDeletedMessage>(IngredientDeleted);
+            mediator.Register<UpdateMessage<IngredientWrapper>>(IngredientUpdated);
+            mediator.Register<DeleteMessage<IngredientWrapper>>(IngredientDeleted);
         }
 
         public ObservableCollection<IngredientListModel> Ingredients { get; } = new ObservableCollection<IngredientListModel>();
@@ -31,13 +32,13 @@ namespace CookBook.App.ViewModels
         public ICommand IngredientSelectedCommand { get; }
         public ICommand IngredientNewCommand { get; }
 
-        private void IngredientNew() => _mediator.Send(new IngredientNewMessage());
+        private void IngredientNew() => _mediator.Send(new NewMessage<IngredientWrapper>());
 
-        private void IngredientSelected(IngredientListModel ingredient) => _mediator.Send(new IngredientSelectedMessage {Id = ingredient.Id});
+        private void IngredientSelected(IngredientListModel ingredient) => _mediator.Send(new SelectedMessage<IngredientWrapper> {Id = ingredient.Id});
 
-        private void IngredientUpdated(IngredientUpdatedMessage ingredient) => Load();
+        private void IngredientUpdated(UpdateMessage<IngredientWrapper> _) => Load();
 
-        private void IngredientDeleted(IngredientDeletedMessage ingredient) => Load();
+        private void IngredientDeleted(DeleteMessage<IngredientWrapper> _) => Load();
 
         public void Load()
         {

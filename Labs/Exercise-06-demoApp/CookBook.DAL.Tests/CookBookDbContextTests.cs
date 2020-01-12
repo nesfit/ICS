@@ -87,11 +87,11 @@ namespace CookBook.DAL.Tests
                             Description = "Filtered Water"
                         }
                     },
-                    new IngredientAmountEntity()
+                    new IngredientAmountEntity
                     {
                         Amount = 50,
                         Unit = Unit.Ml,
-                        Ingredient = new IngredientEntity()
+                        Ingredient = new IngredientEntity
                         {
                             Name = "Lime-juice",
                             Description = "Fresh lime-juice"

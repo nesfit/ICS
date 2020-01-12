@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using CookBook.App.Commands;
 using CookBook.App.Services.MessageDialog;
+using CookBook.App.Wrappers;
 using CookBook.BL.Interfaces;
 using CookBook.BL.Messages;
 using CookBook.BL.Models;
@@ -29,21 +30,21 @@ namespace CookBook.App.ViewModels
             DeleteCommand = new RelayCommand(Delete);
         }
 
-        public IngredientDetailModel Model { get; set; }
+        public IngredientWrapper Model { get; set; }
+        public ICommand SaveCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
+
+
         public void Load(Guid id)
         {
             Model = _ingredientRepository.GetById(id) ?? new IngredientDetailModel();
         }
 
-        public ICommand SaveCommand { get; set; }
-        public ICommand DeleteCommand { get; set; }
-
-        
         public void Save()
         {
-            Model = _ingredientRepository.InsertOrUpdate(Model);
+            Model = _ingredientRepository.InsertOrUpdate(Model.Model);
 
-            _mediator.Send(new IngredientUpdatedMessage {Id = Model.Id});
+            _mediator.Send(new UpdateMessage<IngredientWrapper> {Model = Model});
         }
 
         private bool CanSave() =>
@@ -76,7 +77,10 @@ namespace CookBook.App.ViewModels
                       MessageDialogResult.OK);
                 }
 
-                _mediator.Send(new IngredientDeletedMessage {Id = Model.Id});
+                _mediator.Send(new DeleteMessage<IngredientWrapper>
+                {
+                    Model = Model
+                });
             }
         }
     }

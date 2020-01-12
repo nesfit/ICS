@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CookBook.App.ViewModels;
+using CookBook.App.Wrappers;
 using CookBook.BL.Interfaces;
 using CookBook.BL.Messages;
 using CookBook.BL.Models;
@@ -19,7 +20,7 @@ namespace CookBook.App.Tests
         public RecipesListViewModelTests()
         {
             this._recipeRepositoryMock = new Mock<IRecipeRepository>();
-            this._mediatorMock = new Mock<Mediator>(){CallBase = true};
+            this._mediatorMock = new Mock<Mediator> {CallBase = true};
 
             _recipeRepositoryMock.Setup(repository => repository.GetAll())
                 .Returns(() => new List<RecipeListModel>());
@@ -56,7 +57,7 @@ namespace CookBook.App.Tests
         {
             //Arrange
             _recipeRepositoryMock.Setup(repository => repository.GetAll())
-                .Returns(() => new List<RecipeListModel>(){new RecipeListModel()});
+                .Returns(() => new List<RecipeListModel> {new RecipeListModel()});
 
             //Act
             _recipeListViewModelSUT.Load();
@@ -71,7 +72,7 @@ namespace CookBook.App.Tests
             //Arrange
 
             //Act
-            _mediatorMock.Object.Send(new RecipeUpdatedMessage());
+            _mediatorMock.Object.Send(new UpdateMessage<RecipeWrapper>());
 
             //Assert
             _recipeRepositoryMock.Verify(repository => repository.GetAll(), Times.Once);
@@ -83,7 +84,7 @@ namespace CookBook.App.Tests
             //Arrange
             
             //Act
-            _mediatorMock.Object.Send(new RecipeDeletedMessage());
+            _mediatorMock.Object.Send(new DeleteMessage<RecipeWrapper>());
 
             //Assert
             _recipeRepositoryMock.Verify(repository => repository.GetAll(), Times.Once);
@@ -97,7 +98,7 @@ namespace CookBook.App.Tests
             _recipeListViewModelSUT.RecipeSelectedCommand.Execute(new RecipeListModel());
 
             //Assert
-            _mediatorMock.Verify(mediator => mediator.Send(It.IsAny<RecipeSelectedMessage>()),Times.Once);
+            _mediatorMock.Verify(mediator => mediator.Send(It.IsAny<SelectedMessage<RecipeWrapper>>()),Times.Once);
         }
 
         [Fact]
@@ -109,7 +110,7 @@ namespace CookBook.App.Tests
             _recipeListViewModelSUT.RecipeNewCommand.Execute(null);
 
             //Assert
-            _mediatorMock.Verify(mediator => mediator.Send(It.IsAny<RecipeNewMessage>()), Times.Once);
+            _mediatorMock.Verify(mediator => mediator.Send(It.IsAny<NewMessage<RecipeWrapper>>()), Times.Once);
         }
     }
 }

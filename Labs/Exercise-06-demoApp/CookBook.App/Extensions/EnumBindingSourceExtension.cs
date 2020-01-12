@@ -5,7 +5,7 @@ namespace CookBook.App.Extensions
 {
     public class EnumBindingSourceExtension : MarkupExtension
     {
-        private Type enumType;
+        private Type _enumType;
 
         public EnumBindingSourceExtension()
         {
@@ -15,10 +15,10 @@ namespace CookBook.App.Extensions
 
         public Type EnumType
         {
-            get => enumType;
+            get => _enumType;
             set
             {
-                if (value == enumType)
+                if (value == _enumType)
                 {
                     return;
                 }
@@ -32,21 +32,21 @@ namespace CookBook.App.Extensions
                     }
                 }
 
-                enumType = value;
+                _enumType = value;
             }
         }
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            if (null == enumType)
+            if (null == _enumType)
             {
                 throw new InvalidOperationException("The EnumType must be specified.");
             }
 
-            var actualEnumType = Nullable.GetUnderlyingType(enumType) ?? enumType;
+            var actualEnumType = Nullable.GetUnderlyingType(_enumType) ?? _enumType;
             var enumValues = Enum.GetValues(actualEnumType);
 
-            if (actualEnumType == enumType)
+            if (actualEnumType == _enumType)
             {
                 return enumValues;
             }

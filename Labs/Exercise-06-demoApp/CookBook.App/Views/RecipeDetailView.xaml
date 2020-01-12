@@ -66,19 +66,16 @@
                       Grid.Column="0" 
                       Grid.ColumnSpan="2" 
                       Focusable="False"
-                      ItemsSource="{Binding Ingredients}">
-                <interactions:Interaction.Triggers>
-                    <interactions:EventTrigger EventName="SelectionChanged">
-                        <interactions:InvokeCommandAction Command="{Binding IngredientSelectedCommand}"
-                                                          CommandParameter="{Binding ElementName=IngredientsListBox, Path=SelectedItem}" />
-                    </interactions:EventTrigger>
-                </interactions:Interaction.Triggers>
+                      SelectionMode="Single"
+                      ItemsSource="{Binding Model.Ingredients}"
+                      SelectedItem="{Binding SelectedIngredientAmount, Mode=TwoWay}"
+                      >
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
                             <GridViewColumn Header="{x:Static texts:TextResources.RecipeDetail_GridViewIngredientName}" DisplayMemberBinding="{Binding IngredientName}" />
                             <GridViewColumn Header="{x:Static texts:TextResources.RecipeDetail_GridViewIngredientAmount}" DisplayMemberBinding="{Binding Amount}" />
-                            <GridViewColumn Header="{x:Static texts:TextResources.RecipeDetail_GridViewIngredientUnit}" DisplayMemberBinding="{Binding Unit}" />
+                            <GridViewColumn Header="{x:Static texts:TextResources.RecipeDetail_GridViewIngredientUnit}" DisplayMemberBinding="{Binding Unit}" Width="Auto" />
                         </GridView.Columns>
                     </GridView>
                 </ListView.View>
