@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Input;
 using CookBook.App.Commands;
 using CookBook.App.Factories;
+using CookBook.App.Wrappers;
 using CookBook.BL.Messages;
 using CookBook.BL.Services;
 
@@ -33,13 +34,17 @@ namespace CookBook.App.ViewModels
             CloseRecipeDetailTabCommand = new RelayCommand(OnCloseRecipeDetailTabExecute);
             CloseIngredientDetailTabCommand = new RelayCommand(OnCloseIngredientDetailTabExecute);
             
-            mediator.Register<RecipeNewMessage>(OnRecipeNewMessage);
-            mediator.Register<IngredientNewMessage>(OnIngredientNewMessage);
-            mediator.Register<RecipeSelectedMessage>(OnRecipeSelected);
-            mediator.Register<IngredientSelectedMessage>(OnIngredientSelected);
+            mediator.Register<NewMessage<RecipeWrapper>>(OnRecipeNewMessage);
+            mediator.Register<NewMessage<IngredientWrapper>>(OnIngredientNewMessage);
+
+            mediator.Register<SelectedMessage<RecipeWrapper>>(OnRecipeSelected);
+            mediator.Register<SelectedMessage<IngredientWrapper>>(OnIngredientSelected);
+
+            mediator.Register<DeleteMessage<IngredientWrapper>>(OnIngredientDeleted);
+            mediator.Register<DeleteMessage<RecipeWrapper>>(OnRecipeDeleted);
+
         }
 
-        
         public IIngredientListViewModel IngredientListViewModel { get; }
 
         public IIngredientDetailViewModel IngredientDetailViewModel { get; }
@@ -63,25 +68,44 @@ namespace CookBook.App.ViewModels
 
         public ICommand CloseIngredientDetailTabCommand { get; }
 
-        private void OnRecipeNewMessage(RecipeNewMessage obj)
+        private void OnRecipeNewMessage(NewMessage<RecipeWrapper> _)
         {
             SelectRecipe(Guid.Empty);
         }
 
-        private void OnIngredientNewMessage(IngredientNewMessage obj)
+        private void OnIngredientNewMessage(NewMessage<IngredientWrapper> _)
         {
             SelectIngredient(Guid.Empty);
         }
 
-        private void OnRecipeSelected(RecipeSelectedMessage recipeSelectedMessage)
+        private void OnRecipeSelected(SelectedMessage<RecipeWrapper> message)
         {
-            SelectRecipe(recipeSelectedMessage.Id);
+            SelectRecipe(message.Id);
         }
 
-        private void OnIngredientSelected(IngredientSelectedMessage ingredientSelectedMessage)
+        private void OnIngredientSelected(SelectedMessage<IngredientWrapper> message)
         {
-            SelectIngredient(ingredientSelectedMessage.Id);
+            SelectIngredient(message.Id);
         }
+
+        private void OnRecipeDeleted(DeleteMessage<RecipeWrapper> message)
+        {
+            var recipe = RecipeDetailViewModels.SingleOrDefault(i => i.Model.Id == message.Id);
+            if (recipe != null)
+            {
+                RecipeDetailViewModels.Remove(recipe);
+            }
+        }
+
+        private void OnIngredientDeleted(DeleteMessage<IngredientWrapper> message)
+        {
+            var ingredient = IngredientDetailViewModels.SingleOrDefault(i => i.Model.Id == message.Id);
+            if (ingredient != null)
+            {
+                IngredientDetailViewModels.Remove(ingredient);
+            }
+        }
+
         private void SelectRecipe(Guid id)
         {
             var recipeDetailViewModel =

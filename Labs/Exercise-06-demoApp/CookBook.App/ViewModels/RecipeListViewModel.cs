@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CookBook.App.Commands;
+using CookBook.App.Wrappers;
 using CookBook.BL.Extensions;
 using CookBook.BL.Interfaces;
 using CookBook.BL.Messages;
@@ -23,8 +24,8 @@ namespace CookBook.App.ViewModels
             RecipeSelectedCommand = new RelayCommand<RecipeListModel>(RecipeSelected);
             RecipeNewCommand = new RelayCommand(RecipeNew);
 
-            mediator.Register<RecipeUpdatedMessage>(RecipeUpdated);
-            mediator.Register<RecipeDeletedMessage>(RecipeDeleted);
+            mediator.Register<UpdateMessage<RecipeWrapper>>(RecipeUpdated);
+            mediator.Register<DeleteMessage<RecipeWrapper>>(RecipeDeleted);
         }
 
         public ObservableCollection<RecipeListModel> Recipes { get; } = new ObservableCollection<RecipeListModel>();
@@ -33,13 +34,13 @@ namespace CookBook.App.ViewModels
 
         public ICommand RecipeSelectedCommand { get; }
 
-        private void RecipeDeleted(RecipeDeletedMessage obj) => Load();
+        private void RecipeDeleted(DeleteMessage<RecipeWrapper> _) => Load();
 
-        private void RecipeUpdated(RecipeUpdatedMessage obj) => Load();
+        private void RecipeUpdated(UpdateMessage<RecipeWrapper> _) => Load();
 
-        private void RecipeNew() => _mediator.Send(new RecipeNewMessage());
+        private void RecipeNew() => _mediator.Send(new NewMessage<RecipeWrapper>());
 
-        private void RecipeSelected(RecipeListModel recipeListModel) => _mediator.Send(new RecipeSelectedMessage {Id = recipeListModel.Id});
+        private void RecipeSelected(RecipeListModel recipeListModel) => _mediator.Send(new SelectedMessage<RecipeWrapper> {Id = recipeListModel.Id});
 
         public void Load()
         {

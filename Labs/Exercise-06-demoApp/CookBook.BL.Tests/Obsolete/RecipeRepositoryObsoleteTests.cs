@@ -30,7 +30,7 @@ namespace CookBook.BL.Tests.Obsolete
         public void Create_WithNonExistingItem_DoesNotThrowAndEqualsCreated()
         {
             //Arrange
-            var model = new RecipeDetailModel()
+            var model = new RecipeDetailModel
             {
                 Name = "Recipe 1",
                 Description = "Testing recipe 1",
@@ -50,7 +50,7 @@ namespace CookBook.BL.Tests.Obsolete
         public void Create_WithIngredient_DoesNotThrowAndEqualsCreated()
         {
             //Arrange
-            var model = new RecipeDetailModel()
+            var model = new RecipeDetailModel
             {
                 Name = "Recipe 2",
                 Description = "Testing recipe 2",
@@ -81,7 +81,7 @@ namespace CookBook.BL.Tests.Obsolete
         public void Create_WithExistingIngredient_DoesNotThrowAndEqualsCreated()
         {
             //Arrange
-            var model = new RecipeDetailModel()
+            var model = new RecipeDetailModel
             {
                 Name = "Recipe 2",
                 Description = "Testing recipe 2",

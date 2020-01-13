@@ -35,7 +35,9 @@ namespace CookBook.BL.Mapper
                 Id = entity.Id,
                 IngredientId = entity.Ingredient.Id,
                 IngredientName = entity.Ingredient.Name,
-                IngredientDescription = entity.Ingredient.Description
+                IngredientDescription = entity.Ingredient.Description,
+                Amount = entity.Amount,
+                Unit = (CookBook.BL.Enums.Unit) entity.Unit
             };
     }
 }
