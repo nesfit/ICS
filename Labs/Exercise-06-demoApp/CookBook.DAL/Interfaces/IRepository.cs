@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using CookBook.BL.Models;
-using CookBook.DAL.Interfaces;
+using CookBook.Common;
 
-namespace CookBook.BL.Interfaces
+namespace CookBook.DAL.Interfaces
 {
     public interface IRepository<TEntity, out TListModel, TDetailModel> where TEntity :
         class, IEntity, new() 
-        where TListModel : ModelBase, new() 
-        where TDetailModel : ModelBase, new()
+        where TListModel : IId, new() 
+        where TDetailModel : IId, new()
     {
         TDetailModel InsertOrUpdate(TDetailModel model);
         void Delete(TDetailModel entity);

@@ -1,5 +1,8 @@
-﻿using CookBook.BL.Models;
+﻿using CookBook.BL.Enums;
+using CookBook.BL.Factories;
+using CookBook.BL.Models;
 using CookBook.DAL.Entities;
+using CookBook.DAL.Interfaces;
 
 namespace CookBook.BL.Mapper
 {
@@ -20,15 +23,6 @@ namespace CookBook.BL.Mapper
                 Description = entity.Description
             };
 
-        public static IngredientAmountEntity MapEntity(IngredientAmountDetailModel model) =>
-            new IngredientAmountEntity
-            {
-                Id = model.Id,
-                Amount = model.Amount,
-                Unit = (CookBook.DAL.Enums.Unit)model.Unit,
-                Ingredient = IngredientMapper.MapEntity(model)
-            };
-
         public static IngredientAmountDetailModel MapDetailModel(IngredientAmountEntity entity) =>
             new IngredientAmountDetailModel
             {
@@ -37,7 +31,18 @@ namespace CookBook.BL.Mapper
                 IngredientName = entity.Ingredient.Name,
                 IngredientDescription = entity.Ingredient.Description,
                 Amount = entity.Amount,
-                Unit = (CookBook.BL.Enums.Unit) entity.Unit
+                Unit = (Unit) entity.Unit
             };
+
+        public static IngredientAmountEntity MapEntity(IngredientAmountDetailModel model,
+            IEntityFactory<IngredientAmountEntity> entityFactory = null)
+        {
+            var entity = (entityFactory ??= new DummyEntityFactory<IngredientAmountEntity>()).Create(model.Id);
+            entity.Id = model.Id;
+            entity.Amount = model.Amount;
+            entity.Unit = (DAL.Enums.Unit)model.Unit;
+            entity.Ingredient = IngredientMapper.MapEntity(model, entityFactory.As<IngredientEntity>());
+            return entity;
+        }
     }
 }

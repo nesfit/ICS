@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CookBook.DAL.Interfaces;
 
-namespace CookBook.BL.Repositories
+namespace CookBook.DAL.Repositories
 {
     public static class RepositoryExtensions
     {

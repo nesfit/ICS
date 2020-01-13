@@ -6,7 +6,6 @@ using CookBook.BL.Extensions;
 using CookBook.BL.Interfaces;
 using CookBook.BL.Messages;
 using CookBook.BL.Models;
-using CookBook.BL.Repositories;
 using CookBook.BL.Services;
 
 namespace CookBook.App.ViewModels

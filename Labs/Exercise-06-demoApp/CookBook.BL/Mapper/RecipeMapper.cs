@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using CookBook.BL.Enums;
+using CookBook.BL.Factories;
 using CookBook.BL.Models;
 using CookBook.DAL.Entities;
+using CookBook.DAL.Interfaces;
 
 namespace CookBook.BL.Mapper
 {
@@ -31,19 +33,16 @@ namespace CookBook.BL.Mapper
                     FoodType = (FoodType) entity.FoodType
                 };
 
-        public static RecipeEntity MapToEntity(RecipeDetailModel detailModel)
+        public static RecipeEntity MapToEntity(RecipeDetailModel detailModel, IEntityFactory<RecipeEntity> entityFactory)
         {
-            var mapToEntity = new RecipeEntity
-            {
-                Id = detailModel.Id,
-                Name = detailModel.Name,
-                Description = detailModel.Description,
-                Duration = detailModel.Duration,
-                FoodType = (DAL.Enums.FoodType) detailModel.FoodType,
-                Ingredients = detailModel.Ingredients.Select(IngredientAmountMapper.MapEntity).ToList()
-            };
-
-            return mapToEntity;
+            var entity = (entityFactory ??= new DummyEntityFactory<RecipeEntity>()).Create(detailModel.Id);
+            entity.Id = detailModel.Id;
+            entity.Name = detailModel.Name;
+            entity.Description = detailModel.Description;
+            entity.Duration = detailModel.Duration;
+            entity.FoodType = (DAL.Enums.FoodType) detailModel.FoodType;
+            entity.Ingredients = detailModel.Ingredients.Select(model => IngredientAmountMapper.MapEntity(model, entityFactory.As<IngredientAmountEntity>())).ToList();
+            return entity;
         }
     }
 }

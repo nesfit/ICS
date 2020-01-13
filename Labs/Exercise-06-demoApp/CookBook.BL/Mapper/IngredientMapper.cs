@@ -1,5 +1,7 @@
-﻿using CookBook.BL.Models;
+﻿using CookBook.BL.Factories;
+using CookBook.BL.Models;
 using CookBook.DAL.Entities;
+using CookBook.DAL.Interfaces;
 
 namespace CookBook.BL.Mapper
 {
@@ -24,20 +26,25 @@ namespace CookBook.BL.Mapper
                     Description = entity.Description
                 };
 
-        public static IngredientEntity MapEntity(IngredientDetailModel model) =>
-            new IngredientEntity
-            {
-                Id = model.Id,
-                Description = model.Description,
-                Name = model.Name
-            };
+        public static IngredientEntity MapEntity(IngredientDetailModel model, IEntityFactory<IngredientEntity> entityFactory = null)
+        {
+            var entity = (entityFactory ?? new DummyEntityFactory<IngredientEntity>()).Create(model.Id);
+            entity.Id = model.Id;
+            entity.Description = model.Description;
+            entity.Name = model.Name;
 
-        public static IngredientEntity MapEntity(IngredientAmountDetailModel model) =>
-            new IngredientEntity
-            {
-                Id = model.IngredientId,
-                Description = model.IngredientDescription,
-                Name = model.IngredientName
-            };
+            return entity;
+        }
+
+
+        public static IngredientEntity MapEntity(IngredientAmountDetailModel model, IEntityFactory<IngredientEntity> entityFactory = null)
+        {
+            var entity = (entityFactory ?? new DummyEntityFactory<IngredientEntity>()).Create(model.IngredientId);
+            entity.Id = model.IngredientId;
+            entity.Description = model.IngredientDescription;
+            entity.Name = model.IngredientName;
+
+            return entity;
+        }
     }
 }
