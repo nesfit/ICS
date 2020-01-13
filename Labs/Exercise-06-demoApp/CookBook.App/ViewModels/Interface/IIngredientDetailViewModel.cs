@@ -1,6 +1,4 @@
-﻿using System;
-using CookBook.App.Wrappers;
-using CookBook.BL.Models;
+﻿using CookBook.App.Wrappers;
 
 namespace CookBook.App.ViewModels
 {

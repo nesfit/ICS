@@ -1,7 +1,5 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using CookBook.BL.Models;
 
 namespace CookBook.App.ViewModels
 {

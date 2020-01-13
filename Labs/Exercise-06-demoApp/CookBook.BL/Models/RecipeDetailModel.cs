@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using CookBook.BL.Enums;
-using CookBook.DAL.Entities;
 
 namespace CookBook.BL.Models
 {

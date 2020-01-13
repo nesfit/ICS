@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CookBook.App.ViewModels;
 using CookBook.App.Wrappers;
 using CookBook.BL.Interfaces;

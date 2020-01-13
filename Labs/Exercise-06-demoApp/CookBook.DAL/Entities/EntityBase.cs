@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using CookBook.DAL.Interfaces;
 
 namespace CookBook.DAL.Entities

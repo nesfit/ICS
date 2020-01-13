@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CookBook.BL.Models;
+﻿using CookBook.BL.Models;
 
 namespace CookBook.App.Wrappers
 {

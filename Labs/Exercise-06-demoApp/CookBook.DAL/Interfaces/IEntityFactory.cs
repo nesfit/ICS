@@ -1,5 +1,4 @@
 ﻿using System;
-using CookBook.DAL.Factories;
 
 namespace CookBook.DAL.Interfaces
 {
