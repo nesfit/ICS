@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CookBook.BL.Interfaces
+namespace CookBook.Common
 {
     public interface IId
     {

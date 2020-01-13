@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using CookBook.BL.Enums;
 using CookBook.BL.Mapper;
 using CookBook.BL.Models;
 using CookBook.BL.Repositories;
 using CookBook.DAL;
-using CookBook.DAL.Entities;
 using Xunit;
 using Xunit.Abstractions;
 

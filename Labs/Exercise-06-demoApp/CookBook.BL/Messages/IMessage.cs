@@ -1,5 +1,5 @@
 ﻿using System;
-using CookBook.BL.Interfaces;
+using CookBook.Common;
 
 namespace CookBook.BL.Messages
 {

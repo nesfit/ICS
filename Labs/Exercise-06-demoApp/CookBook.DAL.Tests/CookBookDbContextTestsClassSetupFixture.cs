@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using CookBook.DAL.Factories;
-
-namespace CookBook.DAL.Tests
+﻿namespace CookBook.DAL.Tests
 {
     public class CookBookDbContextTestsClassSetupFixture : CookBookDbContextSetupFixture
     {

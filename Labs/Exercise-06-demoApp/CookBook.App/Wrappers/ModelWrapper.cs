@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using CookBook.App.ViewModels;
-using CookBook.BL.Interfaces;
+using CookBook.Common;
 
 namespace CookBook.App.Wrappers
 {

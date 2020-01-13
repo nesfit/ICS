@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Input;
 using CookBook.App.Commands;
 using CookBook.App.Services.MessageDialog;
 using CookBook.App.Wrappers;

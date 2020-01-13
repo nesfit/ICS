@@ -1,6 +1,4 @@
-﻿using System;
-using CookBook.BL.Repositories;
-using CookBook.DAL;
+﻿using CookBook.BL.Repositories;
 using CookBook.DAL.Tests;
 
 namespace CookBook.BL.Tests

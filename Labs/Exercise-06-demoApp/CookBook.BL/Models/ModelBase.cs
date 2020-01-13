@@ -1,7 +1,5 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using CookBook.BL.Interfaces;
+using CookBook.Common;
 
 namespace CookBook.BL.Models
 {

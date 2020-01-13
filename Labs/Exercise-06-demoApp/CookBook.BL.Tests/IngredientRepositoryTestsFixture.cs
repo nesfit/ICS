@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CookBook.BL.Interfaces;
+﻿using CookBook.BL.Interfaces;
 using CookBook.BL.Repositories;
-using CookBook.BL.Repositories.Obsolete;
-using CookBook.DAL;
 using CookBook.DAL.Tests;
 
 namespace CookBook.BL.Tests

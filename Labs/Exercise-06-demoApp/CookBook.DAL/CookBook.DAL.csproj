@@ -25,4 +25,8 @@
     <Folder Include="Migrations\CookBookSeedingDb\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CookBook.Common\CookBook.Common.csproj" />
+  </ItemGroup>
+
 </Project>

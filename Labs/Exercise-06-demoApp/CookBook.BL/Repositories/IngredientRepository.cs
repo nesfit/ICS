@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using CookBook.BL.Interfaces;
+﻿using CookBook.BL.Interfaces;
 using CookBook.BL.Mapper;
 using CookBook.BL.Models;
 using CookBook.DAL.Entities;
 using CookBook.DAL.Factories;
-using CookBook.DAL.Interfaces;
-using Microsoft.EntityFrameworkCore;
+using CookBook.DAL.Repositories;
 
 namespace CookBook.BL.Repositories
 {

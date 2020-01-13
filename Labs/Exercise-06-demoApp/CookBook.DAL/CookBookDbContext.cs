@@ -35,6 +35,9 @@ namespace CookBook.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+#if DEBUG
+            optionsBuilder.EnableSensitiveDataLogging();
+#endif
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer($@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog = MigrationDb;MultipleActiveResultSets = True;Integrated Security = True; ");

@@ -1,25 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CookBook.BL.Interfaces;
-using CookBook.BL.Models;
+using CookBook.Common;
 using CookBook.DAL.Factories;
 using CookBook.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Query;
 
-namespace CookBook.BL.Repositories
+namespace CookBook.DAL.Repositories
 {
     public class RepositoryBase<TEntity, TListModel, TDetailModel> : IRepository<TEntity, TListModel, TDetailModel>
         where TEntity : class, IEntity, new()
-        where TListModel : ModelBase, new()
-        where TDetailModel : ModelBase, new()
+        where TListModel : IId, new()
+        where TDetailModel : IId, new()
     {
         protected readonly Func<TEntity, IEnumerable<IEntity>>[] CollectionsToBeSynchronized;
         protected readonly IDbContextFactory DbContextFactory;
         protected readonly Func<TEntity, TDetailModel> MapDetailModel;
-        protected readonly Func<TDetailModel, TEntity> MapEntity;
+        protected readonly Func<TDetailModel, IEntityFactory<TEntity>, TEntity> MapEntity;
         protected readonly Func<TEntity, TListModel> MapListModel;
 
         protected readonly Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> DetailIncludes;
@@ -27,7 +26,7 @@ namespace CookBook.BL.Repositories
 
 
         public RepositoryBase(IDbContextFactory dbContextFactory,
-            Func<TDetailModel, TEntity> mapEntity,
+            Func<TDetailModel, IEntityFactory<TEntity>, TEntity> mapEntity,
             Func<TEntity, TListModel> mapListModel,
             Func<TEntity, TDetailModel> mapDetailModel,
             Func<TEntity, IEnumerable<IEntity>>[] collectionsToBeSynchronized,
@@ -45,7 +44,7 @@ namespace CookBook.BL.Repositories
 
         public void Delete(TDetailModel detailModel)
         {
-            this.Delete(detailModel.Id);
+            Delete((Guid) detailModel.Id);
         }
 
         public void Delete(Guid id)
@@ -69,9 +68,8 @@ namespace CookBook.BL.Repositories
         {
             using (var dbContext = DbContextFactory.CreateDbContext())
             {
-                var entity = MapEntity(detailModel);
-
-                dbContext.Update(entity);
+                var entity = MapEntity(detailModel, new EntityFactory<TEntity>(dbContext.ChangeTracker));
+                dbContext.Update<TEntity>(entity);
                 SynchronizeCollections(dbContext, entity);
 
 #if DEBUG
