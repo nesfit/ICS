@@ -707,7 +707,7 @@ Point p2 = new Point (); // p2.x and p2.y will be 0
 ## Enums, Flags
 * `enum` is a *value type*
   * creates an enumeration of named numerical values (int, 0,1...)
-  * underlying type can be changed to `long`
+  * underlying type can be changed to `long`, `short`, `byte` 
 
 * `enum` with the attribute `flags`
   * *single variable* may contain *multiple values*
