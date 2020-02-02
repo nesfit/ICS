@@ -9,7 +9,7 @@ Cílem je vytvořit použitelnou a snadno rozšiřitelnou aplikaci, která splň
 Zadání úmyslně není striktní, je Vám ponechána volnost, pro vlastní realizaci. Při hodnocení je kladen důraz na technické zpracování a kvalitu kódu, ale hodnotíme i použitelnost a grafické zpracování aplikace. Pokud Vám přijde, že v zadání chybí nějaká funkcionalita, neváhejte ji doplnit. Pište aplikaci tak, aby jste ji sami chtěli používat.
 
 # Zadání - Aplikace pro správu filmů
-Výsledná aplikace má sloužit pro správu filmové kolekce. Pro zjednodušení si můžete představit, že vytváříte jednodušší verzi webu jako IMDB nebo ČSFD.
+Výsledná aplikace má sloužit pro správu filmové kolekce. Pro zjednodušení si můžete představit, že vytváříte jednodušší desktopovou verzi aplikace k webu jako IMDB nebo ČSFD.
 
 ---
 ## Data
@@ -43,7 +43,7 @@ V rámci dat, se kterými se bude pracovat budeme požadovat minimálně násled
 ## Funkcionalita
 Aplikace bude obsahovat několik pohledů pro zobrazování a zadávání dat. 
 
-Je požadováno perzistentní uložení dat. To znamená, že když se aplikace restartuje, tak nesmí o data přijít. Je nutno data ukládat za běhu aplikace, aby bylo možno demonstrovat, že když se například pomocí aplikace přidá nový film, tak se tento film zobrazí v seznamu filmů (a podobně pro ostatní data).
+Je požadováno **perzistentní** uložení dat. To znamená, že když se aplikace restartuje, tak nesmí o data přijít. Je nutno data ukládat za běhu aplikace, aby bylo možno demonstrovat, že když se například pomocí aplikace přidá nový film, tak se tento film zobrazí v seznamu filmů (a podobně pro ostatní data).
 
 Pro uložení zvolte (SQL databázi), kterou zpřístupníte pomocí Entity Framework Core 3.1. 
 
@@ -55,7 +55,7 @@ Seznam bude obsahovat všechny filmy dostupné v aplikaci. Bude možno se z něj
 ### Detail filmu
 Pohled zobrazuje detail jednotlivého filmu se všemi informacemi o filmu (viz kapitolu Data). Na stránce se také dá přidávat nové hodnocení filmu a zobrazuje se průměrná číselná hodnota hodnocení a textové popisy jednotlivých existujících hodnocení.
 
-### Pohled pro editaci filmu
+### Editace filmu
 Pohled, který slouží na editaci filmu. Může se využít na vytvoření nového filmu nebo na editaci existujícího filmu. Bude obsahovat všechny informace o filmu včetně výběru herců a režisérů (viz kapitola Data).
 
 ### Seznam osob (herců/režisérů)
@@ -64,10 +64,10 @@ Pohled obsahuje všechny osoby. Bude možno se z něj překliknout na detail oso
 ### Detail osoby
 Detail osoby - stránka zobrazuje všechny informace o konkrétní osobě včetně seznamu filmů, ve kterých hrála a které režírovala (viz kapitola Data).
 
-### Pohled pro editaci osoby
+### Editace osoby
 Pohled, který slouží na editaci osoby. Může se využít na vytvoření nové osoby nebo na editaci existující osoby. Bude obsahovat všechny informace o osobě včetně filmů, ve kterých hrála a které režírovala (viz kapitola Data).
 
-### Pohled "Vyhledávání"
+### "Vyhledávání"
 Pohled, na kterém můžete použít textové vyhledávání napříč záznamy v aplikaci. Seznam všech nalezených záznamů se zobrazí na stránce a bude se dát překlikem dostat na detail daného záznamu (v případě hodnocení se odnaviguje na detail filmu, který k hodnocení přislouchá). Textově se vyhledává minimálně v těchto atributech:
 - Film
    - Originální název
@@ -91,7 +91,7 @@ Návod na přidání člena projektu můžete najít zde: *https://docs.microsof
 Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*. Pokud uvidíme, že existuje malé množství nelogických a nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a může to vést na snížení bodového hodnocení. Organizaci pojmenujte **ics-2020-team<0000>** dle Vašeho čísla týmu a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/ics-2020-team0000/project. Nezapomeňte nastavit **Work item process** template na **Scrum**.
 
 ---
-### Doporučení - za bonusové body při obhajobě
+### Doporučení - za bonusové body při závěrečné obhajobě
 
 * Pro řízení projektu využijte metodologii **[Scrum](https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/scrum-process-workflow?view=azure-devops)**. 
 * Plánujte sprinty na jednotlivé fáze odevzdání. Práci rozdělte minimálně na **Product Backlog Item (PBI), Tasks a Bugs**. Vyžijete záložky **Boards** pro vzájemnou synchronizaci a **[Burndown chart](https://docs.microsoft.com/en-us/azure/devops/report/sql-reports/sprint-burndown-scrum?view=azure-devops-2019&viewFallbackFrom=azure-devops)** bude na konci každého sprintu, tj. při každém odevzdání, reflektovat reálný stav projektu.
@@ -117,7 +117,7 @@ Hodnotíme:
 -   verzování v GITu po logických částech
 
 -   logické rozšíření datového návrhu nad rámec zadání
-    (bonusové body o které se přihlaště při obhajobě)
+    (bonusové body)
 
 ---    
 ### Fáze 2 – databáze, repozitáře a mapování
