@@ -6,7 +6,7 @@ namespace Exercise_01.CalculatorConsoleApp
 {
     internal static class EnumExtensions
     {
-        internal static String GetDescription(this Enum value)
+        internal static string GetDescription(this Enum value)
         {
             var field = value.GetType().GetField(value.ToString());
 
