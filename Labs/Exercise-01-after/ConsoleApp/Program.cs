@@ -9,7 +9,7 @@ namespace Exercise_01.ConsoleApp
         ///     - cannot call non-static methods
         /// </summary>
         /// <param name="args">array of strings which represents parameters of the program</param>
-        private static void Main(String[] args)
+        private static void Main(string[] args)
         {
             CodeDemonstrations.RunAllDemonstrations();
 

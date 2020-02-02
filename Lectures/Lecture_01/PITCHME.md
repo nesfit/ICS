@@ -65,12 +65,15 @@
   * Resharper
   * Code metrices
   * Markdown Editor
-  * Entity Framework 6 Power tools
+  * Entity Framework Power tools
   * GitFlow
   * Mnemonic templates
 * Tools & Services:
   * LinqPad
   * DotPeek
+  * Source Tree
+  * VSCode
+  * Rider
   * Azure DevOps
 
 @snap[east span-60]
@@ -170,10 +173,10 @@ Supports GitHub flavored Markdown.
 
 
 +++
-### [Entity Framework 6 Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition)
+### [Entity Framework Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools)
 @snap[west span-40]
 
-Useful design-time utilities for EF 6, accessible through the Visual Studio Solution Explorer context menu when right-clicking on a file containing a derived DbContext class.
+Useful design-time utilities for EF 6/ EF Core, accessible through the Visual Studio Solution Explorer context menu when right-clicking on a file containing a derived DbContext class.
 
 @snapend
 
@@ -268,6 +271,13 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 +++
 ### Open source
 * [**.NET Foundation**](https://dotnetfoundation.org/)
+* [.NET Core](https://github.com/dotnet/core)
+* [.NET Runtime/CoreFX](https://github.com/dotnet/runtime)
+* [ASP.NET Core](https://github.com/dotnet/aspnetcore)
+* [.NET Standard](https://github.com/dotnet/standard)
+* [EF Core](https://github.com/dotnet/efcore)
+* [WPF](https://github.com/dotnet/wpf)
+* [Reference Source - .NET Framework (readonly)](https://github.com/microsoft/referencesource)
 * Independent, Innovative, Commercially-friendly
 * Google, JetBrains, Red Hat, Samsung, Unity...
 
@@ -357,7 +367,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 +++
 ## The .NET family of frameworks
-@snap[midpoint span-90]
+@snap[midpoint span-80]
 ![](/Lectures/Lecture_01/Assets/img/dot_net_libraries.png)
 @snapend
 
@@ -402,6 +412,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 @[9]
 @[11]
 @[12]
+@[1-15]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/HelloWorld.cs)
 
 +++
@@ -438,10 +449,9 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 +++
 ## Literals
 * Data inserted in a code
-
 ```C#
 var hitchhikerConstant = 42;
-var helloWorld = 'Hello World';
+var helloWorld = "Hello World";
 var pi = 3.14159;
 ```
 
@@ -489,6 +499,10 @@ var sum = 1 + 5 * (6 / 2);
 
 ---
 ## Datatypes
+@snap[north-east span-10]
+![](/Lectures/Lecture_01/Assets/img/Overview_small.png)
+@snapend
+
 * Instruct the compiler or interpreter how the programmer intends to use the data
 * **Value type**
   * Variable directly **contains data**
@@ -502,6 +516,9 @@ var sum = 1 + 5 * (6 / 2);
 
 +++
 ## Value Types
+@snap[north-east span-10]
+![](/Lectures/Lecture_01/Assets/img/Overview_small.png)
+@snapend
 * **Simple Types**
   * Signed integral: `sbyte, short, int, long`
   * Unsigned integral: `byte, ushort, uint, ulong`
@@ -513,8 +530,9 @@ var sum = 1 + 5 * (6 / 2);
   * User-defined types of the form `enum E {...}`
 * **Struct types**
   * User-defined types of the form `struct S {...}`
-* **Nullable value types**
+* **Nullable value types** - become reference types
   * Extensions of all other value types with a `null` value
+  * [Boxing/Unboxing](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types#boxing-and-unboxing)
 
 +++
 ### Signed Integral
@@ -602,30 +620,30 @@ Using specific character as a suffix
 * 8 and 16 bits types do not have arithmetical operations
   * E.g., `byte, sbyte, short, ushort`
   * Compiler does implicitly cast to a large type `int, uint`
-  ```C#
-  short x = 1, y = 1;
-  short z = x + y;    // Compile-time error
-  ```
+```C#
+short x = 1, y = 1;
+short z = x + y;    // Compile-time error
+```
   * Solution is to do an explicit cast
-  ```C#
-  short x = 1, y = 1;
-  short z = (short)(x + y); // OK
-  ```
+```C#
+short x = 1, y = 1;
+short z = (short)(x + y); // OK
+```
 
 +++
 ### Numerical Overflow
 * Overflow of integral types
-  ```C#
-  int a = int.MinValue;
-  a--;
-  Console.WriteLine(a == int.MaxValue); // True
-  ```
+```C#
+int a = int.MinValue;
+a--;
+Console.WriteLine(a == int.MaxValue); // True
+```
 * Usage of `checked` keyword or compiler option **/checked+**
-  ```C#
-  int a = int.MinValue;
-  var i = checked(a--); // throw OverflowException
-  Console.WriteLine(i == int.MaxValue);
-  ```
+```C#
+int a = int.MinValue;
+var i = checked(a--); // throw OverflowException
+Console.WriteLine(i == int.MaxValue);
+```
 
 +++
 ### Truncation and precision loss
@@ -637,14 +655,14 @@ float f2 = 0.09f * 99.999999f;
 Assert.False(f1>f2);
 ```
 * `decimal` is stored in decimal form, but it still has a limited precision
-  ```C#
-  decimal m = 1M  /  6M;                          // 0.1666666666666666666666666667M
-  double  d = 1.0 / 6.0;                          // 0.16666666666666666
-  decimal notQuiteWholeM = m + m + m + m + m + m; // 1.0000000000000000000000000002M
-  double  notQuiteWholeD = d + d + d + d + d + d; // 0.99999999999999989
-  Console.WriteLine(notQuiteWholeM == 1M);        // False
-  Console.WriteLine(notQuiteWholeD < 1.0);        // True
-  ```
+```C#
+decimal m = 1M  /  6M;                          // 0.1666666666666666666666666667M
+double  d = 1.0 / 6.0;                          // 0.16666666666666666
+decimal notQuiteWholeM = m + m + m + m + m + m; // 1.0000000000000000000000000002M
+double  notQuiteWholeD = d + d + d + d + d + d; // 0.99999999999999989
+Console.WriteLine(notQuiteWholeM == 1M);        // False
+Console.WriteLine(notQuiteWholeD < 1.0);        // True
+```
 
 +++
 ## Bitwise operations
@@ -658,44 +676,6 @@ Assert.False(f1>f2);
 |   `>>`   | Right shift |  `0x20 >> 1`     | 0x10        |
 
 +++
-## Nullable value types
-* **Do not have to be assigned** *before they can be accessed*
-* For each non-nullable value type `T` there is a corresponding nullable value type `T?`
-  * With the same value range as `T` + **additional value** - `null`
-
-```C#
-int  ten = 10;
-int? one = 1;
-int? canBeNull = null;
-int  @null = null;      // Compile-time error
-
-```
-
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/NullableType.cs&lang=C#&title=Nullable Type Sample
-@[10-11, 13-14]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/NullableType.cs)
-
-
-+++
-## Boolean type
-* `System.Boolean`/`bool`
-* Store logical values
-  * `true` or `false`
-  ```C#
-  sizeof(bool) == sizeof(uint8) == sizeof(sbyte)
-  ```
-* Nothing can be casted to `bool`
-* Operators:
-  * Equality `==`, `!=`
-  * Conditional operators `&&`, `||`
-  ```C#
-  public bool UseUmbrella(bool rainy, bool sunny, bool windy) {
-    return !windy && (rainy || sunny);
-  }
-  ```
-* Often used for the *Lazy evaluation*
-
-+++
 ## Character type
 * `System.Char`/`char`
 * Literal is denoted by a single-quote, e.g., `'a'`
@@ -704,7 +684,83 @@ int  @null = null;      // Compile-time error
   * *Explicit* cast to others
 
 +++
+## Boolean type
+* `System.Boolean`/`bool`
+* Store logical values
+  * `true` or `false`
+
+```C#
+sizeof(bool) == sizeof(uint8) == sizeof(sbyte)
+```
+
+* Nothing can be casted to `bool`
+* Operators:
+  * Equality `==`, `!=`
+  * Conditional operators `&&`, `||`
+
+```C#
+public bool UseUmbrella(bool rainy, bool sunny, bool windy) {
+  return !windy && (rainy || sunny);
+}
+```
+* Often used for the *Lazy evaluation*
+```C#
+public static Foo Foo => _foo ?? (_foo = new Foo()); //later explained
+```
+
++++
+### Enum
+* Used for enumerations
+* **Do not use magic values!**
+* Default size is `int`, can be changed to `byte`, `sbyte`, etc...
+
+```C#
+enum Foo {
+  none,
+  one,
+  two,
+  ten = 10
+}
+```
+
++++
+### Struct
+* Similar to a class type
+* Unlike classes, *structs* are **value types** and do not typically require heap allocation
+* Struct types **do not** support
+  * User-specified *inheritance*
+  * Struct types implicitly inherit from type `System.ValueType` that inherits `System.Object`
+
+```C#
+struct Foo
+{
+  string foo;
+}
+```
+
++++
+## Nullable value types
+* **Do not have to be assigned** *before they can be accessed*
+* Because they are reference types, thus their `default` value is `null`
+* For each non-nullable value type `T` there is a corresponding nullable value type `System.Nullable<T>`, `T?`
+  * With the same value range as `T` + **additional value** - `null`
+
+```C#
+int  ten = 10;
+int? one = 1;
+int? canBeNull = null;
+int  cannotBeNull = null;      // Compile-time error
+```
+
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/NullableType.cs&lang=C#&title=Nullable Type Sample
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/NullableType.cs)
+
+
++++
 ##  Reference types
+@snap[north-east span-10]
+![](/Lectures/Lecture_01/Assets/img/Overview_small.png)
+@snapend
 * **Class types**
   * Ultimate base class of all other types: `object`
   * Unicode strings: `string`
@@ -715,7 +771,7 @@ int  @null = null;      // Compile-time error
   * Single- and multi-dimensional, e.g., `int[]` and `int[,]`
 * **Delegate types**
   * User-defined types of the form `delegate int D(...)`
-* **Generics**,
+* **Generics**
   * Parameterized with other types `MyGenericType<T>`
 
 +++
@@ -731,24 +787,9 @@ int  @null = null;      // Compile-time error
 ```C#
 class @Class{}
 
-class Dog
+class Foo
 {
-  string _name;
-}
-```
-
-+++
-### Struct
-* Similar to a class type
-* Unlike classes, *structs* are **value types** and do not typically require heap allocation
-* Struct types **do not** support
-  * User-specified *inheritance*
-  * Struct types implicitly inherit from type `ValueType` that inherits `Object`
-
-```C#
-struct Cat
-{
-  string _name;
+  string foo;
 }
 ```
 
@@ -782,12 +823,14 @@ public delegate int PerformCalculation(int x, int y);
 
 class MyClass
 {
-  PerformCalculation PerformCalculation;
+  PerformCalculation PerformCalculation = Sum;
 
   void CallDelegate()
   {
     PerformCalculation(1, 2);
   }
+
+  static int Sum(int x, int y) => x + y;
 }
 ```
 
@@ -796,21 +839,22 @@ class MyClass
 * `System.String` / `string`
 * Represents *sequence of characters*
 * **Reference** data type
+* Always *immutable*
 * Literal is denote by double-quotes. e.g., `"string value"`
 * Verbatim string is denote by `@` prefix, e.g.,
-  ```C#
-  @"Multi-line
-  string"
-  ```
+```C#
+@"Multi-line
+string"
+```
 
 +++
 #### String concatenation
 * `+` operator
 * Not all operands need to be strings
 * Non-string operands get called `ToString()` method on them
-  ```C#
-  string s = "a" + 5; // a5
-  ```
+```C#
+string s = "a" + 5; // a5
+```
 * For multiple string concatenation operations avoid usage of `+`, use:
   * `System.Text.StringBuilder`
   * `s = System.String.Format("{0} times {1} = {2}", i, j, (i*j));`
@@ -831,9 +875,7 @@ class MyClass
   * `int[][]` is a *single-dimensional array of single-dimensional* array of int
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/Array.cs&lang=C#&title=Array Sample
-@[11-13]
-@[15-16]
-@[18-21]
+@[11-21]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Array.cs)
 
 ---
@@ -949,9 +991,7 @@ class MyClass
 | Boolean   | `false`        |
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/DefaultValue.cs&lang=C#&title=Default Value Sample
-@[12-13]
-@[15-16]
-@[18]
+@[12-18]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/DefaultValue.cs)
 
 ---
@@ -989,10 +1029,16 @@ class MyClass
 * Used to pass multiple variables of the same type
 
 ```C#
-int Sum(params int[] list)
+int Sum(params int[] items)
 {
-  return list.Sum();
+  return items.Sum();
 }
+```
+
+```C#
+var one   = Sum(1);
+var two   = Sum(1, 2);
+var three = Sum(1, 2, 3);
 ```
 
 +++
@@ -1044,11 +1090,11 @@ Foo(y: 1);
 ```C#
 5*4
 ```
+
+* If you are not sure about priority, use '()'
 ```C#
 (5*4)+1
 ```
-
-* If you are not sure about priority, use '()'
 
 +++
 ### Void expressions
@@ -1061,19 +1107,21 @@ Expression<Action> tree = () => Console.WriteLine("Hello");
 Expression<Action> tree2 = () => { Console.WriteLine("Hello"); }; // Compile-time error
 ```
 
-* [An expression may be classified as] "nothing". This occurs when the expression is an *invocation of a method with a return type of void*. An expression classified as nothing *is only valid in the context of a statement expression*.
+* [An expression may be classified as] "nothing". 
+  * This occurs when the expression is an *invocation of a method with a return type of void*. 
+  * An expression classified as nothing *is only valid in the context of a statement expression*.
 
 +++
 ### Assigning expression
 * E.g., `x=x+5`
 * Can be part of another expression
-  ```C#
-  y = 5 * (x = 2);
-  ```
+```C#
+y = 5 * (x = 2);
+```
 * Can be used to initialize multiple variables:
-  ```C#
-  a = b = c = d = e = 0;
-  ```
+```C#
+a = b = c = d = e = 0;
+```
 * Combination of operators
   * `x+=5`, the same meaning as `x=x+5`
 
@@ -1084,9 +1132,9 @@ Expression<Action> tree2 = () => { Console.WriteLine("Hello"); }; // Compile-tim
 * Left-associative operators
   * `8/4/2` equals `(8/4)/2`
 * Right-associative operators
-  ```C#
-  x = y = 3;
-  ```
+```C#
+x = y = 3;
+```
 
 ---
 ## Statements - Selection
@@ -1096,12 +1144,15 @@ Expression<Action> tree2 = () => { Console.WriteLine("Hello"); }; // Compile-tim
 * Conditional (ternary) operand `?:`
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/If.cs&lang=C#&title=If Sample
-@[10-13]
-@[14-17]
+@[10-17]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/If.cs)
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/Switch.cs&lang=C#&title=Switch Sample
 @[13-30]
+[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Switch.cs)
+
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Switch.cs&lang=C#&title=Switch Sample C# 8
+@[45-64]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Switch.cs)
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/TernaryOperand.cs&lang=C#&title=Ternary Operand Sample
@@ -1176,8 +1227,8 @@ Expression<Action> tree2 = () => { Console.WriteLine("Hello"); }; // Compile-tim
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Using.cs)
 
 +++?code=/Lectures/Lecture_01/Assets/sln/Tests/Lock.cs&lang=C#&title=Lock Sample
-@[9-19]
-@[24-30]
+@[11-22]
+@[24-35]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Lock.cs)
 
 ---
@@ -1288,7 +1339,7 @@ namespace N2
 ---
 ## References:
 
-[C# 7.0 in a Nutshell: The Definitive Reference](https://www.amazon.com/C-7-0-Nutshell-Definitive-Reference/dp/1491987650)
+[C# 8.0 in a Nutshell: The Definitive Reference](https://www.amazon.com/C-8-0-Nutshell-Definitive-Reference/dp/1492051136)
 [Visual Studio Documentation](https://docs.microsoft.com/en-us/visualstudio)
 [Microsoft Visual Studio](https://visualstudio.microsoft.com)
 [Microsoft](https://www.microsoft.com)
@@ -1305,10 +1356,14 @@ namespace N2
 [Wikipedia .Net Framework](https://en.wikipedia.org/wiki/.NET_Framework)
 [CLR In Process](https://scottdorman.github.io/2008/11/10/clr-4.0-in-process-side-by-side-clr-hosting/)
 [CodeProject Improve garbage collector performance](https://www.codeproject.com/Articles/39246/NET-Best-Practice-No-2-Improve-garbage-collector)
-[C# 7.0 in a Nutshell](http://www.albahari.com/nutshell/)
+[C# 8.0 in a Nutshell](http://www.albahari.com/nutshell/)
 [.NET Core, .NET Framework, Xamarin](https://blogs.msdn.microsoft.com/cesardelatorre/2016/06/27/net-core-1-0-net-framework-xamarin-the-whatand-when-to-use-it/)
 
 +++
 
 ## Credits
 * Michal Orlíček - for slides preparation
+
+---
+
+---?include=/Lectures/Lecture_01/Assets/csharp-version-history.md

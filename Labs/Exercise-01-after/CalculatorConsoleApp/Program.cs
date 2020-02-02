@@ -10,14 +10,14 @@ namespace Exercise_01.CalculatorConsoleApp
             Console.WriteLine($"Exception occured: {exception.Message}");
         }
 
-        internal static void LogMessage(String message)
+        internal static void LogMessage(string message)
         {
             Console.WriteLine(message);
         }
 
-        internal static void Main(String[] args)
+        internal static void Main(string[] args)
         {
-            if (args == null) args = new String[0];
+            if (args == null) args = new string[0];
 
             var parser = new Parser(with =>
             {

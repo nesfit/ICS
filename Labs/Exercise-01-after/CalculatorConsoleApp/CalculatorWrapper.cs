@@ -13,7 +13,7 @@ namespace Exercise_01.CalculatorConsoleApp
             ExecuteOperation(op1, op2, operation);
         }
 
-        private static Int32 CheckOperand(Int32? operand)
+        private static int CheckOperand(int? operand)
         {
             if (operand == null)
                 throw new ArgumentNullException(nameof(operand), "Operand cannot be null!");
@@ -27,7 +27,7 @@ namespace Exercise_01.CalculatorConsoleApp
             return operation.Value;
         }
 
-        private static void ExecuteOperation(Int32 op1, Int32 op2, MathOperation operation)
+        private static void ExecuteOperation(int op1, int op2, MathOperation operation)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace Exercise_01.CalculatorConsoleApp
             }
         }
 
-        private static void PublishResult(Int32 op1, Int32 op2, MathOperation operation, Int32 result)
+        private static void PublishResult(int op1, int op2, MathOperation operation, int result)
         {
             Console.WriteLine($"{op1}{operation.GetDescription()}{op2}={result}");
         }

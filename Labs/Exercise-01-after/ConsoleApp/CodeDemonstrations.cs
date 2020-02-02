@@ -43,7 +43,7 @@ namespace Exercise_01.ConsoleApp
         /// <summary>
         ///     Shows if branching, note: has to be static if we want to call it from Main
         /// </summary>
-        public static void ShowIf(Int32 condition)
+        public static void ShowIf(int condition)
         {
             if (condition > 3)
                 Console.WriteLine("condition is greater than 3");
@@ -58,8 +58,8 @@ namespace Exercise_01.ConsoleApp
         /// </summary>
         public static void Calculate()
         {
-            const Int32 operand1 = 1;
-            const Int32 operand2 = 2;
+            const int operand1 = 1;
+            const int operand2 = 2;
             var sum = Calculator.Calculate(operand1, operand2, MathOperation.Addition);
             Console.WriteLine($"{operand1}+{operand2}={sum}");
         }

@@ -15,7 +15,7 @@
 * Download GitHub repository as ZIP, extract and copy the Exercise-01-before to your newly cloned repository
 * Commit & push & finish the *Initial commit task*.
 
-## Visual Studio 2017 
+## Visual Studio 2019 
 * Visual Studio -- Start page 
 * Look at the Visual Studio components, VIEW, BUILD, TOOLS, TESTS, RESHARPER ...
   * Editor, Solution Explorer, Team Explorer, Error list, Outputs, ...
@@ -23,9 +23,15 @@
 * Create simple calculator, use shortcuts and refactorings as much as possible!
 * Do not forget to commit logical, compilable parts!
 
+## Show Other Tools
+* Rider
+* VSCode
+* SourceTree
+
 ## Individual Assignment 
 * Create project *CalculatorApp* 
 * Add *CommandLineParser* lib from NuGet
+* Refactor the application to be modular, each class should respect **Single Responsibility Principle**
 
 
 ## Shortcuts

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -10,25 +11,27 @@ namespace Tests
         private readonly object _thisLock = new object();
 
         private int _increment = 0;
-        private void CriticalSection()
+        private async Task CriticalSection()
         {
+            await Task.Delay(16);
+
             lock (_thisLock)
             {
-                Task.Delay(16);
                 _increment++;
             }
         }
 
         [Fact]
-        private void Test()
+        private async Task Test()
         {
-            const int attempts = 1_000_000;
-            for (var i = 0; i < attempts; i++)
-            {
-                Task.Run(CriticalSection).ConfigureAwait(false);
-            }
+            var attempts = 1_000_000;
+            var tasks = 
+                Enumerable.Range(1, attempts)
+                .Select(_ => Task.Run(CriticalSection));
+            
+            await Task.WhenAll(tasks);
 
-            Assert.True(_increment < attempts);
+            Assert.Equal(attempts, _increment);
         }
     }
 }
