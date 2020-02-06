@@ -137,7 +137,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 * [Roman Jašek]()
 * [Tibor Jašek]()
 * [Adam Jež]()
-* [Michal Mrnušťík]()
+* [Michal Mrnuštík]()
 * [Jan Pluskal](http://www.fit.vutbr.cz/~ipluskal/)
 * [Jiří Pokorný]()
 
