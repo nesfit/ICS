@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CookBook.DAL.Migrations
 {
     [DbContext(typeof(CookBookDbContext))]
-    [Migration("20190222093707_Create CookBook database")]
-    partial class CreateCookBookdatabase
+    [Migration("20200208141331_FixIngredientDelete")]
+    partial class FixIngredientDelete
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,28 @@ namespace CookBook.DAL.Migrations
                 .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("CookBook.DAL.Entities.IngredientAmountEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<double>("Amount");
+
+                    b.Property<Guid>("IngredientId");
+
+                    b.Property<Guid>("RecipeId");
+
+                    b.Property<int>("Unit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IngredientId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("IngredientAmountEntity");
+                });
 
             modelBuilder.Entity("CookBook.DAL.Entities.IngredientEntity", b =>
                 {
@@ -51,6 +73,19 @@ namespace CookBook.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Recipes");
+                });
+
+            modelBuilder.Entity("CookBook.DAL.Entities.IngredientAmountEntity", b =>
+                {
+                    b.HasOne("CookBook.DAL.Entities.IngredientEntity", "Ingredient")
+                        .WithMany()
+                        .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("CookBook.DAL.Entities.RecipeEntity", "Recipe")
+                        .WithMany("Ingredients")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

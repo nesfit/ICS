@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CookBook.DAL.Migrations
 {
     [DbContext(typeof(CookBookDbContext))]
-    [Migration("20190222093813_Added navigation properties")]
-    partial class Addednavigationproperties
+    [Migration("20200208141310_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,16 +21,16 @@ namespace CookBook.DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("CookBook.DAL.Entities.IngredientAmoutEntity", b =>
+            modelBuilder.Entity("CookBook.DAL.Entities.IngredientAmountEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<double>("Amount");
 
-                    b.Property<Guid?>("IngredientId");
+                    b.Property<Guid>("IngredientId");
 
-                    b.Property<Guid?>("RecipeId");
+                    b.Property<Guid>("RecipeId");
 
                     b.Property<int>("Unit");
 
@@ -40,7 +40,7 @@ namespace CookBook.DAL.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("IngredientAmoutEntity");
+                    b.ToTable("IngredientAmountEntity");
                 });
 
             modelBuilder.Entity("CookBook.DAL.Entities.IngredientEntity", b =>
@@ -75,15 +75,17 @@ namespace CookBook.DAL.Migrations
                     b.ToTable("Recipes");
                 });
 
-            modelBuilder.Entity("CookBook.DAL.Entities.IngredientAmoutEntity", b =>
+            modelBuilder.Entity("CookBook.DAL.Entities.IngredientAmountEntity", b =>
                 {
                     b.HasOne("CookBook.DAL.Entities.IngredientEntity", "Ingredient")
                         .WithMany()
-                        .HasForeignKey("IngredientId");
+                        .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CookBook.DAL.Entities.RecipeEntity", "Recipe")
                         .WithMany("Ingredients")
-                        .HasForeignKey("RecipeId");
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
