@@ -4,11 +4,11 @@ namespace Examples
 {
     /// <summary>
     ///     Invariance example
-    ///     Tackling Invariance Using Covariance and Contravariance in C#
+    ///     Tackling Invariance Using Covariant and Contravariant modifiers in C#
     ///     http://www.c-sharpcorner.com/UploadFile/24b242/tackling-invariance-using-covariance-and-contra-variance-in/
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Storage<T> : IDepositor<T>, IRetreiver<T>
+    public class Storage<T> : IDepositor<T>, IRetriever<T>
     {
         private readonly List<T> _inventory = new List<T>();
 
@@ -17,19 +17,19 @@ namespace Examples
             this._inventory.Add(item);
         }
 
-        IEnumerable<T> IRetreiver<T>.GetItems()
+        IEnumerable<T> IRetriever<T>.GetItems()
         {
             return this._inventory;
         }
     }
 
-    ///Covariance
-    public interface IRetreiver<out T>
+    ///Covariant
+    public interface IRetriever<out T>
     {
         IEnumerable<T> GetItems();
     }
 
-    ///Contravariance
+    ///Contravariant
     public interface IDepositor<in T>
     {
         void StoreItems(T item);

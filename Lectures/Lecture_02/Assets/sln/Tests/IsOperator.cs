@@ -1,4 +1,5 @@
-﻿using Examples;
+﻿using System.Diagnostics.CodeAnalysis;
+using Examples;
 using Xunit;
 
 namespace Lecture02.Tests
@@ -8,7 +9,8 @@ namespace Lecture02.Tests
         [Fact]
         public void IsOperatorTest()
         {
-            var unknownCat = new WildCat();
+            WildCat unknownCat = new WildCat();
+
             Assert.False(unknownCat is Cat);
         }
     }

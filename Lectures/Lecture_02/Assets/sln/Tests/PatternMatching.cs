@@ -1,4 +1,5 @@
-﻿using Examples;
+﻿using System.Diagnostics.CodeAnalysis;
+using Examples;
 using Xunit;
 
 namespace Lecture02.Tests
@@ -8,7 +9,7 @@ namespace Lecture02.Tests
         [Fact]
         public void WithoutPatternMatchingTest()
         {
-            var unknownCat = new WildCat();
+            WildCat unknownCat = new WildCat();
             if (unknownCat is Cat)
             {
                 Assert.NotNull(unknownCat as Cat);
@@ -19,7 +20,7 @@ namespace Lecture02.Tests
         [Fact]
         public void PatternMatchingTest()
         {
-            var unknownCat = new WildCat();
+            WildCat unknownCat = new WildCat();
             if (unknownCat is Cat cat)
             {
                 Assert.NotNull(cat);
