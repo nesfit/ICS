@@ -1,11 +1,11 @@
 ﻿@snap[north span-100]
 
-# Object-oriented programming and advanced constructs in C#
+# Object-oriented Programming and Advanced Constructs in C#
 
 @snapend
 
 @snap[midpoint span-100]
-## OOP, Exceptions, events, delegates, lambda expressions and generics
+## OOP, Exceptions, Events, Delegates, Lambda Expressions and Generics
 @snapend
 
 @snap[south-east span-40]
@@ -16,22 +16,16 @@
 ## Object Oriented Programming (OOP)
 * First appearance in **SIMULA 67**
 * Abstraction of real word
-* Real object (dog) has some properties (**length, a color of coat, ...**) and an ability to do something (**bark, bite**)
+* Real object(dog) has some properties(**length, a color of coat, ...**) and an ability to do something(**bark, bite**)
 * OOP Object interconnects data and behavior together
   * **Behavior** is described by **procedures** and **functions**, both called **methods** in OOP
-  * Data is stored in object's **member variable (field)**
+  * Data is stored in object's **member variable(field)**
   * **Methods** and **fields** together create objects
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=OOP Sample
-@[6-25]
-@[8]
-@[10-14]
-@[16-17]
-@[19-22]
-@[24]
-@[6-25]
++++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=OOP Sample - Ingnore details for now!
+@[10-28]
 
-[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
+<!-- [Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs) -->
 
 +++
 ## Three Principles of OOP
@@ -46,17 +40,32 @@
   * **Polymorphism**
 
 +++
-#### Encapsulation
+### Encapsulation
 * Hides implementation details
 * Improves modularity
 * Definitions:
   * A language mechanism for **restricting direct access** to some of the **object's components**
-  * A language construct that **facilitates the bundling of data with the methods** (or other functions) operating on that data
+  * A language construct that **facilitates the bundling of data with the methods**(or other functions) operating on that data
+
++++
+#### Access Modifiers
+* Used for limiting access to *implementation details*
+* Ensures *encapsulation* and leads to safe code
+* **If a modifier is omitted, the most restrictive one is used**
+
++++
+| Modifier | Visibility |
+|-|-|
+|`public` | accessible *everywhere* |
+|`private` | accessible only in the **same** *class* or *struct* |
+|`protected` | accessible only in the **same** *class*, or in a *class* **that is derived** from the same class |
+|`internal` | accessible in the **same assembly**, but not from another assemblies |
+|`protected internal` | accessible in the **same assembly** in which it is declared, **or** from within a **derived** *class* in another assembly(*internal* **OR** *protected*) |
+|`private protected` |  accessible **only within its declaring assembly**, in the **same** *class*, **and** in a *class* **that is derived** from the same *class*(*internal* **AND** *protected*) |
 
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=Encapsulation Sample
-@[6-25]
-@[8-14]
+@[12,17-21]
 [Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
 
 +++
@@ -66,29 +75,26 @@
 * Reuse code and to independently extend original software via public classes
 * An *inherited class* is called a **subclass** of its **parent class** or **superclass** or **base class**
 
++++
+#### Identificators
+  * `null` - a reference that  *points to nowhere*
+  * `this` - a reference to a *current instance* of an object
+  * `base` - a reference to a *subtype* of a *super class*
+
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Animal.cs&lang=C#&title=Inheritance Sample
-@[3-6]
-@[3-4, 6]
-@[5]
 [Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Animal.cs)
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Pet.cs&lang=C#&title=Inheritance Sample
-@[3-16]
-@[3]
-@[3-16]
 [Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Pet.cs)
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=Inheritance Sample
-@[6-25]
-@[6]
-@[19-22]
-@[6-25]
+@[10-28]
 [Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
 
 +++
 #### Inheritance and Subtyping
 * In some languages inheritance and subtyping are no different
-* Generally in statically-typed class-based OO languages, such as (C++, C#, Java), whereas in others they differ
+* Generally in statically-typed class-based OO languages, such as(C++, C#, Java), whereas in others they differ
   * **subtyping** *establishes an is-a relationship*
   * **inheritance**:
     * only *reuses implementation and establishes* a **syntactic relationship**
@@ -109,56 +115,26 @@
 * **Parametric polymorphism**:
   * Code is written *without mention of any specific type* and thus *can be used transparently with any number of new types*
   * This is often known as **generics** in OOP, and *polymorphism* in functional programming
-* **Subtyping** (*subtype polymorphism* or *inclusion polymorphism*):
+* **Subtyping**(*subtype polymorphism* or *inclusion polymorphism*):
   * Name denotes instances of many different classes related by some common *base* class
 
 ---
-## Types
-* `class` - construction plan for an object
-* `enum` - enum data type as known from other languages
-* `interface` - mechanism to allow *subtype polymorphism*
-* `struct` - value type, alternation to class, does *not allow inheritance*, only *subtyping*
-
-+++
-### Identificators
-  * `null` - a reference that  *points to nowhere*
-  * `this` - a reference to a *current instance* of an object
-  * `base` - a reference to a *subtype* of a *super class*
-
-+++
-### Access Modifiers
-* Used for limiting access to *implementation details*
-* Ensures *encapsulation* and leads to safe code
-* **If a modifier is omitted, the most restrictive one is used**
-
-+++
-
-| Modifier | Visibility |
-|-|-|
-|`public` | accessible *everywhere* |
-|`private` | accessible only in the **same** *class* or *struct* |
-|`protected` | accessible only in the **same** *class*, or in a *class* **that is derived** from the same class |
-|`internal` | accessible in the **same assembly**, but not from another assemblies |
-|`protected internal` | accessible in the **same assembly** in which it is declared, **or** from within a **derived** *class* in another assembly (*internal* **OR** *protected*) |
-|`private protected` |  accessible **only within its declaring assembly**, in the **same** *class*, **and** in a *class* **that is derived** from the same *class* (*internal* **AND** *protected*) |
-
----
 ## Class
-* The most common of reference types
+* The most common of *reference types*
 * Think about it s a *construction plan for an object*
 * **Encapsulates** *data* and *behavior*
   ```C#
-  class YourClassName
+  class Foo
   {
   }
   ```
 
 +++
-### Static/non static
+### Static/non-static
 * `static` classes - **only one** instance for an **AppDomain**
   * *static members* belong to the **class** not the *object*
-* **non static** - classes are **instantiated** during program run
-  * *non static members* belongs to the *object*
+* **non-static** - classes are **instantiated** during program run
+  * *non-static members* belongs to the *object*
 
 +++
 ### Class may contain
@@ -211,7 +187,7 @@
 * Can access members of `class` or `struct`
 * Can
   * accept parameters - *values*, *reference types*, `ref`, `in`
-  * return result - in return type (`return`), or `ref` or `out` parameters
+  * return result - in return type `return`, or `ref` or `out` parameters
 
 +++
 #### Method Modifiers
@@ -236,14 +212,14 @@ int Foo(int x) { return x * 2; }
 int Foo(int x) => x * 2;
 ```
 
-* Method with empty return type (`void`):
+* Method with empty return type - `void`:
 
 ```C#
 void Foo(int x) => Console.WriteLine(x);
 ```
 
 +++
-#### Method Signatures
+#### Method Signature
 * Methods are declared in a *class* or *struct* by specifying:
   *  the **access level** such as public or private,
   *  **optional modifiers** such as abstract or sealed,
@@ -259,13 +235,13 @@ void Foo(int x) => Console.WriteLine(x);
 #### Method Overloads
 * **Return type** is not a part of the signature for overloading purpose
   ```C#
-  void Foo (int x) {...}
-  int  Foo (int x) {...} // Compile-time error
+  void Foo(int x) {...}
+  int  Foo(int x) {...} // Compile-time error
   ```
 * Method overloads can have different return types
   ```C#
-  int    Foo (int x) {...}
-  double Foo (double x) {...} // OK
+  int    Foo(int x) {...}
+  double Foo(double x) {...} // OK
   ```
 
 +++
@@ -276,10 +252,11 @@ void Foo(int x) => Console.WriteLine(x);
   ```C#
   void WriteCubes()
   {
-    Console.WriteLine (Cube (3));
-    Console.WriteLine (Cube (4));
-    Console.WriteLine (Cube (5));
-    int Cube (int value) => value * value * value;
+    Console.WriteLine(Cube(3));
+    Console.WriteLine(Cube(4));
+    Console.WriteLine(Cube(5));
+
+    int Cube(int value) => value * value * value;
   }
   ```
 
@@ -295,14 +272,15 @@ void Foo(int x) => Console.WriteLine(x);
 * *Write-only* if it specifies only a `set` accessor
 
 ```C#
-private decimal foo;
+private decimal _foo;
+
 public decimal Foo1
 {
-  get { return foo; }
+  get { return _foo; }
 }
 public decimal Foo2
 {
-  private set { foo = Math.Round (value, 2); }
+  private set { _foo = Math.Round(value, 2); }
 }
 ```
 
@@ -314,11 +292,12 @@ public decimal Foo2
   * `internal` or `private` access modifier on the *setter*
 
 ```C#
-private decimal foo;
+private decimal _foo;
+
 public decimal Foo
 {
-  get { return foo; }
-  private set { foo = Math.Round (value, 2); }
+  get { return _foo; }
+  private set { _foo = Math.Round(value, 2); }
 }
 ```
 
@@ -334,16 +313,17 @@ public decimal Foo
 * Autogenerated property:
 
 ```C#
-public string Name {get; set;}
+public string Foo {get; set;}
 ```
 
-* Full property (with the backing field):
+* Full property(with the backing field):
 
 ```C#
-private string _name;
-public string Name {
-  get { return _name; }
-  set { _name = value; }
+private string _foo;
+
+public string Foo {
+  get { return _foo; }
+  set { _foo = value; }
 }
 ```
 
@@ -372,16 +352,13 @@ public string Name {
 * Constructors of the *base* class are accessible
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Panda.cs&lang=C#&title=Constructor Sample
-@[3-10]
-@[6-7, 9]
-@[5, 8]
 [Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Panda.cs)
 
 +++
 #### Implicit Parameterless Constructor
 * `public`, *parameterless*
 * Generated by C# compiler automatically
-* If, and only if,** you do not define any other constructor**
+* If, and only if, **you do not define any other constructor**
 
 +++
 #### Constructor Modifiers
@@ -398,24 +375,14 @@ public string Name {
   * `base` - refers to *base* class type instance
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/WildCat.cs&lang=C#&title=Constructor Overloading Sample
-@[3-20]
-@[5]
-@[7-10]
-@[11-14]
-@[5-14]
 [Code sample](/Lectures/Lecture_02/Assets/sln/Examples/WildCat.cs)
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Cat.cs&lang=C#&title=Constructor Overloading Sample
-@[3-15]
-@[5]
-@[7-9]
-@[11-14]
-@[7-14]
 [Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Cat.cs)
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Tests/Constructor.cs&lang=C#&title=Constructor Overloading Test
-@[9-13]
-[Code sample](/Lectures/Lecture_02/Assets/slnTests/Constructor.cs)
+@[8-14]
+[Code sample](/Lectures/Lecture_02/Assets/sln/Tests/Constructor.cs)
 
 +++
 ### Deconstructors
@@ -426,31 +393,30 @@ public string Name {
   * Have one or more out parameters
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/Rectangle.cs&lang=C#&title=Deconstructor Sample
-@[3-18]
-@[5]
-@[7-11]
-@[13-17]
 [Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Rectangle.cs)
 
 +++
 #### Call Deconstructor
 ```C#
-var rect = new Rectangle (3, 4);
+var rect = new Rectangle(3, 4);
+```
+
+```C#
 (float width, float height) = rect; // Deconstruction
-Console.WriteLine (width + " " + height); // 3 4
+Console.WriteLine(width + " " + height); // 3 4
 ```
 
 or
 
 ```C#
 float width, height;
-rect.Deconstruct (out width, out height);
+rect.Deconstruct(out width, out height);
 ```
 
 or
 
 ```C#
-rect.Deconstruct (out var width, out var height);
+rect.Deconstruct(out var width, out var height);
 ```
 
 or
@@ -462,7 +428,7 @@ or
 or
 
 ```C#
-var (width, height) = rect;
+var(width, height) = rect;
 ```
 
 +++
@@ -484,9 +450,8 @@ or simply
 
 ```C#
 class Dog {
-  ~Dog()   {
+  ~Dog() {
     // Cleanup code
-    ...
   }
 }
 ```
@@ -509,19 +474,18 @@ public abstract class Asset
   // Note empty implementation
   public abstract decimal NetValue { get; }
 }
+```
 
+```C#
 public class Stock: Asset
 {
-  public long SharesOwned;
-  public decimal CurrentPrice;
+  public long SharesOwned { get; set; }
+  public decimal CurrentPrice { get; set; }
+
   /// Overriden, like a virtual method.
   public override decimal NetValue => CurrentPrice * SharesOwned;
 }
 ```
-@[1-5]
-@[7-12]
-@[12]
-@[1-13]
 
 +++
 ### Virtual
@@ -546,12 +510,7 @@ public class Stock: Asset
 * Only *members* provided by given *base* class can be accessed through up-casted reference
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Tests/UpCast.cs&lang=C#&title=Upcast Example
-@[6-15]
-@[9-14]
-@[11]
-@[12]
-@[13]
-@[6-15]
+@[10-17]
 [Code sample](/Lectures/Lecture_02/Assets/slnTests/UpCast.cs)
 
 +++
@@ -560,16 +519,8 @@ public class Stock: Asset
 * It **fails**, if *base* class instance is not compatible with *inherited* one
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Tests/DownCast.cs&lang=C#&title=Downcast Example
-@[7-23]
-@[10-15]
-@[12]
-@[13]
-@[14]
-@[10-15]
-@[18-22]
-@[20]
-@[21]
-@[18-22]
+@[11-17]
+@[20-25]
 [Code sample](/Lectures/Lecture_02/Assets/slnTests/DownCast.cs)
 
 +++
@@ -578,11 +529,7 @@ public class Stock: Asset
 * Returns `null`, if failed
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Tests/AsOperator.cs&lang=C#&title=AS Operator Example
-@[6-14]
-@[9-13]
-@[11]
-@[12]
-@[9-13]
+@[9-14]
 [Code sample](/Lectures/Lecture_02/Assets/slnTests/AsOperator.cs)
 
 +++
@@ -591,25 +538,12 @@ public class Stock: Asset
 * Usually before downcast
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Tests/IsOperator.cs&lang=C#&title=IS Operator Example
-@[6-14]
-@[9-13]
-@[11]
-@[12]
-@[9-13]
+@[10-15]
 [Code sample](/Lectures/Lecture_02/Assets/slnTests/IsOperator.cs)
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Tests/PatternMatching.cs&lang=C#&title=IS Pattern Matching Example
-@[6-28]
-@[9-17]
-@[11]
-@[12-13,15]
-@[14,16]
-@[9-17]
-@[20-27]
-@[22]
-@[23-24, 26]
-@[25]
-@[20-27]
+@[10-18]
+@[21-28]
 [Code sample](/Lectures/Lecture_02/Assets/slnTests/PatternMatching.cs)
 
 +++
@@ -620,16 +554,20 @@ public class Stock: Asset
 
 ```C#
 class Animal { }
+```
 
+```C#
 sealed class Cat: Animal { }
+```
 
+```C#
 //Compile-time error
 public class Kitten : Cat {}
 ```
 
 +++
 ### System.Object
-* Object (`System.Object`) is a common `base` class of all types
+* Object(`System.Object`) is a common `base` class of all types
 * Each type can be cast to `System.Object`
 * `System.Object` methods:
   * `ToString()`
@@ -651,32 +589,34 @@ public class Kitten : Cat {}
 ```C#
 partial class PaymentForm // In auto-generated file
 {
-  ...
-  partial void ValidatePayment (decimal amount);
-}
-partial class PaymentForm // In hand-authored file
-{
-  ...
-  partial void ValidatePayment (decimal amount)
-  {
-    if (amount > 100)
-    ...
+  // ...
+  partial void ValidatePayment(decimal amount);
+
+  public void InvokeValidation(){
+    ValidatePayment(10);
   }
 }
 ```
-@[1-5]
-@[4]
-@[6-14]
-@[9-13]
-@[1-14]
+
+```C#
+partial class PaymentForm // In hand-authored file
+{
+  // ...
+  partial void ValidatePayment(decimal amount)
+  {
+    if(amount > 100)
+    // ...
+  }
+}
+```
 
 ---
 ## Struct
 * Similar to a class, with the following key differences:
   * A `struct` is a **value type**, whereas a class is a **reference type**
-  * A `struct` does not support inheritance (other than implicitly deriving from `System.ValueType`)
+  * A `struct` does not support inheritance(other than implicitly deriving from `System.ValueType`)
 * Can have all the members as class, except:
-  * A parameter-less constructor (is implicit)
+  * A parameter-less constructor(is implicit)
   * Field initializers
   * A finalizer
   * Virtual or protected members
@@ -685,57 +625,46 @@ partial class PaymentForm // In hand-authored file
 
 +++
 ```C#
-public struct Point
+public readonly struct Point
 {
   int x, y;
-  public Point (int x, int y)
+  public Point(int x, int y)
   {
     this.x = x;
     this.y = y;
   }
 }
-...
-Point p1 = new Point (1, 1); // p1.x and p1.y will be 1
-Point p2 = new Point (); // p2.x and p2.y will be 0
+
+Point p1 = new Point(1, 1); // p1.x and p1.y will be 1
+Point p2 = new Point(); // p2.x and p2.y will be 0
 ```
-@[1-9]
-@[11]
-@[12]
-@[1-12]
 
 ---
 ## Enums, Flags
 * `enum` is a *value type*
-  * creates an enumeration of named numerical values (int, 0,1...)
+  * creates an enumeration of named numerical values(int, 0,1...)
   * underlying type can be changed to `long`, `short`, `byte` 
 
 * `enum` with the attribute `flags`
   * *single variable* may contain *multiple values*
 
 ```C#
-private enum HorseColor { Bay = 0, Palomino = 5, Chestnut = 10 }
-...
+enum HorseColor { Bay = 0, Palomino = 5, Chestnut = 10 }
+
 HorseColor color = HorseColor.Bay;
-int colorNumber = (int)HorseColor.Chestnut;
-...
+int colorNumber  = (int) HorseColor.Chestnut;
+
 HorseColor.TryParse("Chestnut", out HorseColor color);
-...
-[Flags] public enum HorseType { None = 0, Racing = 1,
+```
+
+```C#
+[Flags] enum HorseType { None = 0, Racing = 1,
 Breeding = 2, ForSausages = 4, Dead = 8 }
-...
-HorseType type = HorseType.Racing | HorseType.Breeding;
-type |= HorseType.ForSausages ;
+
+HorseType type  = HorseType.Racing | HorseType.Breeding;
+          type |= HorseType.ForSausages ;
 Console.WriteLine(type); //Racing, Breeding, ForSosages
 ```
-@[1]
-@[1-3]
-@[1, 4]
-@[1, 6]
-@[8-9]
-@[8-9,11]
-@[11,12]
-@[8-9,13]
-@[1-13]
 
 ---
 ## Interface
@@ -750,7 +679,6 @@ Console.WriteLine(type); //Racing, Breeding, ForSosages
   * **indexers**
 
 ```C#
-// Defined in System.Collections
 public interface IEnumerator
 {
   bool MoveNext();
@@ -780,16 +708,13 @@ class Eagle : Bird, IFlying, ICarnivore { }
 class Bee : Insect, IFlying { }
 class Flea : Insect, ICarnivore { }
 ```
-@[1-3]
-@[5-6]
-@[1-12]
 
 * Because animals might share some implementation of their taxonomy, it is possible to declare `Bird` and `Insect` as `abstract class`.
 * But, their food intake and whether they fly or not might differ. It is best to declare these properties as `interfaces`, `IFlying` and `ICarnivore`.
 
 +++
 #### `class` vs `interface`
-* `class` is considered to be *type*
+* `class` is considered to be a *type*
   * *Data* are stored in member variables
   * *Operations* are declared in methods
 * `interface`
@@ -799,17 +724,16 @@ class Flea : Insect, ICarnivore { }
 * *Multiple* `interface` *implementation* is supported
 
 ```C#
-public interface IBoy {
+public interface IName {
   string Name {get;}
 }
+```
 
-public class Boy: IBoy {
+```C#
+public class Pet: IName {
   public string Name { }
 }
 ```
-@[1-3]
-@[5-7]
-@[1-7]
 
 +++
 #### Type Safety and Security
@@ -830,6 +754,24 @@ public class Boy: IBoy {
     * *Reduce casting and boxing*
 
 +++
+### Non-generict *object* Stack
+```C#
+public class ObjectStack
+{
+  int position;
+  object[] data = new object[100];
+  public void Push(object obj) => data[position++] = obj;
+  public object Pop() => data[--position];
+}
+```
+
+```C#
+ObjectStack stack = new ObjectStack();
+stack.Push("s"); // Wrong type, but no error!
+int i =(int)stack.Pop(); // Downcast - runtime error
+```
+
++++
 ### Generics Types
 * Declares type parameter/placeholder types to be filled in by the consumer of the generic type
   * i.e., `Stack<T>`, designed to stack instances of type `T`:
@@ -839,7 +781,7 @@ public class Stack<T>
 {
   int position;
   T[] data = new T[100];
-  public void Push (T obj) => data[position++] = obj;
+  public void Push(T obj) => data[position++] = obj;
   public T Pop() => data[--position];
 }
 ```
@@ -848,17 +790,11 @@ usage:
 
 ```C#
 var stack = new Stack<int>();
-stack.Push (5);
-stack.Push (10);
+stack.Push(5);
+stack.Push(10);
 Assert.Equal(10,stack.Pop());
 Assert.Equal(5,stack.Pop());
 ```
-@[8]
-@[9]
-@[10]
-@[10,11]
-@[9,12]
-@[1-12]
 
 +++
 ### Generics Open/Close Types
@@ -871,7 +807,7 @@ var stack = new Stack<T>(); // Compile-time error outside generic type or method
 ```
 
 
-```
+```C#
 public class Stack<T>
 {
  ...
@@ -889,28 +825,10 @@ public class Stack<T>
   * i.e., we need a *stack* for multiple types, we can use:
     * **Generics**, or
     * Have a separate version, of the same class, for every encapsulated type, or
-      *  (e.i., `IntStack`, `StringStack` etc..)
+      * (e.i., `IntStack`, `StringStack` etc..)
     * Have *stack* that is generalized by using object:
       * ValueType requires boxing,
       * down-casting that cannot not be checked at compile time
-
-```C#
-public class ObjectStack
-{
-  int position;
-  object[] data = new object[10];
-  public void Push (object obj) => data[position++] = obj;
-  public object Pop() => data[--position];
-}
-```
-
-```C#
-ObjectStack stack = new ObjectStack();
-stack.Push ("s"); // Wrong type, but no error!
-int i = (int)stack.Pop(); // Downcast - runtime error
-```
-
-`ObjectStack` is functionally equivalent to `Stack<object>`
 
 +++
 ### Generic Methods
@@ -919,7 +837,7 @@ int i = (int)stack.Pop(); // Downcast - runtime error
 * *Generic method* may contain multiple *generic parameters*
 
 ```C#
-static void Swap<T> (ref T a, ref T b) {
+static void Swap<T>(ref T a, ref T b) {
   T temp = a;
   a = b;
   b = temp;
@@ -939,15 +857,28 @@ static void Swap<T> (ref T a, ref T b) {
 
 
 ---
-## Covariance and Contravariance in Generics
+## Covariance and Contravariance
 * [Read more](https://docs.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance)
-* **Covariance** allows use of more derived (more specific) type than originally specified.
+
+* **Covariance** allows use of more derived(more specific) type than originally specified.
   * You can assign an instance of `IEnumerable<Derived>` to a variable of type `IEnumerable<Base>`.
-* **Contravariance** allows a use less derived (less specific) type than initially specified.
-  * You can assign an instance of `IEnumerable<Base>` to a variable of type `IEnumerable<Derived>`.
+
+```C#
+IEnumerable<Derived> d = new List<Derived>();
+IEnumerable<Base> b = d;
+```
+
+* **Contravariance** allows a use less derived(less specific) type than initially specified.
+  * You can assign an instance of `Action<Base>` to a variable of type `Action<Derived>`
+
+```C#
+Action<Base> b =(target) => { Console.WriteLine(target.GetType().Name); };
+Action<Derived> d = b;
+```
 
 * **Invariance** use of only the same type as initially specified.
-  *  Invariant generic type parameter is neither **covariant** nor **contravariant**.
+  * Invariant generic type parameter is neither **covariant** nor **contravariant**.
+  * You **cannot** assign an instance of `List<Base>` to a variable of type `List<Derived>` or vice versa.
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Examples/CovarianceContravariance.cs&lang=C#&title=Covariance Contravariance Example
 @[11]
@@ -964,11 +895,7 @@ static void Swap<T> (ref T a, ref T b) {
 * Values of value types are treated as objects by performing **boxing** and **unboxing** operations
 
 +++?code=/Lectures/Lecture_02/Assets/sln/Tests/Boxing.cs&lang=C#&title=Boxing Sample
-@[8-15]
-@[10]
-@[11]
-@[12]
-@[8-15]
+@[8-16]
 [Code sample](/Lectures/Lecture_02/Assets/slnTests/Boxing.cs)
 
 ---
@@ -993,11 +920,11 @@ try
 {
  ... // exception may get thrown within execution of this block
 }
-catch (ExceptionA ex)
+catch(ExceptionA ex)
 {
  ... // handle exception of type ExceptionA
 }
-catch (ExceptionB ex)
+catch(ExceptionB ex)
 {
  ... // handle exception of type ExceptionB
 }
@@ -1034,24 +961,24 @@ finally
 ```C#
 class Test
 {
-  static void Main (string[] args)
+  static void Main(string[] args)
   {
     try
     {
-      byte b = byte.Parse (args[0]);
-      Console.WriteLine (b);
+      byte b = byte.Parse(args[0]);
+      Console.WriteLine(b);
     }
-    catch (IndexOutOfRangeException ex)
+    catch(IndexOutOfRangeException ex)
     {
-      Console.WriteLine ("Please provide at least one argument");
+      Console.WriteLine("Please provide at least one argument");
     }
-    catch (FormatException ex)
+    catch(FormatException ex)
     {
-      Console.WriteLine ("That's not a number!");
+      Console.WriteLine("That's not a number!");
     }
-    catch (OverflowException ex)
+    catch(OverflowException ex)
     {
-      Console.WriteLine ("You've given me more than a byte!");
+      Console.WriteLine("You've given me more than a byte!");
     }
   }
 }
@@ -1061,7 +988,7 @@ class Test
 #### `catch` Simplify Examples
 * Exception can be caught without specifying a variable
   ```C#
-  catch (OverflowException) // no variable
+  catch(OverflowException) // no variable
   {
   ...
   }
@@ -1072,7 +999,7 @@ class Test
   ```
 * Exception filters
   ```C#
-  catch (WebException ex) when (ex.Status == WebExceptionStatus.Timeout)
+  catch(WebException ex) when(ex.Status == WebExceptionStatus.Timeout)
   {
     ...
   }
@@ -1094,13 +1021,13 @@ static void ReadFile()
   StreamReader reader = null; // In System.IO namespace
   try
   {
-    reader = File.OpenText ("file.txt");
-    if (reader.EndOfStream) return;
-    Console.WriteLine (reader.ReadToEnd());
+    reader = File.OpenText("file.txt");
+    if(reader.EndOfStream) return;
+    Console.WriteLine(reader.ReadToEnd());
   }
   finally
   {
-    if (reader != null) reader.Dispose();
+    if(reader != null) reader.Dispose();
   }
 }
 ```
@@ -1112,19 +1039,19 @@ If object implements IDisposable, use `using` clause!
 ```C#
 class Test
 {
-  static void Display (string name)
+  static void Display(string name)
   {
-    if (name == null)
-      throw new ArgumentNullException (nameof(name));
-    Console.WriteLine (name);
+    if(name == null)
+      throw new ArgumentNullException(nameof(name));
+    Console.WriteLine(name);
   }
 
   static void Main()
   {
-    try { Display (null); }
-    catch (ArgumentNullException ex)
+    try { Display(null); }
+    catch(ArgumentNullException ex)
     {
-      Console.WriteLine ("Caught the exception");
+      Console.WriteLine("Caught the exception");
     }
   }
 }
@@ -1136,7 +1063,7 @@ class Test
 
 ```C#
 try { ... }
-catch (Exception ex)
+catch(Exception ex)
 {
   // Log error
   ...
@@ -1151,9 +1078,9 @@ try
 {
   ... // Parse a DateTime from XML element data
 }
-catch (FormatException ex)
+catch(FormatException ex)
 {
-  throw new XmlException ("Invalid DateTime", ex);
+  throw new XmlException("Invalid DateTime", ex);
 }
 ```
 
@@ -1165,7 +1092,7 @@ catch (FormatException ex)
 * `Message`
   * A string with a description of the error
 * `InnerException`
-  * The inner exception (if any) that caused the outer exception
+  * The inner exception(if any) that caused the outer exception
   * InnerException may have another InnerException
 
 +++
@@ -1174,10 +1101,10 @@ catch (FormatException ex)
   * Thrown when a function is called with a bogus argument
 * `System.ArgumentNullException`
   * Subclass of `ArgumentException`
-  * Thrown when a function argument is (unexpectedly) null
+  * Thrown when a function argument is(unexpectedly) null
 * `System.ArgumentOutOfRangeException`
   * Subclass of `ArgumentException`
-  * When a (usually numeric) argument is out of range (usually too big or too small)
+  * When a(usually numeric) argument is out of range(usually too big or too small)
 * `System.InvalidOperationException`
   * Thrown when the state of an object is unsuitable for a method to successfully execute
 
@@ -1199,19 +1126,19 @@ catch (FormatException ex)
 * When you instantiate a delegate, you can associate its instance with any method with a *compatible signature and return type*.
 
 ```C#
-delegate int Transformer (int x);
+delegate int Transformer(int x);
 ```
 
 is compatible with
 
 ```C#
-static int Square (int x) => x * x;
+static int Square(int x) => x * x;
 ```
 
 +++
 ### Delegates Example
 ```C#
-delegate int Transformer (int x);
+delegate int Transformer(int x);
 ...
 class Test
 {
@@ -1219,9 +1146,9 @@ class Test
   {
     Transformer transformer = Square; // Create delegate instance
     int result = transformer(3);      // Invoke delegate
-    Console.WriteLine (result);       // 9
+    Console.WriteLine(result);       // 9
   }
-  static int Square (int x) => x * x;
+  static int Square(int x) => x * x;
 }
 ```
 
@@ -1237,7 +1164,7 @@ Transformer transformer = Square;
 is equivalent:
 
 ```C#
-Transformer transformer = new Transformer (Square);
+Transformer transformer = new Transformer(Square);
 ```
 
 The expression:
@@ -1255,38 +1182,29 @@ transformer.Invoke(3)
 +++
 #### Plug-in Methods with Delegates
 ```C#
-public delegate int Transformer (int x);
-class Util
-{
-  public static void Transform (int[] values, Transformer transformer)
+public delegate int Transformer(int x);
+
+class Util {
+  public static void Transform(int[] values, Transformer transformer)
   {
-    for (int i = 0; i < values.Length; i++)
-    values[i] = transformer (values[i]);
+    for(int i = 0; i < values.Length; i++)
+    values[i] = transformer(values[i]);
   }
 }
-class Test
-{
-  static void Main()
-  {
+
+class Test {
+  static void Main() {
     int[] values = { 1, 2, 3 };
-    Util.Transform (values, Square); // Hook in the Square method
-    foreach (int i in values)
-      Console.Write (i + " "); // 1 4 9
+    Util.Transform(values, Square); // Hook in the Square method
+    foreach(int i in values)
+      Console.Write(i + " "); // 1 4 9
   }
-  static int Square (int x) => x * x;
+
+  static int Square(int x) => x * x;
 }
 ```
-@[1]
-@[2-9]
-@[4-8]
-@[10-20]
-@[19]
-@[14]
-@[15]
-@[14,15,4-8]
-@[1-20]
 
-The `Transform` method is a higher-order function (it’s a function that takes a function as an argument).
+The `Transform` method is a higher-order function(it’s a function that takes a function as an argument).
 
 +++
 ### Multicast Delegates
@@ -1305,15 +1223,16 @@ d += SomeMethod2;
 +++
 #### Multicast Delegates Example - Invocation
 ```C#
-public delegate void ProgressReporter (int percentComplete);
+public delegate void ProgressReporter(int percentComplete);
+
 public class Util
 {
-  public static void HardWork (ProgressReporter progressReporter)
+  public static void HardWork(ProgressReporter progressReporter)
   {
-    for (int i = 0; i < 10; i++)
+    for(int i = 0; i < 10; i++)
     {
-      progressReporter (i * 10); // Invoke delegate
-      System.Threading.Thread.Sleep (100); // Simulate hard work
+      progressReporter(i * 10); // Invoke delegate
+      System.Threading.Thread.Sleep(100); // Simulate hard work
     }
   }
 }
@@ -1328,63 +1247,51 @@ class Test
   {
     ProgressReporter progressReporter = WriteProgressToConsole;
     progressReporter += WriteProgressToFile;
-    Util.HardWork (p);
+    Util.HardWork(p);
   }
 
-  static void WriteProgressToConsole (int percentComplete)
-    => Console.WriteLine (percentComplete);
+  static void WriteProgressToConsole(int percentComplete)
+    => Console.WriteLine(percentComplete);
 
-  static void WriteProgressToFile (int percentComplete)
-    => System.IO.File.WriteAllText ("progress.txt",
+  static void WriteProgressToFile(int percentComplete)
+    => System.IO.File.WriteAllText("progress.txt",
        percentComplete.ToString());
 }
 ```
-@[10-11]
-@[13-15]
-@[3-8]
-@[1-16]
-
 
 +++
-### Instance Method/Target Example
+### Instance Method/Target
 
 * `Delegate.Method` - Gets the method represented by the delegate.
 * `Delegate.Target` - Gets the class instance on which the current delegate invokes the instance method.
 
 ```C#
-public delegate void ProgressReporter (int percentComplete);
-class Test
+public delegate void ProgressReporter(int percentComplete);
+
+class Program
 {
   static void Main()
   {
     Foo foo = new Foo();
     ProgressReporter progressReporter = foo.InstanceProgress;
     progressReporter(99); // 99
-    Console.WriteLine (progressReporter.Target == foo); // True
-    Console.WriteLine (progressReporter.Method); // Void InstanceProgress(Int32)
+    Console.WriteLine(progressReporter.Target == foo); // True
+    Console.WriteLine(progressReporter.Method); // Void InstanceProgress(Int32)
   }
 }
+
 class Foo
 {
-  public void InstanceProgress (int percentComplete)
-    => Console.WriteLine (percentComplete);
+  public void InstanceProgress(int percentComplete)
+    => Console.WriteLine(percentComplete);
 }
 ```
-@[1]
-@[4-11]
-@[6]
-@[7,15-16]
-@[8,15-16]
-@[9]
-@[10]
-@[1-17]
-
 
 
 +++
 #### `delegate` vs `interface`
 * A problem that can be solved with a delegate can also be solved with an interface
-* Delegate design may be better if:
+* **Delegate design may be better** if:
   * The interface would define only a single method
   * Multicast capability is needed
   * The subscriber needs to implement the interface multiple times
@@ -1409,15 +1316,15 @@ delegate void Delegate();
 ...
 Delegate delegate1 = Method1;
 Delegate delegate2 = Method1;
-Console.WriteLine (delegate1 == delegate2); // True
+Console.WriteLine(delegate1 == delegate2); // True
 ```
 
 ---
 ## Events
 * Construct that exposes the subset of delegate features required for the broadcaster/subscriber model
-
+* [Read more](https://docs.microsoft.com/en-us/dotnet/csharp/distinguish-delegates-events)
 ```C#
-public delegate void PriceChangedHandler (decimal oldPrice, decimal newPrice);
+public delegate void PriceChangedHandler(decimal oldPrice, decimal newPrice);
 
 public class Broadcaster
 {
@@ -1440,7 +1347,7 @@ public class PriceChangedEventArgs : System.EventArgs
   public readonly decimal LastPrice;
   public readonly decimal NewPrice;
 
-  public PriceChangedEventArgs (decimal lastPrice, decimal newPrice)
+  public PriceChangedEventArgs(decimal lastPrice, decimal newPrice)
   {
     LastPrice = lastPrice;
     NewPrice = newPrice;
@@ -1449,18 +1356,18 @@ public class PriceChangedEventArgs : System.EventArgs
 ```
 
 +++
-##### Standard Event Pattern - Delegate
+#### Standard Event Pattern - Delegate
 * name must end with `EventHandler`
 * two arguments
   * the first a subclass of `object` *(broadcaster)*
   * the second a subclass of `EventArgs` *(extra information)*
 * return type `void`
-* .NET defines a generic delegate `System.EventHandler<>`
+* .NET defines a generic delegate `System.EventHandler<T>`
   * can be used when an event doesn’t carry extra information
 
 ```C#
 public delegate void EventHandler<TEventArgs>
- (object source, TEventArgs e) where TEventArgs : EventArgs;
+(object source, TEventArgs e) where TEventArgs : EventArgs;
 ```
 
 +++
@@ -1471,9 +1378,9 @@ public class Stock
   ...
   public event EventHandler<PriceChangedEventArgs> PriceChanged;
 
-  protected virtual void OnPriceChanged (PriceChangedEventArgs e)
+  protected virtual void OnPriceChanged(PriceChangedEventArgs e)
   {
-    if (PriceChanged != null) PriceChanged (this, e);
+    PriceChanged?.Invoke(this, e);
   }
 }
 ```
@@ -1505,10 +1412,10 @@ public class Stock
 +++
 ### Lambda Expressions Usage Example
   ```C#
-  delegate int Transformer (int i);
+  delegate int Transformer(int i);
   ...
   Transformer sqr = x => x * x;
-  Console.WriteLine (sqr(3)); // 9
+  Console.WriteLine(sqr(3)); // 9
   ```
 * `x` corresponds to `i`
 * `x * x` corresponds to return type `int`
@@ -1518,7 +1425,7 @@ public class Stock
 
 ```C#
 Func<string,string,int> totalLength = (s1, s2) => s1.Length + s2.Length;
-int total = totalLength ("hello", "world"); // 10;
+int total = totalLength("hello", "world"); // 10;
 ```
 
 * ```Func<T,TResult> Delegate```
@@ -1532,10 +1439,10 @@ public delegate TResult Func<in T,out TResult>(T arg);
 * Compiler can usually infer the type contextually
 * When it can't, you must specify the type explicitly:
   ```C#
-  void Foo<T> (T x) {}
-  void Bar<T> (Action<T> a) {}
+  void Foo<T>(T x) {}
+  void Bar<T>(Action<T> a) {}
   ...
-  Bar ((int x) => Foo (x));
+  Bar((int x) => Foo(x));
   ```
 
 +++
@@ -1550,7 +1457,7 @@ public delegate TResult Func<in T,out TResult>(T arg);
 int factor = 5;
 Func<int, int> multiplier = n => n * factor;
 factor = 10;
-Console.WriteLine (multiplier (3)); // 30
+Console.WriteLine(multiplier(3)); // 30
 ```
 
 +++
@@ -1559,13 +1466,16 @@ Console.WriteLine (multiplier (3)); // 30
 static Func<int> Natural()
 {
  int seed = 0;
- return () => seed++; // Returns a closure
+ return() => seed++; // Returns a closure
 }
+```
+
+```C#
 static void Main()
 {
  Func<int> natural = Natural();
- Console.WriteLine (natural()); // 0
- Console.WriteLine (natural()); // 1
+ Console.WriteLine(natural()); // 0
+ Console.WriteLine(natural()); // 1
 }
 ```
 
@@ -1576,11 +1486,14 @@ static Func<int> Natural()
 {
  return() => { int seed = 0; return seed++; };
 }
+```
+
+```C#
 static void Main()
 {
  Func<int> natural = Natural();
- Console.WriteLine (natural()); // 0
- Console.WriteLine (natural()); // 0
+ Console.WriteLine(natural()); // 0
+ Console.WriteLine(natural()); // 0
 }
 ```
 
@@ -1595,38 +1508,41 @@ static void Main()
   * i.e., a method with a delegate-typed parameter:
 
 ```C#
-public void Foo (Func<int,bool> predicate) { ... }
+public void Foo(Func<int,bool> predicate) { ... }
 ```
 
 ---
 ## Tuples
 * Simple way to store a set of values
 * Safely return multiple values from a method without resorting to out parameters
-  ```C#
-  static (string,int) GetPerson() => ("Bob", 23);
-  static void Main()
-  {
-    (string,int) person = GetPerson(); // Could use 'var' here if we want
-    Console.WriteLine (person.Item1);  // Bob
-    Console.WriteLine (person.Item2);  // 23
-  }
-  ```
+
+```C#
+static(string,int) GetPerson() =>("Bob", 23);
+
+static void Main()
+{
+  (string,int) person = GetPerson(); // Could use 'var' here if we want
+  Console.WriteLine(person.Item1);  // Bob
+  Console.WriteLine(person.Item2);  // 23
+}
+```
 
 +++
 ### Named Tuples Example
 ```C#
-static (string Name, int Age) GetPerson() => ("Bob", 23);
+static(string Name, int Age) GetPerson() =>("Bob", 23);
+
 static void Main()
 {
   var person = GetPerson();
-  Console.WriteLine (person.Name); // Bob
-  Console.WriteLine (person.Age);  // 23
+  Console.WriteLine(person.Name); // Bob
+  Console.WriteLine(person.Age);  // 23
 }
 ```
 
 ---
 ## References
-[C# 7.0 in a Nutshell: The Definitive Reference](https://www.amazon.com/C-7-0-Nutshell-Definitive-Reference/dp/1491987650)
+[C# 8.0 in a Nutshell: The Definitive Reference](https://www.amazon.com/C-8-0-Nutshell-Definitive-Reference/dp/1492051136)
 [Types and Programming Languages](https://www.amazon.com/Types-Programming-Languages-MIT-Press/dp/0262162091)
 [Object-Oriented Analysis and Design with Applications](https://www.amazon.com/Object-Oriented-Analysis-Design-Applications-3rd/dp/020189551X)
 [Database Systems: A Practical Approach to Design, Implementation and Management](https://www.amazon.com/Database-Systems-Practical-Implementation-Management/dp/0321210255)

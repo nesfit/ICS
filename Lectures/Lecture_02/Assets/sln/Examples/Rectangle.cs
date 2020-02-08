@@ -1,6 +1,6 @@
 ﻿namespace Examples
 {
-    public class Rectangle
+    public readonly struct Rectangle
     {
         public readonly float Width, Height;
 

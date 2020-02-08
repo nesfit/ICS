@@ -1,19 +1,11 @@
 ﻿namespace Examples
 {
-    public class WildCat: Pet
+    public class WildCat : Pet
     {
-        public WildCat()
-        {
-        }
+        public WildCat() : this(string.Empty) { }
 
-        public WildCat(string name):base(name)
-        {
-            
-        }
+        protected WildCat(string name) : base(name) { }
 
-        public override string Cry()
-        {
-            return "Meow!";
-        }
+        public override string Cry() => "Meow!";
     }
 }

@@ -1,4 +1,5 @@
-﻿using CookBook.DAL.Enums;
+﻿using System;
+using CookBook.DAL.Enums;
 using System.Collections.Generic;
 
 namespace CookBook.DAL.Entities
@@ -7,7 +8,9 @@ namespace CookBook.DAL.Entities
     {
         public double Amount { get; set; }
         public Unit Unit { get; set; }
+        public Guid RecipeId { get; set; }
         public RecipeEntity Recipe { get; set; }
+        public Guid IngredientId { get; set; }
         public IngredientEntity Ingredient { get; set; }
 
         private sealed class IngredientAmountEqualityComparer : IEqualityComparer<IngredientAmountEntity>

@@ -2,7 +2,7 @@
 {
     public class Panda
     {
-        string _name; // Field
+        private string _name;  // Field
         public Panda(string n) // Constructor
         {
             _name = n; // Initialization code 

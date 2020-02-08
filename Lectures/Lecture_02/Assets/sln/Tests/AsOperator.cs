@@ -8,7 +8,8 @@ namespace Lecture02.Tests
         [Fact]
         public void AsOperatorTest()
         {
-            var unknownCat = new WildCat();
+            WildCat unknownCat = new WildCat();
+
             Assert.Null(unknownCat as Cat);
         }
     }

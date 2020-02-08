@@ -2,16 +2,11 @@
 {
     public abstract class Pet : Animal
     {
-        public string Name { get; protected set; } = "PET";
-
-        protected Pet()
-        {
-            
-        }
-
+        public string Name { get; private set; } = "PET";
+        
         protected Pet(string name)
         {
-            this.Name = name;
+            Name = name;
         }
     }
 }
