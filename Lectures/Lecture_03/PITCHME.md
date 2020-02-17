@@ -38,6 +38,12 @@
 
 ![](/Lectures/Lecture_03/Assets/img/NetToday.png)
 
+
++++
+#### .NET Tomorrow
+
+![](/Lectures/Lecture_03/Assets/img/NetTomorrow.png)
+
 +++
 ### .NET Standard vs .NET Core
 * **.NET Standard**
