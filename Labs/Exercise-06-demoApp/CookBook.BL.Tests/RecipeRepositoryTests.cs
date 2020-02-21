@@ -5,6 +5,7 @@ using CookBook.BL.Mapper;
 using CookBook.BL.Models;
 using CookBook.BL.Repositories;
 using CookBook.DAL;
+using CookBook.DAL.Seeds;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -20,9 +21,9 @@ namespace CookBook.BL.Tests
         {
             var converter = new XUnitTestOutputConverter(output);
             Console.SetOut(converter);
-            this._recipeRepositoryTestsFixture = recipeRepositoryTestsFixture;
+            _recipeRepositoryTestsFixture = recipeRepositoryTestsFixture;
 
-            this._recipeRepositoryTestsFixture.PrepareDatabase();
+            _recipeRepositoryTestsFixture.PrepareDatabase();
         }
 
         [Fact]
@@ -92,7 +93,7 @@ namespace CookBook.BL.Tests
                         IngredientName = "Ingredient 1",
                         IngredientDescription = "Testing Ingredient",
                     },
-                    IngredientAmountMapper.MapDetailModel(CookBookSeedingDbContext.IngredientAmountEntity1)
+                    IngredientAmountMapper.MapDetailModel(DAL.Seeds.Seeds.IngredientAmountEntity1)
                 }
             };
 
@@ -112,7 +113,7 @@ namespace CookBook.BL.Tests
         public void GetById_FromSeeded_DoesNotThrowAndEqualsSeeded()
         {
             //Arrange
-            var detailModel = RecipeMapper.MapToDetailModel(CookBookSeedingDbContext.RecipeEntity);
+            var detailModel = RecipeMapper.MapToDetailModel(DAL.Seeds.Seeds.RecipeEntity);
 
             //Act
             var returnedModel = RepositorySUT.GetById(detailModel.Id);
@@ -125,7 +126,7 @@ namespace CookBook.BL.Tests
         public void GetAll_FromSeeded_DoesNotThrowAndEqualsSeeded()
         {
             //Arrange
-            var listModel = RecipeMapper.MapToListModel(CookBookSeedingDbContext.RecipeEntity);
+            var listModel = RecipeMapper.MapToListModel(DAL.Seeds.Seeds.RecipeEntity);
 
             //Act
             var returnedModel = RepositorySUT.GetAll();
@@ -138,7 +139,7 @@ namespace CookBook.BL.Tests
         public void Delete_FromSeeded_DoesNotThrow()
         {
             //Arrange
-            var detailModel = RecipeMapper.MapToDetailModel(CookBookSeedingDbContext.RecipeEntity);
+            var detailModel = RecipeMapper.MapToDetailModel(DAL.Seeds.Seeds.RecipeEntity);
 
             //Act & Assert
             RepositorySUT.Delete(detailModel);
@@ -148,7 +149,7 @@ namespace CookBook.BL.Tests
         public void Update_FromSeeded_DoesNotThrow()
         {
             //Arrange
-            var detailModel = RecipeMapper.MapToDetailModel(CookBookSeedingDbContext.RecipeEntity);
+            var detailModel = RecipeMapper.MapToDetailModel(DAL.Seeds.Seeds.RecipeEntity);
             detailModel.Name = "Changed recipe name";
 
             //Act & Assert
@@ -159,7 +160,7 @@ namespace CookBook.BL.Tests
         public void Update_Name_FromSeeded_CheckUpdated()
         {
             //Arrange
-            var detailModel = RecipeMapper.MapToDetailModel(CookBookSeedingDbContext.RecipeEntity);
+            var detailModel = RecipeMapper.MapToDetailModel(DAL.Seeds.Seeds.RecipeEntity);
             detailModel.Name = "Changed recipe name 1";
 
             //Act
@@ -174,7 +175,7 @@ namespace CookBook.BL.Tests
         public void Update_RemoveIngredients_FromSeeded_CheckUpdated()
         {
             //Arrange
-            var detailModel = RecipeMapper.MapToDetailModel(CookBookSeedingDbContext.RecipeEntity);
+            var detailModel = RecipeMapper.MapToDetailModel(DAL.Seeds.Seeds.RecipeEntity);
             detailModel.Ingredients.Clear();
 
             //Act
@@ -189,7 +190,7 @@ namespace CookBook.BL.Tests
         public void DeleteById_FromSeeded_DoesNotThrow()
         {
             //Arrange & Act & Assert
-            RepositorySUT.Delete(CookBookSeedingDbContext.RecipeEntity.Id);
+            RepositorySUT.Delete(DAL.Seeds.Seeds.RecipeEntity.Id);
         }
         
         private static void FixIds(RecipeDetailModel returnedModel, RecipeDetailModel model)
@@ -209,7 +210,7 @@ namespace CookBook.BL.Tests
 
         public void Dispose()
         {
-            this._recipeRepositoryTestsFixture.TearDownDatabase();
+            _recipeRepositoryTestsFixture.TearDownDatabase();
         }
      }
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace CookBook.DAL.Factories
 {
-    public class EntityFactory<TEntity> : IEntityFactory<TEntity> where TEntity : class, IEntity, new()
+    public class EntityFactory : IEntityFactory 
     {
         private readonly ChangeTracker _changeTracker;
 
@@ -15,7 +15,7 @@ namespace CookBook.DAL.Factories
 
         public EntityFactory(ChangeTracker changeTracker) => _changeTracker = changeTracker;
 
-        public TEntity Create(Guid id)
+        public TEntity Create<TEntity>(Guid id) where TEntity : class, IEntity, new()
         {
             TEntity entity = null;
             if(id != Guid.Empty)
@@ -34,7 +34,5 @@ namespace CookBook.DAL.Factories
             }
             return entity;
         }
-
-        public IEntityFactory<TTEntity> As<TTEntity>() where TTEntity : class, IEntity, new() => new EntityFactory<TTEntity>(_changeTracker); 
     }
 }

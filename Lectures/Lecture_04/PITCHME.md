@@ -3,160 +3,284 @@
 @snapend
 
 @snap[midpoint span-100]
-## Storing data in .NET Applications
+## Data Persistence in .NET Applications
 @snapend
 
 @snap[south-east]
-[ Michal Mrnuštík <michal.mrnustik@outlook.com> ]
+[ Jan Pluskal <ipluskal@fit.vutbr.cz> ]
 @snapend
 
 
 ---
 
-## Lecture outline:
-1. Persistence
+## Lecture Outline
+1. What is persistence and how to achieve it?
 2. Object relationship mapping (ORM)
 3. ORM using Entity Framework Core
-4. Architectural patterns of persistence
-5. Example of Entity Framework Core setup
+4. Persistence architectural patterns
+5. How to setup Entity Framework Core
+6. `Repository` and `UnitOfWork` Patterns
 
 ---
+## Basic Terms
+* **Software framework**
+* **Database**
+  * Database components, types
+  * Persistence
+  * Visual Studio Server Explorer
+  * Object-relational mapping
+  * ACID, SQL, CAP, CRUD, DAL, DBMS...
 
-## Persistence
-* Ability to store application data
-* Can be achieved using:
-    * *Database*
-    * *Files*
-    * *Another application*
+@snap[south-east span+40]
+![](/Lectures/GitPitch/assets/image/Overview_small.png)
+@snapend
 
 ---
-
-## Persistence Overview
-
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1179px" viewBox="-0.5 -0.5 1179 556" content="&lt;mxfile modified=&quot;2019-02-19T15:41:51.057Z&quot; host=&quot;www.draw.io&quot; agent=&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36&quot; etag=&quot;qbSdoCejfJuXQ23UYnhl&quot; version=&quot;10.2.4&quot; type=&quot;onedrive&quot;&gt;&lt;diagram id=&quot;VzwX6c1LZ7_3RVeKrXSE&quot; name=&quot;PersistenceOverview&quot;&gt;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&lt;/diagram&gt;&lt;diagram id=&quot;jTaEXDrFFR1zGWIXkIXQ&quot; name=&quot;PersistenceDatabaseSQL&quot;&gt;7VpZU+M4EP41edkqUj7iHI/kYHd2YIEJ1O48UYql2CpkyysrxOTXr2TLtyAXrpmlJhTEarVa3f21pG6Lnj0Lkt8ZiPwbChHpWQZMeva8Z1mTsS3+SsJrRnAGiuAxDDOSWRKWeIcU0VDUDYYorjFySgnHUZ3o0jBELq/RAGN0W2dbU1KfNQIeahGWLiBt6t8Ycj+jjq1RSf8DYc/PZzaHk6wnADmzsiT2AaTbCsle9OwZo5RnT0EyQ0T6LvdLkIBvjAy/4uR6trt8XETsZXqRCbs6ZkhhAkMhP1n08/DP6Gn24Nw/BosR3c2dJ//rhZWJfgFko/ylbOWvuQNfEONY+PMarBC5ozHmmIaia0U5p0HPnvo8IKJtisec95JgT/JwGgkqUC1XqI+YIMSc0Wc0o4SK1jykoZhqusaE5KSeZRvGdHFlSWYfRFKVIPFkgPbBbsNQHwIOViCWA5UJYmqUNDDf4zCzQFFEP6IB4uxVjFNSBiMnk6Mi3xqr9raMo6GKDb8SQmNFAypyvUJyiY54UAAdAZa9H6wiRg3hGAhiH0HVqKCkdT9pwFuAtRf/Q0Fv4BjELkD9tDdiOEZ9EEVEyMnEvxkOXaGdI5mDnbcrYJtjDdqm3RXcgxbcDyjhLci5JNbwZSjGO7BKGST0EcUhT7Vzpj1nLsHZcAFkulWbFawIWvM3AY0j4OLQe5CNuVCuOygmVg0K22yvu4EGCasrIBzNuhsS6SmeetkyVpRBlEXq8N+NPBCmZvlYU73oN4S6To3JFbpEAELh5RrroMZVQp8TlfBL0ZlLNTLe3D2arkzlC5cSAiK5j16mh7BqVSYceuo7s3hFRSbQJDKtXivgPnuMbkIop5ErWc4hFjMYuZOBVahS71ynn4aeyoQokRNRIuBKeSfj1doy39HWl/GgwrhkS+O8NShbXdlAESdy7BnS5nJbfU+aJLJDPXmWE2BOmREEwjSToVvEqorAtwd9F9nbe5xH2fFWRCCwtqD9QaAXKk43r2m6iQni6bYUHWz1X/TjjP5IYyD10iyYwi7hk0TdQpf0bMvL6XsPo3qyISx2DfnTPuHVurenVJwoa5JmMZJFHmgyYopMpqtjZ9TIACaaDECX7026OndG+/M9FMJLWSTJfIxQ97ma9Zl1IFCC+T+V5+/SnX1HteaJ8m7aeK007hDDwp70eDN0gBapmVDmKgWsAnxec5X5AoKtgu0Q2OSq2TAX7cuP2/BW8HM08OU0hojIPV/quukwVTPcyayqjJ5CTp61NPPCTH01qlqnNQQ1yw7bcuqCOGAe4i1BaYgVZh8UdS/z++H9xeNNHCzxyI8eHfL0RVtl/Mp2Pl22kw9a0zT43GI9l4xiZctPe+yXeeVAyAS0z4nz0qdz1Gskcj+fgo3c8GAFf0DWcY6Z5gE2vpO5NLadA1dmF4a8mTcfbNWZWdZR/jrFQs42h0Tk/yn5P8cd1im++Bkj970KaKULyE8T0WtA4u5D+seHqv25QrVd337uMP3QjbfLsl0ZcHrZLk1T14PmsKe5IOiqrncalVlR6FcKQ2s40rzaH3xAZa+tsTSv9m/nt0u5VWc4HYmP5gpNkVpebr7cDzCEcprp1sccLSOQlthbBqK9CMq2LkI6u6Kx7H7jSs7WvKOxNEV+Z0i27waWi+vF7EHQfhO/V99ub8SXQvcXqhpUmy9OdNeslqFZnidgKprlfX32wqT8pwd78R8=&lt;/diagram&gt;&lt;diagram id=&quot;Kvzrk7gUgR3qZM4joVvP&quot; name=&quot;PersistenceLoadSQL&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;" onclick="(function(svg){var src=window.event.target||window.event.srcElement;while (src!=null&amp;&amp;src.nodeName.toLowerCase()!='a'){src=src.parentNode;}if(src==null){if(svg.wnd!=null&amp;&amp;!svg.wnd.closed){svg.wnd.focus();}else{var r=function(evt){if(evt.data=='ready'&amp;&amp;evt.source==svg.wnd){svg.wnd.postMessage(decodeURIComponent(svg.getAttribute('content')),'*');window.removeEventListener('message',r);}};window.addEventListener('message',r);svg.wnd=window.open('https://www.draw.io/?client=1&amp;lightbox=1&amp;edit=_blank');}}})(this);" style="cursor:pointer;max-width:100%;max-height:556px;"><defs/><g><path d="M 859.17 220.78 C 860.25 210.32 867.5 202.09 876.64 200.95 L 974.02 200.95 L 1004.09 235.22 L 1004.09 351.79 C 1003.58 363.25 995.64 372.45 985.64 373.19 L 876.64 373.19 C 867.64 372.09 860.43 364.12 859.17 353.84 Z M 871.02 350.75 C 871.02 354.88 873.56 358.44 877.1 359.27 L 985.87 359.27 C 989.34 358.37 991.81 354.83 991.79 350.75 L 991.79 243.23 L 967.48 243.23 L 967.48 215.04 L 877.1 215.04 C 873.84 215.96 871.5 219.21 871.33 223.04 Z M 897.15 256.1 L 964.29 256.1 L 964.29 270.37 L 897.15 270.37 Z M 897.15 283.24 L 964.29 283.24 L 964.29 297.51 L 897.15 297.51 Z M 897.15 310.38 L 964.29 310.38 L 964.29 324.82 L 897.15 324.82 Z" fill="#00bef2" stroke="none" pointer-events="none"/><path d="M 870.73 554.66 C 854.66 552.84 841.04 541.99 835.64 526.71 C 830.24 511.43 834 494.41 845.34 482.85 C 856.68 471.29 873.6 467.24 888.93 472.4 C 898.8 439.6 933.33 421.03 966.05 430.93 C 998.77 440.82 1017.29 475.44 1007.42 508.24 C 1019.51 507.81 1029.94 516.66 1031.51 528.68 C 1033.08 540.7 1025.27 551.95 1013.49 554.66 C 1013.55 554.49 870.49 555 870.49 555 Z" fill="#00bef2" stroke="none" pointer-events="none"/><path d="M 993.74 137.06 C 993.74 145.92 965.94 153.1 931.63 153.1 C 897.33 153.1 869.53 145.92 869.53 137.06 L 869.53 16.05 C 869.53 7.19 897.33 0 931.63 0 C 965.94 0 993.74 7.19 993.74 16.05 Z M 980.22 19.97 C 980.22 13.9 959.04 8.97 932.9 8.97 C 906.77 8.97 885.58 13.9 885.58 19.97 C 885.58 23.91 894.6 27.54 909.24 29.5 C 923.88 31.47 941.92 31.47 956.56 29.5 C 971.2 27.54 980.22 23.91 980.22 19.97 Z M 916 110.34 C 925.16 106.68 931.06 98.52 931.06 89.52 C 931.06 80.51 925.16 72.35 916 68.69 L 890.65 68.69 L 890.65 110.34 Z M 970.08 110.34 C 974.92 108.43 977.99 103.95 977.8 99.07 C 977.61 94.19 974.21 89.92 969.24 88.34 C 972.44 85.55 973.86 81.42 973 77.42 C 972.14 73.42 969.12 70.12 965.01 68.69 L 941.35 68.69 L 941.35 110.34 Z M 896.57 74.19 L 915.16 74.19 C 921.29 77.17 925.14 83.08 925.14 89.52 C 925.14 95.96 921.29 101.86 915.16 104.84 L 896.57 104.84 Z M 947.27 74.19 L 963.32 74.19 C 965.45 75.5 966.72 77.72 966.72 80.09 C 966.72 82.46 965.45 84.67 963.32 85.98 L 947.27 85.98 Z M 947.27 93.05 L 964.17 93.05 C 967.9 92.62 971.31 95.08 971.77 98.55 C 972.24 102.03 969.59 105.19 965.86 105.63 L 947.27 105.63 Z Z" fill="#00bef2" stroke="none" pointer-events="none"/><path d="M 263.54 269.91 C 263.54 278.7 261.37 285.81 257.03 291.04 C 252.68 296.28 246.83 298.9 239.56 298.9 C 232.67 298.9 227.39 296 223.8 290.11 L 223.61 290.11 L 223.61 321.62 L 215.21 321.62 L 215.21 245.42 L 223.61 245.42 L 223.61 254.58 L 223.8 254.58 C 227.95 247.66 233.99 244.11 242.02 244.11 C 248.62 244.11 253.82 246.44 257.78 251.03 C 261.65 255.7 263.54 261.97 263.54 269.91 Z M 254.95 269.82 C 254.95 264.21 253.63 259.72 250.89 256.36 C 248.25 252.99 244.57 251.31 239.85 251.31 C 235.03 251.31 231.07 252.99 228.05 256.26 C 225.03 259.63 223.52 263.84 223.52 268.98 L 223.52 276.27 C 223.52 280.66 224.93 284.31 227.86 287.3 C 230.78 290.29 234.37 291.7 238.62 291.7 C 243.72 291.7 247.68 289.73 250.61 285.9 C 253.53 282.07 254.95 276.64 254.95 269.82 Z M 202.09 269.91 C 202.09 278.7 199.92 285.81 195.58 291.04 C 191.24 296.28 185.38 298.9 178.11 298.9 C 171.22 298.9 165.94 296 162.35 290.11 L 162.16 290.11 L 162.16 321.62 L 153.76 321.62 L 153.76 245.42 L 162.16 245.42 L 162.16 254.58 L 162.35 254.58 C 166.5 247.66 172.55 244.11 180.57 244.11 C 187.18 244.11 192.37 246.44 196.33 251.03 C 200.11 255.7 202.09 261.97 202.09 269.91 Z M 193.41 269.82 C 193.41 264.21 192.08 259.72 189.35 256.36 C 186.7 252.99 183.02 251.31 178.3 251.31 C 173.49 251.31 169.53 252.99 166.5 256.26 C 163.48 259.63 161.97 263.84 161.97 268.98 L 161.97 276.27 C 161.97 280.66 163.39 284.31 166.32 287.3 C 169.24 290.29 172.83 291.7 177.08 291.7 C 182.17 291.7 186.14 289.73 189.06 285.9 C 191.99 282.07 193.41 276.64 193.41 269.82 Z M 137.72 297.59 L 129.32 297.59 L 129.32 289.45 L 129.13 289.45 C 125.45 295.72 120.06 298.9 112.89 298.9 C 107.79 298.9 103.74 297.49 100.71 294.78 C 97.69 292.07 96.18 288.33 96.18 283.75 C 96.18 274.03 101.94 268.32 113.55 266.73 L 129.32 264.58 C 129.32 255.79 125.73 251.31 118.46 251.31 C 112.14 251.31 106.38 253.46 101.28 257.66 L 101.28 249.06 C 102.79 247.94 105.43 246.82 109.21 245.7 C 112.99 244.67 116.29 244.11 119.22 244.11 C 131.58 244.11 137.81 250.65 137.81 263.65 L 137.81 297.59 Z M 129.32 271.22 L 116.57 273 C 112.23 273.65 109.21 274.68 107.42 276.08 C 105.62 277.49 104.77 279.82 104.77 283.1 C 104.77 285.71 105.72 287.77 107.61 289.36 C 109.49 290.95 111.95 291.7 114.87 291.7 C 119.03 291.7 122.52 290.2 125.26 287.3 C 127.99 284.4 129.32 280.76 129.32 276.36 L 129.32 271.22 Z M 0 162.67 L 0 411.47 L 372.65 411.47 L 372.65 162.67 L 0 162.67 L 0 162.67 Z M 354.06 391.46 L 13.78 391.46 L 13.78 214.84 L 354.06 214.84 L 354.06 391.46 Z" fill="#00bef2" stroke="none" pointer-events="none"/><g transform="translate(67.5,270.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="22" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">Text</div></div></foreignObject><text x="11" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">Text</text></switch></g><rect x="20.7" y="220.09" width="331.25" height="172.24" fill="#ffffff" stroke="#c0c0c0" pointer-events="none"/><g transform="translate(21.5,220.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="329" height="170" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 330px; height: 171px; overflow: hidden; white-space: nowrap;"><table border="1" width="100%" cellpadding="4" style="width: 100% ; height: 100% ; border-collapse: collapse ; font-size: 16px"><tbody><tr style="background-color: #a7c942 ; color: #ffffff ; border: 1px solid #98bf21"><th align="left" style="font-size: 16px"><font style="font-size: 16px">Text</font></th><th align="left"><font style="font-size: 16px">Done</font></th></tr><tr style="border: 1px solid #98bf21"><td><font style="font-size: 16px">Clean shower</font></td><td><font style="font-size: 16px">Yes</font></td></tr><tr style="background-color: #eaf2d3 ; border: 1px solid #98bf21"><td><font style="font-size: 16px">Buy toilet paper</font></td><td><font style="font-size: 16px">No</font></td></tr><tr style="border: 1px solid #98bf21"><td><font style="font-size: 16px">Buy dog food</font></td><td><font style="font-size: 16px">Yes</font></td></tr></tbody></table></div></foreignObject><text x="165" y="91" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">[Not supported by viewer]</text></switch></g><path d="M 373 287 L 693.9 287.07 Q 703.9 287.07 710.1 279.22 L 861.02 88.35" fill="none" stroke="#00bef2" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="12 12" pointer-events="none"/><path d="M 867.23 80.51 L 864.95 91.45 L 857.1 85.25 Z" fill="#00bef2" stroke="#00bef2" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><path d="M 373 287 L 844.53 287" fill="none" stroke="#00bef2" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="12 12" pointer-events="none"/><path d="M 854.53 287 L 844.53 292 L 844.53 282 Z" fill="#00bef2" stroke="#00bef2" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><path d="M 373 287 L 693.9 287.07 Q 703.9 287.07 709.51 295.35 L 831.88 476.02" fill="none" stroke="#00bef2" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="12 12" pointer-events="none"/><path d="M 837.49 484.3 L 827.74 478.82 L 836.02 473.21 Z" fill="#00bef2" stroke="#00bef2" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(1057.5,20.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="91" height="110" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 24px; font-family: Helvetica; color: rgb(0, 190, 242); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">MySQL<br style="font-size: 24px" />Oracle<br style="font-size: 24px" />MS SQL<br style="font-size: 24px" /><br style="font-size: 24px" /></div></div></foreignObject><text x="46" y="67" fill="#00BEF2" text-anchor="middle" font-size="24px" font-family="Helvetica">[Not supported by viewer]</text></switch></g><g transform="translate(1074.5,251.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="57" height="82" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 24px; font-family: Helvetica; color: rgb(0, 190, 242); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">.json<br style="font-size: 24px" />.xml<br style="font-size: 24px" />.yaml<br style="font-size: 24px" /></div></div></foreignObject><text x="29" y="53" fill="#00BEF2" text-anchor="middle" font-size="24px" font-family="Helvetica">[Not supported by viewer]</text></switch></g><g transform="translate(1050.5,465.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="109" height="54" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 24px; font-family: Helvetica; color: rgb(0, 190, 242); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">REST API<br style="font-size: 24px" />SOAP<br style="font-size: 24px" /></div></div></foreignObject><text x="55" y="39" fill="#00BEF2" text-anchor="middle" font-size="24px" font-family="Helvetica">[Not supported by viewer]</text></switch></g></g></svg>
+## Software Framework
+* **Abstraction** providing **generic functionality**
+* Can be selectively changed by additional user-written code
+  * Providing application-specific software
+* **Universal, reusable software environment**
+  * Provides particular functionality as part of a larger software platform
+    * To facilitate development of software applications
 
 ---
-
-
 
 ## Database
 * **Persistent** data storage
 * **Store**, **organize**, and **process information**
-  * Query, sort, transform
+  * Query, Sort, Transform
 * Can be **searched**, **referenced**, **compared**, **changed** or otherwise manipulated
+* The goal is to have **Optimal speed** and **minimal processing expense**
 * **Database management system (DBMS)**
   * System specifically designed to hold databases
 
----
-
-## Database Types
-* *Relational (SQL)* databases
-    * (examples: MySQL, PostgresSQL, MS SQL, Oracle, ...)
-    * Each table has firm structure
-    * Relations validation
-
-* *NoSQL* databases
-    * (examples: MongoDB, Cassandra, ...)
-    * No enforced structure
-    * Faster
-
----
-
-## Relational Database components
-* *Schema* - collection of one or more tables
-* *Table* - contains multiple columns (similar to columns in a spreadsheet)
++++
+### Database components
+* *Schema* - formal definition of database structure
+* *Table* - contains multiple columns (similar to the columns in a spreadsheet)
 * *Column* - contains one of several types of data
 * *Row* - **data** in a table is listed in rows (like rows of data in a spreadsheet)
 
----
++++
+### Persistence
+* **Official definition**
+  * *The continuance of an effect after its cause is removed*
+  * *Information survives after the process with which it was created has ended*
+* **In database context**
+  * *Data is available after application or system reboot*
 
-## Database persistence
++++
+### ACID
+![](/Lectures/Lecture_04/Assets/img/acid.jpg)
 
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="758px" viewBox="-0.5 -0.5 758 181" content="&lt;mxfile modified=&quot;2019-02-20T19:15:55.027Z&quot; host=&quot;www.draw.io&quot; agent=&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36&quot; etag=&quot;h7CU5xadLbQvu28SCr00&quot; version=&quot;10.2.5&quot; type=&quot;onedrive&quot;&gt;&lt;diagram id=&quot;VzwX6c1LZ7_3RVeKrXSE&quot; name=&quot;PersistenceOverview&quot;&gt;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&lt;/diagram&gt;&lt;diagram id=&quot;jTaEXDrFFR1zGWIXkIXQ&quot; name=&quot;PersistenceDatabaseSQL&quot;&gt;7VptU9s4EP41+XIzZPwSO8lH8kKvVzhoA3PXT4xiKbYG2fLJCjH8+kq2/C5IQvC0xzQZJtZqtdrdZyXtWgzseZh+YiAOrihEZGAZMB3Yi4Flmabhih9JecopznSSE3yGoWKqCCv8jBTRUNQthihpMHJKCcdxk+jRKEIeb9AAY3TXZNtQ0pw1Bj7qEFYeIF3qPxjyIKdOrHFF/xNhPyhmNt1p3hOCgllZkgQA0l2NZC8H9pxRyvOnMJ0jIp1X+CVMwTdG3C84vZw/n98tY/Y4O8uFXRwzpDSBoYi/WfSD+1d8P791vt6FyzF9Xjj3wZczKxf9CMhW+UvZyp8KBz4ixrHw5yVYI3JDE8wxjUTXmnJOw4E9C3hIRNsUjwXvOcG+5OE0FlSgWp5QHzFBSDijD2hOCRWtRUQjMdVsgwkpSAPLNozZ8sKSzAGIpSph6ssIHYLnLUNDCDhYg0QOPNA7yotSRZTWYkN56xOiIeLsSbCo3tHYyYeoyLcmqr2r4shVsRHUQmiiaEBFrl9KrtARDwqgI8Cy94NVxqghHANBEiCoGjWUtO4nLXhLsPbifyjoLRzDxANomPXGDCdoCOKYCDm5+BfDoS+0CyQLsIt2DWxzokHbtPuCe9SB+xalvAM5l8QGvgwl+BmsMwYJfUxxxDPtnNnAWUhwtlwAmW3VZg0rgjb8RUCTGHg48m9lYyGU6w+KqdWAwja7626kQcLqCwhHs+5cIj3FMy9bxpoyiPJIdf/bygNhZlaPDdXLfkOo6zSYPKFLDCAUXm6wjhpcFfQFUQk/F52FVCPnLdyj6cpVPvMoISCW++h5dgirVm1C11e/ucVrKjKBNpFp9VoD78FndBtBOY1cyXIOsZjB2JuOrFKVZucm+7T0VCbEqZyIEgFXxjudrDeW+Yq2gYwHFcYVWxbnnUH56soHijiRY0+QtpDb6mvSJJEd6smTnAALypwgEGWZDN0hVlcEvjzou8jeXuM8yo6XIgKBjQXtdwK9VHG2fcrSTUwQz3aq+GCr/6bvZ/R7GgOpn2XBFPYJnyTqFrqk51teQd97GDWTDWGxZ8hv94RX696eUXFSbEiWxUgWeaDJiCkzmb6OnXErA5hqMgBdvjft69wZ78/3UATPZZEk8zFCvYd61mc2gUAp5v/Wnr9Ldw4d1VqkyrtZ46nWuEEMC3uy483QAVqmZkKZiwywGvBFzXV8vpDQLfPQ/nQYwUYB2IW3hp+jga+gMURE7vnYLBt1mKoZbmRWVUVPKafIWtp5YW6PGlWv01qC2mWHbTlNQRwwH/GOoCzESrMPirrHxVf369ndVRKu8DiI7xxy/1lbZfzOdj5ctlMM2tAs+LxyPVeMYmXLT3fs50XtQMgFdM+J09KnU9RrJXK/noKt3PBgBX9C1nGKmeYBNr6SubS2nQNXZh+GvJg3H2zViVnWUf56i4WcbQ+JyP9T8n+KO6y3+OJXjNzXKqC1LiA/TERvAEn6D+mfH6r2xwrVbn37scP0XTfePst2ZcDby3ZpmroeNN2B5oKgr7reaVVmZaFfKwwtd6x5tT96h8peW2NpXu1fL65XcqvOcToSH80VmiJ1vNx+uR9iCOU0s12AOVrFIKu5dwzEexGUbV2E9HZFY9nD1pWcrXlHY2mK/N6Q7N4NrJaXy/mtoP0h/i6+XV+JH4Xub1Q1qLZfnOiuWS1DszzfgKloVvf1+QuT6r8e7OUP&lt;/diagram&gt;&lt;diagram id=&quot;Kvzrk7gUgR3qZM4joVvP&quot; name=&quot;PersistenceLoadSQL&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;" onclick="(function(svg){var src=window.event.target||window.event.srcElement;while (src!=null&amp;&amp;src.nodeName.toLowerCase()!='a'){src=src.parentNode;}if(src==null){if(svg.wnd!=null&amp;&amp;!svg.wnd.closed){svg.wnd.focus();}else{var r=function(evt){if(evt.data=='ready'&amp;&amp;evt.source==svg.wnd){svg.wnd.postMessage(decodeURIComponent(svg.getAttribute('content')),'*');window.removeEventListener('message',r);}};window.addEventListener('message',r);svg.wnd=window.open('https://www.draw.io/?client=1&amp;lightbox=1&amp;edit=_blank');}}})(this);" style="cursor:pointer;max-width:100%;max-height:181px;"><defs/><g><path d="M 475 126.62 C 475 131.25 461.57 135 445 135 C 428.43 135 415 131.25 415 126.62 L 415 63.38 C 415 58.75 428.43 55 445 55 C 461.57 55 475 58.75 475 63.38 Z M 468.47 65.44 C 468.47 62.26 458.24 59.69 445.61 59.69 C 432.99 59.69 422.76 62.26 422.76 65.44 C 422.76 67.49 427.11 69.39 434.18 70.42 C 441.26 71.44 449.97 71.44 457.04 70.42 C 464.11 69.39 468.47 67.49 468.47 65.44 Z M 437.45 112.66 C 441.87 110.74 444.72 106.48 444.72 101.77 C 444.72 97.07 441.87 92.81 437.45 90.89 L 425.2 90.89 L 425.2 112.66 Z M 463.57 112.66 C 465.91 111.66 467.39 109.32 467.3 106.77 C 467.21 104.22 465.56 101.99 463.16 101.16 C 464.71 99.7 465.4 97.54 464.98 95.46 C 464.57 93.37 463.11 91.64 461.12 90.89 L 449.69 90.89 L 449.69 112.66 Z M 428.06 93.77 L 437.04 93.77 C 440 95.33 441.86 98.41 441.86 101.77 C 441.86 105.14 440 108.22 437.04 109.78 L 428.06 109.78 Z M 452.55 93.77 L 460.31 93.77 C 461.33 94.45 461.95 95.61 461.95 96.85 C 461.95 98.09 461.33 99.24 460.31 99.93 L 452.55 99.93 Z M 452.55 103.62 L 460.71 103.62 C 462.52 103.4 464.16 104.68 464.39 106.5 C 464.61 108.31 463.33 109.97 461.53 110.19 L 452.55 110.19 Z Z" fill="#00bef2" stroke="none" pointer-events="none"/><path d="M 127.29 86.04 C 127.29 90.63 126.25 94.34 124.15 97.08 C 122.05 99.81 119.22 101.18 115.71 101.18 C 112.39 101.18 109.83 99.67 108.1 96.59 L 108.01 96.59 L 108.01 113.05 L 103.95 113.05 L 103.95 73.24 L 108.01 73.24 L 108.01 78.02 L 108.1 78.02 C 110.11 74.41 113.02 72.55 116.9 72.55 C 120.09 72.55 122.6 73.77 124.51 76.17 C 126.38 78.61 127.29 81.88 127.29 86.04 Z M 123.15 85.99 C 123.15 83.06 122.51 80.71 121.19 78.95 C 119.91 77.19 118.13 76.31 115.85 76.31 C 113.53 76.31 111.61 77.19 110.15 78.9 C 108.69 80.66 107.96 82.86 107.96 85.55 L 107.96 89.36 C 107.96 91.65 108.65 93.56 110.06 95.12 C 111.47 96.69 113.21 97.42 115.26 97.42 C 117.72 97.42 119.64 96.39 121.05 94.39 C 122.46 92.39 123.15 89.55 123.15 85.99 Z M 97.61 86.04 C 97.61 90.63 96.57 94.34 94.47 97.08 C 92.37 99.81 89.54 101.18 86.03 101.18 C 82.71 101.18 80.15 99.67 78.42 96.59 L 78.33 96.59 L 78.33 113.05 L 74.27 113.05 L 74.27 73.24 L 78.33 73.24 L 78.33 78.02 L 78.42 78.02 C 80.43 74.41 83.34 72.55 87.22 72.55 C 90.41 72.55 92.92 73.77 94.83 76.17 C 96.66 78.61 97.61 81.88 97.61 86.04 Z M 93.42 85.99 C 93.42 83.06 92.78 80.71 91.46 78.95 C 90.18 77.19 88.4 76.31 86.12 76.31 C 83.8 76.31 81.88 77.19 80.43 78.9 C 78.97 80.66 78.24 82.86 78.24 85.55 L 78.24 89.36 C 78.24 91.65 78.92 93.56 80.33 95.12 C 81.75 96.69 83.48 97.42 85.53 97.42 C 87.99 97.42 89.91 96.39 91.32 94.39 C 92.74 92.39 93.42 89.55 93.42 85.99 Z M 66.52 100.5 L 62.46 100.5 L 62.46 96.25 L 62.37 96.25 C 60.59 99.52 57.99 101.18 54.53 101.18 C 52.07 101.18 50.11 100.45 48.65 99.03 C 47.19 97.61 46.46 95.66 46.46 93.27 C 46.46 88.18 49.24 85.2 54.85 84.37 L 62.46 83.25 C 62.46 78.66 60.73 76.31 57.22 76.31 C 54.16 76.31 51.38 77.44 48.92 79.64 L 48.92 75.14 C 49.65 74.55 50.93 73.97 52.75 73.38 C 54.57 72.84 56.17 72.55 57.58 72.55 C 63.56 72.55 66.57 75.97 66.57 82.76 L 66.57 100.5 Z M 62.46 86.72 L 56.31 87.65 C 54.21 87.99 52.75 88.53 51.88 89.26 C 51.02 89.99 50.61 91.21 50.61 92.92 C 50.61 94.29 51.06 95.37 51.98 96.2 C 52.89 97.03 54.07 97.42 55.49 97.42 C 57.49 97.42 59.18 96.64 60.5 95.12 C 61.82 93.61 62.46 91.7 62.46 89.41 L 62.46 86.72 Z M 0 30 L 0 160 L 180 160 L 180 30 L 0 30 L 0 30 Z M 171.02 149.55 L 6.66 149.55 L 6.66 57.26 L 171.02 57.26 L 171.02 149.55 Z" fill="#00bef2" stroke="none" pointer-events="none"/><g transform="translate(33.5,87.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="22" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">Text</div></div></foreignObject><text x="11" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">Text</text></switch></g><rect x="10" y="60" width="160" height="90" fill="#ffffff" stroke="#c0c0c0" pointer-events="none"/><g transform="translate(10.5,60.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="158" height="88" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 159px; height: 89px; overflow: hidden; white-space: nowrap;"><table border="1" width="100%" cellpadding="4" style="width: 100% ; height: 100% ; border-collapse: collapse"><tbody><tr style="background-color: #a7c942 ; color: #ffffff ; border: 1px solid #98bf21"><th align="left">Text</th><th align="left">Done</th></tr><tr style="border: 1px solid #98bf21"><td>Clean shower</td><td>Yes</td></tr><tr style="background-color: #eaf2d3 ; border: 1px solid #98bf21"><td>Buy toilet paper</td><td>No</td></tr><tr style="border: 1px solid #98bf21"><td>Buy dog food</td><td>Yes</td></tr></tbody></table></div></foreignObject><text x="79" y="50" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">[Not supported by viewer]</text></switch></g><path d="M 180 95 L 400.53 95" fill="none" stroke="#00bef2" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="12 12" pointer-events="none"/><path d="M 410.53 95 L 400.53 100 L 400.53 90 Z" fill="#00bef2" stroke="#00bef2" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><rect x="490" y="40" width="267" height="140" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(490.5,40.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="265" height="138" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 16px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 266px; height: 139px; overflow: hidden; white-space: nowrap; text-align: center;"><table border="1" width="100%" cellpadding="4" style="width: 100% ; height: 100% ; border-collapse: collapse"><tbody><tr style="background-color: #a7c942 ; color: #ffffff ; border: 1px solid #98bf21"><th align="left"><font color="#000000">ID</font></th><th align="left"><font color="#000000">Text</font></th><th align="left"><font color="#000000">Done</font></th></tr><tr style="border: 1px solid #98bf21"><td><font color="#000000">1</font></td><td><table><tbody><tr><td><font color="#000000">Clean shower</font></td></tr></tbody></table></td><td><font color="#000000">true</font></td></tr><tr style="background-color: #eaf2d3 ; border: 1px solid #98bf21"><td><font color="#000000">2</font></td><td><table><tbody><tr><td><font color="#000000">Buy toilet paper<br /></font></td></tr></tbody></table></td><td><font color="#000000">false</font></td></tr><tr style="border: 1px solid #98bf21"><td><font color="#000000">3</font></td><td><table><tbody><tr><td><font color="#000000">Buy dog food<br /></font></td></tr></tbody></table></td><td><font color="#000000">true</font></td></tr></tbody></table></div></foreignObject><text x="133" y="77" fill="#000000" text-anchor="middle" font-size="16px" font-family="Helvetica">[Not supported by viewer]</text></switch></g><g transform="translate(575.5,11.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="96" height="17" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 16px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 96px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">TODOS table</div></div></foreignObject><text x="48" y="17" fill="#000000" text-anchor="middle" font-size="16px" font-family="Helvetica">TODOS table</text></switch></g><g transform="translate(200.5,66.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="185" height="17" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 16px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 187px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">SELECT * FROM TODOS</div></div></foreignObject><text x="93" y="17" fill="#000000" text-anchor="middle" font-size="16px" font-family="Helvetica">SELECT * FROM TODOS</text></switch></g></g></svg>
++++
+### CAP
+@img[span-70](/Lectures/Lecture_04/Assets/img/CAPtheorem.png)
 
----
++++
+### CRUD
+![](/Lectures/Lecture_04/Assets/img/CRUD.png)
 
-## Database persistence
++++
+### Data Access Layer (DAL)
+* **Definition**
+  * *Layer of a computer program which provides simplified access to data stored in persistent storage*
+* DAL might **return a reference to an object complete with its attributes**
+* Created higher level of abstraction
 
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="901px" viewBox="-0.5 -0.5 901 561" content="&lt;mxfile modified=&quot;2019-02-23T17:46:37.306Z&quot; host=&quot;www.draw.io&quot; agent=&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36&quot; etag=&quot;L7IEra0_nmor6uqhkQT7&quot; version=&quot;10.2.6&quot; type=&quot;onedrive&quot;&gt;&lt;diagram id=&quot;VzwX6c1LZ7_3RVeKrXSE&quot; name=&quot;PersistenceOverview&quot;&gt;7Vrbcts2EP0aPRqD++XR17SdpHHqzKR9ylAkJLGhBJWkYslf3wUvIinSlp1QqdupPWMTS2ix2HMW2AU0YZfL7Zs0WC/eucgmE4qj7YRdTSglBEv45yW7UiKxLgXzNI6qTo3gLn6wlRBX0k0c2azTMXcuyeN1Vxi61cqGeUcWpKm773abuaQ76jqY257gLgySvvRTHOWLUqqpauQ/2Xi+qEcm0pRvlkHduZpJtggid98SsesJu0ydy8un5fbSJt55tV/Kz9088nZvWGpX+XM+cP+rusre/vIwuxG7eZKorzN3c1Zp+Rokm2rClbH5rvbAPHWbdX+w+pM2ze12CIpgWmtoZgs0sW5p83QH/bZdpO8b9xKiKpYsWr4VQlS4VpjO97qaacNDNfNhL6wf0g94mZ6Ftw+/JW8+kSm5uDpjx73g5xkDLd4GU5vcuizOY7eCV1OX5245YReLfAljXhF4rPueJ/Hc98ndGqRB1QrBhTYFQZan7ou9dImD1tXKrWCoi1mcJLVoQhnGF9c31HdeBGtvynI794GGgodNalGYuE30ObPp1zi02Wfw/Cyeb9LAG/cZVHmNfeieZMIhno/ipoVBRDGjDReCaF4FehXnFGNkOMSJ0JLiOijaGHOODMWGMK05xqqPN1EUUU6YMoxgxrk+Ffz8Xw3/KSFmGBFtNJZSaaYZ6UDMKUEFLhXISvRAppgirQ1VhjMlsdF8AGbGkJFAIVWBLU8Es/i3whwFsJgG2UmDWRokqOCaMcwxr13TjlfKEYSkoZIA2AYifwBKwRBpUYKcCEl5HMn9bovBa1GQLWxUNVoQDmKTHGC/R/IoOZ7LiAOQl1kYWFS8XadxZlGwXiegp1T/KFdGp0IV1kRSJFWz8PajmsHCLAVTSguhtRK0zwTKNdqv20AGcyImqB4TPtpt3mND7oUd6FObxQ9ViuJZsXbxKi+sExcTceVx2+SAcZGPkhaMiZ3lj2KdrYMwXs0/+obfV04XsFLC3miExJJRCUss6+6+UqGW97XqYcjxAGj4RCjpgXiViXdjmSVSPHVpZEuGy782PiW+IM1jx/T9ewzmik6nEGxZB1EEEHS68k6vhhe1sFJ+Di9rrbjsW7tn4FVp8lnokiRY+8X5vMh9q1bda+ZW+VlJo0KHXG/bxsh59b/0xtRBnXQoTAdtngbhF5+aryJvgl8dvH5YIAIVGk73BnRfzoqfgzlUpnnLcOYSgLLoa/R0RskT1i48Vyr+N92KAHna3y9yiu/87VrK5aDUBNwtlXUHALGfyjdNbkxTr/z+8w2memH6XNZ8F+DRuBO+TGywKipjd2/TZ0y9N/7YFv1hs28x40UIPBa3NpjRiI0UmiP75WKzKw5eoKLMi+1s/Trw+tWdHK7XB0Pk5sXG4qLXAMGYIeOFQ1ugl5eJQi0/mt91U3vAKsT+d9LLp6sdkV04SL5mSVEz+C4gKaJ0XzecKpOjGClMjVbSKEUENd1MDl7j4ghFl0VyP5VjjEAuqDRmRELCx+VQkf2jzlLq07ynajO7is790ayvnRIXfpm0KjTShdFu4/z31vMfHgwkqtbVtsKmaOxajVubxjChIqXEQ3TYl1FgzE0BdznGCpzwe63IN1oj+mYzZNHatVvDg9bHxvzFHMrcJg3t8To4D9K5zY+ffNioc9bdZ2SLVGKgPqhlqU2gOP3aPSEfYlI1wq2vrRrCc8aRklRxIgXFlHRPlaiRSDY8pbqrvvRJpbF92n0wyNNHV1oi0oQUWNQdpHRobxAgbbBrdatqxkcnqjBDBhOhYQjKiDmIbK1QywTCxUHwlcM1obgH6jui8xnn/f9AdJ4g6o6H+quJTvaqopMZhpiQSkoqpDBYnCI6OajRiijMFRdESsO7owxeHhyJztFihI4bI3tuIyxGoPeP3hFfTZjw1xUmCjYxyrFSDHYTLtXBAdxIuxgvrljgQWOhhOresUG+h+CPgI3GMGEO7k3+u5tY/7r23e7uw9u6WpgOV3IH1QzlUM0UJcZBQfM+DcLEjqTs3R28Hc+20dSc7ny8d11y7ITcGz20DHl59X0Q+vJl5/n1F8GKIc4gvoyRUBgd7HhEo1bZROsQbK0ycmCVkac6Sif9y2r0Z+ZWIzEDbYEBI6naBaPp+p+wHcJqBptLk6Tp7pI8fPV25O6Hn4yw/Wv3367vPoLk/Pbnkehx9/789scx7TH8e4T6cYRgDGFlsJaECHNwF8iFQa2rQCBOjxDHv4sjFGqfHtGX3+dCs/muW5kKNN8YZNd/Aw==&lt;/diagram&gt;&lt;diagram id=&quot;jTaEXDrFFR1zGWIXkIXQ&quot; name=&quot;PersistenceDatabaseSQL&quot;&gt;7VptU9s4EP41+XIzZPwSO8lH8kKvVzhoA3PXT4xiKbYG2fLJCjH8+kq2/C5IQvC0xzQZJtZqtdrdZyXtWgzseZh+YiAOrihEZGAZMB3Yi4Flmabhih9JecoprjHJCT7DUDFVhBV+RopoKOoWQ5Q0GDmlhOO4SfRoFCGPN2iAMbprsm0oac4aAx91CCsPkC71Hwx5kFMn1rii/4mwHxQzm+407wlBwawsSQIA6a5GspcDe84o5flTmM4Rkc4r/BKm4Bsj7hecXs6fz++WMXucneXCLo4ZUprAUMTfLPrB/Su+n986X+/C5Zg+L5z74MuZlYt+BGSr/KVs5U+FAx8R41j48xKsEbmhCeaYRqJrTTmn4cCeBTwkom2Kx4L3nGBf8nAaCypQLU+oj5ggJJzRBzSnhIrWIqKRmGq2wYQUpIFlG8ZseWFJ5gDEUpUw9WWEDsHzlqEhBBysQSIHHugd5UWpIkprsaG89QnREHH2JFhU72js5ENU5FsT1d5VceSq2AhqITRRNKAi1y8lV+iIBwXQEWDZ+8EqY9QQjoEgCRBUjRpKWveTFrwlWHvxPxT0Fo5h4gE0zHpjhhM0BHFMhJxc/Ivh0BfaBZIF2EW7BrY50aBt2n3BPerAfYtS3oGcS2IDX4YS/AzWGYOEPqY44pl2zmzgLCQ4Wy6AzLZqs4YVQRv+IqBJDDwc+beysRDK9QfF1GpAYZvddTfSIGH1BYSjWXcukZ7imZctY00ZRHmkuv9t5YEwM6vHhuplvyHUdRpMntAlBhAKLzdYRw2uCvqCqISfi85CqpHzFu7RdOUqn3mUEBDLffQ8O4RVqzah66vf3OI1FZlAm8i0eq2B9+Azuo2gnEauZDmHWMxg7E1HVqlKs3OTfVp6KhPiVE5EiYAr451O1hvLfEXbQMaDCuOKLYvzzqB8deUDRZzIsSdIW8ht9TVpksgO9eRJToAFZU4QiLJMhu4QqysCXx70XWRvr3EeZcdLEYHAxoL2O4FeqjjbPmXpJiaIZztVfLDVf9P3M/o9jYHUz7JgCvuETxJ1C13S8y2voO89jJrJhrDYM+S3e8KrdW/PqDgpNiTLYiSLPNBkxJSZTF/HzriVAUw1GYAu35v2de6M9+d7KILnskiS+Rih3kM96zObQKAU839rz9+lO4eOai1S5d2s8VRr3CCGhT3Z8WboAC1TM6HMRQZYDfii5jo+X0jolnlofzqMYKMA7MJbw8/RwFfQGCIi93xslo06TNUMNzKrqqKnlFNkLe28MLdHjarXaS1B7bLDtpymIA6Yj3hHUBZipdkHRd3j4qv79ezuKglXeBzEdw65/6ytMn5nOx8u2ykGbWgWfF65nitGsbLlpzv286J2IOQCuufEaenTKeq1ErlfT8FWbniwgj8h6zjFTPMAG1/JXFrbzoErsw9DXsybD7bqxCzrKH+9xULOtodE5P8p+T/FHdZbfPErRu5rFdBaF5AfJqI3gCT9h/TPD1X7Y4Vqt7792GH6rhtvn2W7MuDtZbs0TV0Pmu5Ac0HQV13vtCqzstCvFYaWO9a82h+9Q2WvrbE0r/avF9cruVXnOB2Jj+YKTZE6Xm6/3A8xhHKa2S7AHK1ikNXcOwbivQjKti5Ceruisexh60rO1ryjsTRFfm9Idu8GVsvL5fxW0P4Qfxffrq/Ej0L3N6oaVNsvTnTXrJahWZ5vwFQ0q/v6/IVJ9V8P9vIH&lt;/diagram&gt;&lt;diagram id=&quot;Kvzrk7gUgR3qZM4joVvP&quot; name=&quot;PersistenceLoadSQL&quot;&gt;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&lt;/diagram&gt;&lt;diagram id=&quot;O7l1IK-q1rLzLcDINpSJ&quot; name=&quot;PersistenceORMTool&quot;&gt;ldHBEoIgEADQr+HYjEqZHU0tD3ny0JkRUgpdB2nUvj4dNGO81Al4LAu7IByU3VmSukiAMoEci3YIh8hxbNtyh2GUXotreRpyyekUtEDKX2xCa9Inp6wxAhWAULw2MYOqYpkyjEgJrRl2A2HeWpOcrSDNiFjrlVNVaPWc/eIx43kx32y7B71Tkjl4qqQpCIX2i3CEcCABlJ6VXcDE2Ly5L23p+2FzT/vL8XGLd9u275ONTnb658inBMkq9WvqYbI8bVgYH4yjNw==&lt;/diagram&gt;&lt;/mxfile&gt;" onclick="(function(svg){var src=window.event.target||window.event.srcElement;while (src!=null&amp;&amp;src.nodeName.toLowerCase()!='a'){src=src.parentNode;}if(src==null){if(svg.wnd!=null&amp;&amp;!svg.wnd.closed){svg.wnd.focus();}else{var r=function(evt){if(evt.data=='ready'&amp;&amp;evt.source==svg.wnd){svg.wnd.postMessage(decodeURIComponent(svg.getAttribute('content')),'*');window.removeEventListener('message',r);}};window.addEventListener('message',r);svg.wnd=window.open('https://www.draw.io/?client=1&amp;lightbox=1&amp;edit=_blank');}}})(this);" style="cursor:pointer;max-width:100%;max-height:561px;"><defs><clipPath id="mx-clip-234-199-132-26-0"><rect x="234" y="199" width="132" height="26"/></clipPath><clipPath id="mx-clip-234-225-132-26-0"><rect x="234" y="225" width="132" height="26"/></clipPath><clipPath id="mx-clip-234-251-132-26-0"><rect x="234" y="251" width="132" height="26"/></clipPath></defs><g><path d="M 768.7 336.84 C 768.7 343.16 752.14 348.29 731.71 348.29 C 711.29 348.29 694.73 343.16 694.73 336.84 L 694.73 250.48 C 694.73 244.15 711.29 239.03 731.71 239.03 C 752.14 239.03 768.7 244.15 768.7 250.48 Z M 760.65 253.28 C 760.65 248.94 748.03 245.43 732.47 245.43 C 716.9 245.43 704.29 248.94 704.29 253.28 C 704.29 256.09 709.66 258.68 718.38 260.08 C 727.1 261.48 737.84 261.48 746.56 260.08 C 755.28 258.68 760.65 256.09 760.65 253.28 Z M 722.4 317.77 C 727.85 315.16 731.37 309.34 731.37 302.91 C 731.37 296.49 727.85 290.66 722.4 288.05 L 707.31 288.05 L 707.31 317.77 Z M 754.61 317.77 C 757.49 316.41 759.32 313.21 759.2 309.73 C 759.09 306.25 757.06 303.2 754.11 302.07 C 756.01 300.08 756.86 297.13 756.35 294.28 C 755.84 291.43 754.04 289.07 751.59 288.05 L 737.5 288.05 L 737.5 317.77 Z M 710.83 291.98 L 721.9 291.98 C 725.55 294.1 727.84 298.32 727.84 302.91 C 727.84 307.51 725.55 311.72 721.9 313.85 L 710.83 313.85 Z M 741.02 291.98 L 750.58 291.98 C 751.85 292.91 752.61 294.49 752.61 296.18 C 752.61 297.87 751.85 299.45 750.58 300.39 L 741.02 300.39 Z M 741.02 305.44 L 751.09 305.44 C 753.31 305.13 755.34 306.88 755.62 309.36 C 755.89 311.84 754.32 314.1 752.09 314.41 L 741.02 314.41 Z Z" fill="#00bef2" stroke="none" pointer-events="none"/><path d="M 156.94 281.41 C 156.94 287.69 155.65 292.76 153.06 296.49 C 150.47 300.23 146.99 302.1 142.66 302.1 C 138.56 302.1 135.41 300.03 133.27 295.83 L 133.16 295.83 L 133.16 318.31 L 128.16 318.31 L 128.16 263.93 L 133.16 263.93 L 133.16 270.47 L 133.27 270.47 C 135.75 265.53 139.35 263 144.12 263 C 148.06 263 151.15 264.67 153.51 267.94 C 155.81 271.27 156.94 275.74 156.94 281.41 Z M 151.82 281.35 C 151.82 277.34 151.04 274.14 149.41 271.74 C 147.83 269.34 145.64 268.14 142.83 268.14 C 139.96 268.14 137.6 269.34 135.8 271.67 C 134.01 274.07 133.11 277.08 133.11 280.75 L 133.11 285.95 C 133.11 289.09 133.95 291.69 135.69 293.83 C 137.43 295.96 139.57 296.96 142.1 296.96 C 145.13 296.96 147.5 295.56 149.24 292.82 C 150.98 290.09 151.82 286.22 151.82 281.35 Z M 120.35 281.41 C 120.35 287.69 119.05 292.76 116.47 296.49 C 113.88 300.23 110.4 302.1 106.07 302.1 C 101.97 302.1 98.82 300.03 96.68 295.83 L 96.57 295.83 L 96.57 318.31 L 91.57 318.31 L 91.57 263.93 L 96.57 263.93 L 96.57 270.47 L 96.68 270.47 C 99.15 265.53 102.75 263 107.53 263 C 111.46 263 114.56 264.67 116.92 267.94 C 119.17 271.27 120.35 275.74 120.35 281.41 Z M 115.17 281.35 C 115.17 277.34 114.39 274.14 112.76 271.74 C 111.18 269.34 108.99 268.14 106.18 268.14 C 103.31 268.14 100.95 269.34 99.15 271.67 C 97.36 274.07 96.46 277.08 96.46 280.75 L 96.46 285.95 C 96.46 289.09 97.3 291.69 99.04 293.83 C 100.78 295.96 102.92 296.96 105.45 296.96 C 108.49 296.96 110.85 295.56 112.59 292.82 C 114.33 290.09 115.17 286.22 115.17 281.35 Z M 82.01 301.17 L 77.01 301.17 L 77.01 295.36 L 76.9 295.36 C 74.7 299.83 71.5 302.1 67.23 302.1 C 64.19 302.1 61.77 301.1 59.98 299.16 C 58.18 297.23 57.28 294.56 57.28 291.29 C 57.28 284.35 60.71 280.28 67.62 279.15 L 77.01 277.61 C 77.01 271.34 74.87 268.14 70.54 268.14 C 66.78 268.14 63.35 269.67 60.31 272.67 L 60.31 266.53 C 61.21 265.73 62.79 264.93 65.04 264.13 C 67.28 263.4 69.25 263 70.99 263 C 78.36 263 82.07 267.67 82.07 276.94 L 82.07 301.17 Z M 77.01 282.35 L 69.42 283.62 C 66.83 284.08 65.04 284.82 63.97 285.82 C 62.9 286.82 62.39 288.49 62.39 290.82 C 62.39 292.69 62.96 294.16 64.08 295.29 C 65.2 296.43 66.67 296.96 68.41 296.96 C 70.88 296.96 72.96 295.89 74.59 293.83 C 76.22 291.76 77.01 289.15 77.01 286.02 L 77.01 282.35 Z M 0 204.88 L 0 382.44 L 221.92 382.44 L 221.92 204.88 L 0 204.88 L 0 204.88 Z M 210.84 368.16 L 8.21 368.16 L 8.21 242.11 L 210.84 242.11 L 210.84 368.16 Z" fill="#00bef2" stroke="none" pointer-events="none"/><g transform="translate(40.5,282.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="22" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">Text</div></div></foreignObject><text x="11" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">Text</text></switch></g><rect x="12.33" y="245.85" width="197.26" height="122.93" fill="#ffffff" stroke="#c0c0c0" pointer-events="none"/><g transform="translate(12.5,246.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="195" height="121" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 196px; height: 122px; overflow: hidden; white-space: nowrap;"><table border="1" width="100%" cellpadding="4" style="width: 100% ; height: 100% ; border-collapse: collapse"><tbody><tr style="background-color: #a7c942 ; color: #ffffff ; border: 1px solid #98bf21"><th align="left">Text</th><th align="left">Done</th></tr><tr style="border: 1px solid #98bf21"><td>Clean shower</td><td>Yes</td></tr><tr style="background-color: #eaf2d3 ; border: 1px solid #98bf21"><td>Buy toilet paper</td><td>No</td></tr><tr style="border: 1px solid #98bf21"><td>Buy dog food</td><td>Yes</td></tr></tbody></table></div></foreignObject><text x="98" y="66" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">[Not supported by viewer]</text></switch></g><path d="M 236.47 293.99 L 690.41 293.66" fill="none" stroke="#00bef2" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="12 12" pointer-events="none"/><path d="M 226.47 294 L 236.47 288.99 L 236.48 298.99 Z" fill="#00bef2" stroke="#00bef2" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><rect x="567.12" y="368.78" width="332.88" height="191.22" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(567.5,369.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="331" height="189" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 16px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 332px; height: 190px; overflow: hidden; white-space: nowrap; text-align: center;"><table border="1" width="100%" cellpadding="4" style="width: 100% ; height: 100% ; border-collapse: collapse"><tbody><tr style="background-color: #a7c942 ; color: #ffffff ; border: 1px solid #98bf21"><th align="left"><font color="#000000">ID</font></th><th align="left"><font color="#000000">Text</font></th><th align="left"><font color="#000000">Done</font></th></tr><tr style="border: 1px solid #98bf21"><td><font color="#000000">1</font></td><td><table><tbody><tr><td><font color="#000000">Clean shower</font></td></tr></tbody></table></td><td><font color="#000000">true</font></td></tr><tr style="background-color: #eaf2d3 ; border: 1px solid #98bf21"><td><font color="#000000">2</font></td><td><table><tbody><tr><td><font color="#000000">Buy toilet paper<br /></font></td></tr></tbody></table></td><td><font color="#000000">false</font></td></tr><tr style="border: 1px solid #98bf21"><td><font color="#000000">3</font></td><td><table><tbody><tr><td><font color="#000000">Buy dog food<br /></font></td></tr></tbody></table></td><td><font color="#000000">true</font></td></tr></tbody></table></div></foreignObject><text x="165" y="103" fill="#000000" text-anchor="middle" font-size="16px" font-family="Helvetica">[Not supported by viewer]</text></switch></g><path d="M 230 194 L 230 168 L 370 168 L 370 194" fill="#00bef2" stroke="#00bef2" stroke-miterlimit="10" pointer-events="none"/><path d="M 230 194 L 230 272 L 370 272 L 370 194" fill="none" stroke="#00bef2" stroke-miterlimit="10" pointer-events="none"/><path d="M 230 194 L 370 194" fill="none" stroke="#00bef2" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="15px"><text x="299.5" y="187">Todo</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-234-199-132-26-0)" font-size="15px"><text x="235.5" y="214.5">+ Id: int</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-234-225-132-26-0)" font-size="15px"><text x="235.5" y="240.5">+ Text: string</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-234-251-132-26-0)" font-size="15px"><text x="235.5" y="266.5">+ Done: bool</text></g></g></svg>
+![](/Lectures/Lecture_04/Assets/img/ef-in-app-architecture.png)
 
----
++++
+## Database Types
+* *Relational (SQL)* databases
+    * e.g., MySQL, PostgresSQL, MS SQL, Oracle, ...
+    * Each table has firm structure
+    * Relation validations
 
-## Support in .NET
+* *NoSQL* databases
+    * e.g., MongoDB, Cassandra, ...
+    * Not-only-SQL
+    * May/MayNot enforced schema
+    * Typically faster read/write operations
 
-* ADO.NET
-    * Connection-based
-    * Plain SQL
-    * Boilerplate coding
+![](/Lectures/Lecture_04/Assets/img/SQLvsNOSQL.jpg)
 
----
++++
+* *Single-File* vs *Multi-File* databases
+* *Object Oriented* databases
 
-## Object Relationship Mapping (ORM)
++++
+### SQL
+* **Structured Query Language**
+* Standard language for relational database managment systems
+@img[span-70](/Lectures/Lecture_04/Assets/img/sqlstatement.png)
 
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="901px" viewBox="-0.5 -0.5 901 561" content="&lt;mxfile modified=&quot;2019-02-23T17:49:37.003Z&quot; host=&quot;www.draw.io&quot; agent=&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36&quot; etag=&quot;IFeeRGNMZt-YLYmlx6rW&quot; version=&quot;10.2.6&quot; type=&quot;onedrive&quot;&gt;&lt;diagram id=&quot;VzwX6c1LZ7_3RVeKrXSE&quot; name=&quot;PersistenceOverview&quot;&gt;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&lt;/diagram&gt;&lt;diagram id=&quot;jTaEXDrFFR1zGWIXkIXQ&quot; name=&quot;PersistenceDatabaseSQL&quot;&gt;7VptU9s4EP41+XIzZPwSO8lH8kKvVzhoA3PXT4xiKbYG2fLJCjH8+kq2/C5IQvC0xzQZJtZqtdrdZyXtWgzseZh+YiAOrihEZGAZMB3Yi4Flmabhih9JecoprjHJCT7DUDFVhBV+RopoKOoWQ5Q0GDmlhOO4SfRoFCGPN2iAMbprsm0oac4aAx91CCsPkC71Hwx5kFMn1rii/4mwHxQzm+407wlBwawsSQIA6a5GspcDe84o5flTmM4Rkc4r/BKm4Bsj7hecXs6fz++WMXucneXCLo4ZUprAUMTfLPrB/Su+n986X+/C5Zg+L5z74MuZlYt+BGSr/KVs5U+FAx8R41j48xKsEbmhCeaYRqJrTTmn4cCeBTwkom2Kx4L3nGBf8nAaCypQLU+oj5ggJJzRBzSnhIrWIqKRmGq2wYQUpIFlG8ZseWFJ5gDEUpUw9WWEDsHzlqEhBBysQSIHHugd5UWpIkprsaG89QnREHH2JFhU72js5ENU5FsT1d5VceSq2AhqITRRNKAi1y8lV+iIBwXQEWDZ+8EqY9QQjoEgCRBUjRpKWveTFrwlWHvxPxT0Fo5h4gE0zHpjhhM0BHFMhJxc/Ivh0BfaBZIF2EW7BrY50aBt2n3BPerAfYtS3oGcS2IDX4YS/AzWGYOEPqY44pl2zmzgLCQ4Wy6AzLZqs4YVQRv+IqBJDDwc+beysRDK9QfF1GpAYZvddTfSIGH1BYSjWXcukZ7imZctY00ZRHmkuv9t5YEwM6vHhuplvyHUdRpMntAlBhAKLzdYRw2uCvqCqISfi85CqpHzFu7RdOUqn3mUEBDLffQ8O4RVqzah66vf3OI1FZlAm8i0eq2B9+Azuo2gnEauZDmHWMxg7E1HVqlKs3OTfVp6KhPiVE5EiYAr451O1hvLfEXbQMaDCuOKLYvzzqB8deUDRZzIsSdIW8ht9TVpksgO9eRJToAFZU4QiLJMhu4QqysCXx70XWRvr3EeZcdLEYHAxoL2O4FeqjjbPmXpJiaIZztVfLDVf9P3M/o9jYHUz7JgCvuETxJ1C13S8y2voO89jJrJhrDYM+S3e8KrdW/PqDgpNiTLYiSLPNBkxJSZTF/HzriVAUw1GYAu35v2de6M9+d7KILnskiS+Rih3kM96zObQKAU839rz9+lO4eOai1S5d2s8VRr3CCGhT3Z8WboAC1TM6HMRQZYDfii5jo+X0jolnlofzqMYKMA7MJbw8/RwFfQGCIi93xslo06TNUMNzKrqqKnlFNkLe28MLdHjarXaS1B7bLDtpymIA6Yj3hHUBZipdkHRd3j4qv79ezuKglXeBzEdw65/6ytMn5nOx8u2ykGbWgWfF65nitGsbLlpzv286J2IOQCuufEaenTKeq1ErlfT8FWbniwgj8h6zjFTPMAG1/JXFrbzoErsw9DXsybD7bqxCzrKH+9xULOtodE5P8p+T/FHdZbfPErRu5rFdBaF5AfJqI3gCT9h/TPD1X7Y4Vqt7792GH6rhtvn2W7MuDtZbs0TV0Pmu5Ac0HQV13vtCqzstCvFYaWO9a82h+9Q2WvrbE0r/avF9cruVXnOB2Jj+YKTZE6Xm6/3A8xhHKa2S7AHK1ikNXcOwbivQjKti5Ceruisexh60rO1ryjsTRFfm9Idu8GVsvL5fxW0P4Qfxffrq/Ej0L3N6oaVNsvTnTXrJahWZ5vwFQ0q/v6/IVJ9V8P9vIH&lt;/diagram&gt;&lt;diagram id=&quot;Kvzrk7gUgR3qZM4joVvP&quot; name=&quot;PersistenceLoadSQL&quot;&gt;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&lt;/diagram&gt;&lt;diagram id=&quot;O7l1IK-q1rLzLcDINpSJ&quot; name=&quot;PersistenceORMTool&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;" onclick="(function(svg){var src=window.event.target||window.event.srcElement;while (src!=null&amp;&amp;src.nodeName.toLowerCase()!='a'){src=src.parentNode;}if(src==null){if(svg.wnd!=null&amp;&amp;!svg.wnd.closed){svg.wnd.focus();}else{var r=function(evt){if(evt.data=='ready'&amp;&amp;evt.source==svg.wnd){svg.wnd.postMessage(decodeURIComponent(svg.getAttribute('content')),'*');window.removeEventListener('message',r);}};window.addEventListener('message',r);svg.wnd=window.open('https://www.draw.io/?client=1&amp;lightbox=1&amp;edit=_blank');}}})(this);" style="cursor:pointer;max-width:100%;max-height:561px;"><defs><clipPath id="mx-clip-234-199-132-26-0"><rect x="234" y="199" width="132" height="26"/></clipPath><clipPath id="mx-clip-234-225-132-26-0"><rect x="234" y="225" width="132" height="26"/></clipPath><clipPath id="mx-clip-234-251-132-26-0"><rect x="234" y="251" width="132" height="26"/></clipPath></defs><g><path d="M 834.2 336.84 C 834.2 343.16 817.64 348.29 797.21 348.29 C 776.79 348.29 760.23 343.16 760.23 336.84 L 760.23 250.48 C 760.23 244.15 776.79 239.03 797.21 239.03 C 817.64 239.03 834.2 244.15 834.2 250.48 Z M 826.15 253.28 C 826.15 248.94 813.53 245.43 797.97 245.43 C 782.4 245.43 769.79 248.94 769.79 253.28 C 769.79 256.09 775.16 258.68 783.88 260.08 C 792.6 261.48 803.34 261.48 812.06 260.08 C 820.78 258.68 826.15 256.09 826.15 253.28 Z M 787.9 317.77 C 793.35 315.16 796.87 309.34 796.87 302.91 C 796.87 296.49 793.35 290.66 787.9 288.05 L 772.81 288.05 L 772.81 317.77 Z M 820.11 317.77 C 822.99 316.41 824.82 313.21 824.7 309.73 C 824.59 306.25 822.56 303.2 819.61 302.07 C 821.51 300.08 822.36 297.13 821.85 294.28 C 821.34 291.43 819.54 289.07 817.09 288.05 L 803 288.05 L 803 317.77 Z M 776.33 291.98 L 787.4 291.98 C 791.05 294.1 793.34 298.32 793.34 302.91 C 793.34 307.51 791.05 311.72 787.4 313.85 L 776.33 313.85 Z M 806.52 291.98 L 816.08 291.98 C 817.35 292.91 818.11 294.49 818.11 296.18 C 818.11 297.87 817.35 299.45 816.08 300.39 L 806.52 300.39 Z M 806.52 305.44 L 816.59 305.44 C 818.81 305.13 820.84 306.88 821.12 309.36 C 821.39 311.84 819.82 314.1 817.59 314.41 L 806.52 314.41 Z Z" fill="#00bef2" stroke="none" pointer-events="none"/><path d="M 156.94 281.41 C 156.94 287.69 155.65 292.76 153.06 296.49 C 150.47 300.23 146.99 302.1 142.66 302.1 C 138.56 302.1 135.41 300.03 133.27 295.83 L 133.16 295.83 L 133.16 318.31 L 128.16 318.31 L 128.16 263.93 L 133.16 263.93 L 133.16 270.47 L 133.27 270.47 C 135.75 265.53 139.35 263 144.12 263 C 148.06 263 151.15 264.67 153.51 267.94 C 155.81 271.27 156.94 275.74 156.94 281.41 Z M 151.82 281.35 C 151.82 277.34 151.04 274.14 149.41 271.74 C 147.83 269.34 145.64 268.14 142.83 268.14 C 139.96 268.14 137.6 269.34 135.8 271.67 C 134.01 274.07 133.11 277.08 133.11 280.75 L 133.11 285.95 C 133.11 289.09 133.95 291.69 135.69 293.83 C 137.43 295.96 139.57 296.96 142.1 296.96 C 145.13 296.96 147.5 295.56 149.24 292.82 C 150.98 290.09 151.82 286.22 151.82 281.35 Z M 120.35 281.41 C 120.35 287.69 119.05 292.76 116.47 296.49 C 113.88 300.23 110.4 302.1 106.07 302.1 C 101.97 302.1 98.82 300.03 96.68 295.83 L 96.57 295.83 L 96.57 318.31 L 91.57 318.31 L 91.57 263.93 L 96.57 263.93 L 96.57 270.47 L 96.68 270.47 C 99.15 265.53 102.75 263 107.53 263 C 111.46 263 114.56 264.67 116.92 267.94 C 119.17 271.27 120.35 275.74 120.35 281.41 Z M 115.17 281.35 C 115.17 277.34 114.39 274.14 112.76 271.74 C 111.18 269.34 108.99 268.14 106.18 268.14 C 103.31 268.14 100.95 269.34 99.15 271.67 C 97.36 274.07 96.46 277.08 96.46 280.75 L 96.46 285.95 C 96.46 289.09 97.3 291.69 99.04 293.83 C 100.78 295.96 102.92 296.96 105.45 296.96 C 108.49 296.96 110.85 295.56 112.59 292.82 C 114.33 290.09 115.17 286.22 115.17 281.35 Z M 82.01 301.17 L 77.01 301.17 L 77.01 295.36 L 76.9 295.36 C 74.7 299.83 71.5 302.1 67.23 302.1 C 64.19 302.1 61.77 301.1 59.98 299.16 C 58.18 297.23 57.28 294.56 57.28 291.29 C 57.28 284.35 60.71 280.28 67.62 279.15 L 77.01 277.61 C 77.01 271.34 74.87 268.14 70.54 268.14 C 66.78 268.14 63.35 269.67 60.31 272.67 L 60.31 266.53 C 61.21 265.73 62.79 264.93 65.04 264.13 C 67.28 263.4 69.25 263 70.99 263 C 78.36 263 82.07 267.67 82.07 276.94 L 82.07 301.17 Z M 77.01 282.35 L 69.42 283.62 C 66.83 284.08 65.04 284.82 63.97 285.82 C 62.9 286.82 62.39 288.49 62.39 290.82 C 62.39 292.69 62.96 294.16 64.08 295.29 C 65.2 296.43 66.67 296.96 68.41 296.96 C 70.88 296.96 72.96 295.89 74.59 293.83 C 76.22 291.76 77.01 289.15 77.01 286.02 L 77.01 282.35 Z M 0 204.88 L 0 382.44 L 221.92 382.44 L 221.92 204.88 L 0 204.88 L 0 204.88 Z M 210.84 368.16 L 8.21 368.16 L 8.21 242.11 L 210.84 242.11 L 210.84 368.16 Z" fill="#00bef2" stroke="none" pointer-events="none"/><g transform="translate(40.5,282.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="22" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">Text</div></div></foreignObject><text x="11" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">Text</text></switch></g><rect x="12.33" y="245.85" width="197.26" height="122.93" fill="#ffffff" stroke="#c0c0c0" pointer-events="none"/><g transform="translate(12.5,246.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="195" height="121" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 196px; height: 122px; overflow: hidden; white-space: nowrap;"><table border="1" width="100%" cellpadding="4" style="width: 100% ; height: 100% ; border-collapse: collapse"><tbody><tr style="background-color: #a7c942 ; color: #ffffff ; border: 1px solid #98bf21"><th align="left">Text</th><th align="left">Done</th></tr><tr style="border: 1px solid #98bf21"><td>Clean shower</td><td>Yes</td></tr><tr style="background-color: #eaf2d3 ; border: 1px solid #98bf21"><td>Buy toilet paper</td><td>No</td></tr><tr style="border: 1px solid #98bf21"><td>Buy dog food</td><td>Yes</td></tr></tbody></table></div></foreignObject><text x="98" y="66" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">[Not supported by viewer]</text></switch></g><path d="M 236.47 294 L 465.53 294" fill="none" stroke="#00bef2" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="12 12" pointer-events="none"/><path d="M 226.47 294 L 236.47 289 L 236.47 299 Z" fill="#00bef2" stroke="#00bef2" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><path d="M 475.53 294 L 465.53 299 L 465.53 289 Z" fill="#00bef2" stroke="#00bef2" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><rect x="567.12" y="368.78" width="332.88" height="191.22" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(567.5,369.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="331" height="189" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 16px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 332px; height: 190px; overflow: hidden; white-space: nowrap; text-align: center;"><table border="1" width="100%" cellpadding="4" style="width: 100% ; height: 100% ; border-collapse: collapse"><tbody><tr style="background-color: #a7c942 ; color: #ffffff ; border: 1px solid #98bf21"><th align="left"><font color="#000000">ID</font></th><th align="left"><font color="#000000">Text</font></th><th align="left"><font color="#000000">Done</font></th></tr><tr style="border: 1px solid #98bf21"><td><font color="#000000">1</font></td><td><table><tbody><tr><td><font color="#000000">Clean shower</font></td></tr></tbody></table></td><td><font color="#000000">true</font></td></tr><tr style="background-color: #eaf2d3 ; border: 1px solid #98bf21"><td><font color="#000000">2</font></td><td><table><tbody><tr><td><font color="#000000">Buy toilet paper<br /></font></td></tr></tbody></table></td><td><font color="#000000">false</font></td></tr><tr style="border: 1px solid #98bf21"><td><font color="#000000">3</font></td><td><table><tbody><tr><td><font color="#000000">Buy dog food<br /></font></td></tr></tbody></table></td><td><font color="#000000">true</font></td></tr></tbody></table></div></foreignObject><text x="165" y="103" fill="#000000" text-anchor="middle" font-size="16px" font-family="Helvetica">[Not supported by viewer]</text></switch></g><path d="M 230 194 L 230 168 L 370 168 L 370 194" fill="#00bef2" stroke="#00bef2" stroke-miterlimit="10" pointer-events="none"/><path d="M 230 194 L 230 272 L 370 272 L 370 194" fill="none" stroke="#00bef2" stroke-miterlimit="10" pointer-events="none"/><path d="M 230 194 L 370 194" fill="none" stroke="#00bef2" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="15px"><text x="299.5" y="187">Todo</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-234-199-132-26-0)" font-size="15px"><text x="235.5" y="214.5">+ Id: int</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-234-225-132-26-0)" font-size="15px"><text x="235.5" y="240.5">+ Text: string</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-234-251-132-26-0)" font-size="15px"><text x="235.5" y="266.5">+ Done: bool</text></g><rect x="480" y="261" width="70" height="66" rx="15.18" ry="15.18" fill="#00bef2" stroke="#00bef2" pointer-events="none"/><g transform="translate(488.5,281.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="52" height="24" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 22px; font-family: Helvetica; color: rgb(255, 255, 255); line-height: 1.2; vertical-align: top; width: 52px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">ORM</div></div></foreignObject><text x="26" y="23" fill="#FFFFFF" text-anchor="middle" font-size="22px" font-family="Helvetica">ORM</text></switch></g><path d="M 564.47 294 L 745.53 294" fill="none" stroke="#00bef2" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="12 12" pointer-events="none"/><path d="M 554.47 294 L 564.47 289 L 564.47 299 Z" fill="#00bef2" stroke="#00bef2" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><path d="M 755.53 294 L 745.53 299 L 745.53 289 Z" fill="#00bef2" stroke="#00bef2" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(511.5,234.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="240" height="23" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 21px; font-family: &quot;Lucida Console&quot;; color: rgb(0, 190, 242); line-height: 1.2; vertical-align: top; width: 242px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">SELECT * FROM TODOS</div></div></foreignObject><text x="120" y="22" fill="#00BEF2" text-anchor="middle" font-size="21px" font-family="Lucida Console">SELECT * FROM TODOS</text></switch></g></g></svg>
 
----
-
-@snap[north span-100]
-## ORM - Pros and Cons
+@snap[east span-70]
+@img[span-40](/Lectures/Lecture_04/Assets/img/sql.gif)
 @snapend
 
-@snap[west  span-50]
-@ul[](false)
-- *Abstract*
-- *Portable*
-- *No need of SQL knowledge*
-- *Cache management*
-@ulend
++++
+### Microsoft SQL LocalDB
+* Feature of *SQL Server Express*
+* Designed for developers
+* **Minimal set of files necessary** to start the SQL Server Database Engine
+* Initiate a connection using a special *connection string*
+* When connecting, the **necessary SQL Server infrastructure is automatically created and started**
+* Enabling the application to **use the database without complex configuration** tasks
+
++++
+### Visual Studio Server Explorer
+* **Server management** console for *Visual Studio**
+* **Open data connections**
+* **Log on to servers**
+  * **Explore their databases and system services**
+* *View -> Server Explorer*
+
+@snap[east]
+@img[span-80](/Lectures/Lecture_04/Assets/img/ServerExplorerOpen.png)
 @snapend
 
-@snap[east span-50]
-@ul[](false)
-- *Slow*
-- *Complex queries take time*
-- *Limitations* - sometimes its harder to write complex queries
-@ulend
++++
+#### Connect to MSSQLLocalDB
+@img[span-50](/Lectures/Lecture_04/Assets/img/ServerExplorer.gif)
+
+
++++ 
+## Object-relational Mapping (ORM)
+* *Programming technique*
+  * **Converting data between incompatible type systems**
+  * Using object-oriented programming languages
+* *Table row to the object**
+* Creates *"virtual object database"*
+* Can be used from within the programming language
+
+@snap[east snap-100]
+![](/Lectures/Lecture_04/Assets/img/ORM.jpg)
 @snapend
+
++++
+### Pros of Object Relation Mapping
+* **Abstract**
+* **Portable**
+* Writing code in **one language** (ORM takes care of vendor specific code by itself)
+* **Code reduction** (most of the time)
+* **Cache management**
+  * Entities are cached in memory (reducing load on the database)
+
++++
+### Cons of Object Relation Mapping
+* **Slow**
+* **Complex queries take time**
+  * Minimize the DBMS hits
+  * Reduce bad queries which hurts performance
+* **Limitations** if complex queries are needed
+  * Sometimes it is faster to write raw SQL
 
 ---
-
-## ORM frameworks
-
+## Technologies used to connect to the database
+* **ADO.NET**
 * **Entity Framework** (used in this course)
-* **NHibernate** (based on Java Hibernate)
 * **Dapper**
+* **NHibernate**
 * ⋮
 * [NuGetMustHaves.com - Top ORM Packages](https://nugetmusthaves.com/Category/ORM)
 
+@snap[south-east span+40]
+![](/Lectures/GitPitch/assets/image/Overview_small.png)
+@snapend
+
++++
+## ADO.NET
+* Set of classes that **expose data access service**
+  * *SqlClient* (`System.Data.SqlClient`)
+  * *OleDb* (`System.Data.OleDb`)
+  * *Odbc* (`System.Data.Odbc`)
+  * ⋮
+* Providing **access to relational data, XML, and application data**
+* Supports a variety of development needs
+  * Creation of front-end **database clients**
+  * Middle-tier business objects used by applications, tools, languages, or Internet browsers
+
++++?code=/Lectures/Lecture_04/Assets/sln/Examples/SqlClientExample.cs&lang=C#&title=ADO.NET SqlClient Sample
+@[10-53]
+@[10-12]
+@[14-18]
+@[20-21]
+@[23-26]
+@[28-30]
+@[32-50]
+@[10-53]
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/Examples/SqlClientExample.cs)
+
 ---
+## Entity Framework (EF)
+* **Official definition:** *“Entity Framework is an object-relational mapper (ORM) that enables .NET developers to work with a database using .NET objects. It eliminates the need for most of the data-access code that developers usually need to write.”*
+* **Object-relational mapping framework**
+* By Microsoft
+* Enhancement to *ADO.NET*
+* To automate all database related activities for your application
+* Higher level of abstraction when dealing with data
+* Enables to work with data using objects without focusing on the underlying database
+* [Tutorial](http://www.entityframeworktutorial.net)
 
-## Entity Framework versions
++++ 
+### Entity Framework Main Features
+* **Cross-platform** - EF Core is a cross-platform framework (Windows, Linux, Mac)
+* **Modelling** - creates an Entity Data Model (EDM) based on Plain Old CLR Object (POCO) entities with get/set properties of different data types (used when querying or saving entity data)
+* **Querying** - allows to use LINQ queries
+* **Change Tracking** - keeps track of changes occurred to instances of your entities 
+* **Saving** - executes commands to the database based on the changes occurred to your entities 
+* **Concurrency** - uses Optimistic Concurrency by default to protect overwriting changes made by another user since data was fetched from the database
+* **Transactions** - automatic customizable transaction management
+* **Caching** - includes first level of caching out of the box (repeated querying will return data from the cache)
+* **Built-in Conventions** - follows conventions over the configuration programming pattern, and includes a set of default rules which automatically configure the EF model
+* **Configurations** - allows us to configure the EF model by using data annotation attributes or Fluent API to override default conventions
+* **Migrations** - set of migration commands to create or manage underlying database Schema
 
-**Entity Framework**
-* Latest version 6
-* "Old framework"
-* Works only on .NET Framework
++++ 
+### Entity Framework Versions
+* [Differences](https://docs.microsoft.com/en-us/ef/efcore-and-ef6/)
+* Currently, there are two latest versions of Entity Framework
+* **Entity Framework**
+  * Current version 6.x
+  * "Old framework"
+  * Works only on .NET Framework
+* **Entity Framework Core**
+  * open-source
+  * Current version 3.1
+  * Works on .NET Standard (supports .NET core -->  multplatform)
+  * Used in this course
 
-**Entity Framework Core**
-* open-source
-* Current version 2.2
-* Works on .NET Standard (supports .NET core -->  multplatform)
-* Used in this course
+![](/Lectures/Lecture_04/Assets/img/EFversions.png)
 
----
++++
+### Entity Framework Core
+* [GitHub](https://github.com/aspnet/EntityFrameworkCore)
+* [Documentation](https://docs.microsoft.com/sk-sk/ef/core/)
+* Is not a part of *.NET Core* or *Standard**
+* Intended to be used with *.NET Core* applications
+* Can also be used with standard *.NET 4.5+ framework* based applications
+* Supported application types:
 
-## EF Approaches
+![](/Lectures/Lecture_04/Assets/img/EFCoreSupport.png)
 
++++
+### Approaches
 * **Entity Framework Database First**
   * Creating Entity Data Model from your existing database
+  * [EF Core Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools) may help a lot!
 * **Entity Framework Code First**
   * *Used in this course*
-  * Create the database based on your domain classes and configuration
-  * Coding in C# or VB.NET and then EF will create the database from code
+  * Creates the database based on your domain classes and configuration
+  * Write entities in C# and then EF will create the database from the code for you
 
----
+![](/Lectures/Lecture_04/Assets/img/EFApproaches.png)
 
-## Data Providers
+
++++
+### Data Providers
 * Provider model to access many different databases
 * NuGet packages which you need to install
 
@@ -170,35 +294,123 @@
 | In-memory | [Microsoft.EntityFrameworkCore.InMemory](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory) |
 
 ---
+### Installation
+* Install *NuGet* packages to use EF Core
+  * **EF Core DB provider**
+  * **EF Core tools**
+  * **EF Core design**
 
+@snap[south-east span+40]
+![](/Lectures/GitPitch/assets/image/Overview_small.png)
+@snapend
 
-## Parts of EF Core
++++
+### Install DB Provider
+* Install *NuGet package* for the provider of the database we want to access
+* To access **MS SQL Server database**
+  * We need to install `Microsoft.EntityFrameworkCore.SqlServer`
+    * Tools -> NuGet Package Manager -> Manage NuGet Packages For Solution
+    * OR `PM> Install-Package Microsoft.EntityFrameworkCore.SqlServer`
 
-* Entities
-* DbContext
++++
+### Install DB Provider Image 1/5
+![](/Lectures/Lecture_04/Assets/img/install-efcore-1.png)
++++
+### Install DB Provider Image 2/5
+![](/Lectures/Lecture_04/Assets/img/install-efcore-2.png)
++++
+### Install DB Provider Image 3/5
+![](/Lectures/Lecture_04/Assets/img/install-efcore-3.png)
++++
+### Install DB Provider Image 4/5
+![](/Lectures/Lecture_04/Assets/img/install-efcore-4.png)
++++
+### Install DB Provider Image 5/5
+![](/Lectures/Lecture_04/Assets/img/install-efcore-5.png)
+
++++
+### Install Tools
+* To execute EF Core commands
+* Makes it easier to perform several EF Core-related tasks in your project at design time
+  * E.g. migrations, scaffolding etc.
+* Available as NuGet packages
+  * For **Package Manager Console** (PMC) as `Microsoft.EntityFrameworkCore.Tools`
+  * For **Command Line Interface** (CLI) as `Microsoft.EntityFrameworkCore.Tools.DotNet`
+
++++
+### Install Tools Image
+![](/Lectures/Lecture_04/Assets/img/install-efcore-6.png)
+
++++
+### Install Design
+* Shared **design-time components** for Entity Framework Core tools
+* Package manager console cmdlets like `Add-Migration`, `dotnet ef` & `ef.exe`
+* Needed for **Migrations** or **Reverse Engineering**
+* NuGet package `Microsoft.EntityFrameworkCore.Design`
 
 ---
+## Basic Concepts
+* DbContext
+* Entity
+* Persitence Scenarios
+* Conventions
+* Entity Configurations
+* Entity Relationships
+* RAW SQL Queries
+* Migrations
 
-## Entities in EF
+@snap[south-east span+40]
+![](/Lectures/GitPitch/assets/image/Overview_small.png)
+@snapend
 
++++
+### Example Schema
+![](/Lectures/Lecture_04/Assets/img/draw/Database.png)
+
++++
+### Example Schema
+![](/Lectures/Lecture_04/Assets/img/draw/Database-modified.png)
+
+---
+## Entity
 * `class` in the domain of your application
+* Included as a `DbSet<TEntity>` type property in the derived context class
+* EF API **maps each entity to a table** and **each property of an entity to a column** in the database
 
 ```C#
-public class Student
+public class CourseEntity
 {
-    public int Id { get; set; }
-    public string StudentName { get; set; }
-    public DateTime? DateOfBirth { get; set; }
-    public byte[]  Photo { get; set; }
-    public decimal Height { get; set; }
-    public float Weight { get; set; }
-    public Address Address { get; set; }
-    public ICollection<Lecture> Lectures { get; set; }
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+
+    public ICollection<StudentCourseEntity> StudentCourses { get; set; } = new List<StudentCourseEntity>();
 }
 ```
----
 
-## Entity Properties
++++
+### Entity in DbContext
+* Classes become entities when they are **included as** `DbSet<TEntity>` properties **in a context class**
+* Properties of type `DbSet<TEntity>` are called **entity sets**
+* `AddressEntity`, `CourseEntity`, `GradeEntity`, `StudentEntity`, `StudentCourseEntity` are **entities** (also known as entity types)
+
+```C#
+public class SchoolDbContext : DbContext
+{
+    public SchoolDbContext(DbContextOptions options) : base(options)
+    {
+    }
+
+    public DbSet<AddressEntity> Addresses { get; set; }
+    public DbSet<CourseEntity> Courses { get; set; }
+    public DbSet<GradeEntity> Grades { get; set; }
+    public DbSet<StudentEntity> Students { get; set; }
+    public DbSet<StudentCourseEntity> StudentCourses { get; set; }
+}
+```
+
++++
+### Entity Properties
 * Entity can include **two types of properties**
   * **Scalar Property**
     * Primitive type properties
@@ -215,51 +427,253 @@ public class Student
         * Includes a property of collection type
         * Represents multiplicity of many (*)
 
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs&lang=C#&title=Entity Sample
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
+
++++ 
+### Entity Property Types
+@img[span-70](/Lectures/Lecture_04/Assets/img/entity-properties.png)
+
++++
+### Entity types
+* **POCO Entities (Plain Old CLR Object)**
+  * Class that doesn't depend on any framework-specific base class
+  * **Normal .NET CLR class**
+  * "Persistence-ignorant objects"
+* **Dynamic Proxy Entities (POCO Proxy)**
+  * Runtime proxy class **which wraps POCO entity**
+  * Allows **lazy loading**
+  * By default, disabled
+  * To enable, install `Microsoft.EntityFrameworkCore.Proxies`
+
+```C#
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    => optionsBuilder
+        .UseLazyLoadingProxies()
+        .UseSqlServer(myConnectionString);
+```
+[Source](https://docs.microsoft.com/en-us/ef/core/querying/related-data#lazy-loading)
+
++++
+### POCO Proxy Requirements
+* POCO entity should meet the following requirements to become a POCO proxy:
+  1. A POCO class must be declared with **public access**
+  2. A POCO class must **not be sealed**
+  3. A POCO class must **not be abstract**
+  4. Each navigation **property** must be declared as **public, virtual**
+  5. Each collection **property** must be `ICollection<T>`
+
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL.Tests/EntityTypesTest.cs&lang=C#&title=Entity Types Sample
+@[13-21]
+@[23-29]
+@[31-43]
+@[45-56]
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL.Tests/EntityTypesTest.cs)
+
++++ 
+### Entity states
+* EF API maintains the state of each entity during an its lifetime
+* **Each entity has a state** based on the operation performed on it via the *DbContext*
+* Represented by an enum [`Microsoft.EntityFrameworkCore.EntityState`](https://docs.microsoft.com/en-us/ef/core/api/microsoft.entityframeworkcore.entitystate) (in EF Core)
+* Tracking can be requested through `Entry()` method on `DbSet<>`
+* Enum values
+  1. *Added*
+  2. *Modified*
+  3. *Deleted*
+  4. *Unchanged*
+  5. *Detached*
+
++++
+### Change Tracking
+* *DbContext* keeps track of entity states and **maintains modifications** made to the properties of the entity
+* Change from the *Unchanged* to the *Modified* is the only state that's **automatically handled by the** *DbContext*
+* Other changes must be made **explicitly using** proper **methods of **`DbContext`** or **`DbSet`
+
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL.Tests/EntityStatesTest.cs&lang=C#&title=Entity States Sample
+@[12-24]
+@[26-31]
+@[33-39]
+@[41-48]
+@[50-57]
+@[59-63]
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL.Tests/EntityStatesTest.cs)
+
+
++++
+### Commands Building and Executing
+* EF API builds and executes the **INSERT**, **UPDATE**, and **DELETE** commands based on the state of an entity when the `dbContext.SaveChanges()` is called
+  * **INSERT** command for the entities with **Added** state
+  * **UPDATE** command for the entities with **Modified** state
+  * **DELETE** command for the entities in **Deleted** state
+  * Context **does not track** entities in the **Detached** state
+![](/Lectures/Lecture_04/Assets/img/entity-states.png)
+
 ---
-
-
-## DbContext
-
+### DbContext
 * Integral part of Entity Framework
-* Instance representing a session with the database
-* Used for following tasks:
-  1. Managing database connection
-  2. Configuring model & relationship
+* Instance **represents a session with the database**
+* Can be **used to query and save instances of your entities to a database**
+* Is a combination of the **Unit Of Work** and **Repository** patterns
+* Allows us to perform following tasks:
+  1. Manage database connection
+  2. Configure model & relationship
   3. Querying database
   4. Saving data to the database
-  5. Configuring change tracking
+  5. Configure change tracking
   6. Caching
   7. Transaction management
 
----
-
-## DbContext - example
++++
+### DbContext Creation
+* Class that derives from `DbContext` (known as context class)
+* Typically includes `DbSet<TEntity>` properties for each entity in the model
 
 ```C#
-public class TodosDbContext : DbContext
+public class SchoolDbContext : DbContext
 {
-    public TodosDbContext()
+    public SchoolDbContext(DbContextOptions options) : base(options)
     {
     }
-    //Setups provider and other options
-    public TodosDbContext(DbContextOptions options) : base(options)
-    {
-    }
+    
+    public DbSet<AddressEntity> Addresses { get; set; }
+    public DbSet<CourseEntity> Courses { get; set; }
+    public DbSet<GradeEntity> Grades { get; set; }
+    public DbSet<StudentEntity> Students { get; set; }
+    public DbSet<StudentCourseEntity> StudentCourses { get; set; }
 
-    public DbSet<Todo> Todos { get; set; }
-    public DbSet<Person> People { get; set; }
-    public DbSet<Group> Groups { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+    }
+} 
+
++++
+
+#### InMemory DbContext Creation
+
+```C#
+public class TestDbContextFactory : IDbContextFactory
+{
+    public TodosDbContext CreateDbContext()
+    {
+        var optionsBuilder = new DbContextOptionsBuilder<TodosDbContext>();
+        optionsBuilder.UseInMemoryDatabase("TodoDbName");
+        return new TodosDbContext(optionsBuilder.Options);
+    }
 }
 ```
-@[1-14]
-@[3-9]
-@[11-13]
+
++++
+#### SqlServer DbContext Creation
+* **Do NOT include connection string into the code!!!**
+```C#
+public class DefaultDbContextFactory : IDbContextFactory
+{
+    public TodosDbContext CreateDbContext()
+    {
+        var optionsBuilder = new DbContextOptionsBuilder<TodosDbContext>();
+        optionsBuilder.UseSqlServer(
+                @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog = TasksDB;MultipleActiveResultSets = True;Integrated Security = True"); 
+                //TODO never ever put connection string into the code!!! Use configuration always!
+        return new TodosDbContext(optionsBuilder.Options);
+    }
+}
+```
++++?code=/Lectures/Lecture_04/Assets/sln/Dapper.DAL/appconfig.json&lang=JSON&title=Use Application Configuration to Store Connection Strings
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/appconfig.json)
+
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/SchoolDbContext.cs&lang=C#&title=DbContext Sample
+@[9-30]
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/SchoolDbContext.cs)
+
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL.Tests/LinqLazyEvaluationTest.cs&lang=C#&title=Entity States Sample
+@[13-21]
+@[23-34]
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL.Tests/LinqLazyEvaluationTest.cs)
+
++++
+### DbContext Methods
+| Method           | Usage                                                                                                                                                                                        |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| *Add*              | Adds a new entity to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChanges()` is called.                                |
+| *AddAsync*         | Asynchronous method for adding a new entity to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChangesAsync()` is called. |
+| *AddRange*         | Adds a collection of new entities to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChanges()` is called.                |
+| *AddRangeAsync*    | Asynchronous method for adding a collection of new entities which will be saved on `SaveChangesAsync()`.                                                                                       |
+
++++
+### DbContext Methods
+| Method           | Usage                                                                                                                                                                                        |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| *Attach*           | Attaches a new or existing entity to `DbContext` with *Unchanged* state and starts tracking it.                                                                                                  |
+| *AttachRange*      | Attaches a collection of new or existing entities to `DbContext` with *Unchanged* state and starts tracking it.                                                                                  |
+| *Entry*            | Gets an EntityEntry for the given entity. The entry provides access to change tracking information and operations for the entity.                                                            |
+| *Find*             | Finds an entity with the given primary key values.                                                                                                                                           |
+| *FindAsync*        | Asynchronous method for finding an entity with the given primary key values.                                                                                                                 |
+
++++
+### DbContext Methods
+| Method           | Usage                                                                                                                                                                                        |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| *Remove*           | Sets Deleted state to the specified entity which will delete the data when `SaveChanges()` is called.                                                                                          |
+| *RemoveRange*      | Sets Deleted state to a collection of entities which will delete the data in a single DB round trip when `SaveChanges()` is called.                                                            |
+| *SaveChanges*      | Execute *INSERT*, *UPDATE* or *DELETE* command to the database for the entities with Added, Modified or Deleted state.                                                                             |
+| *SaveChangesAsync* | Asynchronous method of `SaveChanges()`                                                                                                                                                         |
+
++++
+### DbContext Methods
+| Method           | Usage                                                                                                                                                                                        |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| *Set*              | Creates a `DbSet<TEntity>` that can be used to query and save instances of `TEntity`.                                                                                                            |
+| *Update*           | Attaches disconnected entity with Modified state and start tracking it. The data will be saved when `SaveChagnes()` is called.                                                                 |
+| *UpdateRange*      | Attaches a collection of disconnected entities with Modified state and start tracking it. The data will be saved when `SaveChagnes()` is called.                                               |
+| *OnConfiguring*    | Override this method to configure the database (and other options) to be used for this context. This method is called for each instance of the context that is created.                      |
+| *OnModelCreating*  | Override this method to further configure the model that was discovered by convention from the entity types exposed in `DbSet<TEntity>` properties on your derived context.                    |
+
++++
+### DbContext Properties
+| Property      | Usage                                                                                                               |
+|---------------|---------------------------------------------------------------------------------------------------------------------|
+| *ChangeTracker* | Provides access to information and operations for entity instances this context is tracking.                        |
+| *Database*      | Provides access to database related information and operations for this context.                                    |
+| *Model*         | Returns the metadata about the shape of entities, the relationships between them, and how they map to the database. |
 
 ---
+### Persistence Scenarios - Connected Scenario
+* Same instance of the context class (derived from DbContext) is used
+* Keeps **track of all entities** during its lifetime
+* Useful in local database or the database on the same network
+* *Pros*
+  * Performs fast
+  * Track of all entities and automatically sets an appropriate state
+* *Cons*
+  * The context stays alive, so the connection with the database stays open
+  * Utilizes more resource
 
++++
+### Persistence Scenarios - Connected Scenario
+![](/Lectures/Lecture_04/Assets/img/persistance-fg1.PNG)
+
++++
+### Persistence Scenarios - Disconnected  Scenario
+* **Used in this course**
+* **Different instances of the context are used** to retrieve and save entities to the database
+* Instance of the dbcontext is **disposed after retrieving data** and a new instance is created to save entities to the database
+* Complex because an instance of the context does not track entities
+* Useful in web applications or applications with a remote database
+* *Pros*
+  * Utilizes less resources compared to the connected scenario
+  * No open connection with the database
+* *Cons*
+  * Need to set an appropriate state to each entity before saving
+  * Performs slower than the connected scenario
+
++++
+### Persistence Scenarios - Disconnected  Scenario
+![](/Lectures/Lecture_04/Assets/img/persistance-fg2.PNG)
+
+---
 ## Conventions
-* **Default rules** to builds a model based on your domain
-  * **Tables** for all `DbSet<TEntity>` properties in a context class
+* **Default rules** to builds a model based on your domain 
+  * **Tables** for all `DbSet<TEntity>` properties in a context class 
   * **Columns** for all the scalar properties of an entity class
   * **Not null** collumn by default
   * **Nullable** collumn by nullable primitive types properties
@@ -268,36 +682,123 @@ public class TodosDbContext : DbContext
     * `<Reference Navigation Property Name>Id`
     * `<Reference Navigation Property Name><Principal Primary Key Property Name>`
 
----
++++
+### C# to SQL Mapping
+| C# Data Type | SQL Data Type |
+|--------------|---------------------------------|
+| `int`          | int                             |
+| `string`       | nvarchar(Max)                   |
+| `decimal`      | decimal(18,2)                   |
+| `float`        | real                            |
+| `byte[]`       | varbinary(Max)                  |
+| `datetime`     | datetime                        |
+| `bool`         | bit                             |
+| `byte`         | tinyint                         |
+| `short`        | smallint                        |
+| `long`         | bigint                          |
+| `double`       | float                           |
+| `char`, `sbyte`, `object`         | No mapping  |
 
-## Fluent API Configuration
++++
+### Foreign Key Convention
+![](/Lectures/Lecture_04/Assets/img/foreignkey-conv.png)
+
+---
+## Entity Configurations
+* To **customize the entity to table mapping**
+* When **do not want to follow default conventions**
+* 2 ways
+  * By using *Data Annotation Attributes*
+  * By using *Fluent API*
+
++++
+### Annotation Attributes
+* Namespace `System.ComponentModel.DataAnnotations` and `System.ComponentModel.DataAnnotations`
+* Simple **attribute based configuration method**
+* .NET attributes can be** applied to domain classes and properties to configure the model**
+* Also used in *ASP.NET MVC*
+
++++
+### Annotation Attributes Sample
+```C#
+[Table("StudentInfo")]
+public class Student
+{
+    public Student() { }
+        
+    [Key]
+    public Guid ID { get; set; }
+
+    [Column("Name", TypeName="ntext")]
+    [MaxLength(20)]
+    public string StudentName { get; set; }
+
+    [NotMapped]
+    public int? Age { get; set; }
+        
+        
+    public int StdId { get; set; }
+
+    [ForeignKey("StdId")]
+    public virtual Standard Standard { get; set; }
+}
+```
+@[1-2]
+@[6-7]
+@[9-11]
+@[13-14]
+@[17,19-20]
+
++++
+### `System.ComponentModel.DataAnnotations.Schema` attributes
+| Attribute         | Description                                                                      |
+|-------------------|----------------------------------------------------------------------------------|
+| `Table`             | The database table and/or schema that a class is mapped to                      |
+| `Column`            | The database column that a property is mapped to                                |
+| `ForeignKey`        | Specifies the property what is used as a foreign key in a relationship               |
+| `DatabaseGenerated` | Specifies how the database generates values for a property                      |
+| `NotMapped`         | Applied to properties or classes that are to be excluded from database mapping.  |
+| `InverseProperty`   | Specifies the inverse of a navigation property                                   |
+| `Owned`       | Denotes that the class is a weak entity. |
+
++++
+### `System.ComponentModel.Annotations` attributes
+| Attribute        | Description                                                             |
+|------------------|-------------------------------------------------------------------------|
+| `Key`              | Identifies one or more properties as a Key                              |
+| `Timestamp`        | Specifies the data type of the database column as `rowversion`            |
+| `ConcurrencyCheck` | Specifies that the property is included in concurrency checks           |
+| `Required`         | Specifies that the property's value is required                         |
+| `MaxLength`        | Sets the maximum allowed length of the property value (string or array) |
+| `StringLength`     | Sets the maximum allowed length of the property value (string or array) |
+
++++
+### Fluent API
 * Based on a *Fluent API* design pattern ([Fluent Interface](https://en.wikipedia.org/wiki/Fluent_interface))
 * Result is formulated by [method chaining](https://en.wikipedia.org/wiki/Method_chaining)
 * **ModelBuilder class** acts as a *Fluent API*
   * Provides **more configuration options than data annotation attributes**
 * **Higher precedence than data annotation attributes**
 
----
-
-## Fluent API Congiguration
++++
+### Fluent API Configures
 * **Model Configuration**
   * Configures an EF model to database mappings
   * Default Schema, DB functions, additional data annotation attributes and entities to be excluded from mapping
 * **Entity Configuration**
-  * Configures entity to table and relationships mapping
+  * Configures entity to table and relationships mapping 
   * e.g. PrimaryKey, AlternateKey, Index, table name, one-to-one, one-to-many, many-to-many relationships...
 * **Property Configuration**
-  * Configures property to column mapping
+  * Configures property to column mapping 
   * e.g. column name, default value, nullability, Foreignkey, data type, concurrency column...
 
----
-
-## Fluent API Sample
++++
+### Fluent API Sample
 ```C#
-public class SchoolDbContext: DbContext
+public class SchoolDbContext: DbContext 
 {
     public DbSet<StudentEntity> Students { get; set; }
-
+        
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //Write Fluent API configurations here
@@ -311,75 +812,176 @@ public class SchoolDbContext: DbContext
     }
 }
 ```
-@[5-15]
-@[9]
-@[10]
-@[11]
-@[12]
-@[13]
-@[14]
-@[5-15]
+
++++
+### Model Configurations
+| Fluent API Methods | Usage |
+|-|-|
+| `HasDbFunction()`    | Configures a database function when targeting a relational database. |
+| `HasDefaultSchema()` | Specifies the database schema.                                       |
+| `HasAnnotation()`    | Adds or updates data annotation attributes on the entity.            |
+| `HasSequence()`      | Configures a database sequence when targeting a relational database. |
+
++++
+### Entity Configuration
+| Fluent API Methods | Usage |
+|-|-|
+| `HasAlternateKey()` | Configures an alternate key in the EF model for the entity.                                                                                                           |
+| `HasIndex()`        | Configures an index of the specified properties.                                                                                                                      |
+| `HasKey()`          | Configures the property or list of properties as Primary Key.                                                                                                         |
+| `HasMany()`         | Configures the Many part of the relationship, where an entity contains the reference collection property of other type for one-to-Many or many-to-many relationships. |
+| `HasOne()`          | Configures the One part of the relationship, where an entity contains the reference property of other type for one-to-one or one-to-many relationships.               |
+| `Ignore()`          | Configures that the class or property should not be mapped to a table or column.                                                                                      |
+| `OwnsOne()`         | Configures a relationship where the target entity is owned by this entity. The target entity key value is propagated from the entity it belongs to.                   |
+| `ToTable()`         | Configures the database table that the entity maps to.                                                                                                                |
+
++++
+### Property Configuration part 1
+| Fluent API Methods | Usage |
+|-|-|
+| `HasColumnName()`               | Configures the corresponding column name in the database for the property.                                           |
+| `HasColumnType()`               | Configures the data type of the corresponding column in the database for the property.                               |
+| `HasComputedColumnSql()`        | Configures the property to map to computed column in the database when targeting a relational database.              |
+| `HasDefaultValue()`             | Configures the default value for the column that the property maps to when targeting a relational database.          |
+| `HasDefaultValueSql()`          | Configures the default value expression for the column that the property maps to when targeting relational database. |
+| `HasField()`                    | Specifies the backing field to be used with a property.                                                              |
+| `HasMaxLength()`                | Configures the maximum length of data that can be stored in a property.                                              |
+
++++
+### Property Configuration part 2
+| Fluent API Methods | Usage |
+|-|-|
+| `IsConcurrencyToken()`          | Configures the property to be used as an optimistic concurrency token.                                               |
+| `IsRequired()`                  | Configures whether the valid value of the property is required or whether null is a valid value.                     |
+| `IsRowVersion()`                | Configures the property to be used in optimistic concurrency detection.                                              |
+| `IsUnicode()`                   | Configures the string property which can contain unicode characters or not.                                          |
+
++++
+### Property Configuration part 3
+| Fluent API Methods | Usage |
+|-|-|
+| `ValueGeneratedNever()`         | Configures a property which cannot have a generated value when an entity is saved.                                   |
+| `ValueGeneratedOnAdd()`         | Configures that the property has a generated value when saving a new entity.                                         |
+| `ValueGeneratedOnAddOrUpdate()` | Configures that the property has a generated value when saving new or existing entity.                               |
+| `ValueGeneratedOnUpdate()`      | Configures that a property has a generated value when saving an existing entity.                                     |
 
 
 ---
+### DbContext Usage
+* Insert Data
+* Update Data
+* Delete Data
+* Query Data
 
-### Entity states
-* EF API maintains the state of each entity during an its lifetime
-* **Each entity has a state** based on the operation performed on it via the `DbContext`
-* Represented by an enum [`Microsoft.EntityFrameworkCore.EntityState`](https://docs.microsoft.com/en-us/ef/core/api/microsoft.entityframeworkcore.entitystate) (in EF Core)
-* Tracking can be requested through `Entry()` method on `DbSet<>`
-* Enum values
-  1. *Added*
-  2. *Modified*
-  3. *Deleted*
-  4. *Unchanged*
-  5. *Detached*
+@snap[south-east span+40]
+![](/Lectures/GitPitch/assets/image/Overview_small.png)
+@snapend
+
++++
+## Insert Data
+```C#
+var person = new Person
+{
+    FirstName = "Joe",
+    LastName = "Doe"
+};
+
+using (var dbContext = CreateDbContext())
+{
+    dbContext.People.Add(person);
+    dbContext.SaveChanges();
+}
+```
+
++++
+## Update Data
+
+```C#
+person.LastName = "Smith";
+
+using (var dbContext = CreateDbContext())
+{
+    dbContext.People.Update(person);
+    dbContext.SaveChanges();
+}
+```
+
++++
+## Delete Data
+```C#
+var person = new Person
+{
+    Id = 1
+};
+
+using (var dbContext = CreateDbContext())
+{
+    dbContext.People.Remove(person);
+    dbContext.SaveChanges();
+}
+```
+
++++
+## Query Data
+
+* Any expresion created with LINQ
+* When querying related object need to use `Include` expression
+
+```C#
+dbContext.Todos
+    .Include(t => t.AssignedPerson) //Load also data for AssignedPerson
+    .First(t => t.Id == todo.Id);
+```
+
+```
 
 ---
-
 ## Entity Relationships
 * One-to-One
 * One-to-Many
 * Many-to-Many
 
+* Just add them as properties, respect naming conventions
+* Additional configuration of relationships can be done in `DbContext.OnModelCreating` method
+
 @snap[south-east span+40]
-![](/Lectures/Assets/img/MagnifyingGlass.png)
+![](/Lectures/GitPitch/assets/image/Overview_small.png)
 @snapend
 
----
-## One-to-One Relationships
++++
+### One-to-One Relationships
 * Default conventions
   * Reference **navigation property at both sides**
 * Fluent Api
   * Only useful when foreign key **property does not follow the convention**
 
 ```C#
-// AddressOfStudentId does not follow the convention
 modelBuilder.Entity<StudentEntity>()
-    .HasOne<AddressEntity>(s => s.Address)
-    .WithOne(ad => ad.Student)
-    .HasForeignKey<StudentAddress>(ad => ad.AddressOfStudentId);
+                .HasOne(i => i.Address)
+                .WithOne()
+                .HasForeignKey<StudentEntity>("AddressId");
 ```
----
 
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs&lang=C#&title=Student Entity
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
+
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/AddressEntity.cs&lang=C#&title=Address Entity
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/AddressEntity.cs)
+
++++
 ### One-to-Many Relationships
 * Default conventions
   * There are more options
 * Fluent Api
 
 ```C#
-modelBuilder.Entity<Student>()
-    .HasOne<Grade>(s => s.Grade)
-    .WithMany(g => g.Students)
-    .HasForeignKey(s => s.CurrentGradeId);
+modelBuilder.Entity<StudentEntity>()
+                .HasOne(i => i.Grade)
+                .WithMany(i => i.Students)
+                .HasForeignKey(i=>i.GradeId);
 ```
-@[1]
-@[2]
-@[3]
-@[4]
-@[1-4]
 
----
++++
 ### Default Convertions
 * *1*
 
@@ -399,11 +1001,11 @@ public class Student{}
 
 public class Grade
 {
-    public ICollection<Student> Students { get; set; }
+    public ICollection<Student> Students { get; set; } 
 }
 ```
 
----
++++
 ### Default Convertions
 * *3*
 
@@ -433,120 +1035,44 @@ public class Grade
 }
 ```
 
----
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs&lang=C#&title=Student Entity
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
 
-## Usage - InMemory DbContext creation
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/GradeEntity.cs&lang=C#&title=Grade Entity
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/GradeEntity.cs)
 
-```C#
-public class TestDbContextFactory : IDbContextFactory
-{
-    public TodosDbContext CreateDbContext()
-    {
-        var optionsBuilder = new DbContextOptionsBuilder<TodosDbContext>();
-        optionsBuilder.UseInMemoryDatabase("TodoDbName");
-        return new TodosDbContext(optionsBuilder.Options);
-    }
-}
-```
-
----
-
-## Usage - Database connected DbContext creation
++++
+### Cascade Delete using Fluent API
+* Automatically deletes the **dependant entity** when the related **principal entity** is deleted
 
 ```C#
-public class DefaultDbContextFactory : IDbContextFactory
-{
-    public TodosDbContext CreateDbContext()
-    {
-        var optionsBuilder = new DbContextOptionsBuilder<TodosDbContext>();
-        optionsBuilder.UseSqlServer(
-                @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog = TasksDB;MultipleActiveResultSets = True;Integrated Security = True");
-        return new TodosDbContext(optionsBuilder.Options);
-    }
-}
+modelBuilder.Entity<StudentEntity>()
+                .HasOne(i => i.Grade)
+                .WithMany(i => i.Students)
+                .HasForeignKey(i=>i.GradeId)
+                .OnDelete(DeleteBehavior.Cascade);
 ```
 
----
-
-## Usage - saving data
-```C#
-var person = new Person
-{
-    FirstName = "Joe",
-    LastName = "Doe"
-};
-
-using (var dbContext = CreateDbContext())
-{
-    dbContext.People.Add(person);
-    dbContext.SaveChanges();
-}
-```
-@[1-10]
-@[6-10]
-
----
-
-## Usage - updating data
++++
+### Many-to-Many Relationships
+* In the database they are **represented by a joining table** which includes the foreign keys of both tables
+* There are no default conventions
+* Fluent Api
 
 ```C#
-person.LastName = "Smith";
-
-using (var dbContext = CreateDbContext())
-{
-    dbContext.People.Update(person);
-    dbContext.SaveChanges();
-}
-```
-@[1-6]
-@[3-6]
-
----
-
-## Usage - deleting data
-```C#
-var person = new Person
-{
-    Id = 1
-};
-
-using (var dbContext = CreateDbContext())
-{
-    dbContext.People.Remove(person);
-    dbContext.SaveChanges();
-}
-```
-@[1-9]
-@[5-9]
-
----
-## Usage - relationships
-* Just add them as properties
-* Additional configuration of relationships can be done in `DbContext.OnModelCreating` method
-
-```C#
-public class Person
-{
-    public int Id { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public virtual ICollection<Todo> AssignedTodos { get; set; }
-}
+modelBuilder.Entity<StudentCourse>()
+    .HasKey(sc => new { sc.StudentId, sc.CourseId });
 ```
 
----
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs&lang=C#&title=Student Entity
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
 
-## Usage - querying data
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/CourseEntity.cs&lang=C#&title=Course Entity
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/CourseEntity.cs)
 
-* Any expresion created with LINQ
-* When querying related object need to use `Include` expression
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentCourseEntity.cs&lang=C#&title=Joining Entity
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentCourseEntity.cs)
 
-Example:
-```C#
-dbContext.Todos
-    .Include(t => t.AssignedPerson) //Load also data for AssignedPerson
-    .First(t => t.Id == todo.Id);
-```
 
 ---
 ## RAW SQL Queries
@@ -562,44 +1088,11 @@ var students = context.Students
               .ToList();
 ```
 
----
-
-## Installation
-
-* NuGet packages for
-    * framework
-    * selected provider
-    * tooling
-
----
-
-## Installation of Entity Framework Core provider
-
-![](https://raw.githubusercontent.com/orlicekm/CsharpCourse/master/Lectures/Lecture04/Assets/img/install-efcore-1.png)
-
----
-
-## Installation of Entity Framework Core provider
-
-![](https://raw.githubusercontent.com/orlicekm/CsharpCourse/master/Lectures/Lecture04/Assets/img/install-efcore-2.png)
-
----
-
-## Installation of Entity Framework Core provider
-
-![](https://raw.githubusercontent.com/orlicekm/CsharpCourse/master/Lectures/Lecture04/Assets/img/install-efcore-3.png)
-
----
-
-## Installation of Entity Framework Core provider
-
-![](https://raw.githubusercontent.com/orlicekm/CsharpCourse/master/Lectures/Lecture04/Assets/img/install-efcore-4.png)
-
----
-
-## Installation of Entity Framework Core provider
-
-![](https://raw.githubusercontent.com/orlicekm/CsharpCourse/master/Lectures/Lecture04/Assets/img/install-efcore-5.png)
++++
+### RAW SQL Limitations
+* SQL queries **must return entities of the same type** as `DbSet<T>` type, e.g., the specified query cannot return the `CourseEntity` entities if `FromSql()` is used after `Students`. Returning ad-hoc types from `FromSql()` method is in the backlog
+* The SQL query **must return all the columns** of the table. e.g. `context.Students.FromSql("Select Id, Name from Students).ToList()` will throw an exception
+* The SQL query **cannot include JOIN queries** to get related data. Use `Include` method to load related entities after `FromSql()` method.
 
 ---
 ## Migration
@@ -610,7 +1103,8 @@ var students = context.Students
 * Requires `Microsoft.EntityFrameworkCore.Tools` NuGet package to be installed
 * You have to implement `IDesignTimeDbContextFactory<TDbContext>` class
 
-![](https://github.com/orlicekm/CsharpCourse/raw/master/Lectures/Lecture04/Assets/img/ef-core-migration.png)
+
+![](/Lectures/Lecture_04/Assets/img/ef-core-migration.png)
 
 +++
 ### Migration commands
@@ -622,148 +1116,560 @@ var students = context.Students
 | Script-Migration               | Script               | Generates a SQL script using all the migration snapshots.         |
 
 ---
-
-### RAW SQL Limitations
-* SQL queries **must return entities of the same type** as `DbSet<T>` type. e.g. the specified query cannot return the `CourseEntity` entities if `FromSql()` is used after `Students`. Returning ad-hoc types from `FromSql()` method is in the backlog
-* The SQL query **must return all the columns** of the table. e.g. `context.Students.FromSql("Select Id, Name from Students).ToList()` will throw an exception
-* The SQL query **cannot include JOIN queries** to get related data. Use `Include` method to load related entities after `FromSql()` method.
-
----
-
-### Persistence Scenarios - Connected Scenario
-* Same instance of the context class (derived from DbContext) is used
-* Keeps **track of all entities** during its lifetime
-* Useful in local database or the database on the same network
-* *Pros*
-  * Performs fast
-  * Tracks all entities and automatically sets an appropriate state
-* *Cons*
-  * The context stays alive, so the connection with the database stays open
-  * Utilizes more resources
+## Dapper
+* Simple object mapper for .NET
+* **King of Micro ORM**
+* Virtually as fast as using a raw ADO.NET data reader
+* **Extends the IDbConnection** by providing useful extension methods to query your database
+* `PM> Install-Package Dapper`
+* [Tutorial](https://dapper-tutorial.net)
 
 +++
-### Persistence Scenarios - Connected Scenario
-![](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture04/Assets/img/persistance-fg1.PNG?raw=true)
+### How Dapper works
+* Works with **any database provider** since **there is no DB specific implementation**
+* Three step process:
+  1. *Create an `IDbConnection` object**
+  2. *Write a query to perform CRUD operations*
+  3. *Pass query as a parameter in Execute method*
+
++++?code=/Lectures/Lecture_04/Assets/sln/Dapper.DAL/Entities/StudentEntity.cs&lang=C#&title=Student Entity Sample
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/Dapper.DAL/Entities/StudentEntity.cs)
+
++++?code=/Lectures/Lecture_04/Assets/sln/Dapper.DAL/StudentRepository.cs&lang=C#&title=Simple Repository Sample
+@[20-30]
+@[32-42]
+@[44-53]
+@[55-64]
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/Dapper.DAL/StudentRepository.cs)
+
++++?code=/Lectures/Lecture_04/Assets/sln/Dapper.DAL.Tests/StudentRepositoryTests.cs&lang=C#&title=Simple Repository Test
+@[12-28]
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/Dapper.DAL.Tests/StudentRepositoryTests.cs)
+
+---
+## NHibernate
+* Object-relational mapper
+* **Open source**
+* Uses XML files and attributes for configuration
+* Functionality is simmilar to Entity Framework
+* `PM> Install-Package NHibernate`
+* [Documentation](https://nhibernate.info/doc/index.html)
+* [GitHub](https://github.com/nhibernate/nhibernate-core)
+
+---
+## ORM Performance Benchmarking
+* Tested technologies:
+  * **Entity Framework** representing "big" ORM
+  * **Dapper** representing "micro" ORM
+  * **ADO.NET** for straight queries
+
+@snap[south-east]
+[Source](https://github.com/exceptionnotfound/ORMBenchmarksTest)
+@snapend
 
 +++
-### Persistence Scenarios - Disconnected  Scenario
-* **Used in this course**
-* **Different instances of the context are used** to retrieve and save entities to the database
-* Instance of the dbcontext is **disposed after retrieving data** and a new instance is created to save entities to the database
-* Complex because an instance of the context does not track entities
-* Useful in web applications or applications with a remote database
-* *Pros*
-  * Utilizes less resources compared to the connected scenario
-  * No open connection with the database
-* *Cons*
-  * Need to set an appropriate state to each entity before saving
-  * Performs slower than the connected scenario
+### Performance Benchmarking Methodology  - Schema
+![](/Lectures/Lecture_04/Assets/img/Benchmarking-schema.png)
 
 +++
-### Persistence Scenarios - Disconnected  Scenario
-![](https://github.com/orlicekm/CsharpCourse/blob/master/Lectures/Lecture04/Assets/img/persistance-fg2.PNG?raw=true)
+### Performance Benchmarking - Methodology  - Sample data
+* Used algorithms to create
+* You **can select**
+  * How many *sports* you want for each test
+  * How many *teams per sport* you want for each test
+  * How many *players per team* you want for each test
 
++++
+### Performance Benchmarking Methodology  - Queries
+* **Queries**
+  * Player by ID
+  * Players per Team
+  * Teams per Sport (including Players)
+* Run the **test against all data** in the database
+  * **Average the total time** it takes to execute the query
+    * **Multiple runs** of this over the same data
+      * Average them out and get a set of numbers that should show which of the ORMs is the fastest
 
----
-
-## Design patterns used with peristence
-
-@snap[west span-40]
-@ul[](false)
-- `Repository` pattern
-- `UnitOfWork` pattern
-@ulend
-@snapend
-
-@snap[east span-60]
-![](https://miro.medium.com/max/720/1*U7nXUGkfAFqt0SWmmqlL4g.jpeg)
-@snapend
----
-
-## `Repository` pattern
-
-@ul[](false)
-- storage for one type of entities
-- provides basic CRUD operations used for persistence
-    - Create
-    - Read
-    - Update
-    - Delete
-- abstracts storage selection from Business Logic
-- enables mocking of storage in unit tests
-- may provide mapping from entities to business models
-@ulend
-
----
-## `Repository` pattern - sample implementation
-
++++
+### Performance Benchmarking test class - Entity Framework
 ```C#
-public interface ITodosRepository
+public class EntityFramework : ITestSignature
 {
-    IEnumerable<TodoListModel> GetAll();
-    TodoDetailModel GetById(int id);
-    void Update(TodoDetailModel todo);
-    TodoDetailModel Add(TodoDetailModel todo);
-    void Remove(int id);
-}
-```
-
----
-
-## `UnitOfWork` pattern
-
-@snap[mid-point]
-@ul[](false)
-- handles change tracking of entities
-- provides transaction scope (ACID rules)
-- *not required in this course*
-@ulend
-@snapend
-
-@snap[south]
-![](https://2s7gjr373w3x22jf92z99mgm5w-wpengine.netdna-ssl.com/wp-content/uploads/2018/06/acid.png)
-@snapend
-
----
-
-## `UnitOfWork` pattern
-
-```C#
-public interface IUnitOfWork
-{
-    void Rollback();
-    void Commit();
-}
-```
-
----
-
-```C#
-public class BankingService : IBankingService
-{
-    public void MakeTransaction(Account accountFrom, Account accountTo, double ammount)
+    public long GetPlayerByID(int id)
     {
-        var unitOfWork = new UnitOfWork();
-        try
+        Stopwatch watch = new Stopwatch();
+        watch.Start();
+        using (SportContext context = new SportContext())
         {
-            accountFrom.Withdraw(ammount);
-            accountTo.Insert(ammount);
-            unitOfWork.Commit();
+            var player = context.Players.Where(x => x.Id == id).First();
         }
-        catch
+        watch.Stop();
+        return watch.ElapsedMilliseconds;
+    }
+
+    public long GetPlayersForTeam(int teamId)
+    {
+        Stopwatch watch = new Stopwatch();
+        watch.Start();
+        using (SportContext context = new SportContext())
         {
-            unitOfWowk.Rollback();
+            var players = context.Players.Where(x => x.TeamId == teamId).ToList();
         }
+        watch.Stop();
+        return watch.ElapsedMilliseconds;
+    }
+
+    public long GetTeamsForSport(int sportId)
+    {
+        Stopwatch watch = new Stopwatch();
+        watch.Start();
+        using (SportContext context = new SportContext())
+        {
+            var players = context.Teams.Include(x=>x.Players).Where(x => x.SportId == sportId).ToList();
+        }
+        watch.Stop();
+        return watch.ElapsedMilliseconds;
     }
 }
 ```
+[Code sample](https://github.com/exceptionnotfound/ORMBenchmarksTest/blob/master/ORMBenchmarksTest/DataAccess/EntityFramework.cs)
+
++++
+### Performance Benchmarking test class - ADO.NET
+```C#
+public class ADONET : ITestSignature
+{
+    public long GetPlayerByID(int id)
+    {
+        Stopwatch watch = new Stopwatch();
+        watch.Start();
+        using(SqlConnection conn = new SqlConnection(Constants.ConnectionString))
+        {
+            conn.Open();
+            using(SqlDataAdapter adapter = new SqlDataAdapter("SELECT Id, FirstName, LastName, DateOfBirth, TeamId FROM Player WHERE Id = @ID", conn))
+            {
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@ID", id));
+                DataTable table = new DataTable();
+                adapter.Fill(table);
+            }
+        }
+        watch.Stop();
+        return watch.ElapsedMilliseconds;
+    }
+
+    public long GetPlayersForTeam(int teamId)
+    {
+        Stopwatch watch = new Stopwatch();
+        watch.Start();
+        using(SqlConnection conn = new SqlConnection(Constants.ConnectionString))
+        {
+            conn.Open();
+            using(SqlDataAdapter adapter = new SqlDataAdapter("SELECT Id, FirstName, LastName, DateOfBirth, TeamId FROM Player WHERE TeamId = @ID", conn))
+            {
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@ID", teamId));
+                DataTable table = new DataTable();
+                adapter.Fill(table);
+            }
+        }
+        watch.Stop();
+        return watch.ElapsedMilliseconds;
+    }
+
+    public long GetTeamsForSport(int sportId)
+    {
+        Stopwatch watch = new Stopwatch();
+        watch.Start();
+        using(SqlConnection conn = new SqlConnection(Constants.ConnectionString))
+        {
+            conn.Open();
+            using(SqlDataAdapter adapter = new SqlDataAdapter("SELECT p.Id, p.FirstName, p.LastName, p.DateOfBirth, p.TeamId, t.Id as TeamId, t.Name, t.SportId FROM Player p INNER JOIN Team t ON p.TeamId = t.Id WHERE t.SportId = @ID", conn))
+            {
+                adapter.SelectCommand.Parameters.Add(new SqlParameter("@ID", sportId));
+                DataTable table = new DataTable();
+                adapter.Fill(table);
+            }
+        }
+        watch.Stop();
+        return watch.ElapsedMilliseconds;
+    }
+}
+```
+[Code sample](https://github.com/exceptionnotfound/ORMBenchmarksTest/blob/master/ORMBenchmarksTest/DataAccess/ADONET.cs)
+
++++
+### Performance Benchmarking test class - Dapper
+```C#
+public class Dapper : ITestSignature
+{
+    public long GetPlayerByID(int id)
+    {
+        Stopwatch watch = new Stopwatch();
+        watch.Start();
+        using (SqlConnection conn = new SqlConnection(Constants.ConnectionString))
+        {
+            conn.Open();
+            var player = conn.Query<PlayerDTO>("SELECT Id, FirstName, LastName, DateOfBirth, TeamId FROM Player WHERE Id = @ID", new{ ID = id});
+        }
+        watch.Stop();
+        return watch.ElapsedMilliseconds;
+    }
+
+    public long GetPlayersForTeam(int teamId)
+    {
+        Stopwatch watch = new Stopwatch();
+        watch.Start();
+        using (SqlConnection conn = new SqlConnection(Constants.ConnectionString))
+        {
+            conn.Open();
+            var players = conn.Query<List<PlayerDTO>>("SELECT Id, FirstName, LastName, DateOfBirth, TeamId FROM Player WHERE TeamId = @ID", new { ID = teamId });
+        }
+        watch.Stop();
+        return watch.ElapsedMilliseconds;
+    }
+
+    public long GetTeamsForSport(int sportId)
+    {
+        Stopwatch watch = new Stopwatch();
+        watch.Start();
+        using (SqlConnection conn = new SqlConnection(Constants.ConnectionString))
+        {
+            conn.Open();
+            var players = conn.Query<PlayerDTO, TeamDTO, PlayerDTO>("SELECT p.Id, p.FirstName, p.LastName, p.DateOfBirth, p.TeamId, t.Id as TeamId, t.Name, t.SportId FROM Team t "
+                + "INNER JOIN Player p ON t.Id = p.TeamId WHERE t.SportId = @ID", (player, team) => { return player; }, splitOn: "TeamId", param: new { ID = sportId });
+        }
+        watch.Stop();
+        return watch.ElapsedMilliseconds;
+    }
+}
+```
+[Code sample](https://github.com/exceptionnotfound/ORMBenchmarksTest/blob/master/ORMBenchmarksTest/DataAccess/Dapper.cs)
+
++++
+### Performance Benchmarking results
+* Following results are for
+  * **10 iterations** each containg
+    * **8 sports**
+    * **30 teams** in each sport
+    * **100 players** per team
+
++++
+### Performance Benchmarking results - Entity Framework
+| RUN     | PLAYER BY ID | PLAYERS FOR TEAM | TEAMS FOR SPORT |
+|---------|--------------|------------------|-----------------|
+| **1**       | 1.64ms       | 4.57ms           | 127.75ms        |
+| **2**       | 0.56ms       | 3.47ms           | 112.5ms         |
+| **3**       | 0.17ms       | 3.27ms           | 119.12ms        |
+| **4**       | 1.01ms       | 3.27ms           | 106.75ms        |
+| **5**       | 1.15ms       | 3.47ms           | 107.25ms        |
+| **6**       | 1.14ms       | 3.27ms           | 117.25ms        |
+| **7**       | 0.67ms       | 3.27ms           | 107.25ms        |
+| **8**       | 0.55ms       | 3.27ms           | 110.62ms        |
+| **9**       | 0.37ms       | 4.4ms            | 109.62ms        |
+| **10**      | 0.44ms       | 3.43ms           | 116.25ms        |
+| **Average** | **0.77ms**       | **3.57ms**           | **113.45ms**        |
+
+
++++
+### Performance Benchmarking results - ADO.NET
+| RUN     | PLAYER BY ID | PLAYERS FOR TEAM | TEAMS FOR SPORT |
+|---------|--------------|------------------|-----------------|
+| **1**       | 0.01ms       | 1.03ms           | 10.25ms         |
+| **2**       | 0ms          | 1ms              | 11ms            |
+| **3**       | 0.1ms        | 1.03ms           | 9.5ms           |
+| **4**       | 0ms          | 1ms              | 9.62ms          |
+| **5**       | 0ms          | 1.07ms           | 7.62ms          |
+| **6**       | 0.02ms       | 1ms              | 7.75ms          |
+| **7**       | 0ms          | 1ms              | 7.62ms          |
+| **8**       | 0ms          | 1ms              | 8.12ms          |
+| **9**       | 0ms          | 1ms              | 8ms             |
+| **10**      | 0ms          | 1.17ms           | 8.88ms          |
+| **Average** | **0.013ms**      | **1.03ms**           | **8.84ms**          |
+
++++
+### Performance Benchmarking results - Dapper
+| RUN     | PLAYER BY ID | PLAYERS FOR TEAM | TEAMS FOR SPORT |
+|---------|--------------|------------------|-----------------|
+| **1**       | 0.38ms       | 1.03ms           | 9.12ms          |
+| **2**       | 0.03ms       | 1ms              | 8ms             |
+| **3**       | 0.02ms       | 1ms              | 7.88ms          |
+| **4**       | 0ms          | 1ms              | 8.12ms          |
+| **5**       | 0ms          | 1.07ms           | 7.62ms          |
+| **6**       | 0.02ms       | 1ms              | 7.75ms          |
+| **7**       | 0ms          | 1ms              | 7.62ms          |
+| **8**       | 0ms          | 1.02ms           | 7.62ms          |
+| **9**       | 0ms          | 1ms              | 7.88ms          |
+| **10**      | 0.02ms       | 1ms              | 7.75ms          |
+| **Average** | **0.047ms**      | **1.01ms**           | **7.94ms**          |
+
++++
+### Performance Benchmarking analysis and conclusion
+* *Entity Framework* in *basic configuration* is 3-10 times **slower** than either *ADO.NET* or *Dapper*
+* *Dapper.NET* is unquestionably **faster** than *Entity Framework* and slightly faster than straight *ADO.NET*
+
 
 ---
 
-## DEMO - Entity Framework Example
+@snap[north span-100]
+# Repository, UnitOfWork, Facade and Mapper design patterns
+@snapend
 
-- Entities
-- DbContext
-- Entity configuration
-- Example usage
-- Migrations
+@snap[midpoint span-100]
+## Mapping Entities to Models
+@snapend
+
+---
+## Repository
+* Mediates **between the domain and data mapping layers**
+* Acting like an **in-memory collection** of domain objects 
+
+
+![](/Lectures/Lecture_04/Assets/img/repository.jpg)
+
++++
+### Repository Benefits
+* **Minimizes duplicit** query logic
+* **Decouples** application from persistence frameworks
+* Promotes **testability**
+
++++
+### Repository Responsibility
+* **Add** *object*
+* **Remove** *object*
+* **Get** *object* by *ID*
+* **Get all** *objects*
+* **Find** using *predicate*
+
++++
+### Repository vs UnitOfWork
+* **Repository** design pattern
+  * Should **not have sematics of database**
+  * E.g. *Update*, *Save*, *Delete*... 
+* How are these objects going to be saved to database?
+  * **UnitOfWork** design pattern
+
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Repositories/RepositoryBase.cs&lang=C#&title=Repository Sample
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Repositories/RepositoryBase.cs)
+
+---
+## UnitOfWork
+* Maintains a list of objects affected by a business transaction
+* Coordinates the writing out of changes
+
+![](/Lectures/Lecture_04/Assets/img/UnitOfWork.jpg)
+
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/UnitOfWork/UnitOfWork.cs&lang=C#&title=Repository Sample
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/UnitOfWork/UnitOfWork.cs)
+
+---
+### Entity Framework as UnitOfWork and Repository
+* *UnitOfWork* and *Repository* are **already implemented** in *Entity Framework*
+* **Do not bring the architectural benefits** from these patterns
+
+![](/Lectures/Lecture_04/Assets/img/EntityFramework.jpg)
+
++++
+### Entity Framework Problems
+* *Repository*
+  * **Minimizes duplicit** query logic
+* *Entity Framework*
+  * `DbSet` returns `IQueriable`
+  * Does not help with minimizing the duplicate:
+
+```C#
+var topSellingCourses = schoolCourses.Where(c => c.IsPublic && c.IsApproved).OrderByDescending(c => c.Sales).Take(10);
+```
+
+* Can be solved with **extension methods**
+  * Treats the symptoms, not the problem
+  * Still returns `IQueryable`
+* **Solution**
+  * **Repository** with method `GetTopSellingCourses`
+
++++
+### Entity Framework Problems
+* *Repository and UnitOfWork*
+  * **Decouples** application from persistence frameworks
+  * Only **repository methods have to be changed** when switching to different ORM
+* *Entity Framework*
+  * Application is **tightly coupled** to Entity Framework
+  * Aplication **code has to be directly upgraded** when switching to different ORM
+
+
+---
+## Mapper
+* **Object-object**
+* **Mapping**
+  * **Same properties**
+  * From *one object* of *one type*
+  * To *another object* of *another type*
+* E.g. `entity` to the `model/DTO`
+
+
++++
+#### Mapper School Sample
+* Mapping *Entity Framework entities* to *models*
+* **Model**
+  * Part of *Model-View-ViewModel(MVVM)* design pattern
+  * Represents the **actual data and information**
+
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Mappers/IMapper.cs&lang=C#&title=School Mapping Sample
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Mappers/IMapper.cs)
+
+
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Models/DetailModels/AddressDetailModel.cs&lang=C#&title=School Mapping Sample
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/DetailModels/AddressDetailModel.cs)
+
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Mappers/AddressMapper.cs&lang=C#&title=School Mapping Sample
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Mappers/AddressMapper.cs)
+
+
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Models/ListModels/StudentListModel.cs&lang=C#&title=School Mapping Sample
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Models/ListModels/StudentListModel.cs)
+
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Models/DetailModels/StudentDetailModel.cs&lang=C#&title=School Mapping Sample
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Models/DetailModels/StudentDetailModel.cs)
+
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Mappers/StudentMapper.cs&lang=C#&title=School Mapping Sample
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Mappers/StudentMapper.cs)
+
+---
+![](/Lectures/Lecture_04/Assets/img/AutoMapper.png)
+* `PM> Install-Package AutoMapper`
+* [Github](https://github.com/AutoMapper/AutoMapper)
+* [Web](http://automapper.org/)
+* [Docs](https://automapper.readthedocs.io/en/latest/index.html)
+
+@snap[south-east span+40]
+![](/Lectures/GitPitch/assets/image/Overview_small.png)
+@snapend
+
++++
+### Auto Mapper
+* Automatic **object-object mapping**
+  * **Same properties**
+  * From *one object* of *one type*
+  * To *another object* of *another type*
+* Interesting **conventions to take the dirty work out**
+* Almost zero configuration is needed 
+
++++
+### Why AutoMapper
+* Mapping code is boring
+* Testing the mapping code is even more boring
+* *Provides:*
+  * **Simple configuration of types**
+  * **Simple testing of mappings**
+
++++
+### How to Use AutoMapper
+1. **Create source and destination** types
+  * AutoMapper works best as long as the names of the members match up to the source type’s members
+    * Source member called `FirstName` will automatically be mapped to a destination member with the name `FirstName`
+  * Automapper by default ignores null reference exceptions when mapping your source to your target
+2. **Create a map for the two types**
+3. **Perform mapping**
+
++++
+### Create a map for the two types
+* On the *left* is *source type*
+* On the *right* is *destination type*
+
+```
+Mapper.Initialize(cfg => cfg.CreateMap<Order, OrderDto>());
+//or
+var config = new MapperConfiguration(cfg => cfg.CreateMap<Order, OrderDto>());
+```
+
++++
+### Perform mapping
+
+```
+OrderDto dto = Mapper.Map<OrderDto>(order);
+
+//or
+
+var mapper = config.CreateMapper();
+// or
+var mapper = new Mapper(config);
+
+OrderDto dto = mapper.Map<OrderDto>(order);
+```
+
++++
+### How to test Mapping
+* **Create a test** that
+  * Calls *bootstrapper class to create all the mappings*
+  * Calls *MapperConfiguration.AssertConfigurationIsValid*
+
+```C#
+var config = AutoMapperConfiguration.Configure();
+
+config.AssertConfigurationIsValid();
+```
+
++++
+### AutoMapper Supports
+* **Flattening**
+  * Take a complex object model and flatten it to a simpler model
+* **Reverse Mapping** and **Unflattening**
+  * Calling `ReverseMap`, *AutoMapper* creates a reverse mapping configuration that includes unflattening
+* **Projection**
+* **Configuration Validation**
+* **Inline Mapping**
+* **Nested Mapping**
+* Custom **Converters**, **Resolvers**
+* ⋮
+
+---
+## Facade
+* **Provides a unified interface** to the set of interfaces in a subsystem
+* **Higher-level interface** that makes the subsystem easier to use
+
+![](/Lectures/Lecture_04/Assets/img/facade.gif)
+
++++
+### Facade Participants
+* **Facade**
+  * Knows which subsystem classes are responsible for a request
+  * **Delegates client requests** to appropriate subsystem objects
+* **Subsystem classes**
+  * **Implement subsystem functionality**
+  * Handle work assigned by the Facade object
+  * Have no knowledge of the facade and keep no reference to it
+
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Facades/CrudFacadeBase.cs&lang=C#&title=School Facade Sample
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Facades/CrudFacadeBase.cs)
+
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL.Tests/AddressFacadeTests.cs&lang=C#&title=School Facade Tests Sample
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL.Tests/AddressFacadeTests.cs)
+
++++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL.Tests/StudentFacadeTests.cs&lang=C#&title=School Facade Tests Sample
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL.Tests/StudentFacadeTests.cs)
+
+---
+## References:
+[C# 8.0 in a Nutshell: The Definitive Reference](https://www.amazon.com/C-8-0-Nutshell-Definitive-Reference/dp/1492051136) 
+[EntityFrameworkTutorial.net](http://www.entityframeworktutorial.net/)  
+[Learn Entity Framework Core](https://www.learnentityframeworkcore.com)
+[Dapper-tutorial.net](https://dapper-tutorial.net/)
+[Microsoft documentation](https://docs.microsoft.com)  
+[Entity Framework GitHub](https://github.com/aspnet/EntityFrameworkCore)  
+[NuGetMustHaves.com](https://nugetmusthaves.com/)  
+[Computer Hope](https://www.computerhope.com)  
+[Wikipedia](https://en.wikipedia.org)
+
++++
+## Refences to used images:
+[EntityFrameworkTutorial.net](http://www.entityframeworktutorial.net/)  
+[The Inquisitive Singh](https://inquisitivesingh.wordpress.com)  
+[Exception Not Found](https://exceptionnotfound.net/)  
+[INTELLIPAAT.COM](https://intellipaat.com/)  
+[Computer Hope](https://www.computerhope.com)  
+[Wikipedia SQL](https://en.wikipedia.org/wiki/SQL)  
+[ResearchGate](https://www.researchgate.net/)  
+[Data36](https://data36.com/)
+
++++
+## Credits
+* Michal Mrnuštík - for slides preparation
+* Michal Orlíček - for slides preparation

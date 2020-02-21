@@ -57,7 +57,7 @@ namespace CookBook.App
             services.AddFactory<IRecipeDetailViewModel, RecipeDetailViewModel>();
             services.AddFactory<IIngredientAmountDetailViewModel, IngredientAmountDetailViewModel>();
             
-            services.AddSingleton<IDbContextFactory>(provider => new DbContextFactory(configuration.GetConnectionString("DefaultConnection")));
+            services.AddSingleton<IDbContextFactory>(provider => new SqlServerDbContextFactory(configuration.GetConnectionString("DefaultConnection")));
         }
 
         protected override async void OnStartup(StartupEventArgs e)

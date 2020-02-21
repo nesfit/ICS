@@ -26,9 +26,9 @@ namespace CookBook.BL.Mapper
                     Description = entity.Description
                 };
 
-        public static IngredientEntity MapEntity(IngredientDetailModel model, IEntityFactory<IngredientEntity> entityFactory = null)
+        public static IngredientEntity MapEntity(IngredientDetailModel model, IEntityFactory entityFactory = null)
         {
-            var entity = (entityFactory ?? new DummyEntityFactory<IngredientEntity>()).Create(model.Id);
+            var entity = (entityFactory ?? new DummyEntityFactory()).Create<IngredientEntity>(model.Id);
             entity.Id = model.Id;
             entity.Description = model.Description;
             entity.Name = model.Name;
@@ -37,9 +37,9 @@ namespace CookBook.BL.Mapper
         }
 
 
-        public static IngredientEntity MapEntity(IngredientAmountDetailModel model, IEntityFactory<IngredientEntity> entityFactory = null)
+        public static IngredientEntity MapEntity(IngredientAmountDetailModel model, IEntityFactory entityFactory = null)
         {
-            var entity = (entityFactory ?? new DummyEntityFactory<IngredientEntity>()).Create(model.IngredientId);
+            var entity = (entityFactory ?? new DummyEntityFactory()).Create<IngredientEntity>(model.IngredientId);
             entity.Id = model.IngredientId;
             entity.Description = model.IngredientDescription;
             entity.Name = model.IngredientName;

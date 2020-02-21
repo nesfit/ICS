@@ -1,15 +1,12 @@
 ﻿using CookBook.DAL.Entities;
+using CookBook.DAL.Seeds;
 using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.DAL
 {
     public class CookBookDbContext : DbContext
     {
-        public CookBookDbContext()
-        {
-
-        }
-        public CookBookDbContext(DbContextOptions<CookBookDbContext> contextOptions)
+        public CookBookDbContext(DbContextOptions contextOptions)
             : base(contextOptions)
         {
         }
@@ -30,6 +27,8 @@ namespace CookBook.DAL
             modelBuilder.Entity<IngredientEntity>()
                 .HasMany(typeof(IngredientAmountEntity)).WithOne(nameof(IngredientAmountEntity.Ingredient))
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Seed();
         }
 
 
@@ -38,11 +37,6 @@ namespace CookBook.DAL
 #if DEBUG
             optionsBuilder.EnableSensitiveDataLogging();
 #endif
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer($@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog = MigrationDb;MultipleActiveResultSets = True;Integrated Security = True; ");
-            }
-
             base.OnConfiguring(optionsBuilder);
         }
     }

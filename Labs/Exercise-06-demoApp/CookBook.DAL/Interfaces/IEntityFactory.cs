@@ -2,9 +2,8 @@
 
 namespace CookBook.DAL.Interfaces
 {
-    public interface IEntityFactory<out TEntity> where TEntity : class, IEntity, new()
+    public interface IEntityFactory
     {
-        TEntity Create(Guid id);
-        IEntityFactory<TTEntity> As<TTEntity>() where TTEntity : class, IEntity, new();
+        TEntity Create<TEntity>(Guid id) where TEntity : class, IEntity, new();
     }
 }

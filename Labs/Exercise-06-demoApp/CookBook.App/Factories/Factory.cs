@@ -6,7 +6,7 @@ namespace CookBook.App.Factories
     {
         private readonly Func<T> _initFunc;
 
-        public Factory(Func<T> initFunc) => this._initFunc = initFunc;
+        public Factory(Func<T> initFunc) => _initFunc = initFunc;
 
         public T Create() => _initFunc();
     }

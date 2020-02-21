@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    "SchoolContext":
+      "Data Source=(LocalDB)\\MSSQLLocalDB; Initial Catalog = School; MultipleActiveResultSets = True; Integrated Security = True;"
+  }
+}
