@@ -35,13 +35,13 @@ namespace CookBook.BL.Mapper
             };
 
         public static IngredientAmountEntity MapEntity(IngredientAmountDetailModel model,
-            IEntityFactory<IngredientAmountEntity> entityFactory = null)
+            IEntityFactory entityFactory = null)
         {
-            var entity = (entityFactory ??= new DummyEntityFactory<IngredientAmountEntity>()).Create(model.Id);
+            var entity = (entityFactory ??= new DummyEntityFactory()).Create<IngredientAmountEntity>(model.Id);
             entity.Id = model.Id;
             entity.Amount = model.Amount;
             entity.Unit = (DAL.Enums.Unit)model.Unit;
-            entity.Ingredient = IngredientMapper.MapEntity(model, entityFactory.As<IngredientEntity>());
+            entity.Ingredient = IngredientMapper.MapEntity(model, entityFactory);
             return entity;
         }
     }

@@ -10,8 +10,8 @@ namespace CookBook.App.Commands
 
         public RelayCommand(Action<object> executeAction, Func<object, bool> canExecuteAction = null)
         {
-            this._executeAction = executeAction;
-            this._canExecuteAction = canExecuteAction;
+            _executeAction = executeAction;
+            _canExecuteAction = canExecuteAction;
         }
 
         public RelayCommand(Action executeAction, Func<bool> canExecuteAction = null)
@@ -40,8 +40,8 @@ namespace CookBook.App.Commands
 
         public RelayCommand(Action<T> execute, Func<T, bool> canExecute = null)
         {
-            this._execute = execute;
-            this._canExecute = canExecute;
+            _execute = execute;
+            _canExecute = canExecute;
         }
 
         public bool CanExecute(object parameter)

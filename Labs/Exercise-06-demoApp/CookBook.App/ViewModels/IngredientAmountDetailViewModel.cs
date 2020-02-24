@@ -18,8 +18,8 @@ namespace CookBook.App.ViewModels
             IIngredientRepository ingredientRepository,
             IMediator mediator)
         {
-            this._ingredientRepository = ingredientRepository;
-            this._mediator = mediator;
+            _ingredientRepository = ingredientRepository;
+            _mediator = mediator;
             SaveCommand = new RelayCommand(Save, CanSave);
             DeleteCommand = new RelayCommand(Delete);
             IngredientNewCommand = new RelayCommand(IngredientNew);

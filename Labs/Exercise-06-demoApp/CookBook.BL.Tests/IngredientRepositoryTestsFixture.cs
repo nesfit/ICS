@@ -6,7 +6,7 @@ namespace CookBook.BL.Tests
 {
     public class IngredientRepositoryTestsFixture : CookBookDbContextSetupFixture
     {
-        public IngredientRepositoryTestsFixture() : base(nameof(IngredientRepositoryTestsFixture)) => Repository = new IngredientRepository(base.DbContextFactory);
+        public IngredientRepositoryTestsFixture() : base(nameof(IngredientRepositoryTestsFixture)) => Repository = new IngredientRepository(DbContextFactory);
 
         public IIngredientRepository Repository { get; }
     }

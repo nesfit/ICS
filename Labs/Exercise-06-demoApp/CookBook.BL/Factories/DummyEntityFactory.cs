@@ -3,14 +3,12 @@ using CookBook.DAL.Interfaces;
 
 namespace CookBook.BL.Factories
 {
-    public class DummyEntityFactory<TEntity> : IEntityFactory<TEntity> where TEntity : class, IEntity, new()
+    public class DummyEntityFactory : IEntityFactory 
     {
         public DummyEntityFactory()
         {
         }
 
-        public TEntity Create(Guid id)=> new TEntity();
-
-        public IEntityFactory<TTEntity> As<TTEntity>() where TTEntity : class, IEntity, new() => new DummyEntityFactory<TTEntity>();
+        public TEntity Create<TEntity>(Guid id) where TEntity : class, IEntity, new() => new TEntity();
     }
 }

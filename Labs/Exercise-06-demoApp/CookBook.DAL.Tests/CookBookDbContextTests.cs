@@ -34,11 +34,9 @@ namespace CookBook.DAL.Tests
 
 
             //Assert
-            using (var dbx = _testContext.DbContextFactory.CreateDbContext())
-            {
-                var retrievedIngredient = dbx.Ingredients.First(entity => entity.Id == ingredientEntity.Id);
-                Assert.Equal(ingredientEntity, retrievedIngredient, IngredientEntity.DescriptionNameIdComparer);
-            }
+            using var dbx = _testContext.DbContextFactory.CreateDbContext();
+            var retrievedIngredient = dbx.Ingredients.First(entity => entity.Id == ingredientEntity.Id);
+            Assert.Equal(ingredientEntity, retrievedIngredient, IngredientEntity.DescriptionNameIdComparer);
         }
 
         [Fact]
@@ -57,14 +55,12 @@ namespace CookBook.DAL.Tests
 
 
             //Assert
-            using (var dbx = _testContext.DbContextFactory.CreateDbContext())
-            {
-                var retrievedRecipe = dbx.Recipes
-                    .Include(entity => entity.Ingredients)
-                    .ThenInclude(amount => amount.Ingredient)
-                    .First(entity => entity.Id == recipeEntity.Id);
-                Assert.Equal(recipeEntity, retrievedRecipe, RecipeEntity.RecipeEntityComparer);
-            }
+            using var dbx = _testContext.DbContextFactory.CreateDbContext();
+            var retrievedRecipe = dbx.Recipes
+                .Include(entity => entity.Ingredients)
+                .ThenInclude(amount => amount.Ingredient)
+                .First(entity => entity.Id == recipeEntity.Id);
+            Assert.Equal(recipeEntity, retrievedRecipe, RecipeEntity.RecipeEntityComparer);
         }
 
         [Fact]
@@ -106,14 +102,12 @@ namespace CookBook.DAL.Tests
 
 
             //Assert
-            using (var dbx = _testContext.DbContextFactory.CreateDbContext())
-            {
-                var retrievedRecipe = dbx.Recipes
-                    .Include(entity => entity.Ingredients)
-                    .ThenInclude(amounts => amounts.Ingredient)
-                    .First(entity => entity.Id == recipeEntity.Id);
-                Assert.Equal(recipeEntity, retrievedRecipe, RecipeEntity.RecipeEntityComparer);
-            }
+            using var dbx = _testContext.DbContextFactory.CreateDbContext();
+            var retrievedRecipe = dbx.Recipes
+                .Include(entity => entity.Ingredients)
+                .ThenInclude(amounts => amounts.Ingredient)
+                .First(entity => entity.Id == recipeEntity.Id);
+            Assert.Equal(recipeEntity, retrievedRecipe, RecipeEntity.RecipeEntityComparer);
         }
 
         [Fact]
@@ -126,17 +120,15 @@ namespace CookBook.DAL.Tests
             }
 
             //Act
-            _testContext.CookBookDbContextSUT.Recipes.Remove(_testContext.CookBookDbContextSUT.Recipes.Find(CookBookSeedingDbContext.RecipeEntity.Id));
+            _testContext.CookBookDbContextSUT.Recipes.Remove(_testContext.CookBookDbContextSUT.Recipes.Find(Seeds.Seeds.RecipeEntity.Id));
             _testContext.CookBookDbContextSUT.SaveChanges();
 
 
             //Assert
-            using (var dbx = _testContext.DbContextFactory.CreateDbContext())
-            {
-                Assert.Equal(0, dbx.Recipes.Count());
-                Assert.Equal(0, dbx.IngredientAmountEntities.Count());
-                Assert.Equal(2, dbx.Ingredients.Count());
-            }
+            using var dbx = _testContext.DbContextFactory.CreateDbContext();
+            Assert.Equal(0, dbx.Recipes.Count());
+            Assert.Equal(0, dbx.IngredientAmountEntities.Count());
+            Assert.Equal(2, dbx.Ingredients.Count());
         }
 
         [Fact]
@@ -149,17 +141,15 @@ namespace CookBook.DAL.Tests
             }
 
             //Act
-            _testContext.CookBookDbContextSUT.Ingredients.Remove(_testContext.CookBookDbContextSUT.Ingredients.Find(CookBookSeedingDbContext.IngredientEntity1.Id));
+            _testContext.CookBookDbContextSUT.Ingredients.Remove(_testContext.CookBookDbContextSUT.Ingredients.Find(Seeds.Seeds.IngredientEntity1.Id));
             _testContext.CookBookDbContextSUT.SaveChanges();
 
 
             //Assert
-            using (var dbx = _testContext.DbContextFactory.CreateDbContext())
-            {
-                Assert.Equal(1, dbx.Recipes.Count());
-                Assert.Equal(1, dbx.IngredientAmountEntities.Count());
-                Assert.Equal(1, dbx.Ingredients.Count());
-            }
+            using var dbx = _testContext.DbContextFactory.CreateDbContext();
+            Assert.Equal(1, dbx.Recipes.Count());
+            Assert.Equal(1, dbx.IngredientAmountEntities.Count());
+            Assert.Equal(1, dbx.Ingredients.Count());
         }
 
         [Fact]
@@ -172,22 +162,20 @@ namespace CookBook.DAL.Tests
             }
 
             //Act
-            _testContext.CookBookDbContextSUT.IngredientAmountEntities.Remove(_testContext.CookBookDbContextSUT.IngredientAmountEntities.Find(CookBookSeedingDbContext.IngredientAmountEntity1.Id));
+            _testContext.CookBookDbContextSUT.IngredientAmountEntities.Remove(_testContext.CookBookDbContextSUT.IngredientAmountEntities.Find(Seeds.Seeds.IngredientAmountEntity1.Id));
             _testContext.CookBookDbContextSUT.SaveChanges();
 
 
             //Assert
-            using (var dbx = _testContext.DbContextFactory.CreateDbContext())
-            {
-                Assert.Equal(1,dbx.Recipes.Count());
-                Assert.Equal(1, dbx.IngredientAmountEntities.Count());
-                Assert.Equal(2,dbx.Ingredients.Count());
-            }
+            using var dbx = _testContext.DbContextFactory.CreateDbContext();
+            Assert.Equal(1,dbx.Recipes.Count());
+            Assert.Equal(1, dbx.IngredientAmountEntities.Count());
+            Assert.Equal(2,dbx.Ingredients.Count());
         }
 
         public void Dispose()
         {
-            this._testContext.TearDownDatabase();
+            _testContext.TearDownDatabase();
         }
     }
 }

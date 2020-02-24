@@ -21,9 +21,9 @@ namespace CookBook.App.ViewModels
             IMessageDialogService messageDialogService,
             IMediator mediator)
         {
-            this._ingredientRepository = ingredientRepository;
-            this._messageDialogService = messageDialogService;
-            this._mediator = mediator;
+            _ingredientRepository = ingredientRepository;
+            _messageDialogService = messageDialogService;
+            _mediator = mediator;
 
             SaveCommand = new RelayCommand(Save, CanSave);
             DeleteCommand = new RelayCommand(Delete);

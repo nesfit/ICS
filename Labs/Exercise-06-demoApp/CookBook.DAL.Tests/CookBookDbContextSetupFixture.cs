@@ -10,18 +10,14 @@ namespace CookBook.DAL.Tests
 
         public void PrepareDatabase()
         {
-            using (var dbx = DbContextFactory.CreateDbContext())
-            {
-                dbx.Database.EnsureCreated();
-            }
+            using var dbx = DbContextFactory.CreateDbContext();
+            dbx.Database.EnsureCreated();
         }
 
         public void TearDownDatabase()
         {
-            using (var dbx = DbContextFactory.CreateDbContext())
-            {
-                dbx.Database.EnsureDeleted();
-            }
+            using var dbx = DbContextFactory.CreateDbContext();
+            dbx.Database.EnsureDeleted();
         }
 
         public void Dispose()

@@ -8,9 +8,9 @@ namespace CookBook.BL.Tests
         public RecipeRepositoryTestsFixture() : base(nameof(RecipeRepositoryTestsFixture))
         {
 
-            Repository = new RecipeRepository(base.DbContextFactory);
+            Repository = new RecipeRepository(DbContextFactory);
 
-            this.PrepareDatabase();
+            PrepareDatabase();
         }
         
         public RecipeRepository Repository { get; }

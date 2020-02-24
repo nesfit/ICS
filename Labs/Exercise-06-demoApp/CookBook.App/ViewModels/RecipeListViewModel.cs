@@ -17,8 +17,8 @@ namespace CookBook.App.ViewModels
 
         public RecipeListViewModel(IRecipeRepository recipesRepository, IMediator mediator)
         {
-            this._recipesRepository = recipesRepository;
-            this._mediator = mediator;
+            _recipesRepository = recipesRepository;
+            _mediator = mediator;
 
             RecipeSelectedCommand = new RelayCommand<RecipeListModel>(RecipeSelected);
             RecipeNewCommand = new RelayCommand(RecipeNew);

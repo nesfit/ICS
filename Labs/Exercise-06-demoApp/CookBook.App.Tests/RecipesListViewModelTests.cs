@@ -18,13 +18,13 @@ namespace CookBook.App.Tests
 
         public RecipesListViewModelTests()
         {
-            this._recipeRepositoryMock = new Mock<IRecipeRepository>();
-            this._mediatorMock = new Mock<Mediator> {CallBase = true};
+            _recipeRepositoryMock = new Mock<IRecipeRepository>();
+            _mediatorMock = new Mock<Mediator> {CallBase = true};
 
             _recipeRepositoryMock.Setup(repository => repository.GetAll())
                 .Returns(() => new List<RecipeListModel>());
 
-            this._recipeListViewModelSUT = new RecipeListViewModel(_recipeRepositoryMock.Object, _mediatorMock.Object);
+            _recipeListViewModelSUT = new RecipeListViewModel(_recipeRepositoryMock.Object, _mediatorMock.Object);
         }
 
         [Fact]

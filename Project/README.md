@@ -135,6 +135,7 @@ Dbejte také kvality Vašeho kódu. Od této fáze se hodnotí i tenhle atribut.
 Hodnotíme:
 
 -   využití **Entity Framework Core (EF) Code First** na vytvoření databáze z tříd navržených ve fázi 1
+- existující databázové migrace (alespoň InitialMigration)
 -   návrh a funkčnost repozitářů
 -   čistotu kódu
 -   pokrytí aplikace testy - ukážete tím, že repozitáře opravdu fungují

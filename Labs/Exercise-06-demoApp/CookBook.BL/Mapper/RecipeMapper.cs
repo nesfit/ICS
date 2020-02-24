@@ -33,15 +33,15 @@ namespace CookBook.BL.Mapper
                     FoodType = (FoodType) entity.FoodType
                 };
 
-        public static RecipeEntity MapToEntity(RecipeDetailModel detailModel, IEntityFactory<RecipeEntity> entityFactory)
+        public static RecipeEntity MapToEntity(RecipeDetailModel detailModel, IEntityFactory entityFactory)
         {
-            var entity = (entityFactory ??= new DummyEntityFactory<RecipeEntity>()).Create(detailModel.Id);
+            var entity = (entityFactory ??= new DummyEntityFactory()).Create<RecipeEntity>(detailModel.Id);
             entity.Id = detailModel.Id;
             entity.Name = detailModel.Name;
             entity.Description = detailModel.Description;
             entity.Duration = detailModel.Duration;
             entity.FoodType = (DAL.Enums.FoodType) detailModel.FoodType;
-            entity.Ingredients = detailModel.Ingredients.Select(model => IngredientAmountMapper.MapEntity(model, entityFactory.As<IngredientAmountEntity>())).ToList();
+            entity.Ingredients = detailModel.Ingredients.Select(model => IngredientAmountMapper.MapEntity(model, entityFactory)).ToList();
             return entity;
         }
     }

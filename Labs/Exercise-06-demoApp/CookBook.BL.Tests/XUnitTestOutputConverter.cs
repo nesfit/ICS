@@ -7,7 +7,7 @@ namespace CookBook.BL.Tests
     class XUnitTestOutputConverter : TextWriter
     {
         readonly ITestOutputHelper _output;
-        public XUnitTestOutputConverter(ITestOutputHelper output) => this._output = output;
+        public XUnitTestOutputConverter(ITestOutputHelper output) => _output = output;
         public override Encoding Encoding => Encoding.UTF8;
 
         public override void WriteLine(string message)
