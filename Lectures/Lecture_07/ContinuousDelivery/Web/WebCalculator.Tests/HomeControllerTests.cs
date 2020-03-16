@@ -1,4 +1,4 @@
-﻿using System.Web.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Calculators.Engine;
 using NUnit.Framework;
 using WebCalculator.Controllers;
@@ -9,7 +9,7 @@ namespace WebCalculator.Tests
     public class HomeControllerTests
     {
         private readonly HomeController controller = new HomeController();
-        
+
         [Test]
         public void Open_Index_UsesEmptyModel()
         {
@@ -17,7 +17,7 @@ namespace WebCalculator.Tests
             const string message = "The initial model is used to render default values";
             Assert.IsInstanceOf(typeof(MathematicModel), viewResult.Model, message);
         }
-        
+
         [Test]
         public void PostedValidModel_Calculate_RendersResult()
         {

@@ -1,0 +1,17 @@
+{
+  "name": "calculator-ui",
+  "version": "1.0.0",
+  "scripts": {
+    "init": "npm install",
+    "test": "karma start"
+  },
+  "devDependencies": {
+    "jasmine": "^3.5.0",
+    "jasmine-jquery": "^2.1.1",
+    "karma": "^4.4.1",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-jasmine": "^3.1.1",
+    "karma-jasmine-jquery": "^0.1.1",
+    "karma-junit-reporter": "^2.0.1"
+  }
+}

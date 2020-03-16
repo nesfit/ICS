@@ -1,32 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1B5B9A13-5054-49CF-B897-704AE4F91248}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculators.Engine", "Shared\Calculators.Engine\Calculators.Engine.csproj", "{93713DBF-E577-4294-9127-FE6DD77574C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculators.Engine", "Shared\Calculators.Engine\Calculators.Engine.csproj", "{93713DBF-E577-4294-9127-FE6DD77574C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator.Engine.Tests", "Shared\Calculator.Engine.Tests\Calculator.Engine.Tests.csproj", "{705CF9A9-50F1-47A6-A02B-BE8A4ED71C71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Engine.Tests", "Shared\Calculator.Engine.Tests\Calculator.Engine.Tests.csproj", "{705CF9A9-50F1-47A6-A02B-BE8A4ED71C71}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleCalculator", "Console\ConsoleCalculator\ConsoleCalculator.csproj", "{2D127731-C13B-4998-A552-865B2A8A9FAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleCalculator", "Console\ConsoleCalculator\ConsoleCalculator.csproj", "{2D127731-C13B-4998-A552-865B2A8A9FAD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{93713DBF-E577-4294-9127-FE6DD77574C7} = {93713DBF-E577-4294-9127-FE6DD77574C7}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleCalculator.Tests", "Console\ConsoleCalculator.Tests\ConsoleCalculator.Tests.csproj", "{0A707B23-8518-4B31-BF28-9B47F26662BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleCalculator.Tests", "Console\ConsoleCalculator.Tests\ConsoleCalculator.Tests.csproj", "{0A707B23-8518-4B31-BF28-9B47F26662BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCalculator", "Web\WebCalculator\WebCalculator.csproj", "{D9F1B1DB-5AE2-4566-A87C-6EB835D13C4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCalculator", "Web\WebCalculator\WebCalculator.csproj", "{D9F1B1DB-5AE2-4566-A87C-6EB835D13C4B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{93713DBF-E577-4294-9127-FE6DD77574C7} = {93713DBF-E577-4294-9127-FE6DD77574C7}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCalculator.Tests", "Web\WebCalculator.Tests\WebCalculator.Tests.csproj", "{4E46B8E2-952A-475F-8013-8EE81B1CCF42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCalculator.Tests", "Web\WebCalculator.Tests\WebCalculator.Tests.csproj", "{4E46B8E2-952A-475F-8013-8EE81B1CCF42}"
 	ProjectSection(ProjectDependencies) = postProject
 		{93713DBF-E577-4294-9127-FE6DD77574C7} = {93713DBF-E577-4294-9127-FE6DD77574C7}
 	EndProjectSection
@@ -36,8 +29,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console", "Console", "{B90D2E22-6A67-44A5-876E-13455FB53E03}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{977725D6-DF9D-42D9-85A3-667E9BE9EDAD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCalculator.Javascript.Tests", "Web\WebCalculator.Javascript.Tests\WebCalculator.Javascript.Tests.csproj", "{B8FFFA5C-4BE7-4BFB-AC87-1F61530B690B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,11 +71,6 @@ Global
 		{4E46B8E2-952A-475F-8013-8EE81B1CCF42}.PublishWeb|Any CPU.Build.0 = Release|Any CPU
 		{4E46B8E2-952A-475F-8013-8EE81B1CCF42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E46B8E2-952A-475F-8013-8EE81B1CCF42}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8FFFA5C-4BE7-4BFB-AC87-1F61530B690B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8FFFA5C-4BE7-4BFB-AC87-1F61530B690B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8FFFA5C-4BE7-4BFB-AC87-1F61530B690B}.PublishWeb|Any CPU.ActiveCfg = Release|Any CPU
-		{B8FFFA5C-4BE7-4BFB-AC87-1F61530B690B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8FFFA5C-4BE7-4BFB-AC87-1F61530B690B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,39 +82,8 @@ Global
 		{0A707B23-8518-4B31-BF28-9B47F26662BB} = {B90D2E22-6A67-44A5-876E-13455FB53E03}
 		{D9F1B1DB-5AE2-4566-A87C-6EB835D13C4B} = {977725D6-DF9D-42D9-85A3-667E9BE9EDAD}
 		{4E46B8E2-952A-475F-8013-8EE81B1CCF42} = {977725D6-DF9D-42D9-85A3-667E9BE9EDAD}
-		{B8FFFA5C-4BE7-4BFB-AC87-1F61530B690B} = {977725D6-DF9D-42D9-85A3-667E9BE9EDAD}
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Shared\\Calculators.Engine\\Calculators.Engine.csproj
-		SccProjectTopLevelParentUniqueName1 = BankCalculators.sln
-		SccProjectName1 = Shared/Calculators.Engine
-		SccLocalPath1 = Shared\\Calculators.Engine
-		SccProjectUniqueName2 = Shared\\Calculator.Engine.Tests\\Calculator.Engine.Tests.csproj
-		SccProjectTopLevelParentUniqueName2 = BankCalculators.sln
-		SccProjectName2 = Shared/Calculator.Engine.Tests
-		SccLocalPath2 = Shared\\Calculator.Engine.Tests
-		SccProjectUniqueName3 = Console\\ConsoleCalculator\\ConsoleCalculator.csproj
-		SccProjectTopLevelParentUniqueName3 = BankCalculators.sln
-		SccProjectName3 = Console/ConsoleCalculator
-		SccLocalPath3 = Console\\ConsoleCalculator
-		SccProjectUniqueName4 = Console\\ConsoleCalculator.Tests\\ConsoleCalculator.Tests.csproj
-		SccProjectTopLevelParentUniqueName4 = BankCalculators.sln
-		SccProjectName4 = Console/ConsoleCalculator.Tests
-		SccLocalPath4 = Console\\ConsoleCalculator.Tests
-		SccProjectUniqueName5 = Web\\WebCalculator\\WebCalculator.csproj
-		SccProjectTopLevelParentUniqueName5 = BankCalculators.sln
-		SccProjectName5 = Web/WebCalculator
-		SccLocalPath5 = Web\\WebCalculator
-		SccProjectUniqueName6 = Web\\WebCalculator.Tests\\WebCalculator.Tests.csproj
-		SccProjectTopLevelParentUniqueName6 = BankCalculators.sln
-		SccProjectName6 = Web/WebCalculator.Tests
-		SccLocalPath6 = Web\\WebCalculator.Tests
-		SccProjectUniqueName7 = Web\\WebCalculator.Javascript.Tests\\WebCalculator.Javascript.Tests.csproj
-		SccProjectTopLevelParentUniqueName7 = BankCalculators.sln
-		SccProjectName7 = Web/WebCalculator.Javascript.Tests
-		SccLocalPath7 = Web\\WebCalculator.Javascript.Tests
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1636E383-B2C8-4B55-9AEA-8B05DD948BD2}
 	EndGlobalSection
 EndGlobal

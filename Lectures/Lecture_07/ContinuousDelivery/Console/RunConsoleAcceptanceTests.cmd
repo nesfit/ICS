@@ -1,2 +1,0 @@
- .\extern\NUnit-2.6.4\bin\nunit-console.exe .\Output\Debug\Tests\ConsoleCalculator.Tests.dll /framework=4.5
-rem .\extern\NUnit-2.6.4\bin\nunit-console.exe .\Output\Debug\Tests\WebCalculator.Tests.dll /framework=4.0

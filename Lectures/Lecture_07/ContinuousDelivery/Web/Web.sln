@@ -1,35 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCalculator", "WebCalculator\WebCalculator.csproj", "{D9F1B1DB-5AE2-4566-A87C-6EB835D13C4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCalculator", "WebCalculator\WebCalculator.csproj", "{D9F1B1DB-5AE2-4566-A87C-6EB835D13C4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCalculator.Tests", "WebCalculator.Tests\WebCalculator.Tests.csproj", "{4E46B8E2-952A-475F-8013-8EE81B1CCF42}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCalculator.Javascript.Tests", "WebCalculator.Javascript.Tests\WebCalculator.Javascript.Tests.csproj", "{B8FFFA5C-4BE7-4BFB-AC87-1F61530B690B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C9C3FD58-A330-41CF-8939-C572F9EB4992}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCalculator.Tests", "WebCalculator.Tests\WebCalculator.Tests.csproj", "{4E46B8E2-952A-475F-8013-8EE81B1CCF42}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = WebCalculator\\WebCalculator.csproj
-		SccProjectName1 = WebCalculator
-		SccLocalPath1 = WebCalculator
-		SccProjectUniqueName2 = WebCalculator.Tests\\WebCalculator.Tests.csproj
-		SccProjectName2 = WebCalculator.Tests
-		SccLocalPath2 = WebCalculator.Tests
-		SccProjectUniqueName3 = WebCalculator.Javascript.Tests\\WebCalculator.Javascript.Tests.csproj
-		SccProjectName3 = WebCalculator.Javascript.Tests
-		SccLocalPath3 = WebCalculator.Javascript.Tests
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -43,12 +21,11 @@ Global
 		{4E46B8E2-952A-475F-8013-8EE81B1CCF42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E46B8E2-952A-475F-8013-8EE81B1CCF42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E46B8E2-952A-475F-8013-8EE81B1CCF42}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8FFFA5C-4BE7-4BFB-AC87-1F61530B690B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8FFFA5C-4BE7-4BFB-AC87-1F61530B690B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8FFFA5C-4BE7-4BFB-AC87-1F61530B690B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8FFFA5C-4BE7-4BFB-AC87-1F61530B690B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5D37DF4A-C9C8-4CC4-9C04-B54D6610715B}
 	EndGlobalSection
 EndGlobal

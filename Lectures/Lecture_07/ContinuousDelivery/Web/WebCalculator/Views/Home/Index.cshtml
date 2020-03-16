@@ -1,13 +1,13 @@
 ﻿@model Calculators.Engine.MathematicModel
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewData["Title"] = "Home Page";
 }
 
 <div class="row">
     <div class="col-md-4">
         <h2>Getting started</h2>
-        <img src="~/Content/logo.jpg"/>
+        <img src="~/images/logo.jpg" />
     </div>
     <div class="col-md-4">
         <h2>Let me see...</h2>
@@ -20,13 +20,11 @@
                 </select>
             </div>
             <div class="my-1">@Html.EditorFor(m => m.Second)</div>
-            <input type="submit" value="Calculate" id="btnCalculate" class="btn btn-primary"/>
+            <input type="submit" value="Calculate" id="btnCalculate" class="btn btn-primary" />
         }
 
     </div>
     <div id="operationPreview"></div>
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/Scripts/ShowPreview.js")
-}
+<script src="~/js/ShowPreview.js"></script>

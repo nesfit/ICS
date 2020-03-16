@@ -1,1 +1,0 @@
-..\packages\Chutzpah.4.0.0\tools\chutzpah.console.exe /path WebCalculator.Javascript.Tests\Scripts\ShowPreviewTests.js /teamcity /coverage  /failOnError
