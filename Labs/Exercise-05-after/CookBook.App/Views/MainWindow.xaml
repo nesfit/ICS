@@ -9,7 +9,9 @@
     Title="MainWindow"
     Width="800"
     Height="450"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{DynamicResource MaterialDesignFont}">
     <TabControl>
         <TabItem Header="{x:Static texts:TextResources.TabHeader_Ingredients}">
             <Grid>

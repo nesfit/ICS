@@ -5,8 +5,8 @@
                        xmlns:local="clr-namespace:CookBook.App.Views"
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                        xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
-                       xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                        xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
+                       xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
                        d:DataContext="{d:DesignInstance viewModels:IngredientListViewModel}"
                        d:DesignHeight="450"
                        d:DesignWidth="800"
@@ -19,12 +19,12 @@
         </Grid.RowDefinitions>
         <Button Grid.Row="0" Content="{x:Static texts:TextResources.IngredientList_ButtonNewIngredient}" Command="{Binding IngredientNewCommand}" />
         <ListBox x:Name="IngredientsListBox" Grid.Row="1" ItemsSource="{Binding Ingredients}">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding IngredientSelectedCommand}"
+            <b:Interaction.Triggers>
+                <b:EventTrigger EventName="SelectionChanged">
+                    <b:InvokeCommandAction Command="{Binding IngredientSelectedCommand}"
                                            CommandParameter="{Binding ElementName=IngredientsListBox, Path=SelectedItem}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
+                </b:EventTrigger>
+            </b:Interaction.Triggers>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Label x:Name="TestLabel" Content="{Binding Name}"/>

@@ -2,6 +2,7 @@
 using CookBook.BL.Factories;
 using CookBook.BL.Repositories;
 using CookBook.BL.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.App.ViewModels
 {
@@ -21,6 +22,9 @@ namespace CookBook.App.ViewModels
             dbContextFactory = new DbContextFactory();
             ingredientRepository = new IngredientRepository(dbContextFactory);
             messageBoxService = new MessageBoxService();
+
+            using var dbx = dbContextFactory.CreateDbContext();
+            dbx.Database.Migrate();
         }
     }
 }

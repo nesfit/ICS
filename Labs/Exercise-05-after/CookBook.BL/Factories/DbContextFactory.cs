@@ -8,7 +8,7 @@ namespace CookBook.BL.Factories
         public CookBookDbContext CreateDbContext()
         {
             var optionsBuilder = new DbContextOptionsBuilder<CookBookDbContext>();
-            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog = TasksDB;MultipleActiveResultSets = True;Integrated Security = True; ");
+            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog = CookBook;MultipleActiveResultSets = True;Integrated Security = True; ");
             return new CookBookDbContext(optionsBuilder.Options);
         }
     }
