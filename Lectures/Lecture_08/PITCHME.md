@@ -708,7 +708,7 @@ private bool CanExecute() => true;
 * Open **view in new window**
   * Creating a new window is a job for the *ViewModel*
     * It is not part of ViewModel responsibilities to know, what View should be created
-    * See [Demonstration project](https://github.com/orlicekm/CsharpCourse/tree/master/Lectures/Lecture_08/Assets/sln/OpeningWindow)
+    * See [Demonstration project](/Lectures/Lecture_08/Assets/sln/OpeningWindow)
   * Recommends using MVVM framework
     * Solves problems with wrapping all this up
 
@@ -741,7 +741,7 @@ private bool CanExecute() => true;
   * Contains **base classes and controls**
   * Intended to be used as part of other more complex controls
 
-![](/Lectures/Lecture_08/Assets/img/CustomControl.jpeg)
+![](/Lectures/Lecture_08/Assets/img/CustomControl.png)
 
 +++?code=/Lectures/Lecture_08/Assets/sln/CustomControl/MainWindow.xaml&lang=XML&title=Custom Control Sample
 @[11-15]
