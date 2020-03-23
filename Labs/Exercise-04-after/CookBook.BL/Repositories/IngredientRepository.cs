@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CookBook.BL.Factories;
+﻿using CookBook.BL.Factories;
 using CookBook.BL.Mapper;
 using CookBook.BL.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CookBook.BL.Repositories
 {
@@ -16,12 +16,13 @@ namespace CookBook.BL.Repositories
             this.dbContextFactory = dbContextFactory;
         }
 
-        public IEnumerable<IngredientListModel> GetAll()
+        public IList<IngredientListModel> GetAll()
         {
             using (var dbContext = dbContextFactory.CreateDbContext())
             {
                 return dbContext.Ingredients
-                    .Select(e => IngredientMapper.MapIngredientEntityToListModel(e));
+                    .Select(e => IngredientMapper.MapIngredientEntityToListModel(e))
+                    .ToList();
             }
         }
 

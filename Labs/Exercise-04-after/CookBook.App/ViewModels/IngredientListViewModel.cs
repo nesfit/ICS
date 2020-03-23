@@ -1,23 +1,67 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CookBook.BL.Factories;
-using CookBook.BL.Models;
+﻿using CookBook.BL.Models;
 using CookBook.BL.Repositories;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
+using CookBook.App.Commands;
+using CookBook.BL.Extensions;
+using CookBook.BL.Messages;
+using CookBook.BL.Services;
 
 namespace CookBook.App.ViewModels
 {
-    class IngredientListViewModel
+    public class IngredientListViewModel : ViewModelBase
     {
-        private readonly IIngredientRepository repository = new IngredientRepository(new DbContextFactory());
+        private readonly IIngredientRepository ingredientRepository;
+        private readonly IMediator mediator;
 
-        public List<IngredientListModel> Ingredients { get; set; }
+        public ObservableCollection<IngredientListModel> Ingredients { get; set; } = new ObservableCollection<IngredientListModel>();
 
-        public void Load()
+        public ICommand IngredientSelectedCommand { get; set; }
+        public ICommand IngredientNewCommand { get; set; }
+
+        public IngredientListViewModel(IIngredientRepository ingredientRepository, IMediator mediator)
         {
-            Ingredients = repository.GetAll()
-                .ToList();
+            this.ingredientRepository = ingredientRepository;
+            this.mediator = mediator;
+
+            IngredientSelectedCommand = new RelayCommand<IngredientListModel>(IngredientSelected);
+            IngredientNewCommand = new RelayCommand(IngredientNew);
+
+            mediator.Register<IngredientAddedMessage>(IngredientAdded);
+            mediator.Register<IngredientUpdatedMessage>(IngredientUpdated);
+            mediator.Register<IngredientDeletedMessage>(IngredientDeleted);
+        }
+
+        private void IngredientNew()
+        {
+            mediator.Send(new IngredientNewMessage());
+        }
+
+        private void IngredientSelected(IngredientListModel ingredient)
+        {
+            mediator.Send(new IngredientSelectedMessage { Id = ingredient.Id });
+        }
+
+        private void IngredientAdded(IngredientAddedMessage ingredient)
+        {
+            Load();
+        }
+
+        private void IngredientUpdated(IngredientUpdatedMessage ingredient)
+        {
+            Load();
+        }
+
+        private void IngredientDeleted(IngredientDeletedMessage ingredient)
+        {
+            Load();
+        }
+
+        public override void Load()
+        {
+            Ingredients.Clear();
+            var ingredients = ingredientRepository.GetAll();
+            Ingredients.AddRange(ingredients);
         }
     }
 }

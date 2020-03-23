@@ -94,6 +94,7 @@ namespace CookBook.DAL.Seed
 
         private static void ClearDatabase(CookBookDbContext dbContext)
         {
+            dbContext.RemoveRange(dbContext.IngredientAmountEntities);
             dbContext.RemoveRange(dbContext.Recipes);
             dbContext.RemoveRange(dbContext.Ingredients);
             dbContext.SaveChanges();
