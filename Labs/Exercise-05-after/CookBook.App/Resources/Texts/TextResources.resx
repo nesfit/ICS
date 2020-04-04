@@ -132,6 +132,9 @@
   <data name="IngredientDetail_LabelDescription" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="IngredientDetail_LabelImageUrl" xml:space="preserve">
+    <value>Image URL</value>
+  </data>
   <data name="IngredientDetail_LabelName" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -161,6 +164,9 @@
   </data>
   <data name="RecipeDetail_LabelFoodType" xml:space="preserve">
     <value>Foodtype</value>
+  </data>
+  <data name="RecipeDetail_LabelImageUrl" xml:space="preserve">
+    <value>Image URL</value>
   </data>
   <data name="RecipeDetail_LabelName" xml:space="preserve">
     <value>Name</value>

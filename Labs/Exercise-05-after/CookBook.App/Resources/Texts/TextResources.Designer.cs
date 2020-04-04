@@ -106,6 +106,15 @@ namespace CookBook.App.Resources.Texts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image URL.
+        /// </summary>
+        public static string IngredientDetail_LabelImageUrl {
+            get {
+                return ResourceManager.GetString("IngredientDetail_LabelImageUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string IngredientDetail_LabelName {
@@ -192,6 +201,15 @@ namespace CookBook.App.Resources.Texts {
         public static string RecipeDetail_LabelFoodType {
             get {
                 return ResourceManager.GetString("RecipeDetail_LabelFoodType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image URL.
+        /// </summary>
+        public static string RecipeDetail_LabelImageUrl {
+            get {
+                return ResourceManager.GetString("RecipeDetail_LabelImageUrl", resourceCulture);
             }
         }
         

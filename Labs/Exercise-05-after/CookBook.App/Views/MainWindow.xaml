@@ -22,7 +22,7 @@
             <ColumnDefinition Width="200" />
             <ColumnDefinition />
             <ColumnDefinition />
-            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
 
         <TextBlock Margin="10" Foreground="DarkBlue" FontSize="40" Grid.ColumnSpan="2">

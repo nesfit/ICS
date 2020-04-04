@@ -13,20 +13,29 @@ namespace CookBook.App.Wrappers
             InitializeCollectionProperties(model);
         }
 
-        public string Name {
+        public string Name
+        {
             get => GetValue<string>();
             set => SetValue(value);
         }
-        public string Description {
+        public string Description
+        {
             get => GetValue<string>();
             set => SetValue(value);
         }
-        public TimeSpan Duration {
+        public TimeSpan Duration
+        {
             get => GetValue<TimeSpan>();
             set => SetValue(value);
         }
-        public FoodType FoodType {
+        public FoodType FoodType
+        {
             get => GetValue<FoodType>();
+            set => SetValue(value);
+        }
+        public string ImageUrl
+        {
+            get => GetValue<string>();
             set => SetValue(value);
         }
 

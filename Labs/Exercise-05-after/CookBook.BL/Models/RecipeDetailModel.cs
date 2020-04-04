@@ -11,6 +11,7 @@ namespace CookBook.BL.Models
         public string Description { get; set; }
         public TimeSpan Duration { get; set; }
         public FoodType FoodType { get; set; }
+        public string ImageUrl { get; set; }
         public ICollection<IngredientAmountDetailModel> Ingredients { get; set; } = new List<IngredientAmountDetailModel>();
 
         private sealed class RecipeDetailModelEqualityComparer : IEqualityComparer<RecipeDetailModel>
@@ -37,11 +38,12 @@ namespace CookBook.BL.Models
                     return false;
                 }
 
-                return string.Equals(x.Name, y.Name) 
-                       && string.Equals(x.Description, y.Description) 
-                       && x.Duration.Equals(y.Duration) 
-                       && x.FoodType == y.FoodType 
-                       && x.Ingredients.OrderBy(i=>i.Id).SequenceEqual(y.Ingredients.OrderBy(i=>i.Id),IngredientAmountDetailModel.IngredientAmountDetailModelComparer);
+                return string.Equals(x.Name, y.Name)
+                       && string.Equals(x.Description, y.Description)
+                       && x.Duration.Equals(y.Duration)
+                       && x.FoodType == y.FoodType
+                       && string.Equals(x.ImageUrl, y.ImageUrl)
+                       && x.Ingredients.OrderBy(i => i.Id).SequenceEqual(y.Ingredients.OrderBy(i => i.Id), IngredientAmountDetailModel.IngredientAmountDetailModelComparer);
             }
 
             public int GetHashCode(RecipeDetailModel obj)
@@ -51,7 +53,8 @@ namespace CookBook.BL.Models
                     var hashCode = (obj.Name != null ? obj.Name.GetHashCode() : 0);
                     hashCode = (hashCode * 397) ^ (obj.Description != null ? obj.Description.GetHashCode() : 0);
                     hashCode = (hashCode * 397) ^ obj.Duration.GetHashCode();
-                    hashCode = (hashCode * 397) ^ (int) obj.FoodType;
+                    hashCode = (hashCode * 397) ^ (int)obj.FoodType;
+                    hashCode = (hashCode * 397) ^ (obj.ImageUrl != null ? obj.ImageUrl.GetHashCode() : 0);
                     hashCode = (hashCode * 397) ^ (obj.Ingredients != null ? obj.Ingredients.GetHashCode() : 0);
                     return hashCode;
                 }
@@ -59,7 +62,5 @@ namespace CookBook.BL.Models
         }
 
         public static IEqualityComparer<RecipeDetailModel> RecipeDetailModelComparer { get; } = new RecipeDetailModelEqualityComparer();
-
-
     }
 }

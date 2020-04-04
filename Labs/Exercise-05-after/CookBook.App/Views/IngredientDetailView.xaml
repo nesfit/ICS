@@ -26,25 +26,35 @@
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="17*" />
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:TextResources.IngredientDetail_LabelName}" HorizontalAlignment="Left" Margin="29,0,0,406" Grid.RowSpan="2" />
-            <TextBox Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="3" Margin="70,0,0,0" />
+            <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:TextResources.IngredientDetail_LabelName}"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}"/>
+            
+            <Label Grid.Row="1" Grid.Column="0" Content="{x:Static texts:TextResources.IngredientDetail_LabelImageUrl}"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Model.ImageUrl, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Grid.Row="1"
+            <Label Grid.Row="2"
+                   Grid.Column="0"
                    Content="{x:Static texts:TextResources.IngredientDetail_LabelDescription}" HorizontalAlignment="Center" />
-            <TextBox Grid.Row="1"
+            <TextBox Grid.Row="2"
+                     Grid.Column="1"
                      VerticalAlignment="Top"
                      Text="{Binding Model.Description, UpdateSourceTrigger=PropertyChanged}"
                      TextAlignment="Left"
                      TextWrapping="Wrap"
-                     AcceptsReturn="True" Grid.ColumnSpan="3" Margin="70,0,0,0" />
+                     AcceptsReturn="True"/>
+            <Image Grid.Row="3"
+                   Grid.Column="1"
+                   Source="{Binding Model.ImageUrl}"
+                   VerticalAlignment="Bottom"/>
         </Grid>
     </Grid>
 </local:UserControlBase>

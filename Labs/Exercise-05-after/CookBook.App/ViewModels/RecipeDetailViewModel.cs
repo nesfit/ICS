@@ -39,7 +39,7 @@ namespace CookBook.App.ViewModels
         public RelayCommand DeleteCommand { get; }
 
         public RelayCommand SaveCommand { get; }
-        
+
         public IIngredientAmountDetailViewModel IngredientAmountDetailViewModel { get; }
 
         public IngredientAmountWrapper SelectedIngredientAmount
@@ -128,7 +128,7 @@ namespace CookBook.App.ViewModels
                         MessageDialogResult.OK);
                 }
 
-                _mediator.Send(new DeleteMessage<RecipeWrapper> {Model = Model});
+                _mediator.Send(new DeleteMessage<RecipeWrapper> { Model = Model });
             }
         }
 
@@ -141,7 +141,7 @@ namespace CookBook.App.ViewModels
         private void Save()
         {
             Model = _recipesRepository.InsertOrUpdate(Model);
-            _mediator.Send(new UpdateMessage<RecipeWrapper> {Model = Model});
+            _mediator.Send(new UpdateMessage<RecipeWrapper> { Model = Model });
         }
     }
 }

@@ -32,7 +32,9 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -41,8 +43,11 @@
             <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:TextResources.RecipeDetail_LabelName}" />
             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label Grid.Row="1" Grid.Column="0" Content="{x:Static texts:TextResources.RecipeDetail_LabelDescription}" />
-            <TextBox Grid.Row="1"
+            <Label Grid.Row="1" Grid.Column="0" Content="{x:Static texts:TextResources.RecipeDetail_LabelImageUrl}" />
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Model.ImageUrl, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label Grid.Row="2" Grid.Column="0" Content="{x:Static texts:TextResources.RecipeDetail_LabelDescription}" />
+            <TextBox Grid.Row="2"
                      Grid.Column="1"
                      VerticalAlignment="Top"
                      Text="{Binding Model.Description, UpdateSourceTrigger=PropertyChanged}"
@@ -50,19 +55,19 @@
                      TextWrapping="Wrap"
                      AcceptsReturn="True" />
 
-            <Label Grid.Row="2" Grid.Column="0" Content="{x:Static texts:TextResources.RecipeDetail_LabelDuration}" />
-            <xctk:TimeSpanUpDown Grid.Row="2" 
+            <Label Grid.Row="3" Grid.Column="0" Content="{x:Static texts:TextResources.RecipeDetail_LabelDuration}" />
+            <xctk:TimeSpanUpDown Grid.Row="3" 
                                  Grid.Column="1" 
                                  AllowSpin="True" AllowTextInput="True"
                                  Text="{Binding Model.Duration, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label Grid.Row="3" Grid.Column="0" Content="{x:Static texts:TextResources.RecipeDetail_LabelFoodType}" />
-            <ComboBox Grid.Row="3" Grid.Column="1"  MinWidth="150"
+            <Label Grid.Row="4" Grid.Column="0" Content="{x:Static texts:TextResources.RecipeDetail_LabelFoodType}" />
+            <ComboBox Grid.Row="4" Grid.Column="1"  MinWidth="150"
                       ItemsSource="{Binding Source={extensions:EnumBindingSource {x:Type enums:FoodType}}}"
                       SelectedItem="{Binding Model.FoodType, UpdateSourceTrigger=PropertyChanged}"/>
 
             <ListView x:Name="IngredientsListBox" 
-                      Grid.Row="4" 
+                      Grid.Row="5" 
                       Grid.Column="0" 
                       Grid.ColumnSpan="2" 
                       Focusable="False"
@@ -81,7 +86,10 @@
                 </ListView.View>
             </ListView>
 
-            <local:IngredientAmountDetailView Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" DataContext="{Binding IngredientAmountDetailViewModel}" />
+            <local:IngredientAmountDetailView Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="0" DataContext="{Binding IngredientAmountDetailViewModel}" />
+            <Image Grid.Row="7"
+                   Grid.Column="1"
+                   Source="{Binding Model.ImageUrl}"/>
         </Grid>
     </Grid>
 </local:UserControlBase>
