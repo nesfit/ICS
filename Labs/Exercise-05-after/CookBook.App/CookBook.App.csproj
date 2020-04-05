@@ -58,6 +58,26 @@
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.7.0" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Resources\Texts\IngredientAmountDetailResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>IngredientAmountDetailResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\IngredientDetailResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>IngredientDetailResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\IngredientListResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>IngredientListResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\RecipeDetailResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RecipeDetailResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\RecipeListResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RecipeListResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Texts\TextResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TextResources.Designer.cs</LastGenOutput>
@@ -74,6 +94,31 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Resources\Texts\IngredientAmountDetailResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IngredientAmountDetailResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Texts\IngredientDetailResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IngredientDetailResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Texts\IngredientListResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IngredientListResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Texts\RecipeDetailResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RecipeDetailResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Texts\RecipeListResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RecipeListResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\Texts\TextResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

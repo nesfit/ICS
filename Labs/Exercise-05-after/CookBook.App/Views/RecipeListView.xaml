@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <controls:ButtonWithIcon Grid.Row="0"
                              Command="{Binding RecipeNewCommand}"
-                             TextContent="{x:Static texts:TextResources.RecipeList_ButtonNewRecipe}"
+                             TextContent="{x:Static texts:RecipeListResources.New_Button_Content}"
                              IconSource="/Resources/Images/Add.png"
                              HorizontalAlignment="Center"/>
         <ListBox x:Name="RecipesListBox"

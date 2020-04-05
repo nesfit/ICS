@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <controls:ButtonWithIcon Grid.Row="0"
                                  Command="{Binding IngredientNewCommand}"
-                                 TextContent="{x:Static texts:TextResources.IngredientList_ButtonNewIngredient}"
+                                 TextContent="{x:Static texts:IngredientListResources.New_Button_Content}"
                                  IconSource="/Resources/Images/Add.png"
                                  HorizontalAlignment="Center"/>
         <ListBox x:Name="IngredientsListBox" Grid.Row="1" ItemsSource="{Binding Ingredients}">
