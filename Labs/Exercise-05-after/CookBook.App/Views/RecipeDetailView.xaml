@@ -14,17 +14,16 @@
                        mc:Ignorable="d"
                        Background="{StaticResource DefaultComponentBackgroundBrush}"
                        d:DataContext="{d:DesignInstance viewModels:RecipeDetailViewModel}"
-                       d:DesignHeight="300" d:DesignWidth="400"
-                       >
+                       d:DesignHeight="300" d:DesignWidth="400">
     <Grid Visibility="{Binding Model, Converter={StaticResource NullToVisibilityConverter}}" Width="250">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0">
-            <MenuItem Header="{x:Static texts:TextResources.RecipeDetail_ButtonSave}" Command="{Binding SaveCommand}" />
-            <MenuItem Header="{x:Static texts:TextResources.RecipeDetail_ButtonDelete}" Command="{Binding DeleteCommand}" />
-        </Menu>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button Style="{StaticResource SaveButtonStyle}" Content="{x:Static texts:TextResources.RecipeDetail_ButtonSave}" Command="{Binding SaveCommand}" />
+            <Button Content="{x:Static texts:TextResources.RecipeDetail_ButtonDelete}" Command="{Binding DeleteCommand}" />
+        </StackPanel>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
