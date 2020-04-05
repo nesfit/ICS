@@ -85,10 +85,9 @@
                         <EventTrigger RoutedEvent="ButtonBase.MouseLeave">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                                    <ColorAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
                                                     To="{StaticResource DefaultBackgroundColor}"
                                                     FillBehavior="HoldEnd"
-                                                    BeginTime=""
                                                     Duration="0:0:3"/>
                                     <ColorAnimation Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"
                                                     To="{StaticResource DefaultForegroundColor}"
@@ -98,11 +97,6 @@
                             </BeginStoryboard>
                         </EventTrigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Trigger.EnterActions>
-                                <BeginStoryboard>
-
-                                </BeginStoryboard>
-                            </Trigger.EnterActions>
                             <Setter Property="Background" Value="{StaticResource ButtonIsPressedBackgroundBrush}"/>
                             <Setter Property="BorderBrush" Value="{StaticResource ButtonIsPressedBorderBrush}"/>
                         </Trigger>

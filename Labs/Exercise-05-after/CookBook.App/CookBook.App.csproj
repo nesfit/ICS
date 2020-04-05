@@ -8,6 +8,12 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Resources\Images\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Add.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.8.1" />

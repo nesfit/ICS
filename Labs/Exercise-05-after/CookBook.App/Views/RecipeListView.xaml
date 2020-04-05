@@ -7,6 +7,7 @@
                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                        xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
+                       xmlns:controls="clr-namespace:CookBook.App.Controls"
                        mc:Ignorable="d"
                        Background="{StaticResource DefaultComponentBackgroundBrush}"
                        d:DataContext="{d:DesignInstance viewModels:RecipeListViewModel}"
@@ -17,9 +18,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" 
-                Content="{x:Static texts:TextResources.RecipeList_ButtonNewRecipe}"
-                Command="{Binding RecipeNewCommand}" />
+        <controls:ButtonWithIcon Grid.Row="0"
+                                 Command="{Binding RecipeNewCommand}"
+                                 TextContent="{x:Static texts:TextResources.RecipeList_ButtonNewRecipe}"
+                                 IconSource="/Resources/Images/Add.png"
+                                 HorizontalAlignment="Center"/>
         <ListBox x:Name="RecipesListBox" 
                  Grid.Row="1" 
                  ItemsSource="{Binding Recipes}">
