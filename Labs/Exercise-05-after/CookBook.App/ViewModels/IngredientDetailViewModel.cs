@@ -81,5 +81,16 @@ namespace CookBook.App.ViewModels
                 });
             }
         }
+
+        public override void LoadInDesignMode()
+        {
+            base.LoadInDesignMode();
+            Model = new IngredientWrapper(new IngredientDetailModel
+            {
+                Name = "Voda",
+                Description = "Popis vody",
+                ImageUrl = "https://www.pngitem.com/pimgs/m/40-406527_cartoon-glass-of-water-png-glass-of-water.png"
+            });
+        }
     }
 }

@@ -2,9 +2,9 @@
 
 namespace CookBook.DAL.Factories
 {
-    public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<CookBookDbContext>
+    public class DesignTimeDbContextFactory : IDbContextFactory
     {
-        public CookBookDbContext CreateDbContext(string[] args) 
+        public CookBookDbContext CreateDbContext()
             => new SqlServerDbContextFactory(@"Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog = MigrationDb;MultipleActiveResultSets = True;Integrated Security = True; ")
                 .CreateDbContext();
     }

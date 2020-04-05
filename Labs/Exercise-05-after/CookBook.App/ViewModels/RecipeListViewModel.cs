@@ -39,13 +39,18 @@ namespace CookBook.App.ViewModels
 
         private void RecipeNew() => _mediator.Send(new NewMessage<RecipeWrapper>());
 
-        private void RecipeSelected(RecipeListModel recipeListModel) => _mediator.Send(new SelectedMessage<RecipeWrapper> {Id = recipeListModel.Id});
+        private void RecipeSelected(RecipeListModel recipeListModel) => _mediator.Send(new SelectedMessage<RecipeWrapper> { Id = recipeListModel.Id });
 
         public void Load()
         {
             Recipes.Clear();
             var recipes = _recipesRepository.GetAll();
             Recipes.AddRange(recipes);
+        }
+
+        public override void LoadInDesignMode()
+        {
+            Recipes.Add(new RecipeListModel { Name = "Spaghetti", ImageUrl = "https://cleanfoodcrush.com/wp-content/uploads/2019/01/CleanFoodCrush-Super-Easy-Beef-Stir-Fry-Recipe.jpg" });
         }
     }
 }

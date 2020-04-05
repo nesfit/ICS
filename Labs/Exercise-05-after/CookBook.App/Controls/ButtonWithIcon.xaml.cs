@@ -24,13 +24,13 @@ namespace CookBook.App.Controls
         }
 
         public static readonly DependencyProperty TextContentProperty = DependencyProperty.Register(
-            nameof(TextContent), typeof(string), typeof(ButtonWithIcon), new PropertyMetadata(default(string)));
+            nameof(TextContent), typeof(string), typeof(ButtonWithIcon), new PropertyMetadata(default));
 
         public static readonly DependencyProperty CommandProperty = DependencyProperty.Register(
             nameof(Command), typeof(ICommand), typeof(ButtonWithIcon));
 
         public static readonly DependencyProperty IconSourceProperty = DependencyProperty.Register(
-            nameof(IconSource), typeof(string), typeof(ButtonWithIcon), new PropertyMetadata(default(string)));
+            nameof(IconSource), typeof(string), typeof(ButtonWithIcon), new PropertyMetadata(default));
 
         public ButtonWithIcon()
         {

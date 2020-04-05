@@ -143,5 +143,17 @@ namespace CookBook.App.ViewModels
             Model = _recipesRepository.InsertOrUpdate(Model);
             _mediator.Send(new UpdateMessage<RecipeWrapper> { Model = Model });
         }
+
+        public override void LoadInDesignMode()
+        {
+            base.LoadInDesignMode();
+            Model = new RecipeWrapper(new RecipeDetailModel
+            {
+                Name = "Spaghetti",
+                Description = "Spaghetti description",
+                Duration = new TimeSpan(0, 30, 0),
+                ImageUrl = "https://cleanfoodcrush.com/wp-content/uploads/2019/01/CleanFoodCrush-Super-Easy-Beef-Stir-Fry-Recipe.jpg"
+            });
+        }
     }
 }

@@ -10,26 +10,25 @@
                        xmlns:controls="clr-namespace:CookBook.App.Controls"
                        mc:Ignorable="d"
                        Background="{StaticResource DefaultComponentBackgroundBrush}"
-                       d:DataContext="{d:DesignInstance viewModels:RecipeListViewModel}"
-                       d:DesignHeight="300" d:DesignWidth="400"
-                       >
+                       d:DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=RecipeListViewModel}"
+                       d:DesignHeight="300" d:DesignWidth="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <controls:ButtonWithIcon Grid.Row="0"
-                                 Command="{Binding RecipeNewCommand}"
-                                 TextContent="{x:Static texts:TextResources.RecipeList_ButtonNewRecipe}"
-                                 IconSource="/Resources/Images/Add.png"
-                                 HorizontalAlignment="Center"/>
-        <ListBox x:Name="RecipesListBox" 
-                 Grid.Row="1" 
-                 ItemsSource="{Binding Recipes}">
+                             Command="{Binding RecipeNewCommand}"
+                             TextContent="{x:Static texts:TextResources.RecipeList_ButtonNewRecipe}"
+                             IconSource="/Resources/Images/Add.png"
+                             HorizontalAlignment="Center"/>
+        <ListBox x:Name="RecipesListBox"
+             Grid.Row="1"
+             ItemsSource="{Binding Recipes}">
             <interactions:Interaction.Triggers>
                 <interactions:EventTrigger EventName="SelectionChanged">
                     <interactions:InvokeCommandAction Command="{Binding RecipeSelectedCommand}"
-                                                      CommandParameter="{Binding ElementName=RecipesListBox, Path=SelectedItem}" />
+                                            CommandParameter="{Binding ElementName=RecipesListBox, Path=SelectedItem}" />
                 </interactions:EventTrigger>
             </interactions:Interaction.Triggers>
             <ListBox.ItemTemplate>
