@@ -59,6 +59,5 @@ namespace CookBook.App.Wrappers
                 }
             };
         }
-
     }
 }

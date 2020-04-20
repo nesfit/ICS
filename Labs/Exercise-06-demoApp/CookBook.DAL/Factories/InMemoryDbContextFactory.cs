@@ -1,7 +1,6 @@
-﻿using CookBook.DAL.Factories;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace CookBook.DAL
+namespace CookBook.DAL.Factories
 {
     public class InMemoryDbContextFactory : IDbContextFactory
     {
