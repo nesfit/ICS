@@ -6,25 +6,22 @@
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                        xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
                        xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
-                       xmlns:interactions="http://schemas.microsoft.com/xaml/behaviors"
-                       xmlns:models="clr-namespace:CookBook.BL.Models;assembly=CookBook.BL"
                        xmlns:extensions="clr-namespace:CookBook.App.Extensions"
                        xmlns:enums="clr-namespace:CookBook.BL.Enums;assembly=CookBook.BL"
                        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                        mc:Ignorable="d"
                        Background="{StaticResource DefaultComponentBackgroundBrush}"
                        d:DataContext="{d:DesignInstance viewModels:RecipeDetailViewModel}"
-                       d:DesignHeight="300" d:DesignWidth="400"
-                       >
+                       d:DesignHeight="300" d:DesignWidth="400">
     <Grid Visibility="{Binding Model, Converter={StaticResource NullToVisibilityConverter}}" Width="250">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0">
-            <MenuItem Header="{x:Static texts:TextResources.RecipeDetail_ButtonSave}" Command="{Binding SaveCommand}" />
-            <MenuItem Header="{x:Static texts:TextResources.RecipeDetail_ButtonDelete}" Command="{Binding DeleteCommand}" />
-        </Menu>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button Style="{StaticResource SaveButtonStyle}" Content="{x:Static texts:RecipeDetailResources.Save_Button_Content}" Command="{Binding SaveCommand}" />
+            <Button Content="{x:Static texts:RecipeDetailResources.Delete_Button_Content}" Command="{Binding DeleteCommand}" />
+        </StackPanel>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -32,17 +29,22 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:TextResources.RecipeDetail_LabelName}" />
+            <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:RecipeDetailResources.Name_Label_Content}" />
             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label Grid.Row="1" Grid.Column="0" Content="{x:Static texts:TextResources.RecipeDetail_LabelDescription}" />
-            <TextBox Grid.Row="1"
+            <Label Grid.Row="1" Grid.Column="0" Content="{x:Static texts:RecipeDetailResources.ImageUrl_Label_Content}" />
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Model.ImageUrl, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label Grid.Row="2" Grid.Column="0" Content="{x:Static texts:RecipeDetailResources.Description_Label_Content}" />
+            <TextBox Grid.Row="2"
                      Grid.Column="1"
                      VerticalAlignment="Top"
                      Text="{Binding Model.Description, UpdateSourceTrigger=PropertyChanged}"
@@ -50,38 +52,40 @@
                      TextWrapping="Wrap"
                      AcceptsReturn="True" />
 
-            <Label Grid.Row="2" Grid.Column="0" Content="{x:Static texts:TextResources.RecipeDetail_LabelDuration}" />
-            <xctk:TimeSpanUpDown Grid.Row="2" 
+            <Label Grid.Row="3" Grid.Column="0" Content="{x:Static texts:RecipeDetailResources.Duration_Label_Content}" />
+            <xctk:TimeSpanUpDown Grid.Row="3" 
                                  Grid.Column="1" 
                                  AllowSpin="True" AllowTextInput="True"
                                  Text="{Binding Model.Duration, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label Grid.Row="3" Grid.Column="0" Content="{x:Static texts:TextResources.RecipeDetail_LabelFoodType}" />
-            <ComboBox Grid.Row="3" Grid.Column="1"  MinWidth="150"
+            <Label Grid.Row="4" Grid.Column="0" Content="{x:Static texts:RecipeDetailResources.FoodType_Label_Content}" />
+            <ComboBox Grid.Row="4" Grid.Column="1"  MinWidth="150"
                       ItemsSource="{Binding Source={extensions:EnumBindingSource {x:Type enums:FoodType}}}"
                       SelectedItem="{Binding Model.FoodType, UpdateSourceTrigger=PropertyChanged}"/>
 
             <ListView x:Name="IngredientsListBox" 
-                      Grid.Row="4" 
+                      Grid.Row="5" 
                       Grid.Column="0" 
                       Grid.ColumnSpan="2" 
                       Focusable="False"
                       SelectionMode="Single"
                       ItemsSource="{Binding Model.Ingredients}"
-                      SelectedItem="{Binding SelectedIngredientAmount, Mode=TwoWay}"
-                      >
+                      SelectedItem="{Binding SelectedIngredientAmount, Mode=TwoWay}">
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
-                            <GridViewColumn Header="{x:Static texts:TextResources.RecipeDetail_GridViewIngredientName}" DisplayMemberBinding="{Binding IngredientName}" />
-                            <GridViewColumn Header="{x:Static texts:TextResources.RecipeDetail_GridViewIngredientAmount}" DisplayMemberBinding="{Binding Amount}" />
-                            <GridViewColumn Header="{x:Static texts:TextResources.RecipeDetail_GridViewIngredientUnit}" DisplayMemberBinding="{Binding Unit}" Width="Auto" />
+                            <GridViewColumn Header="{x:Static texts:RecipeDetailResources.IngredientName_GridViewColumn_Header}" DisplayMemberBinding="{Binding IngredientName}" />
+                            <GridViewColumn Header="{x:Static texts:RecipeDetailResources.IngredientAmount_GridViewColumn_Header}" DisplayMemberBinding="{Binding Amount}" />
+                            <GridViewColumn Header="{x:Static texts:RecipeDetailResources.IngredientUnit_GridViewColumn_Header}" DisplayMemberBinding="{Binding Unit}" Width="Auto" />
                         </GridView.Columns>
                     </GridView>
                 </ListView.View>
             </ListView>
 
-            <local:IngredientAmountDetailView Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" DataContext="{Binding IngredientAmountDetailViewModel}" />
+            <local:IngredientAmountDetailView Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="0" DataContext="{Binding IngredientAmountDetailViewModel}" />
+            <Image Grid.Row="7"
+                   Grid.Column="1"
+                   Source="{Binding Model.ImageUrl}"/>
         </Grid>
     </Grid>
 </local:UserControlBase>

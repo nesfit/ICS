@@ -17,8 +17,9 @@ namespace CookBook.BL.Mapper
                     Id = entity.Id,
                     Name = entity.Name,
                     Description = entity.Description,
-                    FoodType = (FoodType) entity.FoodType,
+                    FoodType = (FoodType)entity.FoodType,
                     Duration = entity.Duration,
+                    ImageUrl = entity.ImageUrl,
                     Ingredients = entity.Ingredients.Select(IngredientAmountMapper.MapDetailModel).ToList()
                 };
 
@@ -30,7 +31,8 @@ namespace CookBook.BL.Mapper
                     Id = entity.Id,
                     Name = entity.Name,
                     Duration = entity.Duration,
-                    FoodType = (FoodType) entity.FoodType
+                    FoodType = (FoodType)entity.FoodType,
+                    ImageUrl = entity.ImageUrl
                 };
 
         public static RecipeEntity MapToEntity(RecipeDetailModel detailModel, IEntityFactory entityFactory)
@@ -40,7 +42,8 @@ namespace CookBook.BL.Mapper
             entity.Name = detailModel.Name;
             entity.Description = detailModel.Description;
             entity.Duration = detailModel.Duration;
-            entity.FoodType = (DAL.Enums.FoodType) detailModel.FoodType;
+            entity.FoodType = (DAL.Enums.FoodType)detailModel.FoodType;
+            entity.ImageUrl = detailModel.ImageUrl;
             entity.Ingredients = detailModel.Ingredients.Select(model => IngredientAmountMapper.MapEntity(model, entityFactory)).ToList();
             return entity;
         }

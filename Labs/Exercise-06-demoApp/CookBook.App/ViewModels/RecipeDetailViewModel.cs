@@ -39,7 +39,7 @@ namespace CookBook.App.ViewModels
         public RelayCommand DeleteCommand { get; }
 
         public RelayCommand SaveCommand { get; }
-        
+
         public IIngredientAmountDetailViewModel IngredientAmountDetailViewModel { get; }
 
         public IngredientAmountWrapper SelectedIngredientAmount
@@ -128,7 +128,7 @@ namespace CookBook.App.ViewModels
                         MessageDialogResult.OK);
                 }
 
-                _mediator.Send(new DeleteMessage<RecipeWrapper> {Model = Model});
+                _mediator.Send(new DeleteMessage<RecipeWrapper> { Model = Model });
             }
         }
 
@@ -141,7 +141,19 @@ namespace CookBook.App.ViewModels
         private void Save()
         {
             Model = _recipesRepository.InsertOrUpdate(Model);
-            _mediator.Send(new UpdateMessage<RecipeWrapper> {Model = Model});
+            _mediator.Send(new UpdateMessage<RecipeWrapper> { Model = Model });
+        }
+
+        public override void LoadInDesignMode()
+        {
+            base.LoadInDesignMode();
+            Model = new RecipeWrapper(new RecipeDetailModel
+            {
+                Name = "Spaghetti",
+                Description = "Spaghetti description",
+                Duration = new TimeSpan(0, 30, 0),
+                ImageUrl = "https://cleanfoodcrush.com/wp-content/uploads/2019/01/CleanFoodCrush-Super-Easy-Beef-Stir-Fry-Recipe.jpg"
+            });
         }
     }
 }

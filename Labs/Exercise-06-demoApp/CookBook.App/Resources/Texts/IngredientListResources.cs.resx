@@ -117,67 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="IngredientAmountDetail_LabelAmount" xml:space="preserve">
-    <value>Amount</value>
-  </data>
-  <data name="IngredientAmountDetail_LabelUnit" xml:space="preserve">
-    <value>Unit</value>
-  </data>
-  <data name="IngredientDetail_ButtonDelete" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="IngredientDetail_ButtonSave" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="IngredientDetail_LabelDescription" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="IngredientDetail_LabelImageUrl" xml:space="preserve">
-    <value>Image URL</value>
-  </data>
-  <data name="IngredientDetail_LabelName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="IngredientList_ButtonNewIngredient" xml:space="preserve">
-    <value>Add New Ingredient</value>
-  </data>
-  <data name="RecipeDetail_ButtonDelete" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="RecipeDetail_ButtonSave" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="RecipeDetail_GridViewIngredientAmount" xml:space="preserve">
-    <value>Amount</value>
-  </data>
-  <data name="RecipeDetail_GridViewIngredientName" xml:space="preserve">
-    <value>Ingredient</value>
-  </data>
-  <data name="RecipeDetail_GridViewIngredientUnit" xml:space="preserve">
-    <value>Unit</value>
-  </data>
-  <data name="RecipeDetail_LabelDescription" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="RecipeDetail_LabelDuration" xml:space="preserve">
-    <value>Duration</value>
-  </data>
-  <data name="RecipeDetail_LabelFoodType" xml:space="preserve">
-    <value>Foodtype</value>
-  </data>
-  <data name="RecipeDetail_LabelImageUrl" xml:space="preserve">
-    <value>Image URL</value>
-  </data>
-  <data name="RecipeDetail_LabelName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="RecipeList_ButtonNewRecipe" xml:space="preserve">
-    <value>Add New Recipe</value>
-  </data>
-  <data name="TabHeader_Ingredients" xml:space="preserve">
-    <value>Ingredients</value>
-  </data>
-  <data name="TabHeader_Recipes" xml:space="preserve">
-    <value>Recipes</value>
+  <data name="New_Button_Content" xml:space="preserve">
+    <value>Přidat novou ingredienci</value>
   </data>
 </root>

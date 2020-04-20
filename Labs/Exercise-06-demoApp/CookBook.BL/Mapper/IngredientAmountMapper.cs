@@ -8,21 +8,6 @@ namespace CookBook.BL.Mapper
 {
     internal static class IngredientAmountMapper
     {
-        public static IngredientListModel MapListModel(IngredientEntity entity) =>
-            new IngredientListModel
-            {
-                Id = entity.Id,
-                Name = entity.Name
-            };
-
-        public static IngredientDetailModel MapDetailModel(IngredientEntity entity) =>
-            new IngredientDetailModel
-            {
-                Id = entity.Id,
-                Name = entity.Name,
-                Description = entity.Description
-            };
-
         public static IngredientAmountDetailModel MapDetailModel(IngredientAmountEntity entity) =>
             new IngredientAmountDetailModel
             {
@@ -30,8 +15,9 @@ namespace CookBook.BL.Mapper
                 IngredientId = entity.Ingredient.Id,
                 IngredientName = entity.Ingredient.Name,
                 IngredientDescription = entity.Ingredient.Description,
+                IngredientImageUrl = entity.Ingredient.ImageUrl,
                 Amount = entity.Amount,
-                Unit = (Unit) entity.Unit
+                Unit = (Unit)entity.Unit
             };
 
         public static IngredientAmountEntity MapEntity(IngredientAmountDetailModel model,

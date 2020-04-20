@@ -42,8 +42,7 @@ namespace CookBook.App.ViewModels
         public void Save()
         {
             Model = _ingredientRepository.InsertOrUpdate(Model.Model);
-
-            _mediator.Send(new UpdateMessage<IngredientWrapper> {Model = Model});
+            _mediator.Send(new UpdateMessage<IngredientWrapper> { Model = Model });
         }
 
         private bool CanSave() =>
@@ -69,11 +68,11 @@ namespace CookBook.App.ViewModels
                 }
                 catch
                 {
-                  var _=  _messageDialogService.Show(
-                      $"Deleting of {Model?.Name} failed!", 
-                      "Deleting failed", 
-                      MessageDialogButtonConfiguration.OK,
-                      MessageDialogResult.OK);
+                    var _ = _messageDialogService.Show(
+                        $"Deleting of {Model?.Name} failed!",
+                        "Deleting failed",
+                        MessageDialogButtonConfiguration.OK,
+                        MessageDialogResult.OK);
                 }
 
                 _mediator.Send(new DeleteMessage<IngredientWrapper>
@@ -81,6 +80,17 @@ namespace CookBook.App.ViewModels
                     Model = Model
                 });
             }
+        }
+
+        public override void LoadInDesignMode()
+        {
+            base.LoadInDesignMode();
+            Model = new IngredientWrapper(new IngredientDetailModel
+            {
+                Name = "Voda",
+                Description = "Popis vody",
+                ImageUrl = "https://www.pngitem.com/pimgs/m/40-406527_cartoon-glass-of-water-png-glass-of-water.png"
+            });
         }
     }
 }
