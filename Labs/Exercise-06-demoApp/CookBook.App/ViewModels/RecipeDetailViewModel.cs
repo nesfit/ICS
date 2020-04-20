@@ -126,6 +126,7 @@ namespace CookBook.App.ViewModels
                         "Deleting failed",
                         MessageDialogButtonConfiguration.OK,
                         MessageDialogResult.OK);
+                    return;
                 }
 
                 _mediator.Send(new DeleteMessage<RecipeWrapper> { Model = Model });
