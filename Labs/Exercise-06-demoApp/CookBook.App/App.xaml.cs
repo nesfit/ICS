@@ -13,6 +13,7 @@ using System;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
+using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.App
 {
@@ -70,7 +71,7 @@ namespace CookBook.App
 #if DEBUG
             await using (var dbx = dbContextFactory.CreateDbContext())
             {
-                await dbx.Database.EnsureCreatedAsync();
+                await dbx.Database.MigrateAsync();
             }
 #endif
 
