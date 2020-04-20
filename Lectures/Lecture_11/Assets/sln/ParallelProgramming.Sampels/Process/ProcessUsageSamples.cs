@@ -25,8 +25,7 @@ namespace ParallelProgramming.Samples.Process
         {
             using (var process = new System.Diagnostics.Process())
             {
-                process.StartInfo.FileName =
-                    @"c:\Development\Lectures\FIT\ParallelProgramming\Assets\sln\ParallelProgramming.Sampels\Test.txt";
+                process.StartInfo.FileName = @"Test.txt";
                 process.StartInfo.UseShellExecute = true;
 
                 process.Start();

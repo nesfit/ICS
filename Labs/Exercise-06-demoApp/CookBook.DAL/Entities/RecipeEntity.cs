@@ -11,6 +11,8 @@ namespace CookBook.DAL.Entities
         public string Description { get; set; }
         public TimeSpan Duration { get; set; }
         public FoodType FoodType { get; set; }
+        public string ImageUrl { get; set; }
+
         public ICollection<IngredientAmountEntity> Ingredients { get; set; } = new List<IngredientAmountEntity>();
 
         private sealed class RecipeEntityEqualityComparer : IEqualityComparer<RecipeEntity>
@@ -37,12 +39,13 @@ namespace CookBook.DAL.Entities
                     return false;
                 }
 
-                return x.Id.Equals(y.Id) &&
-                       string.Equals(x.Name, y.Name) &&
-                       string.Equals(x.Description, y.Description) &&
-                       x.Duration.Equals(y.Duration) &&
-                       x.FoodType == y.FoodType &&
-                       x.Ingredients.OrderBy(amount => amount.Id).SequenceEqual(y.Ingredients.OrderBy(amount => amount.Id), IngredientAmountEntity.IngredientAmountComparer);
+                return x.Id.Equals(y.Id)
+                       && string.Equals(x.Name, y.Name)
+                       && string.Equals(x.Description, y.Description)
+                       && x.Duration.Equals(y.Duration)
+                       && x.FoodType == y.FoodType
+                       && string.Equals(x.ImageUrl, y.ImageUrl)
+                       && x.Ingredients.OrderBy(amount => amount.Id).SequenceEqual(y.Ingredients.OrderBy(amount => amount.Id), IngredientAmountEntity.IngredientAmountComparer);
             }
 
             public int GetHashCode(RecipeEntity obj)
@@ -54,6 +57,7 @@ namespace CookBook.DAL.Entities
                     hashCode = (hashCode * 397) ^ (obj.Description != null ? obj.Description.GetHashCode() : 0);
                     hashCode = (hashCode * 397) ^ obj.Duration.GetHashCode();
                     hashCode = (hashCode * 397) ^ (int)obj.FoodType;
+                    hashCode = (hashCode * 397) ^ (obj.ImageUrl != null ? obj.ImageUrl.GetHashCode() : 0);
                     hashCode = (hashCode * 397) ^ (obj.Ingredients != null ? obj.Ingredients.GetHashCode() : 0);
                     return hashCode;
                 }
@@ -86,7 +90,12 @@ namespace CookBook.DAL.Entities
                     return false;
                 }
 
-                return x.Id.Equals(y.Id) && string.Equals(x.Name, y.Name) && string.Equals(x.Description, y.Description) && x.Duration.Equals(y.Duration) && x.FoodType == y.FoodType;
+                return x.Id.Equals(y.Id)
+                       && string.Equals(x.Name, y.Name)
+                       && string.Equals(x.Description, y.Description)
+                       && x.Duration.Equals(y.Duration)
+                       && x.FoodType == y.FoodType
+                       && string.Equals(x.ImageUrl, y.ImageUrl);
             }
 
             public int GetHashCode(RecipeEntity obj)
@@ -98,6 +107,7 @@ namespace CookBook.DAL.Entities
                     hashCode = (hashCode * 397) ^ (obj.Description != null ? obj.Description.GetHashCode() : 0);
                     hashCode = (hashCode * 397) ^ obj.Duration.GetHashCode();
                     hashCode = (hashCode * 397) ^ (int)obj.FoodType;
+                    hashCode = (hashCode * 397) ^ (obj.ImageUrl != null ? obj.ImageUrl.GetHashCode() : 0);
                     return hashCode;
                 }
             }

@@ -1,12 +1,12 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
-using CookBook.App.Commands;
+﻿using CookBook.App.Commands;
 using CookBook.App.Wrappers;
 using CookBook.BL.Extensions;
 using CookBook.BL.Interfaces;
 using CookBook.BL.Messages;
 using CookBook.BL.Models;
 using CookBook.BL.Services;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace CookBook.App.ViewModels
 {
@@ -27,14 +27,14 @@ namespace CookBook.App.ViewModels
             mediator.Register<DeleteMessage<IngredientWrapper>>(IngredientDeleted);
         }
 
-        public ObservableCollection<IngredientListModel> Ingredients { get; } = new ObservableCollection<IngredientListModel>();
+        public ObservableCollection<IngredientListModel> Ingredients { get; set; } = new ObservableCollection<IngredientListModel>();
 
         public ICommand IngredientSelectedCommand { get; }
         public ICommand IngredientNewCommand { get; }
 
         private void IngredientNew() => _mediator.Send(new NewMessage<IngredientWrapper>());
 
-        private void IngredientSelected(IngredientListModel ingredient) => _mediator.Send(new SelectedMessage<IngredientWrapper> {Id = ingredient.Id});
+        private void IngredientSelected(IngredientListModel ingredient) => _mediator.Send(new SelectedMessage<IngredientWrapper> { Id = ingredient.Id });
 
         private void IngredientUpdated(UpdateMessage<IngredientWrapper> _) => Load();
 
@@ -45,6 +45,11 @@ namespace CookBook.App.ViewModels
             Ingredients.Clear();
             var ingredients = _ingredientRepository.GetAll();
             Ingredients.AddRange(ingredients);
+        }
+
+        public override void LoadInDesignMode()
+        {
+            Ingredients.Add(new IngredientListModel { Name = "Voda", ImageUrl = "https://www.pngitem.com/pimgs/m/40-406527_cartoon-glass-of-water-png-glass-of-water.png" });
         }
     }
 }

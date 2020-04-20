@@ -1,6 +1,7 @@
 ﻿using CookBook.DAL.Entities;
 using CookBook.DAL.Seeds;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace CookBook.DAL
 {
@@ -40,4 +41,4 @@ namespace CookBook.DAL
             base.OnConfiguring(optionsBuilder);
         }
     }
-}   
+}

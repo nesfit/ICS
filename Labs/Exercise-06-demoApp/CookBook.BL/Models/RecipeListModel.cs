@@ -9,6 +9,7 @@ namespace CookBook.BL.Models
         public string Name { get; set; }
         public TimeSpan Duration { get; set; }
         public FoodType FoodType { get; set; }
+        public string ImageUrl { get; set; }
 
         private sealed class NameDurationFoodTypeEqualityComparer : IEqualityComparer<RecipeListModel>
         {
@@ -34,16 +35,22 @@ namespace CookBook.BL.Models
                     return false;
                 }
 
-                return string.Equals(x.Name, y.Name) && x.Duration.Equals(y.Duration) && x.FoodType == y.FoodType;
+                return x.Id == y.Id
+                       && string.Equals(x.Name, y.Name)
+                       && x.Duration.Equals(y.Duration)
+                       && x.FoodType == y.FoodType
+                       && string.Equals(x.ImageUrl, y.ImageUrl);
             }
 
             public int GetHashCode(RecipeListModel obj)
             {
                 unchecked
                 {
-                    var hashCode = (obj.Name != null ? obj.Name.GetHashCode() : 0);
+                    var hashCode = obj.Id.GetHashCode();
+                    hashCode = (hashCode * 397) ^ (obj.Name != null ? obj.Name.GetHashCode() : 0);
                     hashCode = (hashCode * 397) ^ obj.Duration.GetHashCode();
-                    hashCode = (hashCode * 397) ^ (int) obj.FoodType;
+                    hashCode = (hashCode * 397) ^ (int)obj.FoodType;
+                    hashCode = (hashCode * 397) ^ (obj.ImageUrl != null ? obj.ImageUrl.GetHashCode() : 0);
                     return hashCode;
                 }
             }

@@ -13,7 +13,8 @@ namespace CookBook.BL.Mapper
                 : new IngredientListModel
                 {
                     Id = entity.Id,
-                    Name = entity.Name
+                    Name = entity.Name,
+                    ImageUrl = entity.ImageUrl
                 };
 
         public static IngredientDetailModel MapDetailModel(IngredientEntity entity) =>
@@ -23,7 +24,8 @@ namespace CookBook.BL.Mapper
                 {
                     Id = entity.Id,
                     Name = entity.Name,
-                    Description = entity.Description
+                    Description = entity.Description,
+                    ImageUrl = entity.ImageUrl
                 };
 
         public static IngredientEntity MapEntity(IngredientDetailModel model, IEntityFactory entityFactory = null)
@@ -32,6 +34,7 @@ namespace CookBook.BL.Mapper
             entity.Id = model.Id;
             entity.Description = model.Description;
             entity.Name = model.Name;
+            entity.ImageUrl = model.ImageUrl;
 
             return entity;
         }

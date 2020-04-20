@@ -4,25 +4,24 @@
                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                        xmlns:local="clr-namespace:CookBook.App.Views"
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                       xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
                        xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
                        xmlns:enums="clr-namespace:CookBook.BL.Enums;assembly=CookBook.BL"
                        xmlns:extensions="clr-namespace:CookBook.App.Extensions"
+                       xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
                        d:DesignHeight="450"
                        d:DesignWidth="800"
                        mc:Ignorable="d"
                        Background="{StaticResource DefaultComponentBackgroundBrush}"
-                       d:DataContext="{d:DesignInstance viewModels:IngredientAmountDetailViewModel}"
-                       >
+                       d:DataContext="{d:DesignInstance viewModels:IngredientAmountDetailViewModel}">
     <Grid Visibility="{Binding Model, Converter={StaticResource NullToVisibilityConverter}}" Width="250">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
-            <MenuItem Header="{x:Static texts:TextResources.IngredientDetail_ButtonSave}"
+            <MenuItem Header="{x:Static texts:IngredientAmountDetailResources.Save_Button_Content}"
                       Command="{Binding SaveCommand}" />
-            <MenuItem Header="{x:Static texts:TextResources.IngredientDetail_ButtonDelete}"
+            <MenuItem Header="{x:Static texts:IngredientAmountDetailResources.Delete_Button_Content}"
                       Command="{Binding DeleteCommand}" />
         </Menu>
 
@@ -37,11 +36,11 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            
-            <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:TextResources.IngredientAmountDetail_LabelAmount}" />
+
+            <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:IngredientAmountDetailResources.Amount_Label_Content}" />
             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Model.Amount, UpdateSourceTrigger=PropertyChanged}" />
-            
-            <Label Grid.Row="1" Grid.Column="0" Content="{x:Static texts:TextResources.IngredientAmountDetail_LabelUnit}" />
+
+            <Label Grid.Row="1" Grid.Column="0" Content="{x:Static texts:IngredientAmountDetailResources.Unit_Label_Content}" />
             <ComboBox Grid.Row="1"
                       Grid.Column="1"
                       VerticalAlignment="Top"
@@ -49,11 +48,11 @@
                       ItemsSource="{Binding Source={extensions:EnumBindingSource {x:Type enums:Unit}}}"
                       SelectedItem="{Binding Model.Unit, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Grid.Row="2" Grid.Column="0" Content="{x:Static texts:TextResources.IngredientDetail_LabelName}" />
+            <Label Grid.Row="2" Grid.Column="0" Content="{x:Static texts:IngredientAmountDetailResources.Name_Label_Content}" />
             <TextBox Grid.Row="2" Grid.Column="1"
                      Text="{Binding Model.IngredientName, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label Grid.Row="3" Grid.Column="0" Content="{x:Static texts:TextResources.IngredientDetail_LabelDescription}" />
+            <Label Grid.Row="3" Grid.Column="0" Content="{x:Static texts:IngredientAmountDetailResources.Description_Label_Content}" />
             <TextBox Grid.Row="3"
                      Grid.Column="1"
                      VerticalAlignment="Top"

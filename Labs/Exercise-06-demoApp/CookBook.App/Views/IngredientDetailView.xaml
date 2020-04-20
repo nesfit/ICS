@@ -4,47 +4,53 @@
                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                        xmlns:local="clr-namespace:CookBook.App.Views"
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                       xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
                        xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
                        d:DesignHeight="450"
                        d:DesignWidth="800"
                        mc:Ignorable="d"
                        Background="{StaticResource DefaultComponentBackgroundBrush}"
-                       d:DataContext="{d:DesignInstance viewModels:IngredientDetailViewModel}"
-                       >
+                       d:DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=IngredientDetailViewModel}">
     <Grid Visibility="{Binding Model, Converter={StaticResource NullToVisibilityConverter}}" Width="250">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0">
-            <MenuItem Header="{x:Static texts:TextResources.IngredientDetail_ButtonSave}"
-                      Command="{Binding SaveCommand}" />
-            <MenuItem Header="{x:Static texts:TextResources.IngredientDetail_ButtonDelete}"
-                      Command="{Binding DeleteCommand}" />
-        </Menu>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button Style="{StaticResource SaveButtonStyle}" Content="{x:Static texts:IngredientDetailResources.Save_Button_Content}" Command="{Binding SaveCommand}" />
+            <Button Content="{x:Static texts:IngredientDetailResources.Delete_Button_Content}" Command="{Binding DeleteCommand}" />
+        </StackPanel>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="17*" />
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:TextResources.IngredientDetail_LabelName}" HorizontalAlignment="Left" Margin="29,0,0,406" Grid.RowSpan="2" />
-            <TextBox Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="3" Margin="70,0,0,0" />
+            <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:IngredientDetailResources.Name_Label_Content}"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Grid.Row="1"
-                   Content="{x:Static texts:TextResources.IngredientDetail_LabelDescription}" HorizontalAlignment="Center" />
-            <TextBox Grid.Row="1"
+            <Label Grid.Row="1" Grid.Column="0" Content="{x:Static texts:IngredientDetailResources.ImageUrl_Label_Content}"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Model.ImageUrl, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Grid.Row="2"
+                   Grid.Column="0"
+                   Content="{x:Static texts:IngredientDetailResources.Description_Label_Content}" HorizontalAlignment="Center" />
+            <TextBox Grid.Row="2"
+                     Grid.Column="1"
                      VerticalAlignment="Top"
                      Text="{Binding Model.Description, UpdateSourceTrigger=PropertyChanged}"
                      TextAlignment="Left"
                      TextWrapping="Wrap"
-                     AcceptsReturn="True" Grid.ColumnSpan="3" Margin="70,0,0,0" />
+                     AcceptsReturn="True"/>
+            <Image Grid.Row="3"
+                   Grid.Column="1"
+                   Source="{Binding Model.ImageUrl}"
+                   VerticalAlignment="Bottom"/>
         </Grid>
     </Grid>
 </local:UserControlBase>

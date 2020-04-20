@@ -1,8 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Threading;
-using System.Windows;
-using CookBook.App.Factories;
+﻿using CookBook.App.Factories;
 using CookBook.App.Services.MessageDialog;
 using CookBook.App.ViewModels;
 using CookBook.App.Views;
@@ -13,6 +9,10 @@ using CookBook.DAL.Factories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Globalization;
+using System.Threading;
+using System.Windows;
 
 namespace CookBook.App
 {
@@ -56,8 +56,9 @@ namespace CookBook.App
             services.AddSingleton<IRecipeListViewModel, RecipeListViewModel>();
             services.AddFactory<IRecipeDetailViewModel, RecipeDetailViewModel>();
             services.AddFactory<IIngredientAmountDetailViewModel, IngredientAmountDetailViewModel>();
-            
+
             services.AddSingleton<IDbContextFactory>(provider => new SqlServerDbContextFactory(configuration.GetConnectionString("DefaultConnection")));
+
         }
 
         protected override async void OnStartup(StartupEventArgs e)

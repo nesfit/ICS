@@ -17,9 +17,7 @@ namespace CookBook.App.ViewModels
 
         public MainViewModel(
             IIngredientListViewModel ingredientListViewModel,
-            IIngredientDetailViewModel ingredientDetailViewModel,
             IRecipeListViewModel recipeListViewModel,
-            IRecipeDetailViewModel recipeDetailViewModel,
             IMediator mediator,
             IFactory<IRecipeDetailViewModel> recipeDetailViewModelFactory,
             IFactory<IIngredientDetailViewModel> ingredientDetailViewModelFactory)
@@ -27,13 +25,13 @@ namespace CookBook.App.ViewModels
             _recipeDetailViewModelFactory = recipeDetailViewModelFactory;
             _ingredientDetailViewModelFactory = ingredientDetailViewModelFactory;
             IngredientListViewModel = ingredientListViewModel;
-            IngredientDetailViewModel = ingredientDetailViewModel;
+            IngredientDetailViewModel = _ingredientDetailViewModelFactory.Create();
             RecipeListViewModel = recipeListViewModel;
-            RecipeDetailViewModel = recipeDetailViewModel;
-            
+            RecipeDetailViewModel = _recipeDetailViewModelFactory.Create();
+
             CloseRecipeDetailTabCommand = new RelayCommand(OnCloseRecipeDetailTabExecute);
             CloseIngredientDetailTabCommand = new RelayCommand(OnCloseIngredientDetailTabExecute);
-            
+
             mediator.Register<NewMessage<RecipeWrapper>>(OnRecipeNewMessage);
             mediator.Register<NewMessage<IngredientWrapper>>(OnIngredientNewMessage);
 
@@ -62,7 +60,7 @@ namespace CookBook.App.ViewModels
 
         public IRecipeDetailViewModel SelectedRecipeDetailViewModel { get; set; }
         public IIngredientDetailViewModel SelectedIngredientDetailViewModel { get; set; }
-        
+
 
         public ICommand CloseRecipeDetailTabCommand { get; }
 

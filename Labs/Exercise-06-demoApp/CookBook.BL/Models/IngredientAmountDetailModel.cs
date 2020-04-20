@@ -10,6 +10,7 @@ namespace CookBook.BL.Models
         public Guid IngredientId { get; set; }
         public string IngredientName { get; set; }
         public string IngredientDescription { get; set; }
+        public string IngredientImageUrl { get; set; }
         public double Amount { get; set; }
         public Unit Unit { get; set; }
 
@@ -37,9 +38,10 @@ namespace CookBook.BL.Models
                     return false;
                 }
 
-                return x.IngredientId.Equals(y.IngredientId) 
-                       && string.Equals(x.IngredientName, y.IngredientName) 
-                       && string.Equals(x.IngredientDescription, y.IngredientDescription) 
+                return x.IngredientId.Equals(y.IngredientId)
+                       && string.Equals(x.IngredientName, y.IngredientName)
+                       && string.Equals(x.IngredientDescription, y.IngredientDescription)
+                       && string.Equals(x.IngredientImageUrl, y.IngredientImageUrl)
                        && x.Amount.Equals(y.Amount) && x.Unit == y.Unit;
             }
 
@@ -51,7 +53,8 @@ namespace CookBook.BL.Models
                     hashCode = (hashCode * 397) ^ (obj.IngredientName != null ? obj.IngredientName.GetHashCode() : 0);
                     hashCode = (hashCode * 397) ^ (obj.IngredientDescription != null ? obj.IngredientDescription.GetHashCode() : 0);
                     hashCode = (hashCode * 397) ^ obj.Amount.GetHashCode();
-                    hashCode = (hashCode * 397) ^ (int) obj.Unit;
+                    hashCode = (hashCode * 397) ^ (obj.IngredientImageUrl != null ? obj.IngredientImageUrl.GetHashCode() : 0);
+                    hashCode = (hashCode * 397) ^ (int)obj.Unit;
                     return hashCode;
                 }
             }
@@ -83,9 +86,9 @@ namespace CookBook.BL.Models
                     return false;
                 }
 
-                return string.Equals(x.IngredientName, y.IngredientName) 
-                       && string.Equals(x.IngredientDescription, y.IngredientDescription) 
-                       && x.Amount.Equals(y.Amount) 
+                return string.Equals(x.IngredientName, y.IngredientName)
+                       && string.Equals(x.IngredientDescription, y.IngredientDescription)
+                       && x.Amount.Equals(y.Amount)
                        && x.Unit == y.Unit;
             }
 
@@ -96,7 +99,7 @@ namespace CookBook.BL.Models
                     var hashCode = obj.IngredientName.GetHashCode();
                     hashCode = (hashCode * 397) ^ (obj.IngredientDescription != null ? obj.IngredientDescription.GetHashCode() : 0);
                     hashCode = (hashCode * 397) ^ obj.Amount.GetHashCode();
-                    hashCode = (hashCode * 397) ^ (int) obj.Unit;
+                    hashCode = (hashCode * 397) ^ (int)obj.Unit;
                     return hashCode;
                 }
             }
