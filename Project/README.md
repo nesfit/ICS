@@ -40,7 +40,7 @@ Aplikace bude obsahovat několik pohledů pro zobrazování a zadávání dat.
 
 Je požadováno **perzistentní** uložení dat. To znamená, že když se aplikace restartuje, tak nesmí o data přijít. Je nutno data ukládat za běhu aplikace, aby bylo možno demonstrovat, že když se například pomocí aplikace přidá nová skupina, tak se zobrazí v seznamu skupin (a podobně pro ostatní data).
 
-Pro uložení zvolte (SQL databázi), kterou zpřístupníte pomocí Entity Framework Core.
+Pro uložení zvolte (MSSQL databázi), kterou zpřístupníte pomocí Entity Framework Core.
 
 Minimální rozsah, který je požadován v rámci projektu je popsán v této kapitole.
 
