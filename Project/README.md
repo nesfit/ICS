@@ -70,9 +70,9 @@ Bude možné editovat jednotlivé časové sloty pro jednotlivé stage a přiřa
 
 ---
 ## Architektura projektu
-Na přednáškách a cvičeních Vám ukazujeme nějakou strukturu organizace kódu do logických vrstev a projektů se zapojením návrhových vzorů. Pokoušíme se vysvětlit proč je vzorový projekt takhle organizovaný a proč jsou zvoleny jednotlivé rozhodnutí.
+Na cvičeních Vám ukazujeme nějakou strukturu organizace kódu do logických vrstev a projektů se zapojením návrhových vzorů. Pokoušíme se vysvětlit proč je vzorový projekt takhle organizovaný a proč jsou zvoleny jednotlivé rozhodnutí.
 
-Budeme tedy i po Vás chtít logické rozvržení projektu. Můžete využít to, jak je organizovaný vzorový projekt probíraný na přednáškách a inspirovat se tímto uspořádáním (můžete ho mít stejné, za to Vám rozhodně body nestrhnem). Nebo můžete využít i vlastní uspořádání - v tom případě ale po Vás budeme chtít vysvěltit proč jste němu přistoupili a čím se jeho jednotlivé aspekty řídí.
+Budeme tedy i po Vás chtít logické rozvržení projektu. Můžete využít to, jak je organizovaný vzorový projekt probíraný na cvičeních a inspirovat se tímto uspořádáním (můžete ho mít stejné, za to Vám rozhodně body nestrhnem). Nebo můžete využít i vlastní uspořádání - v tom případě ale po Vás budeme chtít vysvěltit proč jste němu přistoupili a čím se jeho jednotlivé aspekty řídí.
 
 V každém případě ale budeme chtít aby výsledné řešení obsahovalo víc projektů a vrstev. Snažíme se Vám na tomto projektu ukázat aj nějakou základní architekturu SW projektu, aby jste si z toho odnesli i něco víc než jen to, že budete znát syntax jazyka C#. Na tenhle aspket tedy rozhodně bude brán zřetel ve všech fázích hodnocení projektu.
 
@@ -98,7 +98,7 @@ Odevzdávání projektu má **3 fáze**. V každé fázi se hodnotí jiné vlas
 
 **Kontroluje se kód, který je nahrán v GIT** ve větvi `master`. Vždy se kontroluje **poslední commit před časem odevzdávání** dané fáze projektu. Na commity nahrány po času odevzdávání nebo v jiných větvích nebude brán zřetel. Pokud commit, který máme hodnotit otagujete, např. `v1, v2, v3`, usnadníte nám orietaci při hodnocení.
 
-Je silně doporučováno projekty v průběhu semestru konzultovat (můžete po přednášce/cvičení nebo se ozvat přes Discord nebo email), předejdete tak případným komplikacím při odevzdání.
+Je silně doporučováno projekty v průběhu semestru konzultovat (můžete po cvičení nebo se ozvat přes Discord nebo email), předejdete tak případným komplikacím při odevzdání.
  
 ---
 ### Fáze 1 – objektový návrh 
@@ -122,7 +122,7 @@ Vytvořte tedy repozitářovou (Repository) vrstvu, která zapouzdří databázo
 
 Protože nemáte zatím UI, funkčnost aplikace ověřte automatizovanými testy! Kde to dává logický smysl tvořte **UnitTesty**, pro propojení s databází vytvářejte **Integrační testy**. Pro všechny typy testů využijte libovolný framework, doporučujeme **xUnit**.
 
-Dbejte také kvality Vašeho kódu. Od této fáze se hodnotí i tenhle atribut. Opravte si tedy předchozí kód dle zásad Clean Code a SOLID probíraných na přednášce/cvičení a důsledně je dodržujte. Můžete si dopomoct např. rozšířením **Code Metrices**.
+Dbejte také kvality Vašeho kódu. Od této fáze se hodnotí i tenhle atribut. Opravte si tedy předchozí kód dle zásad Clean Code a SOLID probíraných na cvičení a důsledně je dodržujte. Můžete si dopomoct např. rozšířením **Code Metrices**.
 
 Hodnotíme:
 - opravení chyb a zapracování připomínek, které jsme vám dali v rámci hodnocení fáze 1
@@ -137,7 +137,7 @@ Hodnotíme:
 ### Fáze 3 – WPF frontend, data binding
 V této fázi se od Vás již požaduje vytvoření WPF aplikace. Napište backend aplikace (vytvoření ViewModelů), která bude napojena na Vámi navržené datové modely z 2. fáze, které jsou zapouzdřeny v repozitáři (resp. fasádě). A dále frontend (View), která bude zobrazovat data předpřipravená ve ViewModelech. Zamyslete se nad tím, jakým způsobem je vhodné jednotlivá data zobrazovat.
 
-Využijte *binding* v XAML kódu (vyvarujte se code-behind). Účelem není jenom udělat aplikaci, která funguje, ale také aplikaci, která je správně navržena a může být dále jednoduše upravitelná a rozšířitelná. Dbejte tedy zásad probíraných na přednáškách a ve cvičeních.
+Využijte *binding* v XAML kódu (vyvarujte se code-behind). Účelem není jenom udělat aplikaci, která funguje, ale také aplikaci, která je správně navržena a může být dále jednoduše upravitelná a rozšířitelná. Dbejte tedy zásad probíraných ve cvičeních.
 
 Za aplikace, jejichž vizuální návrh bude proveden dobře, a zároveň budou plně funkční, budeme udělovat také bonusové body.
 
