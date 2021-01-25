@@ -9,7 +9,7 @@ Cílem je vytvořit použitelnou a snadno rozšiřitelnou aplikaci, která splň
 Zadání úmyslně není striktní, je Vám ponechána volnost, pro vlastní realizaci. Při hodnocení je kladen důraz na technické zpracování a kvalitu kódu, ale hodnotíme i použitelnost a grafické zpracování aplikace. Pokud Vám přijde, že v zadání chybí nějaká funkcionalita, neváhejte ji doplnit. Pište aplikaci tak, aby jste ji sami chtěli používat.
 
 # Zadání - Aplikace pro správu festivalu
-Výsledná aplikace má sloužit pro správu festivalu. Pro zjednodušení si můžete představit, že vytváříte jednodušší desktopovou verzi aplikace k festivalu jako Colors of Ostrava (nebo si dosaďte váš oblíbený).
+Výsledná aplikace má sloužit pro správu festivalu. Pro zjednodušení si můžete představit, že vytváříte jednodušší desktopovou verzi aplikace k Vašemu oblíbenému festivalu.
 
 ---
 ## Data
