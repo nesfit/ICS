@@ -65,7 +65,7 @@ Pohled, který slouží na editaci stage. Může se využít na vytvoření nov�
 ### Program festivalu
 Pohled na program festivalu s jednotlivými časovými sloty pro jednotlivé stage. Bude na něm vidět všechny vystoupení všech skupin v průběhu festivalu. Jedna skupina může na festivalu vystupovat i vícekrát. Časové sloty můžou být různě dlouhé a můžou být mezi nimi přestávky.
 
-> :warning: **Dobře se zamyslete jak budete implementovat časové sloty!**: Uvědomte si, že časové sloty se nemůžou překrývat a při vytváření/editaci programu je nutné ověřit, že nově přidávaný záznam je nekolizní. **Vámi navřený mechanismus zdokumentujte v README.md**; neváhejte se inspirovat existujícími řešeními a pokud tak učiníte, uveďte zdroj.
+> :warning: **Dobře se zamyslete jak budete implementovat časové sloty!**: Uvědomte si, že časové sloty v rámci jednoho stage se nemůžou překrývat a při vytváření/editaci programu je nutné ověřit, že nově přidávaný záznam je nekolizní. **Vámi navržený mechanismus zdokumentujte v README.md**; neváhejte se inspirovat existujícími řešeními a pokud tak učiníte, uveďte zdroj.
 
 
 ### Editace programu
@@ -135,7 +135,7 @@ Hodnotíme:
 - čistotu kódu
 - pokrytí aplikace testy - ukážete tím, že repozitáře opravdu fungují
 - dejte pozor na zapouzdření databázových entit pod vrstvou repozitáře (resp. fasády), který je nepropaguje výše, ale přemapovává na modely/DTO
-- :warning: není možné vytvořit kolidující **časové sloty** v programu
+- :warning: není možné vytvořit kolidující **časové sloty**  na jednom stage v programu
 
 ---
 ### Fáze 3 – WPF frontend, data binding
