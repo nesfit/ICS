@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <nullable>enable</nullable>
+    <AnalysisLevel>latest</AnalysisLevel>
     <RootNamespace>Exercise_01.CalculatorUtils</RootNamespace>
   </PropertyGroup>
 

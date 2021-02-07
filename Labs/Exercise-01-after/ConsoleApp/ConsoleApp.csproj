@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <nullable>enable</nullable>
+    <AnalysisLevel>latest</AnalysisLevel>
     <RootNamespace>Exercise_01.ConsoleApp</RootNamespace>
   </PropertyGroup>
 
