@@ -92,7 +92,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 
 | Nástroj  |  Typ   | Popis |
 | -------- |  ------| -------|
-|[Visual Studio 2019 Enterprise](https://aka.ms/devtoolsforteaching) | Samostatný program | Hlavní vývojové prostředí pro .Net |
+|[Visual Studio 2019 Community](https://aka.ms/devtoolsforteaching) | Samostatný program | Hlavní vývojové prostředí pro .Net |
 |[Resharper](https://www.jetbrains.com/resharper/) | Doplněk | Nástroje na lepší produktivitu, refaktorování. Studentská licence je k dispozici zdarma [zde](https://www.jetbrains.com/student/) |
 |[Code metrices](https://visualstudiogallery.msdn.microsoft.com/369d38e1-53d3-4f5c-9351-a0560162a6d9) | Doplněk | Zobrazování složitosti jednotlivých metod |
 
