@@ -1,5 +1,18 @@
 ﻿# Exercise 01
 
+## Azure for students
+
+* Visit https://azure.microsoft.com/en-us/free/students/ and explore student benefits!
+  * PluralSight subscription!
+
+## Install prerequisities [Optional]
+
+* VS 2019 Community 
+* Chocolatey?
+  * choco install dotnet-sdk -y
+  * choco install jetbrainstoolbox -y
+    * Install Resharper, Rider?, dotPeek?, dotMemory?
+
 ## Project demonstration
 * Look at the project draft and clarify what is unclear.
      
@@ -20,7 +33,7 @@
 * Look at the Visual Studio components, VIEW, BUILD, TOOLS, TESTS, RESHARPER ...
   * Editor, Solution Explorer, Team Explorer, Error list, Outputs, ...
 * Demonstrate debugging  -- breakpoint,  windows (watch, locals, breakpoints, call stack, Immediate window), conditional breakpoint, stepping, F5, F10, F11, Shift+F11 
-* Create simple calculator, use shortcuts and refactorings as much as possible!
+* Create a simple calculator, use shortcuts and refactorings as much as possible!
 * Do not forget to commit logical, compilable parts!
 
 ## Show Other Tools
@@ -31,14 +44,14 @@
 ## Individual Assignment 
 * Create project *CalculatorApp* 
 * Add *CommandLineParser* lib from NuGet
-* Refactor the application to be modular, each class should respect **Single Responsibility Principle**
+* Refactor the application to be modular each class should respect **Single Responsibility Principle**
 * Try to compile with `$ dotnet build /warnaserror`
 
 
 ## Shortcuts
 
 ### Visual Studio 
-* F1 - help, context help for selected class 
+* F1 - help, context help for the selected class 
 * F7 - go to code-behind 
 * F12 - Go to definitions 
 * alt + mouse select - selects multiple rows
@@ -61,7 +74,7 @@
 * Ctrl + shift + space - intelisence in oveloads
 
 ### Debug 
-* F5 - start debug 
+* F5 - start to debug 
 * Shift + F5 - stop debug 
 * F10 - Next step 
 * F11 - Next into 
