@@ -10,6 +10,7 @@ namespace Exercise_01.CalculatorConsoleApp
         {
             var field = value.GetType().GetField(value.ToString());
 
+            //TODO resolve nullability later
             var attributes =
                 (DescriptionAttribute[]) field.GetCustomAttributes(typeof(DescriptionAttribute), false);
 

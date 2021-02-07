@@ -7,7 +7,7 @@ namespace Exercise_01.CalculatorConsoleApp
     {
         internal static void LogException(Exception exception)
         {
-            Console.WriteLine($"Exception occured: {exception.Message}");
+            Console.WriteLine($"Exception occurred: {exception.Message}");
         }
 
         internal static void LogMessage(string message)
@@ -17,7 +17,7 @@ namespace Exercise_01.CalculatorConsoleApp
 
         internal static void Main(string[] args)
         {
-            if (args == null) args = new string[0];
+            args ??= Array.Empty<string>();
 
             var parser = new Parser(with =>
             {
@@ -25,7 +25,7 @@ namespace Exercise_01.CalculatorConsoleApp
                 with.HelpWriter = Console.Error;
             });
             parser.ParseArguments<CommandLineOptions>(args)
-                .WithParsed(CalculatorWrapper.Calculate);
+                  .WithParsed(CalculatorWrapper.Calculate);
 
             WaitBeforeExit();
         }

@@ -35,7 +35,7 @@ namespace Exercise_01.ConsoleApp
 
             while (index < 11)
             {
-                index = index + 1;
+                index++;
                 Console.WriteLine($"Do - while: {index}");
             }
         }
@@ -45,6 +45,7 @@ namespace Exercise_01.ConsoleApp
         /// </summary>
         public static void ShowIf(int condition)
         {
+            // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
             if (condition > 3)
                 Console.WriteLine("condition is greater than 3");
             else
