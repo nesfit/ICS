@@ -32,6 +32,7 @@
 * Create project *CalculatorApp* 
 * Add *CommandLineParser* lib from NuGet
 * Refactor the application to be modular, each class should respect **Single Responsibility Principle**
+* Try to compile with `$ dotnet build /warnaserror`
 
 
 ## Shortcuts
