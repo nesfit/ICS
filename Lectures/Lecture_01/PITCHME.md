@@ -404,7 +404,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 ![](/Lectures/Lecture_01/Assets/img/csh.png)
 @snapend
 
-+++?code=assets/sln/Tests/HelloWorld.cs&lang=C#&title=Hello World Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/HelloWorld.cs&lang=C#&title=Hello World Sample
 @[1]
 @[3-4, 15]
 @[5-6, 14]
@@ -752,7 +752,7 @@ int? canBeNull = null;
 int  cannotBeNull = null;      // Compile-time error
 ```
 
-+++?code=assets/sln/Tests/NullableType.cs&lang=C#&title=Nullable Type Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/NullableType.cs&lang=C#&title=Nullable Type Sample
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/NullableType.cs)
 
 
@@ -874,7 +874,7 @@ string s = "a" + 5; // a5
   * `int[,]` *two-dimensional* array of int (matrix)
   * `int[][]` is a *single-dimensional array of single-dimensional* array of int
 
-+++?code=assets/sln/Tests/Array.cs&lang=C#&title=Array Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Array.cs&lang=C#&title=Array Sample
 @[11-21]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Array.cs)
 
@@ -990,7 +990,7 @@ string s = "a" + 5; // a5
 | Char      | `'\0'`         |
 | Boolean   | `false`        |
 
-+++?code=assets/sln/Tests/DefaultValue.cs&lang=C#&title=Default Value Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/DefaultValue.cs&lang=C#&title=Default Value Sample
 @[12-18]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/DefaultValue.cs)
 
@@ -1006,19 +1006,19 @@ string s = "a" + 5; // a5
     * Variable **must** *be assigned* by the called method
     * Variable **need not** *to be initialized* before the method call
 
-+++?code=assets/sln/Tests/ValueParameter.cs&lang=C#&title=Value Parameter Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/ValueParameter.cs&lang=C#&title=Value Parameter Sample
 @[9-26]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/ValueParameter.cs)
 
-+++?code=assets/sln/Tests/RefParameter.cs&lang=C#&title=Ref Parameter Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/RefParameter.cs&lang=C#&title=Ref Parameter Sample
 @[7-17]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/RefParameter.cs)
 
-+++?code=assets/sln/Tests/InParameter.cs&lang=C#&title=In Parameter Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/InParameter.cs&lang=C#&title=In Parameter Sample
 @[7-19]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/InParameter.cs)
 
-+++?code=assets/sln/Tests/OutParameter.cs&lang=C#&title=Out Parameter Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/OutParameter.cs&lang=C#&title=Out Parameter Sample
 @[7-24]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/OutParameter.cs)
 
@@ -1143,19 +1143,19 @@ x = y = 3;
 * `switch`
 * Conditional (ternary) operand `?:`
 
-+++?code=assets/sln/Tests/If.cs&lang=C#&title=If Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/If.cs&lang=C#&title=If Sample
 @[10-17]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/If.cs)
 
-+++?code=assets/sln/Tests/Switch.cs&lang=C#&title=Switch Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Switch.cs&lang=C#&title=Switch Sample
 @[13-30]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Switch.cs)
 
-+++?code=assets/sln/Tests/Switch.cs&lang=C#&title=Switch Sample C# 8
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Switch.cs&lang=C#&title=Switch Sample C# 8
 @[45-64]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Switch.cs)
 
-+++?code=assets/sln/Tests/TernaryOperand.cs&lang=C#&title=Ternary Operand Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/TernaryOperand.cs&lang=C#&title=Ternary Operand Sample
 @[10-12]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/TernaryOperand.cs)
 
@@ -1167,19 +1167,19 @@ x = y = 3;
 * `foreach`
 
 
-+++?code=assets/sln/Tests/While.cs&lang=C#&title=While Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/While.cs&lang=C#&title=While Sample
 @[10-16]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/While.cs)
 
-+++?code=assets/sln/Tests/DoWhile.cs&lang=C#&title=Do While Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/DoWhile.cs&lang=C#&title=Do While Sample
 @[10-15]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/DoWhile.cs)
 
-+++?code=assets/sln/Tests/For.cs&lang=C#&title=For Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/For.cs&lang=C#&title=For Sample
 @[10-13]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/For.cs)
 
-+++?code=assets/sln/Tests/ForEach.cs&lang=C#&title=Foreach Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/ForEach.cs&lang=C#&title=Foreach Sample
 @[10-14]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/ForEach.cs)
 
@@ -1193,24 +1193,24 @@ x = y = 3;
   * usage leads to [Spaghetti code](https://en.wikipedia.org/wiki/Spaghetti_code)
 
 
-+++?code=assets/sln/Tests/Break.cs&lang=C#&title=Break Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Break.cs&lang=C#&title=Break Sample
 @[10-20]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Break.cs)
 
-+++?code=assets/sln/Tests/Continue.cs&lang=C#&title=Continue Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Continue.cs&lang=C#&title=Continue Sample
 @[10-17]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Continue.cs)
 
-+++?code=assets/sln/Tests/Return.cs&lang=C#&title=Return Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Return.cs&lang=C#&title=Return Sample
 @[8-12]
 @[17-20]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Return.cs)
 
-+++?code=assets/sln/Tests/Throw.cs&lang=C#&title=Throw Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Throw.cs&lang=C#&title=Throw Sample
 @[8-18]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Throw.cs)
 
-+++?code=assets/sln/Tests/Goto.cs&lang=C#&title=Goto Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Goto.cs&lang=C#&title=Goto Sample
 @[10-17]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Goto.cs)
 
@@ -1222,11 +1222,11 @@ x = y = 3;
   * For *safe access* to the resource from the concurrent context
   * Simplification of a *Monitor synchronization primitive*
 
-+++?code=assets/sln/Tests/Using.cs&lang=C#&title=Using Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Using.cs&lang=C#&title=Using Sample
 @[10-13]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Using.cs)
 
-+++?code=assets/sln/Tests/Lock.cs&lang=C#&title=Lock Sample
++++?code=/Lectures/Lecture_01/Assets/sln/Tests/Lock.cs&lang=C#&title=Lock Sample
 @[11-22]
 @[24-35]
 [Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Lock.cs)
@@ -1366,4 +1366,4 @@ namespace N2
 
 ---
 
----?include=assets/csharp-version-history.md
+---?include=/Lectures/Lecture_01/Assets/csharp-version-history.md
