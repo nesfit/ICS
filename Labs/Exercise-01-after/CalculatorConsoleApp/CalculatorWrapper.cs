@@ -10,6 +10,7 @@ namespace Exercise_01.CalculatorConsoleApp
             var op1 = CheckOperand(options.First);
             var op2 = CheckOperand(options.Second);
             var operation = CheckOperation(options.Operation);
+
             ExecuteOperation(op1, op2, operation);
         }
 
@@ -17,6 +18,7 @@ namespace Exercise_01.CalculatorConsoleApp
         {
             if (operand == null)
                 throw new ArgumentNullException(nameof(operand), "Operand cannot be null!");
+
             return operand.Value;
         }
 
@@ -24,6 +26,7 @@ namespace Exercise_01.CalculatorConsoleApp
         {
             if (operation == null)
                 throw new ArgumentNullException(nameof(operation), "Operation cannot be null!");
+
             return operation.Value;
         }
 
@@ -32,6 +35,7 @@ namespace Exercise_01.CalculatorConsoleApp
             try
             {
                 var result = Calculator.Calculate(op1, op2, operation);
+
                 PublishResult(op1, op2, operation, result);
             }
             catch (Exception ex)
@@ -40,9 +44,7 @@ namespace Exercise_01.CalculatorConsoleApp
             }
         }
 
-        private static void PublishResult(int op1, int op2, MathOperation operation, int result)
-        {
-            Console.WriteLine($"{op1}{operation.GetDescription()}{op2}={result}");
-        }
+        private static void PublishResult(int op1, int op2, MathOperation operation, int result) 
+            => Console.WriteLine($"{op1}{operation.GetDescription()}{op2}={result}");
     }
 }

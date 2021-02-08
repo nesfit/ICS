@@ -83,11 +83,16 @@ V každém případě ale budeme chtít aby výsledné řešení obsahovalo víc
 ## Správa projektu - Azure DevOps
 Při řešení projektu týmy využívají Azure DevOps a využívají GIT na sdílení kódu. Do svého projektu přidělte přístup vyučujícím (způsob bude vysvětlen v rámci 1. cvičení); tj. do Vašeho týmového projektu si v části Members přidejte účet **uciteliw5@vutbr.cz**
 
-Účet **uciteliw5@vutbr.cz** budou používat vyučující pro přístup k odevzdávaným souborům. Bez přidání tohoto účtu není možné přistoupit k vašemu projektu a tedy není možné jej ze strany vyučujících hodnotit.
+Účet **uciteliw5@vutbr.cz** budou používat vyučující pro přístup k odevzdávaným souborům. Bez přidání tohoto účtu není možné přistoupit k vašemu projektu a tedy není možné jej ze strany vyučujících hodnotit. 
+
+> :warning: **Je bezpodmínečně nutné** nastavit účtu **uciteliw5@vutbr.cz** **access level** na **Visual Studio Subsriber**. Bez této změny bychom neměli přístup k vašemu kódu a nemohli bychom jej hodnotit. Tato změna se provede v nastavení organizace https://dev.azure.com/ics-2021-team0000/_settings/users.
+
 
 Návod na přidání člena projektu můžete najít zde: *https://docs.microsoft.com/en-us/vsts/accounts/add-team-members-vs*
 
-Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*. Pokud uvidíme, že existuje malé množství nelogických a nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a může to vést na snížení bodového hodnocení. Organizaci pojmenujte **ics-2021-team<0000>** dle Vašeho čísla týmu a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/ics-2021-team0000/project. Nezapomeňte nastavit **Work item process** template na **Scrum**.
+Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*. Pokud uvidíme, že existuje malé množství nelogických a nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a může to vést na snížení bodového hodnocení. Výrazně doporučujeme používat mechanismu **pull-request**ů a dělat si vzájemně review kódu, který následně mergnete do master nebo main větve. Projekt vypracováváte jako tým a nesete tak **kolektivní odpovědnost** za kvalitu kódu, proto je dobré, aby kód před začleněním vidělo více párů očí a vzájemně jste si jej připomínkovali. 
+
+Organizaci pojmenujte **ics-2021-team<0000>** dle Vašeho čísla týmu a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/ics-2021-team0000/project. Nezapomeňte nastavit **Work item process** template na **Scrum** nebo **Basic**.
 
 ---
 ### Doporučení - za bonusové body při závěrečné obhajobě
@@ -99,7 +104,7 @@ Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*
 # Odevzdávání
 Odevzdávání projektu má **3 fáze**. V každé fázi se hodnotí jiné vlastnosti projektu. Nicméně fáze na sebe navazují a studenti pokračují v práci na svém kódu i po jeho odevzdání v rámci následující fáze.
 
-**Kontroluje se kód, který je nahrán v GIT** ve větvi `master`. Vždy se kontroluje **poslední commit před časem odevzdávání** dané fáze projektu. Na commity nahrány po času odevzdávání nebo v jiných větvích nebude brán zřetel. Pokud commit, který máme hodnotit otagujete, např. `v1, v2, v3`, usnadníte nám orietaci při hodnocení.
+**Kontroluje se kód, který je nahrán v GIT** ve větvi `master` nebo `main`. Vždy se kontroluje **poslední commit před časem odevzdávání** dané fáze projektu. Na commity nahrány po času odevzdávání nebo v jiných větvích nebude brán zřetel. Pokud commit, který máme hodnotit otagujete (`v1, v2, v3`), usnadníte nám orietaci při hodnocení.
 
 Je silně doporučováno projekty v průběhu semestru konzultovat (můžete po cvičení nebo se ozvat přes Discord nebo email), předejdete tak případným komplikacím při odevzdání.
  
@@ -109,10 +114,10 @@ V téhle fázi se zaměříme na *datový návrh*. Vyžaduje se po Vás, aby da
 
 Hodnotíme:
 -   logický návrh tříd
--   využití abstrakce, zapouzdření, polymorfismu - kde to bude dávat smysl a eliminovat duplicity
+-   využití abstrakce, zapouzdření, polymorfismu - kde to bude dávat smysl a eliminuje duplicity
 -   verzování v GITu po logických částech
 -   logické rozšíření datového návrhu nad rámec zadání
-    (bonusové body)
+    (bonusové body) - toto rozšíření ovšem zvažte; často se stává, že si tím založíte na spoustu komplikací v pozdějších fázích
 
 ---
 ### Fáze 2 – databáze, repozitáře a mapování

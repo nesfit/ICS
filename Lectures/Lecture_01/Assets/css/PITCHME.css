@@ -1,0 +1,153 @@
+/* /*
+ * GitPitch Slideshow Custom CSS Styling
+ *
+ * For details, visit Wiki:
+ * https://github.com/gitpitch/gitpitch/wiki/Slideshow-Custom-CSS
+ */
+
+ 
+.reveal {
+  font-size: 1.5em; 
+  }
+
+.reveal .slides {
+  text-align: left;
+  }
+
+.reveal p {
+  text-align: justify;
+  }
+  
+.reveal h1 {
+  text-align: center;
+  font-size: 2.5em; 
+  top: 25px;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%);
+}
+
+.reveal h2 {
+  text-align: center;
+  font-size: 1.7em;
+  top: 25px;
+  left: 50%;
+  position: fixed;
+  transform: translateX(-50%);
+ }
+
+.reveal h3 {
+  font-size: 1.6em;
+  top: 25px;
+  left: 50%;
+  position: fixed;  
+  text-align: center;
+  transform: translateX(-50%);
+ }
+
+.reveal h4 {
+  font-size: 1.5em; }
+
+.reveal pre code {
+  background-color: #f0f0f0;
+  font-size: 1.5em;
+  line-height: 1.0;
+  }
+
+.reveal img {
+  border: none !important;
+  box-shadow: none !important;
+  z-index:-1;
+  }
+
+.reveal em {
+    font-style: italic;
+    font-family: Courier, monospace;
+}
+
+.reveal code {
+  background-color: #f0f0f0;  
+  font-family: 'Inconsolata', Courier, monospace;
+}
+
+.reveal div.left {
+  float: left;
+  z-index: -10;
+  width: 45%;
+}
+
+.reveal div.right {
+  float: right;
+  z-index: -10;
+  width: 55%;
+}
+
+
+/*
+.gold {
+  color: #e49436;
+}
+
+.gray {
+  color: gray;
+}
+
+span.byline, span.aside {
+  color: #bbb;
+}
+
+span.byline {
+  font-size: 80%;
+}
+
+span.aside {
+  font-size: 0.7em;
+  font-style: italic;
+}
+
+.reveal section img {
+  border: 0;
+  box-shadow: none;
+  background: none;
+}
+
+.reveal section a {
+  color: #e49436;
+  text-decoration: underline;
+}
+
+.reveal section a:hover {
+  color: #e7ad52;
+}
+
+.fa-pad-left {
+  margin-left: 10px;
+}
+
+.reveal p span.slide-title {
+  color: #e49436;
+  font-size: 1.55em;
+  margin: 0 0 60px 0;
+  font-family: "Montserrat", Impact, sans-serif;
+  font-weight: normal;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  text-transform: none;
+  text-shadow: none;
+  word-wrap: break-word;
+  display: block;
+}
+
+.reveal a.pro-link {
+    font-size: 0.5em;
+}
+
+.reveal .slides section> p {
+    text-align: left;
+}
+
+.reveal code {
+    background-color: #f0f0f0;
+}
+
+ */

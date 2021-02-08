@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 
 namespace Exercise_01.CalculatorConsoleApp
 {
@@ -8,8 +9,9 @@ namespace Exercise_01.CalculatorConsoleApp
     {
         internal static string GetDescription(this Enum value)
         {
-            var field = value.GetType().GetField(value.ToString());
-
+            //nullability - we know that the field has to exist, because we query the enum type by its value
+            FieldInfo field = value.GetType().GetField(value.ToString())!; 
+            
             var attributes =
                 (DescriptionAttribute[]) field.GetCustomAttributes(typeof(DescriptionAttribute), false);
 
