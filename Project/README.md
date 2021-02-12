@@ -17,7 +17,6 @@ V rámci dat, se kterými se bude pracovat budeme požadovat minimálně násled
 
 ### Hudební skupina
 - Originální název
-- Název česky
 - Žánr
 - Fotografie
 - Země původu
