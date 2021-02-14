@@ -9,13 +9,13 @@ namespace CookBook.DAL.Entities
         public double Amount { get; init; }
         public Unit Unit { get; init; }
         public Guid RecipeId { get; init; }
-        public RecipeEntity Recipe { get; init; }
+        public RecipeEntity? Recipe { get; init; }
         public Guid IngredientId { get; init; }
-        public IngredientEntity Ingredient { get; init; }
+        public IngredientEntity? Ingredient { get; init; }
 
         private sealed class IngredientAmountWithoutRecipeEntityEqualityComparer : IEqualityComparer<IngredientAmountEntity>
         {
-            public bool Equals(IngredientAmountEntity x, IngredientAmountEntity y)
+            public bool Equals(IngredientAmountEntity? x, IngredientAmountEntity? y)
             {
                 if (ReferenceEquals(x, y)) return true;
                 if (x is null) return false;
