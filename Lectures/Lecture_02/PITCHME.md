@@ -302,6 +302,19 @@ public decimal Foo
 ```
 
 +++
+#### Init-only 
+* Declares that the property can be `set` only during `init`ialization
+
+```C#
+public class Foos {
+  public int Foo { get; init; }
+}
+
+var foos = new Foos {Foo = 1;};
+foos.Foo = 1 // Compilation error
+```
+
++++
 #### Property Modifiers
 * `static`
 * access - `public, internal, private, protected, protected internal, private protected`
@@ -383,6 +396,17 @@ public string Name {
 +++?code=/Lectures/Lecture_02/Assets/sln/Tests/Constructor.cs&lang=C#&title=Constructor Overloading Test
 @[8-14]
 [Code sample](/Lectures/Lecture_02/Assets/sln/Tests/Constructor.cs)
+
+
++++
+### Target-typed new expressions
+
+* C# 9 feature
+* No need to explicitly mention constructed type again
+
+```C#
+Point p = new (3, 5);
+```
 
 +++
 ### Deconstructors
@@ -609,6 +633,64 @@ partial class PaymentForm // In hand-authored file
   }
 }
 ```
+
++++ 
+### Records
+
+* Records are new feature in C# 9
+* Verbose notation that the class is used to store **DATA**
+* Implicit `override` for `IEquatable`, implicit comparison by `value` not `reference` (Value-based equality)
+
+```C#
+public record Person
+{
+    public string? FirstName { get; init; }
+    public string? LastName { get; init; }
+}
+```
+
++++
+#### With-expressions
+```C#
+var person = new Person { FirstName = "Mads", LastName = "Nielsen" };
+var otherPerson = person with { LastName = "Torgersen" };
+```
+
++++
+#### Value-based equality
+
+```C#
+var person = new Person { FirstName = "Mads", LastName = "Nielsen" };
+var otherPerson = person with { LastName = "Torgersen" };
+```
+
+```C#
+var originalPerson = otherPerson with { LastName = "Nielsen" };
+
+Assert.Equals(person, originalPerson)
+```
+
++++
+#### Inheritance
+
+```C#
+public record Person
+{
+    public string? FirstName { get; init; }
+    public string? LastName { get; init; }
+}
+```
+
+```C#
+public record Student : Person
+{
+    public int ID;
+}
+
+Person student = new Student { FirstName = "Mads", LastName = "Nielsen", ID = 129 };
+
+```
+
 
 ---
 ## Struct
@@ -1323,9 +1405,12 @@ Console.WriteLine(delegate1 == delegate2); // True
 ## Events
 * Construct that exposes the subset of delegate features required for the broadcaster/subscriber model
 * [Read more](https://docs.microsoft.com/en-us/dotnet/csharp/distinguish-delegates-events)
+
 ```C#
 public delegate void PriceChangedHandler(decimal oldPrice, decimal newPrice);
+```
 
+```C#
 public class Broadcaster
 {
   // Event declaration
