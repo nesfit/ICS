@@ -8,7 +8,7 @@ using Xunit;
 
 namespace CookBook.DAL.Tests
 {
-    public class CookBookDbContextTests : IDisposable
+    public sealed class CookBookDbContextTests : IDisposable
     {
         private readonly DbContextInMemoryFactory _dbContextFactory;
         private readonly CookBookDbContext _cookBookDbContextSUT;
@@ -116,9 +116,6 @@ namespace CookBook.DAL.Tests
             Assert.Equal(IngredientSeed.Water, fromDb);
         }
 
-        public void Dispose()
-        {
-            _cookBookDbContextSUT?.Dispose();
-        }
+        public void Dispose() => _cookBookDbContextSUT?.Dispose();
     }
 }
