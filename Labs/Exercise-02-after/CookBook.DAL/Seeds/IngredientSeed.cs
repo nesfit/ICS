@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.DAL.Seeds
 {
-    public class IngredientSeed
+    public static class IngredientSeed
     {
-        public static readonly IngredientEntity Water = new IngredientEntity()
+        public static readonly IngredientEntity Water = new()
         {
             Id = Guid.Parse("818f1def-204e-44da-b764-ca28c75e2acc"),
             Name = "Water",

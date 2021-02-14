@@ -50,7 +50,7 @@ namespace CookBook.DAL.Tests
                 Name = "Chicken soup",
                 Description = "Grandma's delicious chicken soup."
             };
-
+            
             //Act
             _cookBookDbContextSUT.Recipes.Add(recipeEntity);
             _cookBookDbContextSUT.SaveChanges();
