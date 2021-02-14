@@ -24,11 +24,7 @@ namespace CookBook.DAL.Tests
         public void AddNew_Ingredient_Persisted()
         {
             //Arrange
-            var ingredientEntity = new IngredientEntity
-            {
-                Name = "Salt",
-                Description = "Mountain salt"
-            };
+            var ingredientEntity = new IngredientEntity("Salt", "Mountain salt");
 
             //Act
             _cookBookDbContextSUT.Ingredients.Add(ingredientEntity);
@@ -76,21 +72,13 @@ namespace CookBook.DAL.Tests
                     {
                         Amount = 1,
                         Unit = Unit.L,
-                        Ingredient = new IngredientEntity
-                        {
-                            Name = "Water",
-                            Description = "Filtered Water"
-                        }
+                        Ingredient = new IngredientEntity("Water","Filtered Water")
                     },
                     new IngredientAmountEntity
                     {
                         Amount = 50,
                         Unit = Unit.Ml,
-                        Ingredient = new IngredientEntity
-                        {
-                            Name = "Lime-juice",
-                            Description = "Fresh lime-juice"
-                        }
+                        Ingredient = new IngredientEntity("Lime-juice", "Fresh lime-juice")
                     }
                 }
             };
