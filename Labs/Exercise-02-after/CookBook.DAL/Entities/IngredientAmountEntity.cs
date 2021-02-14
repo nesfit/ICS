@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace CookBook.DAL.Entities
 {
-    public class IngredientAmountEntity : EntityBase
+    public record IngredientAmountEntity : EntityBase
     {
         public double Amount { get; set; }
         public Unit Unit { get; set; }
@@ -13,49 +13,23 @@ namespace CookBook.DAL.Entities
         public Guid IngredientId { get; set; }
         public IngredientEntity Ingredient { get; set; }
 
-        private sealed class IngredientAmountEqualityComparer : IEqualityComparer<IngredientAmountEntity>
+        private sealed class IngredientAmountWithoutRecipeEntityEqualityComparer : IEqualityComparer<IngredientAmountEntity>
         {
             public bool Equals(IngredientAmountEntity x, IngredientAmountEntity y)
             {
-                if (ReferenceEquals(x, y))
-                {
-                    return true;
-                }
-
-                if (ReferenceEquals(x, null))
-                {
-                    return false;
-                }
-
-                if (ReferenceEquals(y, null))
-                {
-                    return false;
-                }
-
-                if (x.GetType() != y.GetType())
-                {
-                    return false;
-                }
-                return x.Amount.Equals(y.Amount) &&
-                       IngredientEntity.DescriptionNameIdComparer.Equals(x.Ingredient, y.Ingredient) &&
-                       RecipeEntity.WithoutIngredientsComparer.Equals(x.Recipe, y.Recipe) && x.Unit == y.Unit &&
-                       x.Id.Equals(y.Id);
+                if (ReferenceEquals(x, y)) return true;
+                if (ReferenceEquals(x, null)) return false;
+                if (ReferenceEquals(y, null)) return false;
+                if (x.GetType() != y.GetType()) return false;
+                return x.Amount.Equals(y.Amount) && x.Unit == y.Unit && x.RecipeId.Equals(y.RecipeId) && x.IngredientId.Equals(y.IngredientId) && Equals(x.Ingredient, y.Ingredient);
             }
 
             public int GetHashCode(IngredientAmountEntity obj)
             {
-                unchecked
-                {
-                    var hashCode = obj.Amount.GetHashCode();
-                    hashCode = (hashCode * 397) ^ (obj.Ingredient != null ? obj.Ingredient.GetHashCode() : 0);
-                    hashCode = (hashCode * 397) ^ (obj.Recipe != null ? obj.Recipe.GetHashCode() : 0);
-                    hashCode = (hashCode * 397) ^ (int)obj.Unit;
-                    hashCode = (hashCode * 397) ^ obj.Id.GetHashCode();
-                    return hashCode;
-                }
+                return HashCode.Combine(obj.Amount, (int) obj.Unit, obj.RecipeId, obj.IngredientId, obj.Ingredient);
             }
         }
 
-        public static IEqualityComparer<IngredientAmountEntity> IngredientAmountComparer { get; } = new IngredientAmountEqualityComparer();
+        public static IEqualityComparer<IngredientAmountEntity> IngredientAmountWithoutRecipeEntityComparer { get; } = new IngredientAmountWithoutRecipeEntityEqualityComparer();
     }
 }

@@ -39,7 +39,7 @@ namespace CookBook.DAL.Tests
             using (var dbx = _dbContextFactory.Create())
             {
                 var retrievedIngredient = dbx.Ingredients.Single(entity => entity.Id == ingredientEntity.Id);
-                Assert.Equal(ingredientEntity, retrievedIngredient, IngredientEntity.DescriptionNameIdComparer);
+                Assert.Equal(ingredientEntity, retrievedIngredient);
             }
         }
 
@@ -62,7 +62,7 @@ namespace CookBook.DAL.Tests
             {
                 var retrievedRecipe = dbx.Recipes
                     .Single(entity => entity.Id == recipeEntity.Id);
-                Assert.Equal(recipeEntity, retrievedRecipe, RecipeEntity.RecipeEntityComparer);
+                Assert.Equal(recipeEntity, retrievedRecipe);
             }
         }
 
@@ -110,7 +110,7 @@ namespace CookBook.DAL.Tests
                     .Include(entity => entity.Ingredients)
                     .ThenInclude(amounts => amounts.Ingredient)
                     .Single(entity => entity.Id == recipeEntity.Id);
-                Assert.Equal(recipeEntity, retrievedRecipe, RecipeEntity.RecipeEntityComparer);
+                Assert.Equal(recipeEntity, retrievedRecipe);
             }
         }
 
@@ -119,7 +119,7 @@ namespace CookBook.DAL.Tests
         {
             var fromDb = _cookBookDbContextSUT.Ingredients.Single(i => i.Id == IngredientSeed.Water.Id);
 
-            Assert.Equal(IngredientSeed.Water, fromDb, IngredientEntity.DescriptionNameIdComparer);
+            Assert.Equal(IngredientSeed.Water, fromDb);
         }
 
         public void Dispose()
