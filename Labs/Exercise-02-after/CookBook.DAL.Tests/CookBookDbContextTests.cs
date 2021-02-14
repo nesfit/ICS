@@ -36,11 +36,9 @@ namespace CookBook.DAL.Tests
 
 
             //Assert
-            using (var dbx = _dbContextFactory.Create())
-            {
-                var retrievedIngredient = dbx.Ingredients.Single(entity => entity.Id == ingredientEntity.Id);
-                Assert.Equal(ingredientEntity, retrievedIngredient);
-            }
+            using var dbx = _dbContextFactory.Create();
+            var retrievedIngredient = dbx.Ingredients.Single(entity => entity.Id == ingredientEntity.Id);
+            Assert.Equal(ingredientEntity, retrievedIngredient);
         }
 
         [Fact]
@@ -58,12 +56,10 @@ namespace CookBook.DAL.Tests
             _cookBookDbContextSUT.SaveChanges();
 
             //Assert
-            using (var dbx = _dbContextFactory.Create())
-            {
-                var retrievedRecipe = dbx.Recipes
-                    .Single(entity => entity.Id == recipeEntity.Id);
-                Assert.Equal(recipeEntity, retrievedRecipe);
-            }
+            using var dbx = _dbContextFactory.Create();
+            var retrievedRecipe = dbx.Recipes
+                .Single(entity => entity.Id == recipeEntity.Id);
+            Assert.Equal(recipeEntity, retrievedRecipe);
         }
 
         [Fact]
@@ -104,14 +100,12 @@ namespace CookBook.DAL.Tests
             _cookBookDbContextSUT.SaveChanges();
 
             //Assert
-            using (var dbx = _dbContextFactory.Create())
-            {
-                var retrievedRecipe = dbx.Recipes
-                    .Include(entity => entity.Ingredients)
-                    .ThenInclude(amounts => amounts.Ingredient)
-                    .Single(entity => entity.Id == recipeEntity.Id);
-                Assert.Equal(recipeEntity, retrievedRecipe);
-            }
+            using var dbx = _dbContextFactory.Create();
+            var retrievedRecipe = dbx.Recipes
+                .Include(entity => entity.Ingredients)
+                .ThenInclude(amounts => amounts.Ingredient)
+                .Single(entity => entity.Id == recipeEntity.Id);
+            Assert.Equal(recipeEntity, retrievedRecipe);
         }
 
         [Fact]
