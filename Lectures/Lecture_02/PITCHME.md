@@ -352,7 +352,7 @@ public string Name => _name;
 
 ```C#
 public string Name {
-  get => return _name;
+  get => _name;
   set => _name = value;
 }
 ```
@@ -599,8 +599,8 @@ public class Kitten : Cat {}
   * `GetHashCode()`
   * `GetType()`
 * To get type:
-  * during *runtime* - `Object.GetType()`
-  * during *compile time* - `typeof(object)`
+  * during *runtime* - `object.GetType()`
+  * during *compile time* - `typeof(Object)`
 
 +++
 ### Partial class/method
