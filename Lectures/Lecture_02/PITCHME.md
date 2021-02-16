@@ -599,8 +599,8 @@ public class Kitten : Cat {}
   * `GetHashCode()`
   * `GetType()`
 * To get type:
-  * during *runtime* - `Object.GetType()`
-  * during *compile time* - `typeof(object)`
+  * during *runtime* - `object.GetType()`
+  * during *compile time* - `typeof(Object)`
 
 +++
 ### Partial class/method
