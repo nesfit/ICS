@@ -352,7 +352,7 @@ public string Name => _name;
 
 ```C#
 public string Name {
-  get => return _name;
+  get => _name;
   set => _name = value;
 }
 ```
