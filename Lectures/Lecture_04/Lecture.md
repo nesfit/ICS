@@ -1,15 +1,24 @@
-@snap[north span-100]
+---
+title: Foobar
+theme: simple
+css: Assets/theme.css
+separator: "^---$"
+verticalSeparator: "^\\+\\+\\+$"
+progress: true
+slideNumber: true
+mouseWheel: true
+enableMenu: true
+enableChalkboard: true
+enableTitleFooter: true
+---
+
+<!-- <pre><code  data-sample='Assets/sln/Examples/SqlClientExample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre> -->
+
 # Persistence
-@snapend
 
-@snap[midpoint span-100]
 ## Data Persistence in .NET Applications
-@snapend
 
-@snap[south-east]
-[ Jan Pluskal <ipluskal@fit.vutbr.cz> ]
-@snapend
-
+<div class="right">[ Jan Pluskal &lt;ipluskal@fit.vutbr.cz&gt;  ]</div>
 
 ---
 
@@ -22,7 +31,9 @@
 6. `Repository` and `UnitOfWork` Patterns
 
 ---
+
 ## Basic Terms
+![](/assets/img/Overview_small.png) <!-- .element: class="overview" -->
 * **Software framework**
 * **Database**
   * Database components, types
@@ -31,11 +42,9 @@
   * Object-relational mapping
   * ACID, SQL, CAP, CRUD, DAL, DBMS...
 
-@snap[south-east span+40]
-![](/Lectures/GitPitch/assets/image/Overview_small.png)
-@snapend
 
 ---
+
 ## Software Framework
 * **Abstraction** providing **generic functionality**
 * Can be selectively changed by additional user-written code
@@ -72,54 +81,78 @@
 
 +++
 ### ACID
-![](/Lectures/Lecture_04/Assets/img/acid.jpg)
+![](Assets/img/acid.jpg) <!-- .element: class="r-stretch" -->
 
 +++
 ### CAP
-@img[span-70](/Lectures/Lecture_04/Assets/img/CAPtheorem.png)
+![](Assets/img/CAPtheorem.png) <!-- .element: class="r-stretch" -->
 
 +++
 ### CRUD
-![](/Lectures/Lecture_04/Assets/img/CRUD.png)
+![](Assets/img/CRUD.png) <!-- .element: class="r-stretch" -->
 
 +++
 ### Data Access Layer (DAL)
+<div id="left">
+
 * **Definition**
   * *Layer of a computer program which provides simplified access to data stored in persistent storage*
 * DAL might **return a reference to an object complete with its attributes**
 * Created higher level of abstraction
+</div>
 
-![](/Lectures/Lecture_04/Assets/img/ef-in-app-architecture.png)
+<div id="right">
+
+![](Assets/img/ef-in-app-architecture.png) <!-- .element: class="r-stretch" -->
+</div>
 
 +++
 ## Database Types
+<div id="left">
+
 * *Relational (SQL)* databases
     * e.g., MySQL, PostgresSQL, MS SQL, Oracle, ...
     * Each table has firm structure
     * Relation validations
+</div>
+
+
+<div id="right">
 
 * *NoSQL* databases
     * e.g., MongoDB, Cassandra, ...
     * Not-only-SQL
     * May/MayNot enforced schema
     * Typically faster read/write operations
+</div>
 
-![](/Lectures/Lecture_04/Assets/img/SQLvsNOSQL.jpg)
 
-+++
-* *Single-File* vs *Multi-File* databases
-* *Object Oriented* databases
+
+*  *Single-File* vs *Multi-File* databases
+*  *Object Oriented* databases
+
+
+![](Assets/img/SQLvsNOSQL.jpg)
+
 
 +++
 ### SQL
 * **Structured Query Language**
-* Standard language for relational database managment systems
-@img[span-70](/Lectures/Lecture_04/Assets/img/sqlstatement.png)
+* Standard language for relational database management systems
+  
+<div id="left">
+
+![](Assets/img/sqlstatement.png)   <!-- .element height="100%" width="100%" -->
+
+</div>
 
 
-@snap[east span-70]
-@img[span-40](/Lectures/Lecture_04/Assets/img/sql.gif)
-@snapend
+<div id="right">
+
+![](Assets/img/sql.gif)  <!-- .element height="100%" width="100%" -->
+
+
+
 
 +++
 ### Microsoft SQL LocalDB
@@ -132,22 +165,28 @@
 
 +++
 ### Visual Studio Server Explorer
+
+<div id="left">
+
 * **Server management** console for *Visual Studio**
 * **Open data connections**
 * **Log on to servers**
   * **Explore their databases and system services**
 * *View -> Server Explorer*
 
-@snap[east]
-@img[span-80](/Lectures/Lecture_04/Assets/img/ServerExplorerOpen.png)
-@snapend
+</div>
+
+<div id="right">
+
+![](Assets/img/ServerExplorerOpen.png)
+
+</div>
 
 +++
-#### Connect to MSSQLLocalDB
-@img[span-50](/Lectures/Lecture_04/Assets/img/ServerExplorer.gif)
+### Connect to MSSQLLocalDB
+![](Assets/img/ServerExplorer.gif)
 
-
-+++ 
++++
 ## Object-relational Mapping (ORM)
 * *Programming technique*
   * **Converting data between incompatible type systems**
@@ -156,9 +195,7 @@
 * Creates *"virtual object database"*
 * Can be used from within the programming language
 
-@snap[east snap-100]
-![](/Lectures/Lecture_04/Assets/img/ORM.jpg)
-@snapend
+![](Assets/img/ORM.jpg)
 
 +++
 ### Pros of Object Relation Mapping
@@ -180,6 +217,8 @@
 
 ---
 ## Technologies used to connect to the database
+![](/assets/img/Overview_small.png) <!-- .element: class="overview" -->
+
 * **ADO.NET**
 * **Entity Framework** (used in this course)
 * **Dapper**
@@ -187,9 +226,6 @@
 * ⋮
 * [NuGetMustHaves.com - Top ORM Packages](https://nugetmusthaves.com/Category/ORM)
 
-@snap[south-east span+40]
-![](/Lectures/GitPitch/assets/image/Overview_small.png)
-@snapend
 
 +++
 ## ADO.NET
@@ -203,7 +239,10 @@
   * Creation of front-end **database clients**
   * Middle-tier business objects used by applications, tools, languages, or Internet browsers
 
-+++?code=/Lectures/Lecture_04/Assets/sln/Examples/SqlClientExample.cs&lang=C#&title=ADO.NET SqlClient Sample
++++
+
+<pre><code  data-sample='Assets/sln/Examples/SqlClientExample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- +++?code=Assets/sln/Examples/SqlClientExample.cs&lang=C#&title=ADO.NET SqlClient Sample
 @[10-53]
 @[10-12]
 @[14-18]
@@ -211,8 +250,8 @@
 @[23-26]
 @[28-30]
 @[32-50]
-@[10-53]
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/Examples/SqlClientExample.cs)
+@[10-53] -->
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/Examples/SqlClientExample.cs)
 
 ---
 ## Entity Framework (EF)
@@ -225,7 +264,7 @@
 * Enables to work with data using objects without focusing on the underlying database
 * [Tutorial](http://www.entityframeworktutorial.net)
 
-+++ 
++++
 ### Entity Framework Main Features
 * **Cross-platform** - EF Core is a cross-platform framework (Windows, Linux, Mac)
 * **Modelling** - creates an Entity Data Model (EDM) based on Plain Old CLR Object (POCO) entities with get/set properties of different data types (used when querying or saving entity data)
@@ -239,7 +278,7 @@
 * **Configurations** - allows us to configure the EF model by using data annotation attributes or Fluent API to override default conventions
 * **Migrations** - set of migration commands to create or manage underlying database Schema
 
-+++ 
++++
 ### Entity Framework Versions
 * [Differences](https://docs.microsoft.com/en-us/ef/efcore-and-ef6/)
 * Currently, there are two latest versions of Entity Framework
@@ -249,11 +288,11 @@
   * Works only on .NET Framework
 * **Entity Framework Core**
   * open-source
-  * Current version 3.1
+  * Current version 5.0.x
   * Works on .NET Standard (supports .NET core -->  multplatform)
   * Used in this course
 
-![](/Lectures/Lecture_04/Assets/img/EFversions.png)
+![](Assets/img/EFversions.png)
 
 +++
 ### Entity Framework Core
@@ -264,7 +303,7 @@
 * Can also be used with standard *.NET 4.5+ framework* based applications
 * Supported application types:
 
-![](/Lectures/Lecture_04/Assets/img/EFCoreSupport.png)
+![](Assets/img/EFCoreSupport.png)
 
 +++
 ### Approaches
@@ -276,7 +315,7 @@
   * Creates the database based on your domain classes and configuration
   * Write entities in C# and then EF will create the database from the code for you
 
-![](/Lectures/Lecture_04/Assets/img/EFApproaches.png)
+![](Assets/img/EFApproaches.png)
 
 
 +++
@@ -284,25 +323,23 @@
 * Provider model to access many different databases
 * NuGet packages which you need to install
 
-| Database | NuGet Package |
-|:-:|:- |
-| SQL Server | [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer) |
-| MySQL | [MySql.Data.EntityFrameworkCore](https://www.nuget.org/packages/MySql.Data.EntityFrameworkCore) |
-| PostgreSQL | [Npgsql.EntityFrameworkCore.PostgreSQL](https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL) |
-| SQLite | [Microsoft.EntityFrameworkCore.SQLite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SQLite) |
-| SQL Compact | [EntityFrameworkCore.SqlServerCompact40](https://www.nuget.org/packages/EntityFrameworkCore.SqlServerCompact40) |
-| In-memory | [Microsoft.EntityFrameworkCore.InMemory](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory) |
+|  Database   | NuGet Package                                                                                                     |
+| :---------: | :---------------------------------------------------------------------------------------------------------------- |
+| SQL Server  | [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer) |
+|    MySQL    | [MySql.Data.EntityFrameworkCore](https://www.nuget.org/packages/MySql.Data.EntityFrameworkCore)                   |
+| PostgreSQL  | [Npgsql.EntityFrameworkCore.PostgreSQL](https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL)     |
+|   SQLite    | [Microsoft.EntityFrameworkCore.SQLite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SQLite)       |
+| SQL Compact | [EntityFrameworkCore.SqlServerCompact40](https://www.nuget.org/packages/EntityFrameworkCore.SqlServerCompact40)   |
+|  In-memory  | [Microsoft.EntityFrameworkCore.InMemory](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory)   |
 
 ---
 ### Installation
+![](/assets/img/Overview_small.png) <!-- .element: class="overview" -->
 * Install *NuGet* packages to use EF Core
   * **EF Core DB provider**
   * **EF Core tools**
   * **EF Core design**
 
-@snap[south-east span+40]
-![](/Lectures/GitPitch/assets/image/Overview_small.png)
-@snapend
 
 +++
 ### Install DB Provider
@@ -314,19 +351,19 @@
 
 +++
 ### Install DB Provider Image 1/5
-![](/Lectures/Lecture_04/Assets/img/install-efcore-1.png)
+![](Assets/img/install-efcore-1.png)
 +++
 ### Install DB Provider Image 2/5
-![](/Lectures/Lecture_04/Assets/img/install-efcore-2.png)
+![](Assets/img/install-efcore-2.png)
 +++
 ### Install DB Provider Image 3/5
-![](/Lectures/Lecture_04/Assets/img/install-efcore-3.png)
+![](Assets/img/install-efcore-3.png)
 +++
 ### Install DB Provider Image 4/5
-![](/Lectures/Lecture_04/Assets/img/install-efcore-4.png)
+![](Assets/img/install-efcore-4.png)
 +++
 ### Install DB Provider Image 5/5
-![](/Lectures/Lecture_04/Assets/img/install-efcore-5.png)
+![](Assets/img/install-efcore-5.png)
 
 +++
 ### Install Tools
@@ -339,7 +376,7 @@
 
 +++
 ### Install Tools Image
-![](/Lectures/Lecture_04/Assets/img/install-efcore-6.png)
+![](Assets/img/install-efcore-6.png)
 
 +++
 ### Install Design
@@ -350,6 +387,7 @@
 
 ---
 ## Basic Concepts
+![](/assets/img/Overview_small.png) <!-- .element: class="overview" -->
 * DbContext
 * Entity
 * Persitence Scenarios
@@ -359,17 +397,13 @@
 * RAW SQL Queries
 * Migrations
 
-@snap[south-east span+40]
-![](/Lectures/GitPitch/assets/image/Overview_small.png)
-@snapend
++++
+### Example Schema
+![](Assets/img/draw/Database.png)
 
 +++
 ### Example Schema
-![](/Lectures/Lecture_04/Assets/img/draw/Database.png)
-
-+++
-### Example Schema
-![](/Lectures/Lecture_04/Assets/img/draw/Database-modified.png)
+![](Assets/img/draw/Database-modified.png)
 
 ---
 ## Entity
@@ -427,12 +461,14 @@ public class SchoolDbContext : DbContext
         * Includes a property of collection type
         * Represents multiplicity of many (*)
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs&lang=C#&title=Entity Sample
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 
-+++ 
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
+
++++
 ### Entity Property Types
-@img[span-70](/Lectures/Lecture_04/Assets/img/entity-properties.png)
+![](Assets/img/entity-properties.png) <!-- .element: class="stretch" -->
 
 +++
 ### Entity types
@@ -463,14 +499,17 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
   4. Each navigation **property** must be declared as **public, virtual**
   5. Each collection **property** must be `ICollection<T>`
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL.Tests/EntityTypesTest.cs&lang=C#&title=Entity Types Sample
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.DAL.Tests/EntityTypesTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+
+<!-- +++?code=Assets/sln/EntityFramework/School.DAL.Tests/EntityTypesTest.cs&lang=C#&title=Entity Types Sample
 @[13-21]
 @[23-29]
 @[31-43]
-@[45-56]
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL.Tests/EntityTypesTest.cs)
+@[45-56] -->
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.DAL.Tests/EntityTypesTest.cs)
 
-+++ 
++++
 ### Entity states
 * EF API maintains the state of each entity during an its lifetime
 * **Each entity has a state** based on the operation performed on it via the *DbContext*
@@ -489,14 +528,17 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 * Change from the *Unchanged* to the *Modified* is the only state that's **automatically handled by the** *DbContext*
 * Other changes must be made **explicitly using** proper **methods of **`DbContext`** or **`DbSet`
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL.Tests/EntityStatesTest.cs&lang=C#&title=Entity States Sample
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.DAL.Tests/EntityStatesTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+
+<!-- +++?code=Assets/sln/EntityFramework/School.DAL.Tests/EntityStatesTest.cs&lang=C#&title=Entity States Sample
 @[12-24]
 @[26-31]
 @[33-39]
 @[41-48]
 @[50-57]
-@[59-63]
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL.Tests/EntityStatesTest.cs)
+@[59-63] -->
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.DAL.Tests/EntityStatesTest.cs)
 
 
 +++
@@ -506,7 +548,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
   * **UPDATE** command for the entities with **Modified** state
   * **DELETE** command for the entities in **Deleted** state
   * Context **does not track** entities in the **Detached** state
-![](/Lectures/Lecture_04/Assets/img/entity-states.png)
+![](Assets/img/entity-states.png)
 
 ---
 ### DbContext
@@ -565,6 +607,7 @@ public class TestDbContextFactory : IDbContextFactory
 +++
 #### SqlServer DbContext Creation
 * **Do NOT include connection string into the code!!!**
+  
 ```C#
 public class DefaultDbContextFactory : IDbContextFactory
 {
@@ -578,60 +621,64 @@ public class DefaultDbContextFactory : IDbContextFactory
     }
 }
 ```
-+++?code=/Lectures/Lecture_04/Assets/sln/Dapper.DAL/appconfig.json&lang=JSON&title=Use Application Configuration to Store Connection Strings
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/appconfig.json)
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/SchoolDbContext.cs&lang=C#&title=DbContext Sample
-@[9-30]
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/SchoolDbContext.cs)
++++
+<pre><code  data-sample='Assets/sln/Dapper.DAL/appconfig.json' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.DAL/appconfig.json)
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL.Tests/LinqLazyEvaluationTest.cs&lang=C#&title=Entity States Sample
-@[13-21]
-@[23-34]
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL.Tests/LinqLazyEvaluationTest.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.DAL/SchoolDbContext.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[9-30] -->
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.DAL/SchoolDbContext.cs)
+
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.DAL.Tests/LinqLazyEvaluationTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[13-21]
+@[23-34] -->
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.DAL.Tests/LinqLazyEvaluationTest.cs)
 
 +++
 ### DbContext Methods
-| Method           | Usage                                                                                                                                                                                        |
-|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| *Add*              | Adds a new entity to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChanges()` is called.                                |
-| *AddAsync*         | Asynchronous method for adding a new entity to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChangesAsync()` is called. |
-| *AddRange*         | Adds a collection of new entities to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChanges()` is called.                |
-| *AddRangeAsync*    | Asynchronous method for adding a collection of new entities which will be saved on `SaveChangesAsync()`.                                                                                       |
+| Method          | Usage                                                                                                                                                                                              |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| *Add*           | Adds a new entity to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChanges()` is called.                                |
+| *AddAsync*      | Asynchronous method for adding a new entity to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChangesAsync()` is called. |
+| *AddRange*      | Adds a collection of new entities to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChanges()` is called.                |
+| *AddRangeAsync* | Asynchronous method for adding a collection of new entities which will be saved on `SaveChangesAsync()`.                                                                                           |
 
 +++
 ### DbContext Methods
-| Method           | Usage                                                                                                                                                                                        |
-|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| *Attach*           | Attaches a new or existing entity to `DbContext` with *Unchanged* state and starts tracking it.                                                                                                  |
-| *AttachRange*      | Attaches a collection of new or existing entities to `DbContext` with *Unchanged* state and starts tracking it.                                                                                  |
-| *Entry*            | Gets an EntityEntry for the given entity. The entry provides access to change tracking information and operations for the entity.                                                            |
-| *Find*             | Finds an entity with the given primary key values.                                                                                                                                           |
-| *FindAsync*        | Asynchronous method for finding an entity with the given primary key values.                                                                                                                 |
+| Method        | Usage                                                                                                                             |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| *Attach*      | Attaches a new or existing entity to `DbContext` with *Unchanged* state and starts tracking it.                                   |
+| *AttachRange* | Attaches a collection of new or existing entities to `DbContext` with *Unchanged* state and starts tracking it.                   |
+| *Entry*       | Gets an EntityEntry for the given entity. The entry provides access to change tracking information and operations for the entity. |
+| *Find*        | Finds an entity with the given primary key values.                                                                                |
+| *FindAsync*   | Asynchronous method for finding an entity with the given primary key values.                                                      |
 
 +++
 ### DbContext Methods
-| Method           | Usage                                                                                                                                                                                        |
-|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| *Remove*           | Sets Deleted state to the specified entity which will delete the data when `SaveChanges()` is called.                                                                                          |
-| *RemoveRange*      | Sets Deleted state to a collection of entities which will delete the data in a single DB round trip when `SaveChanges()` is called.                                                            |
-| *SaveChanges*      | Execute *INSERT*, *UPDATE* or *DELETE* command to the database for the entities with Added, Modified or Deleted state.                                                                             |
-| *SaveChangesAsync* | Asynchronous method of `SaveChanges()`                                                                                                                                                         |
+| Method             | Usage                                                                                                                               |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| *Remove*           | Sets Deleted state to the specified entity which will delete the data when `SaveChanges()` is called.                               |
+| *RemoveRange*      | Sets Deleted state to a collection of entities which will delete the data in a single DB round trip when `SaveChanges()` is called. |
+| *SaveChanges*      | Execute *INSERT*, *UPDATE* or *DELETE* command to the database for the entities with Added, Modified or Deleted state.              |
+| *SaveChangesAsync* | Asynchronous method of `SaveChanges()`                                                                                              |
 
 +++
 ### DbContext Methods
-| Method           | Usage                                                                                                                                                                                        |
-|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| *Set*              | Creates a `DbSet<TEntity>` that can be used to query and save instances of `TEntity`.                                                                                                            |
-| *Update*           | Attaches disconnected entity with Modified state and start tracking it. The data will be saved when `SaveChagnes()` is called.                                                                 |
-| *UpdateRange*      | Attaches a collection of disconnected entities with Modified state and start tracking it. The data will be saved when `SaveChagnes()` is called.                                               |
-| *OnConfiguring*    | Override this method to configure the database (and other options) to be used for this context. This method is called for each instance of the context that is created.                      |
-| *OnModelCreating*  | Override this method to further configure the model that was discovered by convention from the entity types exposed in `DbSet<TEntity>` properties on your derived context.                    |
+| Method            | Usage                                                                                                                                                                       |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| *Set*             | Creates a `DbSet<TEntity>` that can be used to query and save instances of `TEntity`.                                                                                       |
+| *Update*          | Attaches disconnected entity with Modified state and start tracking it. The data will be saved when `SaveChagnes()` is called.                                              |
+| *UpdateRange*     | Attaches a collection of disconnected entities with Modified state and start tracking it. The data will be saved when `SaveChagnes()` is called.                            |
+| *OnConfiguring*   | Override this method to configure the database (and other options) to be used for this context. This method is called for each instance of the context that is created.     |
+| *OnModelCreating* | Override this method to further configure the model that was discovered by convention from the entity types exposed in `DbSet<TEntity>` properties on your derived context. |
 
 +++
 ### DbContext Properties
-| Property      | Usage                                                                                                               |
-|---------------|---------------------------------------------------------------------------------------------------------------------|
+| Property        | Usage                                                                                                               |
+| --------------- | ------------------------------------------------------------------------------------------------------------------- |
 | *ChangeTracker* | Provides access to information and operations for entity instances this context is tracking.                        |
 | *Database*      | Provides access to database related information and operations for this context.                                    |
 | *Model*         | Returns the metadata about the shape of entities, the relationships between them, and how they map to the database. |
@@ -650,7 +697,7 @@ public class DefaultDbContextFactory : IDbContextFactory
 
 +++
 ### Persistence Scenarios - Connected Scenario
-![](/Lectures/Lecture_04/Assets/img/persistance-fg1.PNG)
+![](Assets/img/persistance-fg1.PNG)
 
 +++
 ### Persistence Scenarios - Disconnected  Scenario
@@ -668,7 +715,7 @@ public class DefaultDbContextFactory : IDbContextFactory
 
 +++
 ### Persistence Scenarios - Disconnected  Scenario
-![](/Lectures/Lecture_04/Assets/img/persistance-fg2.PNG)
+![](Assets/img/persistance-fg2.PNG)
 
 ---
 ## Conventions
@@ -684,24 +731,24 @@ public class DefaultDbContextFactory : IDbContextFactory
 
 +++
 ### C# to SQL Mapping
-| C# Data Type | SQL Data Type |
-|--------------|---------------------------------|
-| `int`          | int                             |
-| `string`       | nvarchar(Max)                   |
-| `decimal`      | decimal(18,2)                   |
-| `float`        | real                            |
-| `byte[]`       | varbinary(Max)                  |
-| `datetime`     | datetime                        |
-| `bool`         | bit                             |
-| `byte`         | tinyint                         |
-| `short`        | smallint                        |
-| `long`         | bigint                          |
-| `double`       | float                           |
-| `char`, `sbyte`, `object`         | No mapping  |
+| C# Data Type              | SQL Data Type  |
+| ------------------------- | -------------- |
+| `int`                     | int            |
+| `string`                  | nvarchar(Max)  |
+| `decimal`                 | decimal(18,2)  |
+| `float`                   | real           |
+| `byte[]`                  | varbinary(Max) |
+| `datetime`                | datetime       |
+| `bool`                    | bit            |
+| `byte`                    | tinyint        |
+| `short`                   | smallint       |
+| `long`                    | bigint         |
+| `double`                  | float          |
+| `char`, `sbyte`, `object` | No mapping     |
 
 +++
 ### Foreign Key Convention
-![](/Lectures/Lecture_04/Assets/img/foreignkey-conv.png)
+![](Assets/img/foreignkey-conv.png)
 
 ---
 ## Entity Configurations
@@ -743,30 +790,30 @@ public class Student
     public virtual Standard Standard { get; set; }
 }
 ```
-@[1-2]
+<!-- @[1-2]
 @[6-7]
 @[9-11]
 @[13-14]
-@[17,19-20]
+@[17,19-20] -->
 
 +++
 ### `System.ComponentModel.DataAnnotations.Schema` attributes
-| Attribute         | Description                                                                      |
-|-------------------|----------------------------------------------------------------------------------|
+| Attribute           | Description                                                                     |
+| ------------------- | ------------------------------------------------------------------------------- |
 | `Table`             | The database table and/or schema that a class is mapped to                      |
 | `Column`            | The database column that a property is mapped to                                |
-| `ForeignKey`        | Specifies the property what is used as a foreign key in a relationship               |
+| `ForeignKey`        | Specifies the property what is used as a foreign key in a relationship          |
 | `DatabaseGenerated` | Specifies how the database generates values for a property                      |
-| `NotMapped`         | Applied to properties or classes that are to be excluded from database mapping.  |
-| `InverseProperty`   | Specifies the inverse of a navigation property                                   |
-| `Owned`       | Denotes that the class is a weak entity. |
+| `NotMapped`         | Applied to properties or classes that are to be excluded from database mapping. |
+| `InverseProperty`   | Specifies the inverse of a navigation property                                  |
+| `Owned`             | Denotes that the class is a weak entity.                                        |
 
 +++
 ### `System.ComponentModel.Annotations` attributes
-| Attribute        | Description                                                             |
-|------------------|-------------------------------------------------------------------------|
+| Attribute          | Description                                                             |
+| ------------------ | ----------------------------------------------------------------------- |
 | `Key`              | Identifies one or more properties as a Key                              |
-| `Timestamp`        | Specifies the data type of the database column as `rowversion`            |
+| `Timestamp`        | Specifies the data type of the database column as `rowversion`          |
 | `ConcurrencyCheck` | Specifies that the property is included in concurrency checks           |
 | `Required`         | Specifies that the property's value is required                         |
 | `MaxLength`        | Sets the maximum allowed length of the property value (string or array) |
@@ -815,8 +862,8 @@ public class SchoolDbContext: DbContext
 
 +++
 ### Model Configurations
-| Fluent API Methods | Usage |
-|-|-|
+| Fluent API Methods   | Usage                                                                |
+| -------------------- | -------------------------------------------------------------------- |
 | `HasDbFunction()`    | Configures a database function when targeting a relational database. |
 | `HasDefaultSchema()` | Specifies the database schema.                                       |
 | `HasAnnotation()`    | Adds or updates data annotation attributes on the entity.            |
@@ -824,8 +871,8 @@ public class SchoolDbContext: DbContext
 
 +++
 ### Entity Configuration
-| Fluent API Methods | Usage |
-|-|-|
+| Fluent API Methods  | Usage                                                                                                                                                                 |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `HasAlternateKey()` | Configures an alternate key in the EF model for the entity.                                                                                                           |
 | `HasIndex()`        | Configures an index of the specified properties.                                                                                                                      |
 | `HasKey()`          | Configures the property or list of properties as Primary Key.                                                                                                         |
@@ -837,45 +884,42 @@ public class SchoolDbContext: DbContext
 
 +++
 ### Property Configuration part 1
-| Fluent API Methods | Usage |
-|-|-|
-| `HasColumnName()`               | Configures the corresponding column name in the database for the property.                                           |
-| `HasColumnType()`               | Configures the data type of the corresponding column in the database for the property.                               |
-| `HasComputedColumnSql()`        | Configures the property to map to computed column in the database when targeting a relational database.              |
-| `HasDefaultValue()`             | Configures the default value for the column that the property maps to when targeting a relational database.          |
-| `HasDefaultValueSql()`          | Configures the default value expression for the column that the property maps to when targeting relational database. |
-| `HasField()`                    | Specifies the backing field to be used with a property.                                                              |
-| `HasMaxLength()`                | Configures the maximum length of data that can be stored in a property.                                              |
+| Fluent API Methods       | Usage                                                                                                                |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| `HasColumnName()`        | Configures the corresponding column name in the database for the property.                                           |
+| `HasColumnType()`        | Configures the data type of the corresponding column in the database for the property.                               |
+| `HasComputedColumnSql()` | Configures the property to map to computed column in the database when targeting a relational database.              |
+| `HasDefaultValue()`      | Configures the default value for the column that the property maps to when targeting a relational database.          |
+| `HasDefaultValueSql()`   | Configures the default value expression for the column that the property maps to when targeting relational database. |
+| `HasField()`             | Specifies the backing field to be used with a property.                                                              |
+| `HasMaxLength()`         | Configures the maximum length of data that can be stored in a property.                                              |
 
 +++
 ### Property Configuration part 2
-| Fluent API Methods | Usage |
-|-|-|
-| `IsConcurrencyToken()`          | Configures the property to be used as an optimistic concurrency token.                                               |
-| `IsRequired()`                  | Configures whether the valid value of the property is required or whether null is a valid value.                     |
-| `IsRowVersion()`                | Configures the property to be used in optimistic concurrency detection.                                              |
-| `IsUnicode()`                   | Configures the string property which can contain unicode characters or not.                                          |
+| Fluent API Methods     | Usage                                                                                            |
+| ---------------------- | ------------------------------------------------------------------------------------------------ |
+| `IsConcurrencyToken()` | Configures the property to be used as an optimistic concurrency token.                           |
+| `IsRequired()`         | Configures whether the valid value of the property is required or whether null is a valid value. |
+| `IsRowVersion()`       | Configures the property to be used in optimistic concurrency detection.                          |
+| `IsUnicode()`          | Configures the string property which can contain unicode characters or not.                      |
 
 +++
 ### Property Configuration part 3
-| Fluent API Methods | Usage |
-|-|-|
-| `ValueGeneratedNever()`         | Configures a property which cannot have a generated value when an entity is saved.                                   |
-| `ValueGeneratedOnAdd()`         | Configures that the property has a generated value when saving a new entity.                                         |
-| `ValueGeneratedOnAddOrUpdate()` | Configures that the property has a generated value when saving new or existing entity.                               |
-| `ValueGeneratedOnUpdate()`      | Configures that a property has a generated value when saving an existing entity.                                     |
+| Fluent API Methods              | Usage                                                                                  |
+| ------------------------------- | -------------------------------------------------------------------------------------- |
+| `ValueGeneratedNever()`         | Configures a property which cannot have a generated value when an entity is saved.     |
+| `ValueGeneratedOnAdd()`         | Configures that the property has a generated value when saving a new entity.           |
+| `ValueGeneratedOnAddOrUpdate()` | Configures that the property has a generated value when saving new or existing entity. |
+| `ValueGeneratedOnUpdate()`      | Configures that a property has a generated value when saving an existing entity.       |
 
 
 ---
 ### DbContext Usage
+![](/assets/img/Overview_small.png) <!-- .element: class="overview" -->
 * Insert Data
 * Update Data
 * Delete Data
 * Query Data
-
-@snap[south-east span+40]
-![](/Lectures/GitPitch/assets/image/Overview_small.png)
-@snapend
 
 +++
 ## Insert Data
@@ -933,20 +977,17 @@ dbContext.Todos
     .First(t => t.Id == todo.Id);
 ```
 
-```
-
 ---
 ## Entity Relationships
+
+![](/assets/img/Overview_small.png) <!-- .element: class="overview" -->
+
 * One-to-One
 * One-to-Many
 * Many-to-Many
 
 * Just add them as properties, respect naming conventions
 * Additional configuration of relationships can be done in `DbContext.OnModelCreating` method
-
-@snap[south-east span+40]
-![](/Lectures/GitPitch/assets/image/Overview_small.png)
-@snapend
 
 +++
 ### One-to-One Relationships
@@ -962,11 +1003,13 @@ modelBuilder.Entity<StudentEntity>()
                 .HasForeignKey<StudentEntity>("AddressId");
 ```
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs&lang=C#&title=Student Entity
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/AddressEntity.cs&lang=C#&title=Address Entity
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/AddressEntity.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.DAL/Entities/AddressEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.DAL/Entities/AddressEntity.cs)
 
 +++
 ### One-to-Many Relationships
@@ -1035,11 +1078,13 @@ public class Grade
 }
 ```
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs&lang=C#&title=Student Entity
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/GradeEntity.cs&lang=C#&title=Grade Entity
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/GradeEntity.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.DAL/Entities/GradeEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.DAL/Entities/GradeEntity.cs)
 
 +++
 ### Cascade Delete using Fluent API
@@ -1064,14 +1109,17 @@ modelBuilder.Entity<StudentCourse>()
     .HasKey(sc => new { sc.StudentId, sc.CourseId });
 ```
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs&lang=C#&title=Student Entity
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/CourseEntity.cs&lang=C#&title=Course Entity
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/CourseEntity.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.DAL/Entities/CourseEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.DAL/Entities/CourseEntity.cs)
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentCourseEntity.cs&lang=C#&title=Joining Entity
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Entities/StudentCourseEntity.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.DAL/Entities/StudentCourseEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.DAL/Entities/StudentCourseEntity.cs)
 
 
 ---
@@ -1104,12 +1152,12 @@ var students = context.Students
 * You have to implement `IDesignTimeDbContextFactory<TDbContext>` class
 
 
-![](/Lectures/Lecture_04/Assets/img/ef-core-migration.png)
+![](Assets/img/ef-core-migration.png)
 
 +++
 ### Migration commands
 | PMC Command                    | CLI Command          | Usage                                                             |
-|--------------------------------|----------------------|-------------------------------------------------------------------|
+| ------------------------------ | -------------------- | ----------------------------------------------------------------- |
 | Add-Migration <migration name> | Add <migration name> | Creates a migration by adding a migration snapshot.               |
 | Remove-Migration               | Remove               | Removes the last migration snapshot.                              |
 | Update-Database                | Update               | Updates the database schema based on the last migration snapshot. |
@@ -1132,19 +1180,22 @@ var students = context.Students
   2. *Write a query to perform CRUD operations*
   3. *Pass query as a parameter in Execute method*
 
-+++?code=/Lectures/Lecture_04/Assets/sln/Dapper.DAL/Entities/StudentEntity.cs&lang=C#&title=Student Entity Sample
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/Dapper.DAL/Entities/StudentEntity.cs)
++++
+<pre><code  data-sample='Assets/sln/Dapper.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/Dapper.DAL/Entities/StudentEntity.cs)
 
-+++?code=/Lectures/Lecture_04/Assets/sln/Dapper.DAL/StudentRepository.cs&lang=C#&title=Simple Repository Sample
-@[20-30]
++++
+<pre><code  data-sample='Assets/sln/Dapper.DAL/StudentRepository.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[20-30]
 @[32-42]
 @[44-53]
-@[55-64]
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/Dapper.DAL/StudentRepository.cs)
+@[55-64] -->
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/Dapper.DAL/StudentRepository.cs)
 
-+++?code=/Lectures/Lecture_04/Assets/sln/Dapper.DAL.Tests/StudentRepositoryTests.cs&lang=C#&title=Simple Repository Test
-@[12-28]
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/Dapper.DAL.Tests/StudentRepositoryTests.cs)
++++
+<pre><code  data-sample='Assets/sln/Dapper.DAL.Tests/StudentRepositoryTests.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[12-28] -->
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/Dapper.DAL.Tests/StudentRepositoryTests.cs)
 
 ---
 ## NHibernate
@@ -1163,13 +1214,11 @@ var students = context.Students
   * **Dapper** representing "micro" ORM
   * **ADO.NET** for straight queries
 
-@snap[south-east]
 [Source](https://github.com/exceptionnotfound/ORMBenchmarksTest)
-@snapend
 
 +++
 ### Performance Benchmarking Methodology  - Schema
-![](/Lectures/Lecture_04/Assets/img/Benchmarking-schema.png)
+![](Assets/img/Benchmarking-schema.png)
 
 +++
 ### Performance Benchmarking - Methodology  - Sample data
@@ -1354,8 +1403,8 @@ public class Dapper : ITestSignature
 
 +++
 ### Performance Benchmarking results - Entity Framework
-| RUN     | PLAYER BY ID | PLAYERS FOR TEAM | TEAMS FOR SPORT |
-|---------|--------------|------------------|-----------------|
+| RUN         | PLAYER BY ID | PLAYERS FOR TEAM | TEAMS FOR SPORT |
+| ----------- | ------------ | ---------------- | --------------- |
 | **1**       | 1.64ms       | 4.57ms           | 127.75ms        |
 | **2**       | 0.56ms       | 3.47ms           | 112.5ms         |
 | **3**       | 0.17ms       | 3.27ms           | 119.12ms        |
@@ -1366,13 +1415,13 @@ public class Dapper : ITestSignature
 | **8**       | 0.55ms       | 3.27ms           | 110.62ms        |
 | **9**       | 0.37ms       | 4.4ms            | 109.62ms        |
 | **10**      | 0.44ms       | 3.43ms           | 116.25ms        |
-| **Average** | **0.77ms**       | **3.57ms**           | **113.45ms**        |
+| **Average** | **0.77ms**   | **3.57ms**       | **113.45ms**    |
 
 
 +++
 ### Performance Benchmarking results - ADO.NET
-| RUN     | PLAYER BY ID | PLAYERS FOR TEAM | TEAMS FOR SPORT |
-|---------|--------------|------------------|-----------------|
+| RUN         | PLAYER BY ID | PLAYERS FOR TEAM | TEAMS FOR SPORT |
+| ----------- | ------------ | ---------------- | --------------- |
 | **1**       | 0.01ms       | 1.03ms           | 10.25ms         |
 | **2**       | 0ms          | 1ms              | 11ms            |
 | **3**       | 0.1ms        | 1.03ms           | 9.5ms           |
@@ -1383,12 +1432,12 @@ public class Dapper : ITestSignature
 | **8**       | 0ms          | 1ms              | 8.12ms          |
 | **9**       | 0ms          | 1ms              | 8ms             |
 | **10**      | 0ms          | 1.17ms           | 8.88ms          |
-| **Average** | **0.013ms**      | **1.03ms**           | **8.84ms**          |
+| **Average** | **0.013ms**  | **1.03ms**       | **8.84ms**      |
 
 +++
 ### Performance Benchmarking results - Dapper
-| RUN     | PLAYER BY ID | PLAYERS FOR TEAM | TEAMS FOR SPORT |
-|---------|--------------|------------------|-----------------|
+| RUN         | PLAYER BY ID | PLAYERS FOR TEAM | TEAMS FOR SPORT |
+| ----------- | ------------ | ---------------- | --------------- |
 | **1**       | 0.38ms       | 1.03ms           | 9.12ms          |
 | **2**       | 0.03ms       | 1ms              | 8ms             |
 | **3**       | 0.02ms       | 1ms              | 7.88ms          |
@@ -1399,7 +1448,7 @@ public class Dapper : ITestSignature
 | **8**       | 0ms          | 1.02ms           | 7.62ms          |
 | **9**       | 0ms          | 1ms              | 7.88ms          |
 | **10**      | 0.02ms       | 1ms              | 7.75ms          |
-| **Average** | **0.047ms**      | **1.01ms**           | **7.94ms**          |
+| **Average** | **0.047ms**  | **1.01ms**       | **7.94ms**      |
 
 +++
 ### Performance Benchmarking analysis and conclusion
@@ -1409,13 +1458,8 @@ public class Dapper : ITestSignature
 
 ---
 
-@snap[north span-100]
 # Repository, UnitOfWork, Facade and Mapper design patterns
-@snapend
-
-@snap[midpoint span-100]
 ## Mapping Entities to Models
-@snapend
 
 ---
 ## Repository
@@ -1423,7 +1467,7 @@ public class Dapper : ITestSignature
 * Acting like an **in-memory collection** of domain objects 
 
 
-![](/Lectures/Lecture_04/Assets/img/repository.jpg)
+![](Assets/img/repository.jpg)
 
 +++
 ### Repository Benefits
@@ -1447,25 +1491,27 @@ public class Dapper : ITestSignature
 * How are these objects going to be saved to database?
   * **UnitOfWork** design pattern
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Repositories/RepositoryBase.cs&lang=C#&title=Repository Sample
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/Repositories/RepositoryBase.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.DAL/Repositories/RepositoryBase.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.DAL/Repositories/RepositoryBase.cs)
 
 ---
 ## UnitOfWork
 * Maintains a list of objects affected by a business transaction
 * Coordinates the writing out of changes
 
-![](/Lectures/Lecture_04/Assets/img/UnitOfWork.jpg)
+![](Assets/img/UnitOfWork.jpg)
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/UnitOfWork/UnitOfWork.cs&lang=C#&title=Repository Sample
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.DAL/UnitOfWork/UnitOfWork.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.DAL/UnitOfWork/UnitOfWork.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.DAL/UnitOfWork/UnitOfWork.cs)
 
 ---
 ### Entity Framework as UnitOfWork and Repository
 * *UnitOfWork* and *Repository* are **already implemented** in *Entity Framework*
 * **Do not bring the architectural benefits** from these patterns
 
-![](/Lectures/Lecture_04/Assets/img/EntityFramework.jpg)
+![](Assets/img/EntityFramework.jpg)
 
 +++
 ### Entity Framework Problems
@@ -1512,36 +1558,38 @@ var topSellingCourses = schoolCourses.Where(c => c.IsPublic && c.IsApproved).Ord
   * Part of *Model-View-ViewModel(MVVM)* design pattern
   * Represents the **actual data and information**
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Mappers/IMapper.cs&lang=C#&title=School Mapping Sample
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Mappers/IMapper.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.BL/Mappers/IMapper.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.BL/Mappers/IMapper.cs)
 
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.BL/Models/DetailModels/AddressDetailModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.BL/DetailModels/AddressDetailModel.cs)
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Models/DetailModels/AddressDetailModel.cs&lang=C#&title=School Mapping Sample
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/DetailModels/AddressDetailModel.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.BL/Mappers/AddressMapper.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.BL/Mappers/AddressMapper.cs)
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Mappers/AddressMapper.cs&lang=C#&title=School Mapping Sample
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Mappers/AddressMapper.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.BL/Models/ListModels/StudentListModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.BL/Models/ListModels/StudentListModel.cs)
 
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.BL/Models/DetailModels/StudentDetailModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.BL/Models/DetailModels/StudentDetailModel.cs)
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Models/ListModels/StudentListModel.cs&lang=C#&title=School Mapping Sample
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Models/ListModels/StudentListModel.cs)
-
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Models/DetailModels/StudentDetailModel.cs&lang=C#&title=School Mapping Sample
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Models/DetailModels/StudentDetailModel.cs)
-
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Mappers/StudentMapper.cs&lang=C#&title=School Mapping Sample
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Mappers/StudentMapper.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.BL/Mappers/StudentMapper.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.BL/Mappers/StudentMapper.cs)
 
 ---
-![](/Lectures/Lecture_04/Assets/img/AutoMapper.png)
+![](Assets/img/AutoMapper.png)
+![](/assets/img/Overview_small.png) <!-- .element: class="overview" -->
 * `PM> Install-Package AutoMapper`
 * [Github](https://github.com/AutoMapper/AutoMapper)
 * [Web](http://automapper.org/)
 * [Docs](https://automapper.readthedocs.io/en/latest/index.html)
 
-@snap[south-east span+40]
-![](/Lectures/GitPitch/assets/image/Overview_small.png)
-@snapend
 
 +++
 ### Auto Mapper
@@ -1625,7 +1673,7 @@ config.AssertConfigurationIsValid();
 * **Provides a unified interface** to the set of interfaces in a subsystem
 * **Higher-level interface** that makes the subsystem easier to use
 
-![](/Lectures/Lecture_04/Assets/img/facade.gif)
+![](Assets/img/facade.gif)
 
 +++
 ### Facade Participants
@@ -1637,14 +1685,17 @@ config.AssertConfigurationIsValid();
   * Handle work assigned by the Facade object
   * Have no knowledge of the facade and keep no reference to it
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Facades/CrudFacadeBase.cs&lang=C#&title=School Facade Sample
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL/Facades/CrudFacadeBase.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.BL/Facades/CrudFacadeBase.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.BL/Facades/CrudFacadeBase.cs)
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL.Tests/AddressFacadeTests.cs&lang=C#&title=School Facade Tests Sample
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL.Tests/AddressFacadeTests.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.BL.Tests/AddressFacadeTests.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.BL.Tests/AddressFacadeTests.cs)
 
-+++?code=/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL.Tests/StudentFacadeTests.cs&lang=C#&title=School Facade Tests Sample
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/Assets/sln/EntityFramework/School.BL.Tests/StudentFacadeTests.cs)
++++
+<pre><code  data-sample='Assets/sln/EntityFramework/School.BL.Tests/StudentFacadeTests.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/masterAssets/sln/EntityFramework/School.BL.Tests/StudentFacadeTests.cs)
 
 ---
 ## References:
