@@ -1,18 +1,17 @@
 ---
-title: Foobar
+title: ICS 04 - Propojení aplikací s databází
 theme: simple
 css: Assets/theme.css
 separator: "^---$"
 verticalSeparator: "^\\+\\+\\+$"
+highlightTheme: vs
 progress: true
 slideNumber: true
-mouseWheel: true
+mouseWheel: false
 enableMenu: true
 enableChalkboard: true
 enableTitleFooter: true
 ---
-
-<!-- <pre><code  data-sample='Assets/sln/Examples/SqlClientExample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre> -->
 
 # Persistence
 
