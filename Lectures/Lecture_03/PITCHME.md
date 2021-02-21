@@ -29,20 +29,20 @@
 * **Reduces conditional compilation** of *shared source* due to .NET APIs
 
 +++
+#### .NET long ago
+
+![](/Lectures/Lecture_03/Assets/img/NetLongAgo.png)
+
++++
 #### .NET Yesterday
 
 ![](/Lectures/Lecture_03/Assets/img/NetYesterday.png)
+
 
 +++
 #### .NET Today
 
 ![](/Lectures/Lecture_03/Assets/img/NetToday.png)
-
-
-+++
-#### .NET Tomorrow
-
-![](/Lectures/Lecture_03/Assets/img/NetTomorrow.png)
 
 +++
 ### .NET Standard vs .NET Core
