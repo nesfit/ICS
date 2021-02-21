@@ -187,14 +187,20 @@ enableTitleFooter: true
 
 +++
 ## Object-relational Mapping (ORM)
+<div id="left">
+
 * *Programming technique*
   * **Converting data between incompatible type systems**
   * Using object-oriented programming languages
 * *Table row to the object**
 * Creates *"virtual object database"*
 * Can be used from within the programming language
+</div>
+
+<div id="right">
 
 ![](Assets/img/ORM.jpg)
+</div>
 
 +++
 ### Pros of Object Relation Mapping

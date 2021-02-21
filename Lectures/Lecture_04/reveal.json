@@ -11,6 +11,8 @@
     "fragments": true,
     "fragmentInURL": false,
     "help": true,
-    "mouseWheel": true
+    "mouseWheel": true,
+    "transition": "slide",
+    "transitionSpeed": "fast"
 }
   
