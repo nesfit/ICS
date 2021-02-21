@@ -708,8 +708,8 @@
                                 lineNumbers: attributes.lineNumbers || options.lineNumbers
                             }
                         );
-                        if (typeof hljs !== 'undefined') {
-                            hljs.highlightBlock(element);
+                        if (typeof RevealHighlight.apply().hljs !== 'undefined') {
+                            RevealHighlight.apply().hljs.highlightBlock(element);
                         }
                     }
                 );
