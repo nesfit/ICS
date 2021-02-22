@@ -29,20 +29,20 @@
 * **Reduces conditional compilation** of *shared source* due to .NET APIs
 
 +++
+#### .NET Long ago
+
+![](/Lectures/Lecture_03/Assets/img/NetLongAgo.png)
+
++++
 #### .NET Yesterday
 
 ![](/Lectures/Lecture_03/Assets/img/NetYesterday.png)
+
 
 +++
 #### .NET Today
 
 ![](/Lectures/Lecture_03/Assets/img/NetToday.png)
-
-
-+++
-#### .NET Tomorrow
-
-![](/Lectures/Lecture_03/Assets/img/NetTomorrow.png)
 
 +++
 ### .NET Standard vs .NET Core
@@ -63,9 +63,11 @@
   * The lower the version, the more platforms you can run on
 
 +++
-#### .NET Standard Version Table
+#### .NET Standard Versions
 
-![](/Lectures/Lecture_03/Assets/img/NetStandardVersionTable.png)
+![](/Lectures/Lecture_03/Assets/img/NetStandardVersions.png)
+
+[Interactive Table](https://dotnet.microsoft.com/platform/dotnet-standard)
 
 +++
 ### Why .NET Standard 2.0 instead of 1.7?
@@ -1926,7 +1928,7 @@ Connection: System.Data.SqlClient.SqlConnection
 
 +++
 ## Refences to images used:
-[.NET Standard version table](http://immo.landwerth.net/netstandard-versions/)
+[.NET Standard Versions](https://github.com/dotnet/standard/blob/master/docs/versions.md#net-standard-versions)
 [Introduction to .NET Standard](https://blogs.msdn.microsoft.com/dotnet/2016/09/26/introducing-net-standard/)
 [Stanford University](https://www.stanford.edu/)
 
