@@ -18,7 +18,7 @@ V rámci dat, se kterými se bude pracovat budeme požadovat minimálně násled
 ### Hudební skupina
 - Originální název
 - Žánr
-- Fotografie
+- Fotografie (stačí 1, ale nebráníme se i rozšíření na galerii fotografií - jen promyslete jak ji budete zobrazovat)
 - Země původu
 - Dlouhý textový popis skupiny
 - Krátký popis do programu
@@ -27,7 +27,7 @@ V rámci dat, se kterými se bude pracovat budeme požadovat minimálně násled
 ### Stage
 - Název
 - Textový popis dle kterého jej návštěvníci najdou
-- Fotografie
+- Fotografie (stačí 1, ale nebráníme se i rozšíření na galerii fotografií - jen promyslete jak ji budete zobrazovat)
 - Seznam skupin, které na něm hrají
 
 ### Program festivalu
