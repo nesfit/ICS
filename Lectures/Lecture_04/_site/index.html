@@ -1,17 +1,20 @@
----
-title: ICS 04 - Propojení aplikací s databází
-theme: simple
-css: assets/theme.css
-separator: "^---$"
-verticalSeparator: "^\\+\\+\\+$"
-highlightTheme: vs
-progress: true
-slideNumber: true
-mouseWheel: false
-enableMenu: true
-enableChalkboard: true
-enableTitleFooter: true
----
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>ICS 04 - Propojení aplikací s databází</title>
+    <link rel="shortcut icon" href="./favicon.ico"/>
+    <link rel="stylesheet" href="./dist/reveal.css" />
+    <link rel="stylesheet" href="./dist/theme/simple.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/vs.css" />
+    <link rel="stylesheet" href="./_assets/assets/theme.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
 
 # Persistence
 
@@ -19,7 +22,7 @@ enableTitleFooter: true
 
 <div class="right">[ Jan Pluskal &lt;ipluskal@fit.vutbr.cz&gt;  ]</div>
 
----
+</script></section><section  data-markdown><script type="text/template">
 
 ## Lecture Outline
 1. What is persistence and how to achieve it?
@@ -29,7 +32,7 @@ enableTitleFooter: true
 5. How to setup Entity Framework Core
 6. `Repository` and `UnitOfWork` Patterns
 
----
+</script></section><section  data-markdown><script type="text/template">
 
 ## Basic Terms
 ![](/assets/img/Overview_small.png) <!-- .element: class="overview" -->
@@ -42,7 +45,7 @@ enableTitleFooter: true
   * ACID, SQL, CAP, CRUD, DAL, DBMS...
 
 
----
+</script></section><section  data-markdown><script type="text/template">
 
 ## Software Framework
 * **Abstraction** providing **generic functionality**
@@ -52,7 +55,7 @@ enableTitleFooter: true
   * Provides particular functionality as part of a larger software platform
     * To facilitate development of software applications
 
----
+</script></section><section ><section data-markdown><script type="text/template">
 
 ## Database
 * **Persistent** data storage
@@ -63,14 +66,14 @@ enableTitleFooter: true
 * **Database management system (DBMS)**
   * System specifically designed to hold databases
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Database components
 * *Schema* - formal definition of database structure
 * *Table* - contains multiple columns (similar to the columns in a spreadsheet)
 * *Column* - contains one of several types of data
 * *Row* - **data** in a table is listed in rows (like rows of data in a spreadsheet)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Persistence
 * **Official definition**
   * *The continuance of an effect after its cause is removed*
@@ -78,19 +81,19 @@ enableTitleFooter: true
 * **In database context**
   * *Data is available after application or system reboot*
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### ACID
 ![](assets/img/acid.jpg) <!-- .element: class="r-stretch" -->
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### CAP
 ![](assets/img/CAPtheorem.png) <!-- .element: class="r-stretch" -->
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### CRUD
 ![](assets/img/CRUD.png) <!-- .element: class="r-stretch" -->
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Data Access Layer (DAL)
 <div id="left">
 
@@ -105,7 +108,7 @@ enableTitleFooter: true
 ![](assets/img/ef-in-app-architecture.png) <!-- .element: class="r-stretch" -->
 </div>
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## Database Types
 <div id="left">
 
@@ -134,7 +137,7 @@ enableTitleFooter: true
 ![](assets/img/SQLvsNOSQL.jpg)
 
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### SQL
 * **Structured Query Language**
 * Standard language for relational database management systems
@@ -153,7 +156,7 @@ enableTitleFooter: true
 
 
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Microsoft SQL LocalDB
 * Feature of *SQL Server Express*
 * Designed for developers
@@ -162,7 +165,7 @@ enableTitleFooter: true
 * When connecting, the **necessary SQL Server infrastructure is automatically created and started**
 * Enabling the application to **use the database without complex configuration** tasks
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Visual Studio Server Explorer
 
 <div id="left">
@@ -181,11 +184,11 @@ enableTitleFooter: true
 
 </div>
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Connect to MSSQLLocalDB
 ![](assets/img/ServerExplorer.gif)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## Object-relational Mapping (ORM)
 <div id="left">
 
@@ -202,7 +205,7 @@ enableTitleFooter: true
 ![](assets/img/ORM.jpg)
 </div>
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Pros of Object Relation Mapping
 * **Abstract**
 * **Portable**
@@ -211,7 +214,7 @@ enableTitleFooter: true
 * **Cache management**
   * Entities are cached in memory (reducing load on the database)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Cons of Object Relation Mapping
 * **Slow**
 * **Complex queries take time**
@@ -220,7 +223,7 @@ enableTitleFooter: true
 * **Limitations** if complex queries are needed
   * Sometimes it is faster to write raw SQL
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Technologies used to connect to the database
 ![](/assets/img/Overview_small.png) <!-- .element: class="overview" -->
 
@@ -232,7 +235,7 @@ enableTitleFooter: true
 * [NuGetMustHaves.com - Top ORM Packages](https://nugetmusthaves.com/Category/ORM)
 
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## ADO.NET
 * Set of classes that **expose data access service**
   * *SqlClient* (`System.Data.SqlClient`)
@@ -244,7 +247,7 @@ enableTitleFooter: true
   * Creation of front-end **database clients**
   * Middle-tier business objects used by applications, tools, languages, or Internet browsers
 
-+++
+</script></section><section data-markdown><script type="text/template">
 
 <pre><code  data-sample='assets/sln/Examples/SqlClientExample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- +++?code=assets/sln/Examples/SqlClientExample.cs&lang=C#&title=ADO.NET SqlClient Sample
@@ -258,7 +261,7 @@ enableTitleFooter: true
 @[10-53] -->
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/Examples/SqlClientExample.cs)
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Entity Framework (EF)
 * **Official definition:** *“Entity Framework is an object-relational mapper (ORM) that enables .NET developers to work with a database using .NET objects. It eliminates the need for most of the data-access code that developers usually need to write.”*
 * **Object-relational mapping framework**
@@ -269,7 +272,7 @@ enableTitleFooter: true
 * Enables to work with data using objects without focusing on the underlying database
 * [Tutorial](http://www.entityframeworktutorial.net)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Entity Framework Main Features
 * **Cross-platform** - EF Core is a cross-platform framework (Windows, Linux, Mac)
 * **Modelling** - creates an Entity Data Model (EDM) based on Plain Old CLR Object (POCO) entities with get/set properties of different data types (used when querying or saving entity data)
@@ -283,7 +286,7 @@ enableTitleFooter: true
 * **Configurations** - allows us to configure the EF model by using data annotation attributes or Fluent API to override default conventions
 * **Migrations** - set of migration commands to create or manage underlying database Schema
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Entity Framework Versions
 * [Differences](https://docs.microsoft.com/en-us/ef/efcore-and-ef6/)
 * Currently, there are two latest versions of Entity Framework
@@ -299,7 +302,7 @@ enableTitleFooter: true
 
 ![](assets/img/EFversions.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Entity Framework Core
 * [GitHub](https://github.com/aspnet/EntityFrameworkCore)
 * [Documentation](https://docs.microsoft.com/sk-sk/ef/core/)
@@ -310,7 +313,7 @@ enableTitleFooter: true
 
 ![](assets/img/EFCoreSupport.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Approaches
 * **Entity Framework Database First**
   * Creating Entity Data Model from your existing database
@@ -323,7 +326,7 @@ enableTitleFooter: true
 ![](assets/img/EFApproaches.png)
 
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Data Providers
 * Provider model to access many different databases
 * NuGet packages which you need to install
@@ -337,7 +340,7 @@ enableTitleFooter: true
 | SQL Compact | [EntityFrameworkCore.SqlServerCompact40](https://www.nuget.org/packages/EntityFrameworkCore.SqlServerCompact40)   |
 |  In-memory  | [Microsoft.EntityFrameworkCore.InMemory](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory)   |
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ### Installation
 ![](/assets/img/Overview_small.png) <!-- .element: class="overview" -->
 * Install *NuGet* packages to use EF Core
@@ -346,7 +349,7 @@ enableTitleFooter: true
   * **EF Core design**
 
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Install DB Provider
 * Install *NuGet package* for the provider of the database we want to access
 * To access **MS SQL Server database**
@@ -354,23 +357,23 @@ enableTitleFooter: true
     * Tools -> NuGet Package Manager -> Manage NuGet Packages For Solution
     * OR `PM> Install-Package Microsoft.EntityFrameworkCore.SqlServer`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Install DB Provider Image 1/5
 ![](assets/img/install-efcore-1.png)
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Install DB Provider Image 2/5
 ![](assets/img/install-efcore-2.png)
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Install DB Provider Image 3/5
 ![](assets/img/install-efcore-3.png)
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Install DB Provider Image 4/5
 ![](assets/img/install-efcore-4.png)
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Install DB Provider Image 5/5
 ![](assets/img/install-efcore-5.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Install Tools
 * To execute EF Core commands
 * Makes it easier to perform several EF Core-related tasks in your project at design time
@@ -379,18 +382,18 @@ enableTitleFooter: true
   * For **Package Manager Console** (PMC) as `Microsoft.EntityFrameworkCore.Tools`
   * For **Command Line Interface** (CLI) as `Microsoft.EntityFrameworkCore.Tools.DotNet`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Install Tools Image
 ![](assets/img/install-efcore-6.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Install Design
 * Shared **design-time components** for Entity Framework Core tools
 * Package manager console cmdlets like `Add-Migration`, `dotnet ef` & `ef.exe`
 * Needed for **Migrations** or **Reverse Engineering**
 * NuGet package `Microsoft.EntityFrameworkCore.Design`
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Basic Concepts
 ![](/assets/img/Overview_small.png) <!-- .element: class="overview" -->
 * DbContext
@@ -402,15 +405,15 @@ enableTitleFooter: true
 * RAW SQL Queries
 * Migrations
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Example Schema
 ![](assets/img/draw/Database.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Example Schema
 ![](assets/img/draw/Database-modified.png)
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Entity
 * `class` in the domain of your application
 * Included as a `DbSet<TEntity>` type property in the derived context class
@@ -427,7 +430,7 @@ public class CourseEntity
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Entity in DbContext
 * Classes become entities when they are **included as** `DbSet<TEntity>` properties **in a context class**
 * Properties of type `DbSet<TEntity>` are called **entity sets**
@@ -448,7 +451,7 @@ public class SchoolDbContext : DbContext
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Entity Properties
 * Entity can include **two types of properties**
   * **Scalar Property**
@@ -466,16 +469,16 @@ public class SchoolDbContext : DbContext
         * Includes a property of collection type
         * Represents multiplicity of many (*)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Entity Property Types
 ![](assets/img/entity-properties.png) <!-- .element: class="stretch" -->
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Entity types
 * **POCO Entities (Plain Old CLR Object)**
   * Class that doesn't depend on any framework-specific base class
@@ -495,7 +498,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 ```
 [Source](https://docs.microsoft.com/en-us/ef/core/querying/related-data#lazy-loading)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### POCO Proxy Requirements
 * POCO entity should meet the following requirements to become a POCO proxy:
   1. A POCO class must be declared with **public access**
@@ -504,7 +507,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
   4. Each navigation **property** must be declared as **public, virtual**
   5. Each collection **property** must be `ICollection<T>`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.DAL.Tests/EntityTypesTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 
 <!-- +++?code=assets/sln/EntityFramework/School.DAL.Tests/EntityTypesTest.cs&lang=C#&title=Entity Types Sample
@@ -514,7 +517,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 @[45-56] -->
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.DAL.Tests/EntityTypesTest.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Entity states
 * EF API maintains the state of each entity during an its lifetime
 * **Each entity has a state** based on the operation performed on it via the *DbContext*
@@ -527,13 +530,13 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
   4. *Unchanged*
   5. *Detached*
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Change Tracking
 * *DbContext* keeps track of entity states and **maintains modifications** made to the properties of the entity
 * Change from the *Unchanged* to the *Modified* is the only state that's **automatically handled by the** *DbContext*
 * Other changes must be made **explicitly using** proper **methods of **`DbContext`** or **`DbSet`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.DAL.Tests/EntityStatesTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 
 <!-- +++?code=assets/sln/EntityFramework/School.DAL.Tests/EntityStatesTest.cs&lang=C#&title=Entity States Sample
@@ -546,7 +549,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.DAL.Tests/EntityStatesTest.cs)
 
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Commands Building and Executing
 * EF API builds and executes the **INSERT**, **UPDATE**, and **DELETE** commands based on the state of an entity when the `dbContext.SaveChanges()` is called
   * **INSERT** command for the entities with **Added** state
@@ -555,7 +558,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
   * Context **does not track** entities in the **Detached** state
 ![](assets/img/entity-states.png)
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ### DbContext
 * Integral part of Entity Framework
 * Instance **represents a session with the database**
@@ -570,7 +573,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
   6. Caching
   7. Transaction management
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### DbContext Creation
 * Class that derives from `DbContext` (known as context class)
 * Typically includes `DbSet<TEntity>` properties for each entity in the model
@@ -593,7 +596,7 @@ public class SchoolDbContext : DbContext
     }
 } 
 
-+++
+</script></section><section data-markdown><script type="text/template">
 
 #### InMemory DbContext Creation
 
@@ -609,7 +612,7 @@ public class TestDbContextFactory : IDbContextFactory
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### SqlServer DbContext Creation
 * **Do NOT include connection string into the code!!!**
   
@@ -627,22 +630,22 @@ public class DefaultDbContextFactory : IDbContextFactory
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/Dapper.DAL/appconfig.json' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.DAL/appconfig.json)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.DAL/SchoolDbContext.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-30] -->
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.DAL/SchoolDbContext.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.DAL.Tests/LinqLazyEvaluationTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[13-21]
 @[23-34] -->
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.DAL.Tests/LinqLazyEvaluationTest.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### DbContext Methods
 | Method          | Usage                                                                                                                                                                                              |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -651,7 +654,7 @@ public class DefaultDbContextFactory : IDbContextFactory
 | *AddRange*      | Adds a collection of new entities to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChanges()` is called.                |
 | *AddRangeAsync* | Asynchronous method for adding a collection of new entities which will be saved on `SaveChangesAsync()`.                                                                                           |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### DbContext Methods
 | Method        | Usage                                                                                                                             |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------- |
@@ -661,7 +664,7 @@ public class DefaultDbContextFactory : IDbContextFactory
 | *Find*        | Finds an entity with the given primary key values.                                                                                |
 | *FindAsync*   | Asynchronous method for finding an entity with the given primary key values.                                                      |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### DbContext Methods
 | Method             | Usage                                                                                                                               |
 | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
@@ -670,7 +673,7 @@ public class DefaultDbContextFactory : IDbContextFactory
 | *SaveChanges*      | Execute *INSERT*, *UPDATE* or *DELETE* command to the database for the entities with Added, Modified or Deleted state.              |
 | *SaveChangesAsync* | Asynchronous method of `SaveChanges()`                                                                                              |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### DbContext Methods
 | Method            | Usage                                                                                                                                                                       |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -680,7 +683,7 @@ public class DefaultDbContextFactory : IDbContextFactory
 | *OnConfiguring*   | Override this method to configure the database (and other options) to be used for this context. This method is called for each instance of the context that is created.     |
 | *OnModelCreating* | Override this method to further configure the model that was discovered by convention from the entity types exposed in `DbSet<TEntity>` properties on your derived context. |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### DbContext Properties
 | Property        | Usage                                                                                                               |
 | --------------- | ------------------------------------------------------------------------------------------------------------------- |
@@ -688,7 +691,7 @@ public class DefaultDbContextFactory : IDbContextFactory
 | *Database*      | Provides access to database related information and operations for this context.                                    |
 | *Model*         | Returns the metadata about the shape of entities, the relationships between them, and how they map to the database. |
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ### Persistence Scenarios - Connected Scenario
 * Same instance of the context class (derived from DbContext) is used
 * Keeps **track of all entities** during its lifetime
@@ -700,11 +703,11 @@ public class DefaultDbContextFactory : IDbContextFactory
   * The context stays alive, so the connection with the database stays open
   * Utilizes more resource
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Persistence Scenarios - Connected Scenario
 ![](assets/img/persistance-fg1.PNG)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Persistence Scenarios - Disconnected  Scenario
 * **Used in this course**
 * **Different instances of the context are used** to retrieve and save entities to the database
@@ -718,11 +721,11 @@ public class DefaultDbContextFactory : IDbContextFactory
   * Need to set an appropriate state to each entity before saving
   * Performs slower than the connected scenario
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Persistence Scenarios - Disconnected  Scenario
 ![](assets/img/persistance-fg2.PNG)
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Conventions
 * **Default rules** to builds a model based on your domain 
   * **Tables** for all `DbSet<TEntity>` properties in a context class 
@@ -734,7 +737,7 @@ public class DefaultDbContextFactory : IDbContextFactory
     * `<Reference Navigation Property Name>Id`
     * `<Reference Navigation Property Name><Principal Primary Key Property Name>`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### C# to SQL Mapping
 | C# Data Type              | SQL Data Type  |
 | ------------------------- | -------------- |
@@ -751,11 +754,11 @@ public class DefaultDbContextFactory : IDbContextFactory
 | `double`                  | float          |
 | `char`, `sbyte`, `object` | No mapping     |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Foreign Key Convention
 ![](assets/img/foreignkey-conv.png)
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Entity Configurations
 * To **customize the entity to table mapping**
 * When **do not want to follow default conventions**
@@ -763,14 +766,14 @@ public class DefaultDbContextFactory : IDbContextFactory
   * By using *Data Annotation Attributes*
   * By using *Fluent API*
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Annotation Attributes
 * Namespace `System.ComponentModel.DataAnnotations` and `System.ComponentModel.DataAnnotations`
 * Simple **attribute based configuration method**
 * .NET attributes can be** applied to domain classes and properties to configure the model**
 * Also used in *ASP.NET MVC*
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Annotation Attributes Sample
 ```C#
 [Table("StudentInfo")]
@@ -801,7 +804,7 @@ public class Student
 @[13-14]
 @[17,19-20] -->
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### `System.ComponentModel.DataAnnotations.Schema` attributes
 | Attribute           | Description                                                                     |
 | ------------------- | ------------------------------------------------------------------------------- |
@@ -813,7 +816,7 @@ public class Student
 | `InverseProperty`   | Specifies the inverse of a navigation property                                  |
 | `Owned`             | Denotes that the class is a weak entity.                                        |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### `System.ComponentModel.Annotations` attributes
 | Attribute          | Description                                                             |
 | ------------------ | ----------------------------------------------------------------------- |
@@ -824,7 +827,7 @@ public class Student
 | `MaxLength`        | Sets the maximum allowed length of the property value (string or array) |
 | `StringLength`     | Sets the maximum allowed length of the property value (string or array) |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Fluent API
 * Based on a *Fluent API* design pattern ([Fluent Interface](https://en.wikipedia.org/wiki/Fluent_interface))
 * Result is formulated by [method chaining](https://en.wikipedia.org/wiki/Method_chaining)
@@ -832,7 +835,7 @@ public class Student
   * Provides **more configuration options than data annotation attributes**
 * **Higher precedence than data annotation attributes**
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Fluent API Configures
 * **Model Configuration**
   * Configures an EF model to database mappings
@@ -844,7 +847,7 @@ public class Student
   * Configures property to column mapping 
   * e.g. column name, default value, nullability, Foreignkey, data type, concurrency column...
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Fluent API Sample
 ```C#
 public class SchoolDbContext: DbContext 
@@ -865,7 +868,7 @@ public class SchoolDbContext: DbContext
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Model Configurations
 | Fluent API Methods   | Usage                                                                |
 | -------------------- | -------------------------------------------------------------------- |
@@ -874,7 +877,7 @@ public class SchoolDbContext: DbContext
 | `HasAnnotation()`    | Adds or updates data annotation attributes on the entity.            |
 | `HasSequence()`      | Configures a database sequence when targeting a relational database. |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Entity Configuration
 | Fluent API Methods  | Usage                                                                                                                                                                 |
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -887,7 +890,7 @@ public class SchoolDbContext: DbContext
 | `OwnsOne()`         | Configures a relationship where the target entity is owned by this entity. The target entity key value is propagated from the entity it belongs to.                   |
 | `ToTable()`         | Configures the database table that the entity maps to.                                                                                                                |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Property Configuration part 1
 | Fluent API Methods       | Usage                                                                                                                |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------- |
@@ -899,7 +902,7 @@ public class SchoolDbContext: DbContext
 | `HasField()`             | Specifies the backing field to be used with a property.                                                              |
 | `HasMaxLength()`         | Configures the maximum length of data that can be stored in a property.                                              |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Property Configuration part 2
 | Fluent API Methods     | Usage                                                                                            |
 | ---------------------- | ------------------------------------------------------------------------------------------------ |
@@ -908,7 +911,7 @@ public class SchoolDbContext: DbContext
 | `IsRowVersion()`       | Configures the property to be used in optimistic concurrency detection.                          |
 | `IsUnicode()`          | Configures the string property which can contain unicode characters or not.                      |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Property Configuration part 3
 | Fluent API Methods              | Usage                                                                                  |
 | ------------------------------- | -------------------------------------------------------------------------------------- |
@@ -918,7 +921,7 @@ public class SchoolDbContext: DbContext
 | `ValueGeneratedOnUpdate()`      | Configures that a property has a generated value when saving an existing entity.       |
 
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ### DbContext Usage
 ![](/assets/img/Overview_small.png) <!-- .element: class="overview" -->
 * Insert Data
@@ -926,7 +929,7 @@ public class SchoolDbContext: DbContext
 * Delete Data
 * Query Data
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## Insert Data
 ```C#
 var person = new Person
@@ -942,7 +945,7 @@ using (var dbContext = CreateDbContext())
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## Update Data
 
 ```C#
@@ -955,7 +958,7 @@ using (var dbContext = CreateDbContext())
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## Delete Data
 ```C#
 var person = new Person
@@ -970,7 +973,7 @@ using (var dbContext = CreateDbContext())
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## Query Data
 
 * Any expresion created with LINQ
@@ -982,7 +985,7 @@ dbContext.Todos
     .First(t => t.Id == todo.Id);
 ```
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Entity Relationships
 
 ![](/assets/img/Overview_small.png) <!-- .element: class="overview" -->
@@ -994,7 +997,7 @@ dbContext.Todos
 * Just add them as properties, respect naming conventions
 * Additional configuration of relationships can be done in `DbContext.OnModelCreating` method
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### One-to-One Relationships
 * Default conventions
   * Reference **navigation property at both sides**
@@ -1008,15 +1011,15 @@ modelBuilder.Entity<StudentEntity>()
                 .HasForeignKey<StudentEntity>("AddressId");
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Entities/AddressEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.DAL/Entities/AddressEntity.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### One-to-Many Relationships
 * Default conventions
   * There are more options
@@ -1029,7 +1032,7 @@ modelBuilder.Entity<StudentEntity>()
                 .HasForeignKey(i=>i.GradeId);
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Default Convertions
 * *1*
 
@@ -1053,7 +1056,7 @@ public class Grade
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Default Convertions
 * *3*
 
@@ -1083,15 +1086,15 @@ public class Grade
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Entities/GradeEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.DAL/Entities/GradeEntity.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Cascade Delete using Fluent API
 * Automatically deletes the **dependant entity** when the related **principal entity** is deleted
 
@@ -1103,7 +1106,7 @@ modelBuilder.Entity<StudentEntity>()
                 .OnDelete(DeleteBehavior.Cascade);
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Many-to-Many Relationships
 * In the database they are **represented by a joining table** which includes the foreign keys of both tables
 * There are no default conventions
@@ -1114,20 +1117,20 @@ modelBuilder.Entity<StudentCourse>()
     .HasKey(sc => new { sc.StudentId, sc.CourseId });
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Entities/CourseEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.DAL/Entities/CourseEntity.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Entities/StudentCourseEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.DAL/Entities/StudentCourseEntity.cs)
 
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## RAW SQL Queries
 * `DbSet.FromSql()` - method to execute raw SQL queries
 
@@ -1141,13 +1144,13 @@ var students = context.Students
               .ToList();
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### RAW SQL Limitations
 * SQL queries **must return entities of the same type** as `DbSet<T>` type, e.g., the specified query cannot return the `CourseEntity` entities if `FromSql()` is used after `Students`. Returning ad-hoc types from `FromSql()` method is in the backlog
 * The SQL query **must return all the columns** of the table. e.g. `context.Students.FromSql("Select Id, Name from Students).ToList()` will throw an exception
 * The SQL query **cannot include JOIN queries** to get related data. Use `Include` method to load related entities after `FromSql()` method.
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Migration
 * Way to **keep the database schema in sync** with the EF Core model by preserving data
 * Set of commands for
@@ -1159,7 +1162,7 @@ var students = context.Students
 
 ![](assets/img/ef-core-migration.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Migration commands
 | PMC Command                    | CLI Command          | Usage                                                             |
 | ------------------------------ | -------------------- | ----------------------------------------------------------------- |
@@ -1168,7 +1171,7 @@ var students = context.Students
 | Update-Database                | Update               | Updates the database schema based on the last migration snapshot. |
 | Script-Migration               | Script               | Generates a SQL script using all the migration snapshots.         |
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Dapper
 * Simple object mapper for .NET
 * **King of Micro ORM**
@@ -1177,7 +1180,7 @@ var students = context.Students
 * `PM> Install-Package Dapper`
 * [Tutorial](https://dapper-tutorial.net)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### How Dapper works
 * Works with **any database provider** since **there is no DB specific implementation**
 * Three step process:
@@ -1185,11 +1188,11 @@ var students = context.Students
   2. *Write a query to perform CRUD operations*
   3. *Pass query as a parameter in Execute method*
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/Dapper.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/Dapper.DAL/Entities/StudentEntity.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/Dapper.DAL/StudentRepository.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[20-30]
 @[32-42]
@@ -1197,12 +1200,12 @@ var students = context.Students
 @[55-64] -->
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/Dapper.DAL/StudentRepository.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/Dapper.DAL.Tests/StudentRepositoryTests.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[12-28] -->
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/Dapper.DAL.Tests/StudentRepositoryTests.cs)
 
----
+</script></section></section><section  data-markdown><script type="text/template">
 ## NHibernate
 * Object-relational mapper
 * **Open source**
@@ -1212,7 +1215,7 @@ var students = context.Students
 * [Documentation](https://nhibernate.info/doc/index.html)
 * [GitHub](https://github.com/nhibernate/nhibernate-core)
 
----
+</script></section><section ><section data-markdown><script type="text/template">
 ## ORM Performance Benchmarking
 * Tested technologies:
   * **Entity Framework** representing "big" ORM
@@ -1221,11 +1224,11 @@ var students = context.Students
 
 [Source](https://github.com/exceptionnotfound/ORMBenchmarksTest)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Performance Benchmarking Methodology  - Schema
 ![](assets/img/Benchmarking-schema.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Performance Benchmarking - Methodology  - Sample data
 * Used algorithms to create
 * You **can select**
@@ -1233,7 +1236,7 @@ var students = context.Students
   * How many *teams per sport* you want for each test
   * How many *players per team* you want for each test
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Performance Benchmarking Methodology  - Queries
 * **Queries**
   * Player by ID
@@ -1244,7 +1247,7 @@ var students = context.Students
     * **Multiple runs** of this over the same data
       * Average them out and get a set of numbers that should show which of the ORMs is the fastest
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Performance Benchmarking test class - Entity Framework
 ```C#
 public class EntityFramework : ITestSignature
@@ -1288,7 +1291,7 @@ public class EntityFramework : ITestSignature
 ```
 [Code sample](https://github.com/exceptionnotfound/ORMBenchmarksTest/blob/master/ORMBenchmarksTest/DataAccess/EntityFramework.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Performance Benchmarking test class - ADO.NET
 ```C#
 public class ADONET : ITestSignature
@@ -1350,7 +1353,7 @@ public class ADONET : ITestSignature
 ```
 [Code sample](https://github.com/exceptionnotfound/ORMBenchmarksTest/blob/master/ORMBenchmarksTest/DataAccess/ADONET.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Performance Benchmarking test class - Dapper
 ```C#
 public class Dapper : ITestSignature
@@ -1398,7 +1401,7 @@ public class Dapper : ITestSignature
 ```
 [Code sample](https://github.com/exceptionnotfound/ORMBenchmarksTest/blob/master/ORMBenchmarksTest/DataAccess/Dapper.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Performance Benchmarking results
 * Following results are for
   * **10 iterations** each containg
@@ -1406,7 +1409,7 @@ public class Dapper : ITestSignature
     * **30 teams** in each sport
     * **100 players** per team
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Performance Benchmarking results - Entity Framework
 | RUN         | PLAYER BY ID | PLAYERS FOR TEAM | TEAMS FOR SPORT |
 | ----------- | ------------ | ---------------- | --------------- |
@@ -1423,7 +1426,7 @@ public class Dapper : ITestSignature
 | **Average** | **0.77ms**   | **3.57ms**       | **113.45ms**    |
 
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Performance Benchmarking results - ADO.NET
 | RUN         | PLAYER BY ID | PLAYERS FOR TEAM | TEAMS FOR SPORT |
 | ----------- | ------------ | ---------------- | --------------- |
@@ -1439,7 +1442,7 @@ public class Dapper : ITestSignature
 | **10**      | 0ms          | 1.17ms           | 8.88ms          |
 | **Average** | **0.013ms**  | **1.03ms**       | **8.84ms**      |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Performance Benchmarking results - Dapper
 | RUN         | PLAYER BY ID | PLAYERS FOR TEAM | TEAMS FOR SPORT |
 | ----------- | ------------ | ---------------- | --------------- |
@@ -1455,18 +1458,18 @@ public class Dapper : ITestSignature
 | **10**      | 0.02ms       | 1ms              | 7.75ms          |
 | **Average** | **0.047ms**  | **1.01ms**       | **7.94ms**      |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Performance Benchmarking analysis and conclusion
 * *Entity Framework* in *basic configuration* is 3-10 times **slower** than either *ADO.NET* or *Dapper*
 * *Dapper.NET* is unquestionably **faster** than *Entity Framework* and slightly faster than straight *ADO.NET*
 
 
----
+</script></section></section><section  data-markdown><script type="text/template">
 
 # Repository, UnitOfWork, Facade and Mapper design patterns
 ## Mapping Entities to Models
 
----
+</script></section><section ><section data-markdown><script type="text/template">
 ## Repository
 * Mediates **between the domain and data mapping layers**
 * Acting like an **in-memory collection** of domain objects 
@@ -1474,13 +1477,13 @@ public class Dapper : ITestSignature
 
 ![](assets/img/repository.jpg)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Repository Benefits
 * **Minimizes duplicit** query logic
 * **Decouples** application from persistence frameworks
 * Promotes **testability**
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Repository Responsibility
 * **Add** *object*
 * **Remove** *object*
@@ -1488,7 +1491,7 @@ public class Dapper : ITestSignature
 * **Get all** *objects*
 * **Find** using *predicate*
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Repository vs UnitOfWork
 * **Repository** design pattern
   * Should **not have sematics of database**
@@ -1496,29 +1499,29 @@ public class Dapper : ITestSignature
 * How are these objects going to be saved to database?
   * **UnitOfWork** design pattern
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Repositories/RepositoryBase.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.DAL/Repositories/RepositoryBase.cs)
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## UnitOfWork
 * Maintains a list of objects affected by a business transaction
 * Coordinates the writing out of changes
 
 ![](assets/img/UnitOfWork.jpg)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.DAL/UnitOfWork/UnitOfWork.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.DAL/UnitOfWork/UnitOfWork.cs)
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ### Entity Framework as UnitOfWork and Repository
 * *UnitOfWork* and *Repository* are **already implemented** in *Entity Framework*
 * **Do not bring the architectural benefits** from these patterns
 
 ![](assets/img/EntityFramework.jpg)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Entity Framework Problems
 * *Repository*
   * **Minimizes duplicit** query logic
@@ -1536,7 +1539,7 @@ var topSellingCourses = schoolCourses.Where(c => c.IsPublic && c.IsApproved).Ord
 * **Solution**
   * **Repository** with method `GetTopSellingCourses`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Entity Framework Problems
 * *Repository and UnitOfWork*
   * **Decouples** application from persistence frameworks
@@ -1546,7 +1549,7 @@ var topSellingCourses = schoolCourses.Where(c => c.IsPublic && c.IsApproved).Ord
   * Aplication **code has to be directly upgraded** when switching to different ORM
 
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Mapper
 * **Object-object**
 * **Mapping**
@@ -1556,38 +1559,38 @@ var topSellingCourses = schoolCourses.Where(c => c.IsPublic && c.IsApproved).Ord
 * E.g. `entity` to the `model/DTO`
 
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Mapper School Sample
 * Mapping *Entity Framework entities* to *models*
 * **Model**
   * Part of *Model-View-ViewModel(MVVM)* design pattern
   * Represents the **actual data and information**
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.BL/Mappers/IMapper.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.BL/Mappers/IMapper.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.BL/Models/DetailModels/AddressDetailModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.BL/DetailModels/AddressDetailModel.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.BL/Mappers/AddressMapper.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.BL/Mappers/AddressMapper.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.BL/Models/ListModels/StudentListModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.BL/Models/ListModels/StudentListModel.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.BL/Models/DetailModels/StudentDetailModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.BL/Models/DetailModels/StudentDetailModel.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.BL/Mappers/StudentMapper.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.BL/Mappers/StudentMapper.cs)
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ![](assets/img/AutoMapper.png)
 ![](/assets/img/Overview_small.png) <!-- .element: class="overview" -->
 * `PM> Install-Package AutoMapper`
@@ -1596,7 +1599,7 @@ var topSellingCourses = schoolCourses.Where(c => c.IsPublic && c.IsApproved).Ord
 * [Docs](https://automapper.readthedocs.io/en/latest/index.html)
 
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Auto Mapper
 * Automatic **object-object mapping**
   * **Same properties**
@@ -1605,7 +1608,7 @@ var topSellingCourses = schoolCourses.Where(c => c.IsPublic && c.IsApproved).Ord
 * Interesting **conventions to take the dirty work out**
 * Almost zero configuration is needed 
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Why AutoMapper
 * Mapping code is boring
 * Testing the mapping code is even more boring
@@ -1613,7 +1616,7 @@ var topSellingCourses = schoolCourses.Where(c => c.IsPublic && c.IsApproved).Ord
   * **Simple configuration of types**
   * **Simple testing of mappings**
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### How to Use AutoMapper
 1. **Create source and destination** types
   * AutoMapper works best as long as the names of the members match up to the source type’s members
@@ -1622,7 +1625,7 @@ var topSellingCourses = schoolCourses.Where(c => c.IsPublic && c.IsApproved).Ord
 2. **Create a map for the two types**
 3. **Perform mapping**
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Create a map for the two types
 * On the *left* is *source type*
 * On the *right* is *destination type*
@@ -1633,7 +1636,7 @@ Mapper.Initialize(cfg => cfg.CreateMap<Order, OrderDto>());
 var config = new MapperConfiguration(cfg => cfg.CreateMap<Order, OrderDto>());
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Perform mapping
 
 ```
@@ -1648,7 +1651,7 @@ var mapper = new Mapper(config);
 OrderDto dto = mapper.Map<OrderDto>(order);
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### How to test Mapping
 * **Create a test** that
   * Calls *bootstrapper class to create all the mappings*
@@ -1660,7 +1663,7 @@ var config = AutoMapperConfiguration.Configure();
 config.AssertConfigurationIsValid();
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### AutoMapper Supports
 * **Flattening**
   * Take a complex object model and flatten it to a simpler model
@@ -1673,14 +1676,14 @@ config.AssertConfigurationIsValid();
 * Custom **Converters**, **Resolvers**
 * ⋮
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Facade
 * **Provides a unified interface** to the set of interfaces in a subsystem
 * **Higher-level interface** that makes the subsystem easier to use
 
 ![](assets/img/facade.gif)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Facade Participants
 * **Facade**
   * Knows which subsystem classes are responsible for a request
@@ -1690,19 +1693,19 @@ config.AssertConfigurationIsValid();
   * Handle work assigned by the Facade object
   * Have no knowledge of the facade and keep no reference to it
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.BL/Facades/CrudFacadeBase.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.BL/Facades/CrudFacadeBase.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.BL.Tests/AddressFacadeTests.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.BL.Tests/AddressFacadeTests.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code  data-sample='assets/sln/EntityFramework/School.BL.Tests/StudentFacadeTests.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/assets/sln/EntityFramework/School.BL.Tests/StudentFacadeTests.cs)
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## References:
 [C# 8.0 in a Nutshell: The Definitive Reference](https://www.amazon.com/C-8-0-Nutshell-Definitive-Reference/dp/1492051136) 
 [EntityFrameworkTutorial.net](http://www.entityframeworktutorial.net/)  
@@ -1714,7 +1717,7 @@ config.AssertConfigurationIsValid();
 [Computer Hope](https://www.computerhope.com)  
 [Wikipedia](https://en.wikipedia.org)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## Refences to used images:
 [EntityFrameworkTutorial.net](http://www.entityframeworktutorial.net/)  
 [The Inquisitive Singh](https://inquisitivesingh.wordpress.com)  
@@ -1725,7 +1728,59 @@ config.AssertConfigurationIsValid();
 [ResearchGate](https://www.researchgate.net/)  
 [Data36](https://data36.com/)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## Credits
 * Michal Mrnuštík - for slides preparation
-* Michal Orlíček - for slides preparation
+* Michal Orlíček - for slides preparation</script></section></section></div>
+    </div>
+
+    <script src="./dist/reveal.js"></script>
+
+    <script src="./plugin/markdown/markdown.js"></script>
+    <script src="./plugin/highlight/highlight.js"></script>
+    <script src="./plugin/zoom/zoom.js"></script>
+    <script src="./plugin/notes/notes.js"></script>
+    <script src="./plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"controls":true,"controlsTutorial":true,"controlsLayout":"bottom-right","progress":true,"slideNumber":true,"showSlideNumber":"all","keyboard":true,"overview":true,"navigationMode":"linear","fragments":true,"fragmentInURL":false,"help":true,"mouseWheel":true,"transition":"slide","transitionSpeed":"fast"}, queryOptions);
+    </script>
+
+    <script src="./_assets/plugin/sampler.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
