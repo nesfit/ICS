@@ -59,7 +59,7 @@ namespace Dapper.DAL
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appconfig.json"); //beware of static file reference in code... 
+                .AddJsonFile("appconfig.json"); //beware of static file reference in code... also, the DB has to be created manually
 
             var configuration = builder.Build();
             return configuration.GetConnectionString("SchoolContext");
