@@ -11,7 +11,7 @@ namespace School.BL.Mappers
     public class AddressMapper : IMapper<AddressEntity, AddressDetailModel, AddressDetailModel>
     {
         public IEnumerable<AddressDetailModel> Map(IQueryable<AddressEntity> entities) 
-            => entities?.Select(entity => Map(entity)).ToArray();
+            => entities?.Select(entity => Map(entity)).ToValueCollection();
 
         public AddressDetailModel Map(AddressEntity entity) 
             => entity == null? null : new AddressDetailModel

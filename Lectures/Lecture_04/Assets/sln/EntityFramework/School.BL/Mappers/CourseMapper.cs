@@ -19,7 +19,7 @@ namespace School.BL.Mappers
             {
                 Id = entity.Id,
                 Name = entity.Name
-            }).ToArray();
+            }).ToValueCollection();
 
         public CourseDetailModel Map(CourseEntity entity) 
             => entity == null
@@ -29,7 +29,7 @@ namespace School.BL.Mappers
                     Id = entity.Id,
                     Name = entity.Name,
                     Description = entity.Description,
-                    Students = StudentCourseMapper.Map(entity.StudentCourses.Select(i=>i.Student)).ToList()
+                    Students = StudentCourseMapper.Map(entity.StudentCourses.Select(i=>i.Student)).ToValueCollection()
                 };
 
         public CourseEntity Map(CourseDetailModel detailModel, IEntityFactory entityFactory)
@@ -45,7 +45,7 @@ namespace School.BL.Mappers
                 studentCourseEntity.CourseId = detailModel.Id;
                 studentCourseEntity.StudentId = model.StudentId;
                 return studentCourseEntity;
-            }).ToList();
+            }).ToValueCollection();
             return entity;
         }
     }

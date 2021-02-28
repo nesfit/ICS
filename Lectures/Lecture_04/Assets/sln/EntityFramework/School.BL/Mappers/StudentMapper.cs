@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using School.BL.Factories;
 using School.BL.Models.DetailModels;
@@ -18,7 +19,7 @@ namespace School.BL.Mappers
             {
                 Id = entity.Id,
                 Name = entity.Name
-            }).ToArray();
+            }).ToValueCollection();
         }
 
         public StudentDetailModel Map(StudentEntity entity) => entity == null
@@ -35,7 +36,7 @@ namespace School.BL.Mappers
                         CourseId = courseEntity.CourseId,
                         StudentId = entity.Id,
                         Name = courseEntity.Course.Name
-                    }).ToArray(),
+                    }).ToValueCollection(),
                 Grade = new GradeListModel() { Id = entity.Grade.Id, Name = entity.Grade.Name}
             };
 
@@ -55,28 +56,11 @@ namespace School.BL.Mappers
                 studentCourseEntity.CourseId = course.CourseId;
                 studentCourseEntity.StudentId = detailModel.Id;
                 return studentCourseEntity;
-            }).ToArray();
+            }).ToValueCollection();
 
             entity.GradeId = detailModel.Grade.Id;
 
             return entity;
-        }
-    }
-
-    public class StudentCourseMapper 
-    {
-        public IEnumerable<StudentCourseListModel> Map(IEnumerable<StudentEntity> entities) 
-            => entities?.SelectMany(MapStudentCourse).ToArray();
-
-        public IEnumerable<StudentCourseListModel> MapStudentCourse(StudentEntity studentEntity)
-        {
-            return studentEntity?.StudentCourses.Select(courseEntity => new StudentCourseListModel()
-            {
-                Id = courseEntity.Id,
-                StudentId = courseEntity.StudentId,
-                CourseId = courseEntity.CourseId,
-                Name = studentEntity.Name
-            }).ToArray();
         }
     }
 }
