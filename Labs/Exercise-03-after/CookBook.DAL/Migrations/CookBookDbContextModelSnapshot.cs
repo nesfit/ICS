@@ -15,22 +15,27 @@ namespace CookBook.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("CookBook.DAL.Entities.IngredientAmountEntity", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("Amount");
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
 
-                    b.Property<Guid>("IngredientId");
+                    b.Property<Guid>("IngredientId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("RecipeId");
+                    b.Property<Guid>("RecipeId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Unit");
+                    b.Property<int>("Unit")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -44,11 +49,14 @@ namespace CookBook.DAL.Migrations
             modelBuilder.Entity("CookBook.DAL.Entities.IngredientEntity", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -66,15 +74,20 @@ namespace CookBook.DAL.Migrations
             modelBuilder.Entity("CookBook.DAL.Entities.RecipeEntity", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeSpan>("Duration");
+                    b.Property<TimeSpan>("Duration")
+                        .HasColumnType("time");
 
-                    b.Property<int>("FoodType");
+                    b.Property<int>("FoodType")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -86,12 +99,23 @@ namespace CookBook.DAL.Migrations
                     b.HasOne("CookBook.DAL.Entities.IngredientEntity", "Ingredient")
                         .WithMany()
                         .HasForeignKey("IngredientId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("CookBook.DAL.Entities.RecipeEntity", "Recipe")
                         .WithMany("Ingredients")
                         .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ingredient");
+
+                    b.Navigation("Recipe");
+                });
+
+            modelBuilder.Entity("CookBook.DAL.Entities.RecipeEntity", b =>
+                {
+                    b.Navigation("Ingredients");
                 });
 #pragma warning restore 612, 618
         }

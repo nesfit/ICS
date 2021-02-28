@@ -8,7 +8,7 @@ using Xunit;
 
 namespace CookBook.DAL.Tests
 {
-    public class CookBookDbContextTests : IDisposable
+    public sealed class CookBookDbContextTests : IDisposable
     {
         private readonly DbContextInMemoryFactory _dbContextFactory;
         private readonly CookBookDbContext _cookBookDbContextSUT;
@@ -24,11 +24,7 @@ namespace CookBook.DAL.Tests
         public void AddNew_Ingredient_Persisted()
         {
             //Arrange
-            var ingredientEntity = new IngredientEntity
-            {
-                Name = "Salt",
-                Description = "Mountain salt"
-            };
+            var ingredientEntity = new IngredientEntity("Salt", "Mountain salt");
 
             //Act
             _cookBookDbContextSUT.Ingredients.Add(ingredientEntity);
@@ -38,7 +34,7 @@ namespace CookBook.DAL.Tests
             //Assert
             using var dbx = _dbContextFactory.Create();
             var retrievedIngredient = dbx.Ingredients.Single(entity => entity.Id == ingredientEntity.Id);
-            Assert.Equal(ingredientEntity, retrievedIngredient, IngredientEntity.DescriptionNameIdComparer);
+            Assert.Equal(ingredientEntity, retrievedIngredient);
         }
 
         [Fact]
@@ -50,7 +46,7 @@ namespace CookBook.DAL.Tests
                 Name = "Chicken soup",
                 Description = "Grandma's delicious chicken soup."
             };
-
+            
             //Act
             _cookBookDbContextSUT.Recipes.Add(recipeEntity);
             _cookBookDbContextSUT.SaveChanges();
@@ -59,7 +55,7 @@ namespace CookBook.DAL.Tests
             using var dbx = _dbContextFactory.Create();
             var retrievedRecipe = dbx.Recipes
                 .Single(entity => entity.Id == recipeEntity.Id);
-            Assert.Equal(recipeEntity, retrievedRecipe, RecipeEntity.RecipeEntityComparer);
+            Assert.Equal(recipeEntity, retrievedRecipe);
         }
 
         [Fact]
@@ -76,21 +72,13 @@ namespace CookBook.DAL.Tests
                     {
                         Amount = 1,
                         Unit = Unit.L,
-                        Ingredient = new IngredientEntity
-                        {
-                            Name = "Water",
-                            Description = "Filtered Water"
-                        }
+                        Ingredient = new IngredientEntity("Water","Filtered Water")
                     },
                     new IngredientAmountEntity
                     {
                         Amount = 50,
                         Unit = Unit.Ml,
-                        Ingredient = new IngredientEntity
-                        {
-                            Name = "Lime-juice",
-                            Description = "Fresh lime-juice"
-                        }
+                        Ingredient = new IngredientEntity("Lime-juice", "Fresh lime-juice")
                     }
                 }
             };
@@ -105,7 +93,7 @@ namespace CookBook.DAL.Tests
                 .Include(entity => entity.Ingredients)
                 .ThenInclude(amounts => amounts.Ingredient)
                 .Single(entity => entity.Id == recipeEntity.Id);
-            Assert.Equal(recipeEntity, retrievedRecipe, RecipeEntity.RecipeEntityComparer);
+            Assert.Equal(recipeEntity, retrievedRecipe);
         }
 
         [Fact]
@@ -113,12 +101,9 @@ namespace CookBook.DAL.Tests
         {
             var fromDb = _cookBookDbContextSUT.Ingredients.Single(i => i.Id == IngredientSeeds.Water.Id);
 
-            Assert.Equal(IngredientSeeds.Water, fromDb, IngredientEntity.DescriptionNameIdComparer);
+            Assert.Equal(IngredientSeeds.Water, fromDb);
         }
 
-        public void Dispose()
-        {
-            _cookBookDbContextSUT?.Dispose();
-        }
+        public void Dispose() => _cookBookDbContextSUT?.Dispose();
     }
 }

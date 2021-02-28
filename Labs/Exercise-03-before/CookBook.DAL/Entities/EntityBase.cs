@@ -2,8 +2,8 @@
 
 namespace CookBook.DAL.Entities
 {
-    public abstract class EntityBase : IEntity
+    public abstract record EntityBase(Guid Id) : IEntity
     {
-        public Guid Id { get; set; }
+        protected EntityBase():this(Guid.Empty) { }
     }
 }

@@ -25,7 +25,7 @@
    * pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika
 3. [Představení základních knihovních funkcí (BCL)](https://gitpitch.com/nesfit/ics/master?grs=github&t=white&p=Lectures%2FLecture_03#/)
    * dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL)
-4. [Propojení aplikace s databází](https://gitpitch.com/nesfit/ics/master?grs=github&t=white&p=Lectures%2FLecture_04#/)
+4. [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/index.html#/)
    * zajištění persistence pomocí ORM rozšíření Entity Framework Core s návrhovými vzory UnitOfWork a Repository
 5. Psaní čistého, udržovatelného kódu
    * respektováním Clean Code, S.O.L.I.D. zásad

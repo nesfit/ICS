@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.DAL.Tests
 {
-    public class DbContextInMemoryFactory: IDbContextFactory<CookBookDbContext>
+    public class DbContextInMemoryFactory: INamedDbContextFactory<CookBookDbContext>
     {
         private readonly string _databaseName;
 

@@ -18,7 +18,7 @@ namespace CookBook.BL.Mapper
         }
 
         public static IngredientDetailModel MapIngredientEntityToDetailModel(IngredientEntity entity) =>
-            new IngredientDetailModel
+            new()
             {
                 Id = entity.Id,
                 Name = entity.Name,
@@ -26,11 +26,6 @@ namespace CookBook.BL.Mapper
             };
 
         public static IngredientEntity MapIngredientDetailModelToEntity(IngredientDetailModel model) =>
-            new IngredientEntity
-            {
-                Id = model.Id,
-                Description = model.Description,
-                Name = model.Name
-            };
+            new(model.Id, model.Name, model.Description);
     }
 }
