@@ -8,6 +8,6 @@ namespace School.BL.Factories
 {
     public class CreateNewEntityFactory : IEntityFactory 
     {
-        public TEntity Create<TEntity>(Guid id) where TEntity : class, IEntity, new() => new TEntity();
+        public TEntity Create<TEntity>(Guid id) where TEntity : class, IEntity, new() => new();
     }
 }

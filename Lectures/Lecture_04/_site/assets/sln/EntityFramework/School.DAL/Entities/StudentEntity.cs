@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace School.DAL.Entities
 {
+    // Demos entities without records, we do advice to use records instead of classes
     public class StudentEntity : IEntity
     {
         public Guid Id { get; set; }

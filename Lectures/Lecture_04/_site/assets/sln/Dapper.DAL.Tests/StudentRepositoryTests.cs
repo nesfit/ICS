@@ -7,7 +7,7 @@ namespace Dapper.DAL.Tests
 {
     public class StudentRepositoryTests
     {
-        private readonly StudentRepository _studentRepository = new StudentRepository();
+        private readonly StudentRepository _studentRepository = new();
 
         [Fact]
         public void RepositoryTest()

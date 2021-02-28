@@ -44,7 +44,7 @@ namespace School.BL.Tests
             Assert.NotEqual(Guid.Empty, detail.Id);
 
             var entityFromDb = _repository.GetById(detail.Id);
-            Assert.Equal(detail, _mapper.Map(entityFromDb), AddressDetailModel.AddressDetailModelComparer);
+            Assert.Equal(detail, _mapper.Map(entityFromDb));
         }
     }
 }

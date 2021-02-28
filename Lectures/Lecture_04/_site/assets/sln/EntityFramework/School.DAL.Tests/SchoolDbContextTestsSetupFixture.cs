@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace School.DAL.Tests
 {
-    public class SchoolDbContextTestsSetupFixture : IDisposable
+    public sealed class SchoolDbContextTestsSetupFixture : IDisposable
     {
         public SchoolDbContextTestsSetupFixture()
         {
@@ -12,17 +12,11 @@ namespace School.DAL.Tests
 
         public SchoolDbContext SchoolDbContextSut { get; set; }
 
-        public void Dispose()
-        {
-            SchoolDbContextSut?.Dispose();
-        }
+        public void Dispose() => SchoolDbContextSut?.Dispose();
 
-        public SchoolDbContext CreateSchoolDbContext()
-        {
-            return new SchoolDbContext(CreateDbContextOptions());
-        }
+        public static SchoolDbContext CreateSchoolDbContext() => new(CreateDbContextOptions());
 
-        private DbContextOptions<SchoolDbContext> CreateDbContextOptions()
+        private static DbContextOptions<SchoolDbContext> CreateDbContextOptions()
         {
             var contextOptionsBuilder = new DbContextOptionsBuilder<SchoolDbContext>();
             contextOptionsBuilder.UseInMemoryDatabase("TestInMemoryDb");

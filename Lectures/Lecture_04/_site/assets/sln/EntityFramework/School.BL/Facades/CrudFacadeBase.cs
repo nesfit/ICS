@@ -33,7 +33,7 @@ namespace School.BL.Facades
             _unitOfWork = unitOfWork;
         }
         
-        protected virtual Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>[] Includes { get; } = { };
+        protected virtual Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>[] Includes { get; } = Array.Empty<Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>>();
         
         public IEnumerable<TListModel> GetAllList() => _mapper.Map(_repository.GetAll());
 

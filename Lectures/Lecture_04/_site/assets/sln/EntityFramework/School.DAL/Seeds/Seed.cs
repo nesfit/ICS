@@ -7,7 +7,7 @@ namespace School.DAL.Seeds
 {
     public static class Seed
     {
-        public static readonly AddressEntity AddressJane = new AddressEntity()
+        public static readonly AddressEntity AddressJane = new()
         {
             Id = Guid.Parse("88D642BD-6D3E-403C-AA15-8552DEDDFA8A"),
             City = "Monaco",
@@ -16,7 +16,7 @@ namespace School.DAL.Seeds
             State = "Monaco",
         };
 
-        public static readonly GradeEntity GradeJane = new GradeEntity()
+        public static readonly GradeEntity GradeJane = new()
         {
             Id = Guid.Parse("A464EAA4-867E-45F4-81F1-48465E2C236F"),
             Name = "Best class",
@@ -24,7 +24,7 @@ namespace School.DAL.Seeds
             Students = new List<StudentEntity>()
         };
 
-        public static readonly CourseEntity IcsCourse = new CourseEntity()
+        public static readonly CourseEntity IcsCourse = new()
         {
             Id = Guid.Parse("346A21A2-3C1F-43A6-A6A0-DC57613AFE19"),
             Name = "ICS",
@@ -32,7 +32,7 @@ namespace School.DAL.Seeds
             StudentCourses = new List<StudentCourseEntity>()
         };
 
-        public static readonly StudentEntity StudentJane = new StudentEntity()
+        public static readonly StudentEntity StudentJane = new()
         {
             Id = Guid.Parse("0A7EE49A-C6AC-41AF-97D0-9F91B9FAF966"),
             Name = "Jane",
@@ -42,7 +42,7 @@ namespace School.DAL.Seeds
             StudentCourses = new List<StudentCourseEntity>() {}
         };
 
-        public static readonly StudentCourseEntity StudentCourseJane = new StudentCourseEntity()
+        public static readonly StudentCourseEntity StudentCourseJane = new()
         {
             Id = Guid.Parse("5A459757-0C73-414E-83E4-8B24E998E3CE"),
             CourseId = IcsCourse.Id,

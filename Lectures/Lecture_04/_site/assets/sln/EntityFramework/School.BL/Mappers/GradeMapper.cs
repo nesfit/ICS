@@ -13,10 +13,10 @@ namespace School.BL.Mappers
         public IMapper<StudentEntity, StudentListModel, StudentDetailModel> StudentMapper { get; set; }
 
         public IEnumerable<GradeListModel> Map(IQueryable<GradeEntity> entities) 
-            => entities?.Select(entity => MapListModel(entity)).ToArray();
+            => entities?.Select(entity => MapListModel(entity)).ToValueCollection();
 
         public GradeListModel MapListModel(GradeEntity entity) =>
-            new GradeListModel()
+            new()
             {
                 Id = entity.Id,
                 Name = entity.Name,
@@ -30,7 +30,7 @@ namespace School.BL.Mappers
                 Id = entity.Id,
                 Name = entity.Name,
                 Section = entity.Section,
-                Students = StudentMapper.Map(entity.Students.AsQueryable()).ToList()
+                Students = StudentMapper.Map(entity.Students.AsQueryable()).ToValueCollection()
             };
 
         public GradeEntity Map(GradeDetailModel detailModel, IEntityFactory entityFactory)

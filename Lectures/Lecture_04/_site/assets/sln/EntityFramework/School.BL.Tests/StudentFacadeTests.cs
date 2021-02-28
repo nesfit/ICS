@@ -48,7 +48,7 @@ namespace School.BL.Tests
                 Grade = new GradeMapper().MapListModel(Seed.GradeJane),
                 Courses = new List<StudentCourseListModel>()
                 {
-                    new StudentCourseListModel()
+                    new()
                     {
                         CourseId = Seed.IcsCourse.Id,
                         Name = Seed.IcsCourse.Name,
@@ -61,7 +61,7 @@ namespace School.BL.Tests
             Assert.NotEqual(Guid.Empty, detail.Id);
 
             var entityFromDb = _repository.GetById(detail.Id);
-            Assert.Equal(detail, _mapper.Map(entityFromDb), StudentDetailModel.StudentDetailModelComparer);
+            Assert.Equal(detail, _mapper.Map(entityFromDb));
         }
 
         [Fact]
@@ -69,7 +69,7 @@ namespace School.BL.Tests
         {
             var detail = _facadeSUT.GetById(Seed.StudentJane.Id);
 
-            Assert.Equal(detail, _mapper.Map(Seed.StudentJane), StudentDetailModel.StudentDetailModelComparer);
+            Assert.Equal(detail, _mapper.Map(Seed.StudentJane));
         }
     }
 }

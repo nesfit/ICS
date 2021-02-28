@@ -48,12 +48,13 @@ namespace School.DAL.Repositories
             => _unitOfWork.DbContext
                 .Set<TEntity>();
 
+        //TODO this code will be updated in following lectures
         private void SynchronizeCollections(TEntity entity)
         {
             var collectionsToBeSynchronized = typeof(TEntity).GetProperties().Where(i =>
                 i.PropertyType.IsGenericType && i.PropertyType.GetGenericTypeDefinition() == typeof(ICollection<>));
 
-            if (!collectionsToBeSynchronized.Any())
+            if (!collectionsToBeSynchronized?.Any() ?? false)
             {
                 return;
             }
@@ -84,7 +85,7 @@ namespace School.DAL.Repositories
         {
             foreach (var entry in entries)
             {
-                Console.WriteLine($"Entity: {entry.Entity.GetType().Name}, State: {entry.State.ToString()}");
+                Console.WriteLine($"Entity: {entry.Entity.GetType().Name}, State: {entry.State}");
             }
         }
     }

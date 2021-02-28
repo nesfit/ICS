@@ -19,55 +19,47 @@ namespace Dapper.DAL
 
         public IEnumerable<StudentEntity> GetAll()
         {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var statement = "SELECT * FROM Students";
-                connection.Open();
+            using var connection = new SqlConnection(_connectionString);
+            var statement = "SELECT * FROM Students";
+            connection.Open();
 
-                var result = connection.Query<StudentEntity>(statement);
-                return result.ToList();
-            }
+            var result = connection.Query<StudentEntity>(statement);
+            return result.ToList();
         }
 
         public StudentEntity GetById(Guid id)
         {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var statement = "SELECT * FROM Students WHERE Id = @Id";
-                connection.Open();
+            using var connection = new SqlConnection(_connectionString);
+            var statement = "SELECT * FROM Students WHERE Id = @Id";
+            connection.Open();
 
-                var result = connection.Query<StudentEntity>(statement, new {Id = id});
-                return result.FirstOrDefault();
-            }
+            var result = connection.Query<StudentEntity>(statement, new {Id = id});
+            return result.FirstOrDefault();
         }
 
         public void Insert(StudentEntity entity)
         {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var statement = "INSERT INTO Students (Id, Name) Values (@Id, @Name);";
-                connection.Open();
+            using var connection = new SqlConnection(_connectionString);
+            var statement = "INSERT INTO Students (Id, Name) Values (@Id, @Name);";
+            connection.Open();
 
-                connection.Execute(statement, new {entity.Id, entity.Name});
-            }
+            connection.Execute(statement, new {entity.Id, entity.Name});
         }
 
         public void Delete(Guid id)
         {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var statement = "DELETE FROM Students WHERE Id = @Id;";
-                connection.Open();
+            using var connection = new SqlConnection(_connectionString);
+            var statement = "DELETE FROM Students WHERE Id = @Id;";
+            connection.Open();
 
-                connection.Execute(statement, new {Id = id});
-            }
+            connection.Execute(statement, new {Id = id});
         }
 
         private static string GetConnectionString()
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appconfig.json");
+                .AddJsonFile("appconfig.json"); //beware of static file reference in code... also, the DB has to be created manually
 
             var configuration = builder.Build();
             return configuration.GetConnectionString("SchoolContext");

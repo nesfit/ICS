@@ -2,7 +2,7 @@
 
 namespace School.BL.Models.ListModels
 {
-    public class CourseListModel : IModel
+    public record CourseListModel : IModel
     {
         public Guid Id { get; set; }
 
