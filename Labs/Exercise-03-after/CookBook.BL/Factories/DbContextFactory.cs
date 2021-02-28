@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.BL.Factories
 {
-    public class DbContextFactory : IDbContextFactory<CookBookDbContext>
+    public class DbContextFactory : INamedDbContextFactory<CookBookDbContext>
     {
         public CookBookDbContext Create()
         {

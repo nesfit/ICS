@@ -12,9 +12,9 @@ namespace CookBook.BL.Repositories
 {
     public class IngredientRepository : IIngredientRepository
     {
-        private readonly IDbContextFactory<CookBookDbContext> _dbContextFactory;
+        private readonly INamedDbContextFactory<CookBookDbContext> _dbContextFactory;
 
-        public IngredientRepository(IDbContextFactory<CookBookDbContext> dbContextFactory)
+        public IngredientRepository(INamedDbContextFactory<CookBookDbContext> dbContextFactory)
         {
             this._dbContextFactory = dbContextFactory;
         }
@@ -52,7 +52,7 @@ namespace CookBook.BL.Repositories
         {
             using var dbContext = _dbContextFactory.Create();
 
-            var entity = new IngredientEntity(){Id =  id};
+            var entity = new IngredientEntity(id);
 
             dbContext.Remove(entity);
             dbContext.SaveChanges();

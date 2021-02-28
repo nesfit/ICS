@@ -11,7 +11,7 @@ using Xunit;
 
 namespace CookBook.BL.Tests
 {
-    public class IngredientRepositoryTests : IDisposable
+    public sealed class IngredientRepositoryTests : IDisposable
     {
         private readonly IngredientRepository _ingredientRepositorySUT;
         private readonly DbContextInMemoryFactory _dbContextFactory;
