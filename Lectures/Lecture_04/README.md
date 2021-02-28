@@ -26,11 +26,11 @@ docker run --rm -p 8080:1948 -v ./Lecture.md:/slides webpronl/reveal-md:latest
 ## Export as PDF
 
 ```
-reveal-md .\Lecture.md --port 8080 -w  --print slides.pdf
+reveal-md .\Lecture.md --print slides.pdf
 ```
 
 ## Export as static content
 
 ```
- reveal-md .\Lecture.md --port 8080 -w  --static _site --static-dirs=assets
+ reveal-md .\Lecture.md --static _site --static-dirs=assets
 ```
