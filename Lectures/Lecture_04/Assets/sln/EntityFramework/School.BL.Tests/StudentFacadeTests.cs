@@ -48,7 +48,7 @@ namespace School.BL.Tests
                 Grade = new GradeMapper().MapListModel(Seed.GradeJane),
                 Courses = new List<StudentCourseListModel>()
                 {
-                    new StudentCourseListModel()
+                    new()
                     {
                         CourseId = Seed.IcsCourse.Id,
                         Name = Seed.IcsCourse.Name,

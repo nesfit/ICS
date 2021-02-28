@@ -7,7 +7,7 @@ using Xunit;
 
 namespace School.DAL.Tests
 {
-    public class EntityStatesTest: IDisposable
+    public sealed class EntityStatesTest: IDisposable
     {
         private readonly SchoolDbContext _schoolDbContextSut;
 
@@ -18,7 +18,7 @@ namespace School.DAL.Tests
             _schoolDbContextSut.Database.EnsureCreated();
         }
 
-        readonly StudentEntity _studentEntity = new StudentEntity
+        private readonly StudentEntity _studentEntity = new()
         {
             Name = "Jane"
         };
@@ -62,9 +62,6 @@ namespace School.DAL.Tests
             Assert.Equal(EntityState.Detached, _schoolDbContextSut.Entry(_studentEntity).State);
         }
 
-        public void Dispose()
-        {
-            _schoolDbContextSut?.Dispose();
-        }
+        public void Dispose() => _schoolDbContextSut?.Dispose();
     }
 }

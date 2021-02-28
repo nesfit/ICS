@@ -48,12 +48,13 @@ namespace School.DAL.Repositories
             => _unitOfWork.DbContext
                 .Set<TEntity>();
 
+        //TODO this code will be updated in following lectures
         private void SynchronizeCollections(TEntity entity)
         {
             var collectionsToBeSynchronized = typeof(TEntity).GetProperties().Where(i =>
                 i.PropertyType.IsGenericType && i.PropertyType.GetGenericTypeDefinition() == typeof(ICollection<>));
 
-            if (!collectionsToBeSynchronized.Any())
+            if (!collectionsToBeSynchronized?.Any() ?? false)
             {
                 return;
             }

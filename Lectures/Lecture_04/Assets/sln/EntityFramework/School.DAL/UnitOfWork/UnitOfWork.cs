@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace School.DAL.UnitOfWork
 {
-    public class UnitOfWork : IDisposable
+    public sealed class UnitOfWork : IDisposable
     {
         public UnitOfWork(DbContext dbContext)
         {

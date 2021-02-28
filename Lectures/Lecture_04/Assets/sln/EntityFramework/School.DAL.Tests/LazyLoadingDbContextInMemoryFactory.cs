@@ -4,7 +4,7 @@ using School.DAL.Factories;
 
 namespace School.DAL.Tests
 {
-    public class LazyLoadingDbContextInMemoryFactory : IDbContextFactory<SchoolDbContext>
+    public class LazyLoadingDbContextInMemoryFactory : INamedDbContextFactory<SchoolDbContext>
     {
         private readonly string _databaseName;
 

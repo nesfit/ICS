@@ -12,7 +12,7 @@ namespace School.BL.Mappers
     {
         public IMapper<StudentEntity, StudentListModel, StudentDetailModel> StudentMapper { get; set; } 
 
-        public StudentCourseMapper StudentCourseMapper { get; set; } = new StudentCourseMapper();
+        public StudentCourseMapper StudentCourseMapper { get; set; } = new();
 
         public IEnumerable<CourseListModel> Map(IQueryable<CourseEntity> entities) 
             => entities?.Select(entity => new CourseListModel()

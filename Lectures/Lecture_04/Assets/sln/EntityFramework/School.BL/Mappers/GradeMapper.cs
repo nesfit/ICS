@@ -16,7 +16,7 @@ namespace School.BL.Mappers
             => entities?.Select(entity => MapListModel(entity)).ToArray();
 
         public GradeListModel MapListModel(GradeEntity entity) =>
-            new GradeListModel()
+            new()
             {
                 Id = entity.Id,
                 Name = entity.Name,

@@ -8,7 +8,7 @@ using Xunit;
 
 namespace School.DAL.Tests
 {
-    public class EntityTypesTest : IDisposable
+    public sealed class EntityTypesTest : IDisposable
     {
         private readonly SchoolDbContext _schoolDbContextSut;
         private const string DbName = nameof(EntityStatesTest);
@@ -55,9 +55,6 @@ namespace School.DAL.Tests
             Assert.Equal(jane, Seed.StudentJane, StudentEntity.StudentEntityComparer);
         }
 
-        public void Dispose()
-        {
-            _schoolDbContextSut?.Dispose();
-        }
+        public void Dispose() => _schoolDbContextSut?.Dispose();
     }
 }

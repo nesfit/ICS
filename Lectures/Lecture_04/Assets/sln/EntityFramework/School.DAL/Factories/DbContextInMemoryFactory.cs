@@ -2,7 +2,7 @@
 
 namespace School.DAL.Factories
 {
-    public class DbContextInMemoryFactory: IDbContextFactory<SchoolDbContext>
+    public class DbContextInMemoryFactory: INamedDbContextFactory<SchoolDbContext>
     {
         private readonly string _databaseName;
 
