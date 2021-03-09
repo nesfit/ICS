@@ -18,19 +18,19 @@
 
 +++
 
-0. [Organizace kurzu](https://gitpitch.com/nesfit/ics/master?grs=github&t=white&p=Lectures%2FLecture_00#/)
-1. [Úvod do jazyka C# a platformy .NET](https://gitpitch.com/nesfit/ics/master?grs=github&t=white&p=Lectures%2FLecture_01#/)
+1. Organizace kurzu
+2. [Úvod do jazyka C# a platformy .NET](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/index.html#/)
    * základní syntaxe jazyka, instalace a představení Visual Studia
-2. [Úvod do Objektově Orientované Programování](https://gitpitch.com/nesfit/ics/master?grs=github&t=white&p=Lectures%2FLecture_02#/)
+3. [Úvod do Objektově Orientované Programování](https://gitpitch.com/nesfit/ics/master?grs=github&t=white&p=Lectures%2FLecture_02#/)
    * pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika
-3. [Představení základních knihovních funkcí (BCL)](https://gitpitch.com/nesfit/ics/master?grs=github&t=white&p=Lectures%2FLecture_03#/)
+4. [Představení základních knihovních funkcí (BCL)](https://gitpitch.com/nesfit/ics/master?grs=github&t=white&p=Lectures%2FLecture_03#/)
    * dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL)
-4. [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/index.html#/)
+5. [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/index.html#/)
    * zajištění persistence pomocí ORM rozšíření Entity Framework Core s návrhovými vzory UnitOfWork a Repository
-5. Psaní čistého, udržovatelného kódu
+6. Psaní čistého, udržovatelného kódu
    * respektováním Clean Code, S.O.L.I.D. zásad
    * ukázky refaktorizace a práce s legacy kódem
-6. Návrhový vzor Model-View-ViewModel (MVVM)
+7. Návrhový vzor Model-View-ViewModel (MVVM)
    * architektura desktopových aplikací
    * mapování databázových entit na modelové třídy
 

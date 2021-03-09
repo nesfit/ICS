@@ -1,27 +1,37 @@
-﻿@snap[midpoint span-100]
+---
+title: ICS 01 - Introduction to C#, Visual Studio and .NET
+theme: simple
+css: assets/theme.css
+separator: "^---$"
+verticalSeparator: "^\\+\\+\\+$"
+highlightTheme: vs
+progress: true
+slideNumber: true
+mouseWheel: false
+enableMenu: true
+enableChalkboard: true
+enableTitleFooter: true
+---
 
 # Introduction to C#, Visual Studio and .NET
 
-@snapend
+<div class="right">[ Jan Pluskal &lt;ipluskal@fit.vutbr.cz&gt;  ]
 
-@snap[south-east span-40]
-
-[ Jan Pluskal <ipluskal@fit.vutbr.cz> ]
-
-@snapend
 ---
-@snap[midpoint span-100]
 
 ## Introduction to Visual Studio
 
-@snapend
-
 ---
-@snap[north]
-![](/Lectures/Lecture_01/Assets/img/VisualStudioLogo.png)
-@snapend
 
-* Integrated development environment (IDE)
+<div class="right">
+
+![](assets/img/VisualStudioLogo.png)
+
+</div>
+
+<div class="left">
+
+* *Integrated development environment (IDE)*
 * Feature-rich program that can be used for many aspects of software development:
   * editor
   * debugger
@@ -32,10 +42,10 @@
 * [Free download](https://visualstudio.microsoft.com/vs/")
 * [Installation guide](https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio?view=vs-2017)
 
+</div>
+
 +++
-@snap[midpoint span-100]
-![](/Lectures/Lecture_01/Assets/img/VisualStudioIde.jpg)
-@snapend
+![](assets/img/VisualStudioIde.jpg)
 
 +++
 ## Comparison of Visual Studio versions
@@ -61,6 +71,8 @@
 ---
 ## Recommended extensions, services, and tools
 
+<div class="left">
+
 * Extensions:
   * Resharper
   * Code metrices
@@ -76,132 +88,113 @@
   * Rider
   * Azure DevOps
 
-@snap[east span-60]
-![](/Lectures/Lecture_01/Assets/img/VSExtensions.PNG)
-@snapend
+</div>
+
+<div class="right">
+
+![](assets/img/VSExtensions.PNG)
+
+</div>
 
 +++
 ### [Resharper](https://www.jetbrains.com/resharper/)
 
-@snap[west span-40]
+<div class="left">
 
 Extends Visual Studio with code inspections. For most inspections provides quick-fixes to improve code in one way or another. Helps safely organize code and move it around the solution.
 
 For more details see [features](https://www.jetbrains.com/resharper/features/).
 
-@snapend
+</div>
 
-@snap[east span-50]
-![](/Lectures/Lecture_01/Assets/img/reshaper_refactor_this.png)
-@snapend
+<div class="right">
+
+![](assets/img/reshaper_refactor_this.png)
+
+</div>
 
 +++
 ### [Azure DevOps](https://azure.microsoft.com/en-us/services/devops/)
+
+<div class="left">
+
 * Before Visual Studio Team Services.
 * Cloud-hosted private Git repositories
 * Agile planning
 * Build management
 * Test Plans
 
-@snap[east span-50]
-![Azure-DevOps](/Lectures/Lecture_01/Assets/img/Azure-DevOps2.png)
-@snapend
+</div>
+
+<div class="right">
+
+![Azure-DevOps](assets/img/Azure-DevOps2.png)
+
+</div>
 
 
 +++
 ### [Code Metrices](https://marketplace.visualstudio.com/items?itemName=Elisha.CodeMetrices)
-@snap[west span-50]
+
 Visual Studio extension that helps to monitor the code complexity.
 As you type, the method complexity "health" is updated, and the complexity is shown near the method.
-@snapend
 
-@snap[east span-50]
-![Azure-DevOps](/Lectures/Lecture_01/Assets/img/code_metrices.jpg)
-@snapend
+![Azure-DevOps](assets/img/code_metrices.jpg)
 
 +++
 ### [Mnemonic templates](https://github.com/JetBrains/mnemonics)
-@snap[west span-50]
 
 Templates for ReSharper that let you quickly generate code and data structures by typing in names.
 
-@snapend
+![](assets/img/resharperLiveTemplates_thumb.gif)
 
-@snap[east span-50]
-![](/Lectures/Lecture_01/Assets/img/resharperLiveTemplates_thumb.gif)
-@snapend
 
 +++
 ### [LinqPad](http://www.linqpad.net/)
-@snap[west span-40]
 
 LinqPad is not just for LINQ queries, but any C# expression, statement block or program.
 Put an end to those hundreds of Visual Studio Console projects cluttering your source folder and join the revolution of LINQPad scripters and incremental developers.
 
-@snapend
+![](assets/img/linqpad-sql.gif)
 
-@snap[east span-60]
-![](/Lectures/Lecture_01/Assets/img/linqpad-sql.gif)
-@snapend
 
 +++
 ### [DotPeek](https://www.jetbrains.com/decompiler/)
-@snap[west span-40]
 
 Tool based on ReSharper's bundled decompiler.
 It can reliably decompile any .NET assembly into equivalent C# or IL code.
 
-@snapend
-
-@snap[east span-60]
-![](/Lectures/Lecture_01/Assets/img/dotpeek.gif)
-@snapend
+![](assets/img/dotpeek.gif)
 
 +++
 ### [Markdown Editor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)
-@snap[west span-40]
 
 A full-featured Markdown editor with live preview and syntax highlighting.
 Supports GitHub flavored Markdown.
 
-@snapend
-
-@snap[east span-60]
-![](/Lectures/Lecture_01/Assets/img/markdown-editor.gif)
-@snapend
-
-
+![](assets/img/markdown-editor.gif)
 
 +++
 ### [Entity Framework Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools)
-@snap[west span-40]
 
 Useful design-time utilities for EF 6 / EF Core, accessible through the Visual Studio Solution Explorer context menu when right-clicking on a file containing a derived DbContext class.
 
-@snapend
-
-@snap[east span-60]
-![](/Lectures/Lecture_01/Assets/img/ef-powertool.PNG)
-@snapend
-
+![](assets/img/ef-powertool.PNG)
 
 +++
 ### [GitFlow](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio2017)
-@snap[west span-50]
 
 Team Explorer extension integrates GitFlow into your development workflow. It lets you easily create and finish feature, release and hotfix branches right from Team Explorer.  For more details about git recommends [Pro Git book](https://git-scm.com/book/en/v2).
 
-@snapend
-
-@snap[east span-40]
-![](/Lectures/Lecture_01/Assets/img/gitflow.png)
-@snapend
+![](assets/img/gitflow.png)
 
 ---
 ## Why To Choose .NET?
-@snap[north-east span-10]
-![](/Lectures/Lecture_01/Assets/img/Overview_small.png)
-@snapend
+<div class="right">
+
+![](assets/img/Overview_small.png)
+
+</div>
 
 * Productivity
 * Almost every platform
@@ -210,9 +203,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Large ecosystem
 * Open source
 
-@snap[east span-50]
-![](/Lectures/Lecture_01/Assets/img/why-developers-choose-dot-net.png)
-@snapend
+![](assets/img/why-developers-choose-dot-net.png)
 
 +++
 ### Productivity
@@ -225,9 +216,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Common APIs
 * *Multi-language* support
 
-@snap[east span-50]
-![](/Lectures/Lecture_01/Assets/img/dotneta.png)
-@snapend
+![](assets/img/dotneta.png)
 
 +++
 ### Almost every platform
@@ -238,9 +227,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Linux
 * Micro-services on cloud
 
-@snap[east span-70]
-![](/Lectures/Lecture_01/Assets/img/dotnet5_platform.png)
-@snapend
+![](assets/img/dotnet5_platform.png)
 
 +++
 ### Performance
@@ -250,10 +237,8 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
   * database access,
   * and server side template rendering.
 
-@snap[south-east span-50]
-![](/Lectures/Lecture_01/Assets/img/Performance.png)
+![](assets/img/Performance.png)
 [Source](https://www.techempower.com/benchmarks/#section=data-r16&hw=ph&test=plaintext)
-@snapend
 
 +++
 ### Security
@@ -283,9 +268,11 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 ---
 # .NET Platform
-@snap[north-east span-10]
-![](/Lectures/Lecture_01/Assets/img/Overview_small.png)
-@snapend
+<div class="right">
+
+![](assets/img/Overview_small.png)
+</div>
+
 
 * Language interoperability
 * Architecture
@@ -295,26 +282,17 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * In The Nutshell
 * The .NET family of frameworks
 
-@snap[south-east]
 [Source](https://blogs.msdn.microsoft.com/cesardelatorre/2016/06/27/net-core-1-0-net-framework-xamarin-the-whatand-when-to-use-it/)
-@snapend
 
-@snap[east span-70]
-![](/Lectures/Lecture_01/Assets/img/Overview.png)
-@snapend
 
 +++
 ## Language interoperability
-@snap[south-east span-70]
-![](/Lectures/Lecture_01/Assets/img/Common_Language_Infrastructure.png)
-@snapend
+![](assets/img/Common_Language_Infrastructure.png)
 
 
 +++
 ## Architecture
-@snap[midpoint span-100]
-![](/Lectures/Lecture_01/Assets/img/dot_net_architecture.png)
-@snapend
+![](assets/img/dot_net_architecture.png)
 
 +++
 ## CLR - Common Language Runtime
@@ -323,9 +301,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Just-in-time compilation
 * Similar to Java Virtual Machine
 
-@snap[east span-50]
-![](/Lectures/Lecture_01/Assets/img/dot_net_clr.png)
-@snapend
+![](assets/img/dot_net_clr.png)
 
 +++
 ## CLR - Benefits
@@ -345,14 +321,12 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Uses reachability from GC roots to identify *alive* objects
 * *Three generations*
 
-![](/Lectures/Lecture_01/Assets/img/gc_generations.png)
+![](assets/img/gc_generations.png)
 
 
 +++
 ## C# - In The Nutshell
-@snap[midpoint span-90]
-![](/Lectures/Lecture_01/Assets/img/Csh_in_nutshell_framework.png)
-@snapend
+![](assets/img/Csh_in_nutshell_framework.png)
 
 +++
 ## Standard Libraries
@@ -367,15 +341,19 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 +++
 ## The .NET family of frameworks
-@snap[midpoint span-100]
-![](/Lectures/Lecture_01/Assets/img/dot_net_libraries.jpg)
-@snapend
+![](assets/img/dot_net_libraries.jpg)
 
 ---
 # C# 101
-@snap[north-east span-10]
-![](/Lectures/Lecture_01/Assets/img/Overview_small.png)
-@snapend
+<div class="right">
+
+![](assets/img/Overview_small.png)
+
+![](assets/img/keep-calm-and-focus-on-the-basics.png)
+
+</div>
+
+<div class="left">
 
 * Identifiers
 * Keywords
@@ -386,9 +364,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Datatypes
 * Value Types
 
-@snap[east span-40]
-![](/Lectures/Lecture_01/Assets/img/keep-calm-and-focus-on-the-basics.png)
-@snapend
+</div>
 
 +++
 ## C# is
@@ -400,11 +376,12 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * based on c++;
 * programming language.
 
-@snap[east span-40]
-![](/Lectures/Lecture_01/Assets/img/csh.png)
-@snapend
+![](assets/img/csh.png)
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/HelloWorld.cs&lang=C#&title=Hello World Sample
++++
+<pre><code  data-sample='assets/sln/Tests/HelloWorld.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+
+<!-- +++?code=assets/sln/Tests/HelloWorld.cs&lang=C#&title=Hello World Sample
 @[1]
 @[3-4, 15]
 @[5-6, 14]
@@ -412,8 +389,8 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 @[9]
 @[11]
 @[12]
-@[1-15]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/HelloWorld.cs)
+@[1-15] -->
+[Code sample](assets/sln/Tests/HelloWorld.cs)
 
 +++
 ## Identifiers
@@ -499,10 +476,6 @@ var sum = 1 + 5 * (6 / 2);
 
 ---
 ## Datatypes
-@snap[north-east span-10]
-![](/Lectures/Lecture_01/Assets/img/Overview_small.png)
-@snapend
-
 * Instruct the compiler or interpreter how the programmer intends to use the data
 * **Value type**
   * Variable directly **contains data**
@@ -516,9 +489,7 @@ var sum = 1 + 5 * (6 / 2);
 
 +++
 ## Value Types
-@snap[north-east span-10]
-![](/Lectures/Lecture_01/Assets/img/Overview_small.png)
-@snapend
+
 * **Simple Types**
   * Signed integral: `sbyte, short, int, long`
   * Unsigned integral: `byte, ushort, uint, ulong`
@@ -752,15 +723,14 @@ int? canBeNull = null;
 int  cannotBeNull = null;      // Compile-time error
 ```
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/NullableType.cs&lang=C#&title=Nullable Type Sample
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/NullableType.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/NullableType.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](assets/sln/Tests/NullableType.cs)
 
 
 +++
 ##  Reference types
-@snap[north-east span-10]
-![](/Lectures/Lecture_01/Assets/img/Overview_small.png)
-@snapend
+
 * **Class types**
   * Ultimate base class of all other types: `object`
   * Unicode strings: `string`
@@ -874,9 +844,11 @@ string s = "a" + 5; // a5
   * `int[,]` *two-dimensional* array of int (matrix)
   * `int[][]` is a *single-dimensional array of single-dimensional* array of int
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/Array.cs&lang=C#&title=Array Sample
-@[11-21]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Array.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/Array.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- +++?code=assets/sln/Tests/Array.cs&lang=C#&title=Array Sample
+@[11-21] -->
+[Code sample](assets/sln/Tests/Array.cs)
 
 ---
 ### Variables
@@ -990,9 +962,10 @@ string s = "a" + 5; // a5
 | Char      | `'\0'`         |
 | Boolean   | `false`        |
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/DefaultValue.cs&lang=C#&title=Default Value Sample
-@[12-18]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/DefaultValue.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/DefaultValue.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[12-18] -->
+[Code sample](assets/sln/Tests/DefaultValue.cs)
 
 ---
 ## Parameters
@@ -1006,21 +979,25 @@ string s = "a" + 5; // a5
     * Variable **must** *be assigned* by the called method
     * Variable **need not** *to be initialized* before the method call
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/ValueParameter.cs&lang=C#&title=Value Parameter Sample
-@[9-26]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/ValueParameter.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/ValueParameter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[9-26] -->
+[Code sample](assets/sln/Tests/ValueParameter.cs)
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/RefParameter.cs&lang=C#&title=Ref Parameter Sample
-@[7-17]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/RefParameter.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/RefParameter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[7-17] -->
+[Code sample](assets/sln/Tests/RefParameter.cs)
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/InParameter.cs&lang=C#&title=In Parameter Sample
-@[7-19]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/InParameter.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/InParameter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[7-19] -->
+[Code sample](assets/sln/Tests/InParameter.cs)
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/OutParameter.cs&lang=C#&title=Out Parameter Sample
-@[7-24]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/OutParameter.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/OutParameter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[7-24] -->
+[Code sample](assets/sln/Tests/OutParameter.cs)
 
 +++
 ### Parameter with `params[]`
@@ -1107,8 +1084,8 @@ Expression<Action> tree = () => Console.WriteLine("Hello");
 Expression<Action> tree2 = () => { Console.WriteLine("Hello"); }; // Compile-time error
 ```
 
-* [An expression may be classified as] "nothing". 
-  * This occurs when the expression is an *invocation of a method with a return type of void*. 
+* [An expression may be classified as] "nothing".
+  * This occurs when the expression is an *invocation of a method with a return type of void*.
   * An expression classified as nothing *is only valid in the context of a statement expression*.
 
 +++
@@ -1143,21 +1120,25 @@ x = y = 3;
 * `switch`
 * Conditional (ternary) operand `?:`
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/If.cs&lang=C#&title=If Sample
-@[10-17]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/If.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/If.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[10-17] -->
+[Code sample](assets/sln/Tests/If.cs)
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/Switch.cs&lang=C#&title=Switch Sample
-@[13-30]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Switch.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/Switch.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[13-30] -->
+[Code sample](assets/sln/Tests/Switch.cs)
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/Switch.cs&lang=C#&title=Switch Sample C# 8
-@[45-64]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Switch.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/Switch.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[45-64] -->
+[Code sample](assets/sln/Tests/Switch.cs)
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/TernaryOperand.cs&lang=C#&title=Ternary Operand Sample
-@[10-12]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/TernaryOperand.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/TernaryOperand.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[10-12] -->
+[Code sample](assets/sln/Tests/TernaryOperand.cs)
 
 +++
 ## Statements - Cycles
@@ -1167,21 +1148,25 @@ x = y = 3;
 * `foreach`
 
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/While.cs&lang=C#&title=While Sample
-@[10-16]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/While.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/While.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[10-16] -->
+[Code sample](assets/sln/Tests/While.cs)
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/DoWhile.cs&lang=C#&title=Do While Sample
-@[10-15]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/DoWhile.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/DoWhile.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[10-15] -->
+[Code sample](assets/sln/Tests/DoWhile.cs)
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/For.cs&lang=C#&title=For Sample
-@[10-13]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/For.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/For.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[10-13] -->
+[Code sample](assets/sln/Tests/For.cs)
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/ForEach.cs&lang=C#&title=Foreach Sample
-@[10-14]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/ForEach.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/ForEach.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[10-14] -->
+[Code sample](assets/sln/Tests/ForEach.cs)
 
 +++
 ## Statements - Jump statements
@@ -1193,26 +1178,31 @@ x = y = 3;
   * usage leads to [Spaghetti code](https://en.wikipedia.org/wiki/Spaghetti_code)
 
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/Break.cs&lang=C#&title=Break Sample
-@[10-20]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Break.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/Break.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[10-20] -->
+[Code sample](assets/sln/Tests/Break.cs)
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/Continue.cs&lang=C#&title=Continue Sample
-@[10-17]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Continue.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/Continue.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[10-17] -->
+[Code sample](assets/sln/Tests/Continue.cs)
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/Return.cs&lang=C#&title=Return Sample
-@[8-12]
-@[17-20]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Return.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/Return.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[8-12]
+@[17-20] -->
+[Code sample](assets/sln/Tests/Return.cs)
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/Throw.cs&lang=C#&title=Throw Sample
-@[8-18]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Throw.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/Throw.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[8-18] -->
+[Code sample](assets/sln/Tests/Throw.cs)
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/Goto.cs&lang=C#&title=Goto Sample
-@[10-17]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Goto.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/Goto.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[10-17] -->
+[Code sample](assets/sln/Tests/Goto.cs)
 
 +++
 ## Statements - other
@@ -1222,14 +1212,16 @@ x = y = 3;
   * For *safe access* to the resource from the concurrent context
   * Simplification of a *Monitor synchronization primitive*
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/Using.cs&lang=C#&title=Using Sample
-@[10-13]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Using.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/Using.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[10-13] -->
+[Code sample](assets/sln/Tests/Using.cs)
 
-+++?code=/Lectures/Lecture_01/Assets/sln/Tests/Lock.cs&lang=C#&title=Lock Sample
-@[11-22]
-@[24-35]
-[Code sample](/Lectures/Lecture_01/Assets/sln/Tests/Lock.cs)
++++
+<pre><code  data-sample='assets/sln/Tests/Lock.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[11-22]
+@[24-35] -->
+[Code sample](assets/sln/Tests/Lock.cs)
 
 ---
 ## Namespaces
@@ -1364,6 +1356,199 @@ namespace N2
 ## Credits
 * Michal Orlíček - for slides preparation
 
+
+---
+source: [https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-version-history](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-version-history)
+title: The history of C# - C# Guide
+
+description: What did the language look like in its earliest versions, and how has it evolved since?
+
+author: erikdietrich
+
+ms.date: 09/20/2017
 ---
 
----?include=/Lectures/Lecture_01/Assets/csharp-version-history.md
+# The history of CSharp
+
+This article provides a history of each major release of the C# language. The C# team is continuing to innovate and add new features. Detailed language feature status, including features considered for upcoming releases can be found [on the dotnet/roslyn repository](https://github.com/dotnet/roslyn/blob/master/docs/Language%20Feature%20Status.md) on GitHub.
+
++++
+
+The C# build tools consider the latest major language release the default language version. There may be point releases between major releases, detailed in other articles in this section. To use the latest features in a point release, you need to [configure the compiler language version](../language-reference/configure-language-version.md) and select the version. There have been three point releases since C# 7.0:
+
+- [C# 7.3](csharp-7-3.md):
+  - C# 7.3 is available starting with [Visual Studio 2017 version 15.7](https://visualstudio.microsoft.com/vs/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link) and [.NET Core 2.1 SDK](../../core/whats-new/dotnet-core-2-1.md).
+- [C# 7.2](csharp-7-2.md):
+  - C# 7.2 is available starting with [Visual Studio 2017 version 15.5](https://visualstudio.microsoft.com/vs/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link) and [.NET Core 2.0 SDK](../../core/whats-new/dotnet-core-2-0.md).
+- [C# 7.1](csharp-7-1.md):
+  - C# 7.1 is available starting with [Visual Studio 2017 version 15.3](https://visualstudio.microsoft.com/vs/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link) and [.NET Core 2.0 SDK](../../core/whats-new/dotnet-core-2-0.md).
+
+---
+## C# version 1.0
+
+When you go back and look, C# version 1.0, released with Visual Studio .NET 2002, looked a lot like Java. As [part of its stated design goals for ECMA](https://feeldotneteasy.blogspot.com/2011/01/c-design-goals.html), it sought to be a "simple, modern, general-purpose object-oriented language."  At the time, looking like Java meant it achieved those early design goals.
+
+But if you look back on C# 1.0 now, you'd find yourself a little dizzy. It lacked the built-in async capabilities and some of the slick functionality around generics you take for granted. As a matter of fact, it lacked generics altogether.  And [LINQ](../linq/index.md)? Not available yet. Those additions would take some years to come out.
+
+C# version 1.0 looked stripped of features, compared to today. You'd find yourself writing some verbose code. But yet, you have to start somewhere. C# version 1.0 was a viable alternative to Java on the Windows platform.
+
++++
+
+The major features of C# 1.0 included:
+
+- [Classes](../programming-guide/classes-and-structs/classes.md)
+- [Structs](../programming-guide/classes-and-structs/structs.md)
+- [Interfaces](../programming-guide/interfaces/index.md)
+- [Events](../events-overview.md)
+- [Properties](../properties.md)
+- [Delegates](../delegates-overview.md)
+- [Expressions](../programming-guide/statements-expressions-operators/expressions.md)
+- [Statements](../programming-guide/statements-expressions-operators/statements.md)
+- [Attributes](../programming-guide/concepts/attributes/index.md)
+
+---
+## C# version 1.2
+
+C# version 1.2 shipped with Visual Studio .NET 2003. It contained a few small enhancements to the language. Most notable is that starting with this version, the code generated in a `foreach` loop called <xref:System.IDisposable.Dispose%2A> on an <xref:System.Collections.IEnumerator> when that <xref:System.Collections.IEnumerator> implemented <xref:System.IDisposable>.
+
+---
+## C# version 2.0
+
+Now things start to get interesting. Let's take a look at some major features of C# 2.0, released in 2005, along with Visual Studio 2005:
+
+- [Generics](../programming-guide/generics/index.md)
+- [Partial types](../programming-guide/classes-and-structs/partial-classes-and-methods.md#partial-classes)
+- [Anonymous methods](../language-reference/operators/delegate-operator.md)
+- [Nullable value types](../language-reference/builtin-types/nullable-value-types.md)
+- [Iterators](../programming-guide/concepts/iterators.md)
+- [Covariance and contravariance](../programming-guide/concepts/covariance-contravariance/index.md)
+
++++
+Other C# 2.0 features added capabilities to existing features:
+
+- Getter/setter separate accessibility
+- Method group conversions (delegates)
+- Static classes
+- Delegate inference
+
+While C# may have started as a generic Object-Oriented (OO) language, C# version 2.0 changed that in a hurry. Once they had their feet under them, they went after some serious developer pain points. And they went after them in a significant way.
+
++++
+With generics, types and methods can operate on an arbitrary type while still retaining type safety. For instance, having a <xref:System.Collections.Generic.List%601> lets you have `List<string>` or `List<int>` and perform type-safe operations on those strings or integers while you iterate through them. Using generics is better than create `ListInt` that derives from `ArrayList`  or casting from `Object` for every operation.
+
+C# version 2.0 brought iterators. To put it succinctly, iterators let you examine all the items in a `List` (or other Enumerable types) with a `foreach` loop. Having iterators as a first-class part of the language dramatically enhanced readability of the language and people's ability to reason about the code.
+
+And yet, C# continued to play a bit of catch-up with Java. Java had already released versions that included generics and iterators. But that would soon change as the languages continued to evolve apart.
+
+---
+## C# version 3.0
+
+C# version 3.0 came in late 2007, along with Visual Studio 2008, though the full boat of language features would actually come with .NET Framework version 3.5. This version marked a major change in the growth of C#. It established C# as a truly formidable programming language. Let's take a look at some major features in this version:
+
+- [Auto-implemented properties](../programming-guide/classes-and-structs/auto-implemented-properties.md)
+- [Anonymous types](../programming-guide/classes-and-structs/anonymous-types.md)
+- [Query expressions](../linq/query-expression-basics.md)
+- [Lambda expressions](../programming-guide/statements-expressions-operators/lambda-expressions.md)
+- [Expression trees](../expression-trees.md)
+- [Extension methods](../programming-guide/classes-and-structs/extension-methods.md)
+- [Implicitly typed local variables](../language-reference/keywords/var.md)
+- [Partial methods](../language-reference/keywords/partial-method.md)
+- [Object and collection initializers](../programming-guide/classes-and-structs/object-and-collection-initializers.md)
+
++++
+In retrospect, many of these features seem both inevitable and inseparable. They all fit together strategically. It's generally thought that C# version's killer feature was the query expression, also known as Language-Integrated Query (LINQ).
+
+A more nuanced view examines expression trees, lambda expressions, and anonymous types as the foundation upon which LINQ is constructed. But, in either case, C# 3.0 presented a revolutionary concept. C# 3.0 had begun to lay the groundwork for turning C# into a hybrid Object-Oriented / Functional language.
+
+Specifically, you could now write SQL-style, declarative queries to perform operations on collections, among other things. Instead of writing a `for` loop to compute the average of a list of integers, you could now do that as simply as `list.Average()`. The combination of query expressions and extension methods made it look as though that list of integers had gotten a whole lot smarter.
+
+It took time for people to really grasp and integrate the concept, but they gradually did. And now, years later, code is much more concise, simple, and functional.
+
+---
+## C# version 4.0
+
+C# version 4.0, released with Visual Studio 2010, would have had a difficult time living up to the groundbreaking status of version 3.0. With version 3.0, C# had moved the language firmly out from the shadow of Java and into prominence. The language was quickly becoming elegant.
+
+The next version did introduce some interesting new features:
+
+- [Dynamic binding](../language-reference/builtin-types/reference-types.md)
+- [Named/optional arguments](../programming-guide/classes-and-structs/named-and-optional-arguments.md)
+- [Generic covariant and contravariant](../../standard/generics/covariance-and-contravariance.md)
+- [Embedded interop types](../../framework/interop/type-equivalence-and-embedded-interop-types.md)
+
++++
+Embedded interop types alleviated a deployment pain. Generic covariance and contravariance give you more power to use generics, but they're a bit academic and probably most appreciated by framework and library authors. Named and optional parameters let you eliminate many method overloads and provide convenience. But none of those features are exactly paradigm altering.
+
+The major feature was the introduction of the `dynamic` keyword. The `dynamic` keyword introduced into C# version 4.0 the ability to override the compiler on compile-time typing. By using the dynamic keyword, you can create constructs similar to dynamically typed languages like JavaScript. You can create a `dynamic x = "a string"` and then add six to it, leaving it up to the runtime to sort out what should happen next.
+
+Dynamic binding gives you the potential for errors but also great power within the language.
+
+---
+## C# version 5.0
+
+C# version 5.0, released with Visual Studio 2012, was a focused version of the language. Nearly all of the effort for that version went into another groundbreaking language concept: the `async` and `await` model for asynchronous programming.  Here is the major features list:
+
+- [Asynchronous members](../async.md)
+- [Caller info attributes](../programming-guide/concepts/caller-information.md)
+
++++
+### See Also
+
+- [Code Project: Caller Info Attributes in C# 5.0](https://www.codeproject.com/Tips/606379/Caller-Info-Attributes-in-Csharp)
+
+The caller info attribute lets you easily retrieve information about the context in which you're running without resorting to a ton of boilerplate reflection code. It has many uses in diagnostics and logging tasks.
+
+But `async` and `await` are the real stars of this release. When these features came out in 2012, C# changed the game again by baking asynchrony into the language as a first-class participant. If you've ever dealt with long running operations and the implementation of webs of callbacks, you probably loved this language feature.
+
+---
+## C# version 6.0
+
+With versions 3.0 and 5.0, C# had added major new features in an object-oriented language. With version 6.0, released with Visual Studio 2015, it would go away from doing a dominant killer feature and instead release many smaller features that made C# programming more productive. Here are some of them:
+
+- [Static imports](./csharp-6.md#using-static)
+- [Exception filters](./csharp-6.md#exception-filters)
+- [Auto-property initializers](./csharp-6.md#auto-property-initializers)
+- [Expression bodied members](./csharp-6.md#expression-bodied-function-members)
+- [Null propagator](./csharp-6.md#null-conditional-operators)
+- [String interpolation](./csharp-6.md#string-interpolation)
+- [nameof operator](./csharp-6.md#the-nameof-expression)
+- [Index initializers](csharp-6.md#extension-add-methods-in-collection-initializers)
+
+Other new features include:
+
+- Await in catch/finally blocks
+- Default values for getter-only properties
+
++++
+
+Each of these features is interesting in its own right. But if you look at them altogether, you see an interesting pattern. In this version, C# eliminated language boilerplate to make code more terse and readable. So for fans of clean, simple code, this language version was a huge win.
+
+They did one other thing along with this version, though it's not a traditional language feature in itself. They released [Roslyn the compiler as a service](https://github.com/dotnet/roslyn). The C# compiler is now written in C#, and you can use the compiler as part of your programming efforts.
+
+---
+## C# version 7.0
+
+The most recent major version is C# version 7.0, released with Visual Studio 2017. This version has some evolutionary and cool stuff in the vein of C# 6.0, but without the compiler as a service. Here are some of the new features:
+
+- [Out variables](./csharp-7.md#out-variables)
+- [Tuples and deconstruction](./csharp-7.md#tuples)
+- [Pattern matching](./csharp-7.md#pattern-matching)
+- [Local functions](./csharp-7.md#local-functions)
+- [Expanded expression bodied members](./csharp-7.md#more-expression-bodied-members)
+- [Ref locals and returns](./csharp-7.md#ref-locals-and-returns)
+
++++
+
+Other features included:
+
+- [Discards](./csharp-7.md#discards)
+- [Binary Literals and Digit Separators](./csharp-7.md#numeric-literal-syntax-improvements)
+- [Throw expressions](./csharp-7.md#throw-expressions)
+
+All of these features offer cool new capabilities for developers and the opportunity to write even cleaner code than ever. A highlight is condensing the declaration of variables to use with the `out` keyword and by allowing multiple return values via tuple.
+
++++
+
+But C# is being put to ever broader use. .NET Core now targets any operating system and has its eyes firmly on the cloud and on portability.  These new capabilities certainly occupy the language designers' thoughts and time, in addition to coming up with new features.
+
+_Article_ [_originally published on the NDepend blog_](https://blog.ndepend.com/c-versions-look-language-history/)_, courtesy of Erik Dietrich and Patrick Smacchia._
