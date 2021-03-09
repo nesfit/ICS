@@ -19,13 +19,13 @@
 +++
 
 1. Organizace kurzu
-2. [Úvod do jazyka C# a platformy .NET](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/index.html#/)
+2. [Úvod do jazyka C# a platformy .NET](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/)
    * základní syntaxe jazyka, instalace a představení Visual Studia
-3. [Úvod do Objektově Orientované Programování](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/index.html#/)
+3. [Úvod do Objektově Orientované Programování](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/)
    * pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika
-4. [Představení základních knihovních funkcí (BCL)](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/index.html#/)
+4. [Představení základních knihovních funkcí (BCL)](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/)
    * dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL)
-5. [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/index.html#/)
+5. [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/)
    * zajištění persistence pomocí ORM rozšíření Entity Framework Core s návrhovými vzory UnitOfWork a Repository
 6. Psaní čistého, udržovatelného kódu
    * respektováním Clean Code, S.O.L.I.D. zásad
