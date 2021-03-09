@@ -1,18 +1,28 @@
-﻿@snap[north span-100]
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>ICS 01 - Introduction to C#, Visual Studio and .NET</title>
+    <link rel="shortcut icon" href="./favicon.ico"/>
+    <link rel="stylesheet" href="./dist/reveal.css" />
+    <link rel="stylesheet" href="./dist/theme/simple.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/vs.css" />
+    <link rel="stylesheet" href="./_assets/assets/theme.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
 
 # Object-oriented Programming and Advanced Constructs in C#
 
-@snapend
-
-@snap[midpoint span-100]
 ## OOP, Exceptions, Events, Delegates, Lambda Expressions and Generics
-@snapend
 
-@snap[south-east span-40]
+<div class="right">[ Jan Pluskal &lt;ipluskal@fit.vutbr.cz&gt;  ]</div>
 
-[ Jan Pluskal <ipluskal@fit.vutbr.cz> ]
-
----
+</script></section><section ><section data-markdown><script type="text/template">
 ## Object Oriented Programming (OOP)
 * First appearance in **SIMULA 67**
 * Abstraction of real word
@@ -22,24 +32,21 @@
   * Data is stored in object's **member variable(field)**
   * **Methods** and **fields** together create objects
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=OOP Sample - Ingnore details for now!
-@[10-28]
+</script></section><section data-markdown><script type="text/template">
+<pre><code data-sample='assets/sln/Examples/Dog.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[10-28] -->
 
-<!-- [Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs) -->
+<!-- [Code sample](assets/sln/Examples/Dog.cs) -->
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## Three Principles of OOP
-
-@snap[north-east span-10]
-![](/Lectures/GitPitch/assets/image/Overview_small.png)
-@snapend
 
 * OOP interconnects **data** and **logic**
   * **Encapsulation**
   * **Inheritance**
   * **Polymorphism**
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Encapsulation
 * Hides implementation details
 * Improves modularity
@@ -47,51 +54,55 @@
   * A language mechanism for **restricting direct access** to some of the **object's components**
   * A language construct that **facilitates the bundling of data with the methods**(or other functions) operating on that data
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Access Modifiers
 * Used for limiting access to *implementation details*
 * Ensures *encapsulation* and leads to safe code
 * **If a modifier is omitted, the most restrictive one is used**
 
-+++
-| Modifier | Visibility |
-|-|-|
-|`public` | accessible *everywhere* |
-|`private` | accessible only in the **same** *class* or *struct* |
-|`protected` | accessible only in the **same** *class*, or in a *class* **that is derived** from the same class |
-|`internal` | accessible in the **same assembly**, but not from another assemblies |
-|`protected internal` | accessible in the **same assembly** in which it is declared, **or** from within a **derived** *class* in another assembly(*internal* **OR** *protected*) |
-|`private protected` |  accessible **only within its declaring assembly**, in the **same** *class*, **and** in a *class* **that is derived** from the same *class*(*internal* **AND** *protected*) |
+</script></section><section data-markdown><script type="text/template">
+| Modifier             | Visibility                                                                                                                                                                 |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `public`             | accessible *everywhere*                                                                                                                                                    |
+| `private`            | accessible only in the **same** *class* or *struct*                                                                                                                        |
+| `protected`          | accessible only in the **same** *class*, or in a *class* **that is derived** from the same class                                                                           |
+| `internal`           | accessible in the **same assembly**, but not from another assemblies                                                                                                       |
+| `protected internal` | accessible in the **same assembly** in which it is declared, **or** from within a **derived** *class* in another assembly(*internal* **OR** *protected*)                   |
+| `private protected`  | accessible **only within its declaring assembly**, in the **same** *class*, **and** in a *class* **that is derived** from the same *class*(*internal* **AND** *protected*) |
 
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=Encapsulation Sample
-@[12,17-21]
-[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
+</script></section><section data-markdown><script type="text/template">
+<pre><code  data-sample='assets/sln/Examples/Dog.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[12,17-21] -->
+[Code sample](assets/sln/Examples/Dog.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Inheritance
 * Create objects that are built upon existing objects
 * Specify a new implementation to maintain the same behavior
 * Reuse code and to independently extend original software via public classes
 * An *inherited class* is called a **subclass** of its **parent class** or **superclass** or **base class**
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Identificators
   * `null` - a reference that  *points to nowhere*
   * `this` - a reference to a *current instance* of an object
   * `base` - a reference to a *subtype* of a *super class*
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Examples/Animal.cs&lang=C#&title=Inheritance Sample
-[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Animal.cs)
+</script></section><section data-markdown><script type="text/template">
+<pre><code  data-sample='assets/sln/Examples/Animal.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](assets/sln/Examples/Animal.cs)
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Examples/Pet.cs&lang=C#&title=Inheritance Sample
-[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Pet.cs)
+</script></section><section data-markdown><script type="text/template">
+<pre><code  data-sample='assets/sln/Examples/Pet.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](assets/sln/Examples/Pet.cs)
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs&lang=C#&title=Inheritance Sample
-@[10-28]
-[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Dog.cs)
+</script></section><section data-markdown><script type="text/template">
+<pre><code  data-sample='assets/sln/Examples/Dog.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[10-28] -->
+[Code sample](assets/sln/Examples/Dog.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Inheritance and Subtyping
 * In some languages inheritance and subtyping are no different
 * Generally in statically-typed class-based OO languages, such as(C++, C#, Java), whereas in others they differ
@@ -102,12 +113,12 @@
 * **Subtyping** is also known as **interface inheritance** whereas inheritance, as defined here, is known as implementation inheritance or code inheritance
 * Still, **inheritance** is a commonly used mechanism for establishing subtype relationships
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Polymorphism
 * Is the provision of a *single interface* to *entities of different types*
 * A polymorphic type is one whose operations can also be applied to values of some other type, or types
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Polymorphism Types
 * **Ad hoc polymorphism**:
   * **Function overloading**
@@ -118,7 +129,7 @@
 * **Subtyping**(*subtype polymorphism* or *inclusion polymorphism*):
   * Name denotes instances of many different classes related by some common *base* class
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Class
 * The most common of *reference types*
 * Think about it s a *construction plan for an object*
@@ -129,22 +140,22 @@
   }
   ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Static/non-static
 * `static` classes - **only one** instance for an **AppDomain**
   * *static members* belong to the **class** not the *object*
 * **non-static** - classes are **instantiated** during program run
   * *non-static members* belongs to the *object*
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Class may contain
-| | |
-|-|-|
-|*Preceding* **the class keyword** |Attributes and class modifier |
-|*Following* **the class Name**    |Generic type parameters, a base class, and interfaces|
-|*Within* **the class body**       |Methods, properties, indexers, events, fields, constructors...|
+|                                   |                                                                |
+| --------------------------------- | -------------------------------------------------------------- |
+| *Preceding* **the class keyword** | Attributes and class modifier                                  |
+| *Following* **the class Name**    | Generic type parameters, a base class, and interfaces          |
+| *Within* **the class body**       | Methods, properties, indexers, events, fields, constructors... |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Class Components
 * **fields** – a *member variable*
 * **properties** – *methods* that are accessed as if they were fields
@@ -157,7 +168,7 @@
 * **finalizer** - **method** called during object destruction
 * **nested types** - *types declared within* a class scope
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Field
 * Variable that is a member of a *class* or *struct*
 * Initialization is:
@@ -172,7 +183,7 @@
     }
     ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Field Modifiers
 * `static`
 * access - `public, internal, private, protected, protected internal, private protected`
@@ -181,7 +192,7 @@
 * `readonly` - cannot be changed after construction
 * threading - `volatile`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Method
 * *Procedures* and *functions* are in OOP called *methods*
 * Can access members of `class` or `struct`
@@ -189,7 +200,7 @@
   * accept parameters - *values*, *reference types*, `ref`, `in`
   * return result - in return type `return`, or `ref` or `out` parameters
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Method Modifiers
 * `static`
 * access - `public, internal, private, protected, protected internal, private protected`
@@ -197,7 +208,7 @@
 * unsafe code - `unsafe, extern`
 * asynchronous - `async`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Method Types
 * Method contains only one expression
 * Classical method:
@@ -218,7 +229,7 @@ int Foo(int x) => x * 2;
 void Foo(int x) => Console.WriteLine(x);
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Method Signature
 * Methods are declared in a *class* or *struct* by specifying:
   *  the **access level** such as public or private,
@@ -231,7 +242,7 @@ void Foo(int x) => Console.WriteLine(x);
 * A **return type** *is not part of the signature* for the purposes of method **overloading**.
 * A **return type** *is part of the signature* when determining the compatibility between a **delegate** and the method that it points to.
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Method Overloads
 * **Return type** is not a part of the signature for overloading purpose
   ```C#
@@ -244,7 +255,7 @@ void Foo(int x) => Console.WriteLine(x);
   double Foo(double x) {...} // OK
   ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Local Methods
 * Defines a **method** *inside another method*
 * Is visible only to the enclosing method
@@ -260,13 +271,13 @@ void Foo(int x) => Console.WriteLine(x);
   }
   ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Property
 * Similar to a *field*, but **encloses it with an access method**
 * It is a safety mechanism that unifies *read* and *write* operations
 * Hides *implementation details*
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Read-only and Calculated Property
 * *Read-only* if it specifies only a `get` accessor
 * *Write-only* if it specifies only a `set` accessor
@@ -284,7 +295,7 @@ public decimal Foo2
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Get and Set Accessibility
 * *Get* and *set* accessors can have different access levels
 * Typical use:
@@ -301,7 +312,7 @@ public decimal Foo
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Init-only 
 * Declares that the property can be `set` only during `init`ialization
 
@@ -314,14 +325,14 @@ var foos = new Foos {Foo = 1;};
 foos.Foo = 1 // Compilation error
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Property Modifiers
 * `static`
 * access - `public, internal, private, protected, protected internal, private protected`
 * inheritance - `new, virtual, abstract, override, sealed`
 * unsafe code - `unsafe, extern`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Property Types
 * Autogenerated property:
 
@@ -340,7 +351,7 @@ public string Foo {
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Expression-bodied Property
 * With only get accessor:
 
@@ -357,28 +368,29 @@ public string Name {
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Constructor
 * Run initialization code on a **class** or **struct**
 * Defined like a method
   * Method *name and return type* are reduced to the *name of the enclosing type*
 * Constructors of the *base* class are accessible
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Examples/Panda.cs&lang=C#&title=Constructor Sample
-[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Panda.cs)
+</script></section><section data-markdown><script type="text/template">
+<pre><code  data-sample='assets/sln/Examples/Panda.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](assets/sln/Examples/Panda.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Implicit Parameterless Constructor
 * `public`, *parameterless*
 * Generated by C# compiler automatically
 * If, and only if, **you do not define any other constructor**
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Constructor Modifiers
 * Access - `public, internal, private, protected, protected internal`
 * Unsafe code - `unsafe, extern`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Constructor Overloading
 * Type can have *multiple constructors*
 * The same rules as method *overloading*
@@ -387,18 +399,21 @@ public string Name {
   * `this` - refers to *this* type instance
   * `base` - refers to *base* class type instance
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Examples/WildCat.cs&lang=C#&title=Constructor Overloading Sample
-[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/WildCat.cs)
+</script></section><section data-markdown><script type="text/template">
+<pre><code  data-sample='assets/sln/Examples/WildCat.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](assets/sln/Examples/WildCat.cs)
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Examples/Cat.cs&lang=C#&title=Constructor Overloading Sample
-[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Cat.cs)
+</script></section><section data-markdown><script type="text/template">
+<pre><code  data-sample='assets/sln/Examples/Cat.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](assets/sln/Examples/Cat.cs)
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Tests/Constructor.cs&lang=C#&title=Constructor Overloading Test
-@[8-14]
-[Code sample](/Lectures/Lecture_02/Assets/sln/Tests/Constructor.cs)
+</script></section><section data-markdown><script type="text/template">
+<pre><code  data-sample='assets/sln/Tests/Constructor.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[8-14] -->
+[Code sample](assets/sln/Tests/Constructor.cs)
 
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Target-typed new expressions
 
 * C# 9 feature
@@ -408,7 +423,7 @@ public string Name {
 Point p = new (3, 5);
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Deconstructors
 * Opposite of a constructor
 * From C# 7
@@ -416,10 +431,11 @@ Point p = new (3, 5);
   * Be called **Deconstruct**
   * Have one or more out parameters
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Examples/Rectangle.cs&lang=C#&title=Deconstructor Sample
-[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/Rectangle.cs)
+</script></section><section data-markdown><script type="text/template">
+<pre><code  data-sample='assets/sln/Examples/Rectangle.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](assets/sln/Examples/Rectangle.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Call Deconstructor
 ```C#
 var rect = new Rectangle(3, 4);
@@ -455,7 +471,7 @@ or
 var(width, height) = rect;
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Finalizer
 * Runs on an instance of an object when it is referenced no more before the garbage collection
 * `override`s `System.Object`'s method `Finalize()`
@@ -481,7 +497,7 @@ class Dog {
 ```
 
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Abstract Class
 * **Can never be instantiated**
 * Only its concrete subclasses can be instantiated
@@ -490,7 +506,7 @@ class Dog {
   * Like `virtual` members, except they don’t provide a default implementation
   * Implementation must be provided by the **subclass** unless that **subclass** is also declared `abstract`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Abstract Class Example
 ```C#
 public abstract class Asset
@@ -511,7 +527,7 @@ public class Stock: Asset
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Virtual
 * Implementation can be overridden in subclasses
 * To provide a specialized/concrete implementation
@@ -522,55 +538,60 @@ public class Stock: Asset
   * **Indexers**
   * **Events**
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Type Compatibility
 * Ease-up usage of *subtypes*, ergo *virtual methods*
 * Compatibility of *types* of `class`, `struct` instances
 * Determines which type references can be assigned into another type reference
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Up-cast
 * Creates a *base* class reference from a *subclass* reference
 * Only *members* provided by given *base* class can be accessed through up-casted reference
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Tests/UpCast.cs&lang=C#&title=Upcast Example
-@[10-17]
-[Code sample](/Lectures/Lecture_02/Assets/slnTests/UpCast.cs)
+</script></section><section data-markdown><script type="text/template">
+<pre><code  data-sample='assets/sln/Tests/UpCast.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[10-17] -->
+[Code sample](assets/sln/Tests/UpCast.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Down-cast
 * Creates a *subclass* reference from a *base* class reference
 * It **fails**, if *base* class instance is not compatible with *inherited* one
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Tests/DownCast.cs&lang=C#&title=Downcast Example
-@[11-17]
-@[20-25]
-[Code sample](/Lectures/Lecture_02/Assets/slnTests/DownCast.cs)
+</script></section><section data-markdown><script type="text/template">
+<pre><code  data-sample='assets/sln/Tests/DownCast.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[11-17]
+@[20-25] -->
+[Code sample](assets/sln/Tests/DownCast.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Operator `as`
 * Downcasts
 * Returns `null`, if failed
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Tests/AsOperator.cs&lang=C#&title=AS Operator Example
-@[9-14]
-[Code sample](/Lectures/Lecture_02/Assets/slnTests/AsOperator.cs)
+</script></section><section data-markdown><script type="text/template">
+<pre><code  data-sample='assets/sln/Tests/AsOperator.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[9-14] -->
+[Code sample](assets/sln/Tests/AsOperator.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Operator `is`
 * Tests whether a reference conversion would succeed
 * Usually before downcast
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Tests/IsOperator.cs&lang=C#&title=IS Operator Example
-@[10-15]
-[Code sample](/Lectures/Lecture_02/Assets/slnTests/IsOperator.cs)
+</script></section><section data-markdown><script type="text/template">
+<pre><code  data-sample='assets/sln/Tests/IsOperator.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[10-15] -->
+[Code sample](assets/sln/Tests/IsOperator.cs)
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Tests/PatternMatching.cs&lang=C#&title=IS Pattern Matching Example
-@[10-18]
-@[21-28]
-[Code sample](/Lectures/Lecture_02/Assets/slnTests/PatternMatching.cs)
+</script></section><section data-markdown><script type="text/template">
+<pre><code  data-sample='assets/sln/Tests/PatternMatching.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[10-18]
+@[21-28] -->
+[Code sample](assets/sln/Tests/PatternMatching.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Sealed
 * Restricts
   * Inheritance of `class`
@@ -589,7 +610,7 @@ sealed class Cat: Animal { }
 public class Kitten : Cat {}
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### System.Object
 * Object(`System.Object`) is a common `base` class of all types
 * Each type can be cast to `System.Object`
@@ -602,7 +623,7 @@ public class Kitten : Cat {}
   * during *runtime* - `object.GetType()`
   * during *compile time* - `typeof(Object)`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Partial class/method
 * Allows to split declaration across multiple files
 * Each participant must have the `partial` declaration
@@ -649,14 +670,14 @@ public record Person
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### With-expressions
 ```C#
 var person = new Person { FirstName = "Mads", LastName = "Nielsen" };
 var otherPerson = person with { LastName = "Torgersen" };
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Value-based equality
 
 ```C#
@@ -670,7 +691,7 @@ var originalPerson = otherPerson with { LastName = "Nielsen" };
 Assert.Equals(person, originalPerson)
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Inheritance
 
 ```C#
@@ -692,7 +713,7 @@ Person student = new Student { FirstName = "Mads", LastName = "Nielsen", ID = 12
 ```
 
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Struct
 * Similar to a class, with the following key differences:
   * A `struct` is a **value type**, whereas a class is a **reference type**
@@ -705,7 +726,7 @@ Person student = new Student { FirstName = "Mads", LastName = "Nielsen", ID = 12
 * Each constructor has to initialize all `struct`'s members
 * Members cannot be initialized in `struct`'s declaration
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ```C#
 public readonly struct Point
 {
@@ -721,7 +742,7 @@ Point p1 = new Point(1, 1); // p1.x and p1.y will be 1
 Point p2 = new Point(); // p2.x and p2.y will be 0
 ```
 
----
+</script></section></section><section  data-markdown><script type="text/template">
 ## Enums, Flags
 * `enum` is a *value type*
   * creates an enumeration of named numerical values(int, 0,1...)
@@ -748,7 +769,7 @@ HorseType type  = HorseType.Racing | HorseType.Breeding;
 Console.WriteLine(type); //Racing, Breeding, ForSosages
 ```
 
----
+</script></section><section ><section data-markdown><script type="text/template">
 ## Interface
 * Declares only *specification*, not *implementation* of its members
 * All members are `public`
@@ -769,7 +790,7 @@ public interface IEnumerator
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### `interface` vs `abstract`
 
 * Use *inheritance* for types that share implementation
@@ -794,7 +815,7 @@ class Flea : Insect, ICarnivore { }
 * Because animals might share some implementation of their taxonomy, it is possible to declare `Bird` and `Insect` as `abstract class`.
 * But, their food intake and whether they fly or not might differ. It is best to declare these properties as `interfaces`, `IFlying` and `ICarnivore`.
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### `class` vs `interface`
 * `class` is considered to be a *type*
   * *Data* are stored in member variables
@@ -817,7 +838,7 @@ public class Pet: IName {
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Type Safety and Security
 * **Strongly typed language**
   * *type* has to be known at *compile time*
@@ -827,7 +848,7 @@ public class Pet: IName {
   * Elimination of type issues at *compile time*
   * Sandboxing protects object state against outer modifications
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Generics
 * C# has two mechanisms for *reusable code across different types*
   * *Inheritance* - expresses reusability with a *base type*
@@ -835,7 +856,7 @@ public class Pet: IName {
     * *Type safe* code
     * *Reduce casting and boxing*
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Non-generict *object* Stack
 ```C#
 public class ObjectStack
@@ -853,7 +874,7 @@ stack.Push("s"); // Wrong type, but no error!
 int i =(int)stack.Pop(); // Downcast - runtime error
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Generics Types
 * Declares type parameter/placeholder types to be filled in by the consumer of the generic type
   * i.e., `Stack<T>`, designed to stack instances of type `T`:
@@ -878,7 +899,7 @@ Assert.Equal(10,stack.Pop());
 Assert.Equal(5,stack.Pop());
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Generics Open/Close Types
 * *Opened type* – `Stack<T>`
 * *Closed type* – `Stack<int>`
@@ -901,7 +922,7 @@ public class Stack<T>
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Why Generics
 * **Reusable across different types**
   * i.e., we need a *stack* for multiple types, we can use:
@@ -912,7 +933,7 @@ public class Stack<T>
       * ValueType requires boxing,
       * down-casting that cannot not be checked at compile time
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Generic Methods
 * Several basic algorithms can be implemented using *generic methods*.
 * *Signature* of generic method contains generic type parameter.
@@ -926,7 +947,7 @@ static void Swap<T>(ref T a, ref T b) {
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Generic Constraints
 * Parameters can be restricted with:
   * `where T : <base class name>` - T must be or derive from the specified base class.
@@ -938,7 +959,7 @@ static void Swap<T>(ref T a, ref T b) {
   * `where T : unmanaged` - T must not be reference type, and must not contain any reference type members at any level of nesting
 
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Covariance and Contravariance
 * [Read more](https://docs.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance)
 
@@ -962,25 +983,27 @@ Action<Derived> d = b;
   * Invariant generic type parameter is neither **covariant** nor **contravariant**.
   * You **cannot** assign an instance of `List<Base>` to a variable of type `List<Derived>` or vice versa.
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Examples/CovarianceContravariance.cs&lang=C#&title=Covariance Contravariance Example
-@[11]
+</script></section><section data-markdown><script type="text/template">
+<pre><code  data-sample='assets/sln/Examples/CovarianceContravariance.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[11]
 @[27-30]
 @[33-36]
-@[11-24]
-[Code sample](/Lectures/Lecture_02/Assets/sln/Examples/CovarianceContravariance.cs)
+@[11-24] -->
+[Code sample](assets/sln/Examples/CovarianceContravariance.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## Boxing/Unboxing
 * C#'s type system is unified such that a value of *any type can be treated as an `object`*.
 * Every type in C# directly or indirectly derives from the `object` class type, and `object` is the ultimate *base class* of all types
 * Values of reference types are treated as objects simply by viewing the values as type object
 * Values of value types are treated as objects by performing **boxing** and **unboxing** operations
 
-+++?code=/Lectures/Lecture_02/Assets/sln/Tests/Boxing.cs&lang=C#&title=Boxing Sample
-@[8-16]
-[Code sample](/Lectures/Lecture_02/Assets/slnTests/Boxing.cs)
+</script></section><section data-markdown><script type="text/template">
+<pre><code  data-sample='assets/sln/Tests/Boxing.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[8-16] -->
+[Code sample](assets/sln/Tests/Boxing.cs)
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Exceptions
 * C# has [*structured exception handling*](https://docs.microsoft.com/en-us/windows/desktop/debug/structured-exception-handling)
 * Improves code readability
@@ -995,7 +1018,7 @@ Action<Derived> d = b;
 * `finally` block
   * *Executes always*, whether or not an error occurred
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### `try`, `catch`, `finally` example
 ```C#
 try
@@ -1016,7 +1039,7 @@ finally
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Exception Handling
 * If exception is `throw`n in `try` statement:
   * Execution is passed to the compatible `catch` block
@@ -1026,18 +1049,16 @@ finally
 * If exception isn't in `try` statement, or is not caught by any `catch` block in the *callstack*:
   * the process is terminated and error message is displayed to the user
 
-@snap[south-east]
 [SOURCE](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/exceptions/)
-@snapped
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### The `catch` block
 * Specifies what type of exception to catch
   * This must either be `System.Exception` or a subclass of `System.Exception`
 * Only one catch clause executes for a given exception
   *  More specific handler needs to be declared before general one
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Multiple `catch` Clauses Example
 
 ```C#
@@ -1066,7 +1087,7 @@ class Test
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### `catch` Simplify Examples
 * Exception can be caught without specifying a variable
   ```C#
@@ -1087,14 +1108,14 @@ class Test
   }
   ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### The `finally` Block
 * Executes always
   * Whether or not an exception is thrown
   * Whether or not the `try` block runs to completion
 * Typically used to handle unmanaged resource
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### The `finally` Block Example
 
 ```C#
@@ -1116,7 +1137,7 @@ static void ReadFile()
 
 If object implements IDisposable, use `using` clause!
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Throwing Exceptions Example
 ```C#
 class Test
@@ -1139,7 +1160,7 @@ class Test
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Rethrow Examples
 * Rethrow the same exception
 
@@ -1166,7 +1187,7 @@ catch(FormatException ex)
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Key Properties of `System.Exception`
 
 * `StackTrace`
@@ -1177,7 +1198,7 @@ catch(FormatException ex)
   * The inner exception(if any) that caused the outer exception
   * InnerException may have another InnerException
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Common Exception Types
 * `System.ArgumentException`
   * Thrown when a function is called with a bogus argument
@@ -1190,7 +1211,7 @@ catch(FormatException ex)
 * `System.InvalidOperationException`
   * Thrown when the state of an object is unsuitable for a method to successfully execute
 
-+++
+</script></section><section data-markdown><script type="text/template">
 * `System.NotSupportedException`
   * Thrown to indicate that particular functionality is not supported
 * `System.NotImplementedException`
@@ -1202,7 +1223,7 @@ catch(FormatException ex)
   * Thrown when you attempt to access a member of an object whose value is null
 
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Delegates
 * Is a type that represents references to methods with a particular *parameter list* and *return type*.
 * When you instantiate a delegate, you can associate its instance with any method with a *compatible signature and return type*.
@@ -1217,7 +1238,7 @@ is compatible with
 static int Square(int x) => x * x;
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Delegates Example
 ```C#
 delegate int Transformer(int x);
@@ -1234,7 +1255,7 @@ class Test
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Delegates Shorthand
 
 The statement:
@@ -1261,7 +1282,7 @@ is equivalent:
 transformer.Invoke(3)
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Plug-in Methods with Delegates
 ```C#
 public delegate int Transformer(int x);
@@ -1288,7 +1309,7 @@ class Test {
 
 The `Transform` method is a higher-order function(it’s a function that takes a function as an argument).
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Multicast Delegates
 * Delegate instance can reference a list of target methods
 * The `+` and `+=` operators combine delegate instances
@@ -1302,7 +1323,7 @@ d += SomeMethod2;
 * The caller receives the return value from the last method
   * Preceding methods return values are discarded
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Multicast Delegates Example - Invocation
 ```C#
 public delegate void ProgressReporter(int percentComplete);
@@ -1320,7 +1341,7 @@ public class Util
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Multicast Delegates Example - Declaration
 ```C#
 class Test
@@ -1341,7 +1362,7 @@ class Test
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Instance Method/Target
 
 * `Delegate.Method` - Gets the method represented by the delegate.
@@ -1370,7 +1391,7 @@ class Foo
 ```
 
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### `delegate` vs `interface`
 * A problem that can be solved with a delegate can also be solved with an interface
 * **Delegate design may be better** if:
@@ -1378,7 +1399,7 @@ class Foo
   * Multicast capability is needed
   * The subscriber needs to implement the interface multiple times
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Delegate Compatibility
 * All delegates are incompatible with one another
 
@@ -1390,7 +1411,7 @@ Delegate1 delegate1 = Method1;
 Delegate2 delegate2 = delegate1; // Compile-time error
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Delegate Equality
 * Delegates are equal if they reference the same methods in the same order
 ```C#
@@ -1401,7 +1422,7 @@ Delegate delegate2 = Method1;
 Console.WriteLine(delegate1 == delegate2); // True
 ```
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Events
 * Construct that exposes the subset of delegate features required for the broadcaster/subscriber model
 * [Read more](https://docs.microsoft.com/en-us/dotnet/csharp/distinguish-delegates-events)
@@ -1418,7 +1439,7 @@ public class Broadcaster
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Standard Event Pattern
 * Used to provide consistency across Framework and user code
 * Standard Event Pattern `EventArgs`
@@ -1440,7 +1461,7 @@ public class PriceChangedEventArgs : System.EventArgs
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Standard Event Pattern - Delegate
 * name must end with `EventHandler`
 * two arguments
@@ -1455,7 +1476,7 @@ public delegate void EventHandler<TEventArgs>
 (object source, TEventArgs e) where TEventArgs : EventArgs;
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Standard Event Pattern - Example
 ```C#
 public class Stock
@@ -1470,7 +1491,7 @@ public class Stock
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Event Modifiers
 * `virtual`
 * `override`
@@ -1478,7 +1499,7 @@ public class Stock
 * `sealed`
 * `static`
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Lambda Expressions
 * From C# 3.0
 * *Anonymous function* written in place of a delegate instance
@@ -1494,7 +1515,7 @@ public class Stock
 * Parameter `x`
 * Statement block `{ return x * x; }`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Lambda Expressions Usage Example
   ```C#
   delegate int Transformer(int i);
@@ -1505,7 +1526,7 @@ public class Stock
 * `x` corresponds to `i`
 * `x * x` corresponds to return type `int`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Lambda Expressions Two Parameters Example
 
 ```C#
@@ -1519,7 +1540,7 @@ int total = totalLength("hello", "world"); // 10;
 public delegate TResult Func<in T,out TResult>(T arg);
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Explicitly Specifying Lambda Parameter Types
 * Compiler can usually infer the type contextually
 * When it can't, you must specify the type explicitly:
@@ -1530,7 +1551,7 @@ public delegate TResult Func<in T,out TResult>(T arg);
   Bar((int x) => Foo(x));
   ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Lambda Expression Capturing Outer Variables
 * *Outer variables* referenced by a lambda expression are called *captured variables*
 * *Lambda expression* that captures variables is called a *closure*
@@ -1545,7 +1566,7 @@ factor = 10;
 Console.WriteLine(multiplier(3)); // 30
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Extended Lifetime Example
 ```C#
 static Func<int> Natural()
@@ -1564,7 +1585,7 @@ static void Main()
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Extended Lifetime Example
 ```C#
 static Func<int> Natural()
@@ -1582,7 +1603,7 @@ static void Main()
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Lambda Expressions vs. Local Methods
 * Local methods functionality overlaps with lambda expressions
 * Local methods advantages:
@@ -1596,7 +1617,7 @@ static void Main()
 public void Foo(Func<int,bool> predicate) { ... }
 ```
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Tuples
 * Simple way to store a set of values
 * Safely return multiple values from a method without resorting to out parameters
@@ -1612,7 +1633,7 @@ static void Main()
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Named Tuples Example
 ```C#
 static(string Name, int Age) GetPerson() =>("Bob", 23);
@@ -1625,7 +1646,7 @@ static void Main()
 }
 ```
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## References
 [C# 8.0 in a Nutshell: The Definitive Reference](https://www.amazon.com/C-8-0-Nutshell-Definitive-Reference/dp/1492051136)
 [Types and Programming Languages](https://www.amazon.com/Types-Programming-Languages-MIT-Press/dp/0262162091)
@@ -1634,7 +1655,60 @@ static void Main()
 [C# in Depth](https://www.amazon.com/C-Depth-3rd-Jon-Skeet/dp/161729134X)
 [Microsoft documentation](https://docs.microsoft.com)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 
 ## Credits
 * Michal Orlíček - for slides preparation
+</script></section></section></div>
+    </div>
+
+    <script src="./dist/reveal.js"></script>
+
+    <script src="./plugin/markdown/markdown.js"></script>
+    <script src="./plugin/highlight/highlight.js"></script>
+    <script src="./plugin/zoom/zoom.js"></script>
+    <script src="./plugin/notes/notes.js"></script>
+    <script src="./plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"controls":true,"controlsTutorial":true,"controlsLayout":"bottom-right","progress":true,"slideNumber":true,"showSlideNumber":"all","keyboard":true,"overview":true,"navigationMode":"linear","fragments":true,"fragmentInURL":false,"help":true,"mouseWheel":true,"transition":"slide","transitionSpeed":"fast"}, queryOptions);
+    </script>
+
+    <script src="./_assets/plugin/sampler.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
