@@ -1692,6 +1692,8 @@ config.AssertConfigurationIsValid();
 
 +++
 <pre><code  data-sample='assets/sln/EntityFramework/School.BL/Facades/CrudFacadeBase.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+
+
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.BL/Facades/CrudFacadeBase.cs)
 
 +++
