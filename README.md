@@ -46,7 +46,7 @@
     * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
 12. Návrhové vzory
    * vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#
-13. Multiplatformní programování [nebo **MAUI** (záleží v jakém stavu bude release)]
+13. Multiplatformní programování
     * .NET Standard, .NET Core.
     * kontejnerizace aplikací pomocí Docker  
 
