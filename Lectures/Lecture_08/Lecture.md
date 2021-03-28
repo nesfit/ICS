@@ -34,7 +34,7 @@ enableTitleFooter: true
 
 <div id="right">
 
-![](/assets/img/WPFlogo.jpg)
+![](assets/img/WPFlogo.jpg)
 </div>
 
 
@@ -54,7 +54,7 @@ enableTitleFooter: true
 +++
 ### Vector vs. Raster Graphics
 
-![](/assets/img/vector_vs_raster.jpg)
+![](assets/img/vector_vs_raster.jpg)
 
 +++
 ### Rendering
@@ -101,7 +101,7 @@ enableTitleFooter: true
 * *.NET namespaces* are represented by *XML namespaces*
 * Typically closely connected with *Code-behind* class
 
-![](/assets/img/XAMLlogo.png)
+![](assets/img/XAMLlogo.png)
 
 +++
 ### XAML - Basics
@@ -114,11 +114,11 @@ enableTitleFooter: true
 
 +++
 #### Hello WPF - Sample
-![](/assets/img/HelloWPF.png)
+![](assets/img/HelloWPF.png)
 
 +++
 
-<pre><code data-sample='/assets/sln/HelloWpf/MainWindow.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code data-sample='assets/sln/HelloWpf/MainWindow.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[1,13]
 @[2]
 @[3-7]
@@ -126,17 +126,17 @@ enableTitleFooter: true
 @[9]
 @[10,12]
 @[11] -->
-[Code sample](/assets/sln/HelloWpf/MainWindow.xaml)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_08/assets/sln/HelloWpf/MainWindow.xaml)
 
 +++
 
-<pre><code data-sample='/assets/sln/HelloWpf/MainWindow.xaml.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code data-sample='assets/sln/HelloWpf/MainWindow.xaml.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-14]
 @[8]
 @[10-13]
 @[12]
 @[8-14] -->
-[Code sample](/assets/sln/HelloWpf/MainWindow.xaml.cs)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_08/assets/sln/HelloWpf/MainWindow.xaml.cs)
 
 +++
 ### Hello WPF - Explanation
@@ -231,7 +231,7 @@ System.Object
 * Position the content according to the **absolute x- and y-coordinates**
 * Properties like `Canvas.Top, Canvas.Left, Canvas.Top, Canvas.Bottom`
 
-![](/assets/img/canvas.png)
+![](assets/img/canvas.png)
 
 +++
 ### Grid
@@ -241,7 +241,7 @@ System.Object
   * **Tabular data control**
 * Properties like `Grid.Row, Grid.Column, Grid.RowSpan, Grid.ColumnSpan`
 
-![](/assets/img/Grid.png)
+![](assets/img/Grid.png)
 
 +++
 ### StackPanel and DockPanel
@@ -250,7 +250,7 @@ System.Object
 * *Vertical* or *Horizontal* stacking
 * Properties like `StackPanel.Orientation`, `DockPanel.Dock`
   
-![](/assets/img/StackVsDockPanel.png)
+![](assets/img/StackVsDockPanel.png)
   * DockPanel - the last item is squeezed
   * StackPanel - the last item is trimmed
 
@@ -261,7 +261,7 @@ System.Object
 * *Concentration game (Pexeso)* like a design
 * Properties `WrapPanel.Orientation`
 
-![](/assets/img/wrappanel.png)
+![](assets/img/wrappanel.png)
 
 +++
 ### Content Controls
@@ -327,11 +327,11 @@ Username: <Run FontWeight="Bold" Text="{Binding UserName}"/>
 ### Other Interesting Components
 * `Calendar`
 
-![](/assets/img/calendar.gif)
+![](assets/img/calendar.gif)
 
 * `DatePicker`
 
-![](/assets/img/datepicker.jpeg)
+![](assets/img/datepicker.jpeg)
 
 +++
 
@@ -339,11 +339,11 @@ Username: <Run FontWeight="Bold" Text="{Binding UserName}"/>
 
 * `ProgressBar`
 
-![](/assets/img/progressbar_simple.png)
+![](assets/img/progressbar_simple.png)
 
 * `TextBox`
 
-![](/assets/img/textbox.jpeg)
+![](assets/img/textbox.jpeg)
 
 and others...
 
@@ -354,16 +354,16 @@ and others...
 * Perfect for *data-binding*
 * Type `object`, thus can be set to anything
 
-![](/assets/img/DataContext.png)
+![](assets/img/DataContext.png)
 
 +++
 ### Binding Markup
 
-![](/assets/img/BindingMarkup.png)
+![](assets/img/BindingMarkup.png)
 
 +++
 ### DataContex Sample
-![](/assets/img/DataContext_example.png)
+![](assets/img/DataContext_example.png)
 
 
 +++
@@ -409,23 +409,23 @@ and others...
     * When *something* changes, `PropertyChanged` event needs to `Invoke()`
 
 +++
-<pre><code data-sample='/assets/sln/Sample.App/Views/MainView.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code data-sample='assets/sln/Sample.App/Views/MainView.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-8]
 @[28-29]
 @[41-42] -->
-[Code sample](/assets/sln/Sample.App/Views/MainView.xaml)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_08/assets/sln/Sample.App/Views/MainView.xaml)
 
 +++
-<pre><code data-sample='/assets/sln/Sample.App/ViewModels/Base/ViewModelBase.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code data-sample='assets/sln/Sample.App/ViewModels/Base/ViewModelBase.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[6-14]
 @[8]
 @[10-11, 13]
 @[12]
 @[6-14] -->
-[Code sample](/assets/sln/Sample.App/ViewModels/Base/ViewModelBase.cs)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_08/assets/sln/Sample.App/ViewModels/Base/ViewModelBase.cs)
 
 +++
-<pre><code data-sample='/assets/sln/Sample.App/ViewModels/MainViewModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code data-sample='assets/sln/Sample.App/ViewModels/MainViewModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-8]
 @[9-10]
 @[12-13, 19-21]
@@ -436,7 +436,7 @@ and others...
 @[29]
 @[23-31]
 @[33-41] -->
-[Code sample](/assets/sln/Sample.App/ViewModels/MainViewModel.cs)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_08/assets/sln/Sample.App/ViewModels/MainViewModel.cs)
 
 +++
 ### Binding to Collections
@@ -532,24 +532,24 @@ public class MenuItem {
 
 +++
 #### Binding Collection Sample 1/3
-<pre><code data-sample='/assets/sln/CollectionBinding/MainViewModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code data-sample='assets/sln/CollectionBinding/MainViewModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[5-22]
 @[7-19]
 @[9-18]
 @[21]
 @[5-22] -->
-[Code sample](/assets/sln/CollectionBinding/MainViewModel.cs)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_08/assets/sln/CollectionBinding/MainViewModel.cs)
 
 +++
 #### Binding Collection Sample 2/3
-<pre><code data-sample='/assets/sln/CollectionBinding/MainWindow.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code data-sample='assets/sln/CollectionBinding/MainWindow.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9] -->
-[Code sample](/assets/sln/CollectionBinding/MainWindow.xaml)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_08/assets/sln/CollectionBinding/MainWindow.xaml)
 
 +++
 #### Binding Collection Sample 3/3
 
-![](/assets/img/CollectionBinding.png)
+![](assets/img/CollectionBinding.png)
 
 ---
 ## Commands
@@ -612,22 +612,22 @@ public class MyCommand : ICommand {
 
 +++
 #### Command Class Sample 1/4
-<pre><code data-sample='/assets/sln/Sample.App/Views/MainView.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code data-sample='assets/sln/Sample.App/Views/MainView.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[45-48]
 @[49-51] -->
-[Code sample](/assets/sln/Sample.App/Views/MainView.xaml)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_08/assets/sln/Sample.App/Views/MainView.xaml)
 
 +++
 #### Command Class Sample 2/4
-<pre><code data-sample='/assets/sln/Sample.App/ViewModels/MainViewModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code data-sample='assets/sln/Sample.App/ViewModels/MainViewModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-8]
 @[12-13, 16-17, 21]
 @[45-46] -->
-[Code sample](/assets/sln/Sample.App/ViewModels/MainViewModel.cs)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_08/assets/sln/Sample.App/ViewModels/MainViewModel.cs)
 
 +++
 #### Command Class Sample 3/4
-<pre><code data-sample='/assets/sln/Sample.App/Commands/WriteRightWithoutCanExecuteCommand.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code data-sample='assets/sln/Sample.App/Commands/WriteRightWithoutCanExecuteCommand.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-8]
 @[9]
 @[11-14]
@@ -635,16 +635,16 @@ public class MyCommand : ICommand {
 @[21-24]
 @[23]
 @[26-30] -->
-[Code sample](/assets/sln/Sample.App/Commands/WriteRightWithoutCanExecuteCommand.cs)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_08/assets/sln/Sample.App/Commands/WriteRightWithoutCanExecuteCommand.cs)
 
 +++
 #### Command Class Sample 4/4
-<pre><code data-sample='/assets/sln/Sample.App/Commands/WriteRightWithCanExecuteCommand.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code data-sample='assets/sln/Sample.App/Commands/WriteRightWithCanExecuteCommand.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-8]
 @[16-19]
 @[18]
 @[16-19] -->
-[Code sample](/assets/sln/Sample.App/Commands/WriteRightWithCanExecuteCommand.cs)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_08/assets/sln/Sample.App/Commands/WriteRightWithCanExecuteCommand.cs)
 
 +++
 ### Commands Benefits
@@ -678,7 +678,7 @@ private bool CanExecute() => true;
 
 +++
 #### Relay Command Sample 1/3
-<pre><code data-sample='/assets/sln/Sample.App/Commands/RelayCommand.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code data-sample='assets/sln/Sample.App/Commands/RelayCommand.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[6-7]
 @[8-9]
 @[11-15]
@@ -687,24 +687,24 @@ private bool CanExecute() => true;
 @[22-26]
 @[27-30]
 @[32-36] -->
-[Code sample](/assets/sln/Sample.App/Commands/RelayCommand.cs)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_08/assets/sln/Sample.App/Commands/RelayCommand.cs)
 
 +++
 #### Relay Command Sample 2/3
-<pre><code data-sample='/assets/sln/Sample.App/Views/MainView.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code data-sample='assets/sln/Sample.App/Views/MainView.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[32-35]
 @[36-38] -->
-[Code sample](/assets/sln/Sample.App/Views/MainView.xaml)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_08/assets/sln/Sample.App/Views/MainView.xaml)
 
 +++
 #### Relay Command Sample 3/3
-<pre><code data-sample='/assets/sln/Sample.App/ViewModels/MainViewModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code data-sample='assets/sln/Sample.App/ViewModels/MainViewModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-8]
 @[12-15, 21]
 @[43-44]
 @[48-51]
 @[53-56] -->
-[Code sample](/assets/sln/Sample.App/ViewModels/MainViewModel.cs)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_08/assets/sln/Sample.App/ViewModels/MainViewModel.cs)
 
 ---
 ## Value Conversion
@@ -715,21 +715,21 @@ private bool CanExecute() => true;
 
 +++
 #### Value Conversion Sample 1/2
-<pre><code data-sample='/assets/sln/Sample.App/Views/MainView.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code data-sample='assets/sln/Sample.App/Views/MainView.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[32-35]
 @[35]
 @[45-48]
 @[48] -->
-[Code sample](/assets/sln/Sample.App/Views/MainView.xaml)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_08/assets/sln/Sample.App/Views/MainView.xaml)
 
 +++
 #### Value Conversion Sample 2/2
-<pre><code data-sample='/assets/sln/Sample.App/Converters/NullOrEmptyToIsEnabledConverter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code data-sample='assets/sln/Sample.App/Converters/NullOrEmptyToIsEnabledConverter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-18]
 @[9-12]
 @[14-17]
 @[7-18] -->
-[Code sample](/assets/sln/Sample.App/Converters/NullOrEmptyToIsEnabledConverter.cs)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_08/assets/sln/Sample.App/Converters/NullOrEmptyToIsEnabledConverter.cs)
 
 ---
 ## Views Opening
@@ -745,7 +745,7 @@ private bool CanExecute() => true;
 * Open **view in new window**
   * Creating a new window is a job for the *ViewModel*
     * It is not part of ViewModel responsibilities to know, what View should be created
-    * See [Demonstration project](/assets/sln/OpeningWindow)
+    * See [Demonstration project](assets/sln/OpeningWindow)
   * Recommends using MVVM framework
     * Solves problems with wrapping all this up
 
@@ -778,13 +778,13 @@ private bool CanExecute() => true;
   * Contains **base classes and controls**
   * Intended to be used as part of other more complex controls
 
-![](/assets/img/CustomControl.png)
+![](assets/img/CustomControl.png)
 
 +++
 #### Custom Control Sample
-<pre><code data-sample='/assets/sln/CustomControl/MainWindow.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code data-sample='assets/sln/CustomControl/MainWindow.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[11-15] -->
-[Code sample](/assets/sln/CustomControl/MainWindow.xaml)
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_08/assets/sln/CustomControl/MainWindow.xaml)
 
 ---
 ## Material Design In XAML Toolkit
@@ -796,19 +796,19 @@ private bool CanExecute() => true;
 * PM> `Install-Package MaterialDesignThemes`
 * [WPF Material Design Demo](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/tree/master/MainDemo.Wpf)
 
-![](/assets/img/MaterialDesign.png)
+![](assets/img/MaterialDesign.png)
 
 +++
 ### Material Design Change
 
 <div class="left">
 
-![](/assets/img/WithoutMaterial.png)
+![](assets/img/WithoutMaterial.png)
 </div>
 
 <div class="right">
 
-![](/assets/img/WithMaterial.png)
+![](assets/img/WithMaterial.png)
 </div>
 
 +++
@@ -858,7 +858,7 @@ private bool CanExecute() => true;
 ### Material Design Quick Start 3/3
 * Run the app
 
-![](/assets/img/materialquickstart.png)
+![](assets/img/materialquickstart.png)
 
 ---
 ## Declarative UI - WPF Principle
@@ -866,14 +866,14 @@ private bool CanExecute() => true;
   * Uses **Blend for Visual Studio** former **Expression Blend**
   * Edits only *XAML files*
 
-![](/assets/img/blend.png)
+![](assets/img/blend.png)
 
 +++
 * Developer
   * Uses **Visual Studio**
   * Works with *Code-behind*
 
-![](/assets/img/vs.jpg)
+![](assets/img/vs.jpg)
 
 * Typically, the role of *Designer* and *Developer* overlaps
 
@@ -915,7 +915,7 @@ MainWindow.xaml.cs:
   * Adds visual designers for **advanced tasks such as animations and behaviors**
 * [Blend More Informations](https://docs.microsoft.com/en-us/visualstudio/designers/creating-a-ui-by-using-blend-for-visual-studio?view=vs-2017)
 
-![](/assets/img/BlendLogo.png)
+![](assets/img/BlendLogo.png)
 
 ---
 ### Technologies Using WPF
@@ -941,7 +941,7 @@ MainWindow.xaml.cs:
 
 <div class="right">
 
-![](/assets/img/SilverlightLogo.png)
+![](assets/img/SilverlightLogo.png)
 </div>
 
 +++
@@ -966,27 +966,27 @@ MainWindow.xaml.cs:
 
 +++
 ## Universal Windows Platform
-![](/assets/img/uwp.png)
+![](assets/img/uwp.png)
 
 +++
 ### UWP Device Family
-![](/assets/img/uwp_device_family.png)
+![](assets/img/uwp_device_family.png)
 
 +++
 ## Xamarin
 * **Multi-platform development**
 * Started for *mobile devices* to unify development for *all device families*
 * Nowadays tries to *target all* mobiles, desktop, web...
-![](/assets/img/Xamarin_TraditionalvsForms.png)
+![](assets/img/Xamarin_TraditionalvsForms.png)
 
 +++
 ### Xamarin Sample
 
-![](/assets/img/Xamarin_allhanselman.png)
+![](assets/img/Xamarin_allhanselman.png)
 
 ---
 ## WPF Demo
-![](/assets/img/demo.png)
+![](assets/img/demo.png)
 
 ---
 ## References:
