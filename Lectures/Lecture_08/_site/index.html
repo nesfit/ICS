@@ -1,24 +1,27 @@
----
-title: ICS 04 - Propojení aplikací s databází
-theme: simple
-css: assets/theme.css
-separator: "^---$"
-verticalSeparator: "^\\+\\+\\+$"
-highlightTheme: vs
-progress: true
-slideNumber: true
-mouseWheel: false
-enableMenu: true
-enableChalkboard: true
-enableTitleFooter: true
----
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>ICS 04 - Propojení aplikací s databází</title>
+    <link rel="shortcut icon" href="./favicon.ico"/>
+    <link rel="stylesheet" href="./dist/reveal.css" />
+    <link rel="stylesheet" href="./dist/theme/simple.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/vs.css" />
+    <link rel="stylesheet" href="./_assets/assets/theme.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
 
 # Windows Presentation Foundation
 ## Component Creating, Application Styling, Binding
 
 <div class="right">[ Jan Pluskal &lt;ipluskal@fit.vutbr.cz&gt;  ]</div>
 
----
+</script></section><section ><section data-markdown><script type="text/template">
 ## What is Windows Presentation Foundation (WPF)
 
 <div id="left">
@@ -38,7 +41,7 @@ enableTitleFooter: true
 </div>
 
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Vector Graphics
 * All applications writen with WPF are **Direct3D enabled**
  * **Vector based** engine ensures performance
@@ -51,12 +54,12 @@ enableTitleFooter: true
    * *Float point system* of logical pixels
    * *32-bit ARGB* color spectrum
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Vector vs. Raster Graphics
 
 ![](/assets/img/vector_vs_raster.jpg)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Rendering
 * Works on the lowest layer with **shapes** not **pixels** 
 * *Shapes* are represented by *vectors* and can be *easily manipulated*
@@ -65,14 +68,14 @@ enableTitleFooter: true
   * E.g., `Line, Rectangle, Ellipse, Path` etc...
 * *Shapes* are used inside *panels* and multiplicity of other WPF component contents
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Text Model
 * Supports a wide range of *typographic* and *text rendering* functions
 * *International fonts* and *composite fonts*
 * WPF rendering engines use *ClearType* technologies
   * Fonts are *pre-rendered* and *stored in video memory*
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Animations
 * Supports timed animation
   * **Timers** are *initialized and managed by WPF*
@@ -82,7 +85,7 @@ enableTitleFooter: true
   * On *user inputs*
 * Animations are *defined by XAML* declarations
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Audio & Video
 * Supports incorporation of *audio* and *video* into UI
 * *Audio support* utilizes a thin layer based on *Win32* and *WMP* functions
@@ -91,7 +94,7 @@ enableTitleFooter: true
   * Combination of *video* and *animations* creates dynamic content
   * *Animations* can be synchronized with media
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## XAML
 * **XAML** - e**X**tensible **A**pplication **M**arkup **L**anguage
 * UI Declaration is based on **XAML**
@@ -103,7 +106,7 @@ enableTitleFooter: true
 
 ![](/assets/img/XAMLlogo.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### XAML - Basics
 * **XAML** is based on **XML**
 * *Declaration* and *initiliazation* of *.NET objects*
@@ -112,11 +115,11 @@ enableTitleFooter: true
 * Contains element hierarchy representing visual objects
 * These objects are called *user interface elements* or *UI elements*
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Hello WPF - Sample
 ![](/assets/img/HelloWPF.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 
 <pre><code data-sample='/assets/sln/HelloWpf/MainWindow.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[1,13]
@@ -128,7 +131,7 @@ enableTitleFooter: true
 @[11] -->
 [Code sample](/assets/sln/HelloWpf/MainWindow.xaml)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 
 <pre><code data-sample='/assets/sln/HelloWpf/MainWindow.xaml.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-14]
@@ -138,7 +141,7 @@ enableTitleFooter: true
 @[8-14] -->
 [Code sample](/assets/sln/HelloWpf/MainWindow.xaml.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Hello WPF - Explanation
 * Declarations
   * *Window/UserControl/…* - inheritance
@@ -151,7 +154,7 @@ enableTitleFooter: true
 * `Width, Height, Title` are *properties*
 * *Element* `Button` declares item button
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Elements & Attributes - Object Properties 
 * `System.Windows.UIElement` (*UI Element*) have common subset of *properties* and *functions*
   * E.g., `Width, Height, Cursor, Tag` properties
@@ -162,7 +165,7 @@ enableTitleFooter: true
 * **Attribute** – simple property
 * **Element** – *UI Element*, complex property, class initialization
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Property Elements
 * Not all *properties* has to contain only a `string` 
 * **Properties can contain instances of other objects**
@@ -178,7 +181,7 @@ enableTitleFooter: true
 </Grid>
 ```
 
----
+</script></section></section><section  data-markdown><script type="text/template">
 ## Class Hierarchy
 * `System.Object`
 * `System.Windows.DependencyObject`
@@ -200,14 +203,14 @@ System.Object
             System.Windows.Controls.Control
 ```
 
----
+</script></section><section ><section data-markdown><script type="text/template">
 ## Controls
 * Panels
 * Content Controls
 * ⋮
 * [List of all controls](https://docs.microsoft.com/en-us/dotnet/framework/wpf/controls/control-library)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## Panels
 * Are **the only components** that **can have multiple elements declared in content**
 * Used to create a **layout** 
@@ -225,7 +228,7 @@ System.Object
             System.Windows.Controls.Panel
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Canvas
 * `Canvas`
 * Position the content according to the **absolute x- and y-coordinates**
@@ -233,7 +236,7 @@ System.Object
 
 ![](/assets/img/canvas.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Grid
 * `Grid`
 * Combination of: 
@@ -243,7 +246,7 @@ System.Object
 
 ![](/assets/img/Grid.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### StackPanel and DockPanel
 * `StackPanel`, `DockPanel`
 * **Components are placed next to one-another**
@@ -254,7 +257,7 @@ System.Object
   * DockPanel - the last item is squeezed
   * StackPanel - the last item is trimmed
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### WrapPanel
 * `WrapPanel`
 * Components beside one-another and if there is no space, another row is created, or vice-versa
@@ -263,7 +266,7 @@ System.Object
 
 ![](/assets/img/wrappanel.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Content Controls
 * **Only one descendant**
 * `Border` 
@@ -287,7 +290,7 @@ System.Object
               System.Windows.Controls.ContentControl
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Positioning Properties
 * `Width, MinWidth, MaxWidth`
 * `HorizontalAlignment, VerticalAlignment`
@@ -306,7 +309,7 @@ System.Object
           System.Windows.FrameworkElement
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Text Formating
 * Element `TextBlock`
   * Property `TextWrapping`
@@ -323,7 +326,7 @@ Username: <Run FontWeight="Bold" Text="{Binding UserName}"/>
 </TextBlock>
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Other Interesting Components
 * `Calendar`
 
@@ -333,7 +336,7 @@ Username: <Run FontWeight="Bold" Text="{Binding UserName}"/>
 
 ![](/assets/img/datepicker.jpeg)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 
 * `Image` 
 
@@ -347,7 +350,7 @@ Username: <Run FontWeight="Bold" Text="{Binding UserName}"/>
 
 and others...
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ### DataContext
 * Property of `FrameworkElement`
 * References parent's `DataContext` if not set on an element.
@@ -356,17 +359,17 @@ and others...
 
 ![](/assets/img/DataContext.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Binding Markup
 
 ![](/assets/img/BindingMarkup.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### DataContex Sample
 ![](/assets/img/DataContext_example.png)
 
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Data-binding types
 * Against current `DataContext`
   * `{Binding}`
@@ -380,7 +383,7 @@ and others...
   * `{Binding Path=Text, ElementName=TextBox1}`
     * Property `Text` on object `TextBox1`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Data-binding direction
 * Defined by property `Mode`
   * `OneTime`
@@ -400,7 +403,7 @@ and others...
 * *Target*
   * Component that defines `{Binding}`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Data-binding how it works?
 * `OneWay` and `TwoWay` 
   * React to changes in the source
@@ -408,14 +411,14 @@ and others...
     * `class` containing the *source* need to implement `INotifyPropertyChanged`
     * When *something* changes, `PropertyChanged` event needs to `Invoke()`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code data-sample='/assets/sln/Sample.App/Views/MainView.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-8]
 @[28-29]
 @[41-42] -->
 [Code sample](/assets/sln/Sample.App/Views/MainView.xaml)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code data-sample='/assets/sln/Sample.App/ViewModels/Base/ViewModelBase.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[6-14]
 @[8]
@@ -424,7 +427,7 @@ and others...
 @[6-14] -->
 [Code sample](/assets/sln/Sample.App/ViewModels/Base/ViewModelBase.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 <pre><code data-sample='/assets/sln/Sample.App/ViewModels/MainViewModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-8]
 @[9-10]
@@ -438,7 +441,7 @@ and others...
 @[33-41] -->
 [Code sample](/assets/sln/Sample.App/ViewModels/MainViewModel.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Binding to Collections
 * *View-Model* declares a collection typed property, i.e., type implements `IEnumerable`
   * WPF sees items as a representation of collection's inner elements typed as `System.Object`
@@ -458,7 +461,7 @@ public class MenuItem {
 }
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### ItemsControls - Collection Visualization
 * `ComboBox`
 * `ListBox`
@@ -468,7 +471,7 @@ public class MenuItem {
 * `System.Windows.Controls.Control`
 * `System.Windows.Controls.ItemsControl`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### ItemsControl - Collection Visualization
 * Property `Items`
   * General objects, rendered inside ItemControl
@@ -491,7 +494,7 @@ public class MenuItem {
 </ListBox>
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### ItemsControl - Collection Change
 *  How to re-render collection?
 *  Property `ItemsSource`
@@ -502,7 +505,7 @@ public class MenuItem {
   * Adding or Removing items in the collection
     * The collection must implement interface `INotifyCollectionChanged`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### ItemsControl - ListBox
 * Property `SelectedItem`
   * Object that is *bindable*
@@ -521,7 +524,7 @@ public class MenuItem {
 />
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### INotifyCollectionChanged
 * Implemented by `ObservableCollection<T>`
   * Implements interface `INotifyCollectionChanged`
@@ -530,7 +533,7 @@ public class MenuItem {
 * Existing collections
   * To create a wrapper implementing `INotifyCollectionChanged`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Binding Collection Sample 1/3
 <pre><code data-sample='/assets/sln/CollectionBinding/MainViewModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[5-22]
@@ -540,18 +543,18 @@ public class MenuItem {
 @[5-22] -->
 [Code sample](/assets/sln/CollectionBinding/MainViewModel.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Binding Collection Sample 2/3
 <pre><code data-sample='/assets/sln/CollectionBinding/MainWindow.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9] -->
 [Code sample](/assets/sln/CollectionBinding/MainWindow.xaml)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Binding Collection Sample 3/3
 
 ![](/assets/img/CollectionBinding.png)
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Commands
 * `Command` is an abstract and *loosely-coupled* version of `event`
 * E.g., *Copy, Cut, Paste, Save, etc...*
@@ -559,7 +562,7 @@ public class MenuItem {
 * Enables UI changes without a need to change *back-end* logic
 * Commands have *action, source, target, and binding*
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Command Class
 * Implements interface `ICommand`
   * `public interface ICommand`
@@ -573,7 +576,7 @@ public class MenuItem {
     * Event that is called when condition used in `CanExecute(Object)` changes
     * `CanExecute(Object)` is reevaluated, and if changed, the command can be executed
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Command Parameter
 * Specify a command parameter using the `CommandParameter` property
 * **Data** in this property **will be passed to the code** that runs when the command executes
@@ -610,14 +613,14 @@ public class MyCommand : ICommand {
 @[17]
 @[1-18] -->
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Command Class Sample 1/4
 <pre><code data-sample='/assets/sln/Sample.App/Views/MainView.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[45-48]
 @[49-51] -->
 [Code sample](/assets/sln/Sample.App/Views/MainView.xaml)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Command Class Sample 2/4
 <pre><code data-sample='/assets/sln/Sample.App/ViewModels/MainViewModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-8]
@@ -625,7 +628,7 @@ public class MyCommand : ICommand {
 @[45-46] -->
 [Code sample](/assets/sln/Sample.App/ViewModels/MainViewModel.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Command Class Sample 3/4
 <pre><code data-sample='/assets/sln/Sample.App/Commands/WriteRightWithoutCanExecuteCommand.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-8]
@@ -637,7 +640,7 @@ public class MyCommand : ICommand {
 @[26-30] -->
 [Code sample](/assets/sln/Sample.App/Commands/WriteRightWithoutCanExecuteCommand.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Command Class Sample 4/4
 <pre><code data-sample='/assets/sln/Sample.App/Commands/WriteRightWithCanExecuteCommand.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-8]
@@ -646,7 +649,7 @@ public class MyCommand : ICommand {
 @[16-19] -->
 [Code sample](/assets/sln/Sample.App/Commands/WriteRightWithCanExecuteCommand.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Commands Benefits
 * Wide range of *predefined commands*
 * Provide **automated support for user input actions**
@@ -657,7 +660,7 @@ public class MyCommand : ICommand {
   * Launches *action*
   * *Checks* if the action is permitted to launch
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Commands - RelayCommand
 * RelayCommand – [MVVM - Commands, RelayCommands and EventToCommand](https://msdn.microsoft.com/en-us/magazine/dn237302.aspx?f=255&MSPPError=-2147217396), Telerik
 
@@ -676,7 +679,7 @@ private void Execute() {
 private bool CanExecute() => true;
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Relay Command Sample 1/3
 <pre><code data-sample='/assets/sln/Sample.App/Commands/RelayCommand.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[6-7]
@@ -689,14 +692,14 @@ private bool CanExecute() => true;
 @[32-36] -->
 [Code sample](/assets/sln/Sample.App/Commands/RelayCommand.cs)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Relay Command Sample 2/3
 <pre><code data-sample='/assets/sln/Sample.App/Views/MainView.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[32-35]
 @[36-38] -->
 [Code sample](/assets/sln/Sample.App/Views/MainView.xaml)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Relay Command Sample 3/3
 <pre><code data-sample='/assets/sln/Sample.App/ViewModels/MainViewModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-8]
@@ -706,14 +709,14 @@ private bool CanExecute() => true;
 @[53-56] -->
 [Code sample](/assets/sln/Sample.App/ViewModels/MainViewModel.cs)
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Value Conversion
 * `IValueConverter`
 * **Use a value of one type and then present it differently**
   * Used with data bindings
 * E.g. *NullToVisibility*
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Value Conversion Sample 1/2
 <pre><code data-sample='/assets/sln/Sample.App/Views/MainView.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[32-35]
@@ -722,7 +725,7 @@ private bool CanExecute() => true;
 @[48] -->
 [Code sample](/assets/sln/Sample.App/Views/MainView.xaml)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Value Conversion Sample 2/2
 <pre><code data-sample='/assets/sln/Sample.App/Converters/NullOrEmptyToIsEnabledConverter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-18]
@@ -731,7 +734,7 @@ private bool CanExecute() => true;
 @[7-18] -->
 [Code sample](/assets/sln/Sample.App/Converters/NullOrEmptyToIsEnabledConverter.cs)
 
----
+</script></section></section><section  data-markdown><script type="text/template">
 ## Views Opening
 * Open **view inside another view**
 ```XML
@@ -749,7 +752,7 @@ private bool CanExecute() => true;
   * Recommends using MVVM framework
     * Solves problems with wrapping all this up
 
----
+</script></section><section ><section data-markdown><script type="text/template">
 ### Styles
 * **Style** is a *set of properties* applied to the *content*
   * Defines *changes in rendering*
@@ -759,7 +762,7 @@ private bool CanExecute() => true;
 * WPF styles contain specific properties for UI creation
   * E.g., *begin a set of visual effects* as a *reaction to a user action*
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Templates
 * Enables **complex changes to UI** state of any WPF items
 * **Available templates**
@@ -770,7 +773,7 @@ private bool CanExecute() => true;
   * `HierarchicalDataTemplate` - object look inside panels with hierarchical structure
     * E.g., `TreeView`
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Custom Control Creation
 * *Class* which offers its own functionality
   * Style and template defined in *generic.xaml**
@@ -780,13 +783,13 @@ private bool CanExecute() => true;
 
 ![](/assets/img/CustomControl.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 #### Custom Control Sample
 <pre><code data-sample='/assets/sln/CustomControl/MainWindow.xaml' class="language-xml" data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[11-15] -->
 [Code sample](/assets/sln/CustomControl/MainWindow.xaml)
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Material Design In XAML Toolkit
 * Material Design styles **for all major WPF Framework controls**
 * Additional controls to support the theme
@@ -798,7 +801,7 @@ private bool CanExecute() => true;
 
 ![](/assets/img/MaterialDesign.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Material Design Change
 
 <div class="left">
@@ -811,7 +814,7 @@ private bool CanExecute() => true;
 ![](/assets/img/WithMaterial.png)
 </div>
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Material Design Quick Start 1/3
 * Start new WPF project
 * Install MaterialDesignThemes NuGet: `Install-Package MaterialDesignThemes`
@@ -831,7 +834,7 @@ private bool CanExecute() => true;
     </Application.Resources>
 </Application>
 ```
-+++
+</script></section><section data-markdown><script type="text/template">
 
 ### Material Design Quick Start 2/3
 * Edit *MainWindow.xaml* to following:
@@ -854,13 +857,13 @@ private bool CanExecute() => true;
 </Window> 
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Material Design Quick Start 3/3
 * Run the app
 
 ![](/assets/img/materialquickstart.png)
 
----
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Declarative UI - WPF Principle
 * Designer, UI developer
   * Uses **Blend for Visual Studio** former **Expression Blend**
@@ -868,7 +871,7 @@ private bool CanExecute() => true;
 
 ![](/assets/img/blend.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 * Developer
   * Uses **Visual Studio**
   * Works with *Code-behind*
@@ -877,7 +880,7 @@ private bool CanExecute() => true;
 
 * Typically, the role of *Designer* and *Developer* overlaps
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### *Declarative* vs. *Imperative* UI
 * **Supports both** *declarative* and *imperative* UI element instantiations
 * **No difference** between both approaches
@@ -897,7 +900,7 @@ MainWindow.xaml.cs:
    button.Content = "Click ME!";
 ```
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Declarative UI - WPF Principle
 * What happens when *XAML is no used in WPF*?
   * Idea of **separation of concerns** is lost
@@ -908,7 +911,7 @@ MainWindow.xaml.cs:
   * *Parameter-less constructor* is called
   * All *magic* happens in `InitializeComponent()` method call
 
----
+</script></section></section><section  data-markdown><script type="text/template">
 ## Blend for Visual Studio
 * Helps **design XAML-based Windows and Web applications**
 * Same basic XAML design experience as Visual Studio
@@ -917,14 +920,14 @@ MainWindow.xaml.cs:
 
 ![](/assets/img/BlendLogo.png)
 
----
+</script></section><section ><section data-markdown><script type="text/template">
 ### Technologies Using WPF
 * Silverlight
 * Universal Windows Platform (UWP)
 * Xamarin
 * ⋮
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## Silverlight
 <div class="left">
 
@@ -944,7 +947,7 @@ MainWindow.xaml.cs:
 ![](/assets/img/SilverlightLogo.png)
 </div>
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Silverlight - Deprecated
 * End of overall support is scheduled to **5th of October 2021**  
   * *IE7-8* - support had been removed between 2014-2016 (depending on the OS)
@@ -954,7 +957,7 @@ MainWindow.xaml.cs:
   * *Firefox* - no longer supported since March 2017
 * Statistics from February 2018 show that **fewer than 0.1% sites used Silverlight**
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## Universal Windows Platform
 * **Open source API** created by Microsoft
 * First introduced in **Windows 10**
@@ -964,31 +967,31 @@ MainWindow.xaml.cs:
   * *DirectX* UI and a *C++* backend 
   * *JavaScript* and *HTML* 
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## Universal Windows Platform
 ![](/assets/img/uwp.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### UWP Device Family
 ![](/assets/img/uwp_device_family.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## Xamarin
 * **Multi-platform development**
 * Started for *mobile devices* to unify development for *all device families*
 * Nowadays tries to *target all* mobiles, desktop, web...
 ![](/assets/img/Xamarin_TraditionalvsForms.png)
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ### Xamarin Sample
 
 ![](/assets/img/Xamarin_allhanselman.png)
 
----
+</script></section></section><section  data-markdown><script type="text/template">
 ## WPF Demo
 ![](/assets/img/demo.png)
 
----
+</script></section><section ><section data-markdown><script type="text/template">
 ## References:
 [C# 8.0 in a Nutshell: The Definitive Reference](https://www.amazon.com/C-8-0-Nutshell-Definitive-Reference/dp/1492051136) 
 [Microsoft .NET Documentation](https://docs.microsoft.com/en-us/dotnet/)  
@@ -997,7 +1000,7 @@ MainWindow.xaml.cs:
 [Material Design In XAML - GitHub](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit)  
 [Wikipedia](https://en.wikipedia.org/)  
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## Refences to used images:
 [Fiverr - I Will Develop Wpf And Xaml Programs](https://www.fiverr.com/moustafashaban/develop-wpf-and-xaml-programs)  
 [Microsoft .NET Documentation](https://docs.microsoft.com/en-us/dotnet/)  
@@ -1006,6 +1009,58 @@ MainWindow.xaml.cs:
 [Vector-conversions.com](https://vector-conversions.com)  
 [Wikipedia](https://en.wikipedia.org/)  
 
-+++
+</script></section><section data-markdown><script type="text/template">
 ## Credits
-* Michal Orlíček - for slides preparation
+* Michal Orlíček - for slides preparation</script></section></section></div>
+    </div>
+
+    <script src="./dist/reveal.js"></script>
+
+    <script src="./plugin/markdown/markdown.js"></script>
+    <script src="./plugin/highlight/highlight.js"></script>
+    <script src="./plugin/zoom/zoom.js"></script>
+    <script src="./plugin/notes/notes.js"></script>
+    <script src="./plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"controls":true,"controlsTutorial":true,"controlsLayout":"bottom-right","progress":true,"slideNumber":true,"showSlideNumber":"all","keyboard":true,"overview":true,"navigationMode":"linear","fragments":true,"fragmentInURL":false,"help":true,"mouseWheel":true,"transition":"slide","transitionSpeed":"fast"}, queryOptions);
+    </script>
+
+    <script src="./_assets/plugin/sampler.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>

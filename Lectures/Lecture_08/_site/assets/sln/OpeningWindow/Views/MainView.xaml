@@ -1,0 +1,13 @@
+﻿<Window x:Class="OpeningWindow.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        DataContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
+        xmlns:local="clr-namespace:OpeningWindow"
+        mc:Ignorable="d"
+        Title="MainView" Height="100" Width="300">
+    <Grid>
+        <Button Margin="20" Content="{Binding Text}" Command="{Binding OpenWindowCommand}" />
+    </Grid>
+</Window>

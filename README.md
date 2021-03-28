@@ -18,19 +18,19 @@
 
 +++
 
-1. Organizace kurzu
-2. [Úvod do jazyka C# a platformy .NET](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/)
+0. Organizace kurzu
+1. [Úvod do jazyka C# a platformy .NET](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/)
    * základní syntaxe jazyka, instalace a představení Visual Studia
-3. [Úvod do Objektově Orientované Programování](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/)
+2. [Úvod do Objektově Orientované Programování](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/)
    * pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika
-4. [Představení základních knihovních funkcí (BCL)](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/)
+3. [Představení základních knihovních funkcí (BCL)](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/)
    * dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL)
-5. [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/)
+4. [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/)
    * zajištění persistence pomocí ORM rozšíření Entity Framework Core s návrhovými vzory UnitOfWork a Repository
-6. Psaní čistého, udržovatelného kódu
+5. Psaní čistého, udržovatelného kódu
    * respektováním Clean Code, S.O.L.I.D. zásad
    * ukázky refaktorizace a práce s legacy kódem
-7. Návrhový vzor Model-View-ViewModel (MVVM)
+6. Návrhový vzor Model-View-ViewModel (MVVM)
    * architektura desktopových aplikací
    * mapování databázových entit na modelové třídy
 
@@ -38,7 +38,7 @@
 
 7. Continous Integration v prostředí Azure DevOps
    * testování aplikací - smoke, unit, integrační, UI a akceptační testy
-8. [Základní koncepty tvorby uživatelského rozhraní](https://gitpitch.com/nesfit/ics/master?grs=github&t=white&p=Lectures%2FLecture_08#/)
+8. [Základní koncepty tvorby uživatelského rozhraní](https://nesfit.github.io/ICS/Lectures/Lecture_08/_site/)
    * Windows Presentation Foundation (WPF)
 9. Velikonoční pondělí
 10. WPF za pomoci MVVM, tvorba komponenty a stylování aplikací.
