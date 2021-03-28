@@ -5,8 +5,6 @@
         Kg,
         L,
         Ml,
-        G,
-        Pieces,
-        Spoon
+        G
     }
 }

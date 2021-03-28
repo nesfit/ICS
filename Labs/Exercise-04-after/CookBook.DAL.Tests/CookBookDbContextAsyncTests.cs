@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using CookBook.DAL.Entities;
 using CookBook.DAL.Enums;
 using CookBook.DAL.Seeds;
@@ -8,16 +9,21 @@ using Xunit;
 
 namespace CookBook.DAL.Tests
 {
-    public sealed class CookBookDbContextTests : IDisposable
+    /// <summary>
+    /// These tests are duplicity of CookBookDbContextTests!
+    /// 
+    /// This example is added for the sake of completeness.
+    /// Further Async/Await details will be explained in dedicated lecture. 
+    /// </summary>
+    public sealed class CookBookDbContextAsyncTests : IAsyncLifetime
     {
         private readonly DbContextInMemoryFactory _dbContextFactory;
         private readonly CookBookDbContext _cookBookDbContextSUT;
 
-        public CookBookDbContextTests()
+        public CookBookDbContextAsyncTests()
         {
             _dbContextFactory = new DbContextInMemoryFactory(nameof(CookBookDbContextTests));
             _cookBookDbContextSUT = _dbContextFactory.Create();
-            _cookBookDbContextSUT.Database.EnsureCreated();
         }
 
         [Fact]
@@ -104,6 +110,8 @@ namespace CookBook.DAL.Tests
             Assert.Equal(IngredientSeeds.Water, fromDb);
         }
 
-        public void Dispose() => _cookBookDbContextSUT?.Dispose();
+        public async Task InitializeAsync() => await _cookBookDbContextSUT.Database.EnsureCreatedAsync();
+
+        public async Task DisposeAsync() => await _cookBookDbContextSUT.DisposeAsync();
     }
 }

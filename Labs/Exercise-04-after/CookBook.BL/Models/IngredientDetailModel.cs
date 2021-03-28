@@ -1,6 +1,9 @@
-﻿namespace CookBook.BL.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace CookBook.BL.Models
 {
-    public class IngredientDetailModel : ModelBase
+    public record IngredientDetailModel : ModelBase
     {
         public string Name { get; set; }
         public string Description { get; set; }
