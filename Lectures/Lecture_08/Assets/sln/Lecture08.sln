@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28714.193
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWpf", "HelloWpf\HelloWpf.csproj", "{B4EC5242-AC52-4A65-A6D8-6C392C686D9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWpf", "HelloWpf\HelloWpf.csproj", "{B4EC5242-AC52-4A65-A6D8-6C392C686D9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.App", "Sample.App\Sample.App.csproj", "{82134682-9707-4037-9E75-C3641820D7A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.App", "Sample.App\Sample.App.csproj", "{82134682-9707-4037-9E75-C3641820D7A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControl", "CustomControl\CustomControl.csproj", "{EFB0D2DD-9878-491D-894B-541A7AFE7B80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomControl", "CustomControl\CustomControl.csproj", "{EFB0D2DD-9878-491D-894B-541A7AFE7B80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionBinding", "CollectionBinding\CollectionBinding.csproj", "{A635B7A6-41A9-4CC3-B180-D371CA65480D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CollectionBinding", "CollectionBinding\CollectionBinding.csproj", "{A635B7A6-41A9-4CC3-B180-D371CA65480D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpeningWindow", "OpeningWindow\OpeningWindow.csproj", "{E827974F-2741-471A-9381-98749BD778E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpeningWindow", "OpeningWindow\OpeningWindow.csproj", "{E827974F-2741-471A-9381-98749BD778E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoWPF", "DemoWPF\DemoWPF.csproj", "{7E20A114-37B1-4D94-9E6E-DEDDD4CFEEB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoWPF", "DemoWPF\DemoWPF.csproj", "{7E20A114-37B1-4D94-9E6E-DEDDD4CFEEB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
