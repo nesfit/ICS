@@ -45,12 +45,16 @@ namespace CookBook.App.ViewModels
 
         public void Save()
         {
-            IMessage message = Model.Id == Guid.Empty
-                ? new IngredientAddedMessage {Id = Model.Id}
-                : new IngredientUpdatedMessage {Id = Model.Id};
-            
-            _ingredientRepository.InsertOrUpdate(Model);
-            _mediator.Send(message);
+            if(Model.Id == Guid.Empty)
+            {
+                _ingredientRepository.InsertOrUpdate(Model);
+                _mediator.Send(new IngredientAddedMessage { Id = Model.Id });
+            }
+            else
+            {
+                _ingredientRepository.InsertOrUpdate(Model);
+                _mediator.Send(new IngredientUpdatedMessage { Id = Model.Id });
+            }
 
             Model = null;
         }
