@@ -21,13 +21,13 @@
 0. Organizace kurzu
 1. [Úvod do jazyka C# a platformy .NET](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/)
    * základní syntaxe jazyka, instalace a představení Visual Studia
-2. [Úvod do Objektově Orientované Programování](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/)
+2. [Úvod do Objektově Orientovaného Programování](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/)
    * pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika
 3. [Představení základních knihovních funkcí (BCL)](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/)
    * dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL)
 4. [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/)
    * zajištění persistence pomocí ORM rozšíření Entity Framework Core s návrhovými vzory UnitOfWork a Repository
-5. Psaní čistého, udržovatelného kódu
+5. Psaní čistého a udržovatelného kódu
    * respektováním Clean Code, S.O.L.I.D. zásad
    * ukázky refaktorizace a práce s legacy kódem
 6. Návrhový vzor Model-View-ViewModel (MVVM)
@@ -41,7 +41,7 @@
 8. [Základní koncepty tvorby uživatelského rozhraní](https://nesfit.github.io/ICS/Lectures/Lecture_08/_site/)
    * Windows Presentation Foundation (WPF)
 9. Velikonoční pondělí
-10. WPF za pomoci MVVM, tvorba komponenty a stylování aplikací.
+10. WPF - tvorba komponent a stylování aplikací.
 11. [Paralelní a asynchronní programování](https://gitpitch.com/nesfit/ics/master?grs=github&t=white&p=Lectures%2FLecture_11#/)
     * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
 12. Návrhové vzory
@@ -63,11 +63,11 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 
 | Datum  |                                                 Téma cvičení |
 | ------ | ------------------------------------------------------------ |
-| 08.02. | Práce s Visual Studio 2019, Azure DevOps                     |
-| 15.02. | Objektově orientované programování, úvod do Entity Framework |
+| 08.02. | Práce s Visual Studio 2019 a Azure DevOps                     |
+| 15.02. | Objektově orientované programování a úvod do Entity Framework |
 | 01.03. | Entity framework                                             |
-| 29.03. | Základy WPF, návrhový vzor MVVM                              |
-| 12.04. | WPF frontend, binding                                        |
+| 29.03. | Základy WPF a návrhový vzor MVVM                              |
+| 12.04. | WPF frontend a binding                                        |
 | 19.04. | Takto můžete napsat projekt?!                                |
 
 ---
