@@ -1,6 +1,7 @@
 ﻿using CookBook.App.Commands;
 using CookBook.App.Messages;
 using CookBook.App.Services;
+using CookBook.App.Wrappers;
 using CookBook.BL.Models;
 using CookBook.BL.Repositories;
 using System;
@@ -31,14 +32,14 @@ namespace CookBook.App.ViewModels
             SaveCommand = new RelayCommand(Save, CanSave);
             DeleteCommand = new RelayCommand(Delete);
 
-            _mediator.Register<SelectedMessage>(IngredientSelected);
-            _mediator.Register<NewMessage>(IngredientNew);
+            _mediator.Register<SelectedMessage<IngredientWrapper>>(IngredientSelected);
+            _mediator.Register<NewMessage<IngredientWrapper>>(IngredientNew);
         }
 
-        private void IngredientNew(NewMessage newMessage)
+        private void IngredientNew(NewMessage<IngredientWrapper> newMessage)
             => Model = new IngredientDetailModel();
 
-        private void IngredientSelected(SelectedMessage selectedMessage)
+        private void IngredientSelected(SelectedMessage<IngredientWrapper> selectedMessage)
             => Model = _ingredientRepository.GetById(selectedMessage.Id);
 
         public void Save()
@@ -46,12 +47,12 @@ namespace CookBook.App.ViewModels
             if (Model.Id == Guid.Empty)
             {
                 _ingredientRepository.InsertOrUpdate(Model);
-                _mediator.Send(new AddedMessage { Id = Model.Id });
+                _mediator.Send(new AddedMessage<IngredientWrapper> { Id = Model.Id });
             }
             else
             {
                 _ingredientRepository.InsertOrUpdate(Model);
-                _mediator.Send(new UpdateMessage { Id = Model.Id });
+                _mediator.Send(new UpdateMessage<IngredientWrapper> { Id = Model.Id });
             }
 
             Model = null;
@@ -75,7 +76,7 @@ namespace CookBook.App.ViewModels
                     _messageBoxService.Show($"Deleting of {Model?.Name} failed!", "Deleting failed", MessageBoxButton.OK);
                 }
 
-                _mediator.Send(new DeleteMessage { Id = Model.Id });
+                _mediator.Send(new DeleteMessage<IngredientWrapper> { Id = Model.Id });
             }
             Model = null;
         }

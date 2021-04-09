@@ -2,7 +2,8 @@
 
 namespace CookBook.App.Messages
 {
-    public class UpdateMessage : Message<IModel>
+    public class UpdateMessage<T> : Message<T>
+        where T : IModel
     {
     }
 }

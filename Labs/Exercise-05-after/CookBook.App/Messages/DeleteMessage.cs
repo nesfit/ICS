@@ -2,7 +2,8 @@
 
 namespace CookBook.App.Messages
 {
-    public class DeleteMessage : Message<IModel>
+    public class DeleteMessage<T> : Message<T>
+        where T : IModel
     {
     }
 }
