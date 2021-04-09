@@ -38,6 +38,16 @@ namespace CookBook.DAL.Tests
         }
 
         [Fact]
+        public void AddNew_Ingredient()
+        {
+            var ingredientEntity = new IngredientEntity(Guid.NewGuid(), "Test Name", "Test Decription");
+
+            using var dbx = _dbContextFactory.Create();
+            dbx.Ingredients.Add(ingredientEntity);
+            dbx.SaveChanges();
+        }
+
+        [Fact]
         public void AddNew_RecipeWithoutIngredients_Persisted()
         {
             //Arrange
@@ -90,8 +100,8 @@ namespace CookBook.DAL.Tests
             //Assert
             using var dbx = _dbContextFactory.Create();
             var retrievedRecipe = dbx.Recipes
-                .Include(entity => entity.Ingredients)
-                .ThenInclude(amounts => amounts.Ingredient)
+                //.Include(entity => entity.Ingredients)
+                //.ThenInclude(amounts => amounts.Ingredient)
                 .Single(entity => entity.Id == recipeEntity.Id);
             Assert.Equal(recipeEntity, retrievedRecipe);
         }

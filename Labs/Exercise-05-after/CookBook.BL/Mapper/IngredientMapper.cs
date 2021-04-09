@@ -1,53 +1,28 @@
-﻿using CookBook.BL.Factories;
-using CookBook.BL.Models;
+﻿using CookBook.BL.Models;
 using CookBook.DAL.Entities;
-using CookBook.DAL.Interfaces;
 
 namespace CookBook.BL.Mapper
 {
-    internal static class IngredientMapper
+    public static class IngredientMapper
     {
-        public static IngredientListModel MapListModel(IngredientEntity entity) =>
-            entity == null
-                ? null
-                : new IngredientListModel
-                {
-                    Id = entity.Id,
-                    Name = entity.Name,
-                    ImageUrl = entity.ImageUrl
-                };
-
-        public static IngredientDetailModel MapDetailModel(IngredientEntity entity) =>
-            entity == null
-                ? null
-                : new IngredientDetailModel
-                {
-                    Id = entity.Id,
-                    Name = entity.Name,
-                    Description = entity.Description,
-                    ImageUrl = entity.ImageUrl
-                };
-
-        public static IngredientEntity MapEntity(IngredientDetailModel model, IEntityFactory entityFactory = null)
+        public static IngredientListModel MapIngredientEntityToListModel(IngredientEntity entity)
         {
-            var entity = (entityFactory ?? new DummyEntityFactory()).Create<IngredientEntity>(model.Id);
-            entity.Id = model.Id;
-            entity.Description = model.Description;
-            entity.Name = model.Name;
-            entity.ImageUrl = model.ImageUrl;
-
-            return entity;
+            return entity == null ? null : new IngredientListModel
+            {
+                Id = entity.Id,
+                Name = entity.Name
+            };
         }
 
+        public static IngredientDetailModel MapIngredientEntityToDetailModel(IngredientEntity entity) =>
+            new()
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                Description = entity.Description
+            };
 
-        public static IngredientEntity MapEntity(IngredientAmountDetailModel model, IEntityFactory entityFactory = null)
-        {
-            var entity = (entityFactory ?? new DummyEntityFactory()).Create<IngredientEntity>(model.IngredientId);
-            entity.Id = model.IngredientId;
-            entity.Description = model.IngredientDescription;
-            entity.Name = model.IngredientName;
-
-            return entity;
-        }
+        public static IngredientEntity MapIngredientDetailModelToEntity(IngredientDetailModel model) =>
+            new(model.Id, model.Name, model.Description, model.ImageUrl);
     }
 }

@@ -4,41 +4,30 @@
                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                        xmlns:local="clr-namespace:CookBook.App.Views"
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                       xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                       xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
                        xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
-                       xmlns:controls="clr-namespace:CookBook.App.Controls"
+                       xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+                       d:DataContext="{d:DesignInstance viewModels:IngredientListViewModel}"
                        d:DesignHeight="450"
                        d:DesignWidth="800"
                        mc:Ignorable="d"
-                       Background="{StaticResource DefaultComponentBackgroundBrush}"
-                       d:DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=IngredientListViewModel}">
+                       DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=IngredientListViewModel}">
     <Grid x:Name="Root">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <controls:ButtonWithIcon Grid.Row="0"
-                                 Command="{Binding IngredientNewCommand}"
-                                 TextContent="{x:Static texts:IngredientListResources.New_Button_Content}"
-                                 IconSource="/Resources/Images/Add.png"
-                                 HorizontalAlignment="Center"/>
+        <Button Grid.Row="0" Content="{x:Static texts:TextResources.IngredientList_ButtonNewIngredient}" Command="{Binding IngredientNewCommand}" />
         <ListBox x:Name="IngredientsListBox" Grid.Row="1" ItemsSource="{Binding Ingredients}">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding IngredientSelectedCommand}"
-                                           CommandParameter="{Binding ElementName=IngredientsListBox, Path=SelectedItem}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
+            <b:Interaction.Triggers>
+                <b:EventTrigger EventName="SelectionChanged">
+                    <b:InvokeCommandAction Command="{Binding IngredientSelectedCommand}"
+                                           CommandParameter="{Binding ElementName=IngredientsListBox, Path=SelectedItem}"/>
+                </b:EventTrigger>
+            </b:Interaction.Triggers>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="{Binding Name}" />
-                        <Image Grid.Column="1" Width="50" Source="{Binding ImageUrl}"/>
-                    </Grid>
+                    <Label x:Name="TestLabel" Content="{Binding Name}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

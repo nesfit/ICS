@@ -1,21 +1,28 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using CookBook.BL.Mapper;
 using CookBook.BL.Models;
+using CookBook.BL.Repositories;
+using CookBook.DAL.Entities;
 using CookBook.DAL.Seeds;
+using Microsoft.EntityFrameworkCore;
 using Xunit;
 
 namespace CookBook.BL.Tests
 {
-    public class IngredientRepositoryTests : IClassFixture<IngredientRepositoryTestsFixture>, IDisposable
+    public sealed class IngredientRepositoryTests : IDisposable
     {
-        private readonly IngredientRepositoryTestsFixture _fixture;
+        private readonly IngredientRepository _ingredientRepositorySUT;
+        private readonly DbContextInMemoryFactory _dbContextFactory;
 
-        public IngredientRepositoryTests(IngredientRepositoryTestsFixture fixture)
+        public IngredientRepositoryTests()
         {
-            _fixture = fixture;
+            _dbContextFactory = new DbContextInMemoryFactory(nameof(IngredientRepositoryTests));
+            using var dbx = _dbContextFactory.Create();
+            dbx.Database.EnsureCreated();
 
-            _fixture.PrepareDatabase();
+            _ingredientRepositorySUT = new IngredientRepository(_dbContextFactory);
         }
 
         [Fact]
@@ -27,39 +34,36 @@ namespace CookBook.BL.Tests
                 Name = "Ingredience 1"
             };
 
-            var returnedModel = _fixture.Repository.InsertOrUpdate(model);
+            var returnedModel = _ingredientRepositorySUT.InsertOrUpdate(model);
 
             Assert.NotNull(returnedModel);
-
-            _fixture.Repository.Delete(returnedModel.Id);
         }
-
 
         [Fact]
         public void GetAll_Single_SeededWater()
         {
-            var ingredient = _fixture.Repository
+            var ingredient =  _ingredientRepositorySUT
                 .GetAll()
-                .Single(i => i.Id == Seeds.Water.Id);
+                .Single(i => i.Id == IngredientSeeds.Water.Id);
 
-            Assert.Equal(IngredientMapper.MapListModel(Seeds.Water), ingredient, IngredientListModel.AllMembersComparer);
+            Assert.Equal(IngredientMapper.MapIngredientEntityToListModel(IngredientSeeds.Water), ingredient);
         }
 
         [Fact]
         public void GetById_SeededWater()
         {
-            var ingredient = _fixture.Repository.GetById(Seeds.Water.Id);
+            var ingredient = _ingredientRepositorySUT.GetById(IngredientSeeds.Water.Id);
 
-            Assert.Equal(IngredientMapper.MapDetailModel(Seeds.Water), ingredient, IngredientDetailModel.AllMembersComparer);
+            Assert.Equal(IngredientMapper.MapIngredientEntityToDetailModel(IngredientSeeds.Water), ingredient);
         }
 
         [Fact]
         public void SeededWater_DeleteById_Deleted()
         {
-            _fixture.Repository.Delete(Seeds.Water.Id);
+            _ingredientRepositorySUT.Delete(IngredientSeeds.Water.Id);
 
-            using var dbxAssert = _fixture.DbContextFactory.CreateDbContext();
-            Assert.False(dbxAssert.Ingredients.Any(i => i.Id == Seeds.Water.Id));
+            using var dbxAssert = _dbContextFactory.Create();
+            Assert.False(dbxAssert.Ingredients.Any(i => i.Id == IngredientSeeds.Water.Id));
         }
 
 
@@ -74,12 +78,12 @@ namespace CookBook.BL.Tests
             };
 
             //Act
-            ingredient = _fixture.Repository.InsertOrUpdate(ingredient);
+            ingredient = _ingredientRepositorySUT.InsertOrUpdate(ingredient);
 
             //Assert
-            using var dbxAssert = _fixture.DbContextFactory.CreateDbContext();
+            using var dbxAssert = _dbContextFactory.Create();
             var ingredientFromDb = dbxAssert.Ingredients.Single(i => i.Id == ingredient.Id);
-            Assert.Equal(ingredient, IngredientMapper.MapDetailModel(ingredientFromDb), IngredientDetailModel.AllMembersComparer);
+            Assert.Equal(ingredient, IngredientMapper.MapIngredientEntityToDetailModel(ingredientFromDb));
         }
 
         [Fact]
@@ -88,26 +92,26 @@ namespace CookBook.BL.Tests
             //Arrange
             var ingredient = new IngredientDetailModel()
             {
-                Id = Seeds.Water.Id,
-                Name = Seeds.Water.Name,
-                Description = Seeds.Water.Description,
+                Id = IngredientSeeds.Water.Id,
+                Name = IngredientSeeds.Water.Name,
+                Description = IngredientSeeds.Water.Description,
             };
             ingredient.Name += "updated";
             ingredient.Description += "updated";
 
             //Act
-            _fixture.Repository.InsertOrUpdate(ingredient);
+            _ingredientRepositorySUT.InsertOrUpdate(ingredient);
 
             //Assert
-            using var dbxAssert = _fixture.DbContextFactory.CreateDbContext();
+            using var dbxAssert = _dbContextFactory.Create();
             var ingredientFromDb = dbxAssert.Ingredients.Single(i => i.Id == ingredient.Id);
-            Assert.Equal(ingredient, IngredientMapper.MapDetailModel(ingredientFromDb), IngredientDetailModel.AllMembersComparer);
+            Assert.Equal(ingredient, IngredientMapper.MapIngredientEntityToDetailModel(ingredientFromDb));
         }
-
 
         public void Dispose()
         {
-            _fixture.TearDownDatabase();
+            using var dbx = _dbContextFactory.Create();
+            dbx.Database.EnsureDeleted();
         }
     }
 }

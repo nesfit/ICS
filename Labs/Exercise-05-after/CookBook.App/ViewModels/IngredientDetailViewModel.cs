@@ -1,96 +1,85 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using CookBook.App.Commands;
-using CookBook.App.Services.MessageDialog;
-using CookBook.App.Wrappers;
-using CookBook.BL.Interfaces;
-using CookBook.BL.Messages;
+using CookBook.App.Messages;
+using CookBook.App.Services;
 using CookBook.BL.Models;
-using CookBook.BL.Services;
+using CookBook.BL.Repositories;
 
 namespace CookBook.App.ViewModels
 {
-    public class IngredientDetailViewModel : ViewModelBase, IIngredientDetailViewModel
+    public class IngredientDetailViewModel : ViewModelBase
     {
         private readonly IIngredientRepository _ingredientRepository;
+        private readonly IMessageBoxService _messageBoxService;
         private readonly IMediator _mediator;
-        private readonly IMessageDialogService _messageDialogService;
+
+        public IngredientDetailModel Model { get; set; }
+        public ICommand SaveCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
 
         public IngredientDetailViewModel(
             IIngredientRepository ingredientRepository,
-            IMessageDialogService messageDialogService,
+            IMessageBoxService messageBoxService,
             IMediator mediator)
         {
             _ingredientRepository = ingredientRepository;
-            _messageDialogService = messageDialogService;
+            _messageBoxService = messageBoxService;
             _mediator = mediator;
 
             SaveCommand = new RelayCommand(Save, CanSave);
             DeleteCommand = new RelayCommand(Delete);
+
+            _mediator.Register<IngredientSelectedMessage>(IngredientSelected);
+            _mediator.Register<IngredientNewMessage>(IngredientNew);
         }
 
-        public IngredientWrapper Model { get; set; }
-        public ICommand SaveCommand { get; set; }
-        public ICommand DeleteCommand { get; set; }
 
 
-        public void Load(Guid id)
-        {
-            Model = _ingredientRepository.GetById(id) ?? new IngredientDetailModel();
-        }
+        private void IngredientNew(IngredientNewMessage ingredientNewMessage) 
+            => Model = new IngredientDetailModel();
+
+        private void IngredientSelected(IngredientSelectedMessage ingredientSelectedMessage) 
+            => Model = _ingredientRepository.GetById(ingredientSelectedMessage.Id);
 
         public void Save()
         {
-            Model = _ingredientRepository.InsertOrUpdate(Model.Model);
-            _mediator.Send(new UpdateMessage<IngredientWrapper> { Model = Model });
+            if(Model.Id == Guid.Empty)
+            {
+                _ingredientRepository.InsertOrUpdate(Model);
+                _mediator.Send(new IngredientAddedMessage { Id = Model.Id });
+            }
+            else
+            {
+                _ingredientRepository.InsertOrUpdate(Model);
+                _mediator.Send(new IngredientUpdatedMessage { Id = Model.Id });
+            }
+
+            Model = null;
         }
 
-        private bool CanSave() =>
-            Model != null
-            && !string.IsNullOrWhiteSpace(Model.Name)
-            && !string.IsNullOrWhiteSpace(Model.Description);
+        private bool CanSave() 
+            => Model != null
+               && !string.IsNullOrWhiteSpace(Model.Name)
+               && !string.IsNullOrWhiteSpace(Model.Description);
 
         public void Delete()
         {
             if (Model.Id != Guid.Empty)
             {
-                var delete = _messageDialogService.Show(
-                    $"Delete",
-                    $"Do you want to delete {Model?.Name}?.",
-                    MessageDialogButtonConfiguration.YesNo,
-                    MessageDialogResult.No);
-
-                if (delete == MessageDialogResult.No) return;
-
                 try
                 {
                     _ingredientRepository.Delete(Model.Id);
                 }
                 catch
                 {
-                    var _ = _messageDialogService.Show(
-                        $"Deleting of {Model?.Name} failed!",
-                        "Deleting failed",
-                        MessageDialogButtonConfiguration.OK,
-                        MessageDialogResult.OK);
+                    _messageBoxService.Show($"Deleting of {Model?.Name} failed!", "Deleting failed", MessageBoxButton.OK);
                 }
 
-                _mediator.Send(new DeleteMessage<IngredientWrapper>
-                {
-                    Model = Model
-                });
+                _mediator.Send(new IngredientDeletedMessage { Id = Model.Id });
             }
-        }
-
-        public override void LoadInDesignMode()
-        {
-            base.LoadInDesignMode();
-            Model = new IngredientWrapper(new IngredientDetailModel
-            {
-                Name = "Voda",
-                Description = "Popis vody",
-                ImageUrl = "https://www.pngitem.com/pimgs/m/40-406527_cartoon-glass-of-water-png-glass-of-water.png"
-            });
+            Model = null;
         }
     }
 }

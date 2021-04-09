@@ -126,17 +126,11 @@
   <data name="IngredientDetail_LabelDescription" xml:space="preserve">
     <value>Popisek</value>
   </data>
-  <data name="IngredientDetail_LabelImageUrl" xml:space="preserve">
-    <value>URL obrázku</value>
-  </data>
   <data name="IngredientDetail_LabelName" xml:space="preserve">
     <value>Název</value>
   </data>
   <data name="IngredientList_ButtonNewIngredient" xml:space="preserve">
     <value>Přidat novou ingredienci</value>
-  </data>
-  <data name="RecipeDetail_LabelImageUrl" xml:space="preserve">
-    <value>URL obrázku</value>
   </data>
   <data name="TabHeader_Ingredients" xml:space="preserve">
     <value>Ingredience</value>

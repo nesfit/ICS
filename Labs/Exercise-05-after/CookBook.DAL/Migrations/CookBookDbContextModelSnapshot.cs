@@ -15,8 +15,8 @@ namespace CookBook.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("CookBook.DAL.Entities.IngredientAmountEntity", b =>
@@ -43,25 +43,7 @@ namespace CookBook.DAL.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("IngredientAmountEntities");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("0d4fa150-ad80-4d46-a511-4c666166ec5e"),
-                            Amount = 1.0,
-                            IngredientId = new Guid("df935095-8709-4040-a2bb-b6f97cb416dc"),
-                            RecipeId = new Guid("fabde0cd-eefe-443f-baf6-3d96cc2cbf2e"),
-                            Unit = 0
-                        },
-                        new
-                        {
-                            Id = new Guid("87833e66-05ba-4d6b-900b-fe5ace88dbd8"),
-                            Amount = 2.0,
-                            IngredientId = new Guid("23b3902d-7d4f-4213-9cf0-112348f56238"),
-                            RecipeId = new Guid("fabde0cd-eefe-443f-baf6-3d96cc2cbf2e"),
-                            Unit = 1
-                        });
+                    b.ToTable("IngredientAmountEntity");
                 });
 
             modelBuilder.Entity("CookBook.DAL.Entities.IngredientEntity", b =>
@@ -71,9 +53,6 @@ namespace CookBook.DAL.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -86,20 +65,8 @@ namespace CookBook.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("df935095-8709-4040-a2bb-b6f97cb416dc"),
-                            Description = "Ingredient seeded ingredient 1 description",
-                            Name = "Ingredient seeded ingredient 1"
-                        },
-                        new
-                        {
-                            Id = new Guid("23b3902d-7d4f-4213-9cf0-112348f56238"),
-                            Description = "Ingredient seeded ingredient 2 description",
-                            Name = "Ingredient seeded ingredient 2"
-                        },
-                        new
-                        {
-                            Id = new Guid("06a8a2cf-ea03-4095-a3e4-aa0291fe9c75"),
-                            Description = "Mineral water",
+                            Id = new Guid("818f1def-204e-44da-b764-ca28c75e2acc"),
+                            Description = "Mineral",
                             Name = "Water"
                         });
                 });
@@ -119,25 +86,12 @@ namespace CookBook.DAL.Migrations
                     b.Property<int>("FoodType")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Recipes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("fabde0cd-eefe-443f-baf6-3d96cc2cbf2e"),
-                            Description = "Recipe seeded recipe 1 description",
-                            Duration = new TimeSpan(0, 2, 0, 0, 0),
-                            FoodType = 0,
-                            Name = "Recipe seeded recipe 1"
-                        });
                 });
 
             modelBuilder.Entity("CookBook.DAL.Entities.IngredientAmountEntity", b =>
@@ -145,7 +99,7 @@ namespace CookBook.DAL.Migrations
                     b.HasOne("CookBook.DAL.Entities.IngredientEntity", "Ingredient")
                         .WithMany()
                         .HasForeignKey("IngredientId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CookBook.DAL.Entities.RecipeEntity", "Recipe")
@@ -153,6 +107,15 @@ namespace CookBook.DAL.Migrations
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Ingredient");
+
+                    b.Navigation("Recipe");
+                });
+
+            modelBuilder.Entity("CookBook.DAL.Entities.RecipeEntity", b =>
+                {
+                    b.Navigation("Ingredients");
                 });
 #pragma warning restore 612, 618
         }
