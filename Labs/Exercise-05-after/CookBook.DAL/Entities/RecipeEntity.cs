@@ -13,6 +13,6 @@ namespace CookBook.DAL.Entities
         public FoodType FoodType { get; init; }
         public string? ImageUrl { get; set; }
 
-        public ICollection<IngredientAmountEntity> Ingredients { get; } = new ValueCollection<IngredientAmountEntity>(IngredientAmountEntity.IngredientAmountWithoutRecipeEntityComparer);
+        public ICollection<IngredientAmountEntity> Ingredients { get; set; } = new ValueCollection<IngredientAmountEntity>(IngredientAmountEntity.IngredientAmountWithoutRecipeEntityComparer);
     }
 }

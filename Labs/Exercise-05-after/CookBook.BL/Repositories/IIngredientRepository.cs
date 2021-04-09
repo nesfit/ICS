@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CookBook.BL.Models;
+﻿using CookBook.BL.Models;
+using CookBook.DAL.Entities;
 
 namespace CookBook.BL.Repositories
 {
-    public interface IIngredientRepository
+    public interface IIngredientRepository : IRepository<IngredientEntity, IngredientListModel, IngredientDetailModel>
     {
-        IEnumerable<IngredientListModel> GetAll();
-        IngredientDetailModel GetById(Guid id);
-        IngredientDetailModel InsertOrUpdate(IngredientDetailModel model);
-        void Delete(Guid id);
     }
 }

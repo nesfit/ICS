@@ -1,4 +1,4 @@
-﻿using CookBook.BL.Mapper;
+﻿using CookBook.BL.Mappers;
 using CookBook.BL.Models;
 using CookBook.DAL;
 using CookBook.DAL.Entities;
