@@ -24,7 +24,12 @@ namespace CookBook.DAL.Tests
         public void AddNew_Ingredient_Persisted()
         {
             //Arrange
-            var ingredientEntity = new IngredientEntity("Salt", "Mountain salt", "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Salt_shaker_on_white_background.jpg/800px-Salt_shaker_on_white_background.jpg");
+            var ingredientEntity = new IngredientEntity
+            {
+                Name = "Salt",
+                Description = "Mountain salt",
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Salt_shaker_on_white_background.jpg/800px-Salt_shaker_on_white_background.jpg"
+            };
 
             //Act
             _cookBookDbContextSUT.Ingredients.Add(ingredientEntity);
@@ -72,13 +77,23 @@ namespace CookBook.DAL.Tests
                     {
                         Amount = 1,
                         Unit = Unit.L,
-                        Ingredient = new IngredientEntity("Water","Filtered Water", "https://www.pngitem.com/pimgs/m/40-406527_cartoon-glass-of-water-png-glass-of-water.png")
+                        Ingredient = new()
+                        {
+                            Name = "Water",
+                            Description = "Filtered Water",
+                            ImageUrl = "https://www.pngitem.com/pimgs/m/40-406527_cartoon-glass-of-water-png-glass-of-water.png"
+                        }
                     },
                     new IngredientAmountEntity
                     {
                         Amount = 50,
                         Unit = Unit.Ml,
-                        Ingredient = new IngredientEntity("Lime-juice", "Fresh lime-juice", "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Lime-Whole-Split.jpg/640px-Lime-Whole-Split.jpg")
+                        Ingredient = new()
+                        {
+                            Name = "Lime-juice",
+                            Description = "Fresh lime-juice",
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Lime-Whole-Split.jpg/640px-Lime-Whole-Split.jpg"
+                        }
                     }
                 }
             };

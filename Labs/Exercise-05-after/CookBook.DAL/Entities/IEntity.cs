@@ -4,6 +4,6 @@ namespace CookBook.DAL.Entities
 {
     public interface IEntity
     {
-        Guid Id { get; }
+        Guid Id { get; init; }
     }
 }

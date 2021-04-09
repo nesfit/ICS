@@ -1,5 +1,4 @@
-﻿using CookBook.BL.Factories;
-using CookBook.DAL;
+﻿using CookBook.DAL;
 using CookBook.DAL.Factories;
 using Microsoft.EntityFrameworkCore;
 

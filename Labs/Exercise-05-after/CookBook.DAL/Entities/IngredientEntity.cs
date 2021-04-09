@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace CookBook.DAL.Entities
+﻿namespace CookBook.DAL.Entities
 {
-    public record IngredientEntity(Guid Id, string Name, string Description, string ImageUrl) : EntityBase(Id)
+    public record IngredientEntity : EntityBase
     {
-        public IngredientEntity(string name, string description, string imageUrl) : this(Guid.Empty, name, description, imageUrl) { }
-        public IngredientEntity(Guid id) : this(id, string.Empty, string.Empty, string.Empty) { }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+        public string? ImageUrl { get; set; }
     }
-
 }

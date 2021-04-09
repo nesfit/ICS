@@ -5,7 +5,7 @@ namespace CookBook.BL.Mapper
 {
     public static class IngredientMapper
     {
-        public static IngredientListModel MapIngredientEntityToListModel(IngredientEntity entity)
+        public static IngredientListModel MapEntityToListModel(IngredientEntity entity)
         {
             return entity == null ? null : new IngredientListModel
             {
@@ -14,7 +14,7 @@ namespace CookBook.BL.Mapper
             };
         }
 
-        public static IngredientDetailModel MapIngredientEntityToDetailModel(IngredientEntity entity) =>
+        public static IngredientDetailModel MapEntityToDetailModel(IngredientEntity entity) =>
             new()
             {
                 Id = entity.Id,
@@ -22,7 +22,13 @@ namespace CookBook.BL.Mapper
                 Description = entity.Description
             };
 
-        public static IngredientEntity MapIngredientDetailModelToEntity(IngredientDetailModel model) =>
-            new(model.Id, model.Name, model.Description, model.ImageUrl);
+        public static IngredientEntity MapDetailModelToEntity(IngredientDetailModel model) =>
+            new()
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Description = model.Description,
+                ImageUrl = model.ImageUrl
+            };
     }
 }
