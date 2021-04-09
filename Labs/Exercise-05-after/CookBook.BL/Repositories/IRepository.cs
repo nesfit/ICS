@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 namespace CookBook.BL.Repositories
 {
-    public interface IRepository<TEntity, out TListModel, TDetailModel> where TEntity :
-        class, IEntity, new()
+    public interface IRepository<TEntity, out TListModel, TDetailModel>
+        where TEntity : class, IEntity, new()
         where TListModel : IModel, new()
         where TDetailModel : IModel, new()
     {

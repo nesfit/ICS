@@ -1,11 +1,11 @@
-﻿using CookBook.BL.Models;
-using CookBook.BL.Repositories;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-using CookBook.App.Commands;
+﻿using CookBook.App.Commands;
 using CookBook.App.Extensions;
 using CookBook.App.Messages;
 using CookBook.App.Services;
+using CookBook.BL.Models;
+using CookBook.BL.Repositories;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace CookBook.App.ViewModels
 {
@@ -27,22 +27,22 @@ namespace CookBook.App.ViewModels
             IngredientSelectedCommand = new RelayCommand<IngredientListModel>(IngredientSelected);
             IngredientNewCommand = new RelayCommand(IngredientNew);
 
-            _mediator.Register<IngredientAddedMessage>(IngredientAdded);
-            _mediator.Register<IngredientUpdatedMessage>(IngredientUpdated);
-            _mediator.Register<IngredientDeletedMessage>(IngredientDeleted);
+            _mediator.Register<AddedMessage>(IngredientAdded);
+            _mediator.Register<UpdateMessage>(IngredientUpdated);
+            _mediator.Register<DeleteMessage>(IngredientDeleted);
         }
 
-        private void IngredientNew() 
-            => _mediator.Send(new IngredientNewMessage());
+        private void IngredientNew()
+            => _mediator.Send(new NewMessage());
 
-        private void IngredientSelected(IngredientListModel ingredient) 
-            => _mediator.Send(new IngredientSelectedMessage { Id = ingredient.Id });
+        private void IngredientSelected(IngredientListModel ingredient)
+            => _mediator.Send(new SelectedMessage { Id = ingredient.Id });
 
-        private void IngredientAdded(IngredientAddedMessage ingredient) => Load();
+        private void IngredientAdded(AddedMessage item) => Load();
 
-        private void IngredientUpdated(IngredientUpdatedMessage ingredient) => Load();
+        private void IngredientUpdated(UpdateMessage ingredient) => Load();
 
-        private void IngredientDeleted(IngredientDeletedMessage ingredient) => Load();
+        private void IngredientDeleted(DeleteMessage item) => Load();
 
         public override void Load()
         {

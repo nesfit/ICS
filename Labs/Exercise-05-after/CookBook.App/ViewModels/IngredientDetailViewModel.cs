@@ -1,11 +1,11 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Input;
-using CookBook.App.Commands;
+﻿using CookBook.App.Commands;
 using CookBook.App.Messages;
 using CookBook.App.Services;
 using CookBook.BL.Models;
 using CookBook.BL.Repositories;
+using System;
+using System.Windows;
+using System.Windows.Input;
 
 namespace CookBook.App.ViewModels
 {
@@ -31,35 +31,33 @@ namespace CookBook.App.ViewModels
             SaveCommand = new RelayCommand(Save, CanSave);
             DeleteCommand = new RelayCommand(Delete);
 
-            _mediator.Register<IngredientSelectedMessage>(IngredientSelected);
-            _mediator.Register<IngredientNewMessage>(IngredientNew);
+            _mediator.Register<SelectedMessage>(IngredientSelected);
+            _mediator.Register<NewMessage>(IngredientNew);
         }
 
-
-
-        private void IngredientNew(IngredientNewMessage ingredientNewMessage) 
+        private void IngredientNew(NewMessage newMessage)
             => Model = new IngredientDetailModel();
 
-        private void IngredientSelected(IngredientSelectedMessage ingredientSelectedMessage) 
-            => Model = _ingredientRepository.GetById(ingredientSelectedMessage.Id);
+        private void IngredientSelected(SelectedMessage selectedMessage)
+            => Model = _ingredientRepository.GetById(selectedMessage.Id);
 
         public void Save()
         {
-            if(Model.Id == Guid.Empty)
+            if (Model.Id == Guid.Empty)
             {
                 _ingredientRepository.InsertOrUpdate(Model);
-                _mediator.Send(new IngredientAddedMessage { Id = Model.Id });
+                _mediator.Send(new AddedMessage { Id = Model.Id });
             }
             else
             {
                 _ingredientRepository.InsertOrUpdate(Model);
-                _mediator.Send(new IngredientUpdatedMessage { Id = Model.Id });
+                _mediator.Send(new UpdateMessage { Id = Model.Id });
             }
 
             Model = null;
         }
 
-        private bool CanSave() 
+        private bool CanSave()
             => Model != null
                && !string.IsNullOrWhiteSpace(Model.Name)
                && !string.IsNullOrWhiteSpace(Model.Description);
@@ -77,7 +75,7 @@ namespace CookBook.App.ViewModels
                     _messageBoxService.Show($"Deleting of {Model?.Name} failed!", "Deleting failed", MessageBoxButton.OK);
                 }
 
-                _mediator.Send(new IngredientDeletedMessage { Id = Model.Id });
+                _mediator.Send(new DeleteMessage { Id = Model.Id });
             }
             Model = null;
         }
