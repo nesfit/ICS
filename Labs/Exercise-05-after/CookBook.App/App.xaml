@@ -20,11 +20,9 @@
                 <ResourceDictionary Source="Styles/TextBox.xaml"/>
                 <ResourceDictionary Source="Styles/TabControl.xaml"/>
                 <ResourceDictionary Source="Styles/ToolTip.xaml"/>
-                <ResourceDictionary>
-                    <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
-                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
 
+            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
             <viewModels:DesignTimeViewModelLocator x:Key="ViewModelLocator" />
         </ResourceDictionary>
     </Application.Resources>
