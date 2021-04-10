@@ -1,6 +1,6 @@
-﻿using System.Windows;
+﻿using CookBook.App.ViewModels;
+using System.Windows;
 using System.Windows.Controls;
-using CookBook.App.ViewModels;
 
 namespace CookBook.App.Views
 {
@@ -13,7 +13,7 @@ namespace CookBook.App.Views
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (DataContext is IViewModel viewModel)
+            if (DataContext is IListViewModel viewModel)
             {
                 viewModel.Load();
             }

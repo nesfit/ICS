@@ -1,6 +1,6 @@
 ﻿namespace CookBook.App.ViewModels
 {
-    public interface IViewModel
+    public interface IListViewModel
     {
         void Load();
     }

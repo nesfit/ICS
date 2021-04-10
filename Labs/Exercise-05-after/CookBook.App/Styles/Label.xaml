@@ -1,0 +1,8 @@
+﻿<!-- based on https://github.com/starcalibre/WPFandMVVM_TestDrivenDevelopment-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Style TargetType="Label">
+    <Setter Property="Foreground" Value="{StaticResource LabelForegroundBrush}"/>
+    <Setter Property="HorizontalAlignment" Value="Right"/>
+  </Style>
+</ResourceDictionary>

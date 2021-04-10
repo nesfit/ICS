@@ -10,15 +10,10 @@ using System.Windows.Input;
 
 namespace CookBook.App.ViewModels
 {
-    public class IngredientListViewModel : ViewModelBase
+    public class IngredientListViewModel : ViewModelBase, IIngredientListViewModel
     {
         private readonly IIngredientRepository _ingredientRepository;
         private readonly IMediator _mediator;
-
-        public ObservableCollection<IngredientListModel> Ingredients { get; set; } = new();
-
-        public ICommand IngredientSelectedCommand { get; set; }
-        public ICommand IngredientNewCommand { get; set; }
 
         public IngredientListViewModel(IIngredientRepository ingredientRepository, IMediator mediator)
         {
@@ -28,27 +23,33 @@ namespace CookBook.App.ViewModels
             IngredientSelectedCommand = new RelayCommand<IngredientListModel>(IngredientSelected);
             IngredientNewCommand = new RelayCommand(IngredientNew);
 
-            _mediator.Register<AddedMessage<IngredientWrapper>>(IngredientAdded);
-            _mediator.Register<UpdateMessage<IngredientWrapper>>(IngredientUpdated);
-            _mediator.Register<DeleteMessage<IngredientWrapper>>(IngredientDeleted);
+            mediator.Register<UpdateMessage<IngredientWrapper>>(IngredientUpdated);
+            mediator.Register<DeleteMessage<IngredientWrapper>>(IngredientDeleted);
         }
 
-        private void IngredientNew()
-            => _mediator.Send(new NewMessage<IngredientWrapper>());
+        public ObservableCollection<IngredientListModel> Ingredients { get; set; } = new ObservableCollection<IngredientListModel>();
 
-        private void IngredientSelected(IngredientListModel ingredient)
-            => _mediator.Send(new SelectedMessage<IngredientWrapper> { Id = ingredient.Id });
+        public ICommand IngredientSelectedCommand { get; }
+        public ICommand IngredientNewCommand { get; }
 
-        private void IngredientAdded(AddedMessage<IngredientWrapper> item) => Load();
+        private void IngredientNew() => _mediator.Send(new NewMessage<IngredientWrapper>());
 
-        private void IngredientUpdated(UpdateMessage<IngredientWrapper> ingredient) => Load();
+        private void IngredientSelected(IngredientListModel ingredient) => _mediator.Send(new SelectedMessage<IngredientWrapper> { Id = ingredient.Id });
 
-        private void IngredientDeleted(DeleteMessage<IngredientWrapper> item) => Load();
+        private void IngredientUpdated(UpdateMessage<IngredientWrapper> _) => Load();
 
-        public override void Load()
+        private void IngredientDeleted(DeleteMessage<IngredientWrapper> _) => Load();
+
+        public void Load()
         {
             Ingredients.Clear();
-            Ingredients.AddRange(_ingredientRepository.GetAll());
+            var ingredients = _ingredientRepository.GetAll();
+            Ingredients.AddRange(ingredients);
+        }
+
+        public override void LoadInDesignMode()
+        {
+            Ingredients.Add(new IngredientListModel { Name = "Voda", ImageUrl = "https://www.pngitem.com/pimgs/m/40-406527_cartoon-glass-of-water-png-glass-of-water.png" });
         }
     }
 }

@@ -32,7 +32,9 @@ namespace CookBook.App.Wrappers
         protected TValue GetValue<TValue>([CallerMemberName] string propertyName = null)
         {
             var propertyInfo = Model.GetType().GetProperty(propertyName);
-            return (TValue)propertyInfo.GetValue(Model);
+            return (propertyInfo.GetValue(Model) is TValue
+                ? (TValue)propertyInfo.GetValue(Model)
+                : default);
         }
 
         protected void SetValue<TValue>(TValue value, [CallerMemberName] string propertyName = null)
