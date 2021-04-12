@@ -6,7 +6,10 @@ namespace CookBook.App.Views
 {
     public abstract class UserControlBase : UserControl
     {
-        protected UserControlBase() => Loaded += OnLoaded;
+        protected UserControlBase()
+        {
+            Loaded += OnLoaded;
+        }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {

@@ -2,7 +2,7 @@
 
 namespace CookBook.DAL.Factories
 {
-    public class SqlServerDbContextFactory : IDbContextFactory
+    public class SqlServerDbContextFactory : INamedDbContextFactory<CookBookDbContext>
     {
         private readonly string _connectionString;
 
@@ -11,7 +11,7 @@ namespace CookBook.DAL.Factories
             _connectionString = connectionString;
         }
 
-        public CookBookDbContext CreateDbContext()
+        public CookBookDbContext Create()
         {
             var optionsBuilder = new DbContextOptionsBuilder<CookBookDbContext>();
             optionsBuilder.UseSqlServer(_connectionString);
