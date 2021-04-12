@@ -40,13 +40,13 @@
    * testování aplikací - smoke, unit, integrační, UI a akceptační testy
 8. [Základní koncepty tvorby uživatelského rozhraní](https://nesfit.github.io/ICS/Lectures/Lecture_08/_site/)
    * Windows Presentation Foundation (WPF)
-9. Velikonoční pondělí
-10. WPF - tvorba komponent a stylování aplikací.
-11. [Paralelní a asynchronní programování](https://gitpitch.com/nesfit/ics/master?grs=github&t=white&p=Lectures%2FLecture_11#/)
+- Velikonoční pondělí
+9. WPF - tvorba komponent a stylování aplikací.
+10. [Paralelní a asynchronní programování](https://gitpitch.com/nesfit/ics/master?grs=github&t=white&p=Lectures%2FLecture_11#/)
     * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
-12. Návrhové vzory
+11. Návrhové vzory
    * vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#
-13. Multiplatformní programování
+12. Multiplatformní programování
     * .NET Standard, .NET Core.
     * kontejnerizace aplikací pomocí Docker  
 
