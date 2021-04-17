@@ -1,15 +1,22 @@
-@snap[north span-100]
+---
+title: ICS 04 - Propojení aplikací s databází
+theme: simple
+css: assets/theme.css
+separator: "^---$"
+verticalSeparator: "^\\+\\+\\+$"
+highlightTheme: vs
+progress: true
+slideNumber: true
+mouseWheel: false
+enableMenu: true
+enableChalkboard: true
+enableTitleFooter: true
+---
+
 # Parallel programming
-@snapend
+## Process, thread, and task in .NET perspective
 
-@snap[midpoint span-100]
-## Process, thread and task in .NET perspective
-@snapend
-
-@snap[south-east]
-[ Michal Mrnuštík <michal.mrnustik@outlook.com> ]
-@snapend
-
+<div class="right">[ Jan Pluskal &lt;ipluskal@fit.vutbr.cz&gt;  ]</div>
 
 ---
 
@@ -19,21 +26,18 @@
 3. Asynchronous programming
 
 
---- 
+---
 
 ## Serial computing
 
-@snap[midpoint]
-![Serial computing](Lectures/Lecture_11/Assets/diagrams-SerialComputing.png)
-@snapend
+![Serial computing](assets/diagrams-SerialComputing.png)
 
 ---
 
 ## Parallel computing
 
-@snap[midpoint]
-![Parallel computing](Lectures/Lecture_11/Assets/diagrams-ParallelComputing.png)
-@snapend
+![Parallel computing](assets/diagrams-ParallelComputing.png)
+
 ---
 
 ## Parallel computing
@@ -42,12 +46,12 @@
     - Running multiple things at once
     - Used for achieving performance
     - Can be achieved using:
-        - Mutliple processes
+        - Multiple processes
         - Multithreading
 
 ---
 
-## Synchronous vs asynchronous computing
+## Synchronous vs. asynchronous computing
 
 - Synchronous computing
     - Blocking execution
@@ -55,19 +59,15 @@
 
 - Asynchronous computing
     - Nonblocking execution
-    - I don't wait I get notified
+    - I don't wait, I get notified
 
 ---
 
 ## Asynchronous computing
 
-@snap[midpoint]
 ![Asynchronous computing](https://eloquentjavascript.net/img/control-io.svg)
-@snapend
 
-@snap[south-east]
 Source: https://eloquentjavascript.net/11_async.html
-@snapend
 
 ---
 
@@ -79,11 +79,11 @@ Source: https://eloquentjavascript.net/11_async.html
 
 - known from IOS
 - standalone running program
-- has its process identificator (PID)
+- has its process identification (PID)
 - does not share code and variables with other processes
 - need of OS synchronization mechanisms (mutexes, ...)
 - need of OS for data sharing (shared memory, ...)
-- command line can be used for I/O
+- command-line can be used for I/O
 
 ---
 
@@ -91,22 +91,18 @@ Source: https://eloquentjavascript.net/11_async.html
 
 - runs within the same process
 - has its own stack but shares heap
-- error in one thread can kill whole process
+- error in one thread can kill the whole process
 - shares code and variables with other threads
 - need of runtime synchronization mechanisms (locking, ...)
-- data sharing done via variables (needs protection)
+- data sharing is done via variables (needs protection)
 
 ---
 
-## Thread vs Process
+## Thread vs. Process
 
-@snap[midpoint]
 ![Thread vs Process](https://techdifferences.com/wp-content/uploads/2017/01/Multithreading.jpg)
-@snapend
 
-@snap[south-east]
-Source: https://techdifferences.com/difference-between-multiprocessing-and-multithreading.html
-@snapend
+Source:https://techdifferences.com/difference-between-multiprocessing-and-multithreading.html
 
 ---
 
@@ -166,11 +162,11 @@ var streamWriter = myProcess.StandardInput;
 streamWriter.WriteLine("Hello world");
 ```
 
---- 
+---
 
 ## Process in .NET Core
 
-- Exitting
+- Exiting
     - handled via `WaitForExit` method and its overloads
     - when needed `Kill` method can be used
 
@@ -214,13 +210,11 @@ static void ThreadProc(Object stateInfo)
 
 ## DEMO - Threads
 
---- 
+---
 
 ## Parallel programming issues
 
-@snap[midpoint]
 ![Multithread meme](https://img.devrant.com/devrant/rant/r_346573_4iGrA.jpg)
-@snapend
 
 ---
 
@@ -236,7 +230,7 @@ static void ThreadProc(Object stateInfo)
 
 ---
 
-## Read write synchronization
+## Read-write synchronization
 
 ```C#
 class Counter {
@@ -256,15 +250,15 @@ class Counter {
 ```
 ---
 
-## Read write synchronization
+## Read-write synchronization
 
 ```C#
 account = new Counter()
 T1:account.Increment();
 T2:account.Increment();
 
-T1: var count = Count + 1;  //Count = 0
-T2: var count = Count + 1   //Count = 0
+T1: var count = Count + 1;  // Count = 0
+T2: var count = Count + 1   // Count = 0
 T1: Count = count           // Count = 1
 T2: Count = count           // Count = 1
 ```
@@ -277,14 +271,14 @@ T2: Count = count           // Count = 1
 
 ## Synchronization mechanisms
 
-| Method |  Purpose  |  Suports processes  |  Overhead  |
-|:-:|:-:|:-:|:-:|
-| `lock`  | Denies mutual access  |   |  20ns |
-| `Mutex`  | Denies mutual access  | X |  1000ns |
-| `SemaphoreSlim`  |  Allows n-time access  |   |  200ns  |
-| `Semaphore`  |  Allows n-time access  |  X  |  1000ns |
-| `ReaderWriterLockSlim`  | Reader-writer synchronization |   |  40ns |
-| `ReaderWriterLock`  | Reader-writer synchronization  |   |  100ns |
+|         Method         |            Purpose            | Supports processes | Overhead |
+| :--------------------: | :---------------------------: | :---------------: | :------: |
+|         `lock`         |     Denies mutual access      |                   |   20ns   |
+|        `Mutex`         |     Denies mutual access      |         X         |  1000ns  |
+|    `SemaphoreSlim`     |     Allows n-time access      |                   |  200ns   |
+|      `Semaphore`       |     Allows n-time access      |         X         |  1000ns  |
+| `ReaderWriterLockSlim` | Reader-writer synchronization |                   |   40ns   |
+|   `ReaderWriterLock`   | Reader-writer synchronization |                   |  100ns   |
 
 ---
 
@@ -301,7 +295,7 @@ public void AddFriend(FriendModel friend)
 }
 ```
 
---- 
+---
 
 ## Synchronization mechanisms examples
 
@@ -322,7 +316,7 @@ public void AddFriend(FriendModel friend)
 }
 ```
 
---- 
+---
 
 ## Synchronized collections 
 
@@ -332,7 +326,7 @@ public void AddFriend(FriendModel friend)
     - `ConcurrentBag<T>` - unordered collection 
     - `ConcurrentStack<T>` - stack
 
---- 
+---
 
 # DEMO: Synchronization fixing
 
@@ -375,8 +369,8 @@ source.AsParallel()
 
 ## Asynchronous Programming Model
 
-- for each operation we define `AsyncCallback` object
-- this object defines a method that should be called when operation ends
+- for each operation, we define `AsyncCallback` object
+- this object defines a method that should be called when the operation ends
 - the method accepts [`IAsyncResult`](https://docs.microsoft.com/cs-cz/dotnet/api/system.iasyncresult?view=netframework-4.7.2) parameter
 
 
@@ -398,7 +392,7 @@ public void AddCompleted(IAsyncResult result)
 }
 ```
 
---- 
+---
 
 ## Event-based Asynchronous Pattern
 
@@ -421,7 +415,7 @@ public void Provider_DoOperationCompeted(string result)
 ## Task-based Asynchronous Pattern
 
 - in C\# represented with `Task` class or `Task<T>`
-- `Task` is representation of operation that is running asynchronously
+- `Task` is a representation of an operation that is running asynchronously
 - asynchronous methods return `Task` instead of `void` or `Task<T>` instead of `T`
 - when method returning `Task` is called the methods starts executing, but the caller method continues as well (unless waiting for task completion)
 - empty task can be get via `Task.CompletedTask` or `Task.FromResult()`
@@ -432,13 +426,11 @@ public void Provider_DoOperationCompeted(string result)
 
 ---
 
-## Task-base Aynchronous Pattern
+## Task-based Asynchronous Pattern
 
 
-@snap[midpoint]
 ![Task running diagram](https://i.stack.imgur.com/asvWD.png)
 [Fullsize](https://i.stack.imgur.com/asvWD.png)
-@snapend
 
 ---
 
@@ -450,13 +442,13 @@ public void Provider_DoOperationCompeted(string result)
 
 ---
 
-## Task managenemt
+## Task management
 
 - `Task.WhenAll()` - waiting for multiple tasks to finish
 - `GetAwaiter().GetResult()` - getting the result of task
 - `ContinueWith(Task t)` - task chaining
 
---- 
+---
 
 ## async/await
 
@@ -480,7 +472,7 @@ public async Task<int> LoadResult(INetwork network)
 - if `Task` is not awaited the execution will continue
 
 ```C#
-public async void AddFriendButtonClicked() 
+public async Task AddFriendButtonClicked() 
 {
     await friendFacade.AddFriend(SelectedFriend);
 }
