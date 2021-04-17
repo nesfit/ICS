@@ -8,10 +8,11 @@ namespace ParallelProgramming.Samples.Synchronization
 {
     public class SynchronizationCollectionsIssues
     {
+        private readonly List<int> source = Enumerable.Range(1, 420).ToList();
+
         [Fact]
         public void SynchronizationCollectionIssues()
         {
-            var source = Enumerable.Range(1, 420).ToList();
             var destination = new List<int>();
 
             Parallel.ForEach(source,
@@ -23,7 +24,6 @@ namespace ParallelProgramming.Samples.Synchronization
         [Fact]
         public void SynchronizationCollectionSolution()
         {
-            var source = Enumerable.Range(1, 420).ToList();
             var destination = new BlockingCollection<int>();
 
             Parallel.ForEach(source,

@@ -17,7 +17,7 @@ namespace ParallelProgramming.Samples.Asynchronous
             this.output = output;
         }
 
-        private readonly SemaphoreSlim testOutputSemaphore = new SemaphoreSlim(1);
+        private readonly SemaphoreSlim testOutputSemaphore = new(1);
 
         private void PrintCurrentThreadInfo()
         {
@@ -47,7 +47,7 @@ namespace ParallelProgramming.Samples.Asynchronous
             output.WriteLine("Main thread");
             PrintCurrentThreadInfo();
 
-            for (int i = 0; i < 40; i++)
+            for (var i = 0; i < 40; i++)
             {
                 taskPool.Add(Task.Run(async () =>
                 {

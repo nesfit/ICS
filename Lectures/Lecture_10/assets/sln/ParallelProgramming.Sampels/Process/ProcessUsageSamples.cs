@@ -6,14 +6,14 @@ namespace ParallelProgramming.Samples.Process
 {
     public class ProcessUsageSamples
     {
+        private readonly ITestOutputHelper output;
+
+        private int lineNumber;
+
         public ProcessUsageSamples(ITestOutputHelper output)
         {
             this.output = output;
         }
-
-        private readonly ITestOutputHelper output;
-
-        private int lineNumber;
 
         private void OnOsProcessOutputDataReceived(object sender, DataReceivedEventArgs e)
         {
@@ -23,37 +23,43 @@ namespace ParallelProgramming.Samples.Process
         [Fact]
         public void OpeningFileViaProcess()
         {
-            using (var process = new System.Diagnostics.Process())
+            using var process = new System.Diagnostics.Process
             {
-                process.StartInfo.FileName = @"Test.txt";
-                process.StartInfo.UseShellExecute = true;
+                StartInfo =
+                {
+                    FileName = @"Test.txt", 
+                    UseShellExecute = true
+                }
+            };
 
-                process.Start();
+            process.Start();
 
-                process.WaitForExit(5000);
+            process.WaitForExit(5000);
 
-                if (process.HasExited == false) process.Kill();
-            }
+            if (process.HasExited == false) process.Kill();
         }
 
         [Fact]
         public void RunningOsProcess()
         {
-            using (var process = new System.Diagnostics.Process())
+            using var process = new System.Diagnostics.Process
             {
-                process.StartInfo.FileName = "ping";
-                process.StartInfo.Arguments = "8.8.8.8";
+                StartInfo =
+                {
+                    FileName = "ping", 
+                    Arguments = "8.8.8.8", 
+                    RedirectStandardOutput = true
+                }
+            };
 
-                process.StartInfo.RedirectStandardOutput = true;
 
-                process.OutputDataReceived += OnOsProcessOutputDataReceived;
+            process.OutputDataReceived += OnOsProcessOutputDataReceived;
 
-                process.Start();
+            process.Start();
 
-                process.BeginOutputReadLine();
+            process.BeginOutputReadLine();
 
-                process.WaitForExit();
-            }
+            process.WaitForExit();
         }
     }
 }

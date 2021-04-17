@@ -7,9 +7,8 @@ namespace ParallelProgramming.Samples.Synchronization
     {
         private class SemaphoredCounter
         {
-            private readonly SemaphoreSlim counterAddSemaphore = new SemaphoreSlim(1);
-
-            private int Count { get; set; }
+            private readonly SemaphoreSlim counterAddSemaphore = new(1);
+            public int Count { get; private set; }
 
             public void Increment()
             {
@@ -26,18 +25,13 @@ namespace ParallelProgramming.Samples.Synchronization
                     counterAddSemaphore.Release();
                 }
             }
-
-            public int GetCount()
-            {
-                return Count;
-            }
         }
 
 
         private class LockedCounter
         {
-            private readonly object incrementMethodLockHandle = new object();
-            private int Count { get; set; }
+            private readonly object incrementMethodLockHandle = new();
+            public int Count { get; private set; }
 
             public void Increment()
             {
@@ -49,11 +43,6 @@ namespace ParallelProgramming.Samples.Synchronization
                     //End of critical section
                 }
             }
-
-            public int GetCount()
-            {
-                return Count;
-            }
         }
 
         [Fact]
@@ -64,7 +53,7 @@ namespace ParallelProgramming.Samples.Synchronization
             for (var i = 0; i < 40; i++)
                 ThreadPool.QueueUserWorkItem(state => { counter.Increment(); });
             Thread.Sleep(10000);
-            Assert.Equal(40, counter.GetCount());
+            Assert.Equal(40, counter.Count);
         }
 
         [Fact]
@@ -75,7 +64,7 @@ namespace ParallelProgramming.Samples.Synchronization
             for (var i = 0; i < 40; i++)
                 ThreadPool.QueueUserWorkItem(state => { counter.Increment(); });
             Thread.Sleep(10000);
-            Assert.Equal(40, counter.GetCount());
+            Assert.Equal(40, counter.Count);
         }
     }
 }

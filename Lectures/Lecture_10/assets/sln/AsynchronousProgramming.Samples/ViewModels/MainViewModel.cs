@@ -12,7 +12,7 @@ using AsynchronousProgramming.Samples.Commands;
 
 namespace AsynchronousProgramming.Samples.ViewModels
 {
-    class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged
     {
         private int dataValue;
 
@@ -41,33 +41,28 @@ namespace AsynchronousProgramming.Samples.ViewModels
 
         private void LoadDataSynchronously()
         {
-            PerformSomeHeavyWork().Wait();
-            DataValue = 500;
+            // Without Task.Run to spawn Async operation on different thread, the continuation would not run and UI thread would wait for result indefinitely causing deadlock
+            //DataValue = PerformSomeHeavyWorkAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+
+            DataValue = Task.Run(async ()=> await PerformSomeHeavyWorkAsync()).GetAwaiter().GetResult();
+
+            // Never ever use .Wait(), or .Result on async methods... always .GetAwaiter().GetResult()
         }
 
-        private async void LoadDataAsynchronously()
+        private async void LoadDataAsynchronously() => DataValue = await PerformSomeHeavyWorkAsync();
+
+        private readonly Random random = new();
+        private async Task<int> PerformSomeHeavyWorkAsync()
         {
-            await PerformSomeHeavyWork();
-            DataValue = 1000;
-        }
-        private Task PerformSomeHeavyWork()
-        {
-            return Task.Delay(2000);
+            var randomWaitIntervalSimulatingHeavyWork = random.Next(100, 2000);
+            await Task.Delay(randomWaitIntervalSimulatingHeavyWork);
+            return randomWaitIntervalSimulatingHeavyWork;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) 
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
-
-
-    public class Rootobject
-    {
-        public int[] data { get; set; }
-    }
-
 }
