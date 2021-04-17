@@ -42,7 +42,7 @@
    * Windows Presentation Foundation (WPF)
 - Velikonoční pondělí
 9. WPF - tvorba komponent a stylování aplikací.
-10. [Paralelní a asynchronní programování](https://gitpitch.com/nesfit/ics/master?grs=github&t=white&p=Lectures%2FLecture_11#/)
+10. [Paralelní a asynchronní programování](https://nesfit.github.io/ICS/Lectures/Lecture_10/_site/)
     * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
 11. Návrhové vzory
    * vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#
