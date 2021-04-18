@@ -16,23 +16,23 @@ namespace CookBook.BL.Repositories
         where TListModel : IModel, new()
         where TDetailModel : IModel, new()
     {
-        protected readonly Func<TEntity, IEnumerable<IEntity>>[] CollectionsToBeSynchronized;
+        protected readonly Func<TEntity, IEnumerable<IEntity>>[]? CollectionsToBeSynchronized;
         protected readonly IDbContextFactory<CookBookDbContext> DbContextFactory;
-        protected readonly Func<TEntity, TDetailModel> MapDetailModel;
-        protected readonly Func<TDetailModel, TEntity> MapEntity;
-        protected readonly Func<TEntity, TListModel> MapListModel;
+        protected readonly Func<TEntity?, TDetailModel?> MapDetailModel;
+        protected readonly Func<TDetailModel?, TEntity?> MapEntity;
+        protected readonly Func<TEntity?, TListModel?> MapListModel;
 
-        protected readonly Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> DetailIncludes;
-        protected readonly Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> ListIncludes;
+        protected readonly Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? DetailIncludes;
+        protected readonly Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? ListIncludes;
 
 
         public RepositoryBase(IDbContextFactory<CookBookDbContext> dbContextFactory,
-            Func<TDetailModel, TEntity> mapEntity,
-            Func<TEntity, TListModel> mapListModel,
-            Func<TEntity, TDetailModel> mapDetailModel,
-            Func<TEntity, IEnumerable<IEntity>>[] collectionsToBeSynchronized,
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> detailIncludes,
-            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> listIncludes)
+            Func<TDetailModel?, TEntity?> mapEntity,
+            Func<TEntity?, TListModel?> mapListModel,
+            Func<TEntity?, TDetailModel?> mapDetailModel,
+            Func<TEntity, IEnumerable<IEntity>>[]? collectionsToBeSynchronized,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? detailIncludes,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? listIncludes)
         {
             DbContextFactory = dbContextFactory;
             MapEntity = mapEntity;
@@ -50,21 +50,21 @@ namespace CookBook.BL.Repositories
 
         public void Delete(Guid id)
         {
-            using var dbContext = DbContextFactory.CreateDbContext();
+            using CookBookDbContext dbContext = DbContextFactory.CreateDbContext();
             Delete(dbContext, id);
             dbContext.SaveChanges();
         }
 
-        public TDetailModel GetById(Guid entityId)
+        public TDetailModel? GetById(Guid entityId)
         {
-            using var dbContext = DbContextFactory.CreateDbContext();
+            using CookBookDbContext dbContext = DbContextFactory.CreateDbContext();
             return MapDetailModel(GetById(dbContext, entityId));
         }
 
         public TDetailModel InsertOrUpdate(TDetailModel detailModel)
         {
-            using var dbContext = DbContextFactory.CreateDbContext();
-            var entity = MapEntity(detailModel);
+            using CookBookDbContext dbContext = DbContextFactory.CreateDbContext();
+            TEntity entity = MapEntity(detailModel)!;
             dbContext.Update<TEntity>(entity);
             SynchronizeCollections(dbContext, entity);
 
@@ -74,19 +74,19 @@ namespace CookBook.BL.Repositories
 
             dbContext.SaveChanges();
 
-            return MapDetailModel(entity);
+            return MapDetailModel(entity)!;
         }
 
         public IEnumerable<TListModel> GetAll()
         {
-            using var dbContext = DbContextFactory.CreateDbContext();
+            using CookBookDbContext dbContext = DbContextFactory.CreateDbContext();
             IQueryable<TEntity> query = dbContext.Set<TEntity>();
             if (ListIncludes != null)
             {
                 query = ListIncludes(query);
             }
 
-            return query.AsEnumerable().Select(e => MapListModel(e)).ToArray();
+            return query.AsEnumerable().Select(e => MapListModel(e)!).ToArray();
         }
 
         private void Delete(DbContext dbContext, Guid id)
@@ -98,7 +98,7 @@ namespace CookBook.BL.Repositories
             dbContext.Remove(dbContext.Find(typeof(TEntity), id));
         }
 
-        private TEntity GetById(DbContext dbContext, Guid entityId)
+        private TEntity? GetById(DbContext dbContext, Guid entityId)
         {
             IQueryable<TEntity> query = dbContext.Set<TEntity>();
             if (DetailIncludes != null)
@@ -117,8 +117,8 @@ namespace CookBook.BL.Repositories
             }
 
             IQueryable<TEntity> query = dbContext.Set<TEntity>();
-            TEntity entityInDb;
-            using (var dbContextGetById = DbContextFactory.CreateDbContext())
+            TEntity? entityInDb;
+            using (CookBookDbContext dbContextGetById = DbContextFactory.CreateDbContext())
             {
                 entityInDb = GetById(dbContextGetById, entity.Id);
                 if (entityInDb == null)
@@ -127,12 +127,12 @@ namespace CookBook.BL.Repositories
                 }
             }
 
-            foreach (var collectionSelector in CollectionsToBeSynchronized)
+            foreach (Func<TEntity, IEnumerable<IEntity>>? collectionSelector in CollectionsToBeSynchronized)
             {
-                var updatedCollection = collectionSelector(entity).ToArray();
-                var collectionInDb = collectionSelector(entityInDb);
+                IEntity[] updatedCollection = collectionSelector(entity).ToArray();
+                IEnumerable<IEntity> collectionInDb = collectionSelector(entityInDb);
 
-                foreach (var item in collectionInDb)
+                foreach (IEntity item in collectionInDb)
                 {
                     if (!updatedCollection.Contains(item, RepositoryExtensions.IdComparer))
                     {
@@ -144,7 +144,7 @@ namespace CookBook.BL.Repositories
 
         private static void DisplayStates(IEnumerable<EntityEntry> entries)
         {
-            foreach (var entry in entries)
+            foreach (EntityEntry entry in entries)
             {
                 Console.WriteLine($"Entity: {entry.Entity.GetType().Name}, State: {entry.State}");
             }

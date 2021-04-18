@@ -18,7 +18,7 @@ namespace CookBook.BL.Repositories
                 RecipeMapper.MapEntityToDetailModel,
                 new Func<RecipeEntity, IEnumerable<IEntity>>[] { entity => entity.Ingredients },
                 entities => entities.Include(entity => entity.Ingredients)
-                    .ThenInclude(entity => entity.Ingredient),
+                    .ThenInclude(entity => entity.Ingredient!),
                 null)
         {
         }

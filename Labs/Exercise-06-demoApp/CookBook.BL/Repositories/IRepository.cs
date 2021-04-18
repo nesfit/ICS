@@ -13,7 +13,7 @@ namespace CookBook.BL.Repositories
         TDetailModel InsertOrUpdate(TDetailModel model);
         void Delete(TDetailModel entity);
         void Delete(Guid entityId);
-        TDetailModel GetById(Guid entityId);
+        TDetailModel? GetById(Guid entityId);
         IEnumerable<TListModel> GetAll();
     }
 }

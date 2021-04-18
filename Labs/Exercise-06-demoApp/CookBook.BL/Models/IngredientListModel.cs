@@ -2,7 +2,7 @@
 {
     public record IngredientListModel : ModelBase
     {
-        public string Name { get; set; }
-        public string ImageUrl { get; set; }
+        public string Name { get; set; } = null!;
+        public string? ImageUrl { get; set; } 
     }
 }

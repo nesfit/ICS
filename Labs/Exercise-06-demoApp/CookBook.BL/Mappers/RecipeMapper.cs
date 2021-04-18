@@ -8,7 +8,7 @@ namespace CookBook.BL.Mappers
 {
     internal static class RecipeMapper
     {
-        public static RecipeDetailModel MapEntityToDetailModel(RecipeEntity entity) =>
+        public static RecipeDetailModel? MapEntityToDetailModel(RecipeEntity? entity) =>
             entity == null
                 ? null
                 : new()
@@ -19,10 +19,10 @@ namespace CookBook.BL.Mappers
                     FoodType = (FoodType)entity.FoodType,
                     Duration = entity.Duration,
                     ImageUrl = entity.ImageUrl,
-                    Ingredients= new ValueCollection<IngredientAmountDetailModel>(entity.Ingredients.Select(IngredientAmountMapper.MapEntityToDetailModel).ToList())
+                    Ingredients= new ValueCollection<IngredientAmountDetailModel>(entity.Ingredients.Select(IngredientAmountMapper.MapEntityToDetailModel).Cast<IngredientAmountDetailModel>().ToList())
                 };
 
-        public static RecipeListModel MapEntityToListModel(RecipeEntity entity) =>
+        public static RecipeListModel? MapEntityToListModel(RecipeEntity? entity) =>
             entity == null
                 ? null
                 : new()
@@ -34,7 +34,7 @@ namespace CookBook.BL.Mappers
                     ImageUrl = entity.ImageUrl
                 };
 
-        public static RecipeEntity MapDetailModelToEntity(RecipeDetailModel model)
+        public static RecipeEntity? MapDetailModelToEntity(RecipeDetailModel? model)
         => model == null
             ? null
             : new()
@@ -45,7 +45,7 @@ namespace CookBook.BL.Mappers
                 Duration = model.Duration,
                 FoodType = model.FoodType,
                 ImageUrl = model.ImageUrl,
-                Ingredients = new ValueCollection<IngredientAmountEntity>(model.Ingredients.Select(IngredientAmountMapper.MapDetailModelToEntity).ToList())
+                Ingredients = new ValueCollection<IngredientAmountEntity>(model.Ingredients.Select(IngredientAmountMapper.MapDetailModelToEntity).Cast<IngredientAmountEntity>().ToList())
             };
     }
 }

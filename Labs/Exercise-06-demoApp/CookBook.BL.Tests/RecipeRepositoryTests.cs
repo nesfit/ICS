@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CookBook.BL.Mappers;
 using CookBook.BL.Models;
@@ -18,11 +19,11 @@ namespace CookBook.BL.Tests
 
         public RecipeRepositoryTests(ITestOutputHelper output)
         {
-            var converter = new XUnitTestOutputConverter(output);
+            XUnitTestOutputConverter converter = new XUnitTestOutputConverter(output);
             Console.SetOut(converter);
 
             _dbContextFactory = new DbContextInMemoryFactory(nameof(RecipeRepositoryTests));
-            using var dbx = _dbContextFactory.CreateDbContext();
+            using CookBookDbContext dbx = _dbContextFactory.CreateDbContext();
             dbx.Database.EnsureCreated();
 
             _repositorySUT = new RecipeRepository(_dbContextFactory);
@@ -32,7 +33,7 @@ namespace CookBook.BL.Tests
         public void Create_WithWithoutIngredient_DoesNotThrowAndEqualsCreated()
         {
             //Arrange
-            var model = new RecipeDetailModel
+            RecipeDetailModel model = new RecipeDetailModel
             {
                 Name = "Recipe 1",
                 Description = "Testing recipe 1",
@@ -41,7 +42,7 @@ namespace CookBook.BL.Tests
             }; 
 
              //Act
-             var returnedModel = _repositorySUT.InsertOrUpdate(model);
+             RecipeDetailModel returnedModel = _repositorySUT.InsertOrUpdate(model);
 
             //Assert
             FixIds(model, returnedModel);
@@ -52,7 +53,7 @@ namespace CookBook.BL.Tests
         public void Create_WithNonExistingIngredient_DoesNotThrowAndEqualsCreated()
         {
             //Arrange
-            var model = new RecipeDetailModel
+            RecipeDetailModel model = new RecipeDetailModel
             {
                 Name = "Recipe 2",
                 Description = "Testing recipe 2",
@@ -68,7 +69,7 @@ namespace CookBook.BL.Tests
             };
 
             //Act
-            var returnedModel = _repositorySUT.InsertOrUpdate(model);
+            RecipeDetailModel returnedModel = _repositorySUT.InsertOrUpdate(model);
 
 
             //Assert
@@ -83,7 +84,7 @@ namespace CookBook.BL.Tests
         public void Create_WithIngredient_DoesNotThrowAndEqualsCreated()
         {
             //Arrange
-            var model = new RecipeDetailModel
+            RecipeDetailModel model = new RecipeDetailModel
             {
                 Name = "Recipe 2",
                 Description = "Testing recipe 2",
@@ -105,7 +106,7 @@ namespace CookBook.BL.Tests
             };
 
             //Act
-            var returnedModel = _repositorySUT.InsertOrUpdate(model);
+            RecipeDetailModel returnedModel = _repositorySUT.InsertOrUpdate(model);
 
             //Assert
             FixIds(model, returnedModel);
@@ -116,7 +117,7 @@ namespace CookBook.BL.Tests
         public void Create_WithExistingAndNotExistingIngredient_DoesNotThrowAndEqualsCreated()
         {
             //Arrange
-            var model = new RecipeDetailModel
+            RecipeDetailModel model = new RecipeDetailModel
             {
                 Name = "Recipe 2",
                 Description = "Testing recipe 2",
@@ -133,7 +134,7 @@ namespace CookBook.BL.Tests
             };
 
             //Act
-            var returnedModel = _repositorySUT.InsertOrUpdate(model);
+            RecipeDetailModel returnedModel = _repositorySUT.InsertOrUpdate(model);
 
 
             //Assert
@@ -148,10 +149,10 @@ namespace CookBook.BL.Tests
         public void GetById_FromSeeded_DoesNotThrowAndEqualsSeeded()
         {
             //Arrange
-            var detailModel = RecipeMapper.MapEntityToDetailModel(DAL.Seeds.RecipeSeeds.RecipeEntity);
+            RecipeDetailModel detailModel = RecipeMapper.MapEntityToDetailModel(DAL.Seeds.RecipeSeeds.RecipeEntity);
 
             //Act
-            var returnedModel = _repositorySUT.GetById(detailModel.Id);
+            RecipeDetailModel returnedModel = _repositorySUT.GetById(detailModel.Id);
 
             //Assert
             Assert.Equal(detailModel, returnedModel);
@@ -161,10 +162,10 @@ namespace CookBook.BL.Tests
         public void GetAll_FromSeeded_DoesNotThrowAndEqualsSeeded()
         {
             //Arrange
-            var listModel = RecipeMapper.MapEntityToListModel(RecipeSeeds.RecipeEntity);
+            RecipeListModel listModel = RecipeMapper.MapEntityToListModel(RecipeSeeds.RecipeEntity);
 
             //Act
-            var returnedModel = _repositorySUT.GetAll();
+            IEnumerable<RecipeListModel> returnedModel = _repositorySUT.GetAll();
 
             //Assert
             Assert.Equal(new [] { listModel}, returnedModel);
@@ -174,7 +175,7 @@ namespace CookBook.BL.Tests
         public void Delete_FromSeeded_DoesNotThrow()
         {
             //Arrange
-            var detailModel = RecipeMapper.MapEntityToDetailModel(DAL.Seeds.RecipeSeeds.RecipeEntity);
+            RecipeDetailModel detailModel = RecipeMapper.MapEntityToDetailModel(DAL.Seeds.RecipeSeeds.RecipeEntity);
 
             //Act & Assert
             _repositorySUT.Delete(detailModel);
@@ -184,7 +185,7 @@ namespace CookBook.BL.Tests
         public void Update_FromSeeded_DoesNotThrow()
         {
             //Arrange
-            var detailModel = RecipeMapper.MapEntityToDetailModel(DAL.Seeds.RecipeSeeds.RecipeEntity);
+            RecipeDetailModel detailModel = RecipeMapper.MapEntityToDetailModel(DAL.Seeds.RecipeSeeds.RecipeEntity);
             detailModel.Name = "Changed recipe name";
 
             //Act & Assert
@@ -195,14 +196,14 @@ namespace CookBook.BL.Tests
         public void Update_Name_FromSeeded_CheckUpdated()
         {
             //Arrange
-            var detailModel = RecipeMapper.MapEntityToDetailModel(DAL.Seeds.RecipeSeeds.RecipeEntity);
+            RecipeDetailModel detailModel = RecipeMapper.MapEntityToDetailModel(DAL.Seeds.RecipeSeeds.RecipeEntity);
             detailModel.Name = "Changed recipe name 1";
 
             //Act
             _repositorySUT.InsertOrUpdate(detailModel);
 
             //Assert
-            var returnedModel = _repositorySUT.GetById(detailModel.Id);
+            RecipeDetailModel returnedModel = _repositorySUT.GetById(detailModel.Id);
             Assert.Equal(detailModel, returnedModel);
         }
 
@@ -210,14 +211,14 @@ namespace CookBook.BL.Tests
         public void Update_RemoveIngredients_FromSeeded_CheckUpdated()
         {
             //Arrange
-            var detailModel = RecipeMapper.MapEntityToDetailModel(DAL.Seeds.RecipeSeeds.RecipeEntity);
+            RecipeDetailModel detailModel = RecipeMapper.MapEntityToDetailModel(DAL.Seeds.RecipeSeeds.RecipeEntity);
             detailModel.Ingredients.Clear();
 
             //Act
             _repositorySUT.InsertOrUpdate(detailModel);
 
             //Assert
-            var returnedModel = _repositorySUT.GetById(detailModel.Id);
+            RecipeDetailModel returnedModel = _repositorySUT.GetById(detailModel.Id);
             Assert.Equal(detailModel, returnedModel);
         }
 
@@ -232,9 +233,9 @@ namespace CookBook.BL.Tests
         {
             returnedModel.Id = expectedModel.Id;
 
-            foreach (var ingredientAmountModel in returnedModel.Ingredients)
+            foreach (IngredientAmountDetailModel ingredientAmountModel in returnedModel.Ingredients)
             {
-                var ingredientAmountDetailModel = expectedModel.Ingredients.FirstOrDefault(i => 
+                IngredientAmountDetailModel? ingredientAmountDetailModel = expectedModel.Ingredients.FirstOrDefault(i => 
                     i.IngredientName == ingredientAmountModel.IngredientName 
                     && i.IngredientDescription == ingredientAmountModel.IngredientDescription
                     && i.IngredientImageUrl == ingredientAmountModel.IngredientImageUrl
@@ -252,7 +253,7 @@ namespace CookBook.BL.Tests
 
         public void Dispose()
         {
-            using var dbx = _dbContextFactory.CreateDbContext();
+            using CookBookDbContext dbx = _dbContextFactory.CreateDbContext();
             dbx.Database.EnsureDeleted();
         }
      }

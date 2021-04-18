@@ -24,7 +24,7 @@ namespace CookBook.DAL.Tests
         public void AddNew_Ingredient_Persisted()
         {
             //Arrange
-            var ingredientEntity = new IngredientEntity
+            IngredientEntity? ingredientEntity = new IngredientEntity
             {
                 Name = "Salt",
                 Description = "Mountain salt",
@@ -37,8 +37,8 @@ namespace CookBook.DAL.Tests
 
 
             //Assert
-            using var dbx = _dbContextFactory.CreateDbContext();
-            var retrievedIngredient = dbx.Ingredients.Single(entity => entity.Id == ingredientEntity.Id);
+            using CookBookDbContext? dbx = _dbContextFactory.CreateDbContext();
+            IngredientEntity? retrievedIngredient = dbx.Ingredients.Single(entity => entity.Id == ingredientEntity.Id);
             Assert.Equal(ingredientEntity, retrievedIngredient);
         }
 
@@ -46,7 +46,7 @@ namespace CookBook.DAL.Tests
         public void AddNew_RecipeWithoutIngredients_Persisted()
         {
             //Arrange
-            var recipeEntity = new RecipeEntity
+            RecipeEntity? recipeEntity = new RecipeEntity
             {
                 Name = "Chicken soup",
                 Description = "Grandma's delicious chicken soup."
@@ -57,8 +57,8 @@ namespace CookBook.DAL.Tests
             _cookBookDbContextSUT.SaveChanges();
 
             //Assert
-            using var dbx = _dbContextFactory.CreateDbContext();
-            var retrievedRecipe = dbx.Recipes
+            using CookBookDbContext? dbx = _dbContextFactory.CreateDbContext();
+            RecipeEntity? retrievedRecipe = dbx.Recipes
                 .Single(entity => entity.Id == recipeEntity.Id);
             Assert.Equal(recipeEntity, retrievedRecipe);
         }
@@ -67,7 +67,7 @@ namespace CookBook.DAL.Tests
         public void AddNew_RecipeWithIngredients_Persisted()
         {
             //Arrange
-            var recipeEntity = new RecipeEntity
+            RecipeEntity? recipeEntity = new RecipeEntity
             {
                 Name = "Lemonade",
                 Description = "Simple lemon lemonade",
@@ -103,8 +103,8 @@ namespace CookBook.DAL.Tests
             _cookBookDbContextSUT.SaveChanges();
 
             //Assert
-            using var dbx = _dbContextFactory.CreateDbContext();
-            var retrievedRecipe = dbx.Recipes
+            using CookBookDbContext? dbx = _dbContextFactory.CreateDbContext();
+            RecipeEntity? retrievedRecipe = dbx.Recipes
                 .Include(entity => entity.Ingredients)
                 .ThenInclude(amounts => amounts.Ingredient)
                 .Single(entity => entity.Id == recipeEntity.Id);
@@ -114,7 +114,7 @@ namespace CookBook.DAL.Tests
         [Fact]
         public void GetAll_Ingredients_WaterRetrieved()
         {
-            var fromDb = _cookBookDbContextSUT.Ingredients.Single(i => i.Id == IngredientSeeds.Water.Id);
+            IngredientEntity? fromDb = _cookBookDbContextSUT.Ingredients.Single(i => i.Id == IngredientSeeds.Water.Id);
 
             Assert.Equal(IngredientSeeds.Water, fromDb);
         }

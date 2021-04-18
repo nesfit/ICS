@@ -5,7 +5,7 @@ namespace CookBook.BL.Mappers
 {
     public static class IngredientMapper
     {
-        public static IngredientListModel MapEntityToListModel(IngredientEntity entity)
+        public static IngredientListModel? MapEntityToListModel(IngredientEntity? entity)
             => entity == null
                 ? null
                 : new()
@@ -15,7 +15,7 @@ namespace CookBook.BL.Mappers
                     ImageUrl = entity.ImageUrl
                 };
 
-        public static IngredientDetailModel MapEntityToDetailModel(IngredientEntity entity)
+        public static IngredientDetailModel? MapEntityToDetailModel(IngredientEntity? entity)
             => entity == null
                 ? null
                 : new()
@@ -26,7 +26,7 @@ namespace CookBook.BL.Mappers
                     ImageUrl = entity.ImageUrl
                 };
 
-        public static IngredientEntity MapDetailModelToEntity(IngredientDetailModel model)
+        public static IngredientEntity? MapDetailModelToEntity(IngredientDetailModel? model)
             => model == null
                 ? null
                 : new()
@@ -37,7 +37,7 @@ namespace CookBook.BL.Mappers
                     ImageUrl = model.ImageUrl
                 };
 
-        public static IngredientEntity MapIngredientAmountDetailModelToEntity(IngredientAmountDetailModel model)
+        public static IngredientEntity? MapIngredientAmountDetailModelToEntity(IngredientAmountDetailModel? model)
         => model == null
             ? null
             : new()
@@ -45,7 +45,7 @@ namespace CookBook.BL.Mappers
                 Id = model.IngredientId,
                 Name = model.IngredientName,
                 Description = model.IngredientDescription,
-                ImageUrl = model.IngredientImageUrl
+                ImageUrl = model?.IngredientImageUrl
             };
     }
 }

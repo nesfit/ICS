@@ -14,7 +14,7 @@ namespace CookBook.DAL.Tests
 
         public CookBookDbContext CreateDbContext()
         {
-            var contextOptionsBuilder = new DbContextOptionsBuilder<CookBookDbContext>();
+            DbContextOptionsBuilder<CookBookDbContext>? contextOptionsBuilder = new DbContextOptionsBuilder<CookBookDbContext>();
             contextOptionsBuilder.UseInMemoryDatabase(_databaseName);
             return new CookBookDbContext(contextOptionsBuilder.Options);
         }

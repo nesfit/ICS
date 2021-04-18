@@ -6,6 +6,7 @@ using CookBook.DAL.Factories;
 using CookBook.DAL.Seeds;
 using System;
 using System.Linq;
+using CookBook.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
@@ -19,7 +20,7 @@ namespace CookBook.BL.Tests
         public IngredientRepositoryTests()
         {
             _dbContextFactory = new DbContextInMemoryFactory(nameof(IngredientRepositoryTests));
-            using var dbx = _dbContextFactory.CreateDbContext();
+            using CookBookDbContext dbx = _dbContextFactory.CreateDbContext();
             dbx.Database.EnsureCreated();
 
             _ingredientRepositorySUT = new IngredientRepository(_dbContextFactory);
@@ -28,19 +29,19 @@ namespace CookBook.BL.Tests
         [Fact]
         public void Create_WithNonExistingItem_DoesNotThrow()
         {
-            var model = new IngredientDetailModel
+            IngredientDetailModel model = new IngredientDetailModel
             {
                 Description = "Testovací ingredience",
                 Name = "Ingredience 1"
             };
 
-            var returnedModel = _ingredientRepositorySUT.InsertOrUpdate(model);
+            IngredientDetailModel returnedModel = _ingredientRepositorySUT.InsertOrUpdate(model);
         }
 
         [Fact]
         public void GetAll_Single_SeededWater()
         {
-            var ingredient = _ingredientRepositorySUT
+            IngredientListModel ingredient = _ingredientRepositorySUT
                 .GetAll()
                 .Single(i => i.Id == IngredientSeeds.Water.Id);
 
@@ -50,7 +51,7 @@ namespace CookBook.BL.Tests
         [Fact]
         public void GetById_SeededWater()
         {
-            var ingredient = _ingredientRepositorySUT.GetById(IngredientSeeds.Water.Id);
+            IngredientDetailModel ingredient = _ingredientRepositorySUT.GetById(IngredientSeeds.Water.Id);
 
             Assert.Equal(IngredientMapper.MapEntityToDetailModel(IngredientSeeds.Water), ingredient);
         }
@@ -60,7 +61,7 @@ namespace CookBook.BL.Tests
         {
             _ingredientRepositorySUT.Delete(IngredientSeeds.Water.Id);
 
-            using var dbxAssert = _dbContextFactory.CreateDbContext();
+            using CookBookDbContext dbxAssert = _dbContextFactory.CreateDbContext();
             Assert.False(dbxAssert.Ingredients.Any(i => i.Id == IngredientSeeds.Water.Id));
         }
 
@@ -69,7 +70,7 @@ namespace CookBook.BL.Tests
         public void NewIngredient_InsertOrUpdate_IngredientAdded()
         {
             //Arrange
-            var ingredient = new IngredientDetailModel()
+            IngredientDetailModel ingredient = new IngredientDetailModel()
             {
                 Name = "Water",
                 Description = "Mineral water"
@@ -79,8 +80,8 @@ namespace CookBook.BL.Tests
             ingredient = _ingredientRepositorySUT.InsertOrUpdate(ingredient);
 
             //Assert
-            using var dbxAssert = _dbContextFactory.CreateDbContext();
-            var ingredientFromDb = dbxAssert.Ingredients.Single(i => i.Id == ingredient.Id);
+            using CookBookDbContext dbxAssert = _dbContextFactory.CreateDbContext();
+            IngredientEntity ingredientFromDb = dbxAssert.Ingredients.Single(i => i.Id == ingredient.Id);
             Assert.Equal(ingredient, IngredientMapper.MapEntityToDetailModel(ingredientFromDb));
         }
 
@@ -88,7 +89,7 @@ namespace CookBook.BL.Tests
         public void SeededWater_InsertOrUpdate_IngredientUpdated()
         {
             //Arrange
-            var ingredient = new IngredientDetailModel()
+            IngredientDetailModel ingredient = new IngredientDetailModel()
             {
                 Id = IngredientSeeds.Water.Id,
                 Name = IngredientSeeds.Water.Name,
@@ -101,14 +102,14 @@ namespace CookBook.BL.Tests
             _ingredientRepositorySUT.InsertOrUpdate(ingredient);
 
             //Assert
-            using var dbxAssert = _dbContextFactory.CreateDbContext();
-            var ingredientFromDb = dbxAssert.Ingredients.Single(i => i.Id == ingredient.Id);
+            using CookBookDbContext dbxAssert = _dbContextFactory.CreateDbContext();
+            IngredientEntity ingredientFromDb = dbxAssert.Ingredients.Single(i => i.Id == ingredient.Id);
             Assert.Equal(ingredient, IngredientMapper.MapEntityToDetailModel(ingredientFromDb));
         }
 
         public void Dispose()
         {
-            using var dbx = _dbContextFactory.CreateDbContext();
+            using CookBookDbContext dbx = _dbContextFactory.CreateDbContext();
             dbx.Database.EnsureDeleted();
         }
     }

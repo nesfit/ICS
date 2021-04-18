@@ -9,7 +9,7 @@ namespace CookBook.BL.Repositories
 
         private sealed class IdEqualityComparer : IEqualityComparer<IEntity>
         {
-            public bool Equals(IEntity x, IEntity y)
+            public bool Equals(IEntity? x, IEntity? y)
             {
                 if (ReferenceEquals(x, y))
                 {
