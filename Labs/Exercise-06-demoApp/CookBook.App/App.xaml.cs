@@ -72,7 +72,7 @@ namespace CookBook.App
 #if DEBUG
             await using (var dbx = dbContextFactory.CreateDbContext())
             {
-                await dbx.Database.EnsureCreatedAsync();
+                await dbx.Database.MigrateAsync();
             }
 #endif
 
