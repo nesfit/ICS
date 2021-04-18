@@ -26,7 +26,7 @@ namespace CookBook.DAL.Tests
         }
 
         [Fact]
-        public void AddNew_Ingredient_Persisted()
+        public async Task AddNew_Ingredient_Persisted()
         {
             //Arrange
             var ingredientEntity = new IngredientEntity
@@ -38,17 +38,16 @@ namespace CookBook.DAL.Tests
 
             //Act
             _cookBookDbContextSUT.Ingredients.Add(ingredientEntity);
-            _cookBookDbContextSUT.SaveChanges();
-
-
+            await _cookBookDbContextSUT.SaveChangesAsync();
+            
             //Assert
-            using var dbx = _dbContextFactory.Create();
-            var retrievedIngredient = dbx.Ingredients.Single(entity => entity.Id == ingredientEntity.Id);
+            await using var dbx = _dbContextFactory.Create();
+            var retrievedIngredient = await dbx.Ingredients.SingleAsync(entity => entity.Id == ingredientEntity.Id);
             Assert.Equal(ingredientEntity, retrievedIngredient);
         }
 
         [Fact]
-        public void AddNew_RecipeWithoutIngredients_Persisted()
+        public async Task AddNew_RecipeWithoutIngredients_Persisted()
         {
             //Arrange
             var recipeEntity = new RecipeEntity
@@ -59,17 +58,17 @@ namespace CookBook.DAL.Tests
 
             //Act
             _cookBookDbContextSUT.Recipes.Add(recipeEntity);
-            _cookBookDbContextSUT.SaveChanges();
+            await _cookBookDbContextSUT.SaveChangesAsync();
 
             //Assert
-            using var dbx = _dbContextFactory.Create();
-            var retrievedRecipe = dbx.Recipes
-                .Single(entity => entity.Id == recipeEntity.Id);
+            await using var dbx = _dbContextFactory.Create();
+            var retrievedRecipe = await dbx.Recipes
+                .SingleAsync(entity => entity.Id == recipeEntity.Id);
             Assert.Equal(recipeEntity, retrievedRecipe);
         }
 
         [Fact]
-        public void AddNew_RecipeWithIngredients_Persisted()
+        public async Task AddNew_RecipeWithIngredients_Persisted()
         {
             //Arrange
             var recipeEntity = new RecipeEntity
@@ -105,21 +104,21 @@ namespace CookBook.DAL.Tests
 
             //Act
             _cookBookDbContextSUT.Recipes.Add(recipeEntity);
-            _cookBookDbContextSUT.SaveChanges();
+            await _cookBookDbContextSUT.SaveChangesAsync();
 
             //Assert
-            using var dbx = _dbContextFactory.Create();
-            var retrievedRecipe = dbx.Recipes
+            await using var dbx = _dbContextFactory.Create();
+            var retrievedRecipe = await dbx.Recipes
                 .Include(entity => entity.Ingredients)
                 .ThenInclude(amounts => amounts.Ingredient)
-                .Single(entity => entity.Id == recipeEntity.Id);
+                .SingleAsync(entity => entity.Id == recipeEntity.Id);
             Assert.Equal(recipeEntity, retrievedRecipe);
         }
 
         [Fact]
-        public void GetAll_Ingredients_WaterRetrieved()
+        public async Task GetAll_Ingredients_WaterRetrieved()
         {
-            var fromDb = _cookBookDbContextSUT.Ingredients.Single(i => i.Id == IngredientSeeds.Water.Id);
+            var fromDb = await _cookBookDbContextSUT.Ingredients.SingleAsync(i => i.Id == IngredientSeeds.Water.Id);
 
             Assert.Equal(IngredientSeeds.Water, fromDb);
         }
