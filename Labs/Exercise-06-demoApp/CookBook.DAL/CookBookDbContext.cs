@@ -28,6 +28,8 @@ namespace CookBook.DAL
                 .OnDelete(DeleteBehavior.Restrict);
 
             IngredientSeeds.Seed(modelBuilder);
+            RecipeSeeds.Seed(modelBuilder);
+            IngredientAmountSeeds.Seed(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
