@@ -6,6 +6,7 @@ using CookBook.DAL.Factories;
 using CookBook.DAL.Seeds;
 using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Xunit;
 
 namespace CookBook.BL.Tests
@@ -13,12 +14,12 @@ namespace CookBook.BL.Tests
     public sealed class IngredientRepositoryTests : IDisposable
     {
         private readonly IngredientRepository _ingredientRepositorySUT;
-        private readonly INamedDbContextFactory<CookBookDbContext> _dbContextFactory;
+        private readonly IDbContextFactory<CookBookDbContext> _dbContextFactory;
 
         public IngredientRepositoryTests()
         {
             _dbContextFactory = new DbContextInMemoryFactory(nameof(IngredientRepositoryTests));
-            using var dbx = _dbContextFactory.Create();
+            using var dbx = _dbContextFactory.CreateDbContext();
             dbx.Database.EnsureCreated();
 
             _ingredientRepositorySUT = new IngredientRepository(_dbContextFactory);
@@ -34,8 +35,6 @@ namespace CookBook.BL.Tests
             };
 
             var returnedModel = _ingredientRepositorySUT.InsertOrUpdate(model);
-
-            Assert.NotNull(returnedModel);
         }
 
         [Fact]
@@ -61,7 +60,7 @@ namespace CookBook.BL.Tests
         {
             _ingredientRepositorySUT.Delete(IngredientSeeds.Water.Id);
 
-            using var dbxAssert = _dbContextFactory.Create();
+            using var dbxAssert = _dbContextFactory.CreateDbContext();
             Assert.False(dbxAssert.Ingredients.Any(i => i.Id == IngredientSeeds.Water.Id));
         }
 
@@ -80,7 +79,7 @@ namespace CookBook.BL.Tests
             ingredient = _ingredientRepositorySUT.InsertOrUpdate(ingredient);
 
             //Assert
-            using var dbxAssert = _dbContextFactory.Create();
+            using var dbxAssert = _dbContextFactory.CreateDbContext();
             var ingredientFromDb = dbxAssert.Ingredients.Single(i => i.Id == ingredient.Id);
             Assert.Equal(ingredient, IngredientMapper.MapEntityToDetailModel(ingredientFromDb));
         }
@@ -102,14 +101,14 @@ namespace CookBook.BL.Tests
             _ingredientRepositorySUT.InsertOrUpdate(ingredient);
 
             //Assert
-            using var dbxAssert = _dbContextFactory.Create();
+            using var dbxAssert = _dbContextFactory.CreateDbContext();
             var ingredientFromDb = dbxAssert.Ingredients.Single(i => i.Id == ingredient.Id);
             Assert.Equal(ingredient, IngredientMapper.MapEntityToDetailModel(ingredientFromDb));
         }
 
         public void Dispose()
         {
-            using var dbx = _dbContextFactory.Create();
+            using var dbx = _dbContextFactory.CreateDbContext();
             dbx.Database.EnsureDeleted();
         }
     }

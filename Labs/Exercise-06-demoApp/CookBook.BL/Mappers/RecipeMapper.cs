@@ -2,6 +2,7 @@
 using CookBook.DAL.Entities;
 using CookBook.DAL.Enums;
 using System.Linq;
+using Nemesis.Essentials.Design;
 
 namespace CookBook.BL.Mappers
 {
@@ -18,7 +19,7 @@ namespace CookBook.BL.Mappers
                     FoodType = (FoodType)entity.FoodType,
                     Duration = entity.Duration,
                     ImageUrl = entity.ImageUrl,
-                    Ingredients = entity.Ingredients.Select(IngredientAmountMapper.MapEntityToDetailModel).ToList()
+                    Ingredients= new ValueCollection<IngredientAmountDetailModel>(entity.Ingredients.Select(IngredientAmountMapper.MapEntityToDetailModel).ToList())
                 };
 
         public static RecipeListModel MapEntityToListModel(RecipeEntity entity) =>
@@ -44,7 +45,7 @@ namespace CookBook.BL.Mappers
                 Duration = model.Duration,
                 FoodType = model.FoodType,
                 ImageUrl = model.ImageUrl,
-                Ingredients = model.Ingredients.Select(model => IngredientAmountMapper.MapDetailModelToEntity(model)).ToList()
+                Ingredients = new ValueCollection<IngredientAmountEntity>(model.Ingredients.Select(IngredientAmountMapper.MapDetailModelToEntity).ToList())
             };
     }
 }

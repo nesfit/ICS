@@ -10,10 +10,10 @@ namespace CookBook.BL.Mappers
             : new()
             {
                 Id = entity.Id,
-                IngredientId = entity.Ingredient.Id,
-                IngredientName = entity.Ingredient.Name,
-                IngredientDescription = entity.Ingredient.Description,
-                IngredientImageUrl = entity.Ingredient.ImageUrl,
+                IngredientId = entity.IngredientId,
+                IngredientName = entity.Ingredient?.Name,
+                IngredientDescription = entity.Ingredient?.Description,
+                IngredientImageUrl = entity.Ingredient?.ImageUrl,
                 Amount = entity.Amount,
                 Unit = entity.Unit
             };
@@ -26,6 +26,7 @@ namespace CookBook.BL.Mappers
                 Id = model.Id,
                 Amount = model.Amount,
                 Unit = model.Unit,
+                IngredientId = model.IngredientId,
                 Ingredient = IngredientMapper.MapIngredientAmountDetailModelToEntity(model)
             };
     }

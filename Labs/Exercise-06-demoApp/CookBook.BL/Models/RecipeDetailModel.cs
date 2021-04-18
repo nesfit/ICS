@@ -1,6 +1,7 @@
 ﻿using CookBook.DAL.Enums;
 using System;
 using System.Collections.Generic;
+using Nemesis.Essentials.Design;
 
 namespace CookBook.BL.Models
 {
@@ -11,6 +12,6 @@ namespace CookBook.BL.Models
         public TimeSpan Duration { get; set; }
         public FoodType FoodType { get; set; }
         public string ImageUrl { get; set; }
-        public ICollection<IngredientAmountDetailModel> Ingredients { get; set; } = new List<IngredientAmountDetailModel>();
+        public ICollection<IngredientAmountDetailModel> Ingredients { get; set; } = new  ValueCollection<IngredientAmountDetailModel>();
     }
 }

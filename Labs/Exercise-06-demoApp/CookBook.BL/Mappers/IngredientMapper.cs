@@ -44,6 +44,7 @@ namespace CookBook.BL.Mappers
             {
                 Id = model.IngredientId,
                 Name = model.IngredientName,
+                Description = model.IngredientDescription,
                 ImageUrl = model.IngredientImageUrl
             };
     }
