@@ -1,26 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using CookBook.BL.Interfaces;
-using CookBook.BL.Mapper;
+﻿using CookBook.BL.Mappers;
 using CookBook.BL.Models;
+using CookBook.DAL;
 using CookBook.DAL.Entities;
 using CookBook.DAL.Factories;
-using CookBook.DAL.Interfaces;
-using CookBook.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 
 namespace CookBook.BL.Repositories
 {
-    public class RecipeRepository : RepositoryBase<RecipeEntity,RecipeListModel, RecipeDetailModel>, IRecipeRepository
+    public class RecipeRepository : RepositoryBase<RecipeEntity, RecipeListModel, RecipeDetailModel>, IRecipeRepository
     {
-        public RecipeRepository(IDbContextFactory dbContextFactory) 
+        public RecipeRepository(IDbContextFactory<CookBookDbContext> dbContextFactory)
             : base(dbContextFactory,
-                RecipeMapper.MapToEntity,
-                RecipeMapper.MapToListModel,
-                RecipeMapper.MapToDetailModel,
-                new Func<RecipeEntity, IEnumerable<IEntity>>[]{entity => entity.Ingredients},
+                RecipeMapper.MapDetailModelToEntity,
+                RecipeMapper.MapEntityToListModel,
+                RecipeMapper.MapEntityToDetailModel,
+                new Func<RecipeEntity, IEnumerable<IEntity>>[] { entity => entity.Ingredients },
                 entities => entities.Include(entity => entity.Ingredients)
-                    .ThenInclude(entity => entity.Ingredient),
+                    .ThenInclude(entity => entity.Ingredient!),
                 null)
         {
         }

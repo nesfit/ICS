@@ -1,9 +1,8 @@
 ﻿using System;
-using CookBook.Common;
 
 namespace CookBook.BL.Models
 {
-    public abstract class ModelBase : IId
+    public abstract record ModelBase : IModel
     {
         public Guid Id { get; set; }
     }

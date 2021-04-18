@@ -1,12 +1,13 @@
-﻿using System;
-using CookBook.BL.Enums;
-using CookBook.BL.Models;
+﻿using CookBook.BL.Models;
+using System;
+using CookBook.Common.Enums;
 
 namespace CookBook.App.Wrappers
 {
     public class IngredientAmountWrapper : ModelWrapper<IngredientAmountDetailModel>
     {
-        public IngredientAmountWrapper(IngredientAmountDetailModel model) : base(model)
+        public IngredientAmountWrapper(IngredientAmountDetailModel model)
+            : base(model)
         {
         }
 
@@ -36,9 +37,10 @@ namespace CookBook.App.Wrappers
             set => SetValue(value);
         }
 
-        public static implicit operator IngredientAmountWrapper(IngredientAmountDetailModel detailModel) => new IngredientAmountWrapper(detailModel);
+        public static implicit operator IngredientAmountWrapper(IngredientAmountDetailModel detailModel)
+            => new(detailModel);
 
-        public static implicit operator IngredientAmountDetailModel(IngredientAmountWrapper wrapper) => wrapper.Model;
-
+        public static implicit operator IngredientAmountDetailModel(IngredientAmountWrapper wrapper)
+            => wrapper.Model;
     }
 }

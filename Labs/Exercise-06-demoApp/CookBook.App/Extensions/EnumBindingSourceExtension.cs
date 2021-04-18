@@ -5,7 +5,7 @@ namespace CookBook.App.Extensions
 {
     public class EnumBindingSourceExtension : MarkupExtension
     {
-        private Type _enumType;
+        private Type? _enumType;
 
         public EnumBindingSourceExtension()
         {
@@ -13,7 +13,7 @@ namespace CookBook.App.Extensions
 
         public EnumBindingSourceExtension(Type enumType) => EnumType = enumType;
 
-        public Type EnumType
+        public Type? EnumType
         {
             get => _enumType;
             set

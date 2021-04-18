@@ -4,7 +4,8 @@ namespace CookBook.App.Wrappers
 {
     public class IngredientWrapper : ModelWrapper<IngredientDetailModel>
     {
-        public IngredientWrapper(IngredientDetailModel model) : base(model)
+        public IngredientWrapper(IngredientDetailModel model)
+            : base(model)
         {
         }
 
@@ -24,8 +25,10 @@ namespace CookBook.App.Wrappers
             set => SetValue(value);
         }
 
-        public static implicit operator IngredientWrapper(IngredientDetailModel detailModel) => new IngredientWrapper(detailModel);
+        public static implicit operator IngredientWrapper(IngredientDetailModel detailModel)
+            => new(detailModel);
 
-        public static implicit operator IngredientDetailModel(IngredientWrapper wrapper) => wrapper.Model;
+        public static implicit operator IngredientDetailModel(IngredientWrapper wrapper)
+            => wrapper.Model;
     }
 }

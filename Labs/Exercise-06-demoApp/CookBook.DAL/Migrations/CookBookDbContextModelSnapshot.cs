@@ -15,8 +15,8 @@ namespace CookBook.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("CookBook.DAL.Entities.IngredientAmountEntity", b =>
@@ -52,7 +52,7 @@ namespace CookBook.DAL.Migrations
                             Amount = 1.0,
                             IngredientId = new Guid("df935095-8709-4040-a2bb-b6f97cb416dc"),
                             RecipeId = new Guid("fabde0cd-eefe-443f-baf6-3d96cc2cbf2e"),
-                            Unit = 0
+                            Unit = 1
                         },
                         new
                         {
@@ -60,7 +60,7 @@ namespace CookBook.DAL.Migrations
                             Amount = 2.0,
                             IngredientId = new Guid("23b3902d-7d4f-4213-9cf0-112348f56238"),
                             RecipeId = new Guid("fabde0cd-eefe-443f-baf6-3d96cc2cbf2e"),
-                            Unit = 1
+                            Unit = 2
                         });
                 });
 
@@ -71,12 +71,14 @@ namespace CookBook.DAL.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -100,6 +102,7 @@ namespace CookBook.DAL.Migrations
                         {
                             Id = new Guid("06a8a2cf-ea03-4095-a3e4-aa0291fe9c75"),
                             Description = "Mineral water",
+                            ImageUrl = "https://www.pngitem.com/pimgs/m/40-406527_cartoon-glass-of-water-png-glass-of-water.png",
                             Name = "Water"
                         });
                 });
@@ -111,6 +114,7 @@ namespace CookBook.DAL.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<TimeSpan>("Duration")
@@ -123,6 +127,7 @@ namespace CookBook.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -135,7 +140,7 @@ namespace CookBook.DAL.Migrations
                             Id = new Guid("fabde0cd-eefe-443f-baf6-3d96cc2cbf2e"),
                             Description = "Recipe seeded recipe 1 description",
                             Duration = new TimeSpan(0, 2, 0, 0, 0),
-                            FoodType = 0,
+                            FoodType = 1,
                             Name = "Recipe seeded recipe 1"
                         });
                 });
@@ -145,7 +150,7 @@ namespace CookBook.DAL.Migrations
                     b.HasOne("CookBook.DAL.Entities.IngredientEntity", "Ingredient")
                         .WithMany()
                         .HasForeignKey("IngredientId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CookBook.DAL.Entities.RecipeEntity", "Recipe")
@@ -153,6 +158,15 @@ namespace CookBook.DAL.Migrations
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Ingredient");
+
+                    b.Navigation("Recipe");
+                });
+
+            modelBuilder.Entity("CookBook.DAL.Entities.RecipeEntity", b =>
+                {
+                    b.Navigation("Ingredients");
                 });
 #pragma warning restore 612, 618
         }

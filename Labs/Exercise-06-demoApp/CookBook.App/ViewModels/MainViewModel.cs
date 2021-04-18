@@ -1,12 +1,12 @@
-﻿using System;
+﻿using CookBook.App.Factories;
+using CookBook.App.Messages;
+using CookBook.App.Services;
+using CookBook.App.Wrappers;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using CookBook.App.Commands;
-using CookBook.App.Factories;
-using CookBook.App.Wrappers;
-using CookBook.BL.Messages;
-using CookBook.BL.Services;
 
 namespace CookBook.App.ViewModels
 {
@@ -29,8 +29,8 @@ namespace CookBook.App.ViewModels
             RecipeListViewModel = recipeListViewModel;
             RecipeDetailViewModel = _recipeDetailViewModelFactory.Create();
 
-            CloseRecipeDetailTabCommand = new RelayCommand(OnCloseRecipeDetailTabExecute);
-            CloseIngredientDetailTabCommand = new RelayCommand(OnCloseIngredientDetailTabExecute);
+            CloseRecipeDetailTabCommand = new RelayCommand<IRecipeDetailViewModel>(OnCloseRecipeDetailTabExecute);
+            CloseIngredientDetailTabCommand = new RelayCommand<IIngredientDetailViewModel>(OnCloseIngredientDetailTabExecute);
 
             mediator.Register<NewMessage<RecipeWrapper>>(OnRecipeNewMessage);
             mediator.Register<NewMessage<IngredientWrapper>>(OnIngredientNewMessage);
@@ -132,21 +132,15 @@ namespace CookBook.App.ViewModels
             SelectedIngredientDetailViewModel = ingredientDetailViewModel;
         }
 
-        private void OnCloseRecipeDetailTabExecute(object parameter)
+        private void OnCloseRecipeDetailTabExecute(IRecipeDetailViewModel recipeDetailViewModel)
         {
-            if (parameter is IRecipeDetailViewModel recipeDetailViewModel)
-            {
-                // TODO: Check if the Detail has changes and ask user to cancel
-                RecipeDetailViewModels.Remove(recipeDetailViewModel);
-            }
+            // TODO: Check if the Detail has changes and ask user to cancel
+            RecipeDetailViewModels.Remove(recipeDetailViewModel);
         }
-        private void OnCloseIngredientDetailTabExecute(object parameter)
+        private void OnCloseIngredientDetailTabExecute(IIngredientDetailViewModel ingredientDetailViewModel)
         {
-            if (parameter is IIngredientDetailViewModel ingredientDetailViewModel)
-            {
-                // TODO: Check if the Detail has changes and ask user to cancel
-                IngredientDetailViewModels.Remove(ingredientDetailViewModel);
-            }
+            // TODO: Check if the Detail has changes and ask user to cancel
+            IngredientDetailViewModels.Remove(ingredientDetailViewModel);
         }
     }
 }

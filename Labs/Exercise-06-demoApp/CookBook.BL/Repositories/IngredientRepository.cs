@@ -1,19 +1,19 @@
-﻿using CookBook.BL.Interfaces;
-using CookBook.BL.Mapper;
+﻿using CookBook.BL.Mappers;
 using CookBook.BL.Models;
+using CookBook.DAL;
 using CookBook.DAL.Entities;
 using CookBook.DAL.Factories;
-using CookBook.DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.BL.Repositories
 {
     public class IngredientRepository : RepositoryBase<IngredientEntity, IngredientListModel, IngredientDetailModel>, IIngredientRepository
     {
-        public IngredientRepository(IDbContextFactory dbContextFactory)
+        public IngredientRepository(IDbContextFactory<CookBookDbContext> dbContextFactory)
             : base(dbContextFactory,
-                IngredientMapper.MapEntity,
-                IngredientMapper.MapListModel,
-                IngredientMapper.MapDetailModel,
+                IngredientMapper.MapDetailModelToEntity,
+                IngredientMapper.MapEntityToListModel,
+                IngredientMapper.MapEntityToDetailModel,
                 null,
                 null,
                 null)

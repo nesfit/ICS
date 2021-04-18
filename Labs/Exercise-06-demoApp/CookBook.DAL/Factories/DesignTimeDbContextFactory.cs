@@ -1,11 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore.Design;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace CookBook.DAL.Factories
 {
-    public class DesignTimeDbContextFactory : IDbContextFactory
+    public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<CookBookDbContext>
     {
-        public CookBookDbContext CreateDbContext()
-            => new SqlServerDbContextFactory(@"Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog = MigrationDb;MultipleActiveResultSets = True;Integrated Security = True; ")
-                .CreateDbContext();
+        public CookBookDbContext CreateDbContext(string[] args)
+        {
+            DbContextOptionsBuilder<CookBookDbContext>? builder = new DbContextOptionsBuilder<CookBookDbContext>();
+            builder.UseSqlServer(
+                @"Data Source=(LocalDB)\MSSQLLocalDB;
+                Initial Catalog = CookBook;
+                MultipleActiveResultSets = True;
+                Integrated Security = True; ");
+
+            return new CookBookDbContext(builder.Options);
+        }
     }
 }

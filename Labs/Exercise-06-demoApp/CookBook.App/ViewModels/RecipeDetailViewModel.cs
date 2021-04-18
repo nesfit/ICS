@@ -1,11 +1,12 @@
-﻿using System;
-using CookBook.App.Commands;
+﻿using CookBook.App.Messages;
+using CookBook.App.Services;
 using CookBook.App.Services.MessageDialog;
 using CookBook.App.Wrappers;
-using CookBook.BL.Interfaces;
-using CookBook.BL.Messages;
 using CookBook.BL.Models;
-using CookBook.BL.Services;
+using CookBook.BL.Repositories;
+using System;
+using System.Windows.Input;
+using CookBook.App.Commands;
 
 namespace CookBook.App.ViewModels
 {
@@ -14,8 +15,8 @@ namespace CookBook.App.ViewModels
         private readonly IMediator _mediator;
         private readonly IMessageDialogService _messageDialogService;
         private readonly IRecipeRepository _recipesRepository;
-        private RecipeWrapper _model;
-        private IngredientAmountWrapper _selectedIngredientAmount;
+        private RecipeWrapper? _model = new RecipeWrapper(new RecipeDetailModel());
+        private IngredientAmountWrapper? _selectedIngredientAmount;
 
         public RecipeDetailViewModel(
             IRecipeRepository recipesRepository,
@@ -36,13 +37,13 @@ namespace CookBook.App.ViewModels
             mediator.Register<DeleteMessage<IngredientAmountWrapper>>(DeleteIngredientAmount);
         }
 
-        public RelayCommand DeleteCommand { get; }
+        public ICommand DeleteCommand { get; }
 
-        public RelayCommand SaveCommand { get; }
+        public ICommand SaveCommand { get; }
 
         public IIngredientAmountDetailViewModel IngredientAmountDetailViewModel { get; }
 
-        public IngredientAmountWrapper SelectedIngredientAmount
+        public IngredientAmountWrapper? SelectedIngredientAmount
         {
             get => _selectedIngredientAmount;
             set
@@ -51,19 +52,19 @@ namespace CookBook.App.ViewModels
                 OnPropertyChanged();
                 _mediator.Send(new SelectedMessage<IngredientAmountWrapper>
                 {
-                    TargetId = Model.Id,
+                    TargetId = Model?.Id ?? Guid.Empty,
                     Model = _selectedIngredientAmount
                 });
             }
         }
 
-        public RecipeWrapper Model
+        public RecipeWrapper? Model
         {
             get => _model;
             set
             {
                 _model = value;
-                IngredientAmountDetailViewModel.RecipeId = Model.Id;
+                IngredientAmountDetailViewModel.RecipeId = value?.Id ?? Guid.Empty;
             }
         }
 
@@ -71,23 +72,23 @@ namespace CookBook.App.ViewModels
 
         private void DeleteIngredientAmount(DeleteMessage<IngredientAmountWrapper> message)
         {
-            if (message.TargetId != Model?.Id)
+            if (Model != null && message.TargetId != Model?.Id)
             {
                 return;
             }
 
-            Model.Ingredients.Remove(message.Model);
+            Model?.Ingredients.Remove(message.Model);
             SelectedIngredientAmount = null;
         }
 
         private void NewIngredientAmount(NewMessage<IngredientAmountWrapper> message)
         {
-            if (message.TargetId != Model?.Id)
+            if (Model != null && message.TargetId != Model.Id)
             {
                 return;
             }
-
-            Model.Ingredients.Add(message.Model);
+            
+            Model?.Ingredients.Add(message.Model);
         }
 
         private void UpdateIngredientAmount(UpdateMessage<IngredientAmountWrapper> message)
@@ -100,8 +101,13 @@ namespace CookBook.App.ViewModels
             SelectedIngredientAmount = null;
         }
 
-        private void Delete(object obj)
+        private void Delete()
         {
+            if (Model == null)
+            {
+                throw new InvalidOperationException("Null model cannot be deleted");
+            }
+
             if (Model.Id != Guid.Empty)
             {
                 var delete = _messageDialogService.Show(
@@ -126,7 +132,6 @@ namespace CookBook.App.ViewModels
                         "Deleting failed",
                         MessageDialogButtonConfiguration.OK,
                         MessageDialogResult.OK);
-                    return;
                 }
 
                 _mediator.Send(new DeleteMessage<RecipeWrapper> { Model = Model });
@@ -141,6 +146,11 @@ namespace CookBook.App.ViewModels
 
         private void Save()
         {
+            if (Model == null)
+            {
+                throw new InvalidOperationException("Null model cannot be saved");
+            }
+
             Model = _recipesRepository.InsertOrUpdate(Model);
             _mediator.Send(new UpdateMessage<RecipeWrapper> { Model = Model });
         }

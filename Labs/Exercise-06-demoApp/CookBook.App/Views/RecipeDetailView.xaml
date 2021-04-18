@@ -7,8 +7,8 @@
                        xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
                        xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
                        xmlns:extensions="clr-namespace:CookBook.App.Extensions"
-                       xmlns:enums="clr-namespace:CookBook.BL.Enums;assembly=CookBook.BL"
                        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                       xmlns:enums="clr-namespace:CookBook.Common.Enums;assembly=CookBook.Common"
                        mc:Ignorable="d"
                        Background="{StaticResource DefaultComponentBackgroundBrush}"
                        d:DataContext="{d:DesignInstance viewModels:RecipeDetailViewModel}"
@@ -55,7 +55,8 @@
             <Label Grid.Row="3" Grid.Column="0" Content="{x:Static texts:RecipeDetailResources.Duration_Label_Content}" />
             <xctk:TimeSpanUpDown Grid.Row="3" 
                                  Grid.Column="1" 
-                                 AllowSpin="True" AllowTextInput="True"
+                                 ShowButtonSpinner="True"
+                                 AllowTextInput="True"
                                  Text="{Binding Model.Duration, UpdateSourceTrigger=PropertyChanged}" />
 
             <Label Grid.Row="4" Grid.Column="0" Content="{x:Static texts:RecipeDetailResources.FoodType_Label_Content}" />

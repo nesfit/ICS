@@ -1,7 +1,6 @@
 ﻿using CookBook.DAL.Entities;
 using CookBook.DAL.Seeds;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 namespace CookBook.DAL
 {
@@ -12,33 +11,27 @@ namespace CookBook.DAL
         {
         }
 
-        public DbSet<IngredientAmountEntity> IngredientAmountEntities { get; set; }
-        public DbSet<RecipeEntity> Recipes { get; set; }
-        public DbSet<IngredientEntity> Ingredients { get; set; }
+        public DbSet<IngredientAmountEntity> IngredientAmountEntities { get; set; } = null!;
+        public DbSet<RecipeEntity> Recipes { get; set; } = null!;
+        public DbSet<IngredientEntity> Ingredients { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Using navigation properties
             modelBuilder.Entity<RecipeEntity>()
                 .HasMany(i => i.Ingredients)
-                .WithOne(c => c.Recipe)
+                .WithOne(i => i.Recipe!)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            //IngredientEntity does not have navigation properties
             modelBuilder.Entity<IngredientEntity>()
-                .HasMany(typeof(IngredientAmountEntity)).WithOne(nameof(IngredientAmountEntity.Ingredient))
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasMany<IngredientAmountEntity>()
+                .WithOne(i => i.Ingredient!)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Seed();
-        }
+            IngredientSeeds.Seed(modelBuilder);
+            RecipeSeeds.Seed(modelBuilder);
+            IngredientAmountSeeds.Seed(modelBuilder);
 
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-#if DEBUG
-            optionsBuilder.EnableSensitiveDataLogging();
-#endif
-            base.OnConfiguring(optionsBuilder);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
