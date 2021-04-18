@@ -1,6 +1,6 @@
-﻿using CookBook.DAL.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using CookBook.Common.Enums;
 using Nemesis.Essentials.Design;
 
 namespace CookBook.BL.Models

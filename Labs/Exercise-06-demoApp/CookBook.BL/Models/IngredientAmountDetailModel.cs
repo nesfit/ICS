@@ -1,5 +1,5 @@
-﻿using CookBook.DAL.Enums;
-using System;
+﻿using System;
+using CookBook.Common.Enums;
 
 namespace CookBook.BL.Models
 {

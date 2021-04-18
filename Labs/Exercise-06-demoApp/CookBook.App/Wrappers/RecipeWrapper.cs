@@ -1,9 +1,9 @@
 ﻿using CookBook.BL.Models;
-using CookBook.DAL.Enums;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using CookBook.Common.Enums;
 
 namespace CookBook.App.Wrappers
 {

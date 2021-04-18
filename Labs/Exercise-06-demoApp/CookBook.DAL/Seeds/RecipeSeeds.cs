@@ -1,6 +1,6 @@
 ﻿using System;
+using CookBook.Common.Enums;
 using CookBook.DAL.Entities;
-using CookBook.DAL.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.DAL.Seeds

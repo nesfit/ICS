@@ -28,6 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CookBook.BL\CookBook.BL.csproj" />
+    <ProjectReference Include="..\CookBook.Common\CookBook.Common.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Texts\IngredientAmountDetailResources.resx">

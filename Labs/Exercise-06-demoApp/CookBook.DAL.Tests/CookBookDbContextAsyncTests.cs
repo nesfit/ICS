@@ -1,9 +1,9 @@
 ﻿using CookBook.DAL.Entities;
-using CookBook.DAL.Enums;
 using CookBook.DAL.Seeds;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using CookBook.Common.Enums;
 using CookBook.DAL.Factories;
 using Xunit;
 

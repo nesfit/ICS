@@ -1,7 +1,7 @@
-﻿using CookBook.DAL.Enums;
-using Nemesis.Essentials.Design;
+﻿using Nemesis.Essentials.Design;
 using System;
 using System.Collections.Generic;
+using CookBook.Common.Enums;
 
 namespace CookBook.DAL.Entities
 {

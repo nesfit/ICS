@@ -1,6 +1,6 @@
 ﻿using CookBook.BL.Models;
-using CookBook.DAL.Enums;
 using System;
+using CookBook.Common.Enums;
 
 namespace CookBook.App.Wrappers
 {

@@ -1,7 +1,7 @@
 ﻿using CookBook.BL.Models;
 using CookBook.DAL.Entities;
-using CookBook.DAL.Enums;
 using System.Linq;
+using CookBook.Common.Enums;
 using Nemesis.Essentials.Design;
 
 namespace CookBook.BL.Mappers
