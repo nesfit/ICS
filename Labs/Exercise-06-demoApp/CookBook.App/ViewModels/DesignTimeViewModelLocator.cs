@@ -1,6 +1,6 @@
-﻿using CookBook.App.Services.MessageDialog;
+﻿using CookBook.App.Services;
+using CookBook.App.Services.MessageDialog;
 using CookBook.BL.Repositories;
-using CookBook.BL.Services;
 using CookBook.DAL.Factories;
 
 namespace CookBook.App.ViewModels

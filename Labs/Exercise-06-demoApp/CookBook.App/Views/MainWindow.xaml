@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:CookBook.App.Views"
     xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
-    Title="CookBook"
+    Title="MainWindow"
     Width="1000"
     Height="650"
     mc:Ignorable="d"

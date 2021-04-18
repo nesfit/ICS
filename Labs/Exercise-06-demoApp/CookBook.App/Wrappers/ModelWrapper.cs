@@ -1,14 +1,15 @@
-﻿using System;
+﻿using CookBook.App.ViewModels;
+using CookBook.BL.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using CookBook.App.ViewModels;
-using CookBook.Common;
 
 namespace CookBook.App.Wrappers
 {
-    public abstract class ModelWrapper<T> : ViewModelBase, IId where T : IId
+    public abstract class ModelWrapper<T> : ViewModelBase, IModel
+        where T : IModel
     {
         protected ModelWrapper(T model)
         {
@@ -31,11 +32,12 @@ namespace CookBook.App.Wrappers
         protected TValue GetValue<TValue>([CallerMemberName] string propertyName = null)
         {
             var propertyInfo = Model.GetType().GetProperty(propertyName);
-            return (TValue) propertyInfo.GetValue(Model);
+            return (propertyInfo.GetValue(Model) is TValue
+                ? (TValue)propertyInfo.GetValue(Model)
+                : default);
         }
 
-        protected void SetValue<TValue>(TValue value,
-            [CallerMemberName] string propertyName = null)
+        protected void SetValue<TValue>(TValue value, [CallerMemberName] string propertyName = null)
         {
             var propertyInfo = Model.GetType().GetProperty(propertyName);
             var currentValue = propertyInfo.GetValue(Model);
@@ -48,12 +50,14 @@ namespace CookBook.App.Wrappers
 
         protected void RegisterCollection<TWrapper, TModel>(
             ObservableCollection<TWrapper> wrapperCollection,
-            ICollection<TModel> modelCollection) where TWrapper : ModelWrapper<TModel>, IId where  TModel : IId
+            ICollection<TModel> modelCollection)
+            where TWrapper : ModelWrapper<TModel>, IModel
+            where TModel : IModel
         {
             wrapperCollection.CollectionChanged += (s, e) =>
             {
                 modelCollection.Clear();
-                foreach (var model in wrapperCollection.Select(i=>i.Model))
+                foreach (var model in wrapperCollection.Select(i => i.Model))
                 {
                     modelCollection.Add(model);
                 }

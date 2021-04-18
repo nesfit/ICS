@@ -1,14 +1,15 @@
-﻿using System;
+﻿using CookBook.BL.Models;
+using CookBook.DAL.Enums;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using CookBook.BL.Enums;
-using CookBook.BL.Models;
 
 namespace CookBook.App.Wrappers
 {
     public class RecipeWrapper : ModelWrapper<RecipeDetailModel>
     {
-        public RecipeWrapper(RecipeDetailModel model) : base(model)
+        public RecipeWrapper(RecipeDetailModel model)
+            : base(model)
         {
             InitializeCollectionProperties(model);
         }
@@ -53,9 +54,11 @@ namespace CookBook.App.Wrappers
 
         public ObservableCollection<IngredientAmountWrapper> Ingredients { get; set; }
 
-        public static implicit operator RecipeWrapper(RecipeDetailModel detailModel) => new RecipeWrapper(detailModel);
+        public static implicit operator RecipeWrapper(RecipeDetailModel detailModel)
+            => new(detailModel);
 
-        public static implicit operator RecipeDetailModel(RecipeWrapper wrapper) => wrapper.Model;
+        public static implicit operator RecipeDetailModel(RecipeWrapper wrapper)
+            => wrapper.Model;
 
     }
 }
