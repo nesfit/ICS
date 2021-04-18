@@ -17,7 +17,7 @@ namespace CookBook.BL.Repositories
         where TDetailModel : IModel, new()
     {
         protected readonly Func<TEntity, IEnumerable<IEntity>>[] CollectionsToBeSynchronized;
-        protected readonly INamedDbContextFactory<CookBookDbContext> DbContextFactory;
+        protected readonly IDbContextFactory<CookBookDbContext> DbContextFactory;
         protected readonly Func<TEntity, TDetailModel> MapDetailModel;
         protected readonly Func<TDetailModel, TEntity> MapEntity;
         protected readonly Func<TEntity, TListModel> MapListModel;
@@ -26,7 +26,7 @@ namespace CookBook.BL.Repositories
         protected readonly Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> ListIncludes;
 
 
-        public RepositoryBase(INamedDbContextFactory<CookBookDbContext> dbContextFactory,
+        public RepositoryBase(IDbContextFactory<CookBookDbContext> dbContextFactory,
             Func<TDetailModel, TEntity> mapEntity,
             Func<TEntity, TListModel> mapListModel,
             Func<TEntity, TDetailModel> mapDetailModel,
@@ -50,20 +50,20 @@ namespace CookBook.BL.Repositories
 
         public void Delete(Guid id)
         {
-            using var dbContext = DbContextFactory.Create();
+            using var dbContext = DbContextFactory.CreateDbContext();
             Delete(dbContext, id);
             dbContext.SaveChanges();
         }
 
         public TDetailModel GetById(Guid entityId)
         {
-            using var dbContext = DbContextFactory.Create();
+            using var dbContext = DbContextFactory.CreateDbContext();
             return MapDetailModel(GetById(dbContext, entityId));
         }
 
         public TDetailModel InsertOrUpdate(TDetailModel detailModel)
         {
-            using var dbContext = DbContextFactory.Create();
+            using var dbContext = DbContextFactory.CreateDbContext();
             var entity = MapEntity(detailModel);
             dbContext.Update<TEntity>(entity);
             SynchronizeCollections(dbContext, entity);
@@ -79,7 +79,7 @@ namespace CookBook.BL.Repositories
 
         public IEnumerable<TListModel> GetAll()
         {
-            using var dbContext = DbContextFactory.Create();
+            using var dbContext = DbContextFactory.CreateDbContext();
             IQueryable<TEntity> query = dbContext.Set<TEntity>();
             if (ListIncludes != null)
             {
@@ -118,7 +118,7 @@ namespace CookBook.BL.Repositories
 
             IQueryable<TEntity> query = dbContext.Set<TEntity>();
             TEntity entityInDb;
-            using (var dbContextGetById = DbContextFactory.Create())
+            using (var dbContextGetById = DbContextFactory.CreateDbContext())
             {
                 entityInDb = GetById(dbContextGetById, entity.Id);
                 if (entityInDb == null)
@@ -149,7 +149,5 @@ namespace CookBook.BL.Repositories
                 Console.WriteLine($"Entity: {entry.Entity.GetType().Name}, State: {entry.State}");
             }
         }
-
-
     }
 }

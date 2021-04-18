@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace CookBook.DAL.Factories
 {
-    public class DesignTimeDbContextFactory : INamedDbContextFactory<CookBookDbContext>
+    public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<CookBookDbContext>
     {
-        public CookBookDbContext Create()
+        public CookBookDbContext CreateDbContext(string[] args)
         {
             var builder = new DbContextOptionsBuilder<CookBookDbContext>();
             builder.UseSqlServer(

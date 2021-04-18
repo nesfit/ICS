@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.BL.Tests
 {
-    public class DbContextInMemoryFactory : INamedDbContextFactory<CookBookDbContext>
+    public class DbContextInMemoryFactory : IDbContextFactory<CookBookDbContext>
     {
         private readonly string _databaseName;
 
@@ -12,7 +12,8 @@ namespace CookBook.BL.Tests
         {
             _databaseName = databaseName;
         }
-        public CookBookDbContext Create()
+
+        public CookBookDbContext CreateDbContext()
         {
             var contextOptionsBuilder = new DbContextOptionsBuilder<CookBookDbContext>();
             contextOptionsBuilder.UseInMemoryDatabase(_databaseName);

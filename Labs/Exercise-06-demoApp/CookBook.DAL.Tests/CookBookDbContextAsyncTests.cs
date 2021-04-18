@@ -22,7 +22,7 @@ namespace CookBook.DAL.Tests
         public CookBookDbContextAsyncTests()
         {
             _dbContextFactory = new DbContextInMemoryFactory(nameof(CookBookDbContextTests));
-            _cookBookDbContextSUT = _dbContextFactory.Create();
+            _cookBookDbContextSUT = _dbContextFactory.CreateDbContext();
         }
 
         [Fact]
@@ -41,7 +41,7 @@ namespace CookBook.DAL.Tests
             await _cookBookDbContextSUT.SaveChangesAsync();
             
             //Assert
-            await using var dbx = _dbContextFactory.Create();
+            await using var dbx = _dbContextFactory.CreateDbContext();
             var retrievedIngredient = await dbx.Ingredients.SingleAsync(entity => entity.Id == ingredientEntity.Id);
             Assert.Equal(ingredientEntity, retrievedIngredient);
         }
@@ -61,7 +61,7 @@ namespace CookBook.DAL.Tests
             await _cookBookDbContextSUT.SaveChangesAsync();
 
             //Assert
-            await using var dbx = _dbContextFactory.Create();
+            await using var dbx = _dbContextFactory.CreateDbContext();
             var retrievedRecipe = await dbx.Recipes
                 .SingleAsync(entity => entity.Id == recipeEntity.Id);
             Assert.Equal(recipeEntity, retrievedRecipe);
@@ -107,7 +107,7 @@ namespace CookBook.DAL.Tests
             await _cookBookDbContextSUT.SaveChangesAsync();
 
             //Assert
-            await using var dbx = _dbContextFactory.Create();
+            await using var dbx = _dbContextFactory.CreateDbContext();
             var retrievedRecipe = await dbx.Recipes
                 .Include(entity => entity.Ingredients)
                 .ThenInclude(amounts => amounts.Ingredient)

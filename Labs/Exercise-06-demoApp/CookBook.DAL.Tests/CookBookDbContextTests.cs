@@ -16,7 +16,7 @@ namespace CookBook.DAL.Tests
         public CookBookDbContextTests()
         {
             _dbContextFactory = new DbContextInMemoryFactory(nameof(CookBookDbContextTests));
-            _cookBookDbContextSUT = _dbContextFactory.Create();
+            _cookBookDbContextSUT = _dbContextFactory.CreateDbContext();
             _cookBookDbContextSUT.Database.EnsureCreated();
         }
 
@@ -37,7 +37,7 @@ namespace CookBook.DAL.Tests
 
 
             //Assert
-            using var dbx = _dbContextFactory.Create();
+            using var dbx = _dbContextFactory.CreateDbContext();
             var retrievedIngredient = dbx.Ingredients.Single(entity => entity.Id == ingredientEntity.Id);
             Assert.Equal(ingredientEntity, retrievedIngredient);
         }
@@ -57,7 +57,7 @@ namespace CookBook.DAL.Tests
             _cookBookDbContextSUT.SaveChanges();
 
             //Assert
-            using var dbx = _dbContextFactory.Create();
+            using var dbx = _dbContextFactory.CreateDbContext();
             var retrievedRecipe = dbx.Recipes
                 .Single(entity => entity.Id == recipeEntity.Id);
             Assert.Equal(recipeEntity, retrievedRecipe);
@@ -103,7 +103,7 @@ namespace CookBook.DAL.Tests
             _cookBookDbContextSUT.SaveChanges();
 
             //Assert
-            using var dbx = _dbContextFactory.Create();
+            using var dbx = _dbContextFactory.CreateDbContext();
             var retrievedRecipe = dbx.Recipes
                 .Include(entity => entity.Ingredients)
                 .ThenInclude(amounts => amounts.Ingredient)

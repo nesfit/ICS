@@ -14,6 +14,7 @@ using System;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
+using CookBook.App.Factories;
 
 namespace CookBook.App
 {
@@ -58,7 +59,7 @@ namespace CookBook.App
             services.AddFactory<IRecipeDetailViewModel, RecipeDetailViewModel>();
             services.AddFactory<IIngredientAmountDetailViewModel, IngredientAmountDetailViewModel>();
 
-            services.AddSingleton<INamedDbContextFactory<CookBookDbContext>>(provider => new SqlServerDbContextFactory(configuration.GetConnectionString("DefaultConnection")));
+            services.AddSingleton<IDbContextFactory<CookBookDbContext>>(provider => new SqlServerDbContextFactory(configuration.GetConnectionString("DefaultConnection")));
 
         }
 
@@ -66,10 +67,10 @@ namespace CookBook.App
         {
             await _host.StartAsync();
 
-            var dbContextFactory = _host.Services.GetRequiredService<INamedDbContextFactory<CookBookDbContext>>();
+            var dbContextFactory = _host.Services.GetRequiredService<IDbContextFactory<CookBookDbContext>>();
 
 #if DEBUG
-            await using (var dbx = dbContextFactory.Create())
+            await using (var dbx = dbContextFactory.CreateDbContext())
             {
                 await dbx.Database.EnsureCreatedAsync();
             }

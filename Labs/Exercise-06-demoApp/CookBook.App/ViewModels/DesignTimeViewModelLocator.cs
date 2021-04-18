@@ -1,4 +1,5 @@
-﻿using CookBook.App.Services;
+﻿using CookBook.App.Factories;
+using CookBook.App.Services;
 using CookBook.App.Services.MessageDialog;
 using CookBook.BL.Repositories;
 using CookBook.DAL.Factories;
@@ -7,6 +8,11 @@ namespace CookBook.App.ViewModels
 {
     public class DesignTimeViewModelLocator
     {
+        private const string DesignTimeConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;
+                Initial Catalog = CookBook;
+                MultipleActiveResultSets = True;
+                Integrated Security = True; ";
+
         public IngredientListViewModel IngredientListViewModel { get; }
         public RecipeListViewModel RecipeListViewModel { get; }
         public IngredientAmountDetailViewModel IngredientAmountDetailViewModel { get; set; }
@@ -14,8 +20,8 @@ namespace CookBook.App.ViewModels
 
         public DesignTimeViewModelLocator()
         {
-            var ingredientRepository = new IngredientRepository(new DesignTimeDbContextFactory());
-            var recipeRepository = new RecipeRepository(new DesignTimeDbContextFactory());
+            var ingredientRepository = new IngredientRepository(new SqlServerDbContextFactory(DesignTimeConnectionString));
+            var recipeRepository = new RecipeRepository(new SqlServerDbContextFactory(DesignTimeConnectionString));
             var mediator = new Mediator();
             var messageDialogService = new MessageDialogService();
 

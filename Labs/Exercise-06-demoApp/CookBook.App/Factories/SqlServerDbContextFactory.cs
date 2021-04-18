@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CookBook.DAL;
+using Microsoft.EntityFrameworkCore;
 
-namespace CookBook.DAL.Factories
+namespace CookBook.App.Factories
 {
-    public class SqlServerDbContextFactory : INamedDbContextFactory<CookBookDbContext>
+    public class SqlServerDbContextFactory : IDbContextFactory<CookBookDbContext>
     {
         private readonly string _connectionString;
 
@@ -11,7 +12,7 @@ namespace CookBook.DAL.Factories
             _connectionString = connectionString;
         }
 
-        public CookBookDbContext Create()
+        public CookBookDbContext CreateDbContext()
         {
             var optionsBuilder = new DbContextOptionsBuilder<CookBookDbContext>();
             optionsBuilder.UseSqlServer(_connectionString);

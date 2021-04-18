@@ -11,7 +11,7 @@ namespace CookBook.BL.Repositories
 {
     public class RecipeRepository : RepositoryBase<RecipeEntity, RecipeListModel, RecipeDetailModel>, IRecipeRepository
     {
-        public RecipeRepository(INamedDbContextFactory<CookBookDbContext> dbContextFactory)
+        public RecipeRepository(IDbContextFactory<CookBookDbContext> dbContextFactory)
             : base(dbContextFactory,
                 RecipeMapper.MapDetailModelToEntity,
                 RecipeMapper.MapEntityToListModel,
