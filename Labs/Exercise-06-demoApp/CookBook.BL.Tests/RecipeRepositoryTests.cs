@@ -6,6 +6,7 @@ using CookBook.BL.Models;
 using CookBook.BL.Repositories;
 using CookBook.DAL;
 using CookBook.DAL.Enums;
+using CookBook.DAL.Factories;
 using CookBook.DAL.Seeds;
 using Xunit;
 using Xunit.Abstractions;

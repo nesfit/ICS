@@ -4,6 +4,7 @@ using CookBook.DAL.Seeds;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using CookBook.DAL.Factories;
 using Xunit;
 
 namespace CookBook.DAL.Tests

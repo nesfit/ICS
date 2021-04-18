@@ -8,10 +8,7 @@ namespace CookBook.App.ViewModels
 {
     public class DesignTimeViewModelLocator
     {
-        private const string DesignTimeConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;
-                Initial Catalog = CookBook;
-                MultipleActiveResultSets = True;
-                Integrated Security = True; ";
+        private const string DesignTimeConnectionString = @"inMemory:CookBook";
 
         public IngredientListViewModel IngredientListViewModel { get; }
         public RecipeListViewModel RecipeListViewModel { get; }
@@ -20,7 +17,7 @@ namespace CookBook.App.ViewModels
 
         public DesignTimeViewModelLocator()
         {
-            var ingredientRepository = new IngredientRepository(new SqlServerDbContextFactory(DesignTimeConnectionString));
+            var ingredientRepository = new IngredientRepository(new DbContextInMemoryFactory(DesignTimeConnectionString));
             var recipeRepository = new RecipeRepository(new SqlServerDbContextFactory(DesignTimeConnectionString));
             var mediator = new Mediator();
             var messageDialogService = new MessageDialogService();

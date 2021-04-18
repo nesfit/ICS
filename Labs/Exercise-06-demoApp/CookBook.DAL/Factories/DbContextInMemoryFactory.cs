@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 
-namespace CookBook.DAL.Tests
+namespace CookBook.DAL.Factories
 {
     public class DbContextInMemoryFactory: IDbContextFactory<CookBookDbContext>
     {
