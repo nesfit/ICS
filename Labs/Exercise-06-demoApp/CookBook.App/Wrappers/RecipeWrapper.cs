@@ -3,6 +3,7 @@ using CookBook.DAL.Enums;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace CookBook.App.Wrappers
 {
@@ -52,7 +53,7 @@ namespace CookBook.App.Wrappers
             RegisterCollection(Ingredients, model.Ingredients);
         }
 
-        public ObservableCollection<IngredientAmountWrapper> Ingredients { get; set; }
+        public ObservableCollection<IngredientAmountWrapper> Ingredients { get; set; } = null!;
 
         public static implicit operator RecipeWrapper(RecipeDetailModel detailModel)
             => new(detailModel);

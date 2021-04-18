@@ -1,11 +1,11 @@
-﻿using CookBook.App.Commands;
-using CookBook.App.Messages;
+﻿using CookBook.App.Messages;
 using CookBook.App.Services;
 using CookBook.App.Wrappers;
 using CookBook.BL.Models;
 using CookBook.BL.Repositories;
 using System;
 using System.Windows.Input;
+using CookBook.App.Commands;
 
 namespace CookBook.App.ViewModels
 {
@@ -32,7 +32,7 @@ namespace CookBook.App.ViewModels
 
         public ICommand DeleteCommand { get; set; }
 
-        public IngredientAmountWrapper Model { get; set; }
+        public IngredientAmountWrapper? Model { get; set; }
 
         public ICommand SaveCommand { get; }
 
@@ -50,9 +50,9 @@ namespace CookBook.App.ViewModels
             var ingredientDetail = _ingredientRepository.GetById(message.Id);
             Model = new IngredientAmountDetailModel
             {
-                IngredientId = ingredientDetail.Id,
-                IngredientName = ingredientDetail.Name,
-                IngredientDescription = ingredientDetail.Description
+                IngredientId = ingredientDetail?.Id ?? Guid.Empty ,
+                IngredientName = ingredientDetail?.Name ?? string.Empty,
+                IngredientDescription = ingredientDetail?.Description ?? string.Empty
             };
         }
 
@@ -78,10 +78,12 @@ namespace CookBook.App.ViewModels
             Model != null
             && !string.IsNullOrWhiteSpace(Model.IngredientName)
             && !string.IsNullOrWhiteSpace(Model.IngredientDescription)
-            && Model.Amount != default;
+            && !Model.Amount.Equals(default);
 
         private void Save()
         {
+            if (Model == null) throw new InvalidOperationException("Null model cannot be saved");
+
             if (Model.Id == Guid.Empty)
             {
                 _mediator.Send(new NewMessage<IngredientAmountWrapper>

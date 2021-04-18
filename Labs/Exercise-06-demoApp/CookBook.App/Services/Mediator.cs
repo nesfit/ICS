@@ -7,7 +7,7 @@ namespace CookBook.App.Services
 {
     public class Mediator : IMediator
     {
-        private readonly Dictionary<Type, List<Delegate>> _registeredActions = new();
+        private readonly Dictionary<Type, List<Delegate?>> _registeredActions = new();
 
         public void Register<TMessage>(Action<TMessage> action)
             where TMessage : IMessage

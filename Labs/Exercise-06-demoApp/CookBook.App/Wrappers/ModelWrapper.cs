@@ -29,21 +29,21 @@ namespace CookBook.App.Wrappers
 
         public T Model { get; }
 
-        protected TValue GetValue<TValue>([CallerMemberName] string propertyName = null)
+        protected TValue GetValue<TValue>([CallerMemberName] string? propertyName = null)
         {
-            var propertyInfo = Model.GetType().GetProperty(propertyName);
-            return (propertyInfo.GetValue(Model) is TValue
+            var propertyInfo = Model.GetType().GetProperty(propertyName ?? string.Empty);
+            return (propertyInfo?.GetValue(Model) is TValue
                 ? (TValue)propertyInfo.GetValue(Model)
                 : default);
         }
 
-        protected void SetValue<TValue>(TValue value, [CallerMemberName] string propertyName = null)
+        protected void SetValue<TValue>(TValue value, [CallerMemberName] string? propertyName = null)
         {
-            var propertyInfo = Model.GetType().GetProperty(propertyName);
-            var currentValue = propertyInfo.GetValue(Model);
+            var propertyInfo = Model.GetType().GetProperty(propertyName ?? string.Empty);
+            var currentValue = propertyInfo?.GetValue(Model);
             if (!Equals(currentValue, value))
             {
-                propertyInfo.SetValue(Model, value);
+                propertyInfo?.SetValue(Model, value);
                 OnPropertyChanged(propertyName);
             }
         }

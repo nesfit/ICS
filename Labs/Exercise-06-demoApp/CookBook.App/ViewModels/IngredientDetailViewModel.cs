@@ -1,5 +1,4 @@
-﻿using CookBook.App.Commands;
-using CookBook.App.Messages;
+﻿using CookBook.App.Messages;
 using CookBook.App.Services;
 using CookBook.App.Services.MessageDialog;
 using CookBook.App.Wrappers;
@@ -7,6 +6,7 @@ using CookBook.BL.Models;
 using CookBook.BL.Repositories;
 using System;
 using System.Windows.Input;
+using CookBook.App.Commands;
 
 namespace CookBook.App.ViewModels
 {
@@ -29,7 +29,7 @@ namespace CookBook.App.ViewModels
             DeleteCommand = new RelayCommand(Delete);
         }
 
-        public IngredientWrapper Model { get; set; }
+        public IngredientWrapper? Model { get; set; }
         public ICommand SaveCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
 
@@ -41,6 +41,11 @@ namespace CookBook.App.ViewModels
 
         public void Save()
         {
+            if (Model == null)
+            {
+                throw new InvalidOperationException("Null model cannot be saved");
+            }
+
             Model = _ingredientRepository.InsertOrUpdate(Model.Model);
             _mediator.Send(new UpdateMessage<IngredientWrapper> { Model = Model });
         }
@@ -52,6 +57,11 @@ namespace CookBook.App.ViewModels
 
         public void Delete()
         {
+            if (Model == null)
+            {
+                throw new InvalidOperationException("Null model cannot be deleted");
+            }
+
             if (Model.Id != Guid.Empty)
             {
                 var delete = _messageDialogService.Show(
