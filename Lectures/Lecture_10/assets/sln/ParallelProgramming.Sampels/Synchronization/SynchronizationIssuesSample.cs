@@ -7,7 +7,7 @@ namespace ParallelProgramming.Samples.Synchronization
     {
         private class Counter
         {
-            private int Count { get; set; }
+            public int Count { get; private set; } = 0;
 
             public void Increment()
             {
@@ -15,11 +15,6 @@ namespace ParallelProgramming.Samples.Synchronization
                 var count = Count + 1;
                 Count = count;
                 //End of critical section
-            }
-
-            public int GetCount()
-            {
-                return Count;
             }
         }
 
@@ -36,8 +31,8 @@ namespace ParallelProgramming.Samples.Synchronization
                 });
             }
 
-            Thread.Sleep(10000);
-            Assert.Equal(40, counter.GetCount());
+            Thread.Sleep(500);
+            Assert.Equal(40, counter.Count);
         }
     }
 }

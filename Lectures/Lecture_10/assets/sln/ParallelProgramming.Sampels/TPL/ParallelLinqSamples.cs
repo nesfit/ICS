@@ -14,7 +14,7 @@ namespace ParallelProgramming.Samples.TPL
 
         private readonly ITestOutputHelper output;
 
-        private const int RangeEnd = 20000000;
+        private const int RangeEnd = 200_000_000;
 
         [Fact]
         public void AverageWithUseOfParallelLinq()
@@ -23,7 +23,8 @@ namespace ParallelProgramming.Samples.TPL
 
             var stopWatch = Stopwatch.StartNew();
             stopWatch.Start();
-            var sum = range.AsParallel()
+            var sum = range
+                .AsParallel()
                 .Average();
             var elapsedMilliseconds = stopWatch.ElapsedMilliseconds;
             output.WriteLine($"Query time: {elapsedMilliseconds} ms");
@@ -47,7 +48,8 @@ namespace ParallelProgramming.Samples.TPL
 
             var stopWatch = Stopwatch.StartNew();
             stopWatch.Start();
-            var variablesDivisibleBy10 = range.AsParallel()
+            var variablesDivisibleBy10 = range
+                .AsParallel()
                 .Where(t => t % 10 == 0)
                 .ToList();
             var elapsedMilliseconds = stopWatch.ElapsedMilliseconds;

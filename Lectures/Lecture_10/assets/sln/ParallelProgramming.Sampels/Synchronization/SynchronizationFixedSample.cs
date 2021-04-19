@@ -5,6 +5,23 @@ namespace ParallelProgramming.Samples.Synchronization
 {
     public class SynchronizationFixedSample
     {
+        private class LockedCounter
+        {
+            private readonly object incrementMethodLockHandle = new();
+            public int Count { get; private set; }
+
+            public void Increment()
+            {
+                lock (incrementMethodLockHandle)
+                {
+                    //Critical section
+                    var count = Count + 1;
+                    Count = count;
+                    //End of critical section
+                }
+            }
+        }
+
         private class SemaphoredCounter
         {
             private readonly SemaphoreSlim counterAddSemaphore = new(1);
@@ -27,24 +44,6 @@ namespace ParallelProgramming.Samples.Synchronization
             }
         }
 
-
-        private class LockedCounter
-        {
-            private readonly object incrementMethodLockHandle = new();
-            public int Count { get; private set; }
-
-            public void Increment()
-            {
-                lock (incrementMethodLockHandle)
-                {
-                    //Critical section
-                    var count = Count + 1;
-                    Count = count;
-                    //End of critical section
-                }
-            }
-        }
-
         [Fact]
         public void LockLockedThreadPoolReadWriteSample()
         {
@@ -52,7 +51,7 @@ namespace ParallelProgramming.Samples.Synchronization
 
             for (var i = 0; i < 40; i++)
                 ThreadPool.QueueUserWorkItem(state => { counter.Increment(); });
-            Thread.Sleep(10000);
+            Thread.Sleep(500);
             Assert.Equal(40, counter.Count);
         }
 
@@ -63,7 +62,7 @@ namespace ParallelProgramming.Samples.Synchronization
 
             for (var i = 0; i < 40; i++)
                 ThreadPool.QueueUserWorkItem(state => { counter.Increment(); });
-            Thread.Sleep(10000);
+            Thread.Sleep(500);
             Assert.Equal(40, counter.Count);
         }
     }
