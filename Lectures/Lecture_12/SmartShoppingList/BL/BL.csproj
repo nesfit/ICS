@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.1</TargetFramework>
+    <!--https://docs.microsoft.com/en-us/dotnet/framework/get-started/system-requirements-->
+    <!--https://github.com/dotnet/standard/blob/master/docs/versions.md-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+</Project>
