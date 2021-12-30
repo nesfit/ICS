@@ -89,13 +89,13 @@ namespace CookBook.BL.Repositories
             return query.AsEnumerable().Select(e => MapListModel(e)!).ToArray();
         }
 
-        private void Delete(DbContext dbContext, Guid id)
+        private static void Delete(DbContext dbContext, Guid id)
         {
-            Delete(dbContext, typeof(TEntity), id);
-        }
-        private void Delete(DbContext dbContext, Type entityType, Guid id)
-        {
-            dbContext.Remove(dbContext.Find(typeof(TEntity), id));
+            var entity = dbContext.Find(typeof(TEntity), id);
+            if (entity is not null)
+            {
+                dbContext.Remove(entity);
+            }
         }
 
         private TEntity? GetById(DbContext dbContext, Guid entityId)
@@ -136,7 +136,11 @@ namespace CookBook.BL.Repositories
                 {
                     if (!updatedCollection.Contains(item, RepositoryExtensions.IdComparer))
                     {
-                        dbContext.Remove(dbContext.Find(item.GetType(), item.Id));
+                        var referencedEntity = dbContext.Find(item.GetType(), item.Id);
+                        if(referencedEntity is not null)
+                        {
+                            dbContext.Remove(referencedEntity);
+                        }
                     }
                 }
             }
