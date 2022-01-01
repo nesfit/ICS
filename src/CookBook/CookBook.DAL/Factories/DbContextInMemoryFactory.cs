@@ -14,8 +14,9 @@ namespace CookBook.DAL.Factories
 
         public CookBookDbContext CreateDbContext()
         {
-            DbContextOptionsBuilder<CookBookDbContext>? contextOptionsBuilder = new DbContextOptionsBuilder<CookBookDbContext>();
+            DbContextOptionsBuilder<CookBookDbContext> contextOptionsBuilder = new();
             contextOptionsBuilder.UseInMemoryDatabase(_databaseName);
+
             return new CookBookDbContext(contextOptionsBuilder.Options);
         }
     }

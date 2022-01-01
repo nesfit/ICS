@@ -7,7 +7,7 @@ namespace CookBook.DAL.Factories
     {
         public CookBookDbContext CreateDbContext(string[] args)
         {
-            DbContextOptionsBuilder<CookBookDbContext>? builder = new DbContextOptionsBuilder<CookBookDbContext>();
+            DbContextOptionsBuilder<CookBookDbContext> builder = new();
             builder.UseSqlServer(
                 @"Data Source=(LocalDB)\MSSQLLocalDB;
                 Initial Catalog = CookBook;
