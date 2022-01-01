@@ -12,29 +12,8 @@ using Xunit;
 
 namespace CookBook.DAL.Tests
 {
-    public class CookBookDbContextIngredientTests : IAsyncLifetime
+    public class CookBookDbContextIngredientTests : CookBookDbContextTestsBase
     {
-        private readonly DbContextInMemoryFactory _dbContextFactory;
-        private readonly CookBookDbContext _cookBookDbContextSUT;
-
-        public CookBookDbContextIngredientTests()
-        {
-            _dbContextFactory = new DbContextInMemoryFactory(nameof(CookBookDbContextTests), seedTestingData: true);
-            _cookBookDbContextSUT = _dbContextFactory.CreateDbContext();
-        }
-
-
-        public async Task InitializeAsync()
-        {
-            await _cookBookDbContextSUT.Database.EnsureCreatedAsync();
-        }
-
-        public async Task DisposeAsync()
-        {
-            await _cookBookDbContextSUT.Database.EnsureDeletedAsync();
-            await _cookBookDbContextSUT.DisposeAsync();
-        }
-
         [Fact]
         public async Task AddNew_Ingredient_Persisted()
         {
@@ -47,11 +26,11 @@ namespace CookBook.DAL.Tests
             );
 
             //Act
-            _cookBookDbContextSUT.Ingredients.Add(ingredientEntity);
-            await _cookBookDbContextSUT.SaveChangesAsync();
+            CookBookDbContextSUT.Ingredients.Add(ingredientEntity);
+            await CookBookDbContextSUT.SaveChangesAsync();
 
             //Assert
-            await using var dbx = _dbContextFactory.CreateDbContext();
+            await using var dbx = DbContextFactory.CreateDbContext();
             var retrievedIngredient = await dbx.Ingredients.SingleAsync(entity => entity.Id == ingredientEntity.Id);
             Assert.Equal(ingredientEntity, retrievedIngredient);
         }
@@ -59,14 +38,14 @@ namespace CookBook.DAL.Tests
         [Fact]
         public async Task GetAll_Ingredients_ContainsSeededWater()
         {
-            var ingredients = await _cookBookDbContextSUT.Ingredients.ToArrayAsync();
+            var ingredients = await CookBookDbContextSUT.Ingredients.ToArrayAsync();
             Assert.Contains(IngredientSeeds.Water, ingredients);
         }
 
         [Fact]
         public async Task GetById_Ingredient_WaterRetrieved()
         {
-            var ingredient = await _cookBookDbContextSUT.Ingredients.SingleAsync(i=>i.Id == IngredientSeeds.Water.Id);
+            var ingredient = await CookBookDbContextSUT.Ingredients.SingleAsync(i=>i.Id == IngredientSeeds.Water.Id);
             Assert.Equal(IngredientSeeds.Water, ingredient);
         }
 
@@ -82,11 +61,11 @@ namespace CookBook.DAL.Tests
                 };
 
             //Act
-            _cookBookDbContextSUT.Ingredients.Update(ingredientEntity);
-            await _cookBookDbContextSUT.SaveChangesAsync();
+            CookBookDbContextSUT.Ingredients.Update(ingredientEntity);
+            await CookBookDbContextSUT.SaveChangesAsync();
 
             //Assert
-            await using var dbx = _dbContextFactory.CreateDbContext();
+            await using var dbx = DbContextFactory.CreateDbContext();
             var retrievedIngredient = await dbx.Ingredients.SingleAsync(entity => entity.Id == ingredientEntity.Id);
             Assert.Equal(ingredientEntity, retrievedIngredient);
         }
@@ -94,20 +73,20 @@ namespace CookBook.DAL.Tests
         [Fact]
         public async Task Delete_Ingredient_WaterDeleted()
         {
-            _cookBookDbContextSUT.Ingredients.Remove(IngredientSeeds.WaterDelete);
-            await _cookBookDbContextSUT.SaveChangesAsync();
+            CookBookDbContextSUT.Ingredients.Remove(IngredientSeeds.WaterDelete);
+            await CookBookDbContextSUT.SaveChangesAsync();
 
-            Assert.False(await _cookBookDbContextSUT.Ingredients.AnyAsync(i => i.Id == IngredientSeeds.WaterDelete.Id));
+            Assert.False(await CookBookDbContextSUT.Ingredients.AnyAsync(i => i.Id == IngredientSeeds.WaterDelete.Id));
         }
 
         [Fact]
         public async Task DeleteById_Ingredient_WaterDeleted()
         {
-            _cookBookDbContextSUT.Remove(
-                _cookBookDbContextSUT.Ingredients.Single(i => i.Id == IngredientSeeds.WaterDelete.Id));
-            await _cookBookDbContextSUT.SaveChangesAsync();
+            CookBookDbContextSUT.Remove(
+                CookBookDbContextSUT.Ingredients.Single(i => i.Id == IngredientSeeds.WaterDelete.Id));
+            await CookBookDbContextSUT.SaveChangesAsync();
 
-            Assert.False(await _cookBookDbContextSUT.Ingredients.AnyAsync(i => i.Id == IngredientSeeds.WaterDelete.Id));
+            Assert.False(await CookBookDbContextSUT.Ingredients.AnyAsync(i => i.Id == IngredientSeeds.WaterDelete.Id));
         }
     }
 }
