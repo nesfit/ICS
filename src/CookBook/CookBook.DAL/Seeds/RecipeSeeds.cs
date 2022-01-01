@@ -7,7 +7,7 @@ namespace CookBook.DAL.Seeds;
 
 public static class RecipeSeeds
 {
-    public static RecipeEntity RecipeEntity = new(
+    public static readonly RecipeEntity RecipeEntity = new(
         Id: Guid.Parse(input: "fabde0cd-eefe-443f-baf6-3d96cc2cbf2e"),
         Name: "Recipe seeded recipe 1",
         Description: "Recipe seeded recipe 1 description",
@@ -15,6 +15,8 @@ public static class RecipeSeeds
         FoodType: FoodType.MainDish,
         ImageUrl: null);
 
+    public static readonly RecipeEntity EmptyRecipeEntity = RecipeEntity with { Id = Guid.Parse("98B7F7B6-0F51-43B3-B8C0-B5FCFFF6DC2E") };
+    
 
     static RecipeSeeds()
     {
