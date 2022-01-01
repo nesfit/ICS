@@ -1,9 +1,16 @@
-﻿namespace CookBook.DAL.Entities
+﻿using System;
+
+namespace CookBook.DAL.Entities;
+
+public record IngredientEntity(
+    Guid Id,
+    string Name,
+    string Description,
+    string? ImageUrl) : EntityBase(Id)
 {
-    public record IngredientEntity : EntityBase
+//TODO remove after repository refactoring
+#nullable disable
+    public IngredientEntity() : this(default, default, default, default)
     {
-        public string Name { get; set; } = null!;
-        public string Description { get; set; } = null!;
-        public string?ImageUrl { get; set; }
     }
 }

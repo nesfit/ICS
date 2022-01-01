@@ -3,16 +3,21 @@ using System;
 using System.Collections.Generic;
 using CookBook.Common.Enums;
 
-namespace CookBook.DAL.Entities
-{
-    public record RecipeEntity : EntityBase
-    {
-        public string Name { get; init; } = null!;
-        public string Description { get; init; } = null!;
-        public TimeSpan Duration { get; init; }
-        public FoodType FoodType { get; init; }
-        public string? ImageUrl { get; set; }
+namespace CookBook.DAL.Entities;
 
-        public ICollection<IngredientAmountEntity> Ingredients { get; set; } = new ValueCollection<IngredientAmountEntity>(IngredientAmountEntity.IngredientAmountWithoutRecipeEntityComparer);
+public record RecipeEntity(
+    Guid Id, 
+    string Name, 
+    string Description, 
+    TimeSpan Duration, 
+    FoodType FoodType, 
+    string? ImageUrl) : EntityBase(Id: Id)
+{
+    //TODO remove after repository refactoring
+#nullable disable
+    public RecipeEntity() : this(default, default, default, default, default, default)
+    {
     }
+
+    public ICollection<IngredientAmountEntity> Ingredients { get; set; } = new ValueCollection<IngredientAmountEntity>(equalityComparer: IngredientAmountEntity.IngredientAmountWithoutRecipeEntityComparer);
 }

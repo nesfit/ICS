@@ -29,23 +29,19 @@ namespace CookBook.BL.Mappers
         public static IngredientEntity? MapDetailModelToEntity(IngredientDetailModel? model)
             => model == null
                 ? null
-                : new()
-                {
-                    Id = model.Id,
-                    Name = model.Name,
-                    Description = model.Description,
-                    ImageUrl = model.ImageUrl
-                };
+                : new(
+                    Id : model.Id,
+                    Name : model.Name,
+                    Description : model.Description,
+                    ImageUrl : model.ImageUrl);
 
         public static IngredientEntity? MapIngredientAmountDetailModelToEntity(IngredientAmountDetailModel? model)
         => model == null
             ? null
-            : new()
-            {
-                Id = model.IngredientId,
-                Name = model.IngredientName,
-                Description = model.IngredientDescription,
-                ImageUrl = model?.IngredientImageUrl
-            };
+            : new(
+                Id : model.IngredientId,
+                Name : model.IngredientName,
+                Description : model.IngredientDescription,
+                ImageUrl : model?.IngredientImageUrl);
     }
 }
