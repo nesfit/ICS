@@ -19,7 +19,7 @@ namespace CookBook.BL.Tests
 
         public IngredientRepositoryTests()
         {
-            _dbContextFactory = new DbContextInMemoryFactory(nameof(IngredientRepositoryTests));
+            _dbContextFactory = new DbContextInMemoryFactory(nameof(IngredientRepositoryTests), seedTestingData: true);
             using CookBookDbContext dbx = _dbContextFactory.CreateDbContext();
             dbx.Database.EnsureCreated();
 

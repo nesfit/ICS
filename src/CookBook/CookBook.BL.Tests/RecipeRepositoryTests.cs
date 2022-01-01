@@ -23,7 +23,7 @@ namespace CookBook.BL.Tests
             XUnitTestOutputConverter converter = new XUnitTestOutputConverter(output);
             Console.SetOut(converter);
 
-            _dbContextFactory = new DbContextInMemoryFactory(nameof(RecipeRepositoryTests));
+            _dbContextFactory = new DbContextInMemoryFactory(nameof(RecipeRepositoryTests), seedTestingData: true);
             using CookBookDbContext dbx = _dbContextFactory.CreateDbContext();
             dbx.Database.EnsureCreated();
 

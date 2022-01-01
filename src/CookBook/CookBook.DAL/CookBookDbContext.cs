@@ -6,9 +6,12 @@ namespace CookBook.DAL
 {
     public class CookBookDbContext : DbContext
     {
-        public CookBookDbContext(DbContextOptions contextOptions)
+        private readonly bool _seedTestingData;
+
+        public CookBookDbContext(DbContextOptions contextOptions, bool seedTestingData = false)
             : base(contextOptions)
         {
+            _seedTestingData = seedTestingData;
         }
 
         public DbSet<IngredientAmountEntity> IngredientAmountEntities => Set<IngredientAmountEntity>();
@@ -27,9 +30,12 @@ namespace CookBook.DAL
                 .WithOne(i => i.Ingredient)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            IngredientSeeds.Seed(modelBuilder);
-            RecipeSeeds.Seed(modelBuilder);
-            IngredientAmountSeeds.Seed(modelBuilder);
+            if (_seedTestingData)
+            {
+                IngredientSeeds.Seed(modelBuilder);
+                RecipeSeeds.Seed(modelBuilder);
+                IngredientAmountSeeds.Seed(modelBuilder);
+            }
 
             base.OnModelCreating(modelBuilder);
         }

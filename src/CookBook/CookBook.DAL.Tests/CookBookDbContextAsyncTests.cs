@@ -22,7 +22,7 @@ namespace CookBook.DAL.Tests
 
         public CookBookDbContextAsyncTests()
         {
-            _dbContextFactory = new DbContextInMemoryFactory(nameof(CookBookDbContextTests));
+            _dbContextFactory = new DbContextInMemoryFactory(nameof(CookBookDbContextTests), seedTestingData: true);
             _cookBookDbContextSUT = _dbContextFactory.CreateDbContext();
         }
 

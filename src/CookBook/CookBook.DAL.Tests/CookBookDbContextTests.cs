@@ -16,7 +16,7 @@ namespace CookBook.DAL.Tests
 
         public CookBookDbContextTests()
         {
-            _dbContextFactory = new DbContextInMemoryFactory(nameof(CookBookDbContextTests));
+            _dbContextFactory = new DbContextInMemoryFactory(nameof(CookBookDbContextTests), seedTestingData: true);
             _cookBookDbContextSUT = _dbContextFactory.CreateDbContext();
             _cookBookDbContextSUT.Database.EnsureCreated();
         }
