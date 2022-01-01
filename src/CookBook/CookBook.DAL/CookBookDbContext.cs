@@ -11,20 +11,20 @@ namespace CookBook.DAL
         {
         }
 
-        public DbSet<IngredientAmountEntity> IngredientAmountEntities { get; set; } = null!;
-        public DbSet<RecipeEntity> Recipes { get; set; } = null!;
-        public DbSet<IngredientEntity> Ingredients { get; set; } = null!;
+        public DbSet<IngredientAmountEntity> IngredientAmountEntities => Set<IngredientAmountEntity>();
+        public DbSet<RecipeEntity> Recipes => Set<RecipeEntity>();
+        public DbSet<IngredientEntity> Ingredients => Set<IngredientEntity>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<RecipeEntity>()
                 .HasMany(i => i.Ingredients)
-                .WithOne(i => i.Recipe!)
+                .WithOne(i => i.Recipe)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<IngredientEntity>()
                 .HasMany<IngredientAmountEntity>()
-                .WithOne(i => i.Ingredient!)
+                .WithOne(i => i.Ingredient)
                 .OnDelete(DeleteBehavior.Restrict);
 
             IngredientSeeds.Seed(modelBuilder);
