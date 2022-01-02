@@ -5,15 +5,21 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using CookBook.Common.Enums;
+using CookBook.Common.Tests;
 using CookBook.DAL.Entities;
 using CookBook.DAL.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace CookBook.DAL.Tests
 {
     public class CookBookDbContextIngredientAmountTests : CookBookDbContextTestsBase
     {
+        public CookBookDbContextIngredientAmountTests(ITestOutputHelper output) : base(output)
+        {
+        }
+        
         [Fact]
         public async Task GetAll_IngredientAmounts_ForRecipe()
         {

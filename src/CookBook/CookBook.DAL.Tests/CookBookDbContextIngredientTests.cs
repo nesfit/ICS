@@ -4,11 +4,13 @@ using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
+using CookBook.Common.Tests;
 using CookBook.DAL.Entities;
 using CookBook.DAL.Factories;
 using CookBook.DAL.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace CookBook.DAL.Tests
 {
@@ -18,6 +20,10 @@ namespace CookBook.DAL.Tests
     /// </summary>
     public class CookBookDbContextIngredientTests : CookBookDbContextTestsBase
     {
+        public CookBookDbContextIngredientTests(ITestOutputHelper output) : base(output)
+        {
+        }
+        
         [Fact]
         public async Task AddNew_Ingredient_Persisted()
         {

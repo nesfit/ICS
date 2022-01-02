@@ -1,13 +1,17 @@
-﻿using System.Threading.Tasks;
+﻿using CookBook.DAL;
 using CookBook.DAL.Factories;
 using Xunit;
+using Xunit.Abstractions;
 
-namespace CookBook.DAL.Tests;
+namespace CookBook.Common.Tests;
 
 public class CookBookDbContextTestsBase : IAsyncLifetime
 {
-    public CookBookDbContextTestsBase()
+    protected CookBookDbContextTestsBase(ITestOutputHelper output)
     {
+        XUnitTestOutputConverter converter = new(output);
+        Console.SetOut(converter);
+        
         DbContextFactory = new DbContextInMemoryFactory(this.GetType().Name, seedTestingData: true);
         CookBookDbContextSUT = DbContextFactory.CreateDbContext();
     }

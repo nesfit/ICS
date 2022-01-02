@@ -16,7 +16,7 @@ namespace CookBook.Common.Tests
                 }
             };
 
-            foreach (string str in propertiesToIgnore)
+            foreach (var str in propertiesToIgnore)
                 compareLogic.Config.MembersToIgnore.Add(str);
 
             var comparisonResult = compareLogic.Compare((object)expected!, (object)actual!);

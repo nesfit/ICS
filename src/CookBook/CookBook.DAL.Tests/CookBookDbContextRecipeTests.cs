@@ -10,11 +10,16 @@ using CookBook.DAL.Entities;
 using CookBook.DAL.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace CookBook.DAL.Tests
 {
     public class CookBookDbContextRecipeTests : CookBookDbContextTestsBase
     {
+        public CookBookDbContextRecipeTests(ITestOutputHelper output) : base(output)
+        {
+        }
+        
         [Fact]
         public async Task AddNew_RecipeWithoutIngredients_Persisted()
         {

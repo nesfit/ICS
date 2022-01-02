@@ -5,6 +5,7 @@ using CookBook.BL.Mappers;
 using CookBook.BL.Models;
 using CookBook.BL.Repositories;
 using CookBook.Common.Enums;
+using CookBook.Common.Tests;
 using CookBook.DAL;
 using CookBook.DAL.Factories;
 using CookBook.DAL.Seeds;
@@ -13,21 +14,13 @@ using Xunit.Abstractions;
 
 namespace CookBook.BL.Tests
 {
-    public class RecipeRepositoryTests : IDisposable
+    public class RecipeRepositoryTests : CookBookDbContextTestsBase
     {
         private readonly RecipeRepository _repositorySUT;
-        private readonly DbContextInMemoryFactory _dbContextFactory;
 
-        public RecipeRepositoryTests(ITestOutputHelper output)
+        public RecipeRepositoryTests(ITestOutputHelper output) : base(output)
         {
-            XUnitTestOutputConverter converter = new XUnitTestOutputConverter(output);
-            Console.SetOut(converter);
-
-            _dbContextFactory = new DbContextInMemoryFactory(nameof(RecipeRepositoryTests), seedTestingData: true);
-            using CookBookDbContext dbx = _dbContextFactory.CreateDbContext();
-            dbx.Database.EnsureCreated();
-
-            _repositorySUT = new RecipeRepository(_dbContextFactory);
+            _repositorySUT = new RecipeRepository(DbContextFactory);
         }
 
         [Fact]
@@ -248,14 +241,7 @@ namespace CookBook.BL.Tests
                     ingredientAmountModel.Id = ingredientAmountDetailModel.Id;
                     ingredientAmountModel.IngredientId = ingredientAmountDetailModel.IngredientId;
                 }
-
             }
-        }
-
-        public void Dispose()
-        {
-            using CookBookDbContext dbx = _dbContextFactory.CreateDbContext();
-            dbx.Database.EnsureDeleted();
         }
      }
 }
