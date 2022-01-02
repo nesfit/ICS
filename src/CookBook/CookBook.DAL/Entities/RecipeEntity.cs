@@ -18,6 +18,7 @@ public record RecipeEntity(
     public RecipeEntity() : this(default, default, default, default, default, default)
     {
     }
-
-    public ICollection<IngredientAmountEntity> Ingredients { get; set; } = new ValueCollection<IngredientAmountEntity>(equalityComparer: IngredientAmountEntity.IngredientAmountWithoutRecipeEntityComparer);
+#nullable enable
+    
+    public ICollection<IngredientAmountEntity> Ingredients { get; init; } = new List<IngredientAmountEntity>();
 }

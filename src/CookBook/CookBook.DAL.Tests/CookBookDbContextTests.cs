@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using CookBook.Common.Enums;
+using CookBook.Common.Tests;
 using CookBook.DAL.Factories;
 using Xunit;
 
@@ -61,7 +62,7 @@ namespace CookBook.DAL.Tests
             using CookBookDbContext? dbx = _dbContextFactory.CreateDbContext();
             RecipeEntity? retrievedRecipe = dbx.Recipes
                 .Single(entity => entity.Id == recipeEntity.Id);
-            Assert.Equal(recipeEntity, retrievedRecipe);
+            DeepAssert.Equal(recipeEntity, retrievedRecipe);
         }
 
         [Fact]
@@ -109,7 +110,7 @@ namespace CookBook.DAL.Tests
                 .Include(entity => entity.Ingredients)
                 .ThenInclude(amounts => amounts.Ingredient)
                 .Single(entity => entity.Id == recipeEntity.Id);
-            Assert.Equal(recipeEntity, retrievedRecipe);
+            DeepAssert.Equal(recipeEntity, retrievedRecipe);
         }
 
         [Fact]

@@ -160,7 +160,7 @@ namespace CookBook.BL.Tests
         }
 
         [Fact]
-        public void GetAll_FromSeeded_DoesNotThrowAndEqualsSeeded()
+        public void GetAll_FromSeeded_DoesNotThrowAndContainsSeeded()
         {
             //Arrange
             RecipeListModel listModel = RecipeMapper.MapEntityToListModel(RecipeSeeds.RecipeEntity);
@@ -169,7 +169,7 @@ namespace CookBook.BL.Tests
             IEnumerable<RecipeListModel> returnedModel = _repositorySUT.GetAll();
 
             //Assert
-            Assert.Equal(new [] { listModel}, returnedModel);
+            Assert.Contains(listModel, returnedModel);
         }
 
         [Fact]

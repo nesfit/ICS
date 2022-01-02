@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CookBook.Common.Enums;
 using CookBook.DAL.Factories;
 using Xunit;
+using CookBook.Common.Tests;
 
 namespace CookBook.DAL.Tests
 {
@@ -65,7 +66,7 @@ namespace CookBook.DAL.Tests
             await using CookBookDbContext? dbx = _dbContextFactory.CreateDbContext();
             RecipeEntity? retrievedRecipe = await dbx.Recipes
                 .SingleAsync(entity => entity.Id == recipeEntity.Id);
-            Assert.Equal(recipeEntity, retrievedRecipe);
+            DeepAssert.Equal(recipeEntity, retrievedRecipe);
         }
 
         [Fact]
@@ -113,7 +114,7 @@ namespace CookBook.DAL.Tests
                 .Include(entity => entity.Ingredients)
                 .ThenInclude(amounts => amounts.Ingredient)
                 .SingleAsync(entity => entity.Id == recipeEntity.Id);
-            Assert.Equal(recipeEntity, retrievedRecipe);
+            DeepAssert.Equal(recipeEntity, retrievedRecipe);
         }
 
         [Fact]

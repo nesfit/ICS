@@ -13,4 +13,5 @@ public record IngredientEntity(
     public IngredientEntity() : this(default, default, default, default)
     {
     }
+#nullable enable
 }

@@ -15,22 +15,25 @@ public static class RecipeSeeds
         FoodType: FoodType.MainDish,
         ImageUrl: null);
 
-    public static readonly RecipeEntity EmptyRecipeEntity = RecipeEntity with { Id = Guid.Parse("98B7F7B6-0F51-43B3-B8C0-B5FCFFF6DC2E") };
-    
+    //To ensure that no tests reuse these clones for non-idempotent operations
+    public static readonly RecipeEntity RecipeEntityWithNoIngredients = RecipeEntity with { Id = Guid.Parse("98B7F7B6-0F51-43B3-B8C0-B5FCFFF6DC2E"), Ingredients = Array.Empty<IngredientAmountEntity>() };
+    public static readonly RecipeEntity RecipeEntityUpdate = RecipeEntity with { Id = Guid.Parse("0953F3CE-7B1A-48C1-9796-D2BAC7F67868"), Ingredients = Array.Empty<IngredientAmountEntity>() };
+    public static readonly RecipeEntity RecipeEntityDelete = RecipeEntity with { Id = Guid.Parse("5DCA4CEA-B8A8-4C86-A0B3-FFB78FBA1A09"), Ingredients = Array.Empty<IngredientAmountEntity>() };
+
 
     static RecipeSeeds()
     {
-        RecipeEntity.Ingredients = new[]
-        {
-            IngredientAmountSeeds.IngredientAmountEntity1,
-            IngredientAmountSeeds.IngredientAmountEntity2
-        };
+        RecipeEntity.Ingredients.Add(IngredientAmountSeeds.IngredientAmountEntity1);
+        RecipeEntity.Ingredients.Add(IngredientAmountSeeds.IngredientAmountEntity2);
     }
 
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<RecipeEntity>().HasData(
-            RecipeEntity with { Ingredients = Array.Empty<IngredientAmountEntity>() }
+            RecipeEntity with { Ingredients = Array.Empty<IngredientAmountEntity>() },
+            RecipeEntityWithNoIngredients,
+            RecipeEntityUpdate,
+            RecipeEntityDelete
         );
     }
 }
