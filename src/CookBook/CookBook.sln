@@ -21,6 +21,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Common", "CookBook
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.Common.Tests", "CookBook.Common.Tests\CookBook.Common.Tests.csproj", "{30BB7746-5011-415E-9C0D-C3B3B4B59B07}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{F1D07B72-AF91-4B68-81A3-5855F9CC7CBB}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+		nuget.config = nuget.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
