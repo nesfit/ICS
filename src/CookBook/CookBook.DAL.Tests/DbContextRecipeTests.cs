@@ -14,9 +14,9 @@ using Xunit.Abstractions;
 
 namespace CookBook.DAL.Tests
 {
-    public class CookBookDbContextRecipeTests : CookBookDbContextTestsBase
+    public class DbContextRecipeTests : DbContextTestsBase
     {
-        public CookBookDbContextRecipeTests(ITestOutputHelper output) : base(output)
+        public DbContextRecipeTests(ITestOutputHelper output) : base(output)
         {
         }
         
@@ -24,8 +24,7 @@ namespace CookBook.DAL.Tests
         public async Task AddNew_RecipeWithoutIngredients_Persisted()
         {
             //Arrange
-            RecipeEntity entity = new()
-            {
+            var entity = RecipeSeeds.EmptyRecipeEntity with {
                 Name = "Chicken soup",
                 Description = "Grandma's delicious chicken soup."
             };
@@ -35,7 +34,7 @@ namespace CookBook.DAL.Tests
             await CookBookDbContextSUT.SaveChangesAsync();
 
             //Assert
-            await using var dbx = DbContextFactory.CreateDbContext();
+            await using var dbx = await DbContextFactory.CreateDbContextAsync();
             var actualEntity = await dbx.Recipes
                 .SingleAsync(i => i.Id == entity.Id);
             DeepAssert.Equal(entity, actualEntity);
@@ -46,35 +45,34 @@ namespace CookBook.DAL.Tests
         public async Task AddNew_RecipeWithIngredients_Persisted()
         {
             //Arrange
-            RecipeEntity entity = new()
+            var entity = RecipeSeeds.EmptyRecipeEntity with
             {
                 Name = "Lemonade",
                 Description = "Simple lemon lemonade",
-                Ingredients =
+                Ingredients = new List<IngredientAmountEntity> {
+                IngredientAmountSeeds.EmptyIngredientAmountEntity with
                 {
-                    new IngredientAmountEntity
+                    Amount = 1,
+                    Unit = Unit.L,
+                    Ingredient = IngredientSeeds.EmptyIngredient with
                     {
-                        Amount = 1,
-                        Unit = Unit.L,
-                        Ingredient = new()
-                        {
-                            Name = "Water",
-                            Description = "Filtered Water",
-                            ImageUrl = "https://www.pngitem.com/pimgs/m/40-406527_cartoon-glass-of-water-png-glass-of-water.png"
-                        }
-                    },
-                    new IngredientAmountEntity
+                        Name = "Water",
+                        Description = "Filtered Water",
+                        ImageUrl = "https://www.pngitem.com/pimgs/m/40-406527_cartoon-glass-of-water-png-glass-of-water.png"
+                    }
+                },
+                IngredientAmountSeeds.EmptyIngredientAmountEntity with
+                {
+                    Amount = 50,
+                    Unit = Unit.Ml,
+                    Ingredient = IngredientSeeds.EmptyIngredient with
                     {
-                        Amount = 50,
-                        Unit = Unit.Ml,
-                        Ingredient = new()
-                        {
-                            Name = "Lime-juice",
-                            Description = "Fresh lime-juice",
-                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Lime-Whole-Split.jpg/640px-Lime-Whole-Split.jpg"
-                        }
+                        Name = "Lime-juice",
+                        Description = "Fresh lime-juice",
+                        ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Lime-Whole-Split.jpg/640px-Lime-Whole-Split.jpg"
                     }
                 }
+            }
             };
 
             //Act
@@ -82,7 +80,7 @@ namespace CookBook.DAL.Tests
             await CookBookDbContextSUT.SaveChangesAsync();
 
             //Assert
-            await using var dbx = DbContextFactory.CreateDbContext();
+            await using var dbx = await DbContextFactory.CreateDbContextAsync();
             var actualEntity = await dbx.Recipes
                 .Include(i => i.Ingredients)
                 .ThenInclude(i => i.Ingredient)
@@ -95,19 +93,18 @@ namespace CookBook.DAL.Tests
         public async Task AddNew_RecipeWithJustIngredientAmounts_Persisted()
         {
             //Arrange
-            RecipeEntity entity = new()
+            var entity = RecipeSeeds.EmptyRecipeEntity with
             {
                 Name = "Lemonade",
                 Description = "Simple lemon lemonade",
-                Ingredients =
-                {
-                    new IngredientAmountEntity
+                Ingredients = new List<IngredientAmountEntity> {
+                    IngredientAmountSeeds.EmptyIngredientAmountEntity with
                     {
                         Amount = 1,
                         Unit = Unit.L,
                         IngredientId = IngredientSeeds.IngredientEntity1.Id
                     },
-                    new IngredientAmountEntity
+                    IngredientAmountSeeds.EmptyIngredientAmountEntity with
                     {
                         Amount = 50,
                         Unit = Unit.Ml,
@@ -121,7 +118,7 @@ namespace CookBook.DAL.Tests
             await CookBookDbContextSUT.SaveChangesAsync();
 
             //Assert
-            await using var dbx = DbContextFactory.CreateDbContext();
+            await using var dbx = await DbContextFactory.CreateDbContextAsync();
             var actualEntity = await dbx.Recipes
                 .Include(i => i.Ingredients)
                 .SingleAsync(i => i.Id == entity.Id);
@@ -162,7 +159,7 @@ namespace CookBook.DAL.Tests
                 {
                     Name = baseEntity.Name + "Updated",
                     Description = baseEntity.Description + "Updated",
-                    Duration = TimeSpan.MaxValue,
+                    Duration = default,
                     FoodType = FoodType.None,
                     ImageUrl = baseEntity.ImageUrl +"Updated",
                 };
@@ -172,7 +169,7 @@ namespace CookBook.DAL.Tests
             await CookBookDbContextSUT.SaveChangesAsync();
 
             //Assert
-            await using var dbx = DbContextFactory.CreateDbContext();
+            await using var dbx = await DbContextFactory.CreateDbContextAsync();
             var actualEntity = await dbx.Recipes.SingleAsync(i => i.Id == entity.Id);
             DeepAssert.Equal(entity, actualEntity);
         }

@@ -14,9 +14,9 @@ using Xunit.Abstractions;
 
 namespace CookBook.DAL.Tests
 {
-    public class CookBookDbContextIngredientAmountTests : CookBookDbContextTestsBase
+    public class DbContextIngredientAmountTests : DbContextTestsBase
     {
-        public CookBookDbContextIngredientAmountTests(ITestOutputHelper output) : base(output)
+        public DbContextIngredientAmountTests(ITestOutputHelper output) : base(output)
         {
         }
         
@@ -64,7 +64,7 @@ namespace CookBook.DAL.Tests
             await CookBookDbContextSUT.SaveChangesAsync();
 
             //Assert
-            await using var dbx = DbContextFactory.CreateDbContext();
+            await using var dbx = await DbContextFactory.CreateDbContextAsync();
             var actualEntity = await dbx.IngredientAmountEntities.SingleAsync(i => i.Id == entity.Id);
             Assert.Equal(entity, actualEntity);
         }

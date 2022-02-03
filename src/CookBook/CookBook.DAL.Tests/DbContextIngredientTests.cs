@@ -18,9 +18,9 @@ namespace CookBook.DAL.Tests
     /// Tests shows an example of DbContext usage when querying strong entity with no navigation properties.
     /// Entity has no relations, holds no foreign keys.
     /// </summary>
-    public class CookBookDbContextIngredientTests : CookBookDbContextTestsBase
+    public class DbContextIngredientTests : DbContextTestsBase
     {
-        public CookBookDbContextIngredientTests(ITestOutputHelper output) : base(output)
+        public DbContextIngredientTests(ITestOutputHelper output) : base(output)
         {
         }
         
@@ -40,7 +40,7 @@ namespace CookBook.DAL.Tests
             await CookBookDbContextSUT.SaveChangesAsync();
 
             //Assert
-            await using var dbx = DbContextFactory.CreateDbContext();
+            await using var dbx = await DbContextFactory.CreateDbContextAsync();
             var actualEntities = await dbx.Ingredients.SingleAsync(i => i.Id == entity.Id);
             Assert.Equal(entity, actualEntities);
         }
@@ -82,7 +82,7 @@ namespace CookBook.DAL.Tests
             await CookBookDbContextSUT.SaveChangesAsync();
 
             //Assert
-            await using var dbx = DbContextFactory.CreateDbContext();
+            await using var dbx = await DbContextFactory.CreateDbContextAsync();
             var actualEntity = await dbx.Ingredients.SingleAsync(i => i.Id == entity.Id);
             Assert.Equal(entity, actualEntity);
         }

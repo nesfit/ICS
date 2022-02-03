@@ -1,7 +1,8 @@
 ﻿
+using CookBook.DAL;
 using Microsoft.EntityFrameworkCore;
 
-namespace CookBook.DAL.Factories
+namespace CookBook.Common.Tests.Factories
 {
     public class DbContextInMemoryFactory: IDbContextFactory<CookBookDbContext>
     {
@@ -18,7 +19,10 @@ namespace CookBook.DAL.Factories
         {
             DbContextOptionsBuilder<CookBookDbContext> contextOptionsBuilder = new();
             contextOptionsBuilder.UseInMemoryDatabase(_databaseName);
-
+            
+            // contextOptionsBuilder.LogTo(System.Console.WriteLine); //Enable in case you want to see tests details, enabled may cause some inconsistencies in tests
+            // builder.EnableSensitiveDataLogging();
+            
             return new CookBookDbContext(contextOptionsBuilder.Options, _seedTestingData);
         }
     }

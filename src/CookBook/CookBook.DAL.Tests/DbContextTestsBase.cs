@@ -1,22 +1,28 @@
-﻿using CookBook.DAL;
+﻿using System;
+using System.Threading.Tasks;
+using CookBook.Common.Tests;
+using CookBook.Common.Tests.Factories;
 using CookBook.DAL.Factories;
+using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace CookBook.Common.Tests;
+namespace CookBook.DAL.Tests;
 
-public class CookBookDbContextTestsBase : IAsyncLifetime
+public class  DbContextTestsBase : IAsyncLifetime
 {
-    protected CookBookDbContextTestsBase(ITestOutputHelper output)
+    protected DbContextTestsBase(ITestOutputHelper output)
     {
         XUnitTestOutputConverter converter = new(output);
         Console.SetOut(converter);
         
-        DbContextFactory = new DbContextInMemoryFactory(this.GetType().Name, seedTestingData: true);
+        DbContextFactory = new DbContextInMemoryFactory(GetType().Name, seedTestingData: true);
+        // DbContextFactory = new DbContextLocalDBTestingFactory(GetType().FullName!, seedTestingData: true);
+        
         CookBookDbContextSUT = DbContextFactory.CreateDbContext();
     }
 
-    protected DbContextInMemoryFactory DbContextFactory { get; }
+    protected IDbContextFactory<CookBookDbContext> DbContextFactory { get; }
     protected CookBookDbContext CookBookDbContextSUT { get; }
 
 
