@@ -11,14 +11,7 @@ public record RecipeEntity(
     string Description, 
     TimeSpan Duration, 
     FoodType FoodType, 
-    string? ImageUrl) : EntityBase(Id: Id)
+    string? ImageUrl) : IEntity
 {
-    //TODO remove after repository refactoring
-#nullable disable
-    public RecipeEntity() : this(default, default, default, default, default, default)
-    {
-    }
-#nullable enable
-    
     public ICollection<IngredientAmountEntity> Ingredients { get; init; } = new List<IngredientAmountEntity>();
 }

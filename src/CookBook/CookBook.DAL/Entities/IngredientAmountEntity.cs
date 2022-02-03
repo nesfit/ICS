@@ -9,9 +9,9 @@ public record IngredientAmountEntity(
     double Amount,
     Unit Unit,
     Guid RecipeId,
-    Guid IngredientId) : EntityBase(Id: Id)
+    Guid IngredientId) : IEntity
 {
-    //TODO remove after repository refactoring
+    //Automapper requires parameter less constructor for collection synchronization for now
 #nullable disable
     public IngredientAmountEntity() : this(default, default, default, default, default) { }
 #nullable enable

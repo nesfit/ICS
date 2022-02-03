@@ -6,12 +6,6 @@ public record IngredientEntity(
     Guid Id,
     string Name,
     string Description,
-    string? ImageUrl) : EntityBase(Id)
+    string? ImageUrl) : IEntity
 {
-//TODO remove after repository refactoring
-#nullable disable
-    public IngredientEntity() : this(default, default, default, default)
-    {
-    }
-#nullable enable
 }
