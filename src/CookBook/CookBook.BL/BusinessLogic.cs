@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CookBook.BL
 {
-    class BusinessLogic
+    internal class BusinessLogic
     {
     }
 }
