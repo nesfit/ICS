@@ -1,9 +1,24 @@
-﻿namespace CookBook.BL.Models
+﻿using AutoMapper;
+using AutoMapper.EquivalencyExpression;
+using CookBook.DAL.Entities;
+
+namespace CookBook.BL.Models
 {
-    public record IngredientDetailModel : ModelBase
+    public record IngredientDetailModel(
+        string Name,
+        string Description) : ModelBase
     {
-        public string Name { get; set; } = null!;
-        public string Description { get; set; } = null!;
+        public string Name { get; set; } = Name;
+        public string Description { get; set; } = Description;
         public string? ImageUrl { get; set; }
+        
+        public class MapperProfile : Profile
+        {
+            public MapperProfile()
+            {
+                CreateMap<IngredientEntity, IngredientDetailModel>()
+                    .ReverseMap();
+            }
+        }
     }
 }
