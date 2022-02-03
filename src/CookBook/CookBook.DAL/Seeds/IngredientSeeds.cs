@@ -6,6 +6,12 @@ namespace CookBook.DAL.Seeds;
 
 public static class IngredientSeeds
 {
+    public static readonly IngredientEntity EmptyIngredient = new(
+        Id: default,
+        Name: default!,
+        Description: default!,
+        ImageUrl: default!);
+    
     public static readonly IngredientEntity Water = new(
         Id: Guid.Parse(input: "06a8a2cf-ea03-4095-a3e4-aa0291fe9c75"),
         Name: "Water",
