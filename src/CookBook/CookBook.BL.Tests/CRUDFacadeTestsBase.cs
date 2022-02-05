@@ -19,10 +19,10 @@ public class  CRUDFacadeTestsBase : IAsyncLifetime
     {
         XUnitTestOutputConverter converter = new(output);
         Console.SetOut(converter);
-        
-        DbContextFactory = new DbContextInMemoryFactory(GetType().Name, seedTestingData: true);
-        // DbContextFactory = new DbContextLocalDBTestingFactory(GetType().FullName!, seedTestingData: true);
-        
+
+        //DbContextFactory = new DbContextInMemoryFactory(GetType().Name, seedTestingData: true);
+        DbContextFactory = new DbContextLocalDBTestingFactory(GetType().FullName!, seedTestingData: true);
+
         UnitOfWorkFactory = new UnitOfWorkFactory(DbContextFactory);
 
         var configuration = new MapperConfiguration(cfg =>

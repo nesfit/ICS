@@ -23,7 +23,6 @@
             </ResourceDictionary.MergedDictionaries>
 
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
-            <viewModels:DesignTimeViewModelLocator x:Key="ViewModelLocator" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

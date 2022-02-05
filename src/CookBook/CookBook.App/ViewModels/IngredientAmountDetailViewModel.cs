@@ -2,23 +2,23 @@
 using CookBook.App.Services;
 using CookBook.App.Wrappers;
 using CookBook.BL.Models;
-using CookBook.BL.Repositories;
 using System;
 using System.Windows.Input;
 using CookBook.App.Commands;
+using CookBook.BL.Facades;
 
 namespace CookBook.App.ViewModels
 {
     public class IngredientAmountDetailViewModel : ViewModelBase, IIngredientAmountDetailViewModel
     {
-        private readonly IIngredientRepository _ingredientRepository;
+        private readonly IngredientFacade _ingredientFacade;
         private readonly IMediator _mediator;
 
         public IngredientAmountDetailViewModel(
-            IIngredientRepository ingredientRepository,
+            IngredientFacade ingredientFacade,
             IMediator mediator)
         {
-            _ingredientRepository = ingredientRepository;
+            _ingredientFacade = ingredientFacade;
             _mediator = mediator;
             SaveCommand = new RelayCommand(Save, CanSave);
             DeleteCommand = new RelayCommand(Delete);
@@ -47,12 +47,15 @@ namespace CookBook.App.ViewModels
 
         private void IngredientSelected(SelectedMessage<IngredientWrapper> message)
         {
-            var ingredientDetail = _ingredientRepository.GetById(message.Id);
-            Model = new IngredientAmountDetailModel
+            var ingredientDetail = _ingredientFacade.GetAsync(message.Id).GetAwaiter().GetResult();
+            Model = new IngredientAmountDetailModel(
+                ingredientDetail?.Id ?? Guid.Empty,
+                ingredientDetail?.Name ?? string.Empty,
+                ingredientDetail?.Description ?? string.Empty,
+                default,
+                default
+                )
             {
-                IngredientId = ingredientDetail?.Id ?? Guid.Empty ,
-                IngredientName = ingredientDetail?.Name ?? string.Empty,
-                IngredientDescription = ingredientDetail?.Description ?? string.Empty
             };
         }
 

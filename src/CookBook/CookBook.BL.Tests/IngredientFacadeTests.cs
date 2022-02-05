@@ -53,6 +53,14 @@ namespace CookBook.BL.Tests
         }
         
         [Fact]
+        public async Task GetById_NonExistent()
+        {
+            var ingredient = await _ingredientFacadeSUT.GetAsync(IngredientSeeds.EmptyIngredient.Id);
+        
+            Assert.Null(ingredient);
+        }
+        
+        [Fact]
         public async Task SeededWater_DeleteById_Deleted()
         {
             await _ingredientFacadeSUT.DeleteAsync(IngredientSeeds.Water.Id);

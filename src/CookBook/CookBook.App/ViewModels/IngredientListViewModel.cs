@@ -3,21 +3,21 @@ using CookBook.App.Messages;
 using CookBook.App.Services;
 using CookBook.App.Wrappers;
 using CookBook.BL.Models;
-using CookBook.BL.Repositories;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CookBook.App.Commands;
+using CookBook.BL.Facades;
 
 namespace CookBook.App.ViewModels
 {
     public class IngredientListViewModel : ViewModelBase, IIngredientListViewModel
     {
-        private readonly IIngredientRepository _ingredientRepository;
+        private readonly IngredientFacade _ingredientFacade;
         private readonly IMediator _mediator;
 
-        public IngredientListViewModel(IIngredientRepository ingredientRepository, IMediator mediator)
+        public IngredientListViewModel(IngredientFacade ingredientFacade, IMediator mediator)
         {
-            _ingredientRepository = ingredientRepository;
+            _ingredientFacade = ingredientFacade;
             _mediator = mediator;
 
             IngredientSelectedCommand = new RelayCommand<IngredientListModel>(IngredientSelected);
@@ -27,7 +27,7 @@ namespace CookBook.App.ViewModels
             mediator.Register<DeleteMessage<IngredientWrapper>>(IngredientDeleted);
         }
 
-        public ObservableCollection<IngredientListModel> Ingredients { get; set; } = new ObservableCollection<IngredientListModel>();
+        public ObservableCollection<IngredientListModel> Ingredients { get; set; } = new();
 
         public ICommand IngredientSelectedCommand { get; }
         public ICommand IngredientNewCommand { get; }
@@ -43,13 +43,13 @@ namespace CookBook.App.ViewModels
         public void Load()
         {
             Ingredients.Clear();
-            var ingredients = _ingredientRepository.GetAll();
+            var ingredients = _ingredientFacade.GetAsync().GetAwaiter().GetResult();
             Ingredients.AddRange(ingredients);
         }
 
         public override void LoadInDesignMode()
         {
-            Ingredients.Add(new IngredientListModel { Name = "Voda", ImageUrl = "https://www.pngitem.com/pimgs/m/40-406527_cartoon-glass-of-water-png-glass-of-water.png" });
+            Ingredients.Add(new IngredientListModel(Name: "Voda") { ImageUrl = "https://www.pngitem.com/pimgs/m/40-406527_cartoon-glass-of-water-png-glass-of-water.png" });
         }
     }
 }

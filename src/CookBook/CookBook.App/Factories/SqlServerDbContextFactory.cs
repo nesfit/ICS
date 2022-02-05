@@ -16,7 +16,11 @@ namespace CookBook.App.Factories
         {
             var optionsBuilder = new DbContextOptionsBuilder<CookBookDbContext>();
             optionsBuilder.UseSqlServer(_connectionString);
-            return new CookBookDbContext(optionsBuilder.Options);
+            //optionsBuilder.UseInMemoryDatabase("aa");
+            //optionsBuilder.LogTo(System.Console.WriteLine); //Enable in case you want to see tests details, enabled may cause some inconsistencies in tests
+            //optionsBuilder.EnableSensitiveDataLogging();
+
+            return new CookBookDbContext(optionsBuilder.Options, seedTestingData:true);
         }
     }
 }

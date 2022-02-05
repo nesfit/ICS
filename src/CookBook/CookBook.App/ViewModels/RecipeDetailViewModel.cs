@@ -3,28 +3,29 @@ using CookBook.App.Services;
 using CookBook.App.Services.MessageDialog;
 using CookBook.App.Wrappers;
 using CookBook.BL.Models;
-using CookBook.BL.Repositories;
 using System;
 using System.Windows.Input;
 using CookBook.App.Commands;
+using CookBook.BL.Facades;
+using CookBook.Common.Enums;
 
 namespace CookBook.App.ViewModels
 {
     public class RecipeDetailViewModel : ViewModelBase, IRecipeDetailViewModel
     {
         private readonly IMediator _mediator;
+        private readonly RecipeFacade _recipeFacade;
         private readonly IMessageDialogService _messageDialogService;
-        private readonly IRecipeRepository _recipesRepository;
-        private RecipeWrapper? _model = new RecipeWrapper(new RecipeDetailModel());
+        private RecipeWrapper? _model = RecipeDetailModel.Empty;
         private IngredientAmountWrapper? _selectedIngredientAmount;
 
         public RecipeDetailViewModel(
-            IRecipeRepository recipesRepository,
+            RecipeFacade recipeFacade,
             IMessageDialogService messageDialogService,
             IMediator mediator,
             IIngredientAmountDetailViewModel ingredientAmountDetailViewModel)
         {
-            _recipesRepository = recipesRepository;
+            _recipeFacade = recipeFacade;
             _messageDialogService = messageDialogService;
             _mediator = mediator;
             IngredientAmountDetailViewModel = ingredientAmountDetailViewModel;
@@ -68,7 +69,7 @@ namespace CookBook.App.ViewModels
             }
         }
 
-        public void Load(Guid id) => Model = _recipesRepository.GetById(id) ?? new RecipeDetailModel();
+        public void Load(Guid id) => Model = _recipeFacade.GetAsync(id).GetAwaiter().GetResult() ?? RecipeDetailModel.Empty;
 
         private void DeleteIngredientAmount(DeleteMessage<IngredientAmountWrapper> message)
         {
@@ -123,7 +124,7 @@ namespace CookBook.App.ViewModels
 
                 try
                 {
-                    _recipesRepository.Delete(Model.Id);
+                    _recipeFacade.DeleteAsync(Model.Id).GetAwaiter().GetResult();
                 }
                 catch
                 {
@@ -151,18 +152,20 @@ namespace CookBook.App.ViewModels
                 throw new InvalidOperationException("Null model cannot be saved");
             }
 
-            Model = _recipesRepository.InsertOrUpdate(Model);
+            Model = _recipeFacade.SaveAsync(Model).GetAwaiter().GetResult();
             _mediator.Send(new UpdateMessage<RecipeWrapper> { Model = Model });
         }
 
         public override void LoadInDesignMode()
         {
             base.LoadInDesignMode();
-            Model = new RecipeWrapper(new RecipeDetailModel
+            Model = new RecipeWrapper(new RecipeDetailModel(
+                Name: "Spaghetti",
+                Description: "Spaghetti description",
+                Duration: new TimeSpan(0, 30, 0),
+                FoodType.MainDish
+                )
             {
-                Name = "Spaghetti",
-                Description = "Spaghetti description",
-                Duration = new TimeSpan(0, 30, 0),
                 ImageUrl = "https://cleanfoodcrush.com/wp-content/uploads/2019/01/CleanFoodCrush-Super-Easy-Beef-Stir-Fry-Recipe.jpg"
             });
         }

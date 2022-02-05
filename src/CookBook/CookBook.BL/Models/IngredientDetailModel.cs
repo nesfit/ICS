@@ -20,5 +20,7 @@ namespace CookBook.BL.Models
                     .ReverseMap();
             }
         }
+
+        public static IngredientDetailModel Empty => new(string.Empty, string.Empty);
     }
 }

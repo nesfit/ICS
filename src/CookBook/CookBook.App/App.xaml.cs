@@ -3,9 +3,7 @@ using CookBook.App.Services;
 using CookBook.App.Services.MessageDialog;
 using CookBook.App.ViewModels;
 using CookBook.App.Views;
-using CookBook.BL.Repositories;
 using CookBook.DAL;
-using CookBook.DAL.Factories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +13,9 @@ using System.Globalization;
 using System.Threading;
 using System.Windows;
 using CookBook.App.Factories;
+using CookBook.BL;
+using CookBook.BL.Facades;
+using CookBook.DAL.UnitOfWork;
 
 namespace CookBook.App
 {
@@ -44,10 +45,10 @@ namespace CookBook.App
         private static void ConfigureServices(IConfiguration configuration,
             IServiceCollection services)
         {
-            services.AddSingleton<MainWindow>();
+            services.AddBLServices();
+            services.AddSingleton<IDbContextFactory<CookBookDbContext>>(provider => new SqlServerDbContextFactory(configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddSingleton<IIngredientRepository, IngredientRepository>();
-            services.AddSingleton<IRecipeRepository, RecipeRepository>();
+            services.AddSingleton<MainWindow>();
 
             services.AddSingleton<IMessageDialogService, MessageDialogService>();
             services.AddSingleton<IMediator, Mediator>();
@@ -58,9 +59,6 @@ namespace CookBook.App
             services.AddSingleton<IRecipeListViewModel, RecipeListViewModel>();
             services.AddFactory<IRecipeDetailViewModel, RecipeDetailViewModel>();
             services.AddFactory<IIngredientAmountDetailViewModel, IngredientAmountDetailViewModel>();
-
-            services.AddSingleton<IDbContextFactory<CookBookDbContext>>(provider => new SqlServerDbContextFactory(configuration.GetConnectionString("DefaultConnection")));
-
         }
 
         protected override async void OnStartup(StartupEventArgs e)
@@ -70,7 +68,7 @@ namespace CookBook.App
             var dbContextFactory = _host.Services.GetRequiredService<IDbContextFactory<CookBookDbContext>>();
 
 #if DEBUG
-            await using (var dbx = dbContextFactory.CreateDbContext())
+            await using (var dbx = await dbContextFactory.CreateDbContextAsync())
             {
                 await dbx.Database.MigrateAsync();
             }

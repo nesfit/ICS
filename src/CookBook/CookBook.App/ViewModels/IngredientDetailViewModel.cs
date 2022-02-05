@@ -3,25 +3,25 @@ using CookBook.App.Services;
 using CookBook.App.Services.MessageDialog;
 using CookBook.App.Wrappers;
 using CookBook.BL.Models;
-using CookBook.BL.Repositories;
 using System;
 using System.Windows.Input;
 using CookBook.App.Commands;
+using CookBook.BL.Facades;
 
 namespace CookBook.App.ViewModels
 {
     public class IngredientDetailViewModel : ViewModelBase, IIngredientDetailViewModel
     {
-        private readonly IIngredientRepository _ingredientRepository;
         private readonly IMediator _mediator;
+        private readonly IngredientFacade _ingredientFacade;
         private readonly IMessageDialogService _messageDialogService;
 
         public IngredientDetailViewModel(
-            IIngredientRepository ingredientRepository,
+            IngredientFacade ingredientFacade,
             IMessageDialogService messageDialogService,
             IMediator mediator)
         {
-            _ingredientRepository = ingredientRepository;
+            _ingredientFacade = ingredientFacade;
             _messageDialogService = messageDialogService;
             _mediator = mediator;
 
@@ -36,7 +36,7 @@ namespace CookBook.App.ViewModels
 
         public void Load(Guid id)
         {
-            Model = _ingredientRepository.GetById(id) ?? new IngredientDetailModel();
+            Model = _ingredientFacade.GetAsync(id).GetAwaiter().GetResult() ??  IngredientDetailModel.Empty;
         }
 
         public void Save()
@@ -46,7 +46,7 @@ namespace CookBook.App.ViewModels
                 throw new InvalidOperationException("Null model cannot be saved");
             }
 
-            Model = _ingredientRepository.InsertOrUpdate(Model.Model);
+            Model = _ingredientFacade.SaveAsync(Model.Model).GetAwaiter().GetResult();
             _mediator.Send(new UpdateMessage<IngredientWrapper> { Model = Model });
         }
 
@@ -74,7 +74,7 @@ namespace CookBook.App.ViewModels
 
                 try
                 {
-                    _ingredientRepository.Delete(Model.Id);
+                    _ingredientFacade.DeleteAsync(Model.Id).GetAwaiter().GetResult();
                 }
                 catch
                 {
@@ -95,10 +95,10 @@ namespace CookBook.App.ViewModels
         public override void LoadInDesignMode()
         {
             base.LoadInDesignMode();
-            Model = new IngredientWrapper(new IngredientDetailModel
+            Model = new IngredientWrapper(new IngredientDetailModel(
+                Name: "Voda",
+                Description: "Popis vody")
             {
-                Name = "Voda",
-                Description = "Popis vody",
                 ImageUrl = "https://www.pngitem.com/pimgs/m/40-406527_cartoon-glass-of-water-png-glass-of-water.png"
             });
         }

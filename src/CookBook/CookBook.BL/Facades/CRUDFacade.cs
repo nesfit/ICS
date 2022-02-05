@@ -31,17 +31,17 @@ public class CRUDFacade<TEntity, TListModel, TDetailModel>
         {
             await using var uow = _unitOfWorkFactory.Create();
             uow.GetRepository<TEntity>().Delete(id);
-            await uow.CommitAsync();
+            await uow.CommitAsync().ConfigureAwait(false);
         }
 
-        public async Task<TDetailModel> GetAsync(Guid id)
+        public async Task<TDetailModel?> GetAsync(Guid id)
         {
             await using var uow = _unitOfWorkFactory.Create();
             var query = uow
                 .GetRepository<TEntity>()
                 .Get()
                 .Where(e => e.Id == id);
-            return await _mapper.ProjectTo<TDetailModel>(query).SingleAsync();
+            return await _mapper.ProjectTo<TDetailModel>(query).SingleOrDefaultAsync().ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<TListModel>> GetAsync()
@@ -50,23 +50,23 @@ public class CRUDFacade<TEntity, TListModel, TDetailModel>
             var query = uow
                 .GetRepository<TEntity>()
                 .Get();
-            return await _mapper.ProjectTo<TListModel>(query).ToArrayAsync();
+            return await _mapper.ProjectTo<TListModel>(query).ToArrayAsync().ConfigureAwait(false);
         }
 
         public async Task<TDetailModel> SaveAsync(TDetailModel model)
         {
             await using var uow = _unitOfWorkFactory.Create();
 
-            await PreloadChangeTracker(model, uow);
+            await PreloadChangeTracker(model, uow).ConfigureAwait(false);
             
             var entity = await uow
                 .GetRepository<TEntity>()
                 .DbSet
                 .Persist(_mapper)
-                .InsertOrUpdateAsync(model);
+                .InsertOrUpdateAsync(model).ConfigureAwait(false);
             await uow.CommitAsync();
             
-            return await GetAsync(entity.Id);
+            return (await GetAsync(entity.Id).ConfigureAwait(false))!;
         }
 
         private static async Task PreloadChangeTracker(TDetailModel model, IUnitOfWork uow) 
@@ -75,7 +75,7 @@ public class CRUDFacade<TEntity, TListModel, TDetailModel>
                 .DbSet
                 .Where(e => e.Id == model.Id)
                 .IncludeFirstLevelNavigationProperties(uow.Model)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync().ConfigureAwait(false);
     }
     
 internal static class QueryableExtensions
