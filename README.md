@@ -3,83 +3,73 @@
 ---
 
 # Aktuality k předmětu
- - [Visual Studio 2019 Enterprise](https://aka.ms/devtoolsforteaching) je nově dostupné v Azure Dev Tools for Teaching. Přihlášení je nutné s loginem z domény VUT, tj xlogin00@vutbr.cz
- - Při vytváření repozitáře respektujte schéma ze [zadání](/Project/README.md) *https://dev.azure.com/ics-2021-team0000/project*. Je nezbytně nutné použít Vaše účty z domény *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
+ - [Visual Studio 2022 Enterprise](https://aka.ms/devtoolsforteaching) je nově dostupné v Azure Dev Tools for Teaching. Přihlášení je nutné s loginem z domény VUT, tj xlogin00@vutbr.cz
+ - Při vytváření repozitáře respektujte schéma ze [zadání](/Project/README.md) *https://dev.azure.com/ics-2022-team0000/project*. Je nezbytně nutné použít Vaše účty z domény *vutbr.cz*. Do Vašich repozitářů pro projekt přidejte účet **uciteliw5@vutbr.cz**. Pokud uděláte chybu a pouze nesedí url, dá se v nastavení změnit.
     * Pokud máte vytvořeno pod soukromými účty, je třeba vytvořit projekt znovu pod univerzitními a pushnout existující repozitář tak, aby Vám zůstala historie včetně správných časů commitů.
-    * Pokud bude kolize s existující organizací, použijte suffix *team0000-01*.
+    * Účet **uciteliw5@vutbr.cz** přidejte jako poslední a ujistěte se, že má nastavena oprávnění `Stakeholder`. Vaše účty musí mít oprávnění `Basic`, abyste viděli kód. Nastavení oprávnění organizace uvidíte na **https://dev.azure.com/ics-2022-team0000/_settings/users**.
 
 ---
 
-# Přednášky
+# Rozvrh
 
-| Typ                                  | Místnost | Čas            |
-| ------------------------------------ |----------| -------------- |
-| Přednáška                            | D0206    | Po 13:00-14:50 |
+## Přednášky
 
-+++
+| Typ       | Místnost | Čas            |
+| --------- | -------- | -------------- |
+| Přednáška | D105     | Pá 08:00-09:50 |
 
-0. Organizace kurzu
-1. [Úvod do jazyka C# a platformy .NET](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/)
-   * základní syntaxe jazyka, instalace a představení Visual Studia
-2. [Úvod do Objektově Orientovaného Programování](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/)
-   * pokročilé konstrukce v jazyce C# - výjimky, události, delegáty, lambda výrazy a generika
-3. [Představení základních knihovních funkcí (BCL)](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/)
-   * dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL)
-4. [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/)
-   * zajištění persistence pomocí ORM rozšíření Entity Framework Core s návrhovými vzory UnitOfWork a Repository
-5. Psaní čistého a udržovatelného kódu
-   * respektováním Clean Code, S.O.L.I.D. zásad
-   * ukázky refaktorizace a práce s legacy kódem
-6. Návrhový vzor Model-View-ViewModel (MVVM)
-   * architektura desktopových aplikací
-   * mapování databázových entit na modelové třídy
+## Cvičení
+Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, na kterém budete moct cvičení aktivně zúčastnit. Bude potřeba vývojové prostředí ideálně Visual Studio 2022 / Rider / VSCode.
+
+| Typ                             | Místnost | Čas            |
+| ------------------------------- | -------- | -------------- |
+| Dobrovolné demonstrační cvičení | D105     | Pá 10:00-11:50 |
 
 +++
 
-7. Continous Integration v prostředí Azure DevOps
-   * testování aplikací - smoke, unit, integrační, UI a akceptační testy
-8. [Základní koncepty tvorby uživatelského rozhraní](https://nesfit.github.io/ICS/Lectures/Lecture_08/_site/)
-   * Windows Presentation Foundation (WPF)
-- Velikonoční pondělí
-9. WPF - tvorba komponent a stylování aplikací.
-10. [Paralelní a asynchronní programování](https://nesfit.github.io/ICS/Lectures/Lecture_10/_site/)
-    * proces, vlákno, úloha z pohledu C# a použitého .NET frameworku
-11. Návrhové vzory
-   * vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#
-12. Multiplatformní programování
-    * .NET Standard, .NET Core.
-    * kontejnerizace aplikací pomocí Docker  
+## Plán semestru
 
----
+| Datum    | Typ | Téma přednášky                                                                                                                                                                                         |
+| -------- | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 11.02.   | L01 | [Úvod do jazyka C# a platformy .NET](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/) - základní syntaxe jazyka                                                                                |
+|          | E01 | Práce s Visual Studio 2019 a Azure DevOps                                                                                                                                                              |
+| 18.02.   | L02 | [Úvod do Objektově Orientovaného Programování](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/)                                                                                                |
+|          | E02 | Objektově orientované programování a úvod do Entity Framework                                                                                                                                          |
+| 25.02.   | L03 | [Představení základních knihovních funkcí (BCL)](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/) - dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL) |
+| 04.03.   | L04 | [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/)                                                                                                               |
+|          | E03 | Entity framework                                                                                                                                                                                       |
+| 06.03.   | P01 | Odevzdání první fáze projektu                                                                                                                                                                          |
+| 11.03.   | L05 | Psaní čistého a udržovatelného kódu                                                                                                                                                                    |
+| 18.03.   | L06 | Návrhový vzor Model-View-ViewModel (MVVM)                                                                                                                                                              |
+| 25.03.   | L07 | Automatizované testování - práce s xUnit, CI                                                                                                                                                           |
+| 01.04.   | L08 | [Základní koncepty tvorby uživatelského rozhraní](https://nesfit.github.io/ICS/Lectures/Lecture_08/_site/)                                                                                             |
+|          | E04 | Základy WPF a návrhový vzor MVVM                                                                                                                                                                       |
+| 08.04.   | L09 | WPF - tvorba komponent a stylování aplikací.                                                                                                                                                           |
+|          | E05 | WPF frontend a binding                                                                                                                                                                                 |
+| 10.04.   | P02 | Odevzdání druhé fáze projektu                                                                                                                                                                           |
+| 15.04.   | L10 | Velikonoce - Velký Pátek                                                                                                                                                                               |
+| 19.04.   | L11 | [Paralelní a asynchronní programování](https://nesfit.github.io/ICS/Lectures/Lecture_10/_site/) - proces, vlákno, úloha z pohledu C# a použitého .NET frameworku                                       |
+|          | E06 | Takto můžete napsat projekt?!                                                                                                                                                                          |
+| 29.04.   | L12 | Návrhové vzory - vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#                                                                                                                    |
+| 03-04.05 | P03 | Obhajoby projektu                                                                                                                                                                                      |
+| 06.05.   | L13 | Multiplatformní programování - .NET Standard, .NET Core., kontejnerizace aplikací pomocí Docker                                                                                                        |
 
-# Cvičení
-Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení na kterém budete moct cvičení aktivně zúčastnit. Bude potřeba vývojové prostředí ideálně Visual Studio 2019 / Rider / VSCode.
+LXY - přednáška
 
-| Typ                                  | Místnost | Čas            |
-| ------------------------------------ |----------| -------------- |
-| Dobrovolné demonstrační cvičení      | D0206    | Po 15:00-16:50 |
+EXY - democvičení
 
-+++
-
-| Datum  |                                                 Téma cvičení |
-| ------ | ------------------------------------------------------------ |
-| 08.02. | Práce s Visual Studio 2019 a Azure DevOps                     |
-| 15.02. | Objektově orientované programování a úvod do Entity Framework |
-| 01.03. | Entity framework                                             |
-| 29.03. | Základy WPF a návrhový vzor MVVM                              |
-| 12.04. | WPF frontend a binding                                        |
-| 19.04. | Takto můžete napsat projekt?!                                |
+P0X - projekt
 
 ---
 
 # Projekt
-* Projekt bude vypracovaný v 4-5ti členném týmu.
+* Projekt bude vypracovaný v 5ti členném týmu.
 
-| Fáze |            Deadline |                                   Obsah | Body |
-| ---- | ------------------- | --------------------------------------- | ---- |
-| 1    |              14.03. | Objektový návrh                         |   20 |
-| 2    |              11.04. | Entity Framework, Repository, Tests     |   30 |
-| 3    | Den před odevzdáním | Finalizace aplikace a následná obhajoba |   50 |
+| Fáze | Obsah                                   | Body |
+| ---- | --------------------------------------- | ---- |
+| 1    | Objektový návrh                         | 20   |
+| 2    | Entity Framework, Repository, Tests     | 30   |
+| 3    | Finalizace aplikace a následná obhajoba | 50   |
 
 * Při obhajobě:
   * musí být přítomni všichni členové týmu,
@@ -90,19 +80,19 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 
 # Nástroje použity ve cvičeních
 
-| Nástroj  |  Typ   | Popis |
-| -------- |  ------| -------|
-|[Visual Studio 2019 Community](https://aka.ms/devtoolsforteaching) | Samostatný program | Hlavní vývojové prostředí pro .Net |
-|[Resharper](https://www.jetbrains.com/resharper/) | Doplněk | Nástroje na lepší produktivitu, refaktorování. Studentská licence je k dispozici zdarma [zde](https://www.jetbrains.com/student/) |
-|[Code metrices](https://visualstudiogallery.msdn.microsoft.com/369d38e1-53d3-4f5c-9351-a0560162a6d9) | Doplněk | Zobrazování složitosti jednotlivých metod |
+| Nástroj                                                                                              | Typ                | Popis                                                                                                                             |
+| ---------------------------------------------------------------------------------------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| [Visual Studio 2022](https://aka.ms/devtoolsforteaching)                                             | Samostatný program | Hlavní vývojové prostředí pro .Net                                                                                                |
+| [Resharper](https://www.jetbrains.com/resharper/)                                                    | Doplněk            | Nástroje na lepší produktivitu, refaktorování. Studentská licence je k dispozici zdarma [zde](https://www.jetbrains.com/student/) |
+| [Code metrices](https://visualstudiogallery.msdn.microsoft.com/369d38e1-53d3-4f5c-9351-a0560162a6d9) | Doplněk            | Zobrazování složitosti jednotlivých metod                                                                                         |
 
 +++
 
-| Nástroj  |  Typ   | Popis |
-| -------- |  ------| -------|
-|[LinqPad](http://www.linqpad.net/) | Samostatný program  | Nástroj na přístup do databáze přes Linq, SQL… |
-|[DotPeek](https://www.jetbrains.com/decompiler/) | Samostatný program  | Dekompilátor C# kódu |
-|[MarkdownEditor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)| Doplněk| Handy Markdown editor for VS |
+| Nástroj                                                                                             | Typ                | Popis                                          |
+| --------------------------------------------------------------------------------------------------- | ------------------ | ---------------------------------------------- |
+| [LinqPad](http://www.linqpad.net/)                                                                  | Samostatný program | Nástroj na přístup do databáze přes Linq, SQL… |
+| [DotPeek](https://www.jetbrains.com/decompiler/)                                                    | Samostatný program | Dekompilátor C# kódu                           |
+| [MarkdownEditor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor) | Doplněk            | Handy Markdown editor for VS                   |
 
 ---
 
@@ -124,9 +114,9 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 
 # Výuka - bodové rozdělení
 
-|      Typ výuky     | Maximální bodový zisk |
-| ------------------ | --------------------- |
-| Projekt            |                   100 |
+| Typ výuky | Maximální bodový zisk |
+| --------- | --------------------- |
+| Projekt   | 100                   |
 
 ---
 
@@ -136,7 +126,8 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení n
 * [Tibor Jašek](https://www.linkedin.com/in/tibor-jašek-717a5761)
 * [Michal Mrnuštík](https://www.linkedin.com/in/michal-mrnušt%C3%ADk-31050b60/)
 * [Michal Tichý]()
-* [Jan Pluskal](http://www.fit.vutbr.cz/~ipluskal/)
+* [Jan Pluskal](https://www.fit.vut.cz/person/ipluskal)
+* [Michal Koutenský](https://www.fit.vut.cz/person/koutenmi)
 
 ---
 
