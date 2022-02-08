@@ -1,6 +1,8 @@
 ﻿using CookBook.BL.Models;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using CookBook.App.Extensions;
@@ -55,11 +57,27 @@ namespace CookBook.App.Wrappers
 
         public ObservableCollection<IngredientAmountWrapper> Ingredients { get; set; } = new();
 
+        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                yield return new ValidationResult($"{nameof(Name)} is required", new[] {nameof(Name)});
+            }
+
+            if (string.IsNullOrWhiteSpace(Description))
+            {
+                yield return new ValidationResult($"{nameof(Description)} is required", new[] {nameof(Description)});
+            }
+            if (Duration == default)
+            {
+                yield return new ValidationResult($"{nameof(Duration)} is required", new[] {nameof(Duration)});
+            }
+        }
+
         public static implicit operator RecipeWrapper(RecipeDetailModel detailModel)
             => new(detailModel);
 
         public static implicit operator RecipeDetailModel(RecipeWrapper wrapper)
             => wrapper.Model;
-
     }
 }

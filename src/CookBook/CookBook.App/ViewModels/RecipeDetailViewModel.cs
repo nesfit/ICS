@@ -140,11 +140,7 @@ namespace CookBook.App.ViewModels
             }
         }
 
-        private bool CanSave() =>
-            Model != null
-            && !string.IsNullOrWhiteSpace(Model.Name)
-            && !string.IsNullOrWhiteSpace(Model.Description)
-            && Model.Duration != default;
+        private bool CanSave() => Model?.IsValid ?? false;
 
         public async Task SaveAsync()
         {

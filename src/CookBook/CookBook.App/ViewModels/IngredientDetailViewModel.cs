@@ -51,10 +51,7 @@ namespace CookBook.App.ViewModels
             _mediator.Send(new UpdateMessage<IngredientWrapper> { Model = Model });
         }
 
-        private bool CanSave() =>
-            Model != null
-            && !string.IsNullOrWhiteSpace(Model.Name)
-            && !string.IsNullOrWhiteSpace(Model.Description);
+        private bool CanSave() => Model?.IsValid ?? false;
 
         public async Task DeleteAsync()
         {

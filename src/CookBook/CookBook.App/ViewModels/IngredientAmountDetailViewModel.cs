@@ -63,7 +63,6 @@ namespace CookBook.App.ViewModels
                     default
                 );
             }
-            
         }
 
         private void IngredientNew()
@@ -84,11 +83,7 @@ namespace CookBook.App.ViewModels
         }
 
 
-        private bool CanSave() =>
-            Model != null
-            && !string.IsNullOrWhiteSpace(Model.IngredientName)
-            && !string.IsNullOrWhiteSpace(Model.IngredientDescription)
-            && !Model.Amount.Equals(default);
+        private bool CanSave() => Model?.IsValid ?? false;
 
         private void Save()
         {

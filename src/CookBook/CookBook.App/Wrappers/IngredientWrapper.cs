@@ -1,4 +1,7 @@
-﻿using CookBook.BL.Models;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Windows;
+using CookBook.BL.Models;
 
 namespace CookBook.App.Wrappers
 {
@@ -23,6 +26,19 @@ namespace CookBook.App.Wrappers
         {
             get => GetValue<string>();
             set => SetValue(value);
+        }
+        
+        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                yield return new ValidationResult($"{nameof(Name)} is required", new[] {nameof(Name)});
+            }
+
+            if (string.IsNullOrWhiteSpace(Description))
+            {
+                yield return new ValidationResult($"{nameof(Description)} is required", new[] {nameof(Description)});
+            }
         }
 
         public static implicit operator IngredientWrapper(IngredientDetailModel detailModel)
