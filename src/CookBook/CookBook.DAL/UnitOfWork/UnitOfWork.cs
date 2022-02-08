@@ -10,8 +10,6 @@ namespace CookBook.DAL.UnitOfWork;
 public sealed class UnitOfWork : IUnitOfWork
 {
     private readonly DbContext _dbContext;
-    public DatabaseFacade Database => _dbContext.Database;
-    public IModel Model => _dbContext.Model;
 
     public UnitOfWork(DbContext dbContext) => _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
     

@@ -11,6 +11,4 @@ public interface IUnitOfWork : IAsyncDisposable
 {
     IRepository<TEntity> GetRepository<TEntity>() where TEntity : class, IEntity;
     Task CommitAsync();
-    DatabaseFacade Database { get; }
-    IModel Model { get; }
 }

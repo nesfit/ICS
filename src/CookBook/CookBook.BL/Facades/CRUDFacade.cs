@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.EntityFrameworkCore;
 using CookBook.BL.Models;
+using CookBook.DAL;
 using CookBook.DAL.Entities;
 using CookBook.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
@@ -57,40 +58,14 @@ public class CRUDFacade<TEntity, TListModel, TDetailModel>
         {
             await using var uow = _unitOfWorkFactory.Create();
 
-            await PreloadChangeTracker(model, uow).ConfigureAwait(false);
-            
             var entity = await uow
                 .GetRepository<TEntity>()
-                .DbSet
-                .Persist(_mapper)
-                .InsertOrUpdateAsync(model).ConfigureAwait(false);
+                .InsertOrUpdateAsync(model, _mapper)
+                .ConfigureAwait(false);
             await uow.CommitAsync();
             
             return (await GetAsync(entity.Id).ConfigureAwait(false))!;
         }
 
-        private static async Task PreloadChangeTracker(TDetailModel model, IUnitOfWork uow) 
-            => await uow
-                .GetRepository<TEntity>()
-                .DbSet
-                .Where(e => e.Id == model.Id)
-                .IncludeFirstLevelNavigationProperties(uow.Model)
-                .FirstOrDefaultAsync().ConfigureAwait(false);
+        
     }
-    
-internal static class QueryableExtensions
-{
-    public static IQueryable<TEntity> IncludeFirstLevelNavigationProperties<TEntity>(this IQueryable<TEntity> query, Microsoft.EntityFrameworkCore.Metadata.IModel model) where TEntity : class
-    {
-        var navigationProperties = model.FindEntityType(typeof(TEntity))?.GetNavigations();
-        if (navigationProperties == null)
-            return query;
-
-        foreach (var navigationProperty in navigationProperties)
-        {
-            query = query.Include(navigationProperty.Name);
-        }
-
-        return query;
-    }
-}
