@@ -16,6 +16,7 @@ using CookBook.App.Factories;
 using CookBook.App.Settings;
 using CookBook.BL;
 using CookBook.BL.Facades;
+using CookBook.DAL.Factories;
 using CookBook.DAL.UnitOfWork;
 using Microsoft.Extensions.Options;
 
