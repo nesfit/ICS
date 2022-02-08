@@ -13,9 +13,11 @@ using System.Globalization;
 using System.Threading;
 using System.Windows;
 using CookBook.App.Factories;
+using CookBook.App.Settings;
 using CookBook.BL;
 using CookBook.BL.Facades;
 using CookBook.DAL.UnitOfWork;
+using Microsoft.Extensions.Options;
 
 namespace CookBook.App
 {
@@ -39,14 +41,21 @@ namespace CookBook.App
 
         private static void ConfigureAppConfiguration(HostBuilderContext context, IConfigurationBuilder builder)
         {
-            builder.AddJsonFile(@"appsettings.json", false, true);
+            builder.AddJsonFile(@"appsettings.json", false, false);
         }
 
         private static void ConfigureServices(IConfiguration configuration,
             IServiceCollection services)
         {
             services.AddBLServices();
-            services.AddSingleton<IDbContextFactory<CookBookDbContext>>(provider => new SqlServerDbContextFactory(configuration.GetConnectionString("DefaultConnection")));
+
+            services.Configure<DALSettings>(configuration.GetSection("CookBook:DAL"));
+
+            services.AddSingleton<IDbContextFactory<CookBookDbContext>>(provider =>
+            {
+                var dalSettings = provider.GetRequiredService<IOptions<DALSettings>>().Value;
+                return new SqlServerDbContextFactory(dalSettings.ConnectionString!, dalSettings.SkipMigrationAndSeedTestingData);
+            });
 
             services.AddSingleton<MainWindow>();
 
@@ -67,12 +76,19 @@ namespace CookBook.App
 
             var dbContextFactory = _host.Services.GetRequiredService<IDbContextFactory<CookBookDbContext>>();
 
-#if DEBUG
+            var dalSettings = _host.Services.GetRequiredService<IOptions<DALSettings>>().Value;
+            
             await using (var dbx = await dbContextFactory.CreateDbContextAsync())
             {
-                await dbx.Database.MigrateAsync();
+                if (dalSettings.SkipMigrationAndSeedTestingData)
+                {
+                    await dbx.Database.EnsureCreatedAsync();
+                }
+                else
+                {
+                    await dbx.Database.MigrateAsync();
+                }
             }
-#endif
 
             var mainWindow = _host.Services.GetRequiredService<MainWindow>();
             mainWindow.Show();
