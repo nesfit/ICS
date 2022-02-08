@@ -1,7 +1,9 @@
-﻿namespace CookBook.App.ViewModels
+﻿using System.Threading.Tasks;
+
+namespace CookBook.App.ViewModels
 {
     public interface IListViewModel
     {
-        void Load();
+        Task LoadAsync();
     }
 }

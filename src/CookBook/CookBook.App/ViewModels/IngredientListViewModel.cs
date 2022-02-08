@@ -4,6 +4,7 @@ using CookBook.App.Services;
 using CookBook.App.Wrappers;
 using CookBook.BL.Models;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CookBook.App.Commands;
 using CookBook.BL.Facades;
@@ -36,14 +37,14 @@ namespace CookBook.App.ViewModels
 
         private void IngredientSelected(IngredientListModel ingredient) => _mediator.Send(new SelectedMessage<IngredientWrapper> { Id = ingredient.Id });
 
-        private void IngredientUpdated(UpdateMessage<IngredientWrapper> _) => Load();
+        private async void IngredientUpdated(UpdateMessage<IngredientWrapper> _) => await LoadAsync();
 
-        private void IngredientDeleted(DeleteMessage<IngredientWrapper> _) => Load();
+        private async void IngredientDeleted(DeleteMessage<IngredientWrapper> _) => await LoadAsync();
 
-        public void Load()
+        public async Task LoadAsync()
         {
             Ingredients.Clear();
-            var ingredients = _ingredientFacade.GetAsync().GetAwaiter().GetResult();
+            var ingredients = await _ingredientFacade.GetAsync();
             Ingredients.AddRange(ingredients);
         }
 

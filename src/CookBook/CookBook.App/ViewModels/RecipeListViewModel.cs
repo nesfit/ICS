@@ -5,6 +5,7 @@ using CookBook.App.Services;
 using CookBook.App.Wrappers;
 using CookBook.BL.Models;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CookBook.App.Commands;
 using CookBook.BL.Facades;
@@ -35,18 +36,18 @@ namespace CookBook.App.ViewModels
 
         public ICommand RecipeSelectedCommand { get; }
 
-        private void RecipeDeleted(DeleteMessage<RecipeWrapper> _) => Load();
+        private async void RecipeDeleted(DeleteMessage<RecipeWrapper> _) => await LoadAsync();
 
-        private void RecipeUpdated(UpdateMessage<RecipeWrapper> _) => Load();
+        private async void RecipeUpdated(UpdateMessage<RecipeWrapper> _) => await LoadAsync();
 
         private void RecipeNew() => _mediator.Send(new NewMessage<RecipeWrapper>());
 
         private void RecipeSelected(RecipeListModel recipeListModel) => _mediator.Send(new SelectedMessage<RecipeWrapper> { Id = recipeListModel.Id });
 
-        public void Load()
+        public async Task LoadAsync()
         {
             Recipes.Clear();
-            var recipes = _recipeFacade.GetAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+            var recipes = await _recipeFacade.GetAsync();
             Recipes.AddRange(recipes);
         }
 

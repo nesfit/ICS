@@ -1,4 +1,5 @@
-﻿using CookBook.App.ViewModels;
+﻿using System.Threading.Tasks;
+using CookBook.App.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,11 +12,11 @@ namespace CookBook.App.Views
             Loaded += OnLoaded;
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        private async void OnLoaded(object sender, RoutedEventArgs e)
         {
             if (DataContext is IListViewModel viewModel)
             {
-                viewModel.Load();
+                await viewModel.LoadAsync();
             }
         }
     }
