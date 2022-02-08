@@ -49,13 +49,13 @@ public class  CRUDFacadeTestsBase : IAsyncLifetime
 
     public async Task InitializeAsync()
     {
-        await using var uow = UnitOfWorkFactory.Create();
-        await uow.Database.EnsureCreatedAsync();
+        await using var dbx = await DbContextFactory.CreateDbContextAsync();
+        await dbx.Database.EnsureCreatedAsync();
     }
 
     public async Task DisposeAsync()
     {
-        await using var uow = UnitOfWorkFactory.Create();
-        await uow.Database.EnsureDeletedAsync();
+        await using var dbx = await DbContextFactory.CreateDbContextAsync();
+        await dbx.Database.EnsureDeletedAsync();
     }
 }
