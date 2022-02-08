@@ -16,12 +16,12 @@ namespace CookBook.App.Wrappers
             get => GetValue<Guid>();
             set => SetValue(value);
         }
-        public string IngredientName
+        public string? IngredientName
         {
             get => GetValue<string>();
             set => SetValue(value);
         }
-        public string IngredientDescription
+        public string? IngredientDescription
         {
             get => GetValue<string>();
             set => SetValue(value);

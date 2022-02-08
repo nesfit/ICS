@@ -17,13 +17,8 @@ namespace CookBook.App.ViewModels
             }
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-        public virtual void LoadInDesignMode()
-        {
-        }
+        public virtual void LoadInDesignMode() { }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using CookBook.App.Extensions;
 using CookBook.Common.Enums;
 
 namespace CookBook.App.Wrappers
@@ -15,12 +16,12 @@ namespace CookBook.App.Wrappers
             InitializeCollectionProperties(model);
         }
 
-        public string Name
+        public string? Name
         {
             get => GetValue<string>();
             set => SetValue(value);
         }
-        public string Description
+        public string? Description
         {
             get => GetValue<string>();
             set => SetValue(value);
@@ -35,7 +36,7 @@ namespace CookBook.App.Wrappers
             get => GetValue<FoodType>();
             set => SetValue(value);
         }
-        public string ImageUrl
+        public string? ImageUrl
         {
             get => GetValue<string>();
             set => SetValue(value);
@@ -47,13 +48,12 @@ namespace CookBook.App.Wrappers
             {
                 throw new ArgumentException("Ingredients cannot be null");
             }
-            Ingredients = new ObservableCollection<IngredientAmountWrapper>(
-                model.Ingredients.Select(e => new IngredientAmountWrapper(e)));
+            Ingredients.AddRange(model.Ingredients.Select(e => new IngredientAmountWrapper(e)));
 
             RegisterCollection(Ingredients, model.Ingredients);
         }
 
-        public ObservableCollection<IngredientAmountWrapper> Ingredients { get; set; } = null!;
+        public ObservableCollection<IngredientAmountWrapper> Ingredients { get; set; } = new();
 
         public static implicit operator RecipeWrapper(RecipeDetailModel detailModel)
             => new(detailModel);

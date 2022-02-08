@@ -35,7 +35,7 @@ namespace CookBook.App.ViewModels
 
         private void IngredientNew() => _mediator.Send(new NewMessage<IngredientWrapper>());
 
-        private void IngredientSelected(IngredientListModel ingredient) => _mediator.Send(new SelectedMessage<IngredientWrapper> { Id = ingredient.Id });
+        private void IngredientSelected(IngredientListModel? ingredient) => _mediator.Send(new SelectedMessage<IngredientWrapper> { Id = ingredient?.Id });
 
         private async void IngredientUpdated(UpdateMessage<IngredientWrapper> _) => await LoadAsync();
 
@@ -50,7 +50,7 @@ namespace CookBook.App.ViewModels
 
         public override void LoadInDesignMode()
         {
-            Ingredients.Add(new IngredientListModel(Name: "Voda") { ImageUrl = "https://www.pngitem.com/pimgs/m/40-406527_cartoon-glass-of-water-png-glass-of-water.png" });
+            Ingredients.Add(new IngredientListModel(Name: "Water") { ImageUrl = "https://www.pngitem.com/pimgs/m/40-406527_cartoon-glass-of-water-png-glass-of-water.png" });
         }
     }
 }

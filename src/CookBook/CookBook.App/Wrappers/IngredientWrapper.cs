@@ -9,17 +9,17 @@ namespace CookBook.App.Wrappers
         {
         }
 
-        public string Name
+        public string? Name
         {
             get => GetValue<string>();
             set => SetValue(value);
         }
-        public string Description
+        public string? Description
         {
             get => GetValue<string>();
             set => SetValue(value);
         }
-        public string ImageUrl
+        public string? ImageUrl
         {
             get => GetValue<string>();
             set => SetValue(value);

@@ -26,11 +26,11 @@ namespace CookBook.App.ViewModels
             _messageDialogService = messageDialogService;
             _mediator = mediator;
 
-            SaveCommand = new RelayCommand(async () => await SaveAsync(), CanSave);
-            DeleteCommand = new RelayCommand(async () => await DeleteAsync());
+            SaveCommand = new AsyncRelayCommand(SaveAsync, CanSave);
+            DeleteCommand = new AsyncRelayCommand(DeleteAsync);
         }
 
-        public IngredientWrapper? Model { get; set; }
+        public IngredientWrapper? Model { get; private set; }
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
 
@@ -58,7 +58,7 @@ namespace CookBook.App.ViewModels
 
         public async Task DeleteAsync()
         {
-            if (Model == null)
+            if (Model is null)
             {
                 throw new InvalidOperationException("Null model cannot be deleted");
             }
@@ -75,7 +75,7 @@ namespace CookBook.App.ViewModels
 
                 try
                 {
-                    await _ingredientFacade.DeleteAsync(Model.Id);
+                    await _ingredientFacade.DeleteAsync(Model!.Id);
                 }
                 catch
                 {
@@ -97,8 +97,8 @@ namespace CookBook.App.ViewModels
         {
             base.LoadInDesignMode();
             Model = new IngredientWrapper(new IngredientDetailModel(
-                Name: "Voda",
-                Description: "Popis vody")
+                Name: "Water",
+                Description: "Water description")
             {
                 ImageUrl = "https://www.pngitem.com/pimgs/m/40-406527_cartoon-glass-of-water-png-glass-of-water.png"
             });

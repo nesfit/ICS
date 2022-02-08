@@ -12,7 +12,7 @@ namespace CookBook.App.Extensions
         {
             services.AddTransient<TService, TImplementation>();
 
-            services.AddSingleton<Func<TService>>(x => x.GetService<TService>);
+            services.AddSingleton<Func<TService>>(x => x.GetRequiredService<TService>);
 
             services.AddSingleton<IFactory<TService>, Factory<TService>>();
         }

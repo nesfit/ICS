@@ -11,7 +11,7 @@ namespace CookBook.App.Wrappers
     public abstract class ModelWrapper<T> : ViewModelBase, IModel
         where T : IModel
     {
-        protected ModelWrapper(T model)
+        protected ModelWrapper(T? model)
         {
             if (model == null)
             {
@@ -29,11 +29,11 @@ namespace CookBook.App.Wrappers
 
         public T Model { get; }
 
-        protected TValue GetValue<TValue>([CallerMemberName] string? propertyName = null)
+        protected TValue? GetValue<TValue>([CallerMemberName] string? propertyName = null)
         {
             var propertyInfo = Model.GetType().GetProperty(propertyName ?? string.Empty);
             return (propertyInfo?.GetValue(Model) is TValue
-                ? (TValue)propertyInfo.GetValue(Model)
+                ? (TValue?)propertyInfo.GetValue(Model)
                 : default);
         }
 

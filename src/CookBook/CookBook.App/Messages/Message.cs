@@ -3,18 +3,18 @@ using System;
 
 namespace CookBook.App.Messages
 {
-    public abstract class Message<T> : IMessage
+    public abstract record Message<T> : IMessage
         where T : IModel
     {
-        private Guid? _id;
+        private readonly Guid? _id;
 
-        public Guid Id
+        public Guid? Id
         {
-            get => _id ?? Model.Id;
-            set => _id = value;
+            get => _id ?? Model?.Id;
+            init => _id = value;
         }
 
-        public Guid TargetId { get; set; }
-        public T Model { get; set; }
+        public Guid? TargetId { get; init; }
+        public T? Model { get; init; }
     }
 }

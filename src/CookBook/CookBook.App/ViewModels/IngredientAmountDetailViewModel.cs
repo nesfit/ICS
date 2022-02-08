@@ -48,16 +48,22 @@ namespace CookBook.App.ViewModels
 
         private async Task IngredientSelected(SelectedMessage<IngredientWrapper> message)
         {
-            var ingredientDetail = await _ingredientFacade.GetAsync(message.Id);
-            Model = new IngredientAmountDetailModel(
-                ingredientDetail?.Id ?? Guid.Empty,
-                ingredientDetail?.Name ?? string.Empty,
-                ingredientDetail?.Description ?? string.Empty,
-                default,
-                default
-                )
+            if (message.Id is null)
             {
-            };
+                Model = null;
+            }
+            else
+            {
+                var ingredientDetail = await _ingredientFacade.GetAsync(message.Id.Value);
+                Model = new IngredientAmountDetailModel(
+                    ingredientDetail?.Id ?? Guid.Empty,
+                    ingredientDetail?.Name ?? string.Empty,
+                    ingredientDetail?.Description ?? string.Empty,
+                    default,
+                    default
+                );
+            }
+            
         }
 
         private void IngredientNew()
@@ -86,7 +92,10 @@ namespace CookBook.App.ViewModels
 
         private void Save()
         {
-            if (Model == null) throw new InvalidOperationException("Null model cannot be saved");
+            if (Model == null)
+            {
+                throw new InvalidOperationException("Null model cannot be saved");
+            }
 
             if (Model.Id == Guid.Empty)
             {

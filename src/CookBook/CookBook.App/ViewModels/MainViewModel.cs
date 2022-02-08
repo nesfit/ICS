@@ -58,8 +58,8 @@ namespace CookBook.App.ViewModels
         public ObservableCollection<IIngredientDetailViewModel> IngredientDetailViewModels { get; } = new ObservableCollection<IIngredientDetailViewModel>();
 
 
-        public IRecipeDetailViewModel SelectedRecipeDetailViewModel { get; set; }
-        public IIngredientDetailViewModel SelectedIngredientDetailViewModel { get; set; }
+        public IRecipeDetailViewModel? SelectedRecipeDetailViewModel { get; set; }
+        public IIngredientDetailViewModel? SelectedIngredientDetailViewModel { get; set; }
 
 
         public ICommand CloseRecipeDetailTabCommand { get; }
@@ -88,7 +88,7 @@ namespace CookBook.App.ViewModels
 
         private void OnRecipeDeleted(DeleteMessage<RecipeWrapper> message)
         {
-            var recipe = RecipeDetailViewModels.SingleOrDefault(i => i.Model.Id == message.Id);
+            var recipe = RecipeDetailViewModels.SingleOrDefault(i => i.Model?.Id == message.Id);
             if (recipe != null)
             {
                 RecipeDetailViewModels.Remove(recipe);
@@ -97,50 +97,71 @@ namespace CookBook.App.ViewModels
 
         private void OnIngredientDeleted(DeleteMessage<IngredientWrapper> message)
         {
-            var ingredient = IngredientDetailViewModels.SingleOrDefault(i => i.Model.Id == message.Id);
+            var ingredient = IngredientDetailViewModels.SingleOrDefault(i => i.Model?.Id == message.Id);
             if (ingredient != null)
             {
                 IngredientDetailViewModels.Remove(ingredient);
             }
         }
 
-        private void SelectRecipe(Guid id)
+        private void SelectRecipe(Guid? id)
         {
-            var recipeDetailViewModel =
-                RecipeDetailViewModels.SingleOrDefault(vm => vm.Model.Id == id);
-            if (recipeDetailViewModel == null)
+            if (id is null)
             {
-                recipeDetailViewModel = _recipeDetailViewModelFactory.Create();
-                RecipeDetailViewModels.Add(recipeDetailViewModel);
-                recipeDetailViewModel.LoadAsync(id);
+                SelectedRecipeDetailViewModel = null;
             }
 
-            SelectedRecipeDetailViewModel = recipeDetailViewModel;
-        }
-
-        private void SelectIngredient(Guid id)
-        {
-            var ingredientDetailViewModel =
-                IngredientDetailViewModels.SingleOrDefault(vm => vm.Model.Id == id);
-            if (ingredientDetailViewModel == null)
+            else
             {
-                ingredientDetailViewModel = _ingredientDetailViewModelFactory.Create();
-                IngredientDetailViewModels.Add(ingredientDetailViewModel);
-                ingredientDetailViewModel.LoadAsync(id);
+                var recipeDetailViewModel = RecipeDetailViewModels.SingleOrDefault(vm => vm.Model?.Id == id);
+                if (recipeDetailViewModel == null)
+                {
+                    recipeDetailViewModel = _recipeDetailViewModelFactory.Create();
+                    RecipeDetailViewModels.Add(recipeDetailViewModel);
+                    recipeDetailViewModel.LoadAsync(id.Value);
+                }
+
+                SelectedRecipeDetailViewModel = recipeDetailViewModel;   
             }
-
-            SelectedIngredientDetailViewModel = ingredientDetailViewModel;
         }
 
-        private void OnCloseRecipeDetailTabExecute(IRecipeDetailViewModel recipeDetailViewModel)
+        private void SelectIngredient(Guid? id)
         {
-            // TODO: Check if the Detail has changes and ask user to cancel
-            RecipeDetailViewModels.Remove(recipeDetailViewModel);
+            if (id is null)
+            {
+                SelectedIngredientDetailViewModel = null;
+            }
+            else
+            {
+                var ingredientDetailViewModel =
+                    IngredientDetailViewModels.SingleOrDefault(vm => vm.Model?.Id == id);
+                if (ingredientDetailViewModel == null)
+                {
+                    ingredientDetailViewModel = _ingredientDetailViewModelFactory.Create();
+                    IngredientDetailViewModels.Add(ingredientDetailViewModel);
+                    ingredientDetailViewModel.LoadAsync(id.Value);
+                }
+
+                SelectedIngredientDetailViewModel = ingredientDetailViewModel;  
+            }
+            
         }
-        private void OnCloseIngredientDetailTabExecute(IIngredientDetailViewModel ingredientDetailViewModel)
+
+        private void OnCloseRecipeDetailTabExecute(IRecipeDetailViewModel? recipeDetailViewModel)
         {
-            // TODO: Check if the Detail has changes and ask user to cancel
-            IngredientDetailViewModels.Remove(ingredientDetailViewModel);
+            if (recipeDetailViewModel is not null)
+            {
+                // TODO: Check if the Detail has changes and ask user to cancel
+                RecipeDetailViewModels.Remove(recipeDetailViewModel);
+            }
+        }
+        private void OnCloseIngredientDetailTabExecute(IIngredientDetailViewModel? ingredientDetailViewModel)
+        {
+            if (ingredientDetailViewModel is not null)
+            {
+                // TODO: Check if the Detail has changes and ask user to cancel
+                IngredientDetailViewModels.Remove(ingredientDetailViewModel);
+            }
         }
     }
 }

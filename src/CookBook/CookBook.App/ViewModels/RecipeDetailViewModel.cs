@@ -31,8 +31,8 @@ namespace CookBook.App.ViewModels
             _mediator = mediator;
             IngredientAmountDetailViewModel = ingredientAmountDetailViewModel;
 
-            SaveCommand = new RelayCommand(async () => await SaveAsync(), CanSave);
-            DeleteCommand = new RelayCommand(async () => await DeleteAsync());
+            SaveCommand = new AsyncRelayCommand(SaveAsync, CanSave);
+            DeleteCommand = new AsyncRelayCommand(DeleteAsync);
 
             mediator.Register<NewMessage<IngredientAmountWrapper>>(NewIngredientAmount);
             mediator.Register<UpdateMessage<IngredientAmountWrapper>>(UpdateIngredientAmount);
@@ -74,7 +74,7 @@ namespace CookBook.App.ViewModels
 
         private void DeleteIngredientAmount(DeleteMessage<IngredientAmountWrapper> message)
         {
-            if (Model != null && message.TargetId != Model?.Id)
+            if (message.TargetId != Model?.Id || message.Model is null)
             {
                 return;
             }
@@ -85,7 +85,7 @@ namespace CookBook.App.ViewModels
 
         private void NewIngredientAmount(NewMessage<IngredientAmountWrapper> message)
         {
-            if (Model != null && message.TargetId != Model.Id)
+            if (message.TargetId != Model?.Id || message.Model is null)
             {
                 return;
             }
@@ -105,7 +105,7 @@ namespace CookBook.App.ViewModels
 
         public async Task DeleteAsync()
         {
-            if (Model == null)
+            if (Model is null)
             {
                 throw new InvalidOperationException("Null model cannot be deleted");
             }
@@ -125,7 +125,7 @@ namespace CookBook.App.ViewModels
 
                 try
                 {
-                    await _recipeFacade.DeleteAsync(Model.Id);
+                    await _recipeFacade.DeleteAsync(Model!.Id);
                 }
                 catch
                 {
@@ -136,7 +136,7 @@ namespace CookBook.App.ViewModels
                         MessageDialogResult.OK);
                 }
 
-                _mediator.Send(new DeleteMessage<RecipeWrapper> { Model = Model });
+                _mediator.Send(new DeleteMessage<RecipeWrapper> { Model = Model! });
             }
         }
 

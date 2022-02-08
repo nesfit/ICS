@@ -15,7 +15,7 @@ namespace CookBook.App.Services
             var key = typeof(TMessage);
             if (!_registeredActions.TryGetValue(key, out _))
             {
-                _registeredActions[key] = new List<Delegate>();
+                _registeredActions[key] = new List<Delegate?>();
             }
             _registeredActions[key].Add(action);
         }
@@ -29,7 +29,7 @@ namespace CookBook.App.Services
             
             var actionsList = actions.ToList();
             actionsList.Remove(action);
-            _registeredActions[key] = new List<Delegate>(actionsList);
+            _registeredActions[key] = new List<Delegate?>(actionsList);
         }
 
         public void Send<TMessage>(TMessage message)
@@ -39,7 +39,7 @@ namespace CookBook.App.Services
             
             foreach (var action in actions.Where(action => action != null))
             {
-                action.DynamicInvoke(message);
+                action?.DynamicInvoke(message);
             }
         }
     }

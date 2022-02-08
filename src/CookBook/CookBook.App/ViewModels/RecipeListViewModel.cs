@@ -42,7 +42,13 @@ namespace CookBook.App.ViewModels
 
         private void RecipeNew() => _mediator.Send(new NewMessage<RecipeWrapper>());
 
-        private void RecipeSelected(RecipeListModel recipeListModel) => _mediator.Send(new SelectedMessage<RecipeWrapper> { Id = recipeListModel.Id });
+        private void RecipeSelected(RecipeListModel? recipeListModel)
+        {
+            if (recipeListModel is not null)
+            {
+                _mediator.Send(new SelectedMessage<RecipeWrapper> { Id = recipeListModel.Id });
+            }
+        }
 
         public async Task LoadAsync()
         {
@@ -56,8 +62,8 @@ namespace CookBook.App.ViewModels
             Recipes.Add(new RecipeListModel(
                 Name: "Spaghetti",
                 Duration: TimeSpan.FromMinutes(30),
-                FoodType.MainDish
-                ) { ImageUrl = "https://cleanfoodcrush.com/wp-content/uploads/2019/01/CleanFoodCrush-Super-Easy-Beef-Stir-Fry-Recipe.jpg" });
+                FoodType.MainDish)
+                { ImageUrl = "https://cleanfoodcrush.com/wp-content/uploads/2019/01/CleanFoodCrush-Super-Easy-Beef-Stir-Fry-Recipe.jpg" });
         }
     }
 }

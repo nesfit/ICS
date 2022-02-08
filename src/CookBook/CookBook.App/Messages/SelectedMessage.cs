@@ -2,7 +2,7 @@
 
 namespace CookBook.App.Messages
 {
-    public class SelectedMessage<T> : Message<T>
+    public record SelectedMessage<T> : Message<T>
         where T : IModel
     {
     }

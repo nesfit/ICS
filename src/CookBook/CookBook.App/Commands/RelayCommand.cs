@@ -3,67 +3,40 @@ using System.Windows.Input;
 
 namespace CookBook.App.Commands
 {
-    public class RelayCommand : ICommand
+    public class RelayCommand<T> : ICommand
     {
-        private readonly Action<object> _executeAction;
-        private readonly Func<object, bool>? _canExecuteAction;
+        private readonly Microsoft.Toolkit.Mvvm.Input.RelayCommand<T> _relayCommand;
 
-        public RelayCommand(Action<object> executeAction, Func<object, bool>? canExecuteAction = null)
+        public RelayCommand(Action<T?> execute, Predicate<T?>? canExecute = null)
         {
-            _executeAction = executeAction;
-            _canExecuteAction = canExecuteAction;
+            _relayCommand = canExecute is null ? new Microsoft.Toolkit.Mvvm.Input.RelayCommand<T>(execute) : new Microsoft.Toolkit.Mvvm.Input.RelayCommand<T>(execute, canExecute);
         }
 
-        public RelayCommand(Action executeAction, Func<bool>? canExecuteAction = null)
-            : this(p => executeAction(), p => canExecuteAction?.Invoke() ?? true)
-        {
-        }
+        public bool CanExecute(object? parameter) => _relayCommand.CanExecute(parameter);
 
-        public bool CanExecute(object parameter) 
-            => _canExecuteAction?.Invoke(parameter) ?? true;
+        public void Execute(object? parameter) => _relayCommand.Execute(parameter);
 
-        public void Execute(object parameter) 
-            => _executeAction?.Invoke(parameter);
-
-        public event EventHandler CanExecuteChanged
+        public event EventHandler? CanExecuteChanged
         {
             add => CommandManager.RequerySuggested += value;
             remove => CommandManager.RequerySuggested -= value;
         }
     }
-
-    public class RelayCommand<T> : ICommand
+    
+    public class RelayCommand : ICommand
     {
-        private readonly Action<T> _execute;
-        private readonly Func<T, bool>? _canExecute;
+        private readonly Microsoft.Toolkit.Mvvm.Input.RelayCommand _relayCommand;
 
-        public RelayCommand(Action<T> execute, Func<T, bool>? canExecute = null)
+        public RelayCommand(Action execute, Func<bool>? canExecute = null)
         {
-            _execute = execute;
-            _canExecute = canExecute;
+            _relayCommand = canExecute is null ? new Microsoft.Toolkit.Mvvm.Input.RelayCommand(execute) : new Microsoft.Toolkit.Mvvm.Input.RelayCommand(execute, canExecute);
         }
 
-        public bool CanExecute(object parameter)
-        {
-            if (parameter is T typedParameter)
-            {
-                return _canExecute?.Invoke(typedParameter) ?? true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        public bool CanExecute(object? parameter) => _relayCommand.CanExecute(parameter);
 
-        public void Execute(object parameter)
-        {
-            if (parameter is T typedParameter)
-            {
-                _execute?.Invoke(typedParameter);
-            }
-        }
+        public void Execute(object? parameter) => _relayCommand.Execute(parameter);
 
-        public event EventHandler CanExecuteChanged
+        public event EventHandler? CanExecuteChanged
         {
             add => CommandManager.RequerySuggested += value;
             remove => CommandManager.RequerySuggested -= value;
