@@ -4,6 +4,7 @@ using CookBook.App.Services.MessageDialog;
 using CookBook.App.Wrappers;
 using CookBook.BL.Models;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CookBook.App.Commands;
 using CookBook.BL.Facades;
@@ -30,8 +31,8 @@ namespace CookBook.App.ViewModels
             _mediator = mediator;
             IngredientAmountDetailViewModel = ingredientAmountDetailViewModel;
 
-            SaveCommand = new RelayCommand(Save, CanSave);
-            DeleteCommand = new RelayCommand(Delete);
+            SaveCommand = new RelayCommand(async () => await SaveAsync(), CanSave);
+            DeleteCommand = new RelayCommand(async () => await DeleteAsync());
 
             mediator.Register<NewMessage<IngredientAmountWrapper>>(NewIngredientAmount);
             mediator.Register<UpdateMessage<IngredientAmountWrapper>>(UpdateIngredientAmount);
@@ -69,7 +70,7 @@ namespace CookBook.App.ViewModels
             }
         }
 
-        public void Load(Guid id) => Model = _recipeFacade.GetAsync(id).GetAwaiter().GetResult() ?? RecipeDetailModel.Empty;
+        public async Task LoadAsync(Guid id) => Model = await _recipeFacade.GetAsync(id) ?? RecipeDetailModel.Empty;
 
         private void DeleteIngredientAmount(DeleteMessage<IngredientAmountWrapper> message)
         {
@@ -102,7 +103,7 @@ namespace CookBook.App.ViewModels
             SelectedIngredientAmount = null;
         }
 
-        private void Delete()
+        public async Task DeleteAsync()
         {
             if (Model == null)
             {
@@ -124,7 +125,7 @@ namespace CookBook.App.ViewModels
 
                 try
                 {
-                    _recipeFacade.DeleteAsync(Model.Id).GetAwaiter().GetResult();
+                    await _recipeFacade.DeleteAsync(Model.Id);
                 }
                 catch
                 {
@@ -145,14 +146,14 @@ namespace CookBook.App.ViewModels
             && !string.IsNullOrWhiteSpace(Model.Description)
             && Model.Duration != default;
 
-        private void Save()
+        public async Task SaveAsync()
         {
             if (Model == null)
             {
                 throw new InvalidOperationException("Null model cannot be saved");
             }
 
-            Model = _recipeFacade.SaveAsync(Model).GetAwaiter().GetResult();
+            Model = await _recipeFacade.SaveAsync(Model);
             _mediator.Send(new UpdateMessage<RecipeWrapper> { Model = Model });
         }
 

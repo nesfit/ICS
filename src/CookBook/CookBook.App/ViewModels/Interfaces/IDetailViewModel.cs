@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace CookBook.App.ViewModels
 {
-    public interface IDetailViewModel<TDetail> : IViewModel
+    public interface IDetailViewModel<out TDetail> : IViewModel
     {
-        TDetail Model { get; set; }
-
-        void Load(Guid id);
+        TDetail Model { get; }
+        Task LoadAsync(Guid id);
+        Task DeleteAsync();
+        Task SaveAsync();
     }
 }

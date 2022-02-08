@@ -3,6 +3,7 @@ using CookBook.App.Services;
 using CookBook.App.Wrappers;
 using CookBook.BL.Models;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CookBook.App.Commands;
 using CookBook.BL.Facades;
@@ -24,7 +25,7 @@ namespace CookBook.App.ViewModels
             DeleteCommand = new RelayCommand(Delete);
             IngredientNewCommand = new RelayCommand(IngredientNew);
 
-            mediator.Register<SelectedMessage<IngredientWrapper>>(IngredientSelected);
+            mediator.Register<SelectedMessage<IngredientWrapper>>(async message => await IngredientSelected(message));
             mediator.Register<SelectedMessage<IngredientAmountWrapper>>(IngredientAmountSelected);
         }
 
@@ -45,9 +46,9 @@ namespace CookBook.App.ViewModels
             Model = message.Model;
         }
 
-        private void IngredientSelected(SelectedMessage<IngredientWrapper> message)
+        private async Task IngredientSelected(SelectedMessage<IngredientWrapper> message)
         {
-            var ingredientDetail = _ingredientFacade.GetAsync(message.Id).GetAwaiter().GetResult();
+            var ingredientDetail = await _ingredientFacade.GetAsync(message.Id);
             Model = new IngredientAmountDetailModel(
                 ingredientDetail?.Id ?? Guid.Empty,
                 ingredientDetail?.Name ?? string.Empty,

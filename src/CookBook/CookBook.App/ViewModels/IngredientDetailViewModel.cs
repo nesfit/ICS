@@ -4,6 +4,7 @@ using CookBook.App.Services.MessageDialog;
 using CookBook.App.Wrappers;
 using CookBook.BL.Models;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CookBook.App.Commands;
 using CookBook.BL.Facades;
@@ -25,28 +26,28 @@ namespace CookBook.App.ViewModels
             _messageDialogService = messageDialogService;
             _mediator = mediator;
 
-            SaveCommand = new RelayCommand(Save, CanSave);
-            DeleteCommand = new RelayCommand(Delete);
+            SaveCommand = new RelayCommand(async () => await SaveAsync(), CanSave);
+            DeleteCommand = new RelayCommand(async () => await DeleteAsync());
         }
 
         public IngredientWrapper? Model { get; set; }
-        public ICommand SaveCommand { get; set; }
-        public ICommand DeleteCommand { get; set; }
+        public ICommand SaveCommand { get; }
+        public ICommand DeleteCommand { get; }
 
 
-        public void Load(Guid id)
+        public async Task LoadAsync(Guid id)
         {
-            Model = _ingredientFacade.GetAsync(id).GetAwaiter().GetResult() ??  IngredientDetailModel.Empty;
+            Model = await _ingredientFacade.GetAsync(id) ??  IngredientDetailModel.Empty;
         }
 
-        public void Save()
+        public async Task SaveAsync()
         {
             if (Model == null)
             {
                 throw new InvalidOperationException("Null model cannot be saved");
             }
 
-            Model = _ingredientFacade.SaveAsync(Model.Model).GetAwaiter().GetResult();
+            Model = await _ingredientFacade.SaveAsync(Model.Model);
             _mediator.Send(new UpdateMessage<IngredientWrapper> { Model = Model });
         }
 
@@ -55,7 +56,7 @@ namespace CookBook.App.ViewModels
             && !string.IsNullOrWhiteSpace(Model.Name)
             && !string.IsNullOrWhiteSpace(Model.Description);
 
-        public void Delete()
+        public async Task DeleteAsync()
         {
             if (Model == null)
             {
@@ -74,7 +75,7 @@ namespace CookBook.App.ViewModels
 
                 try
                 {
-                    _ingredientFacade.DeleteAsync(Model.Id).GetAwaiter().GetResult();
+                    await _ingredientFacade.DeleteAsync(Model.Id);
                 }
                 catch
                 {

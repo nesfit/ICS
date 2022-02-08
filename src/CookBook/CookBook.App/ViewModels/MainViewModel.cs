@@ -112,7 +112,7 @@ namespace CookBook.App.ViewModels
             {
                 recipeDetailViewModel = _recipeDetailViewModelFactory.Create();
                 RecipeDetailViewModels.Add(recipeDetailViewModel);
-                recipeDetailViewModel.Load(id);
+                recipeDetailViewModel.LoadAsync(id);
             }
 
             SelectedRecipeDetailViewModel = recipeDetailViewModel;
@@ -126,7 +126,7 @@ namespace CookBook.App.ViewModels
             {
                 ingredientDetailViewModel = _ingredientDetailViewModelFactory.Create();
                 IngredientDetailViewModels.Add(ingredientDetailViewModel);
-                ingredientDetailViewModel.Load(id);
+                ingredientDetailViewModel.LoadAsync(id);
             }
 
             SelectedIngredientDetailViewModel = ingredientDetailViewModel;
