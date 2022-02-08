@@ -12,7 +12,9 @@ namespace CookBook.Common.Tests
                 {
                     MembersToIgnore = new List<string>(),
                     IgnoreCollectionOrder = true,
-                    IgnoreObjectTypes = true
+                    IgnoreObjectTypes = true,
+                    CompareStaticProperties = false,
+                    CompareStaticFields = false
                 }
             };
 
