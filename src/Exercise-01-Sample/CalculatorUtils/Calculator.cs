@@ -2,7 +2,7 @@
 
 namespace Exercise_01.CalculatorUtils
 {
-    public class Calculator
+    public static class Calculator
     {
         /// <summary>
         ///     Calculates basic mathematical operations (+,-,*,/)

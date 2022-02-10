@@ -2,7 +2,7 @@
 
 namespace Exercise_01.ConsoleApp
 {
-    internal class Program
+    internal static class Program
     {
         /// <summary>
         ///     function Main - has to be static, has to have a name "Main", doesn't have to return a value
