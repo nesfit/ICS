@@ -1,21 +1,26 @@
----
-title: ICS 00 - ICS Organization 
-theme: simple
-css: assets/theme.css
-separator: "^---$"
-verticalSeparator: "^\\+\\+\\+$"
-highlightTheme: vs
-progress: true
-slideNumber: true
-mouseWheel: false
-enableMenu: true
-enableChalkboard: true
-enableTitleFooter: true
----
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>ICS 00 - ICS Organization</title>
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./dist/reset.css" />
+    <link rel="stylesheet" href="./dist/reveal.css" />
+    <link rel="stylesheet" href="./dist/theme/simple.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/vs.css" />
+
+    <link rel="stylesheet" href="./_assets/assets/theme.css" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
 
 # Seminář C# - ICS, Organizační pokyny
 
----
+</script></section><section  data-markdown><script type="text/template">
 
 # Aktuality k předmětu
  - [Visual Studio 2022 Enterprise](https://aka.ms/devtoolsforteaching) je nově dostupné v Azure Dev Tools for Teaching. Přihlášení je nutné s loginem z domény VUT, tj xlogin00@vutbr.cz
@@ -23,7 +28,7 @@ enableTitleFooter: true
     * Pokud máte vytvořeno pod soukromými účty, je třeba vytvořit projekt znovu pod univerzitními a pushnout existující repozitář tak, aby Vám zůstala historie včetně správných časů commitů.
     * Účet **uciteliw5@vutbr.cz** přidejte jako poslední a ujistěte se, že má nastavena oprávnění `Stakeholder`. Vaše účty musí mít oprávnění `Basic`, abyste viděli kód. Nastavení oprávnění organizace uvidíte na **https://dev.azure.com/ics-2022-team0000/_settings/users**.
 
----
+</script></section><section ><section data-markdown><script type="text/template">
 
 # Rozvrh
 
@@ -33,7 +38,7 @@ enableTitleFooter: true
 | --------- | -------- | -------------- |
 | Přednáška | D105     | Pá 08:00-09:50 |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 
 ## Cvičení
 Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, na kterém budete moct cvičení aktivně zúčastnit. Bude potřeba vývojové prostředí ideálně Visual Studio 2022 / Rider / VSCode.
@@ -42,7 +47,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 | ------------------------------- | -------- | -------------- |
 | Dobrovolné demonstrační cvičení | D105     | Pá 10:00-11:50 |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 
 ## Plán semestru
 
@@ -59,7 +64,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 | 11.03.   | L05 | Psaní čistého a udržovatelného kódu                                                                                                                                                                    |
 | 18.03.   | L06 | Návrhový vzor Model-View-ViewModel (MVVM)                                                                                                                                                              |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 
 | Datum    | Typ | Téma přednášky                                                                                                                                                                                         |
 | -------- | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -78,7 +83,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 
 LXY - přednáška | EXY - democvičení | P0X - projekt
 
----
+</script></section></section><section  data-markdown><script type="text/template">
 
 # Projekt
 * Projekt bude vypracovaný v 5ti členném týmu.
@@ -94,7 +99,7 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
   * obhajovat projekt bude náhodně vybraný člen týmu,
   * nemusíte chodit v obleku...,
 
----
+</script></section><section ><section data-markdown><script type="text/template">
 
 # Nástroje použity ve cvičeních
 
@@ -104,7 +109,7 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 | [Resharper](https://www.jetbrains.com/resharper/)                                                    | Doplněk            | Nástroje na lepší produktivitu, refaktorování. Studentská licence je k dispozici zdarma [zde](https://www.jetbrains.com/student/) |
 | [Code metrices](https://visualstudiogallery.msdn.microsoft.com/369d38e1-53d3-4f5c-9351-a0560162a6d9) | Doplněk            | Zobrazování složitosti jednotlivých metod                                                                                         |
 
-+++
+</script></section><section data-markdown><script type="text/template">
 
 | Nástroj                                                                                             | Typ                | Popis                                          |
 | --------------------------------------------------------------------------------------------------- | ------------------ | ---------------------------------------------- |
@@ -112,7 +117,7 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 | [DotPeek](https://www.jetbrains.com/decompiler/)                                                    | Samostatný program | Dekompilátor C# kódu                           |
 | [MarkdownEditor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor) | Doplněk            | Handy Markdown editor for VS                   |
 
----
+</script></section></section><section  data-markdown><script type="text/template">
 
 * Q: Connection string používaný v cvičeních.
 * A:
@@ -128,7 +133,7 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 </connectionStrings>
 ```
 
----
+</script></section><section  data-markdown><script type="text/template">
 
 # Výuka - bodové rozdělení
 
@@ -136,7 +141,7 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 | --------- | --------------------- |
 | Projekt   | 100                   |
 
----
+</script></section><section  data-markdown><script type="text/template">
 
 # Vyučující
 * [Martin Dybal](https://www.linkedin.com/in/martin-dybal)
@@ -147,7 +152,7 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 * [Jan Pluskal](https://www.fit.vut.cz/person/ipluskal)
 * [Michal Koutenský](https://www.fit.vut.cz/person/koutenmi)
 
----
+</script></section><section  data-markdown><script type="text/template">
 
 # Užitečné odkazy
 * [WPF-Tutorial](https://wpf-tutorial.com/)
@@ -156,7 +161,7 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 * [Resharper features](https://www.jetbrains.com/resharper/features/) and how to use them.
 * [Pro Git book](https://git-scm.com/book/en/v2)
 
----
+</script></section><section  data-markdown><script type="text/template">
 
 # Užitečná literatura
 * [C# 9.0 in a Nutshell](https://www.amazon.com/C-9-0-Nutshell-Definitive-Reference/dp/1098100964), Ben Albahari, Joseph Albahari
@@ -164,3 +169,55 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 * [Agile Principles, Patterns, and Practices in C#](https://books.google.cz/books?id=hckt7v6g09oC), Robert C. Martin
 * [C# 3.0 Design Patterns](https://books.google.cz/books?id=pD2XMZLGUAYC), Judith Bishop
 * [The Art of Unit Testing](https://books.google.cz/books?id=2GRRmgEACAAJ&dq=the+art+of+unit+testing&hl=en&sa=X&ved=0ahUKEwjLhJeRx7DnAhU3AGMBHeScBisQ6AEILDAA), Roy Osherove
+</script></section></div>
+    </div>
+
+    <script src="./dist/reveal.js"></script>
+
+    <script src="./plugin/markdown/markdown.js"></script>
+    <script src="./plugin/highlight/highlight.js"></script>
+    <script src="./plugin/zoom/zoom.js"></script>
+    <script src="./plugin/notes/notes.js"></script>
+    <script src="./plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"controls":true,"controlsTutorial":true,"controlsLayout":"bottom-right","progress":true,"slideNumber":true,"showSlideNumber":"all","keyboard":true,"overview":true,"navigationMode":"linear","fragments":true,"fragmentInURL":false,"help":true,"mouseWheel":true,"transition":"slide","transitionSpeed":"fast"}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
