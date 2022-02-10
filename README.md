@@ -1,3 +1,5 @@
+<!---
+
 ---
 title: ICS 00 - ICS Organization 
 theme: simple
@@ -12,6 +14,8 @@ enableMenu: true
 enableChalkboard: true
 enableTitleFooter: true
 ---
+
+--->
 
 # Seminář C# - ICS, Organizační pokyny
 
