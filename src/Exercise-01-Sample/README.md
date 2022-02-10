@@ -4,10 +4,11 @@
 
 * Visit https://azure.microsoft.com/en-us/free/students/ and explore student benefits!
   * PluralSight subscription!
+  * [Azure Dev Tools for Teaching - Microsoft](https://azureforeducation.microsoft.com/devtools)
 
 ## Install prerequisities [Optional]
 
-* VS 2019 Community 
+* VS 2022 Community 
 * Chocolatey?
   * choco install dotnet-sdk -y
   * choco install jetbrainstoolbox -y
@@ -25,10 +26,9 @@
 * Create a new Backlog Items with a task for the first commit, assigned to the current sprint
 * Initialize the new project repository with License and README.md file
 * Open the new repository in Visual Studio
-* Download GitHub repository as ZIP, extract and copy the Exercise-01-before to your newly cloned repository
 * Commit & push & finish the *Initial commit task*.
 
-## Visual Studio 2019 
+## Visual Studio 2022 
 * Visual Studio -- Start page 
 * Look at the Visual Studio components, VIEW, BUILD, TOOLS, TESTS, RESHARPER ...
   * Editor, Solution Explorer, Team Explorer, Error list, Outputs, ...
