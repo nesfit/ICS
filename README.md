@@ -1,3 +1,18 @@
+---
+title: ICS 00 - ICS Organization 
+theme: simple
+css: assets/theme.css
+separator: "^---$"
+verticalSeparator: "^\\+\\+\\+$"
+highlightTheme: vs
+progress: true
+slideNumber: true
+mouseWheel: false
+enableMenu: true
+enableChalkboard: true
+enableTitleFooter: true
+---
+
 # Seminář C# - ICS, Organizační pokyny
 
 ---
@@ -18,6 +33,8 @@
 | --------- | -------- | -------------- |
 | Přednáška | D105     | Pá 08:00-09:50 |
 
++++
+
 ## Cvičení
 Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, na kterém budete moct cvičení aktivně zúčastnit. Bude potřeba vývojové prostředí ideálně Visual Studio 2022 / Rider / VSCode.
 
@@ -32,7 +49,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 | Datum    | Typ | Téma přednášky                                                                                                                                                                                         |
 | -------- | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | 11.02.   | L01 | [Úvod do jazyka C# a platformy .NET](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/) - základní syntaxe jazyka                                                                                |
-|          | E01 | Práce s Visual Studio 2019 a Azure DevOps                                                                                                                                                              |
+|          | E01 | Práce s Visual Studio 2022 a Azure DevOps (základy pro zracování projektu)                                                                                                                                                              |
 | 18.02.   | L02 | [Úvod do Objektově Orientovaného Programování](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/)                                                                                                |
 |          | E02 | Objektově orientované programování a úvod do Entity Framework                                                                                                                                          |
 | 25.02.   | L03 | [Představení základních knihovních funkcí (BCL)](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/) - dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL) |
@@ -41,6 +58,11 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 | 06.03.   | P01 | Odevzdání první fáze projektu                                                                                                                                                                          |
 | 11.03.   | L05 | Psaní čistého a udržovatelného kódu                                                                                                                                                                    |
 | 18.03.   | L06 | Návrhový vzor Model-View-ViewModel (MVVM)                                                                                                                                                              |
+
++++
+
+| Datum    | Typ | Téma přednášky                                                                                                                                                                                         |
+| -------- | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | 25.03.   | L07 | Automatizované testování - práce s xUnit, CI                                                                                                                                                           |
 | 01.04.   | L08 | [Základní koncepty tvorby uživatelského rozhraní](https://nesfit.github.io/ICS/Lectures/Lecture_08/_site/)                                                                                             |
 |          | E04 | Základy WPF a návrhový vzor MVVM                                                                                                                                                                       |
@@ -54,11 +76,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 | 03-04.05 | P03 | Obhajoby projektu                                                                                                                                                                                      |
 | 06.05.   | L13 | Multiplatformní programování - .NET Standard, .NET Core., kontejnerizace aplikací pomocí Docker                                                                                                        |
 
-LXY - přednáška
-
-EXY - democvičení
-
-P0X - projekt
+LXY - přednáška | EXY - democvičení | P0X - projekt
 
 ---
 
