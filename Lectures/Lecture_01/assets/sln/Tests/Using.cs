@@ -7,10 +7,8 @@ namespace Tests
     {
         public void Example()
         {
-            using (var streamReader = new StreamReader("c:\\file.txt"))
-            {
-                Console.Write(streamReader.ReadToEnd());
-            }
+            using var streamReader = new StreamReader("c:\\file.txt");
+            Console.Write(streamReader.ReadToEnd());
         }
     }
 }
