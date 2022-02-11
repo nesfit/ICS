@@ -11,7 +11,8 @@
   position: fixed;
   top: 1em;
   right: 3em;
-  content: url('img/logo-ics.svg');
+  /* content: url('img/logo-ics.svg'); */
+  content: url('../../../assets/img/logo-ics.svg');
   transform: scale(1);
 }
 
@@ -22,7 +23,8 @@
   position: fixed;
   top: -5em;
   left: 0em;
-  content: url('img/logo.png');
+  /* content: url('img/logo.png'); */
+  content: url('../../../assets/img/logo.png');
   transform: scale(.1);
 }
  
