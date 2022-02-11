@@ -14,6 +14,7 @@ namespace Tests
             else
             {
                 Assert.False(5 < 2 * 3);
+                Assert.True(false, "never happens");
             }
         }
     }

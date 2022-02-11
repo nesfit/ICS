@@ -5,7 +5,7 @@ namespace Tests
 {
     public class DefaultValue
     {
-        static int _y;
+        int _y;
         [Fact]
         public void Test()
         {
