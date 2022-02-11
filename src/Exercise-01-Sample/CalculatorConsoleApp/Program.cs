@@ -3,7 +3,7 @@ using CommandLine;
 
 namespace Exercise_01.CalculatorConsoleApp
 {
-    internal class Program
+    internal static class Program
     {
         internal static void LogException(Exception exception)
         {
@@ -15,7 +15,7 @@ namespace Exercise_01.CalculatorConsoleApp
             Console.WriteLine(message);
         }
 
-        internal static void Main(string[] args)
+        internal static void Main(string[]? args)
         {
             args ??= Array.Empty<string>();
 

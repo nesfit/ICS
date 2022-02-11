@@ -3,7 +3,7 @@ using Exercise_01.CalculatorUtils;
 
 namespace Exercise_01.ConsoleApp
 {
-    internal class CodeDemonstrations
+    internal static class CodeDemonstrations
     {
         public static void RunAllDemonstrations()
         {

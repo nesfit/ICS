@@ -49,15 +49,15 @@ enableTitleFooter: true
 
 +++
 ## Comparison of Visual Studio versions
-|  Supported Features                | Community |  Professional | Enterprise |
-| ---------------------------------- | --------- | ------------- | ---------- |
-| Supported Usage scenarios          | ⚫⚫⚫◯  | ⚫⚫⚫⚫     | ⚫⚫⚫⚫   |
-| Development Platform Support       | ⚫⚫⚫◯  | ⚫⚫⚫⚫     | ⚫⚫⚫⚫   |
-| Integrated Development Environment | ⚫⚫⚫◯  | ⚫⚫⚫◯      | ⚫⚫⚫⚫  |
-| Advanced Debugging and Diagnostics | ⚫⚫◯◯  | ⚫⚫◯◯      | ⚫⚫⚫⚫  |
-| Testing Tools                      | ⚫◯◯◯  | ⚫◯◯◯       | ⚫⚫⚫⚫  |
-| Cross-platform Development         | ⚫⚫◯◯  | ⚫⚫◯◯      | ⚫⚫⚫⚫  |
-| Collaboration Tools and Features   | ⚫⚫⚫◯  | ⚫⚫⚫◯      | ⚫⚫⚫⚫  |
+| Supported Features                 | Community | Professional | Enterprise |
+| ---------------------------------- | --------- | ------------ | ---------- |
+| Supported Usage scenarios          | ⚫⚫⚫◯      | ⚫⚫⚫⚫         | ⚫⚫⚫⚫       |
+| Development Platform Support       | ⚫⚫⚫◯      | ⚫⚫⚫⚫         | ⚫⚫⚫⚫       |
+| Integrated Development Environment | ⚫⚫⚫◯      | ⚫⚫⚫◯         | ⚫⚫⚫⚫       |
+| Advanced Debugging and Diagnostics | ⚫⚫◯◯      | ⚫⚫◯◯         | ⚫⚫⚫⚫       |
+| Testing Tools                      | ⚫◯◯◯      | ⚫◯◯◯         | ⚫⚫⚫⚫       |
+| Cross-platform Development         | ⚫⚫◯◯      | ⚫⚫◯◯         | ⚫⚫⚫⚫       |
+| Collaboration Tools and Features   | ⚫⚫⚫◯      | ⚫⚫⚫◯         | ⚫⚫⚫⚫       |
 
 +++
 ## Only Enterprise features
@@ -74,19 +74,20 @@ enableTitleFooter: true
 <div class="left">
 
 * Extensions:
-  * Resharper
-  * Code metrices
-  * Markdown Editor
-  * Entity Framework Power tools
+  * **Resharper**
+  * **Code metrices**
+  * **Markdown Editor**
+  * EF Core Power Tools
   * GitFlow
   * Mnemonic templates
 * Tools & Services:
-  * LinqPad
+  * **LinqPad**
   * DotPeek
   * Source Tree
-  * VSCode
-  * Rider
+  * **VSCode**
+  * **Rider**
   * Azure DevOps
+  * dotnet-cli
 
 </div>
 
@@ -128,7 +129,7 @@ For more details see [features](https://www.jetbrains.com/resharper/features/).
 
 <div class="right">
 
-![Azure-DevOps](assets/img/Azure-DevOps2.png)
+<img src="assets/img/Azure-DevOps2.png" width="100%">
 
 </div>
 
@@ -155,8 +156,7 @@ Templates for ReSharper that let you quickly generate code and data structures b
 LinqPad is not just for LINQ queries, but any C# expression, statement block or program.
 Put an end to those hundreds of Visual Studio Console projects cluttering your source folder and join the revolution of LINQPad scripters and incremental developers.
 
-![](assets/img/linqpad-sql.gif)
-
+<img src="assets/img/linqpad-sql.gif" width="90%">
 
 +++
 ### [DotPeek](https://www.jetbrains.com/decompiler/)
@@ -175,18 +175,19 @@ Supports GitHub flavored Markdown.
 ![](assets/img/markdown-editor.gif)
 
 +++
-### [Entity Framework Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools)
+### [EF Core Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools)
 
-Useful design-time utilities for EF 6 / EF Core, accessible through the Visual Studio Solution Explorer context menu when right-clicking on a file containing a derived DbContext class.
+Useful design-time utilities for EF Core, accessible through the Visual Studio Solution Explorer context menu when right-clicking on a file containing a derived DbContext class.
 
 ![](assets/img/ef-powertool.PNG)
 
 +++
-### [GitFlow](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio2017)
+### [GitFlow](hhttps://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio2019)
 
 Team Explorer extension integrates GitFlow into your development workflow. It lets you easily create and finish feature, release and hotfix branches right from Team Explorer.  For more details about git recommends [Pro Git book](https://git-scm.com/book/en/v2).
 
-![](assets/img/gitflow.png)
+<img src="assets/img/gitflow.png" width="40%">
+
 
 ---
 ## Why To Choose .NET?
@@ -203,7 +204,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Large ecosystem
 * Open source
 
-![](assets/img/why-developers-choose-dot-net.png)
+<img src="assets/img/why-developers-choose-dot-net.png" width="80%">
 
 +++
 ### Productivity
@@ -216,7 +217,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Common APIs
 * *Multi-language* support
 
-![](assets/img/dotneta.png)
+<img src="assets/img/dotneta.png" width="50%">
 
 +++
 ### Almost every platform
@@ -227,7 +228,8 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * Linux
 * Micro-services on cloud
 
-![](assets/img/dotnet5_platform.png)
+<img src="assets/img/dotnet-unified-platform.png" width="60%">
+
 
 +++
 ### Performance
@@ -330,14 +332,14 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 +++
 ## Standard Libraries
-|  Library                            | Namespaces                                                                                                                |
-|-------------------------------------| ------------------------------------------------------------------------------------------------------------------------- |
-| **Base Class Library**              | *System, System.Collections, System.Collections.Generic, System.Diagnostics, System.IO, System.Text, System.Threading...* |
-| **Runtime Infrastructure Library**  | *System, System.Reflection, System.Runtime.CompilerServices, System.Runtime.InteropServices...*                           |
-| **Network Library**                 | *System, System.Net, System.Net.Sockets...*                                                                               |
-| **Reflection Library**              | *System.Globalization, System.Reflection...*                                                                              |
-| **XML Library**                     | *System.Xml*                                                                                                              |
-| ⋮                                   | ⋮                                                                                                                          |
+| Library                            | Namespaces                                                                                                                |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| **Base Class Library**             | *System, System.Collections, System.Collections.Generic, System.Diagnostics, System.IO, System.Text, System.Threading...* |
+| **Runtime Infrastructure Library** | *System, System.Reflection, System.Runtime.CompilerServices, System.Runtime.InteropServices...*                           |
+| **Network Library**                | *System, System.Net, System.Net.Sockets...*                                                                               |
+| **Reflection Library**             | *System.Globalization, System.Reflection...*                                                                              |
+| **XML Library**                    | *System.Xml*                                                                                                              |
+| ⋮                                  | ⋮                                                                                                                         |
 
 +++
 ## The .NET family of frameworks
@@ -347,9 +349,9 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 # C# 101
 <div class="right">
 
-![](assets/img/Overview_small.png)
+<img src="assets/img/keep-calm-and-focus-on-the-basics.png" width="50%">
+<img src="assets/img/Overview_small.png" width="20%">
 
-![](assets/img/keep-calm-and-focus-on-the-basics.png)
 
 </div>
 
@@ -507,33 +509,33 @@ var sum = 1 + 5 * (6 / 2);
 
 +++
 ### Signed Integral
-| Type   |    Size | Range                                                              |
-| ------ | ------- | ------------------------------------------------------------------ |
-| `sbyte`|  8 bits | range from -128 - 127                                              |
-| `short`| 16 bits | range from -32,768 - 32,767                                        |
-| `int`  | 32 bits | range from -2,147,483,648 - 2,147,483,647                          |
-| `long` | 64 bits | range from –9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 |
+| Type    | Size    | Range                                                              |
+| ------- | ------- | ------------------------------------------------------------------ |
+| `sbyte` | 8 bits  | range from -128 - 127                                              |
+| `short` | 16 bits | range from -32,768 - 32,767                                        |
+| `int`   | 32 bits | range from -2,147,483,648 - 2,147,483,647                          |
+| `long`  | 64 bits | range from –9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 |
 
 +++
 ### Unsigned integral
-|  Type   |    Size | Range                                      |
-| ------- | ------- | ------------------------------------------ |
-| `byte`  |  8 bits | range from 0 - 255                         |
-| `ushort`| 16 bits | range from 0 - 65,535                      |
-| `uint`  | 32 bits | range from 0 - 4,294,967,295               |
-| `ulong` | 64 bits | range from 0 - 18,446,744,073,709,551,615  |
+| Type     | Size    | Range                                     |
+| -------- | ------- | ----------------------------------------- |
+| `byte`   | 8 bits  | range from 0 - 255                        |
+| `ushort` | 16 bits | range from 0 - 65,535                     |
+| `uint`   | 32 bits | range from 0 - 4,294,967,295              |
+| `ulong`  | 64 bits | range from 0 - 18,446,744,073,709,551,615 |
 
 +++
 ### Floating point
-|   Type   |    Size | Range                                                               |
+| Type     | Size    | Range                                                               |
 | -------- | ------- | ------------------------------------------------------------------- |
 | `float`  | 32 bits | range from $$1.5 × 10^{−45} - 3.4 × 10^{38}$$  7-digit precision    |
 | `double` | 64 bits | range from $$5.0 × 10^{−324} - 1.7 × 10^{308}$$  15-digit precision |
 
 +++
 ### Decimal
-|    Type   |    Size  | Range                                                                                         |
-| --------- | -------- | --------------------------------------------------------------------------------------------- |
+| Type      | Size     | Range                                                                                        |
+| --------- | -------- | -------------------------------------------------------------------------------------------- |
 | `decimal` | 128 bits | range is at least $$–7.9 × 10^{−28} - 7.9 × 10^{28}$$ with at least 28-digit precision range |
 
 
@@ -637,14 +639,14 @@ Console.WriteLine(notQuiteWholeD < 1.0);        // True
 
 +++
 ## Bitwise operations
-| Operator |   Meaning   |      Example     |   Result    |
-| -------- | ----------- | ---------------- | ----------- |
-|    `~`   |     Not     |         `~0xfU`  | 0xfffffffOU |
-|    `&`   |     And     |   `0xf0 & 0x33`  | 0x30        |
-|  <code>&#124;</code> |      Or     |<code>0xf0 &#x7c; 0x33</code> | 0xf3        |
-|    `^`   |     Xor     | `0xff00 ^ 0x00ff`| 0xffff      |
-|   `<<`   |  Left shift |  `0x20 << 2`     | 0x80        |
-|   `>>`   | Right shift |  `0x20 >> 1`     | 0x10        |
+| Operator            | Meaning     | Example                       | Result      |
+| ------------------- | ----------- | ----------------------------- | ----------- |
+| `~`                 | Not         | `~0xfU`                       | 0xfffffffOU |
+| `&`                 | And         | `0xf0 & 0x33`                 | 0x30        |
+| <code>&#124;</code> | Or          | <code>0xf0 &#x7c; 0x33</code> | 0xf3        |
+| `^`                 | Xor         | `0xff00 ^ 0x00ff`             | 0xffff      |
+| `<<`                | Left shift  | `0x20 << 2`                   | 0x80        |
+| `>>`                | Right shift | `0x20 >> 1`                   | 0x10        |
 
 +++
 ## Character type
@@ -954,13 +956,13 @@ string s = "a" + 5; // a5
 
 +++
 ### Default values
-|    Type   | Default value  |
-| --------- | -------------- |
-| Reference | `null`         |
-| Numerical | `0`            |
-| Enums     | `0`            |
-| Char      | `'\0'`         |
-| Boolean   | `false`        |
+| Type      | Default value |
+| --------- | ------------- |
+| Reference | `null`        |
+| Numerical | `0`           |
+| Enums     | `0`           |
+| Char      | `'\0'`        |
+| Boolean   | `false`       |
 
 +++
 <pre><code  data-sample='assets/sln/Tests/DefaultValue.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
@@ -1552,3 +1554,21 @@ All of these features offer cool new capabilities for developers and the opportu
 But C# is being put to ever broader use. .NET Core now targets any operating system and has its eyes firmly on the cloud and on portability.  These new capabilities certainly occupy the language designers' thoughts and time, in addition to coming up with new features.
 
 _Article_ [_originally published on the NDepend blog_](https://blog.ndepend.com/c-versions-look-language-history/)_, courtesy of Erik Dietrich and Patrick Smacchia._
+
+---
+
+## C# version 8.0
+
+[What's new in C# 8.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8)
+
+---
+
+## C# version 9.0
+
+[What's new in C# 9.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9)
+
+---
+
+## C# version 10.0
+
+[What's new in C# 10.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10)

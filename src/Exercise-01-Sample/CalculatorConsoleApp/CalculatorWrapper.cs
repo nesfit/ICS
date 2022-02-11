@@ -3,7 +3,7 @@ using Exercise_01.CalculatorUtils;
 
 namespace Exercise_01.CalculatorConsoleApp
 {
-    internal class CalculatorWrapper
+    internal static class CalculatorWrapper
     {
         internal static void Calculate(CommandLineOptions options)
         {
@@ -11,7 +11,12 @@ namespace Exercise_01.CalculatorConsoleApp
             var op2 = CheckOperand(options.Second);
             var operation = CheckOperation(options.Operation);
 
-            ExecuteOperation(op1, op2, operation);
+            var result = ExecuteOperation(op1, op2, operation);
+
+            if (result is not null)
+            {
+                PublishResult(op1, op2, operation, result.Value);
+            }
         }
 
         private static int CheckOperand(int? operand)
@@ -30,17 +35,17 @@ namespace Exercise_01.CalculatorConsoleApp
             return operation.Value;
         }
 
-        private static void ExecuteOperation(int op1, int op2, MathOperation operation)
+        private static int? ExecuteOperation(int op1, int op2, MathOperation operation)
         {
             try
             {
-                var result = Calculator.Calculate(op1, op2, operation);
+                return Calculator.Calculate(op1, op2, operation);
 
-                PublishResult(op1, op2, operation, result);
             }
             catch (Exception ex)
             {
                 Program.LogException(ex);
+                return null;
             }
         }
 
