@@ -27,8 +27,8 @@ V rámci dat, se kterými se bude pracovat budeme požadovat minimálně násled
 - (Spolujízdy z pohledu spolujezdce)
 
 ### Jízda
-- Cíl
-- Začátek
+- Start (místo, poloha)
+- Cíl (místo, poloha)
 - Čas začátku
 - Předpokládaný čas konce, nebo předpokládaná doba cesty
 - (Řidič)
