@@ -132,8 +132,8 @@ Hodnotíme:
 -   využití abstrakce, zapouzdření, polymorfismu - kde to bude dávat smysl a eliminuje duplicity
 -   verzování v GITu po logických částech
 -   logické rozšíření datového návrhu nad rámec zadání (bonusové body) - toto rozšíření ovšem zvažte; často se stává, že si tím založíte na spoustu komplikací v pozdějších fázích
--   ER diagram (strukturu, ne formální zápis ...)
--   Wireframy
+-   ER diagram (strukturu, ne formální zápis)
+-   Wireframy (logickou strukturu, uživatelskou přívětivost, ne kvalitu grafického zpracování)
 
 ---
 ### Fáze 2 – databáze, repozitáře a mapování
