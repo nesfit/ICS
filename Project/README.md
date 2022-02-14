@@ -57,7 +57,7 @@ Pro uložení zvolte [SQL Server Express LocalDB](https://docs.microsoft.com/en-
   - **Aplikace musí umožnit provést CRUD operace nad všemi daty.**
   - **Aplikace se ovládá z pohledu vybraného uživatele při spuštění aplikace.**
   - Uživatel může vytvořit jiné uživatele.
-  - Uživatel si může upravit detaily.
+  - Uživatel může upravit informace o sobě.
   - Uživatel může přidat spolujízdu a stát se řidičem.
   - Řidič může odebrat spolujezdce a zrušit spolujízdu.
   - Uživatel může přidat svá auta a upravovat informace o nich.
