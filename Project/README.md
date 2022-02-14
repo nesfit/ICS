@@ -66,7 +66,7 @@ Pro uložení zvolte [SQL Server Express LocalDB](https://docs.microsoft.com/en-
 
 > :warning: **Dobře se zamyslete jak budete implementovat jízdy!**: Uvědomte si, že uživatelé nemohou současně jet ve více spolujízdách. Při vytváření/editaci je nutné ověřit, že nově přidaný záznam je nekolizní.
 
-> :warning: **Důrazně doporučujeme vyhnout se autentizaci/autorizaci** Bude postačovat, když při spuštění aplikaci nabídnete možnost zvolit si identitu z seznamu uživatelů.
+> :warning: **Důrazně doporučujeme vyhnout se autentizaci/autorizaci** Bude postačovat, když při spuštění aplikace nabídnete možnost zvolit si identitu ze seznamu uživatelů.
 
 
 ---
