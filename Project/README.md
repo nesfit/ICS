@@ -75,7 +75,7 @@ Architektura aplikace je jeden z důležitých stavebních kamenů při vývoji 
 
 V případě, kdy se rozhodnete použít jinou architekturu a rozdělení tříd do projektů musíte být schopni své rozhodnutí obhájit.
 
-Řešení obsahující nevhodné rozdělení tříd do projektů, které si nedokážete obháti bude penalizováno značnou bodovou ztrátou.
+Řešení obsahující nevhodné rozdělení tříd do projektů, které si nedokážete obhájit bude penalizováno značnou bodovou ztrátou.
 
 > :warning: **Solution obsahující jediný projekt není akceptovatelné!**
 
