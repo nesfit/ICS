@@ -49,7 +49,7 @@ Aplikace bude obsahovat několik pohledů pro zobrazování přehledu, zobrazen�
 
 Je požadováno **perzistentní** uložení. To znamená, že když se aplikace restartuje, tak nesmí přijít o data. Uložení dat musí být provedeno neprodleně po zadání operace uživatelem. 
 
-Při demonstraci bude vyžadováno souběžné spuštění několika aplikací a změny v jedné aplikaci se musí projevit v ostatních instancích.
+Při demonstraci bude vyžadováno souběžné spuštění několika aplikací a změny v jedné aplikaci se musí projevit v ostatních instancích. Znovu-načtení dat může být inicializováno uživatelem. 
 
 Pro uložení zvolte [SQL Server Express LocalDB](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb), která je nainstalována jako součást Visual Studio - Data storage and processing workloadu. Jako ORM framework použijte [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/).
 
