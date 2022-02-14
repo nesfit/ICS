@@ -109,7 +109,7 @@ Využijte možnost automatizovaných buildů spojených s otestováním Vámi pr
 * Vaše vlastní rozšíření projektu zdokumentované v `README.md`
 
 # Odevzdávání
-Odevzdávání projektu má **3 fáze**. V každé fázi se hodnotí jiné vlastnosti projektu. Nicméně fáze na sebe navazují a pokračujete v práci na svém kódu i po jeho odevzdání v rámci následující fáze.
+Odevzdávání projektu má **3 fáze**. V každé fázi se hodnotí jiné vlastnosti projektu. Nicméně, fáze na sebe navazují a v následující fázi pokračujete v práci na svém kódu.
 
 **Kontroluje se kód, který je nahrán v GIT** ve větvi `master` nebo `main`. Vždy se kontroluje **poslední commit před časem odevzdávání** dané fáze projektu. Na commity nahrány po času odevzdávání nebo v jiných větvích nebude brán zřetel. Commit, který máme hodnotit otagujte (`review1, review2, review3`), čímž nám usnadníte orietaci při hodnocení.
 
