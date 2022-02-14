@@ -58,7 +58,7 @@ Pro uložení zvolte [SQL Server Express LocalDB](https://docs.microsoft.com/en-
   - **Aplikace se ovládá z pohledu vybraného uživatele při spuštění aplikace.**
   - Uživatel může vytvořit jiné uživatele.
   - Uživatel může upravit informace o sobě.
-  - Uživatel může přidat spolujízdu a stát se řidičem.
+  - Uživatel může přidat spolujízdu (bude u ní uveden jako řidič).
   - Řidič může odebrat spolujezdce a zrušit spolujízdu.
   - Uživatel může přidat svá auta a upravovat informace o nich.
   - Uživatel vidí seznam spolujízd a může se přihlásit do neobsazené spolujízdy.
