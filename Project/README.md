@@ -27,8 +27,8 @@ V rámci dat, se kterými se bude pracovat budeme požadovat minimálně násled
 - (Spolujízdy z pohledu spolujezdce)
 
 ### Jízda
-- Cíl
-- Začátek
+- Start (místo, poloha)
+- Cíl (místo, poloha)
 - Čas začátku
 - Předpokládaný čas konce, nebo předpokládaná doba cesty
 - (Řidič)
@@ -116,19 +116,24 @@ Odevzdávání projektu má **3 fáze**. V každé fázi se hodnotí jiné vlas
 > :warning: **Je povoleno převzít kód z libovolného zdroje vyjma kódu projektů ostatních týmů**. Převzatý kód vyznačte komentářem a uveďte zdroj. Kódu musíte rozumět a být schopni při obhajobě objasnit jeho funkci.
 
 Je silně doporučováno projekty v průběhu semestru konzultovat (můžete po cvičení nebo se ozvat přes Discord či email), předejdete tak případným komplikacím při odevzdání.
+
+Pokud se **týmově** rozhodnete, že všichni členové nepřispěli rovnoměrně k vypracování projektu. Přidejte do kořene repozitáře textový soubor s názvem **ROZDELENI.txt**, ve kterém uveďte loginy všech členů týmu a poměrné rozdělení bodů v procentech (struktura není pevně daná). V případě, že soubor nepřiložíte nebo nebude srozumitelný tak implicitně uvažujeme rovnoměrné rozdělení bodů. Pro rovnoměrné rozložení bodů je tedy zbytečné soubor přikládat.
  
 ---
 ### Fáze 1 – objektový návrh 
-V téhle fázi se zaměříme na *datový návrh*. Vyžaduje se po Vás, aby datový návrh splňoval zadání a nevynechal žádnou podstatnou část. Zamyslete se nad vazbami mezi jednotlivými entitami v datovém modelu. V následující fázi budete entity nahrávat do databáze, takže myslete na jejich propojení již nyní. V této fázi budeme chtít, abyste **odevzdali kód**, kde budete mít *entitní třídy*, které budou obsahovat všechny vlastnosti, které budete dále potřebovat a vazby mezi třídami. **Nestačí tedy odevzdat diagram tříd, nebo nějakou jinou reprezentaci.** Budeme požadovat kód v jazyce C\#.
+V téhle fázi se zaměříme na *datový návrh*. Vyžaduje se po Vás, aby datový návrh splňoval zadání a nevynechal žádnou podstatnou část. Zamyslete se nad vazbami mezi jednotlivými entitami v datovém modelu. V následující fázi budete entity nahrávat do databáze, takže myslete na jejich propojení již nyní. V této fázi budeme chtít, abyste **odevzdali kód**, kde budete mít *entitní třídy*, které budou obsahovat všechny vlastnosti, které budete dále potřebovat a vazby mezi třídami.
 
-Abyste si vazby dokázaly představit, přiložte ER diagram tříd vytvořený v libovolném nástroji nebo vygenerovaný z kódu. Tento diagram uložte do projektu zajišťujícím persistenci a pojmenujte jej `ER.png`.
+Abyste si vazby dokázaly představit, přiložte **ER diagram** tříd vytvořený v libovolném nástroji (i rukou) nebo vygenerovaný z kódu. Pro zajištění vzájemného pochopení všemi členy týmu budeme nově také požadovat vytvoření **wirefame** na všechny pohledy (opět libovolný nástroj či ručně kreslené), které ve vaší výsledné aplikaci chcete implementovat. Tyto wireframy nebudou závazné, ale umožní Vám ihned na začátku vzájemně komunikovat představy o výsledné podobě aplikace. TIP: Při tvorbě wireframe zjistíte, jaká data budete potřebovat a navrhnete korektně nejen vazby v Entitní vrstvě, ale také Modely BL vrstvy, jejichž rozmyšlení jistě oceníte v druhém odevzdání.
+
+ER diagram a wireframy umístěte do kořene repozitáře do adresáře **docs**. Formát souborů zvolte tak, aby se daly otevřít rozumným způsobem bez nutnosti instalace specifických nástrojů. Ideální je obrázek ve formátu png, jpeg, svg atd... případně PDF.
 
 Hodnotíme:
 -   logický návrh tříd
 -   využití abstrakce, zapouzdření, polymorfismu - kde to bude dávat smysl a eliminuje duplicity
 -   verzování v GITu po logických částech
 -   logické rozšíření datového návrhu nad rámec zadání (bonusové body) - toto rozšíření ovšem zvažte; často se stává, že si tím založíte na spoustu komplikací v pozdějších fázích
--   ER diagram
+-   ER diagram (strukturu, ne formální zápis)
+-   Wireframy (logickou strukturu, uživatelskou přívětivost, ne kvalitu grafického zpracování)
 
 ---
 ### Fáze 2 – databáze, repozitáře a mapování
