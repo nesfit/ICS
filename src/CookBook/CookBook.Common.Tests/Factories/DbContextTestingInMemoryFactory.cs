@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.Common.Tests.Factories
 {
-    public class DbContextInMemoryFactory: IDbContextFactory<CookBookDbContext>
+    public class DbContextTestingInMemoryFactory: IDbContextFactory<CookBookDbContext>
     {
         private readonly string _databaseName;
         private readonly bool _seedTestingData;
 
-        public DbContextInMemoryFactory(string databaseName, bool seedTestingData = false)
+        public DbContextTestingInMemoryFactory(string databaseName, bool seedTestingData = false)
         {
             _databaseName = databaseName;
             _seedTestingData = seedTestingData;
@@ -23,7 +23,7 @@ namespace CookBook.Common.Tests.Factories
             // contextOptionsBuilder.LogTo(System.Console.WriteLine); //Enable in case you want to see tests details, enabled may cause some inconsistencies in tests
             // builder.EnableSensitiveDataLogging();
             
-            return new CookBookDbContext(contextOptionsBuilder.Options, _seedTestingData);
+            return new CookBookTestingDbContext(contextOptionsBuilder.Options, _seedTestingData);
         }
     }
 }

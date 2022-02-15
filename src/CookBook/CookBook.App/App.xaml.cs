@@ -55,7 +55,7 @@ namespace CookBook.App
             services.AddSingleton<IDbContextFactory<CookBookDbContext>>(provider =>
             {
                 var dalSettings = provider.GetRequiredService<IOptions<DALSettings>>().Value;
-                return new SqlServerDbContextFactory(dalSettings.ConnectionString!, dalSettings.SkipMigrationAndSeedTestingData);
+                return new SqlServerDbContextFactory(dalSettings.ConnectionString!, dalSettings.SkipMigrationAndSeedDemoData);
             });
 
             services.AddSingleton<MainWindow>();
@@ -81,8 +81,9 @@ namespace CookBook.App
             
             await using (var dbx = await dbContextFactory.CreateDbContextAsync())
             {
-                if (dalSettings.SkipMigrationAndSeedTestingData)
+                if (dalSettings.SkipMigrationAndSeedDemoData)
                 {
+                    await dbx.Database.EnsureDeletedAsync();
                     await dbx.Database.EnsureCreatedAsync();
                 }
                 else

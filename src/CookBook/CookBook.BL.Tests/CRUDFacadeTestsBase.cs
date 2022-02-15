@@ -20,8 +20,8 @@ public class  CRUDFacadeTestsBase : IAsyncLifetime
         XUnitTestOutputConverter converter = new(output);
         Console.SetOut(converter);
 
-        //DbContextFactory = new DbContextInMemoryFactory(GetType().Name, seedTestingData: true);
-        DbContextFactory = new DbContextLocalDBTestingFactory(GetType().FullName!, seedTestingData: true);
+        DbContextFactory = new DbContextTestingInMemoryFactory(GetType().Name, seedTestingData: true);
+        // DbContextFactory = new DbContextLocalDBTestingFactory(GetType().FullName!, seedTestingData: true);
 
         UnitOfWorkFactory = new UnitOfWorkFactory(DbContextFactory);
 
@@ -50,6 +50,7 @@ public class  CRUDFacadeTestsBase : IAsyncLifetime
     public async Task InitializeAsync()
     {
         await using var dbx = await DbContextFactory.CreateDbContextAsync();
+        await dbx.Database.EnsureDeletedAsync();
         await dbx.Database.EnsureCreatedAsync();
     }
 
