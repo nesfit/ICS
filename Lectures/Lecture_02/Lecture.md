@@ -15,7 +15,7 @@ enableTitleFooter: true
 
 # Object-oriented Programming and Advanced Constructs in C#
 
-## OOP, Exceptions, Events, Delegates, Lambda Expressions and Generics
+## OOP, Exceptions, Events, Delegates, Lambda Expressions, and Generics
 
 <div class="right">[ Jan Pluskal &lt;ipluskal@fit.vutbr.cz&gt;  ]</div>
 
@@ -32,7 +32,6 @@ enableTitleFooter: true
 +++
 <pre><code data-sample='assets/sln/Examples/Dog.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-28] -->
-
 <!-- [Code sample](assets/sln/Examples/Dog.cs) -->
 
 +++
@@ -45,7 +44,7 @@ enableTitleFooter: true
 
 +++
 ### Encapsulation
-* Hides implementation details
+* **Hides implementation details**
 * Improves modularity
 * Definitions:
   * A language mechanism for **restricting direct access** to some of the **object's components**
@@ -77,7 +76,7 @@ enableTitleFooter: true
 ### Inheritance
 * Create objects that are built upon existing objects
 * Specify a new implementation to maintain the same behavior
-* Reuse code and to independently extend original software via public classes
+* Reuse code and independently extend original software via public classes
 * An *inherited class* is called a **subclass** of its **parent class** or **superclass** or **base class**
 
 +++
@@ -101,8 +100,8 @@ enableTitleFooter: true
 
 +++
 #### Inheritance and Subtyping
-* In some languages inheritance and subtyping are no different
-* Generally in statically-typed class-based OO languages, such as(C++, C#, Java), whereas in others they differ
+* In some languages, inheritance, and subtyping are no different
+* Generally in statically-typed class-based OO languages, such as (C++, C#, Java), whereas in others, they differ
   * **subtyping** *establishes an is-a relationship*
   * **inheritance**:
     * only *reuses implementation and establishes* a **syntactic relationship**
@@ -123,16 +122,16 @@ enableTitleFooter: true
 * **Parametric polymorphism**:
   * Code is written *without mention of any specific type* and thus *can be used transparently with any number of new types*
   * This is often known as **generics** in OOP, and *polymorphism* in functional programming
-* **Subtyping**(*subtype polymorphism* or *inclusion polymorphism*):
+* **Subtyping** (*subtype polymorphism* or *inclusion polymorphism*):
   * Name denotes instances of many different classes related by some common *base* class
 
 ---
 ## Class
 * The most common of *reference types*
-* Think about it s a *construction plan for an object*
+* Think about it as a *construction plan for an object*
 * **Encapsulates** *data* and *behavior*
   ```C#
-  class Foo
+  /*internal*/ class Foo
   {
   }
   ```
@@ -162,12 +161,13 @@ enableTitleFooter: true
 * **operators** - overloaded operators
 * **indexers** - allow object to *be indexed as an array*
 * **constructors** - **methods** that run initialization code
+* **deconstructors** - **methods** that can factor the call
 * **finalizer** - **method** called during object destruction
 * **nested types** - *types declared within* a class scope
 
 +++
 ### Field
-* Variable that is a member of a *class* or *struct*
+* Variable that is a member of a `class`, `struct`, or `record`
 * Initialization is:
   * *Optional*
   * Non-initiated has a *default* value (`0, \0, null, false`)
@@ -175,7 +175,7 @@ enableTitleFooter: true
     ```C#
     class Octopus
     {
-      string name;
+      /*private*/ string name;
       public int Age = 10;
     }
     ```
@@ -192,7 +192,7 @@ enableTitleFooter: true
 +++
 ### Method
 * *Procedures* and *functions* are in OOP called *methods*
-* Can access members of `class` or `struct`
+* Can access members of `class`, `struct`, or `record`
 * Can
   * accept parameters - *values*, *reference types*, `ref`, `in`
   * return result - in return type `return`, or `ref` or `out` parameters
@@ -228,7 +228,7 @@ void Foo(int x) => Console.WriteLine(x);
 
 +++
 #### Method Signature
-* Methods are declared in a *class* or *struct* by specifying:
+* Methods are declared in a `class`, `struct`, or `record` by specifying:
   *  the **access level** such as public or private,
   *  **optional modifiers** such as abstract or sealed,
   *  the **return value**,
@@ -236,7 +236,7 @@ void Foo(int x) => Console.WriteLine(x);
   *  and any method **parameters**.
 * These parts together are the **signature of the method**.
 
-* A **return type** *is not part of the signature* for the purposes of method **overloading**.
+* A **return type** *is not part of the signature* for method **overloading**.
 * A **return type** *is part of the signature* when determining the compatibility between a **delegate** and the method that it points to.
 
 +++
@@ -273,6 +273,7 @@ void Foo(int x) => Console.WriteLine(x);
 * Similar to a *field*, but **encloses it with an access method**
 * It is a safety mechanism that unifies *read* and *write* operations
 * Hides *implementation details*
+* Typically used to check values, do validation, ensure consistency...
 
 +++
 #### Read-only and Calculated Property
@@ -337,7 +338,7 @@ foos.Foo = 1 // Compilation error
 public string Foo {get; set;}
 ```
 
-* Full property(with the backing field):
+* Full property (with the backing field):
 
 ```C#
 private string _foo;
@@ -367,7 +368,7 @@ public string Name {
 
 +++
 ### Constructor
-* Run initialization code on a **class** or **struct**
+* Run initialization code on a `class`, `struct`, or `record`
 * Defined like a method
   * Method *name and return type* are reduced to the *name of the enclosing type*
 * Constructors of the *base* class are accessible
@@ -417,7 +418,7 @@ public string Name {
 * No need to explicitly mention constructed type again
 
 ```C#
-Point p = new (3, 5);
+Point p = new(3, 5);
 ```
 
 +++
@@ -500,7 +501,7 @@ class Dog {
 * Only its concrete subclasses can be instantiated
 * Cannot be `sealed`, it must be inheritable
 * Is able to define `abstract` members:
-  * Like `virtual` members, except they don’t provide a default implementation
+  * Like `virtual` members, except they don't provide a default implementation
   * Implementation must be provided by the **subclass** unless that **subclass** is also declared `abstract`
 
 +++
@@ -538,7 +539,7 @@ public class Stock: Asset
 +++
 ### Type Compatibility
 * Ease-up usage of *subtypes*, ergo *virtual methods*
-* Compatibility of *types* of `class`, `struct` instances
+* Compatibility of *types* of `class`, `struct`, or `record` instances
 * Determines which type references can be assigned into another type reference
 
 +++
@@ -622,7 +623,7 @@ public class Kitten : Cat {}
 
 +++
 ### Partial class/method
-* Allows to split declaration across multiple files
+* Allows splitting declaration across multiple files
 * Each participant must have the `partial` declaration
 * Typically used in WPF, Winforms
   * one file is auto-generated
@@ -652,12 +653,17 @@ partial class PaymentForm // In hand-authored file
 }
 ```
 
-+++ 
++++
+
 ### Records
 
-* Records are new feature in C# 9
+* Records are a new feature in C# 9
+* Records are **reference** types!
 * Verbose notation that the class is used to store **DATA**
 * Implicit `override` for `IEquatable`, implicit comparison by `value` not `reference` (Value-based equality)
+* Implicit `ToString()` value-based override
+* **Beware of collection comparison!**
+* Inheritance is allowed only from another record.
 
 ```C#
 public record Person
@@ -665,6 +671,12 @@ public record Person
     public string? FirstName { get; init; }
     public string? LastName { get; init; }
 }
+```
+
+equals
+
+```
+public record Person(string? FirstName, string? LastName);
 ```
 
 +++
@@ -713,11 +725,11 @@ Person student = new Student { FirstName = "Mads", LastName = "Nielsen", ID = 12
 ---
 ## Struct
 * Similar to a class, with the following key differences:
-  * A `struct` is a **value type**, whereas a class is a **reference type**
+  * A `struct` is a **value type**, whereas a `class` and `records` are a **reference types**
   * A `struct` does not support inheritance(other than implicitly deriving from `System.ValueType`)
-* Can have all the members as class, except:
-  * A parameter-less constructor(is implicit)
-  * Field initializers
+* Can have all the members as `class`, except:
+  * ~~A parameter-less constructor(is implicit)~~ C# 10!
+  * ~~Field initializers~~ C# 10!
   * A finalizer
   * Virtual or protected members
 * Each constructor has to initialize all `struct`'s members
@@ -770,8 +782,9 @@ Console.WriteLine(type); //Racing, Breeding, ForSosages
 ## Interface
 * Declares only *specification*, not *implementation* of its members
 * All members are `public`
-* `class` or `struct` can implement **multiple** `interface`s
+* `class`, `struct`, `record` can implement **multiple** `interface`s
 * Implementation is provided by `class` or `struct` that implements particular `interface`
+*  Allows default implementation
 * `interface` can declare
   * **methods**
   * **properties**
@@ -810,7 +823,7 @@ class Flea : Insect, ICarnivore { }
 ```
 
 * Because animals might share some implementation of their taxonomy, it is possible to declare `Bird` and `Insect` as `abstract class`.
-* But, their food intake and whether they fly or not might differ. It is best to declare these properties as `interfaces`, `IFlying` and `ICarnivore`.
+* But, their food intake and whether they fly or not might differ. It is best to declare these properties as `interfaces`, `IFlying`, and `ICarnivore`.
 
 +++
 #### `class` vs `interface`
@@ -926,14 +939,14 @@ public class Stack<T>
     * **Generics**, or
     * Have a separate version, of the same class, for every encapsulated type, or
       * (e.i., `IntStack`, `StringStack` etc..)
-    * Have *stack* that is generalized by using object:
+    * Have *stack* that is generalized by using an object:
       * ValueType requires boxing,
-      * down-casting that cannot not be checked at compile time
+      * down-casting that can not be checked at compile time
 
 +++
 ### Generic Methods
 * Several basic algorithms can be implemented using *generic methods*.
-* *Signature* of generic method contains generic type parameter.
+* *Signature* of the generic method contains generic type parameter.
 * *Generic method* may contain multiple *generic parameters*
 
 ```C#
@@ -947,14 +960,18 @@ static void Swap<T>(ref T a, ref T b) {
 +++
 ### Generic Constraints
 * Parameters can be restricted with:
-  * `where T : <base class name>` - T must be or derive from the specified base class.
-  * `where T : <interface name>` - T must be or implement the specified interface
-  * `where T : class` - T must be a reference type
   * `where T : struct` - T must be a value type, not nullable
-  * `where T : new()` - T must have a public parameterless constructor
-  * `where T : U` - T must be or derive from the argument supplied for U
+  * `where T : class` - T must be a reference type, non-nullable
+  * `where T : class?` - T must be a reference type, either nullable or non-nullable
+  * `where T : notnull` - T must be a non-nullable reference or value type 
+  * `where T : default` -  resolves the ambiguity when you need to specify an unconstrained type parameter when you override a method or provide an explicit interface implementation. The default constraint implies the base method without either the class or struct constraint.
   * `where T : unmanaged` - T must not be reference type, and must not contain any reference type members at any level of nesting
-
+  * `where T : new()` - T must have a public parameterless constructor
+  * `where T : <base class name>` - T must be or derive from the specified base class, non-nullable
+  * `where T : <base class name>?` - T must be or derive from the specified base class, non-nullable or nullable
+  * `where T : <interface name>` - T must be or implement the specified interface, non-nullable
+  * `where T : <interface name>?` - T must be or implement the specified interface, non-nullable or nullable
+  * `where T : U` - T must be or derive from the argument supplied for U
 
 ---
 ## Covariance and Contravariance
@@ -1038,10 +1055,10 @@ finally
 
 +++
 ### Exception Handling
-* If exception is `throw`n in `try` statement:
+* If an exception is `throw`n in `try` statement:
   * Execution is passed to the compatible `catch` block
   * If the `catch` block successfully finishes
-    * If present, Execution is passed to `finally` block
+    * If present, execution is passed to `finally` block
     * Execution moves to the next statement after the `try` statement
 * If exception isn't in `try` statement, or is not caught by any `catch` block in the *callstack*:
   * the process is terminated and error message is displayed to the user
@@ -1316,7 +1333,7 @@ SomeDelegate d = SomeMethod1;
 d += SomeMethod2;
 ```
 * Invoking d will now call both `SomeMethod1` and `SomeMethod2`
-* Delegates are invoked in the order they are added
+* Delegates are invoked in the order in which they were subscribed
 * The caller receives the return value from the last method
   * Preceding methods return values are discarded
 
