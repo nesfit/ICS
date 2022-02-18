@@ -9,6 +9,6 @@ namespace CookBook.App.Settings
     public class DALSettings
     {
         public string? ConnectionString { get; set; }
-        public bool SkipMigrationAndSeedTestingData { get; set; }
+        public bool SkipMigrationAndSeedDemoData { get; set; }
     }
 }

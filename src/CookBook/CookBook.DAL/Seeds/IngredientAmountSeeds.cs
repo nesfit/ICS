@@ -7,50 +7,33 @@ namespace CookBook.DAL.Seeds;
 
 public static class IngredientAmountSeeds
 {
-    public static readonly IngredientAmountEntity EmptyIngredientAmountEntity = new(
-        Id: default, 
-        Amount: default,
-        Unit: default,
-        RecipeId: default, 
-        IngredientId: default)
-    {
-        Recipe = default,
-        Ingredient = default
-    };
-    
-    public static readonly IngredientAmountEntity IngredientAmountEntity1 = new(
+    public static readonly IngredientAmountEntity LemonadeLemon = new(
         Id: Guid.Parse(input: "0d4fa150-ad80-4d46-a511-4c666166ec5e"),
-        Amount: 1.0,
-        Unit: Unit.Kg,
-        RecipeId: RecipeSeeds.RecipeEntity.Id,
-        IngredientId: IngredientSeeds.IngredientEntity1.Id)
+        Amount: 250,
+        Unit: Unit.Ml,
+        RecipeId: RecipeSeeds.LemonadeRecipe.Id,
+        IngredientId: IngredientSeeds.Lemon.Id)
     {
-        Recipe = RecipeSeeds.RecipeEntity,
-        Ingredient = IngredientSeeds.IngredientEntity1
+        Recipe = RecipeSeeds.LemonadeRecipe,
+        Ingredient = IngredientSeeds.Lemon
     };
 
-    public static readonly IngredientAmountEntity IngredientAmountEntity2 = new(
+    public static readonly IngredientAmountEntity LemonadeWater = new(
         Id: Guid.Parse(input: "87833e66-05ba-4d6b-900b-fe5ace88dbd8"),
         Amount: 2.0,
         Unit: Unit.L,
-        RecipeId: RecipeSeeds.RecipeEntity.Id,
-        IngredientId: IngredientSeeds.IngredientEntity2.Id)
+        RecipeId: RecipeSeeds.LemonadeRecipe.Id,
+        IngredientId: IngredientSeeds.Water.Id)
     {
-        Recipe = RecipeSeeds.RecipeEntity,
-        Ingredient = IngredientSeeds.IngredientEntity2
+        Recipe = RecipeSeeds.LemonadeRecipe,
+        Ingredient = IngredientSeeds.Water
     };
-
-    //To ensure that no tests reuse these clones for non-idempotent operations
-    public static readonly IngredientAmountEntity IngredientAmountEntityUpdate = IngredientAmountEntity1 with { Id = Guid.Parse("A2E6849D-A158-4436-980C-7FC26B60C674"), Ingredient = null, Recipe = null, RecipeId = RecipeSeeds.RecipeForIngredientAmountEntityUpdate.Id};
-    public static readonly IngredientAmountEntity IngredientAmountEntityDelete = IngredientAmountEntity1 with { Id = Guid.Parse("30872EFF-CED4-4F2B-89DB-0EE83A74D279"), Ingredient = null, Recipe = null, RecipeId = RecipeSeeds.RecipeForIngredientAmountEntityDelete.Id };
 
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<IngredientAmountEntity>().HasData(
-            IngredientAmountEntity1 with { Recipe = null, Ingredient = null },
-            IngredientAmountEntity2 with { Recipe = null, Ingredient = null },
-            IngredientAmountEntityUpdate,
-            IngredientAmountEntityDelete
+            LemonadeLemon with { Recipe = null, Ingredient = null },
+            LemonadeWater with { Recipe = null, Ingredient = null }
         );
     }
 }

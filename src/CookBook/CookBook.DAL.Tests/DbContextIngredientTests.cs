@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
 using System.Threading.Tasks;
-using CookBook.Common.Tests;
+using CookBook.Common.Tests.Seeds;
 using CookBook.DAL.Entities;
-using CookBook.DAL.Factories;
-using CookBook.DAL.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;

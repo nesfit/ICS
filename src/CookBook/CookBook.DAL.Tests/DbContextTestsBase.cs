@@ -16,7 +16,7 @@ public class  DbContextTestsBase : IAsyncLifetime
         XUnitTestOutputConverter converter = new(output);
         Console.SetOut(converter);
         
-        DbContextFactory = new DbContextInMemoryFactory(GetType().Name, seedTestingData: true);
+        DbContextFactory = new DbContextTestingInMemoryFactory(GetType().Name, seedTestingData: true);
         // DbContextFactory = new DbContextLocalDBTestingFactory(GetType().FullName!, seedTestingData: true);
         
         CookBookDbContextSUT = DbContextFactory.CreateDbContext();
@@ -28,6 +28,7 @@ public class  DbContextTestsBase : IAsyncLifetime
 
     public async Task InitializeAsync()
     {
+        await CookBookDbContextSUT.Database.EnsureDeletedAsync();
         await CookBookDbContextSUT.Database.EnsureCreatedAsync();
     }
 

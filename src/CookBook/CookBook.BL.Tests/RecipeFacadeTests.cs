@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CookBook.BL.Facades;
 using CookBook.BL.Models;
 using CookBook.Common.Enums;
 using CookBook.Common.Tests;
-using CookBook.DAL;
-using CookBook.DAL.Factories;
-using CookBook.DAL.Seeds;
+using CookBook.Common.Tests.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;

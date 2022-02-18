@@ -21,6 +21,6 @@ public class DbContextLocalDBTestingFactory : IDbContextFactory<CookBookDbContex
         // contextOptionsBuilder.LogTo(System.Console.WriteLine); //Enable in case you want to see tests details, enabled may cause some inconsistencies in tests
         // builder.EnableSensitiveDataLogging();
         
-        return new CookBookDbContext(builder.Options, _seedTestingData);
+        return new CookBookTestingDbContext(builder.Options, _seedTestingData);
     }
 }
