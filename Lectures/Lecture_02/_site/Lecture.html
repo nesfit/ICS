@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./dist/theme/simple.css" id="theme" />
     <link rel="stylesheet" href="./css/highlight/vs.css" />
 
-    <link rel="stylesheet" href="./_assets/assets/theme.css" />
+    <link rel="stylesheet" href="./_assets/_reveal-md/theme.css" />
 
   </head>
   <body>
@@ -1678,7 +1678,13 @@ static void Main()
 
 ## Credits
 * Michal Orlíček - for slides preparation
-</script></section></section></div>
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+<!-- Has to stay, because otherwise static build would not contain logo resources referenced in CSS theme -->
+![](_reveal-md/img/logo-ics.svg)
+</script></section><section data-markdown><script type="text/template">
+![](_reveal-md/img/logo.png)</script></section></section></div>
     </div>
 
     <script src="./dist/reveal.js"></script>
@@ -1724,7 +1730,7 @@ static void Main()
       var options = extend(defaultOptions, {"controls":true,"controlsTutorial":true,"controlsLayout":"bottom-right","progress":true,"slideNumber":true,"showSlideNumber":"all","keyboard":true,"overview":true,"navigationMode":"linear","fragments":true,"fragmentInURL":false,"help":true,"mouseWheel":false,"transition":"slide","transitionSpeed":"fast"}, queryOptions);
     </script>
 
-    <script src="./_assets/.reveal-md/plugin/sampler.js"></script>
+    <script src="./_assets/_reveal-md/plugin/sampler.js"></script>
 
     <script>
       Reveal.initialize(options);

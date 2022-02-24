@@ -1,7 +1,7 @@
 ---
 title: ICS 01 - Introduction to C#, Visual Studio and .NET
 theme: simple
-css: assets/theme.css
+css: _reveal-md/theme.css
 separator: "^---$"
 verticalSeparator: "^\\+\\+\\+$"
 highlightTheme: vs
@@ -1673,3 +1673,10 @@ static void Main()
 
 ## Credits
 * Michal Orlíček - for slides preparation
+
+---
+
+<!-- Has to stay, because otherwise static build would not contain logo resources referenced in CSS theme -->
+![](_reveal-md/img/logo-ics.svg)
++++
+![](_reveal-md/img/logo.png)

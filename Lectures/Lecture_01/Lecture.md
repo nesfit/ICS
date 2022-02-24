@@ -1,7 +1,7 @@
 ---
 title: ICS 01 - Introduction to C#, Visual Studio and .NET
 theme: simple
-css: .reveal-md/theme.css
+css: _reveal-md/theme.css
 separator: "^---$"
 verticalSeparator: "^\\+\\+\\+$"
 highlightTheme: vs
@@ -1580,6 +1580,6 @@ _Article_ [_originally published on the NDepend blog_](https://blog.ndepend.com/
 ---
 
 <!-- Has to stay, because otherwise static build would not contain logo resources referenced in CSS theme -->
-![](.reveal-md/img/logo-ics.svg)
+![](_reveal-md/img/logo-ics.svg)
 +++
-![](.reveal-md/img/logo.png)
+![](_reveal-md/img/logo.png)

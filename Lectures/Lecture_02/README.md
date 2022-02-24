@@ -1,1 +1,1 @@
-../.reveal-md/README.md
+../_reveal-md/README.md

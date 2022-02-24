@@ -1,9 +1,7 @@
-<!---
-
----
+<!-- ---
 title: ICS 00 - ICS Organization 
 theme: simple
-css: .reveal-md/theme.css
+css: _reveal-md/theme.css
 separator: "^---$"
 verticalSeparator: "^\\+\\+\\+$"
 highlightTheme: vs
@@ -13,9 +11,8 @@ mouseWheel: false
 enableMenu: true
 enableChalkboard: true
 enableTitleFooter: true
----
+--- -->
 
---->
 
 # Seminář C# - ICS, Organizační pokyny
 
@@ -183,6 +180,6 @@ Pokud dojde k chybě s oprávněním vytvořit symlink tak nejsnažší je použ
 ---
 
 <!-- Has to stay, because otherwise static build would not contain logo resources referenced in CSS theme -->
-![](.reveal-md/img/logo-ics.svg)
+![](_reveal-md/img/logo-ics.svg)
 +++
-![](.reveal-md/img/logo.png)
+![](_reveal-md/img/logo.png)

@@ -34,12 +34,20 @@ docker run --name ICS-Lecture-nginx -p 80:80 -d nginx
 docker cp _site ICS-Lecture-nginx:/usr/share/nginx/html
 ```
 
+or
+
+```
+podman stop ICS-Lecture-nginx; podman rm ICS-Lecture-nginx
+podman run --name ICS-Lecture-nginx -p 1080:80 -d nginx
+podman cp _site ICS-Lecture-nginx:/usr/share/nginx/html
+```
+
 ## Restore symlinks
 
 ```
 # cd Lectures/Lecture_XY
-ln -s ../.reveal-md/ .reveal-md
-ln -s ../.reveal-md/README.md README.md
-ln -s ../.reveal-md/reveal.json reveal.json
-ln -s ../.reveal-md/reveal-md.json reveal-md.json 
+ln -s ../_reveal-md/ _reveal-md
+ln -s ../_reveal-md/README.md README.md
+ln -s ../_reveal-md/reveal.json reveal.json
+ln -s ../_reveal-md/reveal-md.json reveal-md.json 
 ```
