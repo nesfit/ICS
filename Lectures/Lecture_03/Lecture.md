@@ -51,10 +51,10 @@ enableTitleFooter: true
 ![](assets/img/DotnetUnifiedPlatform.png)
 
 +++
-### .NET Standard vs .NET Core
+### .NET Standard vs .NET Core (.NET 5, .NET 6)
 * **.NET Standard**
   * *specification* that *covers which APIs a .NET platform has to implement*
-* **.NET Core**
+* **.NET Core** (.NET 5, .NET 6)
   * **concrete .NET platform**
   * *implements the .NET Standard*
 
@@ -99,7 +99,7 @@ enableTitleFooter: true
 +++
 ### .NET API
 * [.NET Standard API](https://docs.microsoft.com/sk-sk/dotnet/api/?view=netstandard-2.0)
-* **API**(Application programming interface):
+* **API** (Application programming interface):
   * **Set of namespaces**(*classes*, *structs*, *interfaces*, *enums*, *delegates*)
   * Allows the creation of applications which access the features or data of an:
     * Operating system
