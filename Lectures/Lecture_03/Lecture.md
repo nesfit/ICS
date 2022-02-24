@@ -48,7 +48,7 @@ enableTitleFooter: true
 +++
 #### .NET Today
 
-![](assets/img/NetToday.png)
+![](assets/img/DotnetUnifiedPlatform.png)
 
 +++
 ### .NET Standard vs .NET Core
