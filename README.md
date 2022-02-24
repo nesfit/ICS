@@ -3,7 +3,7 @@
 ---
 title: ICS 00 - ICS Organization 
 theme: simple
-css: assets/theme.css
+css: .reveal-md/theme.css
 separator: "^---$"
 verticalSeparator: "^\\+\\+\\+$"
 highlightTheme: vs
