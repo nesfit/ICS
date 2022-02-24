@@ -1,7 +1,7 @@
 ---
 title: ICS 01 - Introduction to C#, Visual Studio and .NET
 theme: simple
-css: assets/theme.css
+css: .reveal-md/theme.css
 separator: "^---$"
 verticalSeparator: "^\\+\\+\\+$"
 highlightTheme: vs
@@ -12,6 +12,7 @@ enableMenu: true
 enableChalkboard: true
 enableTitleFooter: true
 ---
+
 
 # Introduction to C#, Visual Studio and .NET
 
@@ -1575,3 +1576,10 @@ _Article_ [_originally published on the NDepend blog_](https://blog.ndepend.com/
 ## C# version 10.0
 
 [What's new in C# 10.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10)
+
+---
+
+<!-- Has to stay, because otherwise static build would not contain logo resources referenced in CSS theme -->
+![](.reveal-md/img/logo-ics.svg)
++++
+![](.reveal-md/img/logo.png)
