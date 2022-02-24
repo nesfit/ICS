@@ -1349,7 +1349,7 @@ public delegate void ProgressReporter(int percentComplete);
 
 public class Util
 {
-  public static void HardWork(ProgressReporter progressReporter)
+  public static void DoTheHardWork(ProgressReporter progressReporter)
   {
     for(int i = 0; i < 10; i++)
     {
@@ -1369,7 +1369,7 @@ class Test
   {
     ProgressReporter progressReporter = WriteProgressToConsole;
     progressReporter += WriteProgressToFile;
-    Util.HardWork(p);
+    Util.DoTheHardWork(progressReporter);
   }
 
   static void WriteProgressToConsole(int percentComplete)
@@ -1724,7 +1724,7 @@ static void Main()
       var options = extend(defaultOptions, {"controls":true,"controlsTutorial":true,"controlsLayout":"bottom-right","progress":true,"slideNumber":true,"showSlideNumber":"all","keyboard":true,"overview":true,"navigationMode":"linear","fragments":true,"fragmentInURL":false,"help":true,"mouseWheel":false,"transition":"slide","transitionSpeed":"fast"}, queryOptions);
     </script>
 
-    <script src="./_assets/plugin/sampler.js"></script>
+    <script src="./_assets/.reveal-md/plugin/sampler.js"></script>
 
     <script>
       Reveal.initialize(options);

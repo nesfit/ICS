@@ -1,5 +1,5 @@
 {
     "scripts": [
-        "./reveal-md/plugin/sampler.js"
+        ".reveal-md/plugin/sampler.js"
         ]
   }
