@@ -1344,7 +1344,7 @@ public delegate void ProgressReporter(int percentComplete);
 
 public class Util
 {
-  public static void HardWork(ProgressReporter progressReporter)
+  public static void DoTheHardWork(ProgressReporter progressReporter)
   {
     for(int i = 0; i < 10; i++)
     {
@@ -1364,7 +1364,7 @@ class Test
   {
     ProgressReporter progressReporter = WriteProgressToConsole;
     progressReporter += WriteProgressToFile;
-    Util.HardWork(p);
+    Util.DoTheHardWork(progressReporter);
   }
 
   static void WriteProgressToConsole(int percentComplete)

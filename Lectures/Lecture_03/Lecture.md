@@ -1,7 +1,7 @@
 ---
 title: ICS 01 - Introduction to C#, Visual Studio and .NET
 theme: simple
-css: assets/theme.css
+css: .reveal-md/theme.css
 separator: "^---$"
 verticalSeparator: "^\\+\\+\\+$"
 highlightTheme: vs

@@ -3,7 +3,7 @@
 ---
 title: ICS 00 - ICS Organization 
 theme: simple
-css: assets/theme.css
+css: .reveal-md/theme.css
 separator: "^---$"
 verticalSeparator: "^\\+\\+\\+$"
 highlightTheme: vs
@@ -168,3 +168,21 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 * [Agile Principles, Patterns, and Practices in C#](https://books.google.cz/books?id=hckt7v6g09oC), Robert C. Martin
 * [C# 3.0 Design Patterns](https://books.google.cz/books?id=pD2XMZLGUAYC), Judith Bishop
 * [The Art of Unit Testing](https://books.google.cz/books?id=2GRRmgEACAAJ&dq=the+art+of+unit+testing&hl=en&sa=X&ved=0ahUKEwjLhJeRx7DnAhU3AGMBHeScBisQ6AEILDAA), Roy Osherove
+
+# Lokální vývoj
+
+Repozitář používá symlinky, které jsou závislé na nastavení prostředí ve Windows.  
+
+Pro clonování použijte explicitní povolné symlinků.
+```
+git clone -c core.symlinks=true https://github.com/nesfit/ICS.git 
+```
+
+Pokud dojde k chybě s oprávněním vytvořit symlink tak nejsnažší je použít git clone s Admin oprávnění. Alternativně můžete upravit local policy v Windows.
+
+---
+
+<!-- Has to stay, because otherwise static build would not contain logo resources referenced in CSS theme -->
+![](.reveal-md/img/logo-ics.svg)
++++
+![](.reveal-md/img/logo.png)

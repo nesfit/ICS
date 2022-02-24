@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./dist/theme/simple.css" id="theme" />
     <link rel="stylesheet" href="./css/highlight/vs.css" />
 
-    <link rel="stylesheet" href="./_assets/assets/theme.css" />
+    <link rel="stylesheet" href="./_assets/.reveal-md/theme.css" />
 
   </head>
   <body>
@@ -75,7 +75,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 |          | E05 | WPF frontend a binding                                                                                                                                                                                 |
 | 10.04.   | P02 | Odevzdání druhé fáze projektu                                                                                                                                                                           |
 | 15.04.   | L10 | Velikonoce - Velký Pátek                                                                                                                                                                               |
-| 19.04.   | L11 | [Paralelní a asynchronní programování](https://nesfit.github.io/ICS/Lectures/Lecture_10/_site/) - proces, vlákno, úloha z pohledu C# a použitého .NET frameworku                                       |
+| 22.04.   | L11 | [Paralelní a asynchronní programování](https://nesfit.github.io/ICS/Lectures/Lecture_10/_site/) - proces, vlákno, úloha z pohledu C# a použitého .NET frameworku                                       |
 |          | E06 | Takto můžete napsat projekt?!                                                                                                                                                                          |
 | 29.04.   | L12 | Návrhové vzory - vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#                                                                                                                    |
 | 03-04.05 | P03 | Obhajoby projektu                                                                                                                                                                                      |
@@ -169,7 +169,13 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 * [Agile Principles, Patterns, and Practices in C#](https://books.google.cz/books?id=hckt7v6g09oC), Robert C. Martin
 * [C# 3.0 Design Patterns](https://books.google.cz/books?id=pD2XMZLGUAYC), Judith Bishop
 * [The Art of Unit Testing](https://books.google.cz/books?id=2GRRmgEACAAJ&dq=the+art+of+unit+testing&hl=en&sa=X&ved=0ahUKEwjLhJeRx7DnAhU3AGMBHeScBisQ6AEILDAA), Roy Osherove
-</script></section></div>
+
+</script></section><section ><section data-markdown><script type="text/template">
+
+<!-- Has to stay, because otherwise static build would not contain logo resources referenced in CSS theme -->
+![](.reveal-md/img/logo-ics.svg)
+</script></section><section data-markdown><script type="text/template">
+![](.reveal-md/img/logo.png)</script></section></section></div>
     </div>
 
     <script src="./dist/reveal.js"></script>
@@ -212,7 +218,7 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
       // options from URL query string
       var queryOptions = Reveal().getQueryHash() || {};
 
-      var options = extend(defaultOptions, {"controls":true,"controlsTutorial":true,"controlsLayout":"bottom-right","progress":true,"slideNumber":true,"showSlideNumber":"all","keyboard":true,"overview":true,"navigationMode":"linear","fragments":true,"fragmentInURL":false,"help":true,"mouseWheel":true,"transition":"slide","transitionSpeed":"fast"}, queryOptions);
+      var options = extend(defaultOptions, {}, queryOptions);
     </script>
 
 
