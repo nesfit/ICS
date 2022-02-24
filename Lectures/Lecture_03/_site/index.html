@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <title>ICS 01 - Introduction to C#, Visual Studio and .NET</title>
-    <link rel="shortcut icon" href="./favicon.ico"/>
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./dist/reset.css" />
     <link rel="stylesheet" href="./dist/reveal.css" />
     <link rel="stylesheet" href="./dist/theme/simple.css" id="theme" />
     <link rel="stylesheet" href="./css/highlight/vs.css" />
-    <link rel="stylesheet" href="./_assets/assets/theme.css" />
+
+    <link rel="stylesheet" href="./_assets/.reveal-md/theme.css" />
 
   </head>
   <body>
@@ -51,13 +53,13 @@
 </script></section><section data-markdown><script type="text/template">
 #### .NET Today
 
-![](assets/img/NetToday.png)
+![](assets/img/DotnetUnifiedPlatform.png)
 
 </script></section><section data-markdown><script type="text/template">
-### .NET Standard vs .NET Core
+### .NET Standard vs .NET Core (.NET 5, .NET 6)
 * **.NET Standard**
   * *specification* that *covers which APIs a .NET platform has to implement*
-* **.NET Core**
+* **.NET Core** (.NET 5, .NET 6)
   * **concrete .NET platform**
   * *implements the .NET Standard*
 
@@ -102,7 +104,7 @@
 </script></section><section data-markdown><script type="text/template">
 ### .NET API
 * [.NET Standard API](https://docs.microsoft.com/sk-sk/dotnet/api/?view=netstandard-2.0)
-* **API**(Application programming interface):
+* **API** (Application programming interface):
   * **Set of namespaces**(*classes*, *structs*, *interfaces*, *enums*, *delegates*)
   * Allows the creation of applications which access the features or data of an:
     * Operating system
@@ -2039,10 +2041,10 @@ Connection: System.Data.SqlClient.SqlConnection
       // options from URL query string
       var queryOptions = Reveal().getQueryHash() || {};
 
-      var options = extend(defaultOptions, {"controls":true,"controlsTutorial":true,"controlsLayout":"bottom-right","progress":true,"slideNumber":true,"showSlideNumber":"all","keyboard":true,"overview":true,"navigationMode":"linear","fragments":true,"fragmentInURL":false,"help":true,"mouseWheel":true,"transition":"slide","transitionSpeed":"fast"}, queryOptions);
+      var options = extend(defaultOptions, {"controls":true,"controlsTutorial":true,"controlsLayout":"bottom-right","progress":true,"slideNumber":true,"showSlideNumber":"all","keyboard":true,"overview":true,"navigationMode":"linear","fragments":true,"fragmentInURL":false,"help":true,"mouseWheel":false,"transition":"slide","transitionSpeed":"fast"}, queryOptions);
     </script>
 
-    <script src="./_assets/plugin/sampler.js"></script>
+    <script src="./_assets/.reveal-md/plugin/sampler.js"></script>
 
     <script>
       Reveal.initialize(options);
