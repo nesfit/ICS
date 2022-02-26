@@ -62,7 +62,7 @@ Pro uložení zvolte [SQL Server Express LocalDB](https://docs.microsoft.com/en-
   - Řidič může odebrat spolujezdce a zrušit spolujízdu.
   - Uživatel může přidat svá auta a upravovat informace o nich.
   - Uživatel vidí seznam spolujízd a může se přihlásit do neobsazené spolujízdy.
-  - Uživatel může **filtrovat** spolujízdy podle času, začátku a konce.
+  - Uživatel může **filtrovat** spolujízdy podle času začátku, míst startu a cíle.
 
 > :warning: **Dobře se zamyslete jak budete implementovat jízdy!**: Uvědomte si, že uživatelé nemohou současně jet ve více spolujízdách. Při vytváření/editaci je nutné ověřit, že nově přidaný záznam je nekolizní.
 
