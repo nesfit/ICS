@@ -7,14 +7,14 @@ namespace School.DAL.Entities
     {
         public Guid Id { get; set; }
 
-        public string Street { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Country { get; set; }
+        public string? Street { get; set; }
+        public string? City { get; set; }
+        public string? State { get; set; }
+        public string? Country { get; set; }
 
         private sealed class AddressEntityEqualityComparer : IEqualityComparer<AddressEntity>
         {
-            public bool Equals(AddressEntity x, AddressEntity y)
+            public bool Equals(AddressEntity? x, AddressEntity? y)
             {
                 if (ReferenceEquals(x, y)) return true;
                 if (ReferenceEquals(x, null)) return false;

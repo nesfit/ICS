@@ -7,14 +7,14 @@ namespace School.DAL.Entities
     {
         public Guid Id { get; set; }
 
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
 
         public virtual ICollection<StudentCourseEntity> StudentCourses { get; set; } = new List<StudentCourseEntity>();
 
         private sealed class IdNameDescriptionEqualityComparer : IEqualityComparer<CourseEntity>
         {
-            public bool Equals(CourseEntity x, CourseEntity y)
+            public bool Equals(CourseEntity? x, CourseEntity? y)
             {
                 if (ReferenceEquals(x, y)) return true;
                 if (ReferenceEquals(x, null)) return false;
