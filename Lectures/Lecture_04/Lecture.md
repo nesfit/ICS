@@ -1737,3 +1737,10 @@ config.AssertConfigurationIsValid();
 ## Credits
 * Michal Mrnuštík - for slides preparation
 * Michal Orlíček - for slides preparation
+
+---
+
+<!-- Has to stay, because otherwise static build would not contain logo resources referenced in CSS theme -->
+![](_reveal-md/img/logo-ics.svg)
++++
+![](_reveal-md/img/logo.png)
