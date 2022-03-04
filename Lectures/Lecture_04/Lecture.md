@@ -1,7 +1,7 @@
 ---
-title: ICS 04 - Propojení aplikací s databází
+title: ICS 04 - Data Persistence in .NET Applications
 theme: simple
-css: assets/theme.css
+css: _reveal-md/theme.css
 separator: "^---$"
 verticalSeparator: "^\\+\\+\\+$"
 highlightTheme: vs
@@ -151,8 +151,6 @@ enableTitleFooter: true
 ![](assets/img/sql.gif)  <!-- .element height="100%" width="100%" -->
 
 
-
-
 +++
 ### Microsoft SQL LocalDB
 * Feature of *SQL Server Express*
@@ -293,8 +291,8 @@ enableTitleFooter: true
   * Works only on .NET Framework
 * **Entity Framework Core**
   * open-source
-  * Current version 5.0.x
-  * Works on .NET Standard (supports .NET Core / .NET 5 -->  multplatform)
+  * Current version 6.0.x
+  * Works on .NET Standard (supports .NET Core / .NET 6 -->  multiplatform)
   * Used in this course
 
 ![](assets/img/EFversions.png)
@@ -303,9 +301,9 @@ enableTitleFooter: true
 ### Entity Framework Core
 * [GitHub](https://github.com/aspnet/EntityFrameworkCore)
 * [Documentation](https://docs.microsoft.com/sk-sk/ef/core/)
-* Is not a part of *.NET Core* or *Standard*
-* Intended to be used with *.NET Core* applications
-* Can also be used with standard *.NET 4.5+ framework* based applications
+* Is not a part of *.NET*,  *.NET Core* or *Standard*
+* Intended to be used with *.NET* applications
+* Can also be used with standard *.NET Framework 4.5+* based applications
 * Supported application types:
 
 ![](assets/img/EFCoreSupport.png)
@@ -426,6 +424,13 @@ public record CourseEntity
     public ICollection<StudentCourseEntity> StudentCourses { get; set; } = new List<StudentCourseEntity>();
 }
 ```
+or (beaware of `init` only properties)
+```C#
+public record CourseEntity(Guid Id, string Name, string Description)
+{
+    public ICollection<StudentCourseEntity> StudentCourses { get; init; } = new List<StudentCourseEntity>();
+}
+```
 
 +++
 ### Entity in DbContext
@@ -440,11 +445,11 @@ public class SchoolDbContext : DbContext
     {
     }
 
-    public DbSet<AddressEntity> Addresses { get; set; }
-    public DbSet<CourseEntity> Courses { get; set; }
-    public DbSet<GradeEntity> Grades { get; set; }
-    public DbSet<StudentEntity> Students { get; set; }
-    public DbSet<StudentCourseEntity> StudentCourses { get; set; }
+    public DbSet<AddressEntity> Addresses => Set<AddressEntity>();
+    public DbSet<CourseEntity> Courses => Set<CourseEntity>();
+    public DbSet<GradeEntity> Grades => Set<GradeEntity>();
+    public DbSet<StudentEntity> Students => Set<StudentEntity>();
+    public DbSet<StudentCourseEntity> StudentCourses => Set<StudentCourseEntity>();
 }
 ```
 
@@ -457,7 +462,8 @@ public class SchoolDbContext : DbContext
     * Maps to a **single column** in the database table
   * **Navigation Property**
     * **Represents a relationship** to another entity
-    * Must be `virtual` in case you want to use Lazy Loading, otherwise it needs to be `Include`d manually
+    * Must be `virtual` in case you want to use Lazy Loading (not recommended), otherwise it needs to be `Include`d manually
+    * OR, you may use manual *selection* or **Automapper**'s *projection*.
     * Two types
       * *Reference Navigation Property*
         * Includes a property of entity type
@@ -582,11 +588,11 @@ public class SchoolDbContext : DbContext
     {
     }
     
-    public DbSet<AddressEntity> Addresses { get; set; }
-    public DbSet<CourseEntity> Courses { get; set; }
-    public DbSet<GradeEntity> Grades { get; set; }
-    public DbSet<StudentEntity> Students { get; set; }
-    public DbSet<StudentCourseEntity> StudentCourses { get; set; }
+    public DbSet<AddressEntity> Addresses => Set<AddressEntity>();
+    public DbSet<CourseEntity> Courses => Set<CourseEntity>();
+    public DbSet<GradeEntity> Grades => Set<GradeEntity>();
+    public DbSet<StudentEntity> Students => Set<StudentEntity>();
+    public DbSet<StudentCourseEntity> StudentCourses => Set<StudentCourseEntity>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -598,13 +604,13 @@ public class SchoolDbContext : DbContext
 #### InMemory DbContext Creation
 
 ```C#
-public class TestDbContextFactory : IDbContextFactory
+public class InMemoryDbContextFactory : IDbContextFactory
 {
-    public TodosDbContext CreateDbContext()
+    public SchoolDbContext CreateDbContext()
     {
-        var optionsBuilder = new DbContextOptionsBuilder<TodosDbContext>();
-        optionsBuilder.UseInMemoryDatabase("TodoDbName");
-        return new TodosDbContext(optionsBuilder.Options);
+        var optionsBuilder = new DbContextOptionsBuilder<SchoolDbContext>();
+        optionsBuilder.UseInMemoryDatabase("SchoolDb");
+        return new SchoolDbContext(optionsBuilder.Options);
     }
 }
 ```
@@ -614,15 +620,15 @@ public class TestDbContextFactory : IDbContextFactory
 * **Do NOT include connection string into the code!!!**
   
 ```C#
-public class DefaultDbContextFactory : IDbContextFactory
+public class MSSQLLocalDBDbContextFactory : IDbContextFactory
 {
-    public TodosDbContext CreateDbContext()
+    public SchoolDbContext CreateDbContext()
     {
-        var optionsBuilder = new DbContextOptionsBuilder<TodosDbContext>();
+        var optionsBuilder = new DbContextOptionsBuilder<SchoolDbContext>();
         optionsBuilder.UseSqlServer(
-                @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog = TasksDB;MultipleActiveResultSets = True;Integrated Security = True"); 
+                @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog = SchoolDb;MultipleActiveResultSets = True;Integrated Security = True"); 
                 //TODO never ever put connection string into the code!!! Use configuration always!
-        return new TodosDbContext(optionsBuilder.Options);
+        return new SchoolDbContext(optionsBuilder.Options);
     }
 }
 ```
@@ -767,7 +773,7 @@ public class DefaultDbContextFactory : IDbContextFactory
 ### Annotation Attributes
 * Namespace `System.ComponentModel.DataAnnotations` and `System.ComponentModel.DataAnnotations`
 * Simple **attribute based configuration method**
-* .NET attributes can be** applied to domain classes and properties to configure the model**
+* .NET attributes can be **applied to domain classes and properties to configure the model**
 * Also used in *ASP.NET MVC*
 
 +++

@@ -8,14 +8,14 @@ namespace School.DAL.Entities
         public Guid Id { get; set; }
 
         public Guid StudentId { get; set; }
-        public virtual StudentEntity Student { get; set; }
+        public virtual StudentEntity? Student { get; set; }
 
         public Guid CourseId { get; set; }
-        public virtual CourseEntity Course { get; set; }
+        public virtual CourseEntity? Course { get; set; }
 
         private sealed class StudentCourseEntityEqualityComparer : IEqualityComparer<StudentCourseEntity>
         {
-            public bool Equals(StudentCourseEntity x, StudentCourseEntity y)
+            public bool Equals(StudentCourseEntity? x, StudentCourseEntity? y)
             {
                 if (ReferenceEquals(x, y)) return true;
                 if (ReferenceEquals(x, null)) return false;

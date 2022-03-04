@@ -15,7 +15,7 @@ namespace School.DAL.Repositories
         private readonly UnitOfWork.UnitOfWork _unitOfWork;
         public RepositoryBase(UnitOfWork.UnitOfWork unitOfWork)
         {
-            this._unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
         public void Delete(TEntity entity) 
@@ -28,7 +28,7 @@ namespace School.DAL.Repositories
             Delete(entity);
         }
 
-        public TEntity GetById(Guid entityId) 
+        public TEntity? GetById(Guid entityId) 
             => _unitOfWork.DbContext
                 .Set<TEntity>()
                 .SingleOrDefault(entity => entity.Id.Equals(entityId));
@@ -54,7 +54,9 @@ namespace School.DAL.Repositories
             var collectionsToBeSynchronized = typeof(TEntity).GetProperties().Where(i =>
                 i.PropertyType.IsGenericType && i.PropertyType.GetGenericTypeDefinition() == typeof(ICollection<>));
 
-            if (!collectionsToBeSynchronized?.Any() ?? false)
+            var toBeSynchronized = collectionsToBeSynchronized as PropertyInfo[] 
+                                   ?? collectionsToBeSynchronized.ToArray();
+            if (!toBeSynchronized?.Any() ?? false)
             {
                 return;
             }
@@ -65,7 +67,7 @@ namespace School.DAL.Repositories
                     return;
                 }
 
-                foreach (var collectionSelector in collectionsToBeSynchronized)
+                foreach (var collectionSelector in toBeSynchronized)
                 {
                     var updatedCollection = (collectionSelector.GetValue(entity) as ICollection<IEntity>
                 ).ToArray();

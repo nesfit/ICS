@@ -13,10 +13,12 @@ namespace School.DAL.Factories
 
         public TEntity Create<TEntity>(Guid id) where TEntity : class, IEntity, new()
         {
-            TEntity entity = null;
+            TEntity? entity = null;
             if (id != Guid.Empty)
             {
-                entity = _changeTracker?.Entries<TEntity>().SingleOrDefault(i => i.Entity.Id == id)
+                entity = _changeTracker?
+                    .Entries<TEntity>()
+                    .SingleOrDefault(i => i.Entity.Id == id)
                     ?.Entity;
                 if (entity == null)
                 {

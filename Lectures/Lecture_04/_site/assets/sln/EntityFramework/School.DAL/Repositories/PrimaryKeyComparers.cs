@@ -10,7 +10,7 @@ namespace School.DAL.Repositories
 
         private sealed class IdEqualityComparer<TKey> : IEqualityComparer<IEntity>
         {
-            public bool Equals(IEntity x, IEntity y)
+            public bool Equals(IEntity? x, IEntity? y)
             {
                 if (ReferenceEquals(x, y))
                 {

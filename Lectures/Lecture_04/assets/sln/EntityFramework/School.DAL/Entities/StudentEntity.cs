@@ -9,18 +9,18 @@ namespace School.DAL.Entities
     {
         public Guid Id { get; set; }
         
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public virtual AddressEntity Address { get; set; }
+        public virtual AddressEntity? Address { get; set; }
 
         public Guid GradeId { get; set; }
-        public virtual GradeEntity Grade { get; set; }
+        public virtual GradeEntity? Grade { get; set; }
 
         public virtual ICollection<StudentCourseEntity> StudentCourses { get; set; } = new List<StudentCourseEntity>();
 
         private sealed class StudentEntityEqualityComparer : IEqualityComparer<StudentEntity>
         {
-            public bool Equals(StudentEntity x, StudentEntity y)
+            public bool Equals(StudentEntity? x, StudentEntity? y)
             {
                 if (ReferenceEquals(x, y)) return true;
                 if (ReferenceEquals(x, null)) return false;

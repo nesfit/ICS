@@ -11,11 +11,11 @@ namespace School.DAL
         {
         }
 
-        public DbSet<AddressEntity> Addresses { get; set; }
-        public DbSet<CourseEntity> Courses { get; set; }
-        public DbSet<GradeEntity> Grades { get; set; }
-        public DbSet<StudentEntity> Students { get; set; }
-        public DbSet<StudentCourseEntity> StudentCourses { get; set; }
+        public DbSet<AddressEntity> Addresses => Set<AddressEntity>();
+        public DbSet<CourseEntity> Courses => Set<CourseEntity>();
+        public DbSet<GradeEntity> Grades => Set<GradeEntity>();
+        public DbSet<StudentEntity> Students => Set<StudentEntity>();
+        public DbSet<StudentCourseEntity> StudentCourses => Set<StudentCourseEntity>();
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

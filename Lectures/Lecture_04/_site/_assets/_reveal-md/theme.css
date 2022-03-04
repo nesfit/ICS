@@ -4,7 +4,29 @@
  * For details, visit Wiki:
  * https://github.com/gitpitch/gitpitch/wiki/Slideshow-Custom-CSS
  */
+ body:before {
+  display: inline-block;
+  width: 150px; 
+  height: 200px;
+  position: fixed;
+  top: 1em;
+  right: 3em;
+  /* content: url('img/logo-ics.svg'); */
+  content: url('../../_reveal-md/img/logo-ics.svg');
+  transform: scale(1);
+}
 
+ body:after {
+  display: inline-block;
+  width: 150px; 
+  height: 200px;
+  position: fixed;
+  top: -5em;
+  left: 0em;
+  /* content: url('img/logo.png'); */
+  content: url('../../_reveal-md/img/logo.png');
+  transform: scale(.1);
+}
  
 .reveal {
   font-size: 1.5em; 
