@@ -87,7 +87,7 @@ Při řešení projektu využijte Azure DevOps a GIT na sdílení kódu. Do své
 
 Účet **uciteliw5@vutbr.cz** přidejte jako poslední a ověřte, že má nastavena oprávnění na **Stakeholder**. V opačném případě jeden ze členů týmu nebude vidět zdrojový kód. Azure DevOps umožňuje v bezplatné verzi pouze 5 aktivních vývojářů.
 
-> :warning: **Je bezpodmínečně nutné** nastavit účtu **uciteliw5@vutbr.cz** **access level** na **Visual Studio Subsriber** vždy po deadline odevzdání jednotlivých fází a den před obhajobou projektu. Tato změna současně vyžaduje, aby jednomu členu týmu byl na tuto nezbytnou dobu odebrán přístup ke kódu. Tento **access level** nám ponechte do doby, než dostanete hodnocení dané fáze.
+> :warning: **Je bezpodmínečně nutné** nastavit účtu **uciteliw5@vutbr.cz** **access level** na **Basic** vždy po deadline odevzdání jednotlivých fází a den před obhajobou projektu. Tato změna současně vyžaduje, aby jednomu členu týmu byl na tuto nezbytnou dobu odebrán přístup ke kódu (nastavením jeho **access level** na **Stakeholder**). Tento **access level** nám ponechte do doby, než dostanete hodnocení dané fáze.
 
 Bez této změny bychom neměli přístup k vašemu kódu a nemohli bychom jej hodnotit. Tato změna se provede v nastavení organizace https://dev.azure.com/ics-2022-team0000/_settings/users.
 
