@@ -59,12 +59,13 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 | 06.03.   | P01 | Odevzdání první fáze projektu                                                                                                                                                                          |
 | 11.03.   | L05 | Psaní čistého a udržovatelného kódu                                                                                                                                                                    |
 | 18.03.   | L06 | Návrhový vzor Model-View-ViewModel (MVVM)                                                                                                                                                              |
+| 25.03.   | L07 | Automatizované testování - práce s xUnit, CI               
 
 +++
 
 | Datum    | Typ | Téma přednášky                                                                                                                                                                                         |
 | -------- | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 25.03.   | L07 | Automatizované testování - práce s xUnit, CI                                                                                                                                                           |
+                                                                                                                                            |
 | 01.04.   | L08 | [Základní koncepty tvorby uživatelského rozhraní](https://nesfit.github.io/ICS/Lectures/Lecture_08/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_08/_site/?print-pdf))                                                                                            |
 |          | E04 | Základy WPF a návrhový vzor MVVM                                                                                                                                                                       |
 | 08.04.   | L09 | WPF - tvorba komponent a stylování aplikací.                                                                                                                                                           |
