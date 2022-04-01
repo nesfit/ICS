@@ -153,7 +153,7 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 
 # Užitečné odkazy
 * [WPF-Tutorial](https://wpf-tutorial.com/)
-* [Entity framework tutorial](http://www.entityframeworktutorial.net/code-first/entity-framework-code-first.aspx)
+* [Entity framework tutorial](https://www.entityframeworktutorial.net/efcore/entity-framework-core.aspx)
 * [R. C. Martin SOLID](https://youtu.be/TMuno5RZNeE?t=757) Bob Martin SOLID Principles of Object Oriented and Agile Design
 * [Resharper features](https://www.jetbrains.com/resharper/features/) and how to use them.
 * [Pro Git book](https://git-scm.com/book/en/v2)
