@@ -1,7 +1,7 @@
 ---
-title: ICS 04 - Propojení aplikací s databází
+title: ICS 08 - Windows Presentation Foundation
 theme: simple
-css: assets/theme.css
+css: _reveal-md/theme.css
 separator: "^---$"
 verticalSeparator: "^\\+\\+\\+$"
 highlightTheme: vs
@@ -63,7 +63,7 @@ enableTitleFooter: true
 * Developer defines a shape and lets WPF render it in the most optimal way
 * WPF contains multiple predefined shapes
   * E.g., `Line, Rectangle, Ellipse, Path` etc...
-* *Shapes* are used inside *panels* and multiplicity of other WPF component contents
+* *Shapes* are used inside *panels* and a multiplicity of other WPF component contents
 
 +++
 ### Text Model
@@ -257,7 +257,7 @@ System.Object
 +++
 ### WrapPanel
 * `WrapPanel`
-* Components beside one-another and if there is no space, another row is created, or vice-versa
+* Components beside one another, and if there is no space, another row is created, or vice-versa
 * *Concentration game (Pexeso)* like a design
 * Properties `WrapPanel.Orientation`
 
@@ -401,7 +401,7 @@ and others...
   * Component that defines `{Binding}`
 
 +++
-### Data-binding how it works?
+### Data-binding, how does it work?
 * `OneWay` and `TwoWay` 
   * React to changes in the source
   * *Source* needs to notify that *something* has changes
@@ -499,8 +499,8 @@ public class MenuItem {
     * Content is cleared, now data is generated
   * Change of an item in the `ItemsSource` collection
     * Only with objects implementing interface `INotifyPropertyChanged`
-  * Adding or Removing items in the collection
-    * The collection must implement interface `INotifyCollectionChanged`
+  * Adding or removing items in the collection
+    * The collection must implement the interface `INotifyCollectionChanged`
 
 +++
 ### ItemsControl - ListBox
@@ -556,7 +556,7 @@ public class MenuItem {
 * `Command` is an abstract and *loosely-coupled* version of `event`
 * E.g., *Copy, Cut, Paste, Save, etc...*
 * Reduces the necessary code amount
-* Enables UI changes without a need to change *back-end* logic
+* Enables UI changes without a need to change *backend* logic
 * Commands have *action, source, target, and binding*
 
 +++
@@ -744,9 +744,9 @@ private bool CanExecute() => true;
 
 * Open **view in new window**
   * Creating a new window is a job for the *ViewModel*
-    * It is not part of ViewModel responsibilities to know, what View should be created
+    * It is not part of ViewModel responsibilities to know, what `View` should be created
     * See [Demonstration project](assets/sln/OpeningWindow)
-  * Recommends using MVVM framework
+  * Better use MVVM framework
     * Solves problems with wrapping all this up
 
 ---
@@ -952,7 +952,7 @@ MainWindow.xaml.cs:
   * *Microsoft Edge* - no Silverlight plugin available
   * *Google Chrome* - no longer supported since September 2015
   * *Firefox* - no longer supported since March 2017
-* Statistics from February 2018 show that **fewer than 0.1% sites used Silverlight**
+* Statistics from February 2018 show that **fewer than 0.1% of sites used Silverlight**
 
 +++
 ## Universal Windows Platform
@@ -1009,3 +1009,9 @@ MainWindow.xaml.cs:
 +++
 ## Credits
 * Michal Orlíček - for slides preparation
+---
+
+<!-- Has to stay, because otherwise static build would not contain logo resources referenced in CSS theme -->
+![](_reveal-md/img/logo-ics.svg)
++++
+![](_reveal-md/img/logo.png)

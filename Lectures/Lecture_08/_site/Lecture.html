@@ -4,12 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>ICS 04 - Propojení aplikací s databází</title>
-    <link rel="shortcut icon" href="./favicon.ico"/>
+    <title>ICS 08 - Windows Presentation Foundation</title>
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./dist/reset.css" />
     <link rel="stylesheet" href="./dist/reveal.css" />
     <link rel="stylesheet" href="./dist/theme/simple.css" id="theme" />
     <link rel="stylesheet" href="./css/highlight/vs.css" />
-    <link rel="stylesheet" href="./_assets/assets/theme.css" />
+
+    <link rel="stylesheet" href="./_assets/_reveal-md/theme.css" />
 
   </head>
   <body>
@@ -66,7 +68,7 @@
 * Developer defines a shape and lets WPF render it in the most optimal way
 * WPF contains multiple predefined shapes
   * E.g., `Line, Rectangle, Ellipse, Path` etc...
-* *Shapes* are used inside *panels* and multiplicity of other WPF component contents
+* *Shapes* are used inside *panels* and a multiplicity of other WPF component contents
 
 </script></section><section data-markdown><script type="text/template">
 ### Text Model
@@ -260,7 +262,7 @@ System.Object
 </script></section><section data-markdown><script type="text/template">
 ### WrapPanel
 * `WrapPanel`
-* Components beside one-another and if there is no space, another row is created, or vice-versa
+* Components beside one another, and if there is no space, another row is created, or vice-versa
 * *Concentration game (Pexeso)* like a design
 * Properties `WrapPanel.Orientation`
 
@@ -404,7 +406,7 @@ and others...
   * Component that defines `{Binding}`
 
 </script></section><section data-markdown><script type="text/template">
-### Data-binding how it works?
+### Data-binding, how does it work?
 * `OneWay` and `TwoWay` 
   * React to changes in the source
   * *Source* needs to notify that *something* has changes
@@ -502,8 +504,8 @@ public class MenuItem {
     * Content is cleared, now data is generated
   * Change of an item in the `ItemsSource` collection
     * Only with objects implementing interface `INotifyPropertyChanged`
-  * Adding or Removing items in the collection
-    * The collection must implement interface `INotifyCollectionChanged`
+  * Adding or removing items in the collection
+    * The collection must implement the interface `INotifyCollectionChanged`
 
 </script></section><section data-markdown><script type="text/template">
 ### ItemsControl - ListBox
@@ -559,7 +561,7 @@ public class MenuItem {
 * `Command` is an abstract and *loosely-coupled* version of `event`
 * E.g., *Copy, Cut, Paste, Save, etc...*
 * Reduces the necessary code amount
-* Enables UI changes without a need to change *back-end* logic
+* Enables UI changes without a need to change *backend* logic
 * Commands have *action, source, target, and binding*
 
 </script></section><section data-markdown><script type="text/template">
@@ -747,9 +749,9 @@ private bool CanExecute() => true;
 
 * Open **view in new window**
   * Creating a new window is a job for the *ViewModel*
-    * It is not part of ViewModel responsibilities to know, what View should be created
+    * It is not part of ViewModel responsibilities to know, what `View` should be created
     * See [Demonstration project](assets/sln/OpeningWindow)
-  * Recommends using MVVM framework
+  * Better use MVVM framework
     * Solves problems with wrapping all this up
 
 </script></section><section ><section data-markdown><script type="text/template">
@@ -955,7 +957,7 @@ MainWindow.xaml.cs:
   * *Microsoft Edge* - no Silverlight plugin available
   * *Google Chrome* - no longer supported since September 2015
   * *Firefox* - no longer supported since March 2017
-* Statistics from February 2018 show that **fewer than 0.1% sites used Silverlight**
+* Statistics from February 2018 show that **fewer than 0.1% of sites used Silverlight**
 
 </script></section><section data-markdown><script type="text/template">
 ## Universal Windows Platform
@@ -1011,7 +1013,13 @@ MainWindow.xaml.cs:
 
 </script></section><section data-markdown><script type="text/template">
 ## Credits
-* Michal Orlíček - for slides preparation</script></section></section></div>
+* Michal Orlíček - for slides preparation
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+<!-- Has to stay, because otherwise static build would not contain logo resources referenced in CSS theme -->
+![](_reveal-md/img/logo-ics.svg)
+</script></section><section data-markdown><script type="text/template">
+![](_reveal-md/img/logo.png)</script></section></section></div>
     </div>
 
     <script src="./dist/reveal.js"></script>
@@ -1054,10 +1062,10 @@ MainWindow.xaml.cs:
       // options from URL query string
       var queryOptions = Reveal().getQueryHash() || {};
 
-      var options = extend(defaultOptions, {"controls":true,"controlsTutorial":true,"controlsLayout":"bottom-right","progress":true,"slideNumber":true,"showSlideNumber":"all","keyboard":true,"overview":true,"navigationMode":"linear","fragments":true,"fragmentInURL":false,"help":true,"mouseWheel":true,"transition":"slide","transitionSpeed":"fast"}, queryOptions);
+      var options = extend(defaultOptions, {"controls":true,"controlsTutorial":true,"controlsLayout":"bottom-right","progress":true,"slideNumber":true,"showSlideNumber":"all","keyboard":true,"overview":true,"navigationMode":"linear","fragments":true,"fragmentInURL":false,"help":true,"mouseWheel":false,"transition":"slide","transitionSpeed":"fast"}, queryOptions);
     </script>
 
-    <script src="./_assets/plugin/sampler.js"></script>
+    <script src="./_assets/_reveal-md/plugin/sampler.js"></script>
 
     <script>
       Reveal.initialize(options);
