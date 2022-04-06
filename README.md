@@ -75,7 +75,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 | 22.04.   | L11 | Návrhové vzory - vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#                                                                                                                                                                    |
 |          | E06 | Takto můžete napsat projekt?!                                                                                                                                                                                                                          |
 | 29.04.   | L12 | [Paralelní a asynchronní programování](https://nesfit.github.io/ICS/Lectures/Lecture_10/_site/) - proces, vlákno, úloha z pohledu C# a použitého .NET frameworku ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_10/_site/?print-pdf)) |
-| 03-04.05 | P03 | Obhajoby projektu                                                                                                                                                                                                                                      |
+| 02-03.05 | P03 | Obhajoby projektu                                                                                                                                                                                                                                      |
 | 06.05.   | L13 | Multiplatformní programování - .NET Standard, .NET Core., kontejnerizace aplikací pomocí Docker                                                                                                                                                        |
 
 LXY - přednáška | EXY - democvičení | P0X - projekt
