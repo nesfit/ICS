@@ -7,11 +7,12 @@
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                        xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
                        xmlns:controls="clr-namespace:CookBook.App.Controls"
+                       xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
                        d:DesignHeight="450"
                        d:DesignWidth="800"
                        mc:Ignorable="d"
                        Background="{StaticResource DefaultComponentBackgroundBrush}"
-                       d:DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=IngredientListViewModel}">
+                       d:DataContext="{d:DesignInstance viewModels:IngredientListViewModel}">
     <Grid x:Name="Root">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
