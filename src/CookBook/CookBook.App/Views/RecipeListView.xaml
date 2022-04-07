@@ -10,7 +10,7 @@
                        xmlns:controls="clr-namespace:CookBook.App.Controls"
                        mc:Ignorable="d"
                        Background="{StaticResource DefaultComponentBackgroundBrush}"
-                       d:DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=RecipeListViewModel}"
+                       d:DataContext="{d:DesignInstance viewModels:RecipeListViewModel}"
                        d:DesignHeight="300" d:DesignWidth="400">
     <Grid>
         <Grid.RowDefinitions>
