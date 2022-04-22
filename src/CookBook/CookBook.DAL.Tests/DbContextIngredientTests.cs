@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using CookBook.Common.Tests.Factories;
 using CookBook.Common.Tests.Seeds;
 using CookBook.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -18,16 +19,16 @@ namespace CookBook.DAL.Tests
         public DbContextIngredientTests(ITestOutputHelper output) : base(output)
         {
         }
-        
+
         [Fact]
         public async Task AddNew_Ingredient_Persisted()
         {
             //Arrange
             IngredientEntity entity = new(
                 Guid.Parse("C5DE45D7-64A0-4E8D-AC7F-BF5CFDFB0EFC"),
-                Name : "Salt",
-                Description : "Mountain salt",
-                ImageUrl : "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Salt_shaker_on_white_background.jpg/800px-Salt_shaker_on_white_background.jpg"
+                Name: "Salt",
+                Description: "Mountain salt",
+                ImageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Salt_shaker_on_white_background.jpg/800px-Salt_shaker_on_white_background.jpg"
             );
 
             //Act
@@ -109,6 +110,19 @@ namespace CookBook.DAL.Tests
 
             //Assert
             Assert.False(await CookBookDbContextSUT.Ingredients.AnyAsync(i => i.Id == entityBase.Id));
+        }
+        
+        [Fact]
+        public async Task Delete_IngredientUsedInRecipe_Throws()
+        {
+            if(DbContextFactory is DbContextTestingInMemoryFactory) return; //In-Memory does not enforce FKs
+            
+            //Arrange
+            var entityBase = IngredientSeeds.IngredientEntity1;
+
+            //Act & Assert
+            CookBookDbContextSUT.Ingredients.Remove(entityBase);
+            await Assert.ThrowsAsync<DbUpdateException>(async () => await CookBookDbContextSUT.SaveChangesAsync());
         }
     }
 }

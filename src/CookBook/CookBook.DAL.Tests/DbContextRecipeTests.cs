@@ -7,6 +7,7 @@ using CookBook.Common.Tests;
 using CookBook.Common.Tests.Seeds;
 using CookBook.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
+using Nemesis.Essentials.Design;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -173,7 +174,7 @@ namespace CookBook.DAL.Tests
         }
 
         [Fact]
-        public async Task Delete_IngredientAmount_Deleted()
+        public async Task Delete_RecipeWithoutIngredients_Deleted()
         {
             //Arrange
             var baseEntity = RecipeSeeds.RecipeEntityDelete;
@@ -187,7 +188,7 @@ namespace CookBook.DAL.Tests
         }
 
         [Fact]
-        public async Task DeleteById_IngredientAmount_Deleted()
+        public async Task DeleteById_RecipeWithoutIngredients_Deleted()
         {
             //Arrange
             var baseEntity = RecipeSeeds.RecipeEntityDelete;
@@ -199,6 +200,22 @@ namespace CookBook.DAL.Tests
 
             //Assert
             Assert.False(await CookBookDbContextSUT.Recipes.AnyAsync(i => i.Id == baseEntity.Id));
+        }
+        
+        [Fact]
+        public async Task Delete_RecipeWithIngredientAmounts_Deleted()
+        {
+            //Arrange
+            var baseEntity = RecipeSeeds.RecipeForIngredientAmountEntityDelete;
+
+            //Act
+            CookBookDbContextSUT.Recipes.Remove(baseEntity);
+            await CookBookDbContextSUT.SaveChangesAsync();
+
+            //Assert
+            Assert.False(await CookBookDbContextSUT.Recipes.AnyAsync(i => i.Id == baseEntity.Id));
+            Assert.False(await CookBookDbContextSUT.IngredientAmountEntities
+                .AnyAsync(i => baseEntity.Ingredients.Select(ingredientAmount =>  ingredientAmount.Id).Contains(i.Id)));
         }
     }
 }
