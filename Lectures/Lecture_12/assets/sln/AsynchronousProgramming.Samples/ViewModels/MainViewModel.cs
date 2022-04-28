@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AsynchronousProgramming.Samples.Annotations;
-using AsynchronousProgramming.Samples.Commands;
+using Microsoft.Toolkit.Mvvm.Input;
 
 namespace AsynchronousProgramming.Samples.ViewModels
 {
