@@ -1,5 +1,5 @@
 ---
-title: ICS 04 - Propojení aplikací s databází
+title: ICS 12 - Parallel programming
 theme: simple
 css: assets/theme.css
 separator: "^---$"
