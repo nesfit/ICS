@@ -34,11 +34,11 @@ namespace ParallelProgramming.Samples.Threads
             {
                 output.WriteLine("New thread started");
                 PrintCurrentThreadInfo();
-                Thread.Sleep(500);
+                Thread.Sleep(500); //Very naive waiting for ThreadPool schedule threads, please do not use this in production!
                 output.WriteLine("New thread finishing");
             });
 
-            Thread.Sleep(1000);
+            Thread.Sleep(1000); //Very naive waiting for ThreadPool schedule threads, please do not use this in production!
         }
     }
 }

@@ -31,7 +31,7 @@ namespace ParallelProgramming.Samples.Synchronization
                 });
             }
 
-            Thread.Sleep(500);
+            Thread.Sleep(500); //Very naive waiting for ThreadPool schedule threads, please do not use this in production!
             Assert.Equal(40, counter.Count);
         }
     }

@@ -44,7 +44,7 @@ namespace AsynchronousProgramming.Samples.ViewModels
             // Without Task.Run to spawn Async operation on different thread, the continuation would not run and UI thread would wait for result indefinitely causing deadlock
             //DataValue = PerformSomeHeavyWorkAsync().ConfigureAwait(false).GetAwaiter().GetResult();
 
-            DataValue = Task.Run(async ()=> await PerformSomeHeavyWorkAsync()).GetAwaiter().GetResult();
+            DataValue = Task.Run(async () => await PerformSomeHeavyWorkAsync()).GetAwaiter().GetResult();
 
             // Never ever use .Wait(), or .Result on async methods... always .GetAwaiter().GetResult()
         }

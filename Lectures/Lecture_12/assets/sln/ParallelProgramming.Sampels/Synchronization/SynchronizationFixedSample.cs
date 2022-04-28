@@ -51,7 +51,8 @@ namespace ParallelProgramming.Samples.Synchronization
 
             for (var i = 0; i < 40; i++)
                 ThreadPool.QueueUserWorkItem(state => { counter.Increment(); });
-            Thread.Sleep(500);
+
+            Thread.Sleep(500); //Very naive waiting for ThreadPool schedule threads, please do not use this in production!
             Assert.Equal(40, counter.Count);
         }
 
@@ -62,7 +63,8 @@ namespace ParallelProgramming.Samples.Synchronization
 
             for (var i = 0; i < 40; i++)
                 ThreadPool.QueueUserWorkItem(state => { counter.Increment(); });
-            Thread.Sleep(500);
+
+            Thread.Sleep(500); //Very naive waiting for ThreadPool schedule threads, please do not use this in production!
             Assert.Equal(40, counter.Count);
         }
     }
