@@ -1,7 +1,7 @@
 ---
 title: ICS 12 - Parallel programming
 theme: simple
-css: assets/theme.css
+css: _reveal-md/theme.css
 separator: "^---$"
 verticalSeparator: "^\\+\\+\\+$"
 highlightTheme: vs
@@ -488,3 +488,10 @@ class FriendFacade : IFriendFacade {
 
 
 # DEMO: `async`/`await`
+
+---
+
+<!-- Has to stay, because otherwise static build would not contain logo resources referenced in CSS theme -->
+![](_reveal-md/img/logo-ics.svg)
++++
+![](_reveal-md/img/logo.png)
