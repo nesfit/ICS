@@ -17,14 +17,14 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="{Binding DataValue}" />
+        <Label Grid.Row="0" Content="{Binding DataValue}" FontSize="48" />
         <Button
             Grid.Row="1"
             Command="{Binding LoadDataSynchronouslyCommand}"
-            Content="Load sync" />
+            Content="Load sync" FontSize="48" />
         <Button
             Grid.Row="2"
             Command="{Binding LoadDataAsynchronouslyCommand}"
-            Content="Load async" />
+            Content="Load async" FontSize="48" />
     </Grid>
 </Window>
