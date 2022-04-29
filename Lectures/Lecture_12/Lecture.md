@@ -42,24 +42,22 @@ enableTitleFooter: true
 
 ## Parallel computing
 
-- Parallel computing 
-    - Running multiple things at once
-    - Used for achieving performance
-    - Can be achieved using:
-        - Multiple processes
-        - Multithreading
+- Concurrent processing / Running multiple things at once
+- May increase performance **if used appropriately**
+- Achieved by:
+    - Multiple **processes**
+    - Multiple **threads**
 
 ---
 
 ## Synchronous vs. asynchronous computing
 
-- Synchronous computing
-    - Blocking execution
-    - Waiting for execution to finish
+- Synchronous execution
+    - *I/O operation, long running computation* blocks execution
 
-- Asynchronous computing
-    - Nonblocking execution
-    - I don't wait, I get notified
+- Asynchronous execution
+    - Non-blocking execution
+    - "*I don't wait, I get notified*"
 
 ---
 
@@ -78,23 +76,23 @@ Source: https://eloquentjavascript.net/11_async.html
 ## Process 
 
 - known from IOS
-- standalone running program
+- **standalone** running program
 - has its process identification (PID)
-- does not share code and variables with other processes
-- need of OS synchronization mechanisms (mutexes, ...)
-- need of OS for data sharing (shared memory, ...)
-- command-line can be used for I/O
+- **does not share code and variables** with other processes
+- needs OsS for synchronization (mutexes, ...)
+- needs OS for data sharing (shared memory, ...)
+- STDIN/STDOUT/STDERR
 
 ---
 
 ## Thread
 
-- runs within the same process
-- has its own stack but shares heap
+- runs **within a process**
+- **has its own stack but shares a heap**
 - error in one thread can kill the whole process
-- shares code and variables with other threads
-- need of runtime synchronization mechanisms (locking, ...)
-- data sharing is done via variables (needs protection)
+- **shares code and variables** with other threads
+- needs RUNTIME synchronization mechanisms (locking, ...)
+- data are shared between threads using heap (needs protection)
 
 ---
 
@@ -111,14 +109,19 @@ Source:https://techdifferences.com/difference-between-multiprocessing-and-multit
 - represented by [`Process`](https://docs.microsoft.com/cs-cz/dotnet/api/system.diagnostics.process?view=netcore-2.2) class
 
 ```C#
-using(var process = new Process())
+using var process = new System.Diagnostics.Process
 {
-    process.StartInfo.UseShellExecute = false;
-    process.StartInfo.FileName = "C:\\HelloWorld.exe";
-    process.StartInfo.CreateNoWindow = true;
-    process.Start();
-    process.WaitForExit();
-}
+    StartInfo =
+    {
+        FileName = "ping", 
+        Arguments = "8.8.8.8", 
+        RedirectStandardOutput = true
+    }
+};
+
+process.Start();
+// do some work....
+process.WaitForExit();
 ```
 
 ---
@@ -157,9 +160,9 @@ process.BeginOutputReadLine();
 - accesing input via `StandardInput` property
 
 ```C#
+using var process = new System.Diagnostics.Process ...
 process.Start();
-var streamWriter = myProcess.StandardInput;
-streamWriter.WriteLine("Hello world");
+process.StandardInput.WriteLine("Hello world");
 ```
 
 ---
@@ -168,7 +171,8 @@ streamWriter.WriteLine("Hello world");
 
 - Exiting
     - handled via `WaitForExit` method and its overloads
-    - when needed `Kill` method can be used
+    - initiated via `Close` method
+    - when needed `Kill` method can be used to force termination
 
 ---
 
@@ -180,7 +184,7 @@ streamWriter.WriteLine("Hello world");
 
 - represented via `Thread` class
 - possible to get current `Thread` using `Thread.CurrentThread`
-- should never be created directly!
+- should never be created directly! Use `ThreadPool` instead.
 - for waiting `Join()` method is present
 
 ---
@@ -234,17 +238,14 @@ static void ThreadProc(Object stateInfo)
 
 ```C#
 class Counter {
-    int Count { get; set; } = 0;
+    
+    int Count { get; private set; }= 0;
 
     public void Increment() {
         //Critical section
         var count = Count + 1;
         Count = count;
         //End of critical section
-    }
-
-    public int GetCount() {
-        return Count;
     }
 }
 ```
@@ -272,13 +273,15 @@ T2: Count = count           // Count = 1
 ## Synchronization mechanisms
 
 |         Method         |            Purpose            | Supports processes | Overhead |
-| :--------------------: | :---------------------------: | :---------------: | :------: |
-|         `lock`         |     Denies mutual access      |                   |   20ns   |
-|        `Mutex`         |     Denies mutual access      |         X         |  1000ns  |
-|    `SemaphoreSlim`     |     Allows n-time access      |                   |  200ns   |
-|      `Semaphore`       |     Allows n-time access      |         X         |  1000ns  |
-| `ReaderWriterLockSlim` | Reader-writer synchronization |                   |   40ns   |
-|   `ReaderWriterLock`   | Reader-writer synchronization |                   |  100ns   |
+| :--------------------: | :---------------------------: | :----------------: | :------: |
+|         `lock`         |     Denies mutual access      |                    |   20ns   |
+|        `Mutex`         |     Denies mutual access      |         X          |  1000ns  |
+|    `SemaphoreSlim`     |     Allows n-time access      |                    |  200ns   |
+|      `Semaphore`       |     Allows n-time access      |         X          |  1000ns  |
+| `ReaderWriterLockSlim` | Reader-writer synchronization |                    |   40ns   |
+|   `ReaderWriterLock`   | Reader-writer synchronization |                    |  100ns   |
+
+Only `SemaphoreSlim` is reasonable to use in **async** context.
 
 ---
 
@@ -445,7 +448,8 @@ public void Provider_DoOperationCompeted(string result)
 ## Task management
 
 - `Task.WhenAll()` - waiting for multiple tasks to finish
-- `GetAwaiter().GetResult()` - getting the result of task
+- `GetAwaiter().GetResult()` - returns the (result|throws exception) of task in synchronous code
+- `await task` - returns the (result|throws exception) of task in asynchronous code
 - `ContinueWith(Task t)` - task chaining
 
 ---
