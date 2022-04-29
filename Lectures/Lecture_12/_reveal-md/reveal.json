@@ -1,0 +1,17 @@
+{
+    "controls": true,
+    "controlsTutorial": true,
+    "controlsLayout": "bottom-right",
+    "progress": true,
+    "slideNumber": true,
+    "showSlideNumber": "all",
+    "keyboard": true,
+    "overview": true,
+    "navigationMode": "linear",
+    "fragments": true,
+    "fragmentInURL": false,
+    "help": true,
+    "mouseWheel": false,
+    "transition": "slide",
+    "transitionSpeed": "fast"
+}
