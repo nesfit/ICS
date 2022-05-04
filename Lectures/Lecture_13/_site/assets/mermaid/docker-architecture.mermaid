@@ -1,0 +1,5 @@
+flowchart LR
+  dockerfile[Dockerfile] -- builds --> image[Image]
+  image -- is published --> registry[Image Registry]
+  image -- instantiates --> container[Container]
+  volume[Volume] -- holds data --> container
