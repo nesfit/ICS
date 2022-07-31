@@ -1,6 +1,6 @@
 # ICS dotazník 2. fáze projektu 2022
 
-Celkový počet studentů v předmětu: 310
+Celkový počet studentů v předmětu: 310 <br>
 Počet odpovědí v dotazníku: 81
 
 ![](./assets/ICS_2022_dotaznik_2_faze_projektu_01_ER_diagram.png)
