@@ -1,0 +1,10 @@
+flowchart LR
+  cs_src[Source Code] --> cs_cc
+  subgraph dotnet[.NET]
+    cs_cc[Compiler]
+    cs_cc --> cli_cil
+    dotnet_std[Standard Library] --> cli_ves
+    subgraph cli[Common Language Infrastructure]
+      cli_cil[Common Intermediate Language] --> cli_ves[Virtual Execution System]
+    end
+  end
