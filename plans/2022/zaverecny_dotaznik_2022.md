@@ -1,6 +1,6 @@
 # ICS závěrečný dotazník 2022
 
-Celkový počet studentů v předmětu: 310 <br>
+Celkový počet studentů v předmětu: 295 <br>
 Počet odpovědí v dotazníku: 124
 
 ## Přednášky
