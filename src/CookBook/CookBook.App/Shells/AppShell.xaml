@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:t="clr-namespace:CookBook.App.Resources.Texts"
+       xmlns:r="clr-namespace:CookBook.App.Views.Recipe"
+       x:Class="CookBook.App.Shells.AppShell"
+       x:Name="AppShellRoot">
+    <Shell.MenuBarItems>
+        <MenuBarItem Text="{x:Static t:AppShellTexts.File_MenuItem_Title}">
+            <MenuFlyoutItem Text="{x:Static t:AppShellTexts.Recipes_Tab_Title}"
+                            Command="{Binding Source={x:Reference AppShellRoot}, Path=GoToRecipesCommand}" />
+        </MenuBarItem>
+    </Shell.MenuBarItems>
+
+    <ShellContent ContentTemplate="{DataTemplate r:RecipeListView}" Route="recipes" />
+</Shell>
