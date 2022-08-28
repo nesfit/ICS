@@ -8,6 +8,7 @@
                        x:Class="CookBook.App.Views.Ingredient.IngredientListView"
                        Title="{x:Static texts:IngredientListViewTexts.Page_Title}"
                        Style="{StaticResource ContentPageStyle}"
+                       x:Name="IngredientListViewRoot"
                        x:DataType="vm:IngredientListViewModel">
     <Grid HorizontalOptions="FillAndExpand" RowDefinitions="Auto, *"
           RowSpacing="20">
@@ -38,7 +39,7 @@
                            CornerRadius="10" HeightRequest="200"
                            IsClippedToBounds="True">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={x:Reference Root}, Path=BindingContext.GoToDetailCommand}"
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference IngredientListViewRoot}, Path=BindingContext.GoToDetailCommand}"
                                                   CommandParameter="{Binding Id}" />
                         </Frame.GestureRecognizers>
                         <Grid RowDefinitions="*, *">

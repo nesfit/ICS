@@ -10,6 +10,7 @@ public class RoutingService : IRoutingService
     public IEnumerable<RouteModel> Routes { get; } = new List<RouteModel>
     {
         new("//ingredients", typeof(IngredientListView), typeof(IngredientListViewModel)),
+        new("//ingredients/detail", typeof(IngredientDetailView), typeof(IngredientDetailViewModel)),
 
         new("//recipes", typeof(RecipeListView), typeof(RecipeListViewModel)),
         new("//recipes/detail", typeof(RecipeDetailView), typeof(RecipeDetailViewModel)),
