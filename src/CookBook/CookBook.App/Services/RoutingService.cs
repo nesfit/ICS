@@ -6,9 +6,10 @@ namespace CookBook.App.Services;
 
 public class RoutingService : IRoutingService
 {
-    public IEnumerable<RouteModel> Routes { get; } = new List<RouteModel>()
+    public IEnumerable<RouteModel> Routes { get; } = new List<RouteModel>
     {
         new("//recipes", typeof(RecipeListView), typeof(RecipeListViewModel)),
+        new("//recipes/detail", typeof(RecipeDetailView), typeof(RecipeDetailViewModel)),
     };
 
     public string GetRouteByViewModel<TViewModel>()

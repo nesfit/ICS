@@ -5,7 +5,6 @@
     <Style x:Key="PrimaryButtonStyle" TargetType="Button">
         <Setter Property="TextColor" Value="{StaticResource PrimaryButtonTextColor}" />
         <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
-        <Setter Property="FontFamily" Value="MontserratRegular" />
     </Style>
 
     <Style x:Key="ErrorButtonStyle" TargetType="Button">

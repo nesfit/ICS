@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:CookBook.App.Views"
+                       xmlns:vm="clr-namespace:CookBook.App.ViewModels"
+                       xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
+                       x:Class="CookBook.App.Views.Recipe.RecipeDetailView"
+                       Title="{x:Static texts:RecipeDetailViewTexts.Page_Title}"
+                       Style="{StaticResource ContentPageStyle}"
+                       x:Name="RecipeDetailViewRoot"
+                       x:DataType="vm:RecipeDetailViewModel">
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="20">
+        <Button Grid.Row="0"
+                HorizontalOptions="End" VerticalOptions="Start"
+                HeightRequest="30"
+                Text="{x:Static texts:RecipeDetailViewTexts.Edit_Button_Text}"
+                CornerRadius="5"
+                Command="{Binding GoToEditCommand}"
+                Style="{StaticResource PrimaryButtonStyle}" />
+
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*, Auto"
+              ColumnSpacing="20">
+            <ScrollView Orientation="Vertical">
+                <Grid RowDefinitions="Auto, Auto, Auto, *"
+                      RowSpacing="20">
+                    <Label Grid.Row="0"
+                           Text="{Binding Recipe.Name}"
+                           TextColor="{StaticResource PrimaryLabelTextColor}"
+                           FontSize="20" />
+
+                    <Frame Grid.Row="1"
+                           BackgroundColor="{Binding Recipe.FoodType, Converter={StaticResource FoodTypeToColorConverter}}"
+                           HeightRequest="100"
+                           CornerRadius="10"
+                           Padding="0">
+                        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, *, *"
+                              HorizontalOptions="Fill" VerticalOptions="Center"
+                              RowSpacing="5">
+
+                            <Label Grid.Row="1" Grid.Column="0"
+                                   HorizontalOptions="Center" VerticalOptions="Start"
+                                   Text="{Binding Recipe.FoodType, Converter={StaticResource FoodTypeToStringConverter}}"
+                                   FontSize="11"
+                                   TextColor="White" />
+
+                            <Label Grid.Row="1" Grid.Column="1"
+                                   HorizontalOptions="Center" VerticalOptions="Start"
+                                   Text="{Binding Recipe.Duration, StringFormat='{0} min'}"
+                                   FontSize="11"
+                                   TextColor="White" />
+
+                            <Label Grid.Row="1" Grid.Column="2"
+                                   HorizontalOptions="Center" VerticalOptions="Start"
+                                   Text="{Binding Recipe.Ingredients.Count, StringFormat='{0} ingredience'}"
+                                   TextColor="White"
+                                   FontSize="11" />
+                        </Grid>
+                    </Frame>
+
+                    <Label Grid.Row="2"
+                           Text="{x:Static texts:RecipeDetailViewTexts.Description_Label_Text}"
+                           FontSize="16" />
+
+                    <Label Grid.Row="3"
+                           Text="{Binding Recipe.Description}"
+                           FontSize="14" />
+                </Grid>
+            </ScrollView>
+
+            <Grid Grid.Column="1"
+                  RowDefinitions="Auto, *"
+                  RowSpacing="20">
+                <Frame Grid.Row="0"
+                       Padding="0"
+                       CornerRadius="10"
+                       HeightRequest="200" WidthRequest="300"
+                       IsClippedToBounds="True">
+                    <Image Source="{Binding Recipe.ImageUrl, TargetNullValue='recipe_placeholder.jpg'}"
+                           WidthRequest="300"/>
+                </Frame>
+            </Grid>
+        </Grid>
+    </Grid>
+</views:ContentPageBase>
