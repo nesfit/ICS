@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CookBook.App.Resources.Texts {
+namespace CookBook.App.Wpf.Resources.Texts {
     using System;
     
     
@@ -19,17 +19,17 @@ namespace CookBook.App.Resources.Texts {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class RecipeListResources {
+    public class IngredientDetailResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal RecipeListResources() {
+        internal IngredientDetailResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace CookBook.App.Resources.Texts {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CookBook.App.Resources.Texts.RecipeListResources", typeof(RecipeListResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CookBook.App.Wpf.Resources.Texts.IngredientDetailResources", typeof(IngredientDetailResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,47 @@ namespace CookBook.App.Resources.Texts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New.
+        ///   Looks up a localized string similar to Delete.
         /// </summary>
-        public static string New_Button_Content {
+        public static string Delete_Button_Content {
             get {
-                return ResourceManager.GetString("New_Button_Content", resourceCulture);
+                return ResourceManager.GetString("Delete_Button_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Description_Label_Content {
+            get {
+                return ResourceManager.GetString("Description_Label_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image URL.
+        /// </summary>
+        public static string ImageUrl_Label_Content {
+            get {
+                return ResourceManager.GetString("ImageUrl_Label_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name_Label_Content {
+            get {
+                return ResourceManager.GetString("Name_Label_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Save_Button_Content {
+            get {
+                return ResourceManager.GetString("Save_Button_Content", resourceCulture);
             }
         }
     }

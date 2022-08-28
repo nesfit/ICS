@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.BL", "CookBook.BL\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.BL.Tests", "CookBook.BL.Tests\CookBook.BL.Tests.csproj", "{1819FF39-8358-4AA1-8510-2FCA88946088}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.App", "CookBook.App\CookBook.App.csproj", "{437775F7-13F3-49F1-BA62-AF33933131DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.App.Wpf", "CookBook.App.Wpf\CookBook.App.Wpf.csproj", "{437775F7-13F3-49F1-BA62-AF33933131DF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5F6EF94A-07EB-4980-B794-F518FBC25354}"
 EndProject
@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{AC3F653D-BC3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Common", "CookBook.Common\CookBook.Common.csproj", "{24A65813-D2D6-4122-AE68-5A1C9299B2AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.Common.Tests", "CookBook.Common.Tests\CookBook.Common.Tests.csproj", "{30BB7746-5011-415E-9C0D-C3B3B4B59B07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Common.Tests", "CookBook.Common.Tests\CookBook.Common.Tests.csproj", "{30BB7746-5011-415E-9C0D-C3B3B4B59B07}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{F1D07B72-AF91-4B68-81A3-5855F9CC7CBB}"
 	ProjectSection(SolutionItems) = preProject

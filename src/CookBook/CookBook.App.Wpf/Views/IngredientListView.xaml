@@ -5,7 +5,7 @@
                        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                        xmlns:local="clr-namespace:CookBook.App.Views"
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                       xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
+                       xmlns:texts="clr-namespace:CookBook.App.Wpf.Resources.Texts"
                        xmlns:controls="clr-namespace:CookBook.App.Controls"
                        xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
                        d:DesignHeight="450"

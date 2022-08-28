@@ -5,7 +5,7 @@
                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                        xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
-                       xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
+                       xmlns:texts="clr-namespace:CookBook.App.Wpf.Resources.Texts"
                        xmlns:extensions="clr-namespace:CookBook.App.Extensions"
                        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                        xmlns:enums="clr-namespace:CookBook.Common.Enums;assembly=CookBook.Common"
