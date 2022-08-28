@@ -112,6 +112,11 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>FoodTypeTexts.resx</DependentUpon>
 	  </Compile>
+	  <Compile Update="Resources\Texts\IngredientListViewTexts.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>IngredientListViewTexts.resx</DependentUpon>
+	  </Compile>
 	  <Compile Update="Resources\Texts\RecipeDetailViewTexts.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
@@ -132,6 +137,10 @@
 	  <EmbeddedResource Update="Resources\Texts\FoodTypeTexts.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>FoodTypeTexts.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Texts\IngredientListViewTexts.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>IngredientListViewTexts.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
 	  <EmbeddedResource Update="Resources\Texts\RecipeDetailViewTexts.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
@@ -159,6 +168,9 @@
 	  <MauiXaml Update="Views\ContentPageBase.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Ingredient\IngredientListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Recipe\RecipeDetailView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -166,5 +178,5 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
-
+	
 </Project>

@@ -22,14 +22,14 @@ namespace CookBook.App.Resources.Texts {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class AppShellTexts {
+    internal class IngredientListViewTexts {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AppShellTexts() {
+        internal IngredientListViewTexts() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace CookBook.App.Resources.Texts {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CookBook.App.Resources.Texts.AppShellTexts", typeof(AppShellTexts).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CookBook.App.Resources.Texts.IngredientListViewTexts", typeof(IngredientListViewTexts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,29 @@ namespace CookBook.App.Resources.Texts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File.
+        ///   Looks up a localized string similar to Add Ingredient.
         /// </summary>
-        internal static string File_MenuItem_Title {
+        internal static string Add_Button_Text {
             get {
-                return ResourceManager.GetString("File_MenuItem_Title", resourceCulture);
+                return ResourceManager.GetString("Add_Button_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CookBook.
+        /// </summary>
+        internal static string Page_Title {
+            get {
+                return ResourceManager.GetString("Page_Title", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Ingredients.
         /// </summary>
-        internal static string Ingredients_Tab_Title {
+        internal static string Title_Label {
             get {
-                return ResourceManager.GetString("Ingredients_Tab_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Recipes.
-        /// </summary>
-        internal static string Recipes_Tab_Title {
-            get {
-                return ResourceManager.GetString("Recipes_Tab_Title", resourceCulture);
+                return ResourceManager.GetString("Title_Label", resourceCulture);
             }
         }
     }

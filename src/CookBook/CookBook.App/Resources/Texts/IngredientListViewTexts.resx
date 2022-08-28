@@ -97,13 +97,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="File_MenuItem_Title" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="Recipes_Tab_Title" xml:space="preserve">
-    <value>Recipes</value>
-  </data>
-  <data name="Ingredients_Tab_Title" xml:space="preserve">
+  <data name="Title_Label" xml:space="preserve">
     <value>Ingredients</value>
+  </data>
+  <data name="Page_Title" xml:space="preserve">
+    <value>CookBook</value>
+  </data>
+  <data name="Add_Button_Text" xml:space="preserve">
+    <value>Add Ingredient</value>
   </data>
 </root>

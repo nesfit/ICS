@@ -103,4 +103,7 @@
   <data name="Recipes_Tab_Title" xml:space="preserve">
     <value>Recepty</value>
   </data>
+  <data name="Ingredients_Tab_Title" xml:space="preserve">
+    <value>Ingredience</value>
+  </data>
 </root>

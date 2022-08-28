@@ -21,4 +21,11 @@ public partial class AppShell
         var route = routingService.GetRouteByViewModel<RecipeListViewModel>();
         await Shell.Current.GoToAsync(route);
     }
+
+    [RelayCommand]
+    private async Task GoToIngredientsAsync()
+    {
+        var route = routingService.GetRouteByViewModel<IngredientListViewModel>();
+        await Shell.Current.GoToAsync(route);
+    }
 }

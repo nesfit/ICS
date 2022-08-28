@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:CookBook.App.Views"
+                       xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
+                       xmlns:m="clr-namespace:CookBook.BL.Models;assembly=CookBook.BL"
+                       xmlns:vm="clr-namespace:CookBook.App.ViewModels"
+                       x:Class="CookBook.App.Views.Ingredient.IngredientListView"
+                       Title="{x:Static texts:IngredientListViewTexts.Page_Title}"
+                       Style="{StaticResource ContentPageStyle}"
+                       x:DataType="vm:IngredientListViewModel">
+    <Grid HorizontalOptions="FillAndExpand" RowDefinitions="Auto, *"
+          RowSpacing="20">
+        <Label Grid.Row="0"
+               FontSize="24"
+               Text="{x:Static texts:IngredientListViewTexts.Title_Label}" />
+
+        <Button Grid.Row="0"
+                Padding="12, 6"
+                HorizontalOptions="End" VerticalOptions="Start"
+                Text="{x:Static texts:IngredientListViewTexts.Add_Button_Text}"
+                Command="{Binding GoToCreateCommand}"
+                CornerRadius="5" FontFamily="MontserratMedium"
+                FontSize="14"
+                Style="{StaticResource PrimaryButtonStyle}" />
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Ingredients}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Horizontal"
+                                 HorizontalItemSpacing="10" VerticalItemSpacing="10"
+                                 Span="2" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:IngredientListModel">
+                    <Frame Padding="0"
+                           CornerRadius="10" HeightRequest="200"
+                           IsClippedToBounds="True">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference Root}, Path=BindingContext.GoToDetailCommand}"
+                                                  CommandParameter="{Binding Id}" />
+                        </Frame.GestureRecognizers>
+                        <Grid RowDefinitions="*, *">
+                            <Image Grid.Row="0" Grid.RowSpan="2"
+                                   Aspect="AspectFill"
+                                   WidthRequest="200" HeightRequest="200"
+                                   Source="{Binding ImageUrl, TargetNullValue='ingredient_placeholder.jpg'}" />
+
+                            <BoxView Grid.Row="0" Grid.RowSpan="2"
+                                     Opacity="0.25"
+                                     Color="Black" />
+
+                            <Label Grid.Row="1"
+                                   Margin="22,12"
+                                   FontSize="20" LineBreakMode="WordWrap"
+                                   Text="{Binding Name}"
+                                   TextColor="White" VerticalOptions="End" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</views:ContentPageBase>
