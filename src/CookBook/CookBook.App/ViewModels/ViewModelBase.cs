@@ -1,13 +1,22 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace CookBook.App.ViewModels
+namespace CookBook.App.ViewModels;
+
+[INotifyPropertyChanged]
+public abstract partial class ViewModelBase : IViewModel
 {
-    [INotifyPropertyChanged]
-    public abstract partial class ViewModelBase : IViewModel
+    public bool IsRefreshRequired { get; set; } = true;
+
+    public async Task OnAppearingAsync()
     {
-        public virtual Task OnAppearingAsync()
+        if (IsRefreshRequired)
         {
-            return Task.CompletedTask;
+            await LoadDataAsync();
+
+            IsRefreshRequired = false;
         }
     }
+
+    protected virtual Task LoadDataAsync()
+        => Task.CompletedTask;
 }

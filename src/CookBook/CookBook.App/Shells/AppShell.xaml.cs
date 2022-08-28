@@ -1,6 +1,6 @@
 using CommunityToolkit.Mvvm.Input;
 using CookBook.App.Services;
-using CookBook.App.ViewModels.Recipe;
+using CookBook.App.ViewModels;
 
 namespace CookBook.App.Shells;
 

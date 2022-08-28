@@ -1,6 +1,5 @@
 ﻿using CookBook.App.Models;
 using CookBook.App.ViewModels;
-using CookBook.App.ViewModels.Recipe;
 using CookBook.App.Views.Recipe;
 
 namespace CookBook.App.Services;

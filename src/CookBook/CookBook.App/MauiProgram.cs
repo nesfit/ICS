@@ -1,7 +1,16 @@
-﻿using CookBook.App.Services;
+﻿using CommunityToolkit.Maui;
+using CookBook.App.Options;
+using CookBook.App.Services;
 using CookBook.App.Shells;
 using CookBook.App.ViewModels;
 using CookBook.App.Views;
+using CookBook.BL;
+using CookBook.DAL;
+using CookBook.DAL.Factories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using System.Reflection;
 
 namespace CookBook.App;
 
@@ -12,6 +21,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -34,6 +44,17 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<IRoutingService, RoutingService>();
 
+        ConfigureAppSettings(builder);
+        builder.Services.Configure<DALOptions>(options => builder.Configuration.GetSection("CookBook:DAL").Bind(options));
+
+        builder.Services.AddSingleton<IDbContextFactory<CookBookDbContext>>(provider =>
+        {
+            var dalOptions = provider.GetRequiredService<IOptions<DALOptions>>().Value;
+            return new SqlServerDbContextFactory(dalOptions.ConnectionString!, dalOptions.SkipMigrationAndSeedDemoData);
+        });
+        
+        builder.Services.AddBLServices();
+
         var app = builder.Build();
 
         var routingService = app.Services.GetRequiredService<IRoutingService>();
@@ -44,5 +65,18 @@ public static class MauiProgram
         }
 
         return app;
+    }
+
+    private static void ConfigureAppSettings(MauiAppBuilder builder)
+    {
+        var configurationBuilder = new ConfigurationBuilder();
+
+        var assembly = Assembly.GetExecutingAssembly();
+        var appSettingsFilePath = "CookBook.App.appsettings.json";
+        using var appSettingsStream = assembly.GetManifestResourceStream(appSettingsFilePath);
+        configurationBuilder.AddJsonStream(appSettingsStream);
+
+        var configuration = configurationBuilder.Build();
+        builder.Configuration.AddConfiguration(configuration);
     }
 }

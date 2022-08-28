@@ -97,13 +97,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Page_Title" xml:space="preserve">
-    <value>CookBook</value>
+  <data name="Unknown" xml:space="preserve">
+    <value>unknown</value>
   </data>
-  <data name="Title_Label" xml:space="preserve">
-    <value>Recepty</value>
+  <data name="Soup" xml:space="preserve">
+    <value>soup</value>
   </data>
-  <data name="Add_Button_Text" xml:space="preserve">
-    <value>Přidat recept</value>
+  <data name="MainDish" xml:space="preserve">
+    <value>main dish</value>
+  </data>
+  <data name="Dessert" xml:space="preserve">
+    <value>dessert</value>
   </data>
 </root>
