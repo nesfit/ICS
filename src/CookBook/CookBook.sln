@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFi
 		nuget.config = nuget.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.App", "CookBook.App\CookBook.App.csproj", "{565FA1FD-8549-4F88-8D27-D72482F57C78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,12 @@ Global
 		{30BB7746-5011-415E-9C0D-C3B3B4B59B07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30BB7746-5011-415E-9C0D-C3B3B4B59B07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30BB7746-5011-415E-9C0D-C3B3B4B59B07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{565FA1FD-8549-4F88-8D27-D72482F57C78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{565FA1FD-8549-4F88-8D27-D72482F57C78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{565FA1FD-8549-4F88-8D27-D72482F57C78}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{565FA1FD-8549-4F88-8D27-D72482F57C78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{565FA1FD-8549-4F88-8D27-D72482F57C78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{565FA1FD-8549-4F88-8D27-D72482F57C78}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +81,7 @@ Global
 		{437775F7-13F3-49F1-BA62-AF33933131DF} = {AC3F653D-BC35-4896-94EA-8C8DE927D236}
 		{24A65813-D2D6-4122-AE68-5A1C9299B2AB} = {AC3F653D-BC35-4896-94EA-8C8DE927D236}
 		{30BB7746-5011-415E-9C0D-C3B3B4B59B07} = {5F6EF94A-07EB-4980-B794-F518FBC25354}
+		{565FA1FD-8549-4F88-8D27-D72482F57C78} = {AC3F653D-BC35-4896-94EA-8C8DE927D236}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97537A37-D618-4093-8AB2-05C2779E1D9B}
