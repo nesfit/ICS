@@ -61,11 +61,47 @@ namespace CookBook.App.Resources.Texts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string Description_Label_Text {
+            get {
+                return ResourceManager.GetString("Description_Label_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string Name_Label_Text {
+            get {
+                return ResourceManager.GetString("Name_Label_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CookBook.
         /// </summary>
         internal static string Page_Title {
             get {
                 return ResourceManager.GetString("Page_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string Save_Button_Text {
+            get {
+                return ResourceManager.GetString("Save_Button_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Image.
+        /// </summary>
+        internal static string SelectImage_Button_Text {
+            get {
+                return ResourceManager.GetString("SelectImage_Button_Text", resourceCulture);
             }
         }
     }

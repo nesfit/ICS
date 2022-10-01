@@ -4,7 +4,7 @@ namespace CookBook.App.Views.Ingredient;
 
 public partial class IngredientEditView
 {
-	public IngredientEditView(IngredientListViewModel viewModel)
+	public IngredientEditView(IngredientEditViewModel viewModel)
 		: base(viewModel)
 	{
 		InitializeComponent();
