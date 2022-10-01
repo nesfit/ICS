@@ -30,6 +30,7 @@ public partial class IngredientListViewModel : ViewModelBase
     [RelayCommand]
     private async Task GoToCreateAsync()
     {
+        await Shell.Current.GoToAsync("/edit");
     }
 
     [RelayCommand]

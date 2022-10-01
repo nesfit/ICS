@@ -11,6 +11,9 @@ public class RoutingService : IRoutingService
     {
         new("//ingredients", typeof(IngredientListView), typeof(IngredientListViewModel)),
         new("//ingredients/detail", typeof(IngredientDetailView), typeof(IngredientDetailViewModel)),
+        
+        new("//ingredients/edit", typeof(IngredientEditView), typeof(IngredientEditViewModel)),
+        new("//ingredients/detail/edit", typeof(IngredientEditView), typeof(IngredientEditViewModel)),
 
         new("//recipes", typeof(RecipeListView), typeof(RecipeListViewModel)),
         new("//recipes/detail", typeof(RecipeDetailView), typeof(RecipeDetailViewModel)),
