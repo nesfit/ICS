@@ -135,7 +135,7 @@
   <data name="Spoons" xml:space="preserve">
     <value>spoons</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>unknown</value>
+  <data name="None" xml:space="preserve">
+    <value>none</value>
   </data>
 </root>

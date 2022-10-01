@@ -7,7 +7,7 @@ public class UnitToStringConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         => UnitTexts.ResourceManager.GetString(value.ToString(), culture)
-           ?? UnitTexts.Unknown;
+           ?? UnitTexts.None;
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {

@@ -135,7 +135,7 @@
   <data name="Spoons" xml:space="preserve">
     <value>lžíce</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>neznámé</value>
+  <data name="None" xml:space="preserve">
+    <value>žádné</value>
   </data>
 </root>

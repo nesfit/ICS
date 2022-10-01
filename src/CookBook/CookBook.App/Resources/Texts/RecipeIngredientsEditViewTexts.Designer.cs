@@ -59,5 +59,14 @@ namespace CookBook.App.Resources.Texts {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CookBook.
+        /// </summary>
+        internal static string Page_Title {
+            get {
+                return ResourceManager.GetString("Page_Title", resourceCulture);
+            }
+        }
     }
 }
