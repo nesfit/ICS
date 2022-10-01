@@ -35,5 +35,6 @@ public partial class RecipeListViewModel : ViewModelBase
     [RelayCommand]
     private async Task GoToCreateAsync()
     {
+        await Shell.Current.GoToAsync("/edit");
     }
 }

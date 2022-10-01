@@ -143,6 +143,9 @@
 	  <Compile Update="Views\Ingredient\IngredientEditView.xaml.cs">
 	    <DependentUpon>IngredientEditView.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\Recipe\RecipeEditView.xaml.cs">
+	    <DependentUpon>RecipeEditView.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -202,6 +205,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Recipe\RecipeDetailView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Recipe\RecipeEditView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Recipe\RecipeListView.xaml">

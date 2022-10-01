@@ -16,13 +16,8 @@ public partial class IngredientEditViewModel : ViewModelBase
         this.ingredientFacade = ingredientFacade;
     }
 
-    protected override async Task LoadDataAsync()
-    {
-        await base.LoadDataAsync();
-    }
-
     [RelayCommand]
-    public async Task SaveAsync()
+    private async Task SaveAsync()
     {
         await ingredientFacade.SaveAsync(Ingredient);
 
