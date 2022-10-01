@@ -132,10 +132,20 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>RecipeDetailViewTexts.resx</DependentUpon>
 	  </Compile>
+	  <Compile Update="Resources\Texts\RecipeEditViewTexts.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>RecipeEditViewTexts.resx</DependentUpon>
+	  </Compile>
 	  <Compile Update="Resources\Texts\RecipeListViewTexts.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>RecipeListViewTexts.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\Texts\UnitTexts.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>UnitTexts.resx</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\Ingredient\IngredientDetailView.xaml.cs">
 	    <DependentUpon>IngredientDetailView.xaml</DependentUpon>
@@ -173,9 +183,17 @@
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>RecipeDetailViewTexts.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Texts\RecipeEditViewTexts.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>RecipeEditViewTexts.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	  <EmbeddedResource Update="Resources\Texts\RecipeListViewTexts.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>RecipeListViewTexts.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Texts\UnitTexts.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>UnitTexts.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
 	</ItemGroup>
 

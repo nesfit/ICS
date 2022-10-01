@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using CookBook.BL.Facades;
 using CookBook.BL.Models;
+using CookBook.Common.Enums;
 
 namespace CookBook.App.ViewModels;
 
@@ -11,9 +12,18 @@ public partial class RecipeEditViewModel : ViewModelBase
 
     public RecipeDetailModel Recipe { get; set; } = RecipeDetailModel.Empty;
 
+    public List<FoodType> FoodTypes { get; set; }
+
     public RecipeEditViewModel(RecipeFacade recipeFacade)
     {
         this.recipeFacade = recipeFacade;
+
+        FoodTypes = new List<FoodType>((FoodType[])Enum.GetValues(typeof(FoodType)));
+    }
+
+    [RelayCommand]
+    private async Task GoToRecipeIngredientEditAsync()
+    {
     }
 
     [RelayCommand]
