@@ -20,6 +20,8 @@ public class RoutingService : IRoutingService
 
         new("//recipes/edit", typeof(RecipeEditView), typeof(RecipeEditViewModel)),
         new("//recipes/detail/edit", typeof(RecipeEditView), typeof(RecipeEditViewModel)),
+
+        new("//recipes/detail/edit/ingredients", typeof(RecipeIngredientsEditView), typeof(RecipeIngredientsEditViewModel)),
     };
 
     public string GetRouteByViewModel<TViewModel>()

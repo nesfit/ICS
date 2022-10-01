@@ -24,6 +24,8 @@ public partial class RecipeEditViewModel : ViewModelBase
     [RelayCommand]
     private async Task GoToRecipeIngredientEditAsync()
     {
+        await Shell.Current.GoToAsync("/ingredients",
+            new Dictionary<string, object>{ [nameof(RecipeIngredientsEditViewModel.Recipe)] = Recipe});
     }
 
     [RelayCommand]
