@@ -1,25 +1,28 @@
 ﻿using AutoMapper;
 using CookBook.DAL.Entities;
+using System;
 
 namespace CookBook.BL.Models
 {
-    public record IngredientDetailModel(
-        string Name,
-        string Description) : ModelBase
+    public record IngredientDetailModel : ModelBase
     {
-        public string Name { get; set; } = Name;
-        public string Description { get; set; } = Description;
+        public required string Name { get; set; }
+        public required string Description { get; set; }
         public string? ImageUrl { get; set; }
         
         public class MapperProfile : Profile
         {
             public MapperProfile()
             {
-                CreateMap<IngredientEntity, IngredientDetailModel>()
-                    .ReverseMap();
+                CreateMap<IngredientDetailModel, IngredientEntity>();
             }
         }
 
-        public static IngredientDetailModel Empty => new(string.Empty, string.Empty);
+        public static IngredientDetailModel Empty => new()
+        {
+            Id = Guid.NewGuid(),
+            Name = string.Empty,
+            Description = string.Empty,
+        };
     }
 }

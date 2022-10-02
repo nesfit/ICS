@@ -7,14 +7,27 @@ namespace CookBook.BL.Mappers;
 
 public class IngredientMapper
 {
-    public IngredientListModel Map(IngredientEntity entity)
-        => new()
+    public IngredientListModel MapToListModel(IngredientEntity? entity)
+        => entity is null
+        ? IngredientListModel.Empty 
+        : new()
         {
             Id = entity.Id,
             Name = entity.Name,
             ImageUrl = entity.ImageUrl
         };
 
-    public IEnumerable<IngredientListModel> Map(IEnumerable<IngredientEntity> entities)
-        => entities.Select(Map);
+    public IEnumerable<IngredientListModel> MapToListModel(IEnumerable<IngredientEntity> entities)
+        => entities.Select(MapToListModel);
+
+    public IngredientDetailModel MapToDetailModel(IngredientEntity? entity)
+        => entity is null 
+            ? IngredientDetailModel.Empty 
+            : new()
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                Description = entity.Description,
+                ImageUrl = entity.ImageUrl,
+            };
 }

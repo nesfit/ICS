@@ -33,7 +33,7 @@ public class CRUDFacade<TEntity, TListModel, TDetailModel>
             await uow.CommitAsync().ConfigureAwait(false);
         }
 
-        public async Task<TDetailModel?> GetAsync(Guid id)
+        public virtual async Task<TDetailModel?> GetAsync(Guid id)
         {
             await using var uow = _unitOfWorkFactory.Create();
             var query = uow
@@ -41,6 +41,17 @@ public class CRUDFacade<TEntity, TListModel, TDetailModel>
                 .Get()
                 .Where(e => e.Id == id);
             return await _mapper.ProjectTo<TDetailModel>(query).SingleOrDefaultAsync().ConfigureAwait(false);
+        }
+
+        public virtual async Task<TEntity?> GetAsyncNew(Guid id)
+        {
+            await using var uow = _unitOfWorkFactory.Create();
+            var query = uow
+                .GetRepository<TEntity>()
+                .Get()
+                .Where(e => e.Id == id);
+
+            return await query.SingleOrDefaultAsync();
         }
 
         public virtual async Task<IEnumerable<TListModel>> GetAsync()
