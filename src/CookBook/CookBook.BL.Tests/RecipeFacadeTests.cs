@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CookBook.BL.Facades;
@@ -25,13 +26,13 @@ namespace CookBook.BL.Tests
         public async Task Create_WithWithoutIngredient_DoesNotThrowAndEqualsCreated()
         {
             //Arrange
-            var model = new RecipeDetailModel
-            (
-                Name: "Recipe 1",
-                Description: "Testing recipe 1",
-                Duration: TimeSpan.FromHours(2),
-                FoodType: FoodType.Dessert
-            ); 
+            var model = new RecipeDetailModel()
+            {
+                Name = "Recipe 1",
+                Description = "Testing recipe 1",
+                Duration = TimeSpan.FromHours(2),
+                FoodType = FoodType.Dessert
+            }; 
 
              //Act
              var returnedModel = await _facadeSUT.SaveAsync(model);
@@ -45,22 +46,23 @@ namespace CookBook.BL.Tests
         public async Task Create_WithNonExistingIngredient_Throws()
         {
             //Arrange
-            var model = new RecipeDetailModel
-            (
-                Name: "Recipe 2",
-                Description: "Testing recipe 2",
-                Duration: TimeSpan.FromHours(2),
-                FoodType: FoodType.Dessert
-            )
+            var model = new RecipeDetailModel()
             {
-                Ingredients = {
-                    new IngredientAmountDetailModel(
-                        IngredientId:Guid.Empty,
-                        IngredientName: "Ingredient 1",
-                        IngredientDescription: "Testing Ingredient",
-                        Amount:0,
-                        Unit: Unit.None
-                        )
+                Name = "Recipe 2",
+                Description = "Testing recipe 2",
+                Duration = TimeSpan.FromHours(2),
+                FoodType = FoodType.Dessert,
+                Ingredients = new List<IngredientAmountDetailModel>()
+                { 
+                    new()
+                    {
+                        Id = Guid.Empty,
+                        IngredientId = Guid.Empty,
+                        IngredientName = "Ingredient 1",
+                        IngredientDescription = "Testing Ingredient",
+                        Amount = 0,
+                        Unit = Unit.None
+                    }
                 }
             };
 
@@ -76,30 +78,25 @@ namespace CookBook.BL.Tests
         public async Task Create_WithIngredient_DoesNotThrowAndEqualsCreated()
         {
             //Arrange
-            var model = new RecipeDetailModel
-            (
-                Name: "Recipe 2",
-                Description: "Testing recipe 2",
-                Duration: TimeSpan.FromHours(2),
-                FoodType: FoodType.Dessert
-            )
+            var model = new RecipeDetailModel()
             {
-                
+                Name = "Recipe 2",
+                Description = "Testing recipe 2",
+                Duration = TimeSpan.FromHours(2),
+                FoodType = FoodType.Dessert,
                 ImageUrl = "https://d2v9mhsiek5lbq.cloudfront.net/eyJidWNrZXQiOiJsb21hLW1lZGlhLXVrIiwia2V5IjoiZm9vZG5ldHdvcmstaW1hZ2UtOGI5ZWM4YTAtODc1OC00MDcyLTg2YTItMzMzYTA4NTY5NTkwLmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjo3NTAsImhlaWdodCI6NDIyfX19",
-                Ingredients = {
-                    new IngredientAmountDetailModel
-                    (
-                        IngredientName: IngredientSeeds.IngredientEntity1.Name,
-                        IngredientDescription: IngredientSeeds.IngredientEntity1.Description,
-                        IngredientId:IngredientSeeds.IngredientEntity1.Id,
-
-                        Amount: 5,
-                        Unit: Unit.L
-                    )
+                Ingredients = new List<IngredientAmountDetailModel>()
+                {
+                    new ()
                     {
-                        IngredientImageUrl= IngredientSeeds.IngredientEntity1.ImageUrl,
+                        IngredientName = IngredientSeeds.IngredientEntity1.Name,
+                        IngredientDescription = IngredientSeeds.IngredientEntity1.Description,
+                        IngredientId = IngredientSeeds.IngredientEntity1.Id,
+                        Amount = 5,
+                        Unit = Unit.L,
+                        IngredientImageUrl = IngredientSeeds.IngredientEntity1.ImageUrl,
                     }
-                }
+                },
             };
 
             //Act
@@ -114,24 +111,24 @@ namespace CookBook.BL.Tests
         public async Task Create_WithExistingAndNotExistingIngredient_Throws()
         {
             //Arrange
-            var model = new RecipeDetailModel
-            (
-                Name: "Recipe 2",
-                Description: "Testing recipe 2",
-                Duration: TimeSpan.FromHours(2),
-                FoodType: FoodType.Dessert
-            )
+            var model = new RecipeDetailModel()
             {
-                Ingredients = {
-                    new IngredientAmountDetailModel(
-                        IngredientId:Guid.Empty,
-                        IngredientName: "Ingredient 1",
-                        IngredientDescription: "Testing Ingredient",
-                        Amount:0,
-                        Unit: Unit.None
-                    ),
-                    Mapper.Map<IngredientAmountDetailModel>(IngredientAmountSeeds.IngredientAmountEntity1)
-                }
+                Name = "Recipe 2",
+                Description = "Testing recipe 2",
+                Duration = TimeSpan.FromHours(2),
+                FoodType = FoodType.Dessert,
+                Ingredients = new List<IngredientAmountDetailModel>()
+                {
+                    new ()
+                    {
+                        IngredientId = Guid.Empty,
+                        IngredientName = "Ingredient 1",
+                        IngredientDescription = "Testing Ingredient",
+                        Amount = 0,
+                        Unit = Unit.None
+                    },
+                    IngredientAmountMapper.MapToDetailModel(IngredientAmountSeeds.IngredientAmountEntity1),
+                },
             };
 
             //Act & Assert

@@ -43,17 +43,6 @@ public class CRUDFacade<TEntity, TListModel, TDetailModel>
             return await _mapper.ProjectTo<TDetailModel>(query).SingleOrDefaultAsync().ConfigureAwait(false);
         }
 
-        public virtual async Task<TEntity?> GetAsyncNew(Guid id)
-        {
-            await using var uow = _unitOfWorkFactory.Create();
-            var query = uow
-                .GetRepository<TEntity>()
-                .Get()
-                .Where(e => e.Id == id);
-
-            return await query.SingleOrDefaultAsync();
-        }
-
         public virtual async Task<IEnumerable<TListModel>> GetAsync()
         {
             await using var uow = _unitOfWorkFactory.Create();

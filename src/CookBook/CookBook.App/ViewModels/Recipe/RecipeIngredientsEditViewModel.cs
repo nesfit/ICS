@@ -46,6 +46,14 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
     private IngredientAmountDetailModel GetIngredientAmountNew()
     {
         var ingredientFirst = Ingredients.First();
-        return new(Guid.NewGuid(), ingredientFirst.Name, string.Empty, 0, Unit.None);
+        return new()
+        {
+            Id = Guid.NewGuid(),
+            IngredientId = ingredientFirst.Id,
+            IngredientName = ingredientFirst.Name,
+            IngredientDescription = string.Empty,
+            Amount = 0,
+            Unit = Unit.None,
+        };
     }
 }

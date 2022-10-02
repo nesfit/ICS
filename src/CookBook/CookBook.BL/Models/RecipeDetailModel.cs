@@ -6,28 +6,29 @@ using CookBook.DAL.Entities;
 
 namespace CookBook.BL.Models
 {
-    public record RecipeDetailModel(
-        string Name,
-        string Description,
-        TimeSpan Duration,
-        FoodType FoodType) : ModelBase
+    public record RecipeDetailModel : ModelBase
     {
-        public string Name { get; set; } = Name;
-        public string Description { get; set; } = Description;
-        public TimeSpan Duration { get; set; } = Duration;
-        public FoodType FoodType { get; set; } = FoodType;
+        public required string Name { get; set; }
+        public required string Description { get; set; }
+        public required TimeSpan Duration { get; set; }
+        public FoodType FoodType { get; set; }
         public string? ImageUrl { get; set; }
-        public List<IngredientAmountDetailModel> Ingredients { get; init; } = new();
+        public ICollection<IngredientAmountDetailModel> Ingredients { get; init; } = new List<IngredientAmountDetailModel>();
         
         public class MapperProfile : Profile
         {
             public MapperProfile()
             {
-                CreateMap<RecipeEntity, RecipeDetailModel>()
-                    .ReverseMap();
+                CreateMap<RecipeDetailModel, RecipeEntity>();
             }
         }
 
-        public static RecipeDetailModel Empty => new(string.Empty, string.Empty, default, default);
+        public static RecipeDetailModel Empty => new()
+        {
+            Id = Guid.NewGuid(),
+            Name = string.Empty,
+            Description = string.Empty,
+            Duration = TimeSpan.Zero,
+        };
     }
 }

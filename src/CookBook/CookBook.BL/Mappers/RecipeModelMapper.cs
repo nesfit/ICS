@@ -7,6 +7,13 @@ namespace CookBook.BL.Mappers;
 
 public class RecipeModelMapper
 {
+    private readonly IngredientAmountMapper ingredientAmountMapper;
+
+    public RecipeModelMapper(IngredientAmountMapper ingredientAmountMapper)
+    {
+        this.ingredientAmountMapper = ingredientAmountMapper;
+    }
+
     public RecipeListModel MapToListModel(RecipeEntity? entity)
         => entity is null
             ? RecipeListModel.Empty
@@ -21,4 +28,18 @@ public class RecipeModelMapper
 
     public IEnumerable<RecipeListModel> MapToListModel(IEnumerable<RecipeEntity> entities)
         => entities.Select(MapToListModel);
+
+    public RecipeDetailModel MapToDetailModel(RecipeEntity? entity)
+        => entity is null
+            ? RecipeDetailModel.Empty
+            : new()
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                Description = entity.Description,
+                Duration = entity.Duration,
+                FoodType = entity.FoodType,
+                ImageUrl = entity.ImageUrl,
+                Ingredients = ingredientAmountMapper.MapToDetailModel(entity.Ingredients),
+            };
 }

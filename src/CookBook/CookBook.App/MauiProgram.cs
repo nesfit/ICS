@@ -48,7 +48,8 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<IngredientEntityMapper>();
         builder.Services.AddSingleton<IngredientModelMapper>();
-        
+
+        builder.Services.AddSingleton<IngredientAmountMapper>();
         builder.Services.AddSingleton<RecipeModelMapper>();
 
         ConfigureAppSettings(builder);

@@ -3,6 +3,7 @@ using CookBook.BL.Mappers;
 using CookBook.BL.Models;
 using CookBook.DAL.Entities;
 using CookBook.DAL.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,8 +26,12 @@ public class IngredientFacade : CRUDFacade<IngredientEntity, IngredientListModel
 
     public override async Task<IngredientDetailModel?> GetAsync(Guid id)
     {
-        var ingredient = await base.GetAsyncNew(id);
-        return ingredientModelMapper.MapToDetailModel(ingredient);
+        await using var uow = _unitOfWorkFactory.Create();
+        var entity = await uow.GetRepository<IngredientEntity>()
+            .Get()
+            .SingleOrDefaultAsync(e => e.Id == id);
+
+        return ingredientModelMapper.MapToDetailModel(entity);
     }
 
     public override async Task<IEnumerable<IngredientListModel>> GetAsync()
