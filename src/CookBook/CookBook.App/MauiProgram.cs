@@ -48,6 +48,8 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<IngredientEntityMapper>();
         builder.Services.AddSingleton<IngredientModelMapper>();
+        
+        builder.Services.AddSingleton<RecipeModelMapper>();
 
         ConfigureAppSettings(builder);
         builder.Services.Configure<DALOptions>(options => builder.Configuration.GetSection("CookBook:DAL").Bind(options));

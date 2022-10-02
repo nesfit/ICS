@@ -25,6 +25,8 @@ public class  CRUDFacadeTestsBase : IAsyncLifetime
         IngredientEntityMapper = new IngredientEntityMapper();
         IngredientModelMapper = new IngredientModelMapper();
 
+        RecipeModelMapper = new RecipeModelMapper();
+
         DbContextFactory = new DbContextSQLiteTestingFactory(GetType().FullName!, seedTestingData: true);
 
         UnitOfWorkFactory = new UnitOfWorkFactory(IngredientEntityMapper, DbContextFactory);
@@ -51,6 +53,7 @@ public class  CRUDFacadeTestsBase : IAsyncLifetime
     protected IDbContextFactory<CookBookDbContext> DbContextFactory { get; }
     protected IngredientEntityMapper IngredientEntityMapper { get; }
     protected IngredientModelMapper IngredientModelMapper { get; }
+    protected RecipeModelMapper RecipeModelMapper { get; }
     protected Mapper Mapper { get; }
     protected UnitOfWorkFactory UnitOfWorkFactory { get; }
 

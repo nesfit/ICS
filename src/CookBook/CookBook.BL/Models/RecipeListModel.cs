@@ -1,26 +1,20 @@
-﻿using System;
-using AutoMapper;
-using CookBook.Common.Enums;
-using CookBook.DAL.Entities;
+﻿using CookBook.Common.Enums;
+using System;
 
 namespace CookBook.BL.Models
 {
-    public record RecipeListModel(
-        string Name,
-        TimeSpan Duration,
-        FoodType FoodType) : ModelBase
+    public record RecipeListModel : ModelBase
     {
-        public string Name { get; set; } = Name;
-        public TimeSpan Duration { get; set; } = Duration;
-        public FoodType FoodType { get; set; } = FoodType;
+        public required string Name { get; set; }
+        public required TimeSpan Duration { get; set; }
+        public FoodType FoodType { get; set; }
         public string? ImageUrl { get; set; }
 
-        public class MapperProfile : Profile
+        public static RecipeListModel Empty => new()
         {
-            public MapperProfile()
-            {
-                CreateMap<RecipeEntity, RecipeListModel>();
-            }
-        }
+            Id = Guid.NewGuid(),
+            Name = string.Empty,
+            Duration = TimeSpan.Zero,
+        };
     }
 }

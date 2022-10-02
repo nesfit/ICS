@@ -18,7 +18,7 @@ namespace CookBook.BL.Tests
 
         public RecipeFacadeTests(ITestOutputHelper output) : base(output)
         {
-            _facadeSUT = new RecipeFacade(UnitOfWorkFactory, Mapper);
+            _facadeSUT = new RecipeFacade(RecipeModelMapper, UnitOfWorkFactory, Mapper);
         }
 
         [Fact]

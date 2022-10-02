@@ -32,12 +32,12 @@ public class IngredientFacade : CRUDFacade<IngredientEntity, IngredientListModel
     public override async Task<IEnumerable<IngredientListModel>> GetAsync()
     {
         await using var uow = _unitOfWorkFactory.Create();
-        var query = uow
+        var entities = uow
             .GetRepository<IngredientEntity>()
             .Get()
             .ToList();
 
-        return ingredientModelMapper.MapToListModel(query);
+        return ingredientModelMapper.MapToListModel(entities);
     }
 
     public override async Task<IngredientDetailModel> SaveAsync(IngredientDetailModel model)
