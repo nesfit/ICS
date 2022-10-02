@@ -16,4 +16,7 @@ public interface IRepository<TEntity> where TEntity : class, IEntity
         TModel model,
         IMapper mapper,
         CancellationToken cancellationToken = default) where TModel : class;
+
+    bool Exists(TEntity entity);
+    TEntity Insert(TEntity entity);
 }

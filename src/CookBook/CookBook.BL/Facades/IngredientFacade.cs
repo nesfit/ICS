@@ -39,4 +39,29 @@ public class IngredientFacade : CRUDFacade<IngredientEntity, IngredientListModel
 
         return ingredientMapper.MapToListModel(query);
     }
+
+    public override async Task<IngredientDetailModel> SaveAsync(IngredientDetailModel model)
+    {
+        IngredientDetailModel result;
+
+        var entity = ingredientMapper.MapToEntity(model);
+
+        var uow = _unitOfWorkFactory.Create();
+        var repository = uow.GetRepository<IngredientEntity>();
+
+        if (repository.Exists(entity))
+        {
+            // TODO: Add updating of existing entity
+            throw new NotImplementedException();
+        }
+        else
+        {
+            var insertedEntity = repository.Insert(entity);
+            result = ingredientMapper.MapToDetailModel(insertedEntity);
+        }
+
+        await uow.CommitAsync();
+
+        return result;
+    }
 }

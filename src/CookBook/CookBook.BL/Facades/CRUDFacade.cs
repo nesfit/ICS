@@ -63,7 +63,7 @@ public class CRUDFacade<TEntity, TListModel, TDetailModel>
             return await _mapper.ProjectTo<TListModel>(query).ToArrayAsync().ConfigureAwait(false);
         }
 
-        public async Task<TDetailModel> SaveAsync(TDetailModel model)
+        public virtual async Task<TDetailModel> SaveAsync(TDetailModel model)
         {
             await using var uow = _unitOfWorkFactory.Create();
 
@@ -75,6 +75,4 @@ public class CRUDFacade<TEntity, TListModel, TDetailModel>
             
             return (await GetAsync(entity.Id).ConfigureAwait(false))!;
         }
-
-        
     }

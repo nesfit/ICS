@@ -30,4 +30,13 @@ public class IngredientMapper
                 Description = entity.Description,
                 ImageUrl = entity.ImageUrl,
             };
+
+    public IngredientEntity MapToEntity(IngredientDetailModel model)
+        => new()
+        {
+            Id = model.Id,
+            Name = model.Name,
+            Description = model.Description,
+            ImageUrl = model.ImageUrl,
+        };
 }
