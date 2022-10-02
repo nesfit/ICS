@@ -19,7 +19,7 @@ namespace CookBook.BL.Tests
 
         public RecipeFacadeTests(ITestOutputHelper output) : base(output)
         {
-            _facadeSUT = new RecipeFacade(IngredientAmountMapper, RecipeModelMapper, UnitOfWorkFactory, Mapper);
+            _facadeSUT = new RecipeFacade(IngredientAmountModelMapper, RecipeModelMapper, UnitOfWorkFactory, Mapper);
         }
 
         [Fact]
@@ -127,7 +127,7 @@ namespace CookBook.BL.Tests
                         Amount = 0,
                         Unit = Unit.None
                     },
-                    IngredientAmountMapper.MapToDetailModel(IngredientAmountSeeds.IngredientAmountEntity1),
+                    IngredientAmountModelMapper.MapToDetailModel(IngredientAmountSeeds.IngredientAmountEntity1),
                 },
             };
 

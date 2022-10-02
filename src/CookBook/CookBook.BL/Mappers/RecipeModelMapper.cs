@@ -7,11 +7,11 @@ namespace CookBook.BL.Mappers;
 
 public class RecipeModelMapper
 {
-    private readonly IngredientAmountMapper ingredientAmountMapper;
+    private readonly IngredientAmountModelMapper ingredientAmountModelMapper;
 
-    public RecipeModelMapper(IngredientAmountMapper ingredientAmountMapper)
+    public RecipeModelMapper(IngredientAmountModelMapper ingredientAmountModelMapper)
     {
-        this.ingredientAmountMapper = ingredientAmountMapper;
+        this.ingredientAmountModelMapper = ingredientAmountModelMapper;
     }
 
     public RecipeListModel MapToListModel(RecipeEntity? entity)
@@ -40,7 +40,7 @@ public class RecipeModelMapper
                 Duration = entity.Duration,
                 FoodType = entity.FoodType,
                 ImageUrl = entity.ImageUrl,
-                Ingredients = ingredientAmountMapper.MapToDetailModel(entity.Ingredients),
+                Ingredients = ingredientAmountModelMapper.MapToDetailModel(entity.Ingredients),
             };
 
     public RecipeEntity MapToEntity(RecipeDetailModel model)

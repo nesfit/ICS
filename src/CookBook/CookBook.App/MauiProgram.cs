@@ -47,9 +47,11 @@ public static class MauiProgram
         builder.Services.AddSingleton<IRoutingService, RoutingService>();
 
         builder.Services.AddSingleton<IngredientEntityMapper>();
-        builder.Services.AddSingleton<IngredientModelMapper>();
+        builder.Services.AddSingleton<IngredientAmountEntityMapper>();
+        builder.Services.AddSingleton<RecipeEntityMapper>();
 
-        builder.Services.AddSingleton<IngredientAmountMapper>();
+        builder.Services.AddSingleton<IngredientModelMapper>();
+        builder.Services.AddSingleton<IngredientAmountModelMapper>();
         builder.Services.AddSingleton<RecipeModelMapper>();
 
         ConfigureAppSettings(builder);

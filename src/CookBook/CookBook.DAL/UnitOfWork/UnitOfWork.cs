@@ -9,13 +9,19 @@ namespace CookBook.DAL.UnitOfWork;
 public sealed class UnitOfWork : IUnitOfWork
 {
     private readonly IngredientEntityMapper ingredientEntityMapper;
+    private readonly IngredientAmountEntityMapper ingredientAmountEntityMapper;
+    private readonly RecipeEntityMapper recipeEntityMapper;
     private readonly DbContext dbContext;
 
     public UnitOfWork(
         IngredientEntityMapper ingredientEntityMapper,
+        IngredientAmountEntityMapper ingredientAmountEntityMapper,
+        RecipeEntityMapper recipeEntityMapper,
         DbContext dbContext)
     {
         this.ingredientEntityMapper = ingredientEntityMapper;
+        this.ingredientAmountEntityMapper = ingredientAmountEntityMapper;
+        this.recipeEntityMapper = recipeEntityMapper;
         this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
     }
 
@@ -27,10 +33,10 @@ public sealed class UnitOfWork : IUnitOfWork
         => new(ingredientEntityMapper, dbContext);
 
     public IngredientAmountRepository GetIngredientAmountRepository()
-        => new(dbContext);
+        => new(ingredientAmountEntityMapper, dbContext);
 
     public RecipeRepository GetRecipeRepository()
-        => new(dbContext);
+        => new(recipeEntityMapper, dbContext);
 
     public async Task CommitAsync() => await dbContext.SaveChangesAsync();
 

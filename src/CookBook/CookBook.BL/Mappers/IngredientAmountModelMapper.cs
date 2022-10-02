@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CookBook.BL.Mappers;
 
-public class IngredientAmountMapper
+public class IngredientAmountModelMapper
 {
     public IngredientAmountDetailModel MapToDetailModel(IngredientAmountEntity? entity)
         => entity?.Ingredient is null
