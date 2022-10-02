@@ -1,10 +1,7 @@
-﻿using AutoMapper;
-using AutoMapper.EquivalencyExpression;
-using CookBook.BL.Facades;
+﻿using CookBook.BL.Facades;
 using CookBook.DAL;
 using CookBook.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CookBook.BL;
@@ -19,11 +16,12 @@ public static class ServiceCollectionExtension
 
         services.AddAutoMapper((serviceProvider, cfg) =>
         {
-            cfg.AddCollectionMappers();
-
+            // TODO: remove this when AutoMapper is no longer needed
+            //cfg.AddCollectionMappers();
             var dbContextFactory = serviceProvider.GetRequiredService<IDbContextFactory<CookBookDbContext>>();
             using var dbContext = dbContextFactory.CreateDbContext();
-            cfg.UseEntityFrameworkCoreModel<CookBookDbContext>(dbContext.Model);
+            
+            //cfg.UseEntityFrameworkCoreModel<CookBookDbContext>(dbContext.Model);
         }, typeof(BusinessLogic).Assembly);
         return services;
     }

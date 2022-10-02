@@ -24,12 +24,13 @@ namespace CookBook.DAL.Tests
         public async Task AddNew_Ingredient_Persisted()
         {
             //Arrange
-            IngredientEntity entity = new(
-                Guid.Parse("C5DE45D7-64A0-4E8D-AC7F-BF5CFDFB0EFC"),
-                Name: "Salt",
-                Description: "Mountain salt",
-                ImageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Salt_shaker_on_white_background.jpg/800px-Salt_shaker_on_white_background.jpg"
-            );
+            IngredientEntity entity = new() 
+            {
+                Id = Guid.Parse("C5DE45D7-64A0-4E8D-AC7F-BF5CFDFB0EFC"),
+                Name = "Salt",
+                Description = "Mountain salt",
+                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Salt_shaker_on_white_background.jpg/800px-Salt_shaker_on_white_background.jpg"
+            };
 
             //Act
             CookBookDbContextSUT.Ingredients.Add(entity);

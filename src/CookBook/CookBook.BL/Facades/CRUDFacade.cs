@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using AutoMapper.EntityFrameworkCore;
 using CookBook.BL.Models;
-using CookBook.DAL;
 using CookBook.DAL.Entities;
 using CookBook.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +16,7 @@ public class CRUDFacade<TEntity, TListModel, TDetailModel>
         where TDetailModel : class, IModel
     {
         private readonly IMapper _mapper;
-        private readonly IUnitOfWorkFactory _unitOfWorkFactory;
+        protected readonly IUnitOfWorkFactory _unitOfWorkFactory;
 
         protected CRUDFacade(IUnitOfWorkFactory unitOfWorkFactory, IMapper mapper)
         {
@@ -45,7 +43,7 @@ public class CRUDFacade<TEntity, TListModel, TDetailModel>
             return await _mapper.ProjectTo<TDetailModel>(query).SingleOrDefaultAsync().ConfigureAwait(false);
         }
 
-        public async Task<IEnumerable<TListModel>> GetAsync()
+        public virtual async Task<IEnumerable<TListModel>> GetAsync()
         {
             await using var uow = _unitOfWorkFactory.Create();
             var query = uow

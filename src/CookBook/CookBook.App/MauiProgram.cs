@@ -5,6 +5,7 @@ using CookBook.App.Shells;
 using CookBook.App.ViewModels;
 using CookBook.App.Views;
 using CookBook.BL;
+using CookBook.BL.Mappers;
 using CookBook.DAL;
 using CookBook.DAL.Factories;
 using Microsoft.EntityFrameworkCore;
@@ -43,6 +44,8 @@ public static class MauiProgram
             .WithTransientLifetime());
 
         builder.Services.AddSingleton<IRoutingService, RoutingService>();
+
+        builder.Services.AddSingleton<IngredientMapper>();
 
         ConfigureAppSettings(builder);
         builder.Services.Configure<DALOptions>(options => builder.Configuration.GetSection("CookBook:DAL").Bind(options));

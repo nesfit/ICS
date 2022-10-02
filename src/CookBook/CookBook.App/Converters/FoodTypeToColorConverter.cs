@@ -17,4 +17,6 @@ public class FoodTypeToColorConverter : BaseConverterOneWay<FoodType, Color>
 
         return color;
     }
+
+    public override Color DefaultConvertReturnValue { get; set; } = Colors.Transparent;
 }

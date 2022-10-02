@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
-using AutoMapper.EquivalencyExpression;
 using CookBook.Common.Enums;
 using CookBook.DAL.Entities;
-using Nemesis.Essentials.Design;
 
 namespace CookBook.BL.Models
 {

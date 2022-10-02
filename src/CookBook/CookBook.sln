@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFi
 		nuget.config = nuget.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.App", "CookBook.App\CookBook.App.csproj", "{565FA1FD-8549-4F88-8D27-D72482F57C78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.App", "CookBook.App\CookBook.App.csproj", "{565FA1FD-8549-4F88-8D27-D72482F57C78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

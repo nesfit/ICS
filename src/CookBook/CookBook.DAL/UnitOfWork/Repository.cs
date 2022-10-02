@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using AutoMapper.EntityFrameworkCore;
 using CookBook.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -31,7 +29,9 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, I
     {
         await _dbSet.PreLoadChangeTracker(mapper.Map<TEntity>(model).Id, _model, cancellationToken);
 
-        return await _dbSet.Persist(mapper).InsertOrUpdateAsync(model, cancellationToken);
+        // TODO: add proper implementation
+        //return await _dbSet.Persist(mapper).InsertOrUpdateAsync(model, cancellationToken);
+        return null;
     }
 
     public void Delete(Guid entityId) => _dbSet.Remove(_dbSet.Single(i => i.Id == entityId));

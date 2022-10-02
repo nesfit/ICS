@@ -1,11 +1,10 @@
 using System;
 using System.Threading.Tasks;
 using AutoMapper;
-using AutoMapper.EquivalencyExpression;
+using CookBook.BL.Mappers;
 using CookBook.Common.Tests;
 using CookBook.Common.Tests.Factories;
 using CookBook.DAL;
-using CookBook.DAL.Factories;
 using CookBook.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
@@ -26,16 +25,20 @@ public class  CRUDFacadeTestsBase : IAsyncLifetime
 
         UnitOfWorkFactory = new UnitOfWorkFactory(DbContextFactory);
 
+        IngredientMapper = new IngredientMapper();
+
         var configuration = new MapperConfiguration(cfg =>
             {
                 cfg.AddMaps(new[]
                 {
                     typeof(BusinessLogic),
                 });
-                cfg.AddCollectionMappers();
+
+                // TODO: remove this when AutoMapper is no longer needed
+                //cfg.AddCollectionMappers();
                 
                 using var dbContext = DbContextFactory.CreateDbContext();
-                cfg.UseEntityFrameworkCoreModel<CookBookDbContext>(dbContext.Model);
+                //cfg.UseEntityFrameworkCoreModel<CookBookDbContext>(dbContext.Model);
             }
         );
         Mapper = new Mapper(configuration);
@@ -47,6 +50,8 @@ public class  CRUDFacadeTestsBase : IAsyncLifetime
     protected Mapper Mapper { get; }
 
     protected UnitOfWorkFactory UnitOfWorkFactory { get; }
+
+    protected IngredientMapper IngredientMapper { get; }
 
     public async Task InitializeAsync()
     {

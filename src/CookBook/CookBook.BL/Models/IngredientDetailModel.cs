@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using AutoMapper.EquivalencyExpression;
 using CookBook.DAL.Entities;
 
 namespace CookBook.BL.Models
