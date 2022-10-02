@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace CookBook.BL.Mappers;
 
-public class IngredientMapper
+public class IngredientModelMapper
 {
     public IngredientListModel MapToListModel(IngredientEntity? entity)
         => entity is null

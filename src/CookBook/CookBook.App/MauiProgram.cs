@@ -8,6 +8,7 @@ using CookBook.BL;
 using CookBook.BL.Mappers;
 using CookBook.DAL;
 using CookBook.DAL.Factories;
+using CookBook.DAL.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
@@ -45,7 +46,8 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<IRoutingService, RoutingService>();
 
-        builder.Services.AddSingleton<IngredientMapper>();
+        builder.Services.AddSingleton<IngredientEntityMapper>();
+        builder.Services.AddSingleton<IngredientModelMapper>();
 
         ConfigureAppSettings(builder);
         builder.Services.Configure<DALOptions>(options => builder.Configuration.GetSection("CookBook:DAL").Bind(options));
@@ -55,7 +57,7 @@ public static class MauiProgram
             var dalOptions = provider.GetRequiredService<IOptions<DALOptions>>().Value;
             return new SqlServerDbContextFactory(dalOptions.ConnectionString!, dalOptions.SkipMigrationAndSeedDemoData);
         });
-        
+
         builder.Services.AddBLServices();
 
         var app = builder.Build();

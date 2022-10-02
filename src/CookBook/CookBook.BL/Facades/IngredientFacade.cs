@@ -12,21 +12,21 @@ namespace CookBook.BL.Facades;
 
 public class IngredientFacade : CRUDFacade<IngredientEntity, IngredientListModel, IngredientDetailModel>
 {
-    private readonly IngredientMapper ingredientMapper;
+    private readonly IngredientModelMapper ingredientModelMapper;
 
     public IngredientFacade(
-        IngredientMapper ingredientMapper,
+        IngredientModelMapper ingredientModelMapper,
         IUnitOfWorkFactory unitOfWorkFactory,
         IMapper mapper)
         : base(unitOfWorkFactory, mapper)
     {
-        this.ingredientMapper = ingredientMapper;
+        this.ingredientModelMapper = ingredientModelMapper;
     }
 
     public override async Task<IngredientDetailModel?> GetAsync(Guid id)
     {
         var ingredient = await base.GetAsyncNew(id);
-        return ingredientMapper.MapToDetailModel(ingredient);
+        return ingredientModelMapper.MapToDetailModel(ingredient);
     }
 
     public override async Task<IEnumerable<IngredientListModel>> GetAsync()
@@ -37,27 +37,28 @@ public class IngredientFacade : CRUDFacade<IngredientEntity, IngredientListModel
             .Get()
             .ToList();
 
-        return ingredientMapper.MapToListModel(query);
+        return ingredientModelMapper.MapToListModel(query);
     }
 
     public override async Task<IngredientDetailModel> SaveAsync(IngredientDetailModel model)
     {
         IngredientDetailModel result;
 
-        var entity = ingredientMapper.MapToEntity(model);
+        var entity = ingredientModelMapper.MapToEntity(model);
 
         var uow = _unitOfWorkFactory.Create();
-        var repository = uow.GetRepository<IngredientEntity>();
+        var repository = uow.GetIngredientRepository();
 
         if (repository.Exists(entity))
         {
             // TODO: Add updating of existing entity
-            throw new NotImplementedException();
+            var updatedEntity = repository.Update(entity);
+            result = ingredientModelMapper.MapToDetailModel(updatedEntity);
         }
         else
         {
             var insertedEntity = repository.Insert(entity);
-            result = ingredientMapper.MapToDetailModel(insertedEntity);
+            result = ingredientModelMapper.MapToDetailModel(insertedEntity);
         }
 
         await uow.CommitAsync();

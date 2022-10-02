@@ -5,6 +5,7 @@ using CookBook.BL.Mappers;
 using CookBook.Common.Tests;
 using CookBook.Common.Tests.Factories;
 using CookBook.DAL;
+using CookBook.DAL.Mappers;
 using CookBook.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
@@ -21,11 +22,13 @@ public class  CRUDFacadeTestsBase : IAsyncLifetime
 
         // DbContextFactory = new DbContextTestingInMemoryFactory(GetType().Name, seedTestingData: true);
         // DbContextFactory = new DbContextLocalDBTestingFactory(GetType().FullName!, seedTestingData: true);
+        IngredientEntityMapper = new IngredientEntityMapper();
+        IngredientModelMapper = new IngredientModelMapper();
+
         DbContextFactory = new DbContextSQLiteTestingFactory(GetType().FullName!, seedTestingData: true);
 
-        UnitOfWorkFactory = new UnitOfWorkFactory(DbContextFactory);
+        UnitOfWorkFactory = new UnitOfWorkFactory(IngredientEntityMapper, DbContextFactory);
 
-        IngredientMapper = new IngredientMapper();
 
         var configuration = new MapperConfiguration(cfg =>
             {
@@ -46,12 +49,11 @@ public class  CRUDFacadeTestsBase : IAsyncLifetime
     }
 
     protected IDbContextFactory<CookBookDbContext> DbContextFactory { get; }
-
+    protected IngredientEntityMapper IngredientEntityMapper { get; }
+    protected IngredientModelMapper IngredientModelMapper { get; }
     protected Mapper Mapper { get; }
-
     protected UnitOfWorkFactory UnitOfWorkFactory { get; }
 
-    protected IngredientMapper IngredientMapper { get; }
 
     public async Task InitializeAsync()
     {

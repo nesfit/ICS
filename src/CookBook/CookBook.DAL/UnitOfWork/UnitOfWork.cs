@@ -1,21 +1,32 @@
-﻿using System;
-using System.Threading.Tasks;
-using CookBook.DAL.Entities;
+﻿using CookBook.DAL.Entities;
+using CookBook.DAL.Mappers;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
+using System;
+using System.Threading.Tasks;
 
 namespace CookBook.DAL.UnitOfWork;
 
 public sealed class UnitOfWork : IUnitOfWork
 {
-    private readonly DbContext _dbContext;
+    private readonly IngredientEntityMapper ingredientEntityMapper;
+    private readonly DbContext dbContext;
 
-    public UnitOfWork(DbContext dbContext) => _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-    
-    public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class, IEntity => new Repository<TEntity>(_dbContext);
+    public UnitOfWork(
+        IngredientEntityMapper ingredientEntityMapper,
+        DbContext dbContext)
+    {
+        this.ingredientEntityMapper = ingredientEntityMapper;
+        this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+    }
 
-    public async Task CommitAsync() => await _dbContext.SaveChangesAsync();
+    public IRepository<TEntity> GetRepository<TEntity>()
+        where TEntity : class, IEntity
+        => new Repository<TEntity>(dbContext);
 
-    public async ValueTask DisposeAsync() => await _dbContext.DisposeAsync();
+    public IngredientRepository GetIngredientRepository()
+        => new(ingredientEntityMapper, dbContext);
+
+    public async Task CommitAsync() => await dbContext.SaveChangesAsync();
+
+    public async ValueTask DisposeAsync() => await dbContext.DisposeAsync();
 }

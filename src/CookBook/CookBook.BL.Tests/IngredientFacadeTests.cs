@@ -7,6 +7,7 @@ using CookBook.Common.Tests.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;
+using System;
 
 namespace CookBook.BL.Tests
 {
@@ -16,17 +17,18 @@ namespace CookBook.BL.Tests
 
         public IngredientFacadeTests(ITestOutputHelper output) : base(output)
         {
-            _ingredientFacadeSUT = new IngredientFacade(IngredientMapper, UnitOfWorkFactory, Mapper);
+            _ingredientFacadeSUT = new IngredientFacade(IngredientModelMapper, UnitOfWorkFactory, Mapper);
         }
 
         [Fact]
         public async Task Create_WithNonExistingItem_DoesNotThrow()
         {
-            var model = new IngredientDetailModel
-            (
-                Name: @"Ingredience 1",
-                Description: @"Testovací ingredience"
-            );
+            var model = new IngredientDetailModel()
+            {
+                Id = Guid.Empty,
+                Name = @"Ingredience 1",
+                Description = @"Testovací ingredience",
+            };
 
             var _ = await _ingredientFacadeSUT.SaveAsync(model);
         }
@@ -70,10 +72,12 @@ namespace CookBook.BL.Tests
         public async Task NewIngredient_InsertOrUpdate_IngredientAdded()
         {
             //Arrange
-            var ingredient = new IngredientDetailModel(
-                Name: "Water",
-                Description: "Mineral water"
-            );
+            var ingredient = new IngredientDetailModel()
+            {
+                Id = Guid.Empty,
+                Name = "Water",
+                Description = "Mineral water",
+            };
         
             //Act
             ingredient = await _ingredientFacadeSUT.SaveAsync(ingredient);
@@ -88,13 +92,11 @@ namespace CookBook.BL.Tests
         public async Task SeededWater_InsertOrUpdate_IngredientUpdated()
         {
             //Arrange
-            var ingredient = new IngredientDetailModel
-            (
-                Name: IngredientSeeds.Water.Name,
-                Description: IngredientSeeds.Water.Description
-            )
+            var ingredient = new IngredientDetailModel()
             {
-                Id = IngredientSeeds.Water.Id
+                Id = IngredientSeeds.Water.Id,
+                Name = IngredientSeeds.Water.Name,
+                Description = IngredientSeeds.Water.Description,
             };
             ingredient.Name += "updated";
             ingredient.Description += "updated";

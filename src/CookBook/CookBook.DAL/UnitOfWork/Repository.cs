@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace CookBook.DAL.UnitOfWork;
 
-public class Repository<TEntity> : IRepository<TEntity> 
+public class Repository<TEntity> : IRepository<TEntity>
     where TEntity : class, IEntity
 {
-    private readonly DbSet<TEntity> dbSet;
+    protected readonly DbSet<TEntity> dbSet;
     private readonly IModel model;
 
     public Repository(DbContext dbContext)

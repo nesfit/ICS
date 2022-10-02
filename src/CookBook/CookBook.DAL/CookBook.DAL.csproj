@@ -17,6 +17,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0-rc.1.22426.10" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="7.0.0-rc.1.22426.10" />
     <PackageReference Include="Nemesis.Essentials" Version="1.1.3" />
   </ItemGroup>
