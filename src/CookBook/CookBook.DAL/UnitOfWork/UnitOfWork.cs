@@ -26,6 +26,12 @@ public sealed class UnitOfWork : IUnitOfWork
     public IngredientRepository GetIngredientRepository()
         => new(ingredientEntityMapper, dbContext);
 
+    public IngredientAmountRepository GetIngredientAmountRepository()
+        => new(dbContext);
+
+    public RecipeRepository GetRecipeRepository()
+        => new(dbContext);
+
     public async Task CommitAsync() => await dbContext.SaveChangesAsync();
 
     public async ValueTask DisposeAsync() => await dbContext.DisposeAsync();

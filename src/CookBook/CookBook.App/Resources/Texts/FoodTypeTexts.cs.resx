@@ -106,7 +106,10 @@
   <data name="Soup" xml:space="preserve">
     <value>polévka</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>neznámé</value>
+  <data name="None" xml:space="preserve">
+    <value>žádné</value>
+  </data>
+  <data name="Drink" xml:space="preserve">
+    <value>pití</value>
   </data>
 </root>

@@ -9,4 +9,6 @@ public interface IUnitOfWork : IAsyncDisposable
     IRepository<TEntity> GetRepository<TEntity>() where TEntity : class, IEntity;
     Task CommitAsync();
     IngredientRepository GetIngredientRepository();
+    RecipeRepository GetRecipeRepository();
+    IngredientAmountRepository GetIngredientAmountRepository();
 }

@@ -42,4 +42,15 @@ public class RecipeModelMapper
                 ImageUrl = entity.ImageUrl,
                 Ingredients = ingredientAmountMapper.MapToDetailModel(entity.Ingredients),
             };
+
+    public RecipeEntity MapToEntity(RecipeDetailModel model)
+        => new()
+        {
+            Id = model.Id,
+            Name = model.Name,
+            Description = model.Description,
+            Duration = model.Duration,
+            FoodType = model.FoodType,
+            ImageUrl = model.ImageUrl,
+        };
 }

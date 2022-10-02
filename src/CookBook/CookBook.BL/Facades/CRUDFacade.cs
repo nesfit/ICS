@@ -16,11 +16,11 @@ public class CRUDFacade<TEntity, TListModel, TDetailModel>
         where TDetailModel : class, IModel
     {
         private readonly IMapper _mapper;
-        protected readonly IUnitOfWorkFactory _unitOfWorkFactory;
+        protected readonly IUnitOfWorkFactory unitOfWorkFactory;
 
         protected CRUDFacade(IUnitOfWorkFactory unitOfWorkFactory, IMapper mapper)
         {
-            _unitOfWorkFactory = unitOfWorkFactory;
+            this.unitOfWorkFactory = unitOfWorkFactory;
             _mapper = mapper;
         }
 
@@ -28,14 +28,14 @@ public class CRUDFacade<TEntity, TListModel, TDetailModel>
 
         public async Task DeleteAsync(Guid id)
         {
-            await using var uow = _unitOfWorkFactory.Create();
+            await using var uow = unitOfWorkFactory.Create();
             uow.GetRepository<TEntity>().Delete(id);
             await uow.CommitAsync().ConfigureAwait(false);
         }
 
         public virtual async Task<TDetailModel?> GetAsync(Guid id)
         {
-            await using var uow = _unitOfWorkFactory.Create();
+            await using var uow = unitOfWorkFactory.Create();
             var query = uow
                 .GetRepository<TEntity>()
                 .Get()
@@ -45,20 +45,20 @@ public class CRUDFacade<TEntity, TListModel, TDetailModel>
 
         public virtual async Task<IEnumerable<TListModel>> GetAsync()
         {
-            await using var uow = _unitOfWorkFactory.Create();
+            await using var uow = unitOfWorkFactory.Create();
             var query = uow
                 .GetRepository<TEntity>()
                 .Get();
             return await _mapper.ProjectTo<TListModel>(query).ToArrayAsync().ConfigureAwait(false);
         }
 
-        public virtual async Task<TDetailModel> SaveAsync(TDetailModel model)
+        public virtual async Task<TDetailModel> SaveAsync(TDetailModel recipeModel)
         {
-            await using var uow = _unitOfWorkFactory.Create();
+            await using var uow = unitOfWorkFactory.Create();
 
             var entity = await uow
                 .GetRepository<TEntity>()
-                .InsertOrUpdateAsync(model, _mapper)
+                .InsertOrUpdateAsync(recipeModel, _mapper)
                 .ConfigureAwait(false);
             await uow.CommitAsync();
             

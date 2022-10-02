@@ -1,5 +1,6 @@
 ﻿using CookBook.BL.Models;
 using CookBook.DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,4 +24,14 @@ public class IngredientAmountMapper
 
     public ICollection<IngredientAmountDetailModel> MapToDetailModel(IEnumerable<IngredientAmountEntity> entities)
         => entities.Select(MapToDetailModel).ToList();
+
+    public IngredientAmountEntity MapToEntity(IngredientAmountDetailModel model, Guid recipeId)
+        => new()
+        {
+            Id = model.Id,
+            RecipeId = recipeId,
+            IngredientId = model.IngredientId,
+            Amount = model.Amount,
+            Unit = model.Unit
+        };
 }

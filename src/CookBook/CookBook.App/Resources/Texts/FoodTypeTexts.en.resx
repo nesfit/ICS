@@ -106,7 +106,10 @@
   <data name="Soup" xml:space="preserve">
     <value>soup</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>unknown</value>
+  <data name="None" xml:space="preserve">
+    <value>none</value>
+  </data>
+  <data name="Drink" xml:space="preserve">
+    <value>drink</value>
   </data>
 </root>

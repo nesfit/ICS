@@ -26,7 +26,7 @@ public class IngredientFacade : CRUDFacade<IngredientEntity, IngredientListModel
 
     public override async Task<IngredientDetailModel?> GetAsync(Guid id)
     {
-        await using var uow = _unitOfWorkFactory.Create();
+        await using var uow = unitOfWorkFactory.Create();
         var entity = await uow.GetRepository<IngredientEntity>()
             .Get()
             .SingleOrDefaultAsync(e => e.Id == id);
@@ -36,7 +36,7 @@ public class IngredientFacade : CRUDFacade<IngredientEntity, IngredientListModel
 
     public override async Task<IEnumerable<IngredientListModel>> GetAsync()
     {
-        await using var uow = _unitOfWorkFactory.Create();
+        await using var uow = unitOfWorkFactory.Create();
         var entities = uow
             .GetRepository<IngredientEntity>()
             .Get()
@@ -51,12 +51,11 @@ public class IngredientFacade : CRUDFacade<IngredientEntity, IngredientListModel
 
         var entity = ingredientModelMapper.MapToEntity(model);
 
-        var uow = _unitOfWorkFactory.Create();
+        var uow = unitOfWorkFactory.Create();
         var repository = uow.GetIngredientRepository();
 
         if (repository.Exists(entity))
         {
-            // TODO: Add updating of existing entity
             var updatedEntity = repository.Update(entity);
             result = ingredientModelMapper.MapToDetailModel(updatedEntity);
         }

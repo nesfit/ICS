@@ -29,7 +29,7 @@ public class Repository<TEntity> : IRepository<TEntity>
     public TEntity Insert(TEntity entity)
         => dbSet.Add(entity).Entity;
 
-    public async Task<TEntity> InsertOrUpdateAsync<TModel>(
+    public virtual async Task<TEntity> InsertOrUpdateAsync<TModel>(
         TModel model,
         IMapper mapper,
         CancellationToken cancellationToken = default)

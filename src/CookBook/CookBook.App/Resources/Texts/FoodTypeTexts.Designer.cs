@@ -70,6 +70,15 @@ namespace CookBook.App.Resources.Texts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to drink.
+        /// </summary>
+        internal static string Drink {
+            get {
+                return ResourceManager.GetString("Drink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to main dish.
         /// </summary>
         internal static string MainDish {
@@ -79,20 +88,20 @@ namespace CookBook.App.Resources.Texts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to none.
+        /// </summary>
+        internal static string None {
+            get {
+                return ResourceManager.GetString("None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to soup.
         /// </summary>
         internal static string Soup {
             get {
                 return ResourceManager.GetString("Soup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to unknown.
-        /// </summary>
-        internal static string Unknown {
-            get {
-                return ResourceManager.GetString("Unknown", resourceCulture);
             }
         }
     }
