@@ -64,6 +64,13 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
         }
     }
 
+    [RelayCommand]
+    private async Task RemoveIngredientAsync(IngredientAmountListModel model)
+    {
+        await ingredientAmountFacade.DeleteAsync(model.Id);
+        Recipe.Ingredients.Remove(model);
+    }
+
     private IngredientAmountDetailModel GetIngredientAmountNew()
     {
         var ingredientFirst = Ingredients.First();
