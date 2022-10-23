@@ -9,4 +9,5 @@ public interface IIngredientAmountModelMapper : IModelMapper<IngredientAmountEnt
     IngredientAmountListModel MapToListModel(IngredientAmountDetailModel detailModel);
     IngredientAmountEntity MapToEntity(IngredientAmountDetailModel model, Guid recipeId);
     void MapToExistingDetailModel(IngredientAmountDetailModel existingDetailModel, IngredientListModel ingredient);
+    IngredientAmountEntity MapToEntity(IngredientAmountListModel model, Guid recipeId);
 }

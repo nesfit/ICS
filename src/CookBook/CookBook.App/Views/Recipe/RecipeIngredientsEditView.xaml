@@ -90,7 +90,7 @@
                                VerticalOptions="Center"
                                Text="{Binding Amount}">
                             <Entry.Behaviors>
-                                <behaviors:EventToCommandBehavior EventName="TextChanged"
+                                <behaviors:EventToCommandBehavior EventName="Unfocused"
                                                                   Command="{Binding Source={x:Reference RecipeIngredientsEditViewRoot}, Path=BindingContext.UpdateIngredientCommand}"
                                                                   CommandParameter="{Binding .}" />
                             </Entry.Behaviors>

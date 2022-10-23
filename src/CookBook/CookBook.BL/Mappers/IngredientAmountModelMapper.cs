@@ -62,6 +62,16 @@ public class IngredientAmountModelMapper : ModelMapperBase<IngredientAmountEntit
             RecipeId = recipeId,
             IngredientId = model.IngredientId,
             Amount = model.Amount,
-            Unit = model.Unit
+            Unit = model.Unit,
+        };
+
+    public IngredientAmountEntity MapToEntity(IngredientAmountListModel model, Guid recipeId)
+        => new()
+        {
+            Id = model.Id,
+            RecipeId = recipeId,
+            IngredientId = model.IngredientId,
+            Amount = model.Amount,
+            Unit = model.Unit,
         };
 }

@@ -6,6 +6,7 @@ namespace CookBook.BL.Facades;
 
 public interface IIngredientAmountFacade
 {
-    Task DeleteAsync(Guid id);
     Task<IngredientAmountDetailModel> SaveAsync(IngredientAmountDetailModel model, Guid recipeId);
+    Task SaveAsync(IngredientAmountListModel model, Guid recipeId);
+    Task DeleteAsync(Guid id);
 }

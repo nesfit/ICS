@@ -65,6 +65,15 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
     }
 
     [RelayCommand]
+    private async Task UpdateIngredientAsync(IngredientAmountListModel? model)
+    {
+        if (model is not null)
+        {
+            await ingredientAmountFacade.SaveAsync(model, Recipe.Id);
+        }
+    }
+
+    [RelayCommand]
     private async Task RemoveIngredientAsync(IngredientAmountListModel model)
     {
         await ingredientAmountFacade.DeleteAsync(model.Id);
