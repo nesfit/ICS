@@ -2,7 +2,7 @@ using CookBook.DAL.Entities;
 using System;
 using System.Linq;
 
-namespace CookBook.DAL.UnitOfWork;
+namespace CookBook.DAL.Repositories;
 
 public interface IRepository<TEntity>
     where TEntity : class, IEntity

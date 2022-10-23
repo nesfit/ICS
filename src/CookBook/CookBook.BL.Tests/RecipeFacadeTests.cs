@@ -170,16 +170,6 @@ namespace CookBook.BL.Tests
         }
 
         [Fact]
-        public async Task Delete_FromSeeded_DoesNotThrow()
-        {
-            //Arrange
-            var detailModel = RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity);
-
-            //Act & Assert
-            await _facadeSUT.DeleteAsync(detailModel);
-        }
-
-        [Fact]
         public async Task Update_FromSeeded_DoesNotThrow()
         {
             //Arrange

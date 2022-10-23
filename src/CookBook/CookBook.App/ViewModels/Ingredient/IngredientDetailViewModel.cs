@@ -10,7 +10,7 @@ namespace CookBook.App.ViewModels;
 public partial class IngredientDetailViewModel : ViewModelBase
 {
     private readonly IFacade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper> ingredientFacade;
-    
+
     public Guid Id { get; set; }
     public IngredientDetailModel Ingredient { get; set; }
 

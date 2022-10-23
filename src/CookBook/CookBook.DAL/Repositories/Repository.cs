@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 
-namespace CookBook.DAL.UnitOfWork;
+namespace CookBook.DAL.Repositories;
 
 public class Repository<TEntity> : IRepository<TEntity>
     where TEntity : class, IEntity

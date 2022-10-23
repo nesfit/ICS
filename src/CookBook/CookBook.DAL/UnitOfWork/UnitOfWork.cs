@@ -1,5 +1,6 @@
 ﻿using CookBook.DAL.Entities;
 using CookBook.DAL.Mappers;
+using CookBook.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;

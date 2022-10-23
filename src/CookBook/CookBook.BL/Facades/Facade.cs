@@ -16,72 +16,73 @@ public class Facade<TEntity, TListModel, TDetailModel, TEntityMapper> : IFacade<
         where TListModel : IModel
         where TDetailModel : class, IModel
         where TEntityMapper : IEntityMapper<TEntity>, new()
-{
-        private readonly IModelMapper<TEntity, TListModel, TDetailModel> modelMapper;
-        protected readonly IUnitOfWorkFactory unitOfWorkFactory;
+{ 
+    protected readonly IModelMapper<TEntity, TListModel, TDetailModel> modelMapper;
+    protected readonly IUnitOfWorkFactory unitOfWorkFactory;
 
-        public Facade(
-            IUnitOfWorkFactory unitOfWorkFactory,
-            IModelMapper<TEntity, TListModel, TDetailModel> modelMapper)
-        {
-            this.unitOfWorkFactory = unitOfWorkFactory;
-            this.modelMapper = modelMapper;
-        }
+    protected virtual string includesNavigationPathDetail => string.Empty;
 
-        public async Task DeleteAsync(TDetailModel model) => await this.DeleteAsync(model.Id);
-
-        public async Task DeleteAsync(Guid id)
-        {
-            await using var uow = unitOfWorkFactory.Create();
-            uow.GetRepository<TEntity, TEntityMapper>().Delete(id);
-            await uow.CommitAsync().ConfigureAwait(false);
-        }
-
-        public virtual async Task<TDetailModel?> GetAsync(Guid id)
-        {
-            await using var uow = unitOfWorkFactory.Create();
-            var entity = await uow.GetRepository<TEntity, TEntityMapper>()
-                .Get()
-                .SingleOrDefaultAsync(e => e.Id == id);
-
-            return entity is null
-                ? null
-                : modelMapper.MapToDetailModel(entity);
-        }
-
-        public virtual async Task<IEnumerable<TListModel>> GetAsync()
-        {
-            await using var uow = unitOfWorkFactory.Create();
-            var entities = uow
-                .GetRepository<TEntity, TEntityMapper>()
-                .Get()
-                .ToList();
-
-            return modelMapper.MapToListModel(entities);
-        }
-
-        public virtual async Task<TDetailModel> SaveAsync(TDetailModel model)
-        {
-            TDetailModel result;
-
-            var entity = modelMapper.MapToEntity(model);
-
-            var uow = unitOfWorkFactory.Create();
-            var repository = uow.GetRepository<TEntity, TEntityMapper>();
-
-            if (repository.Exists(entity))
-            {
-                var updatedEntity = repository.Update(entity);
-                result = modelMapper.MapToDetailModel(updatedEntity);
-            }
-            else
-            {
-                var insertedEntity = repository.Insert(entity);
-                result = modelMapper.MapToDetailModel(insertedEntity);
-            }
-
-            await uow.CommitAsync();
-
-            return result;
-        }
+    public Facade(
+        IUnitOfWorkFactory unitOfWorkFactory,
+        IModelMapper<TEntity, TListModel, TDetailModel> modelMapper)
+    {
+        this.unitOfWorkFactory = unitOfWorkFactory;
+        this.modelMapper = modelMapper;
     }
+
+    public async Task DeleteAsync(Guid id)
+    {
+        await using var uow = unitOfWorkFactory.Create();
+        uow.GetRepository<TEntity, TEntityMapper>().Delete(id);
+        await uow.CommitAsync().ConfigureAwait(false);
+    }
+
+    public virtual async Task<TDetailModel?> GetAsync(Guid id)
+    {
+        await using var uow = unitOfWorkFactory.Create();
+        var entity = await uow.GetRepository<TEntity, TEntityMapper>()
+            .Get()
+            .Include(includesNavigationPathDetail)
+            .SingleOrDefaultAsync(e => e.Id == id);
+
+        return entity is null
+            ? null
+            : modelMapper.MapToDetailModel(entity);
+    }
+
+    public virtual async Task<IEnumerable<TListModel>> GetAsync()
+    {
+        await using var uow = unitOfWorkFactory.Create();
+        var entities = uow
+            .GetRepository<TEntity, TEntityMapper>()
+            .Get()
+            .ToList();
+
+        return modelMapper.MapToListModel(entities);
+    }
+
+    public virtual async Task<TDetailModel> SaveAsync(TDetailModel model)
+    {
+        TDetailModel result;
+
+        var entity = modelMapper.MapToEntity(model);
+
+        var uow = unitOfWorkFactory.Create();
+        var repository = uow.GetRepository<TEntity, TEntityMapper>();
+
+        if (repository.Exists(entity))
+        {
+            var updatedEntity = repository.Update(entity);
+            result = modelMapper.MapToDetailModel(updatedEntity);
+        }
+        else
+        {
+            var insertedEntity = repository.Insert(entity);
+            result = modelMapper.MapToDetailModel(insertedEntity);
+        }
+
+        await uow.CommitAsync();
+
+        return result;
+    }
+}

@@ -12,6 +12,7 @@ namespace CookBook.App.ViewModels;
 public partial class RecipeIngredientsEditViewModel : ViewModelBase
 {
     private readonly IFacade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper> ingredientFacade;
+    private readonly IIngredientAmountFacade ingredientAmountFacade;
 
     public RecipeDetailModel Recipe { get; set; }
     public List<Unit> Units { get; set; }
@@ -20,9 +21,13 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
     public IngredientListModel? IngredientNew { get; set; }
     public IngredientAmountDetailModel? IngredientAmountNew { get; private set; }
 
-    public RecipeIngredientsEditViewModel(IFacade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper> ingredientFacade)
+    public RecipeIngredientsEditViewModel(
+        IFacade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper> ingredientFacade,
+        IIngredientAmountFacade ingredientAmountFacade)
     {
         this.ingredientFacade = ingredientFacade;
+        this.ingredientAmountFacade = ingredientAmountFacade;
+
         Units = new List<Unit>((Unit[])Enum.GetValues(typeof(Unit)));
     }
 
@@ -42,7 +47,15 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
     [RelayCommand]
     private async Task AddNewIngredientToRecipeAsync()
     {
-        // TODO: Add implementation
+        if (IngredientAmountNew is not null)
+        {
+            IngredientAmountNew.IngredientId = IngredientNew.Id;
+
+            await ingredientAmountFacade.SaveAsync(IngredientAmountNew, Recipe.Id);
+            Recipe.Ingredients.Add(IngredientAmountNew);
+
+            IngredientAmountNew = GetIngredientAmountNew();
+        }
     }
 
     private IngredientAmountDetailModel GetIngredientAmountNew()

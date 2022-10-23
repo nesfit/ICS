@@ -13,7 +13,6 @@ public interface IFacade<TEntity, TListModel, TDetailModel, TEntityMapper>
     where TDetailModel : class, IModel
     where TEntityMapper : IEntityMapper<TEntity>, new()
 {
-    Task DeleteAsync(TDetailModel model);
     Task DeleteAsync(Guid id);
     Task<TDetailModel?> GetAsync(Guid id);
     Task<IEnumerable<TListModel>> GetAsync();

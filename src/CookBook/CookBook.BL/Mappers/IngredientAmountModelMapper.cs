@@ -6,20 +6,14 @@ using System.Linq;
 
 namespace CookBook.BL.Mappers;
 
-public class IngredientAmountModelMapper : ModelMapperBase<IngredientAmountEntity, IngredientAmountDetailModel, IngredientAmountDetailModel>
+public class IngredientAmountModelMapper : ModelMapperBase<IngredientAmountEntity, IngredientAmountListModel, IngredientAmountDetailModel>
 {
-    public override IngredientAmountDetailModel MapToListModel(IngredientAmountEntity? entity)
+    public override IngredientAmountListModel MapToListModel(IngredientAmountEntity? entity)
         => entity?.Ingredient is null
-            ? IngredientAmountDetailModel.Empty
+            ? IngredientAmountListModel.Empty
             : new()
             {
                 Id = entity.Id,
-                IngredientId = entity.Ingredient.Id,
-                IngredientName = entity.Ingredient.Name,
-                IngredientDescription = entity.Ingredient.Description,
-                IngredientImageUrl = entity.Ingredient.ImageUrl,
-                Amount = entity.Amount,
-                Unit = entity.Unit,
             };
 
     public override IngredientAmountDetailModel MapToDetailModel(IngredientAmountEntity? entity)
@@ -37,7 +31,7 @@ public class IngredientAmountModelMapper : ModelMapperBase<IngredientAmountEntit
             };
 
     public override IngredientAmountEntity MapToEntity(IngredientAmountDetailModel model)
-        => throw new NotImplementedException();
+        => throw new NotImplementedException("This method is unsupported. Use the other overload.");
 
     public ICollection<IngredientAmountDetailModel> MapToDetailModel(IEnumerable<IngredientAmountEntity> entities)
         => entities.Select(MapToDetailModel).ToList();

@@ -13,7 +13,7 @@
              x:DataType="vm:RecipeIngredientsEditViewModel"
              x:Name="RecipeIngredientsEditViewRoot">
     <Grid RowDefinitions="Auto, Auto, Auto, *"
-          HorizontalOptions="Center"
+          HorizontalOptions="Fill"
           RowSpacing="20">
         <StackLayout Grid.Row="0"
                      Orientation="Horizontal"
@@ -39,7 +39,7 @@
 
         <Grid Grid.Row="2"
               RowDefinitions="Auto, Auto"
-              ColumnDefinitions="Auto, Auto, Auto, *"
+              ColumnDefinitions="Auto, Auto, Auto, Auto, *"
               RowSpacing="10" ColumnSpacing="15">
             <Label Grid.Row="0" Grid.Column="0"
                    Text="Množství" />
@@ -91,19 +91,19 @@
                                Text="{Binding Amount}">
                             <Entry.Behaviors>
                                 <behaviors:EventToCommandBehavior EventName="TextChanged"
-                                                                  Command="{Binding Source={x:Reference RecipeIngredientsEditViewDesktopRoot}, Path=BindingContext.UpdateIngredientCommand}"
+                                                                  Command="{Binding Source={x:Reference RecipeIngredientsEditViewRoot}, Path=BindingContext.UpdateIngredientCommand}"
                                                                   CommandParameter="{Binding .}" />
                             </Entry.Behaviors>
                         </Entry>
 
                         <Picker Grid.Column="2"
                                 VerticalOptions="Center"
-                                ItemsSource="{Binding Source={x:Reference RecipeIngredientsEditViewDesktopRoot}, Path=BindingContext.Units}"
+                                ItemsSource="{Binding Source={x:Reference RecipeIngredientsEditViewRoot}, Path=BindingContext.Units}"
                                 ItemDisplayBinding="{Binding ., Converter={StaticResource UnitToStringConverter}}"
                                 SelectedItem="{Binding Unit}">
                             <Picker.Behaviors>
                                 <behaviors:EventToCommandBehavior EventName="SelectedIndexChanged"
-                                                                  Command="{Binding Source={x:Reference RecipeIngredientsEditViewDesktopRoot}, Path=BindingContext.UpdateIngredientCommand}"
+                                                                  Command="{Binding Source={x:Reference RecipeIngredientsEditViewRoot}, Path=BindingContext.UpdateIngredientCommand}"
                                                                   CommandParameter="{Binding .}" />
                             </Picker.Behaviors>
                         </Picker>
@@ -115,7 +115,7 @@
                         <Button Grid.Column="4"
                                 HorizontalOptions="End" VerticalOptions="Center"
                                 Text="Odstranit"
-                                Command="{Binding Source={x:Reference RecipeIngredientsEditViewDesktopRoot}, Path=BindingContext.RemoveIngredientCommand}"
+                                Command="{Binding Source={x:Reference RecipeIngredientsEditViewRoot}, Path=BindingContext.RemoveIngredientCommand}"
                                 CommandParameter="{Binding .}"
                                 Style="{StaticResource ErrorButtonStyle}" />
                     </Grid>
