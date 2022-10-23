@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using CookBook.BL.Facades;
+using CookBook.BL.Mappers;
 using CookBook.BL.Models;
 using CookBook.Common.Enums;
 using CookBook.DAL.Entities;
@@ -13,6 +14,7 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
 {
     private readonly IFacade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper> ingredientFacade;
     private readonly IIngredientAmountFacade ingredientAmountFacade;
+    private readonly IIngredientAmountModelMapper ingredientAmountModelMapper;
 
     public RecipeDetailModel Recipe { get; set; }
     public List<Unit> Units { get; set; }
@@ -24,10 +26,12 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
 
     public RecipeIngredientsEditViewModel(
         IFacade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper> ingredientFacade,
-        IIngredientAmountFacade ingredientAmountFacade)
+        IIngredientAmountFacade ingredientAmountFacade,
+        IIngredientAmountModelMapper ingredientAmountModelMapper)
     {
         this.ingredientFacade = ingredientFacade;
         this.ingredientAmountFacade = ingredientAmountFacade;
+        this.ingredientAmountModelMapper = ingredientAmountModelMapper;
 
         Units = new List<Unit>((Unit[])Enum.GetValues(typeof(Unit)));
     }
@@ -51,12 +55,10 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
         if (IngredientAmountNew is not null
             && IngredientSelected is not null)
         {
-            IngredientAmountNew.IngredientId = IngredientSelected.Id;
-            IngredientAmountNew.IngredientName = IngredientSelected.Name;
-            IngredientAmountNew.IngredientImageUrl = IngredientSelected.ImageUrl;
+            ingredientAmountModelMapper.MapToExistingDetailModel(IngredientAmountNew, IngredientSelected);
 
             await ingredientAmountFacade.SaveAsync(IngredientAmountNew, Recipe.Id);
-            Recipe.Ingredients.Add(IngredientAmountNew);
+            Recipe.Ingredients.Add(ingredientAmountModelMapper.MapToListModel(IngredientAmountNew));
 
             IngredientAmountNew = GetIngredientAmountNew();
         }

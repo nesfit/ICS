@@ -54,14 +54,14 @@ namespace CookBook.BL.Tests
                 Description = "Testing recipe 2",
                 Duration = TimeSpan.FromHours(2),
                 FoodType = FoodType.Dessert,
-                Ingredients = new ObservableCollection<IngredientAmountDetailModel>()
+                Ingredients = new ObservableCollection<IngredientAmountListModel>()
                 {
                     new()
                     {
                         Id = Guid.Empty,
                         IngredientId = Guid.Empty,
                         IngredientName = "Ingredient 1",
-                        IngredientDescription = "Testing Ingredient",
+                        IngredientImageUrl = null,
                         Amount = 0,
                         Unit = Unit.None
                     }
@@ -87,12 +87,11 @@ namespace CookBook.BL.Tests
                 Duration = TimeSpan.FromHours(2),
                 FoodType = FoodType.Dessert,
                 ImageUrl = "https://d2v9mhsiek5lbq.cloudfront.net/eyJidWNrZXQiOiJsb21hLW1lZGlhLXVrIiwia2V5IjoiZm9vZG5ldHdvcmstaW1hZ2UtOGI5ZWM4YTAtODc1OC00MDcyLTg2YTItMzMzYTA4NTY5NTkwLmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjo3NTAsImhlaWdodCI6NDIyfX19",
-                Ingredients = new ObservableCollection<IngredientAmountDetailModel>()
+                Ingredients = new ObservableCollection<IngredientAmountListModel>()
                 {
                     new ()
                     {
                         IngredientName = IngredientSeeds.IngredientEntity1.Name,
-                        IngredientDescription = IngredientSeeds.IngredientEntity1.Description,
                         IngredientId = IngredientSeeds.IngredientEntity1.Id,
                         Amount = 5,
                         Unit = Unit.L,
@@ -119,17 +118,17 @@ namespace CookBook.BL.Tests
                 Description = "Testing recipe 2",
                 Duration = TimeSpan.FromHours(2),
                 FoodType = FoodType.Dessert,
-                Ingredients = new ObservableCollection<IngredientAmountDetailModel>()
+                Ingredients = new ObservableCollection<IngredientAmountListModel>()
                 {
                     new ()
                     {
                         IngredientId = Guid.Empty,
                         IngredientName = "Ingredient 1",
-                        IngredientDescription = "Testing Ingredient",
+                        IngredientImageUrl = null,
                         Amount = 0,
                         Unit = Unit.None
                     },
-                    IngredientAmountModelMapper.MapToDetailModel(IngredientAmountSeeds.IngredientAmountEntity1),
+                    IngredientAmountModelMapper.MapToListModel(IngredientAmountSeeds.IngredientAmountEntity1),
                 },
             };
 
@@ -240,7 +239,6 @@ namespace CookBook.BL.Tests
             {
                 var ingredientAmountDetailModel = expectedModel.Ingredients.FirstOrDefault(i =>
                     i.IngredientName == ingredientAmountModel.IngredientName
-                    && i.IngredientDescription == ingredientAmountModel.IngredientDescription
                     && i.IngredientImageUrl == ingredientAmountModel.IngredientImageUrl
                     && Math.Abs(i.Amount - ingredientAmountModel.Amount) <= 0
                     && i.Unit == ingredientAmountModel.Unit);

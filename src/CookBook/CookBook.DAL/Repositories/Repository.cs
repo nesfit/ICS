@@ -31,7 +31,7 @@ public class Repository<TEntity> : IRepository<TEntity>
     public TEntity Update(TEntity entity)
     {
         var existingEntity = dbSet.Single(e => e.Id == entity.Id);
-        entityMapper.Map(existingEntity, entity);
+        entityMapper.MapToExistingEntity(existingEntity, entity);
         return existingEntity;
     }
 

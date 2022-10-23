@@ -5,5 +5,5 @@ namespace CookBook.DAL.Mappers;
 public interface IEntityMapper<TEntity>
     where TEntity : IEntity
 {
-    void Map(TEntity existingEntity, TEntity newEntity);
+    void MapToExistingEntity(TEntity existingEntity, TEntity newEntity);
 }

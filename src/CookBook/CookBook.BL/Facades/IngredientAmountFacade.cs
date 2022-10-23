@@ -10,11 +10,11 @@ namespace CookBook.BL.Facades;
 
 public class IngredientAmountFacade : Facade<IngredientAmountEntity, IngredientAmountListModel, IngredientAmountDetailModel, IngredientAmountEntityMapper>, IIngredientAmountFacade
 {
-    private readonly IngredientAmountModelMapper ingredientAmountModelMapper;
+    private readonly IIngredientAmountModelMapper ingredientAmountModelMapper;
 
     public IngredientAmountFacade(
         IUnitOfWorkFactory unitOfWorkFactory,
-        IngredientAmountModelMapper ingredientAmountModelMapper)
+        IIngredientAmountModelMapper ingredientAmountModelMapper)
         : base(unitOfWorkFactory, ingredientAmountModelMapper)
     {
         this.ingredientAmountModelMapper = ingredientAmountModelMapper;

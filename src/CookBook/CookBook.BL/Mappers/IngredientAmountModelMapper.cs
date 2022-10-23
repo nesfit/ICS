@@ -1,12 +1,10 @@
 ﻿using CookBook.BL.Models;
 using CookBook.DAL.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CookBook.BL.Mappers;
 
-public class IngredientAmountModelMapper : ModelMapperBase<IngredientAmountEntity, IngredientAmountListModel, IngredientAmountDetailModel>
+public class IngredientAmountModelMapper : ModelMapperBase<IngredientAmountEntity, IngredientAmountListModel, IngredientAmountDetailModel>, IIngredientAmountModelMapper
 {
     public override IngredientAmountListModel MapToListModel(IngredientAmountEntity? entity)
         => entity?.Ingredient is null
@@ -14,6 +12,11 @@ public class IngredientAmountModelMapper : ModelMapperBase<IngredientAmountEntit
             : new()
             {
                 Id = entity.Id,
+                IngredientId = entity.Ingredient.Id,
+                IngredientName = entity.Ingredient.Name,
+                IngredientImageUrl = entity.Ingredient.ImageUrl,
+                Amount = entity.Amount,
+                Unit = entity.Unit,
             };
 
     public override IngredientAmountDetailModel MapToDetailModel(IngredientAmountEntity? entity)
@@ -30,11 +33,27 @@ public class IngredientAmountModelMapper : ModelMapperBase<IngredientAmountEntit
                 Unit = entity.Unit,
             };
 
+    public IngredientAmountListModel MapToListModel(IngredientAmountDetailModel detailModel)
+        => new()
+        {
+            Id = detailModel.Id,
+            IngredientId = detailModel.IngredientId,
+            IngredientName = detailModel.IngredientName,
+            IngredientImageUrl = detailModel.IngredientImageUrl,
+            Amount = detailModel.Amount,
+            Unit = detailModel.Unit,
+        };
+
+    public void MapToExistingDetailModel(IngredientAmountDetailModel existingDetailModel, IngredientListModel ingredient)
+    {
+        existingDetailModel.IngredientId = ingredient.Id;
+        existingDetailModel.IngredientName = ingredient.Name;
+        existingDetailModel.IngredientImageUrl = ingredient.ImageUrl;
+    }
+
     public override IngredientAmountEntity MapToEntity(IngredientAmountDetailModel model)
         => throw new NotImplementedException("This method is unsupported. Use the other overload.");
 
-    public ICollection<IngredientAmountDetailModel> MapToDetailModel(IEnumerable<IngredientAmountEntity> entities)
-        => entities.Select(MapToDetailModel).ToList();
 
     public IngredientAmountEntity MapToEntity(IngredientAmountDetailModel model, Guid recipeId)
         => new()

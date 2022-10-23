@@ -4,7 +4,7 @@ namespace CookBook.DAL.Mappers;
 
 public class RecipeEntityMapper : IEntityMapper<RecipeEntity>
 {
-    public void Map(RecipeEntity existingEntity, RecipeEntity newEntity)
+    public void MapToExistingEntity(RecipeEntity existingEntity, RecipeEntity newEntity)
     {
         existingEntity.Name = newEntity.Name;
         existingEntity.Description = newEntity.Description;

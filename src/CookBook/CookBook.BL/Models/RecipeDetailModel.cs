@@ -11,7 +11,7 @@ namespace CookBook.BL.Models
         public required TimeSpan Duration { get; set; }
         public FoodType FoodType { get; set; }
         public string? ImageUrl { get; set; }
-        public ObservableCollection<IngredientAmountDetailModel> Ingredients { get; init; } = new();
+        public ObservableCollection<IngredientAmountListModel> Ingredients { get; init; } = new();
 
         public static RecipeDetailModel Empty => new()
         {

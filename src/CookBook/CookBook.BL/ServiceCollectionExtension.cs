@@ -15,10 +15,11 @@ public static class ServiceCollectionExtension
         services.AddSingleton<IUnitOfWorkFactory, UnitOfWorkFactory>();
 
         services.AddSingleton<IFacade<RecipeEntity, RecipeListModel, RecipeDetailModel, RecipeEntityMapper>, RecipeFacade>();
+        services.AddSingleton<IIngredientAmountFacade, IngredientAmountFacade>();
         services.AddSingleton(typeof(IFacade<,,,>), typeof(Facade<,,,>));
 
-        services.AddSingleton<IIngredientAmountFacade, IngredientAmountFacade>();
-        services.AddSingleton<IngredientAmountModelMapper>();
+
+        services.AddSingleton<IIngredientAmountModelMapper, IngredientAmountModelMapper>();
 
         services.Scan(selector => selector
             .FromAssemblyOf<BusinessLogic>()
