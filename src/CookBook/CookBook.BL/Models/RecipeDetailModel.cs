@@ -1,6 +1,6 @@
 ﻿using CookBook.Common.Enums;
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace CookBook.BL.Models
 {
@@ -11,7 +11,7 @@ namespace CookBook.BL.Models
         public required TimeSpan Duration { get; set; }
         public FoodType FoodType { get; set; }
         public string? ImageUrl { get; set; }
-        public ICollection<IngredientAmountDetailModel> Ingredients { get; init; } = new List<IngredientAmountDetailModel>();
+        public ObservableCollection<IngredientAmountDetailModel> Ingredients { get; init; } = new();
 
         public static RecipeDetailModel Empty => new()
         {

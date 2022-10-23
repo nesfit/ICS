@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CookBook.BL.Facades;
+﻿using CookBook.BL.Facades;
 using CookBook.BL.Models;
 using CookBook.Common.Enums;
 using CookBook.Common.Tests;
@@ -10,6 +6,10 @@ using CookBook.Common.Tests.Seeds;
 using CookBook.DAL.Entities;
 using CookBook.DAL.Mappers;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -34,10 +34,10 @@ namespace CookBook.BL.Tests
                 Description = "Testing recipe 1",
                 Duration = TimeSpan.FromHours(2),
                 FoodType = FoodType.Dessert
-            }; 
+            };
 
-             //Act
-             var returnedModel = await _facadeSUT.SaveAsync(model);
+            //Act
+            var returnedModel = await _facadeSUT.SaveAsync(model);
 
             //Assert
             FixIds(model, returnedModel);
@@ -54,8 +54,8 @@ namespace CookBook.BL.Tests
                 Description = "Testing recipe 2",
                 Duration = TimeSpan.FromHours(2),
                 FoodType = FoodType.Dessert,
-                Ingredients = new List<IngredientAmountDetailModel>()
-                { 
+                Ingredients = new ObservableCollection<IngredientAmountDetailModel>()
+                {
                     new()
                     {
                         Id = Guid.Empty,
@@ -73,7 +73,7 @@ namespace CookBook.BL.Tests
             {
                 await _facadeSUT.SaveAsync(model); //In-memory pass without exception
             }
-            catch(DbUpdateException){} //SqlServer throws on FK
+            catch (DbUpdateException) { } //SqlServer throws on FK
         }
 
         [Fact]
@@ -87,7 +87,7 @@ namespace CookBook.BL.Tests
                 Duration = TimeSpan.FromHours(2),
                 FoodType = FoodType.Dessert,
                 ImageUrl = "https://d2v9mhsiek5lbq.cloudfront.net/eyJidWNrZXQiOiJsb21hLW1lZGlhLXVrIiwia2V5IjoiZm9vZG5ldHdvcmstaW1hZ2UtOGI5ZWM4YTAtODc1OC00MDcyLTg2YTItMzMzYTA4NTY5NTkwLmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjo3NTAsImhlaWdodCI6NDIyfX19",
-                Ingredients = new List<IngredientAmountDetailModel>()
+                Ingredients = new ObservableCollection<IngredientAmountDetailModel>()
                 {
                     new ()
                     {
@@ -106,7 +106,7 @@ namespace CookBook.BL.Tests
 
             //Assert
             FixIds(model, returnedModel);
-            DeepAssert.Equal(model,returnedModel);
+            DeepAssert.Equal(model, returnedModel);
         }
 
         [Fact]
@@ -119,7 +119,7 @@ namespace CookBook.BL.Tests
                 Description = "Testing recipe 2",
                 Duration = TimeSpan.FromHours(2),
                 FoodType = FoodType.Dessert,
-                Ingredients = new List<IngredientAmountDetailModel>()
+                Ingredients = new ObservableCollection<IngredientAmountDetailModel>()
                 {
                     new ()
                     {
@@ -139,8 +139,8 @@ namespace CookBook.BL.Tests
                 await _facadeSUT.SaveAsync(model);
                 Assert.True(false, "Assert Fail");
             }
-            catch(DbUpdateException){} //SqlServer
-            catch(ArgumentException){} //In-memory
+            catch (DbUpdateException) { } //SqlServer
+            catch (ArgumentException) { } //In-memory
         }
 
         [Fact]
@@ -209,7 +209,7 @@ namespace CookBook.BL.Tests
             var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
             DeepAssert.Equal(detailModel, returnedModel);
         }
-        
+
         [Fact]
         public async Task Update_RemoveOneOfIngredients_FromSeeded_CheckUpdated()
         {
@@ -238,8 +238,8 @@ namespace CookBook.BL.Tests
 
             foreach (var ingredientAmountModel in returnedModel.Ingredients)
             {
-                var ingredientAmountDetailModel = expectedModel.Ingredients.FirstOrDefault(i => 
-                    i.IngredientName == ingredientAmountModel.IngredientName 
+                var ingredientAmountDetailModel = expectedModel.Ingredients.FirstOrDefault(i =>
+                    i.IngredientName == ingredientAmountModel.IngredientName
                     && i.IngredientDescription == ingredientAmountModel.IngredientDescription
                     && i.IngredientImageUrl == ingredientAmountModel.IngredientImageUrl
                     && Math.Abs(i.Amount - ingredientAmountModel.Amount) <= 0
@@ -252,5 +252,5 @@ namespace CookBook.BL.Tests
                 }
             }
         }
-     }
+    }
 }

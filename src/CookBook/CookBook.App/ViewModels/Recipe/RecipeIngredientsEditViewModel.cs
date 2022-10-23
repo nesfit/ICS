@@ -18,7 +18,8 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
     public List<Unit> Units { get; set; }
     public ObservableCollection<IngredientListModel> Ingredients { get; set; } = new();
 
-    public IngredientListModel? IngredientNew { get; set; }
+    public IngredientListModel? IngredientSelected { get; set; }
+
     public IngredientAmountDetailModel? IngredientAmountNew { get; private set; }
 
     public RecipeIngredientsEditViewModel(
@@ -47,9 +48,12 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
     [RelayCommand]
     private async Task AddNewIngredientToRecipeAsync()
     {
-        if (IngredientAmountNew is not null)
+        if (IngredientAmountNew is not null
+            && IngredientSelected is not null)
         {
-            IngredientAmountNew.IngredientId = IngredientNew.Id;
+            IngredientAmountNew.IngredientId = IngredientSelected.Id;
+            IngredientAmountNew.IngredientName = IngredientSelected.Name;
+            IngredientAmountNew.IngredientImageUrl = IngredientSelected.ImageUrl;
 
             await ingredientAmountFacade.SaveAsync(IngredientAmountNew, Recipe.Id);
             Recipe.Ingredients.Add(IngredientAmountNew);

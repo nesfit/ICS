@@ -35,7 +35,8 @@ public class RecipeModelMapper : ModelMapperBase<RecipeEntity, RecipeListModel, 
                 Duration = entity.Duration,
                 FoodType = entity.FoodType,
                 ImageUrl = entity.ImageUrl,
-                Ingredients = ingredientAmountModelMapper.MapToDetailModel(entity.Ingredients),
+                Ingredients = ingredientAmountModelMapper.MapToDetailModel(entity.Ingredients)
+                    .ToObservableCollection(),
             };
 
     public override RecipeEntity MapToEntity(RecipeDetailModel model)
