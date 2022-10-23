@@ -10,8 +10,7 @@ public static class ServiceCollectionExtension
     public static IServiceCollection AddBLServices(this IServiceCollection services)
     {
         services.AddSingleton<IUnitOfWorkFactory, UnitOfWorkFactory>();
-        services.AddSingleton<RecipeFacade>();
-        services.AddSingleton<IngredientFacade>();
+        services.AddSingleton(typeof(IFacade<,,,>), typeof(Facade<,,,>));
 
         services.AddSingleton<IngredientAmountModelMapper>();
 

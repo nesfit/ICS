@@ -2,18 +2,20 @@
 using CookBook.App.Services;
 using CookBook.BL.Facades;
 using CookBook.BL.Models;
+using CookBook.DAL.Entities;
+using CookBook.DAL.Mappers;
 
 namespace CookBook.App.ViewModels;
 
 public partial class IngredientListViewModel : ViewModelBase
 {
-    private readonly IngredientFacade ingredientFacade;
+    private readonly IFacade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper> ingredientFacade;
     private readonly IRoutingService routingService;
 
     public IEnumerable<IngredientListModel> Ingredients { get; set; }
 
     public IngredientListViewModel(
-        IngredientFacade ingredientFacade,
+        IFacade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper> ingredientFacade,
         IRoutingService routingService)
     {
         this.ingredientFacade = ingredientFacade;

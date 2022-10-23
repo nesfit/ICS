@@ -2,19 +2,21 @@
 using CookBook.BL.Facades;
 using CookBook.BL.Models;
 using CookBook.Common.Enums;
+using CookBook.DAL.Entities;
+using CookBook.DAL.Mappers;
 
 namespace CookBook.App.ViewModels;
 
 [QueryProperty(nameof(Recipe), nameof(Recipe))]
 public partial class RecipeEditViewModel : ViewModelBase
 {
-    private readonly RecipeFacade recipeFacade;
+    private readonly IFacade<RecipeEntity, RecipeListModel, RecipeDetailModel, RecipeEntityMapper> recipeFacade;
 
     public RecipeDetailModel Recipe { get; set; } = RecipeDetailModel.Empty;
 
     public List<FoodType> FoodTypes { get; set; }
 
-    public RecipeEditViewModel(RecipeFacade recipeFacade)
+    public RecipeEditViewModel(IFacade<RecipeEntity, RecipeListModel, RecipeDetailModel, RecipeEntityMapper> recipeFacade)
     {
         this.recipeFacade = recipeFacade;
 

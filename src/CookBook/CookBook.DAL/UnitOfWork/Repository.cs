@@ -9,7 +9,7 @@ namespace CookBook.DAL.UnitOfWork;
 public class Repository<TEntity> : IRepository<TEntity>
     where TEntity : class, IEntity
 {
-    protected readonly DbSet<TEntity> dbSet;
+    private readonly DbSet<TEntity> dbSet;
     private readonly IEntityMapper<TEntity> entityMapper;
 
     public Repository(

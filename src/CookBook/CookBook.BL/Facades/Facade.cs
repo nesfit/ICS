@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.BL.Facades;
 
-public class CRUDFacade<TEntity, TListModel, TDetailModel, TEntityMapper>
+public class Facade<TEntity, TListModel, TDetailModel, TEntityMapper> : IFacade<TEntity, TListModel, TDetailModel, TEntityMapper>
         where TEntity : class, IEntity
         where TListModel : IModel
         where TDetailModel : class, IModel
@@ -20,7 +20,7 @@ public class CRUDFacade<TEntity, TListModel, TDetailModel, TEntityMapper>
         private readonly IModelMapper<TEntity, TListModel, TDetailModel> modelMapper;
         protected readonly IUnitOfWorkFactory unitOfWorkFactory;
 
-        protected CRUDFacade(
+        public Facade(
             IUnitOfWorkFactory unitOfWorkFactory,
             IModelMapper<TEntity, TListModel, TDetailModel> modelMapper)
         {

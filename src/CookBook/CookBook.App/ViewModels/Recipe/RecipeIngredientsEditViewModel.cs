@@ -2,6 +2,8 @@
 using CookBook.BL.Facades;
 using CookBook.BL.Models;
 using CookBook.Common.Enums;
+using CookBook.DAL.Entities;
+using CookBook.DAL.Mappers;
 using System.Collections.ObjectModel;
 
 namespace CookBook.App.ViewModels;
@@ -9,7 +11,7 @@ namespace CookBook.App.ViewModels;
 [QueryProperty(nameof(Recipe), nameof(Recipe))]
 public partial class RecipeIngredientsEditViewModel : ViewModelBase
 {
-    private readonly IngredientFacade ingredientFacade;
+    private readonly IFacade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper> ingredientFacade;
 
     public RecipeDetailModel Recipe { get; set; }
     public List<Unit> Units { get; set; }
@@ -18,7 +20,7 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
     public IngredientListModel? IngredientNew { get; set; }
     public IngredientAmountDetailModel? IngredientAmountNew { get; private set; }
 
-    public RecipeIngredientsEditViewModel(IngredientFacade ingredientFacade)
+    public RecipeIngredientsEditViewModel(IFacade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper> ingredientFacade)
     {
         this.ingredientFacade = ingredientFacade;
         Units = new List<Unit>((Unit[])Enum.GetValues(typeof(Unit)));

@@ -8,16 +8,18 @@ using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;
 using System;
+using CookBook.DAL.Entities;
+using CookBook.DAL.Mappers;
 
 namespace CookBook.BL.Tests
 {
     public sealed class IngredientFacadeTests : CRUDFacadeTestsBase
     {
-        private readonly IngredientFacade _ingredientFacadeSUT;
+        private readonly Facade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper> _ingredientFacadeSUT;
 
         public IngredientFacadeTests(ITestOutputHelper output) : base(output)
         {
-            _ingredientFacadeSUT = new IngredientFacade(UnitOfWorkFactory, IngredientModelMapper);
+            _ingredientFacadeSUT = new Facade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper>(UnitOfWorkFactory, IngredientModelMapper);
         }
 
         [Fact]
