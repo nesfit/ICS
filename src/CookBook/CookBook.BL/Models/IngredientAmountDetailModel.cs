@@ -1,7 +1,5 @@
-﻿using System;
-using AutoMapper;
-using CookBook.Common.Enums;
-using CookBook.DAL.Entities;
+﻿using CookBook.Common.Enums;
+using System;
 
 namespace CookBook.BL.Models
 {
@@ -21,17 +19,5 @@ namespace CookBook.BL.Models
             IngredientName = string.Empty,
             IngredientDescription = string.Empty,
         };
-
-        public class MapperProfile : Profile
-        {
-            public MapperProfile()
-            {
-                CreateMap<IngredientAmountEntity, IngredientAmountDetailModel>()
-                    .ReverseMap()
-                    .ForMember(entity => entity.Ingredient, expression => expression.Ignore())
-                    .ForMember(entity => entity.Recipe, expression => expression.Ignore())
-                    .ForMember(entity => entity.RecipeId, expression => expression.Ignore());
-            }
-        }
     }
 }

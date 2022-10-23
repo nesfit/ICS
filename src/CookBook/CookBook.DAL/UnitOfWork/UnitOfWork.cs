@@ -8,35 +8,17 @@ namespace CookBook.DAL.UnitOfWork;
 
 public sealed class UnitOfWork : IUnitOfWork
 {
-    private readonly IngredientEntityMapper ingredientEntityMapper;
-    private readonly IngredientAmountEntityMapper ingredientAmountEntityMapper;
-    private readonly RecipeEntityMapper recipeEntityMapper;
     private readonly DbContext dbContext;
 
-    public UnitOfWork(
-        IngredientEntityMapper ingredientEntityMapper,
-        IngredientAmountEntityMapper ingredientAmountEntityMapper,
-        RecipeEntityMapper recipeEntityMapper,
-        DbContext dbContext)
+    public UnitOfWork(DbContext dbContext)
     {
-        this.ingredientEntityMapper = ingredientEntityMapper;
-        this.ingredientAmountEntityMapper = ingredientAmountEntityMapper;
-        this.recipeEntityMapper = recipeEntityMapper;
         this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
     }
 
-    public IRepository<TEntity> GetRepository<TEntity>()
+    public IRepository<TEntity> GetRepository<TEntity, TEntityMapper>()
         where TEntity : class, IEntity
-        => new Repository<TEntity>(dbContext);
-
-    public IngredientRepository GetIngredientRepository()
-        => new(ingredientEntityMapper, dbContext);
-
-    public IngredientAmountRepository GetIngredientAmountRepository()
-        => new(ingredientAmountEntityMapper, dbContext);
-
-    public RecipeRepository GetRecipeRepository()
-        => new(recipeEntityMapper, dbContext);
+        where TEntityMapper : IEntityMapper<TEntity>, new()
+        => new Repository<TEntity>(dbContext, new TEntityMapper());
 
     public async Task CommitAsync() => await dbContext.SaveChangesAsync();
 

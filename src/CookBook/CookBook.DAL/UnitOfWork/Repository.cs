@@ -1,11 +1,8 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
-using CookBook.DAL.Entities;
+﻿using CookBook.DAL.Entities;
+using CookBook.DAL.Mappers;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+using System;
+using System.Linq;
 
 namespace CookBook.DAL.UnitOfWork;
 
@@ -13,12 +10,14 @@ public class Repository<TEntity> : IRepository<TEntity>
     where TEntity : class, IEntity
 {
     protected readonly DbSet<TEntity> dbSet;
-    private readonly IModel model;
+    private readonly IEntityMapper<TEntity> entityMapper;
 
-    public Repository(DbContext dbContext)
+    public Repository(
+        DbContext dbContext,
+        IEntityMapper<TEntity> entityMapper)
     {
         dbSet = dbContext.Set<TEntity>();
-        model = dbContext.Model;
+        this.entityMapper = entityMapper;
     }
 
     public IQueryable<TEntity> Get() => dbSet;
@@ -29,17 +28,11 @@ public class Repository<TEntity> : IRepository<TEntity>
     public TEntity Insert(TEntity entity)
         => dbSet.Add(entity).Entity;
 
-    public virtual async Task<TEntity> InsertOrUpdateAsync<TModel>(
-        TModel model,
-        IMapper mapper,
-        CancellationToken cancellationToken = default)
-        where TModel : class
+    public TEntity Update(TEntity entity)
     {
-        //await dbSet.PreLoadChangeTracker(mapper.Map<TEntity>(model).Id, model, cancellationToken);
-
-        // TODO: add proper implementation
-        //return await dbSet.Persist(mapper).InsertOrUpdateAsync(model, cancellationToken);
-        return null;
+        var existingEntity = dbSet.Single(e => e.Id == entity.Id);
+        entityMapper.Map(existingEntity, entity);
+        return existingEntity;
     }
 
     public void Delete(Guid entityId) => dbSet.Remove(dbSet.Single(i => i.Id == entityId));

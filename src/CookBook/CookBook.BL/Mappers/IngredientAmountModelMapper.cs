@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace CookBook.BL.Mappers;
 
-public class IngredientAmountModelMapper
+public class IngredientAmountModelMapper : ModelMapperBase<IngredientAmountEntity, IngredientAmountDetailModel, IngredientAmountDetailModel>
 {
-    public IngredientAmountDetailModel MapToDetailModel(IngredientAmountEntity? entity)
+    public override IngredientAmountDetailModel MapToListModel(IngredientAmountEntity? entity)
         => entity?.Ingredient is null
             ? IngredientAmountDetailModel.Empty
             : new()
@@ -21,6 +21,23 @@ public class IngredientAmountModelMapper
                 Amount = entity.Amount,
                 Unit = entity.Unit,
             };
+
+    public override IngredientAmountDetailModel MapToDetailModel(IngredientAmountEntity? entity)
+        => entity?.Ingredient is null
+            ? IngredientAmountDetailModel.Empty
+            : new()
+            {
+                Id = entity.Id,
+                IngredientId = entity.Ingredient.Id,
+                IngredientName = entity.Ingredient.Name,
+                IngredientDescription = entity.Ingredient.Description,
+                IngredientImageUrl = entity.Ingredient.ImageUrl,
+                Amount = entity.Amount,
+                Unit = entity.Unit,
+            };
+
+    public override IngredientAmountEntity MapToEntity(IngredientAmountDetailModel model)
+        => throw new NotImplementedException();
 
     public ICollection<IngredientAmountDetailModel> MapToDetailModel(IEnumerable<IngredientAmountEntity> entities)
         => entities.Select(MapToDetailModel).ToList();

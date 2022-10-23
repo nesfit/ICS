@@ -1,19 +1,20 @@
-using System;
-using System.Threading.Tasks;
-using AutoMapper;
 using CookBook.BL.Mappers;
+using CookBook.BL.Models;
 using CookBook.Common.Tests;
 using CookBook.Common.Tests.Factories;
 using CookBook.DAL;
+using CookBook.DAL.Entities;
 using CookBook.DAL.Mappers;
 using CookBook.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace CookBook.BL.Tests;
 
-public class  CRUDFacadeTestsBase : IAsyncLifetime
+public class CRUDFacadeTestsBase : IAsyncLifetime
 {
     protected CRUDFacadeTestsBase(ITestOutputHelper output)
     {
@@ -32,37 +33,18 @@ public class  CRUDFacadeTestsBase : IAsyncLifetime
 
         DbContextFactory = new DbContextSQLiteTestingFactory(GetType().FullName!, seedTestingData: true);
 
-        UnitOfWorkFactory = new UnitOfWorkFactory(IngredientEntityMapper, IngredientAmountEntityMapper, RecipeEntityMapper, DbContextFactory);
-
-
-        var configuration = new MapperConfiguration(cfg =>
-            {
-                cfg.AddMaps(new[]
-                {
-                    typeof(BusinessLogic),
-                });
-
-                // TODO: remove this when AutoMapper is no longer needed
-                //cfg.AddCollectionMappers();
-                
-                using var dbContext = DbContextFactory.CreateDbContext();
-                //cfg.UseEntityFrameworkCoreModel<CookBookDbContext>(dbContext.Model);
-            }
-        );
-        Mapper = new Mapper(configuration);
-        Mapper.ConfigurationProvider.AssertConfigurationIsValid();
+        UnitOfWorkFactory = new UnitOfWorkFactory(DbContextFactory);
     }
 
     protected IDbContextFactory<CookBookDbContext> DbContextFactory { get; }
-    
+
     protected IngredientEntityMapper IngredientEntityMapper { get; }
     protected IngredientAmountEntityMapper IngredientAmountEntityMapper { get; }
     protected RecipeEntityMapper RecipeEntityMapper { get; }
 
-    protected IngredientModelMapper IngredientModelMapper { get; }
+    protected IModelMapper<IngredientEntity, IngredientListModel, IngredientDetailModel> IngredientModelMapper { get; }
     protected IngredientAmountModelMapper IngredientAmountModelMapper { get; }
-    protected RecipeModelMapper RecipeModelMapper { get; }
-    protected Mapper Mapper { get; }
+    protected IModelMapper<RecipeEntity, RecipeListModel, RecipeDetailModel> RecipeModelMapper { get; }
     protected UnitOfWorkFactory UnitOfWorkFactory { get; }
 
     public async Task InitializeAsync()

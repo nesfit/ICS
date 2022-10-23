@@ -2,7 +2,7 @@
 
 namespace CookBook.DAL.Mappers;
 
-public class IngredientAmountEntityMapper
+public class IngredientAmountEntityMapper : IEntityMapper<IngredientAmountEntity>
 {
     public void Map(IngredientAmountEntity existingEntity, IngredientAmountEntity newEntity)
     {

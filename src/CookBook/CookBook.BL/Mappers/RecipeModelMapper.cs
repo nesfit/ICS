@@ -1,11 +1,9 @@
 ﻿using CookBook.BL.Models;
 using CookBook.DAL.Entities;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CookBook.BL.Mappers;
 
-public class RecipeModelMapper
+public class RecipeModelMapper : ModelMapperBase<RecipeEntity, RecipeListModel, RecipeDetailModel>
 {
     private readonly IngredientAmountModelMapper ingredientAmountModelMapper;
 
@@ -14,7 +12,7 @@ public class RecipeModelMapper
         this.ingredientAmountModelMapper = ingredientAmountModelMapper;
     }
 
-    public RecipeListModel MapToListModel(RecipeEntity? entity)
+    public override RecipeListModel MapToListModel(RecipeEntity? entity)
         => entity is null
             ? RecipeListModel.Empty
             : new()
@@ -26,10 +24,7 @@ public class RecipeModelMapper
                 ImageUrl = entity.ImageUrl,
             };
 
-    public IEnumerable<RecipeListModel> MapToListModel(IEnumerable<RecipeEntity> entities)
-        => entities.Select(MapToListModel);
-
-    public RecipeDetailModel MapToDetailModel(RecipeEntity? entity)
+    public override RecipeDetailModel MapToDetailModel(RecipeEntity? entity)
         => entity is null
             ? RecipeDetailModel.Empty
             : new()
@@ -43,7 +38,7 @@ public class RecipeModelMapper
                 Ingredients = ingredientAmountModelMapper.MapToDetailModel(entity.Ingredients),
             };
 
-    public RecipeEntity MapToEntity(RecipeDetailModel model)
+    public override RecipeEntity MapToEntity(RecipeDetailModel model)
         => new()
         {
             Id = model.Id,

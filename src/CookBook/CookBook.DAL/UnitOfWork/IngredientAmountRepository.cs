@@ -7,14 +7,14 @@ namespace CookBook.DAL.UnitOfWork;
 
 public class IngredientAmountRepository : Repository<IngredientAmountEntity>
 {
-    private readonly IngredientAmountEntityMapper ingredientAmountEntityMapper;
+    private readonly IEntityMapper<IngredientAmountEntity> entityMapper;
 
     public IngredientAmountRepository(
-        IngredientAmountEntityMapper ingredientAmountEntityMapper,
-        DbContext dbContext)
-        : base(dbContext)
+        DbContext dbContext,
+        IEntityMapper<IngredientAmountEntity> entityMapper)
+        : base(dbContext, entityMapper)
     {
-        this.ingredientAmountEntityMapper = ingredientAmountEntityMapper;
+        this.entityMapper = entityMapper;
     }
 
     public async Task<IngredientAmountEntity> InsertOrUpdateAsync(IngredientAmountEntity entity)
@@ -24,7 +24,7 @@ public class IngredientAmountRepository : Repository<IngredientAmountEntity>
         if (Exists(entity))
         {
             var existingEntity = await dbSet.SingleAsync(e => e.Id == entity.Id);
-            ingredientAmountEntityMapper.Map(existingEntity, entity);
+            entityMapper.Map(existingEntity, entity);
 
             result = existingEntity;
         }

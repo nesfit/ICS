@@ -1,8 +1,6 @@
-﻿using System;
+﻿using CookBook.Common.Enums;
+using System;
 using System.Collections.Generic;
-using AutoMapper;
-using CookBook.Common.Enums;
-using CookBook.DAL.Entities;
 
 namespace CookBook.BL.Models
 {
@@ -14,14 +12,6 @@ namespace CookBook.BL.Models
         public FoodType FoodType { get; set; }
         public string? ImageUrl { get; set; }
         public ICollection<IngredientAmountDetailModel> Ingredients { get; init; } = new List<IngredientAmountDetailModel>();
-        
-        public class MapperProfile : Profile
-        {
-            public MapperProfile()
-            {
-                CreateMap<RecipeDetailModel, RecipeEntity>();
-            }
-        }
 
         public static RecipeDetailModel Empty => new()
         {

@@ -1,7 +1,6 @@
 ﻿using CookBook.BL.Facades;
-using CookBook.DAL;
+using CookBook.BL.Mappers;
 using CookBook.DAL.UnitOfWork;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CookBook.BL;
@@ -14,15 +13,14 @@ public static class ServiceCollectionExtension
         services.AddSingleton<RecipeFacade>();
         services.AddSingleton<IngredientFacade>();
 
-        services.AddAutoMapper((serviceProvider, cfg) =>
-        {
-            // TODO: remove this when AutoMapper is no longer needed
-            //cfg.AddCollectionMappers();
-            var dbContextFactory = serviceProvider.GetRequiredService<IDbContextFactory<CookBookDbContext>>();
-            using var dbContext = dbContextFactory.CreateDbContext();
-            
-            //cfg.UseEntityFrameworkCoreModel<CookBookDbContext>(dbContext.Model);
-        }, typeof(BusinessLogic).Assembly);
+        services.AddSingleton<IngredientAmountModelMapper>();
+
+        services.Scan(selector => selector
+            .FromAssemblyOf<BusinessLogic>()
+            .AddClasses(filter => filter.AssignableTo(typeof(ModelMapperBase<,,>)))
+            .AsImplementedInterfaces()
+            .WithSingletonLifetime());
+
         return services;
     }
 }

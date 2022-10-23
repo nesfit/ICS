@@ -2,7 +2,7 @@
 
 namespace CookBook.DAL.Mappers;
 
-public class RecipeEntityMapper
+public class RecipeEntityMapper : IEntityMapper<RecipeEntity>
 {
     public void Map(RecipeEntity existingEntity, RecipeEntity newEntity)
     {

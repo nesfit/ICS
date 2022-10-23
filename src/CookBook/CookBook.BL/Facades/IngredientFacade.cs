@@ -1,72 +1,17 @@
-﻿using AutoMapper;
-using CookBook.BL.Mappers;
+﻿using CookBook.BL.Mappers;
 using CookBook.BL.Models;
 using CookBook.DAL.Entities;
+using CookBook.DAL.Mappers;
 using CookBook.DAL.UnitOfWork;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CookBook.BL.Facades;
 
-public class IngredientFacade : CRUDFacade<IngredientEntity, IngredientListModel, IngredientDetailModel>
+public class IngredientFacade : CRUDFacade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper>
 {
-    private readonly IngredientModelMapper ingredientModelMapper;
-
     public IngredientFacade(
-        IngredientModelMapper ingredientModelMapper,
         IUnitOfWorkFactory unitOfWorkFactory,
-        IMapper mapper)
-        : base(unitOfWorkFactory, mapper)
+        IModelMapper<IngredientEntity, IngredientListModel, IngredientDetailModel> modelMapper)
+        : base(unitOfWorkFactory, modelMapper)
     {
-        this.ingredientModelMapper = ingredientModelMapper;
-    }
-
-    public override async Task<IngredientDetailModel?> GetAsync(Guid id)
-    {
-        await using var uow = unitOfWorkFactory.Create();
-        var entity = await uow.GetRepository<IngredientEntity>()
-            .Get()
-            .SingleOrDefaultAsync(e => e.Id == id);
-
-        return ingredientModelMapper.MapToDetailModel(entity);
-    }
-
-    public override async Task<IEnumerable<IngredientListModel>> GetAsync()
-    {
-        await using var uow = unitOfWorkFactory.Create();
-        var entities = uow
-            .GetRepository<IngredientEntity>()
-            .Get()
-            .ToList();
-
-        return ingredientModelMapper.MapToListModel(entities);
-    }
-
-    public override async Task<IngredientDetailModel> SaveAsync(IngredientDetailModel model)
-    {
-        IngredientDetailModel result;
-
-        var entity = ingredientModelMapper.MapToEntity(model);
-
-        var uow = unitOfWorkFactory.Create();
-        var repository = uow.GetIngredientRepository();
-
-        if (repository.Exists(entity))
-        {
-            var updatedEntity = repository.Update(entity);
-            result = ingredientModelMapper.MapToDetailModel(updatedEntity);
-        }
-        else
-        {
-            var insertedEntity = repository.Insert(entity);
-            result = ingredientModelMapper.MapToDetailModel(insertedEntity);
-        }
-
-        await uow.CommitAsync();
-
-        return result;
     }
 }

@@ -5,7 +5,6 @@ using CookBook.App.Shells;
 using CookBook.App.ViewModels;
 using CookBook.App.Views;
 using CookBook.BL;
-using CookBook.BL.Mappers;
 using CookBook.DAL;
 using CookBook.DAL.Factories;
 using CookBook.DAL.Mappers;
@@ -49,10 +48,6 @@ public static class MauiProgram
         builder.Services.AddSingleton<IngredientEntityMapper>();
         builder.Services.AddSingleton<IngredientAmountEntityMapper>();
         builder.Services.AddSingleton<RecipeEntityMapper>();
-
-        builder.Services.AddSingleton<IngredientModelMapper>();
-        builder.Services.AddSingleton<IngredientAmountModelMapper>();
-        builder.Services.AddSingleton<RecipeModelMapper>();
 
         ConfigureAppSettings(builder);
         builder.Services.Configure<DALOptions>(options => builder.Configuration.GetSection("CookBook:DAL").Bind(options));

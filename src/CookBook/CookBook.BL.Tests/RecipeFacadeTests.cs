@@ -19,7 +19,7 @@ namespace CookBook.BL.Tests
 
         public RecipeFacadeTests(ITestOutputHelper output) : base(output)
         {
-            _facadeSUT = new RecipeFacade(IngredientAmountModelMapper, RecipeModelMapper, UnitOfWorkFactory, Mapper);
+            _facadeSUT = new RecipeFacade(UnitOfWorkFactory, RecipeModelMapper);
         }
 
         [Fact]
@@ -145,7 +145,7 @@ namespace CookBook.BL.Tests
         public async Task GetById_FromSeeded_DoesNotThrowAndEqualsSeeded()
         {
             //Arrange
-            var detailModel = Mapper.Map<RecipeDetailModel>(RecipeSeeds.RecipeEntity);
+            var detailModel = RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity);
 
             //Act
             var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
@@ -158,7 +158,7 @@ namespace CookBook.BL.Tests
         public async Task GetAll_FromSeeded_DoesNotThrowAndContainsSeeded()
         {
             //Arrange
-            var listModel = Mapper.Map<RecipeListModel>(RecipeSeeds.RecipeEntity);
+            var listModel = RecipeModelMapper.MapToListModel(RecipeSeeds.RecipeEntity);
 
             //Act
             var returnedModel = await _facadeSUT.GetAsync();
@@ -171,7 +171,7 @@ namespace CookBook.BL.Tests
         public async Task Delete_FromSeeded_DoesNotThrow()
         {
             //Arrange
-            var detailModel = Mapper.Map<RecipeDetailModel>(RecipeSeeds.RecipeEntity);
+            var detailModel = RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity);
 
             //Act & Assert
             await _facadeSUT.DeleteAsync(detailModel);
@@ -181,7 +181,7 @@ namespace CookBook.BL.Tests
         public async Task Update_FromSeeded_DoesNotThrow()
         {
             //Arrange
-            var detailModel = Mapper.Map<RecipeDetailModel>(RecipeSeeds.RecipeEntity);
+            var detailModel = RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity);
             detailModel.Name = "Changed recipe name";
 
             //Act & Assert
@@ -192,7 +192,7 @@ namespace CookBook.BL.Tests
         public async Task Update_Name_FromSeeded_CheckUpdated()
         {
             //Arrange
-            var detailModel = Mapper.Map<RecipeDetailModel>(RecipeSeeds.RecipeEntity);
+            var detailModel = RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity);
             detailModel.Name = "Changed recipe name 1";
 
             //Act
@@ -207,7 +207,7 @@ namespace CookBook.BL.Tests
         public async Task Update_RemoveIngredients_FromSeeded_CheckUpdated()
         {
             //Arrange
-            var detailModel = Mapper.Map<RecipeDetailModel>(RecipeSeeds.RecipeEntity);
+            var detailModel = RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity);
             detailModel.Ingredients.Clear();
 
             //Act
@@ -222,7 +222,7 @@ namespace CookBook.BL.Tests
         public async Task Update_RemoveOneOfIngredients_FromSeeded_CheckUpdated()
         {
             //Arrange
-            var detailModel = Mapper.Map<RecipeDetailModel>(RecipeSeeds.RecipeEntity);
+            var detailModel = RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity);
             detailModel.Ingredients.Remove(detailModel.Ingredients.First());
 
             //Act

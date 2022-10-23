@@ -17,7 +17,7 @@ namespace CookBook.BL.Tests
 
         public IngredientFacadeTests(ITestOutputHelper output) : base(output)
         {
-            _ingredientFacadeSUT = new IngredientFacade(IngredientModelMapper, UnitOfWorkFactory, Mapper);
+            _ingredientFacadeSUT = new IngredientFacade(UnitOfWorkFactory, IngredientModelMapper);
         }
 
         [Fact]
@@ -39,7 +39,7 @@ namespace CookBook.BL.Tests
             var ingredients = await _ingredientFacadeSUT.GetAsync();
                 var ingredient = ingredients.Single(i => i.Id == IngredientSeeds.Water.Id);
 
-            DeepAssert.Equal(Mapper.Map<IngredientListModel>(IngredientSeeds.Water), ingredient);
+            DeepAssert.Equal(IngredientModelMapper.MapToListModel(IngredientSeeds.Water), ingredient);
         }
         
         [Fact]
@@ -47,7 +47,7 @@ namespace CookBook.BL.Tests
         {
             var ingredient = await _ingredientFacadeSUT.GetAsync(IngredientSeeds.Water.Id);
         
-            DeepAssert.Equal(Mapper.Map<IngredientDetailModel>(IngredientSeeds.Water), ingredient);
+            DeepAssert.Equal(IngredientModelMapper.MapToDetailModel(IngredientSeeds.Water), ingredient);
         }
         
         [Fact]
@@ -85,7 +85,7 @@ namespace CookBook.BL.Tests
             //Assert
             await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
             var ingredientFromDb = await dbxAssert.Ingredients.SingleAsync(i => i.Id == ingredient.Id);
-            DeepAssert.Equal(ingredient, Mapper.Map<IngredientDetailModel>(ingredientFromDb));
+            DeepAssert.Equal(ingredient, IngredientModelMapper.MapToDetailModel(ingredientFromDb));
         }
         
         [Fact]
@@ -107,7 +107,7 @@ namespace CookBook.BL.Tests
             //Assert
             await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
             var ingredientFromDb = await dbxAssert.Ingredients.SingleAsync(i => i.Id == ingredient.Id);
-            DeepAssert.Equal(ingredient, Mapper.Map<IngredientDetailModel>(ingredientFromDb));
+            DeepAssert.Equal(ingredient, IngredientModelMapper.MapToDetailModel(ingredientFromDb));
         }
     }
 }
