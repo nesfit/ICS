@@ -1,14 +1,13 @@
 ﻿using CookBook.App.Shells;
 
-namespace CookBook.App
-{
-    public partial class App : Application
-    {
-        public App(IServiceProvider serviceProvider)
-        {
-            InitializeComponent();
+namespace CookBook.App;
 
-            MainPage = serviceProvider.GetRequiredService<AppShell>();
-        }
+public partial class App : Application
+{
+    public App(IServiceProvider serviceProvider)
+    {
+        InitializeComponent();
+
+        MainPage = serviceProvider.GetRequiredService<AppShell>();
     }
 }

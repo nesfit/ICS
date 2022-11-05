@@ -1,7 +1,6 @@
-﻿namespace CookBook.App.ViewModels
+﻿namespace CookBook.App.ViewModels;
+
+public interface IViewModel
 {
-    public interface IViewModel
-    {
-        Task OnAppearingAsync();
-    }
+    Task OnAppearingAsync();
 }

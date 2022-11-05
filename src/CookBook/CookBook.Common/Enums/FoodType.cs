@@ -1,11 +1,10 @@
-﻿namespace CookBook.Common.Enums
+﻿namespace CookBook.Common.Enums;
+
+public enum FoodType
 {
-    public enum FoodType
-    {
-        None = 0,
-        MainDish = 1,
-        Soup = 2,
-        Dessert = 3,
-        Drink = 4
-    }
+    None = 0,
+    MainDish = 1,
+    Soup = 2,
+    Dessert = 3,
+    Drink = 4
 }

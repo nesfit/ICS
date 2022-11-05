@@ -1,54 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CookBook.Common.Enums;
+﻿using CookBook.Common.Enums;
 using CookBook.Common.Tests;
 using CookBook.Common.Tests.Seeds;
 using CookBook.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-using Nemesis.Essentials.Design;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace CookBook.DAL.Tests
+namespace CookBook.DAL.Tests;
+
+public class DbContextRecipeTests : DbContextTestsBase
 {
-    public class DbContextRecipeTests : DbContextTestsBase
+    public DbContextRecipeTests(ITestOutputHelper output) : base(output)
     {
-        public DbContextRecipeTests(ITestOutputHelper output) : base(output)
-        {
-        }
-        
-        [Fact]
-        public async Task AddNew_RecipeWithoutIngredients_Persisted()
-        {
-            //Arrange
-            var entity = RecipeSeeds.EmptyRecipeEntity with {
-                Name = "Chicken soup",
-                Description = "Grandma's delicious chicken soup."
-            };
+    }
 
-            //Act
-            CookBookDbContextSUT.Recipes.Add(entity);
-            await CookBookDbContextSUT.SaveChangesAsync();
-
-            //Assert
-            await using var dbx = await DbContextFactory.CreateDbContextAsync();
-            var actualEntity = await dbx.Recipes
-                .SingleAsync(i => i.Id == entity.Id);
-            DeepAssert.Equal(entity, actualEntity);
-        }
-
-        // Adding ingredients alongside with recipe could be considered a bad design because ingredients are strong entities
-        [Fact]
-        public async Task AddNew_RecipeWithIngredients_Persisted()
+    [Fact]
+    public async Task AddNew_RecipeWithoutIngredients_Persisted()
+    {
+        //Arrange
+        var entity = RecipeSeeds.EmptyRecipeEntity with
         {
-            //Arrange
-            var entity = RecipeSeeds.EmptyRecipeEntity with
-            {
-                Name = "Lemonade",
-                Description = "Simple lemon lemonade",
-                Ingredients = new List<IngredientAmountEntity> {
+            Name = "Chicken soup",
+            Description = "Grandma's delicious chicken soup."
+        };
+
+        //Act
+        CookBookDbContextSUT.Recipes.Add(entity);
+        await CookBookDbContextSUT.SaveChangesAsync();
+
+        //Assert
+        await using var dbx = await DbContextFactory.CreateDbContextAsync();
+        var actualEntity = await dbx.Recipes
+            .SingleAsync(i => i.Id == entity.Id);
+        DeepAssert.Equal(entity, actualEntity);
+    }
+
+    // Adding ingredients alongside with recipe could be considered a bad design because ingredients are strong entities
+    [Fact]
+    public async Task AddNew_RecipeWithIngredients_Persisted()
+    {
+        //Arrange
+        var entity = RecipeSeeds.EmptyRecipeEntity with
+        {
+            Name = "Lemonade",
+            Description = "Simple lemon lemonade",
+            Ingredients = new List<IngredientAmountEntity> {
                 IngredientAmountSeeds.EmptyIngredientAmountEntity with
                 {
                     Amount = 1,
@@ -72,150 +72,149 @@ namespace CookBook.DAL.Tests
                     }
                 }
             }
-            };
+        };
 
-            //Act
-            CookBookDbContextSUT.Recipes.Add(entity);
-            await CookBookDbContextSUT.SaveChangesAsync();
+        //Act
+        CookBookDbContextSUT.Recipes.Add(entity);
+        await CookBookDbContextSUT.SaveChangesAsync();
 
-            //Assert
-            await using var dbx = await DbContextFactory.CreateDbContextAsync();
-            var actualEntity = await dbx.Recipes
-                .Include(i => i.Ingredients)
-                .ThenInclude(i => i.Ingredient)
-                .SingleAsync(i => i.Id == entity.Id);
-            DeepAssert.Equal(entity, actualEntity);
-        }
+        //Assert
+        await using var dbx = await DbContextFactory.CreateDbContextAsync();
+        var actualEntity = await dbx.Recipes
+            .Include(i => i.Ingredients)
+            .ThenInclude(i => i.Ingredient)
+            .SingleAsync(i => i.Id == entity.Id);
+        DeepAssert.Equal(entity, actualEntity);
+    }
 
-        // Adding ingredientAmounts alongside with recipe is OK because ingredientAmounts are not strong entities
-        [Fact]
-        public async Task AddNew_RecipeWithJustIngredientAmounts_Persisted()
+    // Adding ingredientAmounts alongside with recipe is OK because ingredientAmounts are not strong entities
+    [Fact]
+    public async Task AddNew_RecipeWithJustIngredientAmounts_Persisted()
+    {
+        //Arrange
+        var entity = RecipeSeeds.EmptyRecipeEntity with
         {
-            //Arrange
-            var entity = RecipeSeeds.EmptyRecipeEntity with
-            {
-                Name = "Lemonade",
-                Description = "Simple lemon lemonade",
-                Ingredients = new List<IngredientAmountEntity> {
-                    IngredientAmountSeeds.EmptyIngredientAmountEntity with
-                    {
-                        Amount = 1,
-                        Unit = Unit.L,
-                        IngredientId = IngredientSeeds.IngredientEntity1.Id
-                    },
-                    IngredientAmountSeeds.EmptyIngredientAmountEntity with
-                    {
-                        Amount = 50,
-                        Unit = Unit.Ml,
-                        IngredientId = IngredientSeeds.IngredientEntity2.Id
-                    }
-                }
-            };
-
-            //Act
-            CookBookDbContextSUT.Recipes.Add(entity);
-            await CookBookDbContextSUT.SaveChangesAsync();
-
-            //Assert
-            await using var dbx = await DbContextFactory.CreateDbContextAsync();
-            var actualEntity = await dbx.Recipes
-                .Include(i => i.Ingredients)
-                .SingleAsync(i => i.Id == entity.Id);
-            DeepAssert.Equal(entity, actualEntity);
-        }
-
-        [Fact]
-        public async Task GetById_Recipe()
-        {
-            //Act
-            var entity = await CookBookDbContextSUT.Recipes
-                .SingleAsync(i => i.Id == RecipeSeeds.RecipeEntity.Id);
-
-            //Assert
-            DeepAssert.Equal(RecipeSeeds.RecipeEntity with {Ingredients = Array.Empty<IngredientAmountEntity>() }, entity);
-        }
-
-        [Fact]
-        public async Task GetById_IncludingIngredients_Recipe()
-        {
-            //Act
-            var entity = await CookBookDbContextSUT.Recipes
-                .Include(i=>i.Ingredients)
-                .ThenInclude(i=>i.Ingredient)
-                .SingleAsync(i => i.Id == RecipeSeeds.RecipeEntity.Id);
-
-            //Assert
-            DeepAssert.Equal(RecipeSeeds.RecipeEntity, entity);
-        }
-
-        [Fact]
-        public async Task Update_Recipe_Persisted()
-        {
-            //Arrange
-            var baseEntity = RecipeSeeds.RecipeEntityUpdate;
-            var entity =
-                baseEntity with
+            Name = "Lemonade",
+            Description = "Simple lemon lemonade",
+            Ingredients = new List<IngredientAmountEntity> {
+                IngredientAmountSeeds.EmptyIngredientAmountEntity with
                 {
-                    Name = baseEntity.Name + "Updated",
-                    Description = baseEntity.Description + "Updated",
-                    Duration = default,
-                    FoodType = FoodType.None,
-                    ImageUrl = baseEntity.ImageUrl +"Updated",
-                };
+                    Amount = 1,
+                    Unit = Unit.L,
+                    IngredientId = IngredientSeeds.IngredientEntity1.Id
+                },
+                IngredientAmountSeeds.EmptyIngredientAmountEntity with
+                {
+                    Amount = 50,
+                    Unit = Unit.Ml,
+                    IngredientId = IngredientSeeds.IngredientEntity2.Id
+                }
+            }
+        };
 
-            //Act
-            CookBookDbContextSUT.Recipes.Update(entity);
-            await CookBookDbContextSUT.SaveChangesAsync();
+        //Act
+        CookBookDbContextSUT.Recipes.Add(entity);
+        await CookBookDbContextSUT.SaveChangesAsync();
 
-            //Assert
-            await using var dbx = await DbContextFactory.CreateDbContextAsync();
-            var actualEntity = await dbx.Recipes.SingleAsync(i => i.Id == entity.Id);
-            DeepAssert.Equal(entity, actualEntity);
-        }
+        //Assert
+        await using var dbx = await DbContextFactory.CreateDbContextAsync();
+        var actualEntity = await dbx.Recipes
+            .Include(i => i.Ingredients)
+            .SingleAsync(i => i.Id == entity.Id);
+        DeepAssert.Equal(entity, actualEntity);
+    }
 
-        [Fact]
-        public async Task Delete_RecipeWithoutIngredients_Deleted()
-        {
-            //Arrange
-            var baseEntity = RecipeSeeds.RecipeEntityDelete;
+    [Fact]
+    public async Task GetById_Recipe()
+    {
+        //Act
+        var entity = await CookBookDbContextSUT.Recipes
+            .SingleAsync(i => i.Id == RecipeSeeds.RecipeEntity.Id);
 
-            //Act
-            CookBookDbContextSUT.Recipes.Remove(baseEntity);
-            await CookBookDbContextSUT.SaveChangesAsync();
+        //Assert
+        DeepAssert.Equal(RecipeSeeds.RecipeEntity with { Ingredients = Array.Empty<IngredientAmountEntity>() }, entity);
+    }
 
-            //Assert
-            Assert.False(await CookBookDbContextSUT.Recipes.AnyAsync(i => i.Id == baseEntity.Id));
-        }
+    [Fact]
+    public async Task GetById_IncludingIngredients_Recipe()
+    {
+        //Act
+        var entity = await CookBookDbContextSUT.Recipes
+            .Include(i => i.Ingredients)
+            .ThenInclude(i => i.Ingredient)
+            .SingleAsync(i => i.Id == RecipeSeeds.RecipeEntity.Id);
 
-        [Fact]
-        public async Task DeleteById_RecipeWithoutIngredients_Deleted()
-        {
-            //Arrange
-            var baseEntity = RecipeSeeds.RecipeEntityDelete;
+        //Assert
+        DeepAssert.Equal(RecipeSeeds.RecipeEntity, entity);
+    }
 
-            //Act
-            CookBookDbContextSUT.Remove(
-                CookBookDbContextSUT.Recipes.Single(i => i.Id == baseEntity.Id));
-            await CookBookDbContextSUT.SaveChangesAsync();
+    [Fact]
+    public async Task Update_Recipe_Persisted()
+    {
+        //Arrange
+        var baseEntity = RecipeSeeds.RecipeEntityUpdate;
+        var entity =
+            baseEntity with
+            {
+                Name = baseEntity.Name + "Updated",
+                Description = baseEntity.Description + "Updated",
+                Duration = default,
+                FoodType = FoodType.None,
+                ImageUrl = baseEntity.ImageUrl + "Updated",
+            };
 
-            //Assert
-            Assert.False(await CookBookDbContextSUT.Recipes.AnyAsync(i => i.Id == baseEntity.Id));
-        }
-        
-        [Fact]
-        public async Task Delete_RecipeWithIngredientAmounts_Deleted()
-        {
-            //Arrange
-            var baseEntity = RecipeSeeds.RecipeForIngredientAmountEntityDelete;
+        //Act
+        CookBookDbContextSUT.Recipes.Update(entity);
+        await CookBookDbContextSUT.SaveChangesAsync();
 
-            //Act
-            CookBookDbContextSUT.Recipes.Remove(baseEntity);
-            await CookBookDbContextSUT.SaveChangesAsync();
+        //Assert
+        await using var dbx = await DbContextFactory.CreateDbContextAsync();
+        var actualEntity = await dbx.Recipes.SingleAsync(i => i.Id == entity.Id);
+        DeepAssert.Equal(entity, actualEntity);
+    }
 
-            //Assert
-            Assert.False(await CookBookDbContextSUT.Recipes.AnyAsync(i => i.Id == baseEntity.Id));
-            Assert.False(await CookBookDbContextSUT.IngredientAmountEntities
-                .AnyAsync(i => baseEntity.Ingredients.Select(ingredientAmount =>  ingredientAmount.Id).Contains(i.Id)));
-        }
+    [Fact]
+    public async Task Delete_RecipeWithoutIngredients_Deleted()
+    {
+        //Arrange
+        var baseEntity = RecipeSeeds.RecipeEntityDelete;
+
+        //Act
+        CookBookDbContextSUT.Recipes.Remove(baseEntity);
+        await CookBookDbContextSUT.SaveChangesAsync();
+
+        //Assert
+        Assert.False(await CookBookDbContextSUT.Recipes.AnyAsync(i => i.Id == baseEntity.Id));
+    }
+
+    [Fact]
+    public async Task DeleteById_RecipeWithoutIngredients_Deleted()
+    {
+        //Arrange
+        var baseEntity = RecipeSeeds.RecipeEntityDelete;
+
+        //Act
+        CookBookDbContextSUT.Remove(
+            CookBookDbContextSUT.Recipes.Single(i => i.Id == baseEntity.Id));
+        await CookBookDbContextSUT.SaveChangesAsync();
+
+        //Assert
+        Assert.False(await CookBookDbContextSUT.Recipes.AnyAsync(i => i.Id == baseEntity.Id));
+    }
+
+    [Fact]
+    public async Task Delete_RecipeWithIngredientAmounts_Deleted()
+    {
+        //Arrange
+        var baseEntity = RecipeSeeds.RecipeForIngredientAmountEntityDelete;
+
+        //Act
+        CookBookDbContextSUT.Recipes.Remove(baseEntity);
+        await CookBookDbContextSUT.SaveChangesAsync();
+
+        //Assert
+        Assert.False(await CookBookDbContextSUT.Recipes.AnyAsync(i => i.Id == baseEntity.Id));
+        Assert.False(await CookBookDbContextSUT.IngredientAmountEntities
+            .AnyAsync(i => baseEntity.Ingredients.Select(ingredientAmount => ingredientAmount.Id).Contains(i.Id)));
     }
 }
