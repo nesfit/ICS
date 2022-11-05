@@ -8,16 +8,16 @@ namespace CookBook.App.ViewModels;
 public partial class RecipeListViewModel : ViewModelBase
 {
     private readonly IRecipeFacade recipeFacade;
-    private readonly IRoutingService routingService;
+    private readonly INavigationService navigationService;
 
     public IEnumerable<RecipeListModel> Recipes { get; set; } = null!;
 
     public RecipeListViewModel(
         IRecipeFacade recipeFacade,
-        IRoutingService routingService)
+        INavigationService navigationService)
     {
         this.recipeFacade = recipeFacade;
-        this.routingService = routingService;
+        this.navigationService = navigationService;
     }
 
     protected override async Task LoadDataAsync()
@@ -29,12 +29,12 @@ public partial class RecipeListViewModel : ViewModelBase
 
     [RelayCommand]
     private async Task GoToDetailAsync(Guid id)
-        => await Shell.Current.GoToAsync(routingService.GetRouteByViewModel<RecipeDetailViewModel>(),
-                new Dictionary<string, object> { [nameof(RecipeDetailViewModel.Id)] = id });
+        => await navigationService.GoToAsync<RecipeDetailViewModel>(
+            new Dictionary<string, object?> { [nameof(RecipeDetailViewModel.Id)] = id });
 
     [RelayCommand]
     private async Task GoToCreateAsync()
     {
-        await Shell.Current.GoToAsync("/edit");
+        await navigationService.GoToAsync("/edit");
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CookBook.App.Services;
 using CookBook.BL.Facades;
 using CookBook.BL.Models;
 
@@ -8,13 +9,17 @@ namespace CookBook.App.ViewModels;
 public partial class IngredientDetailViewModel : ViewModelBase
 {
     private readonly IIngredientFacade ingredientFacade;
+    private readonly INavigationService navigationService;
 
     public Guid Id { get; set; }
-    public IngredientDetailModel? Ingredient { get; set; }
+    public IngredientDetailModel? Ingredient { get; private set; }
 
-    public IngredientDetailViewModel(IIngredientFacade ingredientFacade)
+    public IngredientDetailViewModel(
+        IIngredientFacade ingredientFacade,
+        INavigationService navigationService)
     {
         this.ingredientFacade = ingredientFacade;
+        this.navigationService = navigationService;
     }
 
     protected override async Task LoadDataAsync()
@@ -28,13 +33,13 @@ public partial class IngredientDetailViewModel : ViewModelBase
     private async Task DeleteAsync()
     {
         await ingredientFacade.DeleteAsync(Id);
-        Shell.Current.SendBackButtonPressed();
+        navigationService.SendBackButtonPressed();
     }
 
     [RelayCommand]
     private async Task GoToEditAsync()
     {
-        await Shell.Current.GoToAsync("/edit",
+        await navigationService.GoToAsync("/edit",
             new Dictionary<string, object?> { [nameof(IngredientEditViewModel.Ingredient)] = Ingredient });
     }
 }

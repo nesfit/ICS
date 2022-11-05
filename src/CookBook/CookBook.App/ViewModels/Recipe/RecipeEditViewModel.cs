@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CookBook.App.Services;
 using CookBook.BL.Facades;
 using CookBook.BL.Models;
 using CookBook.Common.Enums;
@@ -9,14 +10,18 @@ namespace CookBook.App.ViewModels;
 public partial class RecipeEditViewModel : ViewModelBase
 {
     private readonly IRecipeFacade recipeFacade;
+    private readonly INavigationService navigationService;
 
     public RecipeDetailModel Recipe { get; set; } = RecipeDetailModel.Empty;
 
     public List<FoodType> FoodTypes { get; set; }
 
-    public RecipeEditViewModel(IRecipeFacade recipeFacade)
+    public RecipeEditViewModel(
+        IRecipeFacade recipeFacade,
+        INavigationService navigationService)
     {
         this.recipeFacade = recipeFacade;
+        this.navigationService = navigationService;
 
         FoodTypes = new List<FoodType>((FoodType[])Enum.GetValues(typeof(FoodType)));
     }
@@ -24,8 +29,8 @@ public partial class RecipeEditViewModel : ViewModelBase
     [RelayCommand]
     private async Task GoToRecipeIngredientEditAsync()
     {
-        await Shell.Current.GoToAsync("/ingredients",
-            new Dictionary<string, object> { [nameof(RecipeIngredientsEditViewModel.Recipe)] = Recipe });
+        await navigationService.GoToAsync("/ingredients",
+            new Dictionary<string, object?> { [nameof(RecipeIngredientsEditViewModel.Recipe)] = Recipe });
     }
 
     [RelayCommand]
@@ -33,6 +38,6 @@ public partial class RecipeEditViewModel : ViewModelBase
     {
         await recipeFacade.SaveAsync(Recipe);
 
-        Shell.Current.SendBackButtonPressed();
+        navigationService.SendBackButtonPressed();
     }
 }

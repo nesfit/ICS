@@ -30,6 +30,7 @@ public static class MauiProgram
             });
 
         builder.Services.AddSingleton<AppShell>();
+        builder.Services.AddTransient(_ => Shell.Current);
 
         builder.Services.Scan(selector => selector
             .FromAssemblyOf<App>()
@@ -43,7 +44,7 @@ public static class MauiProgram
             .AsSelfWithInterfaces()
             .WithTransientLifetime());
 
-        builder.Services.AddSingleton<IRoutingService, RoutingService>();
+        builder.Services.AddTransient<INavigationService, NavigationService>();
 
         builder.Services.AddSingleton<IngredientEntityMapper>();
         builder.Services.AddSingleton<IngredientAmountEntityMapper>();
@@ -62,7 +63,7 @@ public static class MauiProgram
 
         var app = builder.Build();
 
-        var routingService = app.Services.GetRequiredService<IRoutingService>();
+        var routingService = app.Services.GetRequiredService<INavigationService>();
 
         foreach (var route in routingService.Routes)
         {

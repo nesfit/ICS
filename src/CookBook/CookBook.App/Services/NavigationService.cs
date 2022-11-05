@@ -5,8 +5,15 @@ using CookBook.App.Views.Recipe;
 
 namespace CookBook.App.Services;
 
-public class RoutingService : IRoutingService
+public class NavigationService : INavigationService
 {
+    private readonly Shell shell;
+
+    public NavigationService(Shell shell)
+    {
+        this.shell = shell;
+    }
+
     public IEnumerable<RouteModel> Routes { get; } = new List<RouteModel>
     {
         new("//ingredients", typeof(IngredientListView), typeof(IngredientListViewModel)),
@@ -24,7 +31,29 @@ public class RoutingService : IRoutingService
         new("//recipes/detail/edit/ingredients", typeof(RecipeIngredientsEditView), typeof(RecipeIngredientsEditViewModel)),
     };
 
-    public string GetRouteByViewModel<TViewModel>()
+    public async Task GoToAsync<TViewModel>()
+        where TViewModel : IViewModel
+    {
+        var route = GetRouteByViewModel<TViewModel>();
+        await shell.GoToAsync(route);
+    }
+    public async Task GoToAsync<TViewModel>(IDictionary<string, object?> parameters)
+        where TViewModel : IViewModel
+    {
+        var route = GetRouteByViewModel<TViewModel>();
+        await shell.GoToAsync(route, parameters);
+    }
+
+    public async Task GoToAsync(string route)
+        => await shell.GoToAsync(route);
+
+    public async Task GoToAsync(string route, IDictionary<string, object?> parameters)
+        => await shell.GoToAsync(route, parameters);
+
+    public bool SendBackButtonPressed()
+        => shell.SendBackButtonPressed();
+
+    private string GetRouteByViewModel<TViewModel>()
         where TViewModel : IViewModel 
         => Routes.First(route => route.ViewModelType == typeof(TViewModel)).Route;
 }
