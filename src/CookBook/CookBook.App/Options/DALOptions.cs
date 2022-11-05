@@ -1,8 +1,8 @@
 ﻿namespace CookBook.App.Options
 {
-    public class DALOptions
+    public record DALOptions
     {
-        public string? ConnectionString { get; set; }
-        public bool SkipMigrationAndSeedDemoData { get; set; }
+        public string ConnectionString { get; init; } = null!;
+        public bool SkipMigrationAndSeedDemoData { get; }
     }
 }
