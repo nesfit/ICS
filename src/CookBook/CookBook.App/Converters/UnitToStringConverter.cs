@@ -1,16 +1,14 @@
-﻿using CookBook.App.Resources.Texts;
+﻿using CommunityToolkit.Maui.Converters;
+using CookBook.App.Resources.Texts;
+using CookBook.Common.Enums;
 using System.Globalization;
 
 namespace CookBook.App.Converters;
 
-public class UnitToStringConverter : IValueConverter
+public class UnitToStringConverter : BaseConverterOneWay<Unit, string>
 {
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    public override string ConvertFrom(Unit value, CultureInfo? culture)
         => UnitTexts.ResourceManager.GetString(value.ToString(), culture)
            ?? UnitTexts.None;
-
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
-    }
+    public override string DefaultConvertReturnValue { get; set; } = UnitTexts.None;
 }
