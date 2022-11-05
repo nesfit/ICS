@@ -6,13 +6,13 @@ using CookBook.DAL.UnitOfWork;
 
 namespace CookBook.BL.Facades;
 
-public class RecipeFacade : Facade<RecipeEntity, RecipeListModel, RecipeDetailModel, RecipeEntityMapper>
+public class RecipeFacade : FacadeBase<RecipeEntity, RecipeListModel, RecipeDetailModel, RecipeEntityMapper>, IRecipeFacade
 {
     protected override string includesNavigationPathDetail => $"{nameof(RecipeEntity.Ingredients)}.{nameof(IngredientAmountEntity.Ingredient)}";
 
     public RecipeFacade(
         IUnitOfWorkFactory unitOfWorkFactory,
-        IModelMapper<RecipeEntity, RecipeListModel, RecipeDetailModel> modelMapper)
+        IRecipeModelMapper modelMapper)
         : base(unitOfWorkFactory, modelMapper)
     {
     }

@@ -1,9 +1,7 @@
 using CookBook.BL.Mappers;
-using CookBook.BL.Models;
 using CookBook.Common.Tests;
 using CookBook.Common.Tests.Factories;
 using CookBook.DAL;
-using CookBook.DAL.Entities;
 using CookBook.DAL.Mappers;
 using CookBook.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
@@ -14,9 +12,9 @@ using Xunit.Abstractions;
 
 namespace CookBook.BL.Tests;
 
-public class CRUDFacadeTestsBase : IAsyncLifetime
+public class FacadeTestsBase : IAsyncLifetime
 {
-    protected CRUDFacadeTestsBase(ITestOutputHelper output)
+    protected FacadeTestsBase(ITestOutputHelper output)
     {
         XUnitTestOutputConverter converter = new(output);
         Console.SetOut(converter);
@@ -42,9 +40,9 @@ public class CRUDFacadeTestsBase : IAsyncLifetime
     protected IngredientAmountEntityMapper IngredientAmountEntityMapper { get; }
     protected RecipeEntityMapper RecipeEntityMapper { get; }
 
-    protected IModelMapper<IngredientEntity, IngredientListModel, IngredientDetailModel> IngredientModelMapper { get; }
+    protected IIngredientModelMapper IngredientModelMapper { get; }
     protected IngredientAmountModelMapper IngredientAmountModelMapper { get; }
-    protected IModelMapper<RecipeEntity, RecipeListModel, RecipeDetailModel> RecipeModelMapper { get; }
+    protected IRecipeModelMapper RecipeModelMapper { get; }
     protected UnitOfWorkFactory UnitOfWorkFactory { get; }
 
     public async Task InitializeAsync()

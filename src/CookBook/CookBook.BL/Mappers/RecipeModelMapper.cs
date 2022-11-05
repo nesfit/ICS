@@ -3,7 +3,7 @@ using CookBook.DAL.Entities;
 
 namespace CookBook.BL.Mappers;
 
-public class RecipeModelMapper : ModelMapperBase<RecipeEntity, RecipeListModel, RecipeDetailModel>
+public class RecipeModelMapper : ModelMapperBase<RecipeEntity, RecipeListModel, RecipeDetailModel>, IRecipeModelMapper
 {
     private readonly IIngredientAmountModelMapper ingredientAmountModelMapper;
 

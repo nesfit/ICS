@@ -2,21 +2,19 @@
 using CookBook.BL.Facades;
 using CookBook.BL.Models;
 using CookBook.Common.Enums;
-using CookBook.DAL.Entities;
-using CookBook.DAL.Mappers;
 
 namespace CookBook.App.ViewModels;
 
 [QueryProperty(nameof(Recipe), nameof(Recipe))]
 public partial class RecipeEditViewModel : ViewModelBase
 {
-    private readonly IFacade<RecipeEntity, RecipeListModel, RecipeDetailModel, RecipeEntityMapper> recipeFacade;
+    private readonly IRecipeFacade recipeFacade;
 
     public RecipeDetailModel Recipe { get; set; } = RecipeDetailModel.Empty;
 
     public List<FoodType> FoodTypes { get; set; }
 
-    public RecipeEditViewModel(IFacade<RecipeEntity, RecipeListModel, RecipeDetailModel, RecipeEntityMapper> recipeFacade)
+    public RecipeEditViewModel(IRecipeFacade recipeFacade)
     {
         this.recipeFacade = recipeFacade;
 
@@ -27,7 +25,7 @@ public partial class RecipeEditViewModel : ViewModelBase
     private async Task GoToRecipeIngredientEditAsync()
     {
         await Shell.Current.GoToAsync("/ingredients",
-            new Dictionary<string, object>{ [nameof(RecipeIngredientsEditViewModel.Recipe)] = Recipe});
+            new Dictionary<string, object> { [nameof(RecipeIngredientsEditViewModel.Recipe)] = Recipe });
     }
 
     [RelayCommand]

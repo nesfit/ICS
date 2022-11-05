@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CookBook.BL.Facades;
 
-public class IngredientAmountFacade : Facade<IngredientAmountEntity, IngredientAmountListModel, IngredientAmountDetailModel, IngredientAmountEntityMapper>, IIngredientAmountFacade
+public class IngredientAmountFacade : FacadeBase<IngredientAmountEntity, IngredientAmountListModel, IngredientAmountDetailModel, IngredientAmountEntityMapper>, IIngredientAmountFacade
 {
     private readonly IIngredientAmountModelMapper ingredientAmountModelMapper;
 

@@ -13,13 +13,13 @@ using CookBook.DAL.Mappers;
 
 namespace CookBook.BL.Tests
 {
-    public sealed class IngredientFacadeTests : CRUDFacadeTestsBase
+    public sealed class IngredientFacadeTests : FacadeTestsBase
     {
-        private readonly Facade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper> _ingredientFacadeSUT;
+        private readonly IIngredientFacade _ingredientFacadeSUT;
 
         public IngredientFacadeTests(ITestOutputHelper output) : base(output)
         {
-            _ingredientFacadeSUT = new Facade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper>(UnitOfWorkFactory, IngredientModelMapper);
+            _ingredientFacadeSUT = new IngredientFacade(UnitOfWorkFactory, IngredientModelMapper);
         }
 
         [Fact]

@@ -3,8 +3,6 @@ using CookBook.BL.Models;
 using CookBook.Common.Enums;
 using CookBook.Common.Tests;
 using CookBook.Common.Tests.Seeds;
-using CookBook.DAL.Entities;
-using CookBook.DAL.Mappers;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.ObjectModel;
@@ -15,13 +13,13 @@ using Xunit.Abstractions;
 
 namespace CookBook.BL.Tests
 {
-    public class RecipeFacadeTests : CRUDFacadeTestsBase
+    public class RecipeFacadeTests : FacadeTestsBase
     {
-        private readonly Facade<RecipeEntity, RecipeListModel, RecipeDetailModel, RecipeEntityMapper> _facadeSUT;
+        private readonly IRecipeFacade _facadeSUT;
 
         public RecipeFacadeTests(ITestOutputHelper output) : base(output)
         {
-            _facadeSUT = new Facade<RecipeEntity, RecipeListModel, RecipeDetailModel, RecipeEntityMapper>(UnitOfWorkFactory, RecipeModelMapper);
+            _facadeSUT = new RecipeFacade(UnitOfWorkFactory, RecipeModelMapper);
         }
 
         [Fact]

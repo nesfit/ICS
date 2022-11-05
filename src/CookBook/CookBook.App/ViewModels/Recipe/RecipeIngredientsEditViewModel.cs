@@ -3,8 +3,6 @@ using CookBook.BL.Facades;
 using CookBook.BL.Mappers;
 using CookBook.BL.Models;
 using CookBook.Common.Enums;
-using CookBook.DAL.Entities;
-using CookBook.DAL.Mappers;
 using System.Collections.ObjectModel;
 
 namespace CookBook.App.ViewModels;
@@ -12,7 +10,7 @@ namespace CookBook.App.ViewModels;
 [QueryProperty(nameof(Recipe), nameof(Recipe))]
 public partial class RecipeIngredientsEditViewModel : ViewModelBase
 {
-    private readonly IFacade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper> ingredientFacade;
+    private readonly IIngredientFacade ingredientFacade;
     private readonly IIngredientAmountFacade ingredientAmountFacade;
     private readonly IIngredientAmountModelMapper ingredientAmountModelMapper;
 
@@ -25,7 +23,7 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
     public IngredientAmountDetailModel? IngredientAmountNew { get; private set; }
 
     public RecipeIngredientsEditViewModel(
-        IFacade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper> ingredientFacade,
+        IIngredientFacade ingredientFacade,
         IIngredientAmountFacade ingredientAmountFacade,
         IIngredientAmountModelMapper ingredientAmountModelMapper)
     {

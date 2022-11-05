@@ -1,20 +1,18 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using CookBook.BL.Facades;
 using CookBook.BL.Models;
-using CookBook.DAL.Entities;
-using CookBook.DAL.Mappers;
 
 namespace CookBook.App.ViewModels;
 
 [QueryProperty(nameof(Id), nameof(Id))]
 public partial class IngredientDetailViewModel : ViewModelBase
 {
-    private readonly IFacade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper> ingredientFacade;
+    private readonly IIngredientFacade ingredientFacade;
 
     public Guid Id { get; set; }
     public IngredientDetailModel Ingredient { get; set; }
 
-    public IngredientDetailViewModel(IFacade<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper> ingredientFacade)
+    public IngredientDetailViewModel(IIngredientFacade ingredientFacade)
     {
         this.ingredientFacade = ingredientFacade;
     }

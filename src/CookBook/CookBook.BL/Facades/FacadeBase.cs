@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.BL.Facades;
 
-public class Facade<TEntity, TListModel, TDetailModel, TEntityMapper> : IFacade<TEntity, TListModel, TDetailModel, TEntityMapper>
+public abstract class FacadeBase<TEntity, TListModel, TDetailModel, TEntityMapper> : IFacade<TEntity, TListModel, TDetailModel>
         where TEntity : class, IEntity
         where TListModel : IModel
         where TDetailModel : class, IModel
@@ -22,7 +22,7 @@ public class Facade<TEntity, TListModel, TDetailModel, TEntityMapper> : IFacade<
 
     protected virtual string includesNavigationPathDetail => string.Empty;
 
-    public Facade(
+    protected FacadeBase(
         IUnitOfWorkFactory unitOfWorkFactory,
         IModelMapper<TEntity, TListModel, TDetailModel> modelMapper)
     {
