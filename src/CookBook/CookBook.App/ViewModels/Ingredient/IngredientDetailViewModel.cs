@@ -10,7 +10,7 @@ public partial class IngredientDetailViewModel : ViewModelBase
     private readonly IIngredientFacade ingredientFacade;
 
     public Guid Id { get; set; }
-    public IngredientDetailModel Ingredient { get; set; }
+    public IngredientDetailModel? Ingredient { get; set; }
 
     public IngredientDetailViewModel(IIngredientFacade ingredientFacade)
     {
@@ -35,6 +35,6 @@ public partial class IngredientDetailViewModel : ViewModelBase
     private async Task GoToEditAsync()
     {
         await Shell.Current.GoToAsync("/edit",
-            new Dictionary<string, object> { [nameof(IngredientEditViewModel.Ingredient)] = Ingredient });
+            new Dictionary<string, object?> { [nameof(IngredientEditViewModel.Ingredient)] = Ingredient });
     }
 }

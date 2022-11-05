@@ -14,7 +14,7 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
     private readonly IIngredientAmountFacade ingredientAmountFacade;
     private readonly IIngredientAmountModelMapper ingredientAmountModelMapper;
 
-    public RecipeDetailModel Recipe { get; set; }
+    public RecipeDetailModel? Recipe { get; set; }
     public List<Unit> Units { get; set; }
     public ObservableCollection<IngredientListModel> Ingredients { get; set; } = new();
 
@@ -51,7 +51,8 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
     private async Task AddNewIngredientToRecipeAsync()
     {
         if (IngredientAmountNew is not null
-            && IngredientSelected is not null)
+            && IngredientSelected is not null
+            && Recipe is not null)
         {
             ingredientAmountModelMapper.MapToExistingDetailModel(IngredientAmountNew, IngredientSelected);
 
@@ -65,7 +66,8 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
     [RelayCommand]
     private async Task UpdateIngredientAsync(IngredientAmountListModel? model)
     {
-        if (model is not null)
+        if (model is not null
+            && Recipe is not null)
         {
             await ingredientAmountFacade.SaveAsync(model, Recipe.Id);
         }
@@ -74,8 +76,11 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
     [RelayCommand]
     private async Task RemoveIngredientAsync(IngredientAmountListModel model)
     {
-        await ingredientAmountFacade.DeleteAsync(model.Id);
-        Recipe.Ingredients.Remove(model);
+        if (Recipe is not null)
+        {
+            await ingredientAmountFacade.DeleteAsync(model.Id);
+            Recipe.Ingredients.Remove(model);
+        }
     }
 
     private IngredientAmountDetailModel GetIngredientAmountNew()

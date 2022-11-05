@@ -77,9 +77,12 @@ public static class MauiProgram
         var configurationBuilder = new ConfigurationBuilder();
 
         var assembly = Assembly.GetExecutingAssembly();
-        var appSettingsFilePath = "CookBook.App.appsettings.json";
+        const string appSettingsFilePath = "CookBook.App.appsettings.json";
         using var appSettingsStream = assembly.GetManifestResourceStream(appSettingsFilePath);
-        configurationBuilder.AddJsonStream(appSettingsStream);
+        if (appSettingsStream is not null)
+        {
+            configurationBuilder.AddJsonStream(appSettingsStream);
+        }
 
         var configuration = configurationBuilder.Build();
         builder.Configuration.AddConfiguration(configuration);

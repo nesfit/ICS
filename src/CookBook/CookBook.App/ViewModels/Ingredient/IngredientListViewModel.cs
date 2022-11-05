@@ -10,7 +10,7 @@ public partial class IngredientListViewModel : ViewModelBase
     private readonly IIngredientFacade ingredientFacade;
     private readonly IRoutingService routingService;
 
-    public IEnumerable<IngredientListModel> Ingredients { get; set; }
+    public IEnumerable<IngredientListModel> Ingredients { get; set; } = null!;
 
     public IngredientListViewModel(
         IIngredientFacade ingredientFacade,

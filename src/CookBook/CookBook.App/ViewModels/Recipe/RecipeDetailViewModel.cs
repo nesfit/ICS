@@ -10,7 +10,7 @@ public partial class RecipeDetailViewModel : ViewModelBase
     private readonly IRecipeFacade recipeFacade;
 
     public Guid Id { get; set; }
-    public RecipeDetailModel Recipe { get; set; }
+    public RecipeDetailModel? Recipe { get; set; }
 
     public RecipeDetailViewModel(IRecipeFacade recipeFacade)
     {
@@ -28,6 +28,6 @@ public partial class RecipeDetailViewModel : ViewModelBase
     private async Task GoToEditAsync()
     {
         await Shell.Current.GoToAsync("/edit",
-            new Dictionary<string, object> { [nameof(RecipeEditViewModel.Recipe)] = Recipe });
+            new Dictionary<string, object?> { [nameof(RecipeEditViewModel.Recipe)] = Recipe });
     }
 }
