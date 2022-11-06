@@ -1,19 +1,28 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CookBook.App.Services;
 
 namespace CookBook.App.ViewModels;
 
-[INotifyPropertyChanged]
-public abstract partial class ViewModelBase : IViewModel
+public abstract class ViewModelBase : ObservableRecipient, IViewModel
 {
-    public bool IsRefreshRequired { get; set; } = true;
+    private bool isRefreshRequired = true;
+
+    protected readonly IMessengerService messengerService;
+
+    protected ViewModelBase(IMessengerService messengerService)
+        : base(messengerService.Messenger)
+    {
+        this.messengerService = messengerService;
+        IsActive = true;
+    }
 
     public async Task OnAppearingAsync()
     {
-        if (IsRefreshRequired)
+        if (isRefreshRequired)
         {
             await LoadDataAsync();
 
-            IsRefreshRequired = false;
+            isRefreshRequired = false;
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Mvvm.Messaging;
 using CookBook.App.Options;
 using CookBook.App.Services;
 using CookBook.App.Shells;
@@ -30,7 +31,9 @@ public static class MauiProgram
             });
 
         builder.Services.AddSingleton<AppShell>();
-        builder.Services.AddTransient(_ => Shell.Current);
+
+        builder.Services.AddSingleton<IMessenger>(_ => WeakReferenceMessenger.Default);
+        builder.Services.AddSingleton<IMessengerService, MessengerService>();
 
         builder.Services.Scan(selector => selector
             .FromAssemblyOf<App>()

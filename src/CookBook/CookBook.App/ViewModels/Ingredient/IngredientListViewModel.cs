@@ -1,11 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using CookBook.App.Messages;
 using CookBook.App.Services;
 using CookBook.BL.Facades;
 using CookBook.BL.Models;
 
 namespace CookBook.App.ViewModels;
 
-public partial class IngredientListViewModel : ViewModelBase
+public partial class IngredientListViewModel : ViewModelBase, IRecipient<IngredientEditMessage>
 {
     private readonly IIngredientFacade ingredientFacade;
     private readonly INavigationService navigationService;
@@ -14,7 +16,9 @@ public partial class IngredientListViewModel : ViewModelBase
 
     public IngredientListViewModel(
         IIngredientFacade ingredientFacade,
-        INavigationService navigationService)
+        INavigationService navigationService,
+        IMessengerService messengerService)
+        : base(messengerService)
     {
         this.ingredientFacade = ingredientFacade;
         this.navigationService = navigationService;
@@ -38,5 +42,10 @@ public partial class IngredientListViewModel : ViewModelBase
     {
         await navigationService.GoToAsync<IngredientDetailViewModel>(
             new Dictionary<string, object?> { [nameof(IngredientDetailViewModel.Id)] = id });
+    }
+
+    public async void Receive(IngredientEditMessage message)
+    {
+        await LoadDataAsync();
     }
 }

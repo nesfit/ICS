@@ -14,7 +14,9 @@ public partial class RecipeListViewModel : ViewModelBase
 
     public RecipeListViewModel(
         IRecipeFacade recipeFacade,
-        INavigationService navigationService)
+        INavigationService navigationService,
+        IMessengerService messengerService)
+        : base(messengerService)
     {
         this.recipeFacade = recipeFacade;
         this.navigationService = navigationService;

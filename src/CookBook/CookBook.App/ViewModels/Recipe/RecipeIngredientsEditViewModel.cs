@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CookBook.App.Services;
 using CookBook.BL.Facades;
 using CookBook.BL.Mappers;
 using CookBook.BL.Models;
@@ -25,7 +26,9 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
     public RecipeIngredientsEditViewModel(
         IIngredientFacade ingredientFacade,
         IIngredientAmountFacade ingredientAmountFacade,
-        IIngredientAmountModelMapper ingredientAmountModelMapper)
+        IIngredientAmountModelMapper ingredientAmountModelMapper,
+        IMessengerService messengerService)
+        : base(messengerService)
     {
         this.ingredientFacade = ingredientFacade;
         this.ingredientAmountFacade = ingredientAmountFacade;

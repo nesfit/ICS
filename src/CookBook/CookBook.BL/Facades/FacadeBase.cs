@@ -40,10 +40,15 @@ public abstract class FacadeBase<TEntity, TListModel, TDetailModel, TEntityMappe
     public virtual async Task<TDetailModel?> GetAsync(Guid id)
     {
         await using var uow = unitOfWorkFactory.Create();
-        var entity = await uow.GetRepository<TEntity, TEntityMapper>()
-            .Get()
-            .Include(includesNavigationPathDetail)
-            .SingleOrDefaultAsync(e => e.Id == id);
+
+        var query = uow.GetRepository<TEntity, TEntityMapper>().Get();
+
+        if (string.IsNullOrWhiteSpace(includesNavigationPathDetail) is false)
+        {
+            query = query.Include(includesNavigationPathDetail);
+        }
+
+        var entity = await query.SingleOrDefaultAsync(e => e.Id == id);
 
         return entity is null
             ? null

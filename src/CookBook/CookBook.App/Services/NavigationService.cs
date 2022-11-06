@@ -7,13 +7,6 @@ namespace CookBook.App.Services;
 
 public class NavigationService : INavigationService
 {
-    private readonly Shell shell;
-
-    public NavigationService(Shell shell)
-    {
-        this.shell = shell;
-    }
-
     public IEnumerable<RouteModel> Routes { get; } = new List<RouteModel>
     {
         new("//ingredients", typeof(IngredientListView), typeof(IngredientListViewModel)),
@@ -35,23 +28,23 @@ public class NavigationService : INavigationService
         where TViewModel : IViewModel
     {
         var route = GetRouteByViewModel<TViewModel>();
-        await shell.GoToAsync(route);
+        await Shell.Current.GoToAsync(route);
     }
     public async Task GoToAsync<TViewModel>(IDictionary<string, object?> parameters)
         where TViewModel : IViewModel
     {
         var route = GetRouteByViewModel<TViewModel>();
-        await shell.GoToAsync(route, parameters);
+        await Shell.Current.GoToAsync(route, parameters);
     }
 
     public async Task GoToAsync(string route)
-        => await shell.GoToAsync(route);
+        => await Shell.Current.GoToAsync(route);
 
     public async Task GoToAsync(string route, IDictionary<string, object?> parameters)
-        => await shell.GoToAsync(route, parameters);
+        => await Shell.Current.GoToAsync(route, parameters);
 
     public bool SendBackButtonPressed()
-        => shell.SendBackButtonPressed();
+        => Shell.Current.SendBackButtonPressed();
 
     private string GetRouteByViewModel<TViewModel>()
         where TViewModel : IViewModel 
