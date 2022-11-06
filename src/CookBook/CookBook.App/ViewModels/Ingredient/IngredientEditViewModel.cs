@@ -29,10 +29,7 @@ public partial class IngredientEditViewModel : ViewModelBase
     {
         await ingredientFacade.SaveAsync(Ingredient);
 
-        messengerService.Send(new IngredientEditMessage
-        {
-            IngredientId = Ingredient.Id
-        });
+        messengerService.Send(new IngredientEditMessage { IngredientId = Ingredient.Id });
 
         navigationService.SendBackButtonPressed();
     }

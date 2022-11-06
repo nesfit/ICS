@@ -11,13 +11,25 @@
                        x:DataType="vm:RecipeDetailViewModel">
     <Grid RowDefinitions="Auto, *"
           RowSpacing="20">
-        <Button Grid.Row="0"
-                HorizontalOptions="End" VerticalOptions="Start"
-                HeightRequest="30"
-                Text="{x:Static texts:RecipeDetailViewTexts.Edit_Button_Text}"
-                CornerRadius="5"
-                Command="{Binding GoToEditCommand}"
-                Style="{StaticResource PrimaryButtonStyle}" />
+        <Grid Grid.Row="0"
+              ColumnDefinitions="*, Auto, Auto"
+              ColumnSpacing="15">
+            <Button Grid.Column="1"
+                    VerticalOptions="Start"
+                    HeightRequest="30"
+                    Text="{x:Static texts:RecipeDetailViewTexts.Delete_Button_Text}"
+                    CornerRadius="5"
+                    BackgroundColor="{StaticResource ErrorColor}"
+                    Command="{Binding DeleteCommand}" />
+
+            <Button Grid.Row="0"
+                    HorizontalOptions="End" VerticalOptions="Start"
+                    HeightRequest="30"
+                    Text="{x:Static texts:RecipeDetailViewTexts.Edit_Button_Text}"
+                    CornerRadius="5"
+                    Command="{Binding GoToEditCommand}"
+                    Style="{StaticResource PrimaryButtonStyle}" />
+        </Grid>
 
         <Grid Grid.Row="1"
               ColumnDefinitions="*, Auto"

@@ -14,7 +14,6 @@
         <Grid Grid.Row="0"
               ColumnDefinitions="*, Auto, Auto"
               ColumnSpacing="15">
-
             <Button Grid.Column="1"
                     VerticalOptions="Start"
                     HeightRequest="30"

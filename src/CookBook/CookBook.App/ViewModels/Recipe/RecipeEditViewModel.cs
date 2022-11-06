@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using CookBook.App.Messages;
 using CookBook.App.Services;
 using CookBook.BL.Facades;
 using CookBook.BL.Models;
@@ -7,7 +9,7 @@ using CookBook.Common.Enums;
 namespace CookBook.App.ViewModels;
 
 [QueryProperty(nameof(Recipe), nameof(Recipe))]
-public partial class RecipeEditViewModel : ViewModelBase
+public partial class RecipeEditViewModel : ViewModelBase, IRecipient<RecipeIngredientEditMessage>, IRecipient<RecipeIngredientAddMessage>, IRecipient<RecipeIngredientDeleteMessage>
 {
     private readonly IRecipeFacade recipeFacade;
     private readonly INavigationService navigationService;
@@ -40,6 +42,29 @@ public partial class RecipeEditViewModel : ViewModelBase
     {
         await recipeFacade.SaveAsync(Recipe);
 
+        messengerService.Send(new RecipeEditMessage { RecipeId = Recipe.Id});
+
         navigationService.SendBackButtonPressed();
+    }
+
+    public async void Receive(RecipeIngredientEditMessage message)
+    {
+        await ReloadDataAsync();
+    }
+
+    public async void Receive(RecipeIngredientAddMessage message)
+    {
+        await ReloadDataAsync();
+    }
+
+    public async void Receive(RecipeIngredientDeleteMessage message)
+    {
+        await ReloadDataAsync();
+    }
+
+    private async Task ReloadDataAsync()
+    {
+        Recipe = await recipeFacade.GetAsync(Recipe.Id)
+                 ?? RecipeDetailModel.Empty;
     }
 }

@@ -32,7 +32,7 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<AppShell>();
 
-        builder.Services.AddSingleton<IMessenger>(_ => WeakReferenceMessenger.Default);
+        builder.Services.AddSingleton<IMessenger>(_ => StrongReferenceMessenger.Default);
         builder.Services.AddSingleton<IMessengerService, MessengerService>();
 
         builder.Services.Scan(selector => selector

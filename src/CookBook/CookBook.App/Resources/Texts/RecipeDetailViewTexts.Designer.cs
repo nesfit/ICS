@@ -70,6 +70,15 @@ namespace CookBook.App.Resources.Texts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string Delete_Button_Text {
+            get {
+                return ResourceManager.GetString("Delete_Button_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         internal static string Description_Label_Text {

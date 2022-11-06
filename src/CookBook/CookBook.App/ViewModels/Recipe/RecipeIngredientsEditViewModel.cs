@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CookBook.App.Messages;
 using CookBook.App.Services;
 using CookBook.BL.Facades;
 using CookBook.BL.Mappers;
@@ -63,6 +64,8 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
             Recipe.Ingredients.Add(ingredientAmountModelMapper.MapToListModel(IngredientAmountNew));
 
             IngredientAmountNew = GetIngredientAmountNew();
+
+            messengerService.Send(new RecipeIngredientAddMessage());
         }
     }
 
@@ -73,6 +76,8 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
             && Recipe is not null)
         {
             await ingredientAmountFacade.SaveAsync(model, Recipe.Id);
+
+            messengerService.Send(new RecipeIngredientEditMessage());
         }
     }
 
@@ -83,6 +88,8 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
         {
             await ingredientAmountFacade.DeleteAsync(model.Id);
             Recipe.Ingredients.Remove(model);
+
+            messengerService.Send(new RecipeIngredientDeleteMessage());
         }
     }
 

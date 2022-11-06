@@ -7,7 +7,7 @@ using CookBook.BL.Models;
 
 namespace CookBook.App.ViewModels;
 
-public partial class IngredientListViewModel : ViewModelBase, IRecipient<IngredientEditMessage>
+public partial class IngredientListViewModel : ViewModelBase, IRecipient<IngredientEditMessage>, IRecipient<IngredientDeleteMessage>
 {
     private readonly IIngredientFacade ingredientFacade;
     private readonly INavigationService navigationService;
@@ -45,6 +45,11 @@ public partial class IngredientListViewModel : ViewModelBase, IRecipient<Ingredi
     }
 
     public async void Receive(IngredientEditMessage message)
+    {
+        await LoadDataAsync();
+    }
+
+    public async void Receive(IngredientDeleteMessage message)
     {
         await LoadDataAsync();
     }

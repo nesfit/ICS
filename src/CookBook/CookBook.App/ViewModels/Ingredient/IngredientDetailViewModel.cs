@@ -36,8 +36,14 @@ public partial class IngredientDetailViewModel : ViewModelBase, IRecipient<Ingre
     [RelayCommand]
     private async Task DeleteAsync()
     {
-        await ingredientFacade.DeleteAsync(Id);
-        navigationService.SendBackButtonPressed();
+        if (Ingredient is not null)
+        {
+            await ingredientFacade.DeleteAsync(Ingredient.Id);
+
+            messengerService.Send(new IngredientDeleteMessage());
+
+            navigationService.SendBackButtonPressed();
+        }
     }
 
     [RelayCommand]

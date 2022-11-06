@@ -1,11 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using CookBook.App.Messages;
 using CookBook.App.Services;
 using CookBook.BL.Facades;
 using CookBook.BL.Models;
 
 namespace CookBook.App.ViewModels;
 
-public partial class RecipeListViewModel : ViewModelBase
+public partial class RecipeListViewModel : ViewModelBase, IRecipient<RecipeEditMessage>, IRecipient<RecipeDeleteMessage>
 {
     private readonly IRecipeFacade recipeFacade;
     private readonly INavigationService navigationService;
@@ -38,5 +40,15 @@ public partial class RecipeListViewModel : ViewModelBase
     private async Task GoToCreateAsync()
     {
         await navigationService.GoToAsync("/edit");
+    }
+
+    public async void Receive(RecipeEditMessage message)
+    {
+        await LoadDataAsync();
+    }
+
+    public async void Receive(RecipeDeleteMessage message)
+    {
+        await LoadDataAsync();
     }
 }
