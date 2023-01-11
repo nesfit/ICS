@@ -1,1 +1,1 @@
-/home/autrimpo/src/fit/ICS/Lectures/_reveal-md/README.md
+../_reveal-md/README.md
