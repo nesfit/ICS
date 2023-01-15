@@ -5,7 +5,8 @@
        xmlns:r="clr-namespace:CookBook.App.Views.Recipe"
        xmlns:i="clr-namespace:CookBook.App.Views.Ingredient"
        x:Class="CookBook.App.Shells.AppShell"
-       x:Name="AppShellRoot">
+       x:Name="AppShellRoot"
+       FlyoutBehavior="Disabled">
     <Shell.MenuBarItems>
         <MenuBarItem Text="{x:Static t:AppShellTexts.File_MenuItem_Title}">
             <MenuFlyoutItem Text="{x:Static t:AppShellTexts.Recipes_Tab_Title}"
