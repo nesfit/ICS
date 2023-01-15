@@ -43,7 +43,7 @@
                                 <Image Grid.Row="0"
                                        HorizontalOptions="Fill" VerticalOptions="Fill"
                                        Aspect="AspectFill"
-                                       Source="{Binding ImageUrl, TargetNullValue='/Images/recipe_placeholder.jpg'}" />
+                                       Source="{Binding ImageUrl, TargetNullValue='recipe_placeholder.jpg'}" />
 
                                 <BoxView Grid.Row="0"
                                          Opacity="0.25"

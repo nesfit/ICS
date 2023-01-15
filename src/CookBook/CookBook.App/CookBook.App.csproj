@@ -100,6 +100,8 @@
 
 	<ItemGroup>
 	  <None Remove="appsettings.json" />
+	  <None Remove="Resources\Images\ingredient_placeholder.jpg" />
+	  <None Remove="Resources\Images\recipe_placeholder.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
