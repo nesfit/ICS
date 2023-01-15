@@ -9,43 +9,35 @@
                        Style="{StaticResource ContentPageStyle}"
                        x:Name="IngredientDetailViewRoot"
                        x:DataType="vm:IngredientDetailViewModel">
-    <Grid RowDefinitions="Auto, *"
-          RowSpacing="20">
-        <Grid Grid.Row="0"
-              ColumnDefinitions="*, Auto, Auto"
-              ColumnSpacing="15">
-            <Button Grid.Column="1"
-                    VerticalOptions="Start"
-                    HeightRequest="30"
-                    Text="{x:Static texts:IngredientDetailViewTexts.Delete_Button_Text}"
+    <StackLayout Orientation="Vertical"
+                 Spacing="20">
+        <StackLayout HorizontalOptions="End"
+                     Orientation="Horizontal"
+                     Spacing="15"
+                     HeightRequest="30">
+            <Button Text="{x:Static texts:IngredientDetailViewTexts.Delete_Button_Text}"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource ErrorColor}"
                     Command="{Binding DeleteCommand}" />
 
-            <Button Grid.Column="2"
-                    VerticalOptions="Start"
-                    HeightRequest="30"
-                    Text="{x:Static texts:IngredientDetailViewTexts.Edit_Button_Text}"
+            <Button Text="{x:Static texts:IngredientDetailViewTexts.Edit_Button_Text}"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding GoToEditCommand}" />
-        </Grid>
+        </StackLayout>
 
-        <Grid Grid.Row="1"
-              HorizontalOptions="Center" VerticalOptions="Start"
+        <Grid HorizontalOptions="Center" VerticalOptions="Start"
               RowDefinitions="170, *" ColumnDefinitions="*, Auto, Auto, *"
               RowSpacing="20" ColumnSpacing="20">
 
             <Frame Grid.Row="0" Grid.Column="1"
-                   HorizontalOptions="End" VerticalOptions="Center"
-                   CornerRadius="10" HeightRequest="170"
+                   HorizontalOptions="Center" VerticalOptions="Center"
+                   HeightRequest="170" WidthRequest="170"
+                   CornerRadius="10" 
                    IsClippedToBounds="True"
-                   BorderColor="{StaticResource ImageBorderColor}"
-                   WidthRequest="170">
-                <Image Aspect="AspectFill" HeightRequest="170"
-                       HorizontalOptions="Center"
-                       Source="{Binding Ingredient.ImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
-                       VerticalOptions="Center" WidthRequest="170" />
+                   Padding="0">
+                <Image Aspect="AspectFill"
+                       Source="{Binding Ingredient.ImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"/>
             </Frame>
 
             <StackLayout Grid.Row="0" Grid.RowSpan="2"
@@ -59,5 +51,5 @@
                        Text="{Binding Ingredient.Description}"/>
             </StackLayout>
         </Grid>
-    </Grid>
+    </StackLayout>
 </views:ContentPageBase>
