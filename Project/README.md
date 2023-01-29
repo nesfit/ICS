@@ -89,7 +89,7 @@ Při řešení projektu využijte Azure DevOps a GIT na sdílení kódu. Do své
 
 > :warning: **Je bezpodmínečně nutné**, abyste přidali účet **uciteliw5@vutbr.cz** do **Project Collection Administrator** v nastavení organizace - *https://dev.azure.com/ics-2022-team00XY/_settings/groups*. Toto nastavení nám umožní během opravování projektu jednomu členu Vašeho týmu změnit **access level** z **Basic** na **Stakeholder** a dočasně tak přiřadit úroveň **Basic** našemu účtu **uciteliw5@vutbr.cz**. Po skončení opravování Vám nastavení uvedeme do původního stavu. Pokud by se tak nestalo, neváhejte si nastavení změnit sami.
 
-Bez této změny bychom neměli přístup k vašemu kódu a nemohli bychom jej hodnotit. Tato změna se provede v nastavení organizace https://dev.azure.com/ics-2022-team0000/_settings/users.
+Bez této změny bychom neměli přístup k vašemu kódu a nemohli bychom jej hodnotit. Tato změna se provede v nastavení organizace https://dev.azure.com/ics-2023-team0000/_settings/users.
 
 Návod na přidání člena projektu můžete najít zde: *https://docs.microsoft.com/en-us/vsts/accounts/add-team-members-vs*
 
@@ -97,7 +97,7 @@ Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*
 
 Výrazně doporučujeme používat mechanismu **pull-request**ů a dělat si vzájemně review kódu, který následně mergnete do master nebo main větve. Projekt vypracováváte jako tým a nesete tak **kolektivní odpovědnost** za kvalitu kódu, proto je dobré, aby kód před začleněním vidělo více párů očí a vzájemně jste si jej připomínkovali. 
 
-Organizaci pojmenujte **ics-2022-team<0000>** dle Vašeho čísla týmu a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/ics-2022-team0000/project. Nezapomeňte nastavit **Work item process** template na **Scrum** nebo **Basic**.
+Organizaci pojmenujte **ics-2022-team<0000>** dle Vašeho čísla týmu a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/ics-2023-team0000/project. Nezapomeňte nastavit **Work item process** template na **Scrum** nebo **Basic**.
 
 Využijte možnost automatizovaných buildů spojených s otestováním Vámi provedených změn. Nastavte **Pipelines->Builds** tak, že při pushnutí do libovolné větve projektu se provede *build a spustí se veškeré přítomné testy*. Více informací na [Automate all things with Azure Pipelines - THR2101](https://www.youtube.com/watch?v=yr6PJxfACNc)
 
