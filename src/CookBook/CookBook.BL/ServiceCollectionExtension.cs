@@ -1,10 +1,6 @@
-﻿using AutoMapper;
-using AutoMapper.EquivalencyExpression;
-using CookBook.BL.Facades;
-using CookBook.DAL;
+﻿using CookBook.BL.Facades;
+using CookBook.BL.Mappers;
 using CookBook.DAL.UnitOfWork;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CookBook.BL;
@@ -14,17 +10,19 @@ public static class ServiceCollectionExtension
     public static IServiceCollection AddBLServices(this IServiceCollection services)
     {
         services.AddSingleton<IUnitOfWorkFactory, UnitOfWorkFactory>();
-        services.AddSingleton<RecipeFacade>();
-        services.AddSingleton<IngredientFacade>();
 
-        services.AddAutoMapper((serviceProvider, cfg) =>
-        {
-            cfg.AddCollectionMappers();
+        services.Scan(selector => selector
+            .FromAssemblyOf<BusinessLogic>()
+            .AddClasses(filter => filter.AssignableTo(typeof(IFacade<,,>)))
+            .AsMatchingInterface()
+            .WithSingletonLifetime());
 
-            var dbContextFactory = serviceProvider.GetRequiredService<IDbContextFactory<CookBookDbContext>>();
-            using var dbContext = dbContextFactory.CreateDbContext();
-            cfg.UseEntityFrameworkCoreModel<CookBookDbContext>(dbContext.Model);
-        }, typeof(BusinessLogic).Assembly);
+        services.Scan(selector => selector
+            .FromAssemblyOf<BusinessLogic>()
+            .AddClasses(filter => filter.AssignableTo(typeof(ModelMapperBase<,,>)))
+            .AsMatchingInterface()
+            .WithSingletonLifetime());
+
         return services;
     }
 }

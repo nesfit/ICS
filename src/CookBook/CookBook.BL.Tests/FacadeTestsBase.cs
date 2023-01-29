@@ -1,0 +1,60 @@
+using CookBook.BL.Mappers;
+using CookBook.Common.Tests;
+using CookBook.Common.Tests.Factories;
+using CookBook.DAL;
+using CookBook.DAL.Mappers;
+using CookBook.DAL.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Threading.Tasks;
+using Xunit;
+using Xunit.Abstractions;
+
+namespace CookBook.BL.Tests;
+
+public class FacadeTestsBase : IAsyncLifetime
+{
+    protected FacadeTestsBase(ITestOutputHelper output)
+    {
+        XUnitTestOutputConverter converter = new(output);
+        Console.SetOut(converter);
+
+        // DbContextFactory = new DbContextTestingInMemoryFactory(GetType().Name, seedTestingData: true);
+        // DbContextFactory = new DbContextLocalDBTestingFactory(GetType().FullName!, seedTestingData: true);
+        IngredientEntityMapper = new IngredientEntityMapper();
+        IngredientAmountEntityMapper = new IngredientAmountEntityMapper();
+        RecipeEntityMapper = new RecipeEntityMapper();
+
+        IngredientModelMapper = new IngredientModelMapper();
+        IngredientAmountModelMapper = new IngredientAmountModelMapper();
+        RecipeModelMapper = new RecipeModelMapper(IngredientAmountModelMapper);
+
+        DbContextFactory = new DbContextSQLiteTestingFactory(GetType().FullName!, seedTestingData: true);
+
+        UnitOfWorkFactory = new UnitOfWorkFactory(DbContextFactory);
+    }
+
+    protected IDbContextFactory<CookBookDbContext> DbContextFactory { get; }
+
+    protected IngredientEntityMapper IngredientEntityMapper { get; }
+    protected IngredientAmountEntityMapper IngredientAmountEntityMapper { get; }
+    protected RecipeEntityMapper RecipeEntityMapper { get; }
+
+    protected IIngredientModelMapper IngredientModelMapper { get; }
+    protected IngredientAmountModelMapper IngredientAmountModelMapper { get; }
+    protected IRecipeModelMapper RecipeModelMapper { get; }
+    protected UnitOfWorkFactory UnitOfWorkFactory { get; }
+
+    public async Task InitializeAsync()
+    {
+        await using var dbx = await DbContextFactory.CreateDbContextAsync();
+        await dbx.Database.EnsureDeletedAsync();
+        await dbx.Database.EnsureCreatedAsync();
+    }
+
+    public async Task DisposeAsync()
+    {
+        await using var dbx = await DbContextFactory.CreateDbContextAsync();
+        await dbx.Database.EnsureDeletedAsync();
+    }
+}

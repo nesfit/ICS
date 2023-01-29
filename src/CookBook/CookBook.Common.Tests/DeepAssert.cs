@@ -1,29 +1,28 @@
 ﻿using KellermanSoftware.CompareNetObjects;
 
-namespace CookBook.Common.Tests
+namespace CookBook.Common.Tests;
+
+public static class DeepAssert
 {
-    public static class DeepAssert
+    public static void Equal<T>(T? expected, T? actual, params string[] propertiesToIgnore)
     {
-        public static void Equal<T>(T? expected, T? actual, params string[] propertiesToIgnore)
+        CompareLogic compareLogic = new()
         {
-            CompareLogic compareLogic = new()
+            Config =
             {
-                Config =
-                {
-                    MembersToIgnore = new List<string>(),
-                    IgnoreCollectionOrder = true,
-                    IgnoreObjectTypes = true,
-                    CompareStaticProperties = false,
-                    CompareStaticFields = false
-                }
-            };
+                MembersToIgnore = new List<string>(),
+                IgnoreCollectionOrder = true,
+                IgnoreObjectTypes = true,
+                CompareStaticProperties = false,
+                CompareStaticFields = false
+            }
+        };
 
-            foreach (var str in propertiesToIgnore)
-                compareLogic.Config.MembersToIgnore.Add(str);
+        foreach (var str in propertiesToIgnore)
+            compareLogic.Config.MembersToIgnore.Add(str);
 
-            var comparisonResult = compareLogic.Compare((object)expected!, (object)actual!);
-            if (!comparisonResult.AreEqual)
-                throw new ObjectEqualException((object)expected!, (object)actual!, comparisonResult.DifferencesString);
-        }
+        var comparisonResult = compareLogic.Compare((object)expected!, (object)actual!);
+        if (!comparisonResult.AreEqual)
+            throw new ObjectEqualException((object)expected!, (object)actual!, comparisonResult.DifferencesString);
     }
 }

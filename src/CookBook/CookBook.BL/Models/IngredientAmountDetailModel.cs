@@ -1,37 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using AutoMapper;
-using AutoMapper.EquivalencyExpression;
-using CookBook.Common.Enums;
-using CookBook.DAL.Entities;
-using Nemesis.Essentials.Runtime;
+﻿using CookBook.Common.Enums;
+using System;
 
-namespace CookBook.BL.Models
+namespace CookBook.BL.Models;
+
+public record IngredientAmountDetailModel : ModelBase
 {
-    public record IngredientAmountDetailModel(
-        Guid IngredientId,
-        string IngredientName,
-        string IngredientDescription,
-        double Amount,
-        Unit Unit) : ModelBase
-    {
-        public Guid IngredientId { get; set; } = IngredientId;
-        public string IngredientName { get; set; } = IngredientName;
-        public string IngredientDescription { get; set; } = IngredientDescription;
-        public string? IngredientImageUrl { get; set; }
-        public double Amount { get; set; } = Amount;
-        public Unit Unit { get; set; } = Unit;
+    public required Guid IngredientId { get; set; }
+    public required string IngredientName { get; set; }
+    public required string IngredientDescription { get; set; }
+    public string? IngredientImageUrl { get; set; }
+    public double Amount { get; set; }
+    public Unit Unit { get; set; }
 
-        public class MapperProfile : Profile
-        {
-            public MapperProfile()
-            {
-                CreateMap<IngredientAmountEntity, IngredientAmountDetailModel>()
-                    .ReverseMap()
-                    .ForMember(entity => entity.Ingredient, expression => expression.Ignore())
-                    .ForMember(entity => entity.Recipe, expression => expression.Ignore())
-                    .ForMember(entity => entity.RecipeId, expression => expression.Ignore());
-            }
-        }
-    }
+    public static IngredientAmountDetailModel Empty => new()
+    {
+        Id = Guid.NewGuid(),
+        IngredientId = Guid.Empty,
+        IngredientName = string.Empty,
+        IngredientDescription = string.Empty,
+    };
 }

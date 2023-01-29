@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using CookBook.Common.Enums;
+﻿using CookBook.Common.Enums;
+using System;
 
 namespace CookBook.DAL.Entities;
 
-public record IngredientAmountEntity(
-    Guid Id,
-    double Amount,
-    Unit Unit,
-    Guid RecipeId,
-    Guid IngredientId) : IEntity
+public record IngredientAmountEntity : IEntity
 {
-    //Automapper requires parameter less constructor for collection synchronization for now
-#nullable disable
-    public IngredientAmountEntity() : this(default, default, default, default, default) { }
-#nullable enable
-    
+    public required Guid Id { get; set; }
+    public required Guid RecipeId { get; set; }
+    public required Guid IngredientId { get; set; }
+    public double Amount { get; set; }
+    public Unit Unit { get; set; }
+
     public RecipeEntity? Recipe { get; init; }
 
     public IngredientEntity? Ingredient { get; init; }

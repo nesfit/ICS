@@ -1,24 +1,31 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CookBook.App.Services;
 
-namespace CookBook.App.ViewModels
+namespace CookBook.App.ViewModels;
+
+public abstract class ViewModelBase : ObservableRecipient, IViewModel
 {
-    public abstract class ViewModelBase : IViewModel, INotifyPropertyChanged
+    private bool isRefreshRequired = true;
+
+    protected readonly IMessengerService messengerService;
+
+    protected ViewModelBase(IMessengerService messengerService)
+        : base(messengerService.Messenger)
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected ViewModelBase()
-        {
-            if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
-            {
-                // ReSharper disable once VirtualMemberCallInConstructor
-                LoadInDesignMode();
-            }
-        }
-
-        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-        public virtual void LoadInDesignMode() { }
+        this.messengerService = messengerService;
+        IsActive = true;
     }
+
+    public async Task OnAppearingAsync()
+    {
+        if (isRefreshRequired)
+        {
+            await LoadDataAsync();
+
+            isRefreshRequired = false;
+        }
+    }
+
+    protected virtual Task LoadDataAsync()
+        => Task.CompletedTask;
 }

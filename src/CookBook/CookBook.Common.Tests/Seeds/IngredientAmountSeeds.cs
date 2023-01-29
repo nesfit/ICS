@@ -6,37 +6,37 @@ namespace CookBook.Common.Tests.Seeds;
 
 public static class IngredientAmountSeeds
 {
-    public static readonly IngredientAmountEntity EmptyIngredientAmountEntity = new(
-        Id: default, 
-        Amount: default,
-        Unit: default,
-        RecipeId: default, 
-        IngredientId: default)
+    public static readonly IngredientAmountEntity EmptyIngredientAmountEntity = new()
     {
+        Id = default,
+        RecipeId = default,
+        IngredientId = default,
+        Amount = default,
+        Unit = default,
         Recipe = default,
-        Ingredient = default
+        Ingredient = default,
     };
     
-    public static readonly IngredientAmountEntity IngredientAmountEntity1 = new(
-        Id: Guid.Parse(input: "0d4fa150-ad80-4d46-a511-4c666166ec5e"),
-        Amount: 1.0,
-        Unit: Unit.Kg,
-        RecipeId: RecipeSeeds.RecipeEntity.Id,
-        IngredientId: IngredientSeeds.IngredientEntity1.Id)
+    public static readonly IngredientAmountEntity IngredientAmountEntity1 = new()
     {
+        Id = Guid.Parse(input: "0d4fa150-ad80-4d46-a511-4c666166ec5e"),
+        RecipeId = RecipeSeeds.RecipeEntity.Id,
+        IngredientId = IngredientSeeds.IngredientEntity1.Id,
+        Amount = 1.0,
+        Unit = Unit.Kg,
         Recipe = RecipeSeeds.RecipeEntity,
-        Ingredient = IngredientSeeds.IngredientEntity1
+        Ingredient = IngredientSeeds.IngredientEntity1,
     };
 
-    public static readonly IngredientAmountEntity IngredientAmountEntity2 = new(
-        Id: Guid.Parse(input: "87833e66-05ba-4d6b-900b-fe5ace88dbd8"),
-        Amount: 2.0,
-        Unit: Unit.L,
-        RecipeId: RecipeSeeds.RecipeEntity.Id,
-        IngredientId: IngredientSeeds.IngredientEntity2.Id)
+    public static readonly IngredientAmountEntity IngredientAmountEntity2 = new()
     {
+        Id = Guid.Parse(input: "87833e66-05ba-4d6b-900b-fe5ace88dbd8"),
+        RecipeId = RecipeSeeds.RecipeEntity.Id,
+        IngredientId = IngredientSeeds.IngredientEntity2.Id,
+        Amount = 2.0,
+        Unit = Unit.L,
         Recipe = RecipeSeeds.RecipeEntity,
-        Ingredient = IngredientSeeds.IngredientEntity2
+        Ingredient = IngredientSeeds.IngredientEntity2,
     };
 
     //To ensure that no tests reuse these clones for non-idempotent operations

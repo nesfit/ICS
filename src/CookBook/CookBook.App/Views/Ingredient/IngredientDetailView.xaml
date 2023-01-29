@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:CookBook.App.Views"
+                       xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
+                       xmlns:vm="clr-namespace:CookBook.App.ViewModels"
+                       x:Class="CookBook.App.Views.Ingredient.IngredientDetailView"
+                       Title="{x:Static texts:IngredientDetailViewTexts.Page_Title}"
+                       Style="{StaticResource ContentPageStyle}"
+                       x:Name="IngredientDetailViewRoot"
+                       x:DataType="vm:IngredientDetailViewModel">
+    <StackLayout Orientation="Vertical"
+                 Spacing="20">
+        <StackLayout HorizontalOptions="End"
+                     Orientation="Horizontal"
+                     Spacing="15"
+                     HeightRequest="30">
+            <Button Text="{x:Static texts:IngredientDetailViewTexts.Delete_Button_Text}"
+                    CornerRadius="5"
+                    BackgroundColor="{StaticResource ErrorColor}"
+                    Command="{Binding DeleteCommand}" />
+
+            <Button Text="{x:Static texts:IngredientDetailViewTexts.Edit_Button_Text}"
+                    CornerRadius="5"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    Command="{Binding GoToEditCommand}" />
+        </StackLayout>
+
+        <Grid HorizontalOptions="Center" VerticalOptions="Start"
+              RowDefinitions="170, *" ColumnDefinitions="*, Auto, Auto, *"
+              RowSpacing="20" ColumnSpacing="20">
+
+            <Frame Grid.Row="0" Grid.Column="1"
+                   HorizontalOptions="Center" VerticalOptions="Center"
+                   HeightRequest="170" WidthRequest="170"
+                   CornerRadius="10" 
+                   IsClippedToBounds="True"
+                   Padding="0">
+                <Image Aspect="AspectFill"
+                       Source="{Binding Ingredient.ImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"/>
+            </Frame>
+
+            <StackLayout Grid.Row="0" Grid.RowSpan="2"
+                         Grid.Column="2"
+                         Spacing="20"
+                         Orientation="Vertical">
+                <Label FontSize="24" 
+                       Text="{Binding Ingredient.Name}" />
+
+                <Label FontSize="14" 
+                       Text="{Binding Ingredient.Description}"/>
+            </StackLayout>
+        </Grid>
+    </StackLayout>
+</views:ContentPageBase>

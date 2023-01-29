@@ -1,35 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using AutoMapper;
-using AutoMapper.EquivalencyExpression;
-using CookBook.Common.Enums;
-using CookBook.DAL.Entities;
-using Nemesis.Essentials.Design;
+﻿using CookBook.Common.Enums;
+using System;
+using System.Collections.ObjectModel;
 
-namespace CookBook.BL.Models
+namespace CookBook.BL.Models;
+
+public record RecipeDetailModel : ModelBase
 {
-    public record RecipeDetailModel(
-        string Name,
-        string Description,
-        TimeSpan Duration,
-        FoodType FoodType) : ModelBase
-    {
-        public string Name { get; set; } = Name;
-        public string Description { get; set; } = Description;
-        public TimeSpan Duration { get; set; } = Duration;
-        public FoodType FoodType { get; set; } = FoodType;
-        public string? ImageUrl { get; set; }
-        public List<IngredientAmountDetailModel> Ingredients { get; init; } = new();
-        
-        public class MapperProfile : Profile
-        {
-            public MapperProfile()
-            {
-                CreateMap<RecipeEntity, RecipeDetailModel>()
-                    .ReverseMap();
-            }
-        }
+    public required string Name { get; set; }
+    public required string Description { get; set; }
+    public required TimeSpan Duration { get; set; }
+    public FoodType FoodType { get; set; }
+    public string? ImageUrl { get; set; }
+    public ObservableCollection<IngredientAmountListModel> Ingredients { get; init; } = new();
 
-        public static RecipeDetailModel Empty => new(string.Empty, string.Empty, default, default);
-    }
+    public static RecipeDetailModel Empty => new()
+    {
+        Id = Guid.NewGuid(),
+        Name = string.Empty,
+        Description = string.Empty,
+        Duration = TimeSpan.Zero,
+    };
 }

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:CookBook.App.Views"
+                       xmlns:t="clr-namespace:CookBook.App.Resources.Texts"
+                       xmlns:m="clr-namespace:CookBook.BL.Models;assembly=CookBook.BL"
+                       xmlns:vm="clr-namespace:CookBook.App.ViewModels"
+                       x:Class="CookBook.App.Views.Recipe.RecipeListView"
+                       Title="{x:Static t:RecipeListViewTexts.Page_Title}"
+                       x:DataType="vm:RecipeListViewModel"
+                       x:Name="RecipeListViewRoot"
+                       Style="{StaticResource ContentPageStyle}">
+    <Grid>
+        <Grid HorizontalOptions="FillAndExpand"
+              RowDefinitions="Auto, *"
+              RowSpacing="20"
+              Margin="{OnIdiom Phone='10, 0'}">
+            <Label Grid.Row="0"
+                   FontSize="24"
+                   Text="{x:Static t:RecipeListViewTexts.Title_Label}" />
+
+            <CollectionView Grid.Row="1" ItemsSource="{Binding Recipes}"
+                            VerticalOptions="FillAndExpand">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Horizontal"
+                                     HorizontalItemSpacing="10" VerticalItemSpacing="10"
+                                     Span="2" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="m:RecipeListModel">
+                        <Frame Padding="0"
+                               CornerRadius="10"
+                               HeightRequest="200"
+                               WidthRequest="300"
+                               IsClippedToBounds="True">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference RecipeListViewRoot}, Path=BindingContext.GoToDetailCommand}"
+                                                      CommandParameter="{Binding Id}" />
+                            </Frame.GestureRecognizers>
+
+                            <Grid>
+                                <Image Grid.Row="0"
+                                       HorizontalOptions="Fill" VerticalOptions="Fill"
+                                       Aspect="AspectFill"
+                                       Source="{Binding ImageUrl, TargetNullValue='recipe_placeholder.jpg'}" />
+
+                                <BoxView Grid.Row="0"
+                                         Opacity="0.25"
+                                         Color="Black" />
+
+                                <Frame Grid.Row="0"
+                                       Margin="22" Padding="6,0"
+                                       BackgroundColor="{Binding FoodType, Converter={StaticResource FoodTypeToColorConverter}}"
+                                       CornerRadius="5" HorizontalOptions="Start"
+                                       VerticalOptions="Start"
+                                       HeightRequest="20">
+                                    <HorizontalStackLayout Padding="0"
+                                                           HorizontalOptions="Start" VerticalOptions="Center"
+                                                           Spacing="8">
+                                        <Label VerticalOptions="Center"
+                                               FontSize="11"
+                                               Text="{Binding FoodType, Converter={StaticResource FoodTypeToStringConverter}}"
+                                               TextColor="White" />
+                                    </HorizontalStackLayout>
+                                </Frame>
+
+                                <Label Grid.Row="0"
+                                       Margin="22,12"
+                                       FontSize="20" LineBreakMode="WordWrap"
+                                       Text="{Binding Name}"
+                                       TextColor="White" VerticalOptions="End" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <Button Grid.Row="0"
+                Padding="12, 6"
+                HorizontalOptions="End" VerticalOptions="Start"
+                Text="{x:Static t:RecipeListViewTexts.Add_Button_Text}"
+                Command="{Binding GoToCreateCommand}"
+                CornerRadius="5" FontFamily="MontserratMedium"
+                FontSize="14"
+                Style="{StaticResource PrimaryButtonStyle}" />
+    </Grid>
+</views:ContentPageBase>

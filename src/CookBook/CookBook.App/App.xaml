@@ -1,28 +1,20 @@
-﻿<Application x:Class="CookBook.App.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:viewModels="clr-namespace:CookBook.App.ViewModels"
-             xmlns:converters="clr-namespace:CookBook.App.Converters">
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:CookBook.App.Converters"
+             x:Class="CookBook.App.App">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/Brushes.xaml"/>
-                <ResourceDictionary Source="Styles/Button.xaml"/>
-                <ResourceDictionary Source="Styles/CheckBox.xaml"/>
-                <ResourceDictionary Source="Styles/ComboBox.xaml"/>
-                <ResourceDictionary Source="Styles/DataGrid.xaml"/>
-                <ResourceDictionary Source="Styles/DatePicker.xaml"/>
-                <ResourceDictionary Source="Styles/GridView.xaml"/>
-                <ResourceDictionary Source="Styles/Label.xaml"/>
-                <ResourceDictionary Source="Styles/ListBox.xaml"/>
-                <ResourceDictionary Source="Styles/ListView.xaml"/>
-                <ResourceDictionary Source="Styles/Menu.xaml"/>
-                <ResourceDictionary Source="Styles/TextBox.xaml"/>
-                <ResourceDictionary Source="Styles/TabControl.xaml"/>
-                <ResourceDictionary Source="Styles/ToolTip.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/ButtonStyle.xaml" />
+                <ResourceDictionary Source="Resources/Styles/ContentPageStyle.xaml" />
+                <ResourceDictionary Source="Resources/Styles/LabelStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+            <converters:FoodTypeToColorConverter x:Key="FoodTypeToColorConverter" />
+            <converters:FoodTypeToStringConverter x:Key="FoodTypeToStringConverter" />
+            <converters:UnitToStringConverter x:Key="UnitToStringConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

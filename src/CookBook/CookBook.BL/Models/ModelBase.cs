@@ -1,9 +1,17 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-namespace CookBook.BL.Models
+namespace CookBook.BL.Models;
+
+public abstract record ModelBase : INotifyPropertyChanged, IModel
 {
-    public abstract record ModelBase : IModel
+    public Guid Id { get; set; }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
-        public Guid Id { get; set; }
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

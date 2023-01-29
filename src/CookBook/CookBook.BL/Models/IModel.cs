@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace CookBook.BL.Models
+namespace CookBook.BL.Models;
+
+public interface IModel
 {
-    public interface IModel
-    {
-        Guid Id { get; }
-    }
+    Guid Id { get; }
 }
