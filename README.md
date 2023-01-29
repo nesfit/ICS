@@ -22,53 +22,55 @@ enableTitleFooter: true
 
 ## Přednášky
 
-| Typ       | Místnost | Čas            |
-| --------- | -------- | -------------- |
-| Přednáška | TODO     | Čt 12:00-13:50 |
+| Typ       | Místnost             | Čas            |
+| --------- | -------------------- | -------------- |
+| Přednáška | **E112**, E104, E105 | Čt 12:00-13:50 |
+
+E104 a E105 bude otevřeno pouze v případě naplnění E112.
 
 +++
 
 ## Cvičení
 Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, na kterém budete moct cvičení aktivně zúčastnit. Bude potřeba vývojové prostředí ideálně Visual Studio 2022 / Rider / VSCode.
 
-| Typ                             | Místnost | Čas            |
-| ------------------------------- | -------- | -------------- |
-| Dobrovolné demonstrační cvičení | TODO     | Pá 10:00-11:50 |
+| Typ                             | Místnost  | Čas            |
+| ------------------------------- | --------- | -------------- |
+| Dobrovolné demonstrační cvičení | **D0207** | Čt 14:00-15:50 |
 
 +++
 
 ## Plán semestru
 
-| Datum  | Typ | Vyučující | Téma přednášky                                                                                                                                                                                                                                                                               |
-| ------ | --- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 9.02.  | L01 | Pluskal   | [Úvod do jazyka C# a platformy .NET](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/) - základní syntaxe jazyka ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/?print-pdf))                                                                                |
-|        | E01 | Pluskal   | Práce s Visual Studio 2022, debugování a Azure DevOps založení projektu (základy pro zracování projektu)                                                                                                                                                                                     |
-| 16.02. | L02 | Pluskal   | [Úvod do Objektově Orientovaného Programování](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/?print-pdf))                                                                                                |
-|        | E02 | Pluskal   | Objektově orientované programování a úvod do Entity Framework                                                                                                                                                                                                                                |
-| 23.02. | L03 |           | [Představení základních knihovních funkcí (BCL)](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/) - dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/?print-pdf)) |
-| 02.03. | L04 | Pluskal   | [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/?print-pdf))                                                                                                               |
-|        | E03 | Pluskal   | Entity framework                                                                                                                                                                                                                                                                             |
-| 05.03. | P01 |           | **Odevzdání první fáze projektu**                                                                                                                                                                                                                                                            |
-| 09.03. | L05 |           | Psaní čistého a udržovatelného kódu                                                                                                                                                                                                                                                          |
-| 16.03. | L06 |           | Návrhový vzor Model-View-ViewModel (MVVM)                                                                                                                                                                                                                                                    |
-| 23.03. | L07 |           | Automatizované testování - práce s xUnit, CI                                                                                                                                                                                                                                                 |
+| Datum  | Typ | Vyučující   | Téma přednášky                                                                                                                                                                                                                                                                               |
+| ------ | --- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 9.02.  | L01 | Jan Pluskal | [Úvod do jazyka C# a platformy .NET](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/) - základní syntaxe jazyka ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/?print-pdf))                                                                                |
+|        | E01 | Jan Pluskal | Práce s Visual Studio 2022, debugování a Azure DevOps založení projektu (základy pro zracování projektu)                                                                                                                                                                                     |
+| 16.02. | L02 | Jan Pluskal | [Úvod do Objektově Orientovaného Programování](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/?print-pdf))                                                                                                |
+|        | E02 | Jan Pluskal | Objektově orientované programování a úvod do Entity Framework                                                                                                                                                                                                                                |
+| 23.02. | L03 |             | [Představení základních knihovních funkcí (BCL)](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/) - dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/?print-pdf)) |
+| 02.03. | L04 | Pluskal     | [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/?print-pdf))                                                                                                               |
+|        | E03 | Jan Pluskal | Entity framework                                                                                                                                                                                                                                                                             |
+| 05.03. | P01 |             | **Odevzdání první fáze projektu**                                                                                                                                                                                                                                                            |
+| 09.03. | L05 |             | Psaní čistého a udržovatelného kódu                                                                                                                                                                                                                                                          |
+| 16.03. | L06 |             | Návrhový vzor Model-View-ViewModel (MVVM)                                                                                                                                                                                                                                                    |
+| 23.03. | L07 |             | Automatizované testování - práce s xUnit, CI                                                                                                                                                                                                                                                 |
 
 +++
 
-| Datum    | Typ | Vyučující | Téma přednášky                                                                                                                                                                                                                                         |
-| -------- | --- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Datum    | Typ | Vyučující   | Téma přednášky                                                                                                                                                                                                                                         |
+| -------- | --- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 |          |
-| 30.03.   | L08 | Pluskal   | [Základní koncepty tvorby uživatelského rozhraní](https://nesfit.github.io/ICS/Lectures/Lecture_08/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_08/_site/?print-pdf))                                                       |
-|          | E04 | Pluskal   | Základy MAUI a návrhový vzor MVVM                                                                                                                                                                                                                      |
-| 06.04.   | L09 | Jašek     | MAUI - tvorba komponent a stylování aplikací.                                                                                                                                                                                                          |
-|          | E05 | Jašek     | MAUI frontend a binding                                                                                                                                                                                                                                |
-| 13.04.   | P02 |           | **Odevzdání druhé fáze projektu**                                                                                                                                                                                                                      |
-| 20.04.   | L10 |           | Návrhové vzory - vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#                                                                                                                                                                    |
-| 27.04.   | L11 |           | [Paralelní a asynchronní programování](https://nesfit.github.io/ICS/Lectures/Lecture_12/_site/) - proces, vlákno, úloha z pohledu C# a použitého .NET frameworku ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_12/_site/?print-pdf)) |
-|          | E06 | Pluskal   | Takto můžete napsat projekt?!                                                                                                                                                                                                                          |
-| 29.04.   | L12 |           | Multiplatformní programování - .NET Standard, .NET Core., .NET, kontejnerizace a deployment aplikací                                                                                                                                                   |
-| 02-03.05 | P03 |           | **Obhajoby projektu**                                                                                                                                                                                                                                  |
-| 04.05.   | L13 | Pluskal   |                                                                                                                                                                                                                                                        |
+| 30.03.   | L08 | Jan Pluskal | [Základní koncepty tvorby uživatelského rozhraní](https://nesfit.github.io/ICS/Lectures/Lecture_08/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_08/_site/?print-pdf))                                                       |
+|          | E04 | Jan Pluskal | Základy MAUI a návrhový vzor MVVM                                                                                                                                                                                                                      |
+| 06.04.   | L09 | Roman Jašek | MAUI - tvorba komponent a stylování aplikací.                                                                                                                                                                                                          |
+|          | E05 | Romen Jašek | MAUI frontend a binding                                                                                                                                                                                                                                |
+| 13.04.   | P02 |             | **Odevzdání druhé fáze projektu**                                                                                                                                                                                                                      |
+| 20.04.   | L10 |             | Návrhové vzory - vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#                                                                                                                                                                    |
+| 27.04.   | L11 |             | [Paralelní a asynchronní programování](https://nesfit.github.io/ICS/Lectures/Lecture_12/_site/) - proces, vlákno, úloha z pohledu C# a použitého .NET frameworku ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_12/_site/?print-pdf)) |
+|          | E06 | Jan Pluskal | Takto můžete napsat projekt?!                                                                                                                                                                                                                          |
+| 29.04.   | L12 |             | Multiplatformní programování - .NET Standard, .NET Core., .NET, kontejnerizace a deployment aplikací                                                                                                                                                   |
+| 02-03.05 | P03 |             | **Obhajoby projektu**                                                                                                                                                                                                                                  |
+| 04.05.   | L13 | Jan Pluskal     |                                                                                                                                                                                                                                                        |
 
 LXY - přednáška | EXY - democvičení | P0X - projekt
 
