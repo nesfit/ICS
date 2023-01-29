@@ -68,7 +68,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 | 20.04.   | L11         | Jan Pluskal                   | [Paralelní a asynchronní programování](https://nesfit.github.io/ICS/Lectures/Lecture_12/_site/) - proces, vlákno, úloha z pohledu C# a použitého .NET frameworku ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_12/_site/?print-pdf)) |
 | 27.04.   | L10         | Martin Dybal                  | Návrhové vzory - vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#                                                                                                                                                                    |
 | E06      | Jan Pluskal | Takto můžete napsat projekt?! |
-| 29.04.   | L12         |                               | Multiplatformní programování - .NET Standard, .NET Core., .NET, kontejnerizace a deployment aplikací                                                                                                                                                   |
+| 29.04.   | L12         | Jan Pluskal                   | Multiplatformní programování - .NET Standard, .NET Core., .NET, kontejnerizace a deployment aplikací                                                                                                                                                   |
 | 02-03.05 | P03         |                               | **Obhajoby projektu**                                                                                                                                                                                                                                  |
 | 04.05.   | L13         | Jan Pluskal                   |                                                                                                                                                                                                                                                        |
 
@@ -77,7 +77,7 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 ---
 
 # Projekt
-* Projekt bude vypracovaný v 5ti členném týmu.
+* Projekt bude vypracovaný v 5 členném týmu.
 
 | Fáze | Obsah                                   | Body |
 | ---- | --------------------------------------- | ---- |
@@ -94,12 +94,14 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 
 # Nástroje použity ve cvičeních
 
-| Nástroj                                                  | Typ                | Popis                                                                                                                             |
-| -------------------------------------------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
-| [Visual Studio 2022](https://aka.ms/devtoolsforteaching) | Samostatný program | Hlavní vývojové prostředí pro .Net                                                                                                |
-| [Resharper](https://www.jetbrains.com/resharper/)        | Doplněk            | Nástroje na lepší produktivitu, refaktorování. Studentská licence je k dispozici zdarma [zde](https://www.jetbrains.com/student/) |
-| [LinqPad](http://www.linqpad.net/)                       | Samostatný program | Nástroj na přístup do databáze přes Linq, SQL…                                                                                    |
-| [DotPeek](https://www.jetbrains.com/decompiler/)         | Samostatný program | Dekompilátor C# kódu                                                                                                              |
+| Nástroj                                                                                            | Typ                | Popis                                                                                                                             |
+| -------------------------------------------------------------------------------------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| [Visual Studio 2022](https://aka.ms/devtoolsforteaching)                                           | Samostatný program | Hlavní vývojové prostředí pro .Net                                                                                                |
+| [Resharper](https://www.jetbrains.com/resharper/)                                                  | Doplněk            | Nástroje na lepší produktivitu, refaktorování. Studentská licence je k dispozici zdarma [zde](https://www.jetbrains.com/student/) |
+| [LinqPad](http://www.linqpad.net/)                                                                 | Samostatný program | Nástroj na přístup do databáze přes Linq, SQL…                                                                                    |
+| [DotPeek](https://www.jetbrains.com/decompiler/)                                                   | Samostatný program | Dekompilátor C# kódu                                                                                                              |
+| [EF Core Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools) | Doplněk            | Přidává funkcionalitu k DbContext jako je např. generování ER diagramů.                                                           |
+| [Roslynator](https://github.com/JosefPihrt/Roslynator)                                             | Analyzér, Doplněk  | Open-source alternativa k Resharper postavená nad Roslyn.                                                                         |
 
 ---
 
