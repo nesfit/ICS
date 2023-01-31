@@ -173,5 +173,7 @@ Pokud dojde k chybě s oprávněním vytvořit symlink tak nejsnažší je použ
 
 <!-- Has to stay, because otherwise static build would not contain logo resources referenced in CSS theme -->
 ![](_reveal-md/img/logo-ics.svg)
-+++
+
+---
+
 ![](_reveal-md/img/logo.png)
