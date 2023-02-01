@@ -46,8 +46,8 @@ podman cp _site ICS-Lecture-nginx:/usr/share/nginx/html
 
 ```
 # cd Lectures/Lecture_XY
-ln -sf ../_reveal-md/_reveal-md
-ln -sf ../_reveal-md/README.md README.md
-ln -sf ../_reveal-md/reveal.json reveal.json
-ln -sf ../_reveal-md/reveal-md.json reveal-md.json 
+ln -sfh ../_reveal-md _reveal-md
+ln -sfh ../_reveal-md/README.md README.md
+ln -sfh ../_reveal-md/reveal.json reveal.json
+ln -sfh ../_reveal-md/reveal-md.json reveal-md.json 
 ```
