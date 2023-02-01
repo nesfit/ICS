@@ -1,4 +1,6 @@
-# ICS projekt
+# ICS projekt 
+
+> :warning: Toto je neaktualní zadání z roku 2021-2022. Aktuální zadání pro rok 2022-2023 bude doplněno později.
 
 ## Důležité upozornění
 Pro hodnocení projektu 49+ body je nutné dokončit všechny fáze a projekt úspěšně obhájit. Každá fáze projektu musí být hodnocena minimálně 1b. Při obhajobě projektu je vyžadována demonstrace **základní funkcionality**, jinak je obhajoba hodnocena 0b.
