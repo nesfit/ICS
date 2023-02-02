@@ -1,7 +1,5 @@
 # ICS projekt 
 
-> :warning: Toto je neaktualní zadání z roku 2021-2022. Aktuální zadání pro rok 2022-2023 bude doplněno později.
-
 ## Důležité upozornění
 Pro hodnocení projektu 49+ body je nutné dokončit všechny fáze a projekt úspěšně obhájit. Každá fáze projektu musí být hodnocena minimálně 1b. Při obhajobě projektu je vyžadována demonstrace **základní funkcionality**, jinak je obhajoba hodnocena 0b.
 
@@ -14,8 +12,8 @@ Pokud Vám přijde, že v zadání chybí nějaká funkcionalita, neváhejte ji 
 Cílem je vytvořit intuitivní aplikaci, kterou bude radost používat.
 
 <!-- Project specific -->
-# Téma projektu - Spolujízda
-Tématem letošního projektu bude vytvoření aplikace umožňující jejím uživatelů realizovat spolujízdy. 
+# Téma projektu
+Tématem letošního projektu bude vytvoření aplikace umožňující jejím uživatelů realizovat alternativu populární aplikace pro správu aktivit a meření času stráveného danou aktivitou - Toggl. 
 
 ---
 
@@ -26,27 +24,21 @@ V rámci dat, se kterými se bude pracovat budeme požadovat minimálně násled
 ### Uživatel
 - Jméno
 - Příjmení
-- Fotografie
-- (Vlastněná auta)
-- (Spolujízdy z pohledu řidiče)
-- (Spolujízdy z pohledu spolujezdce)
+- Fotografie (postačí url)
+- (Aktivity)
 
-### Jízda
-- Start (místo, poloha)
-- Cíl (místo, poloha)
-- Čas začátku
-- Předpokládaný čas konce, nebo předpokládaná doba cesty
-- (Řidič)
-- (Spolujezdci)
-- (Automobil)
+### Aktivita
+- Začátek (datum, čas)
+- Konec (datum, čas)
+- Typ aktivity (postačí enum)
+- (Projekt)
   
-### Auto
-- Výrobce
-- Typ
-- Datum první registrace
-- Fotografie
-- Počet míst k sezení
-- (Majitel, tj. uživatel)
+### Projekt
+- Název
+- (Aktivity)
+- (Uživatelé)
+
+> () anotují vazby mezi entitami
 
 ---
 ## Základní funkcionalita
@@ -64,16 +56,14 @@ Pro uložení zvolte [SQL Server Express LocalDB](https://docs.microsoft.com/en-
   - **Aplikace se ovládá z pohledu vybraného uživatele při spuštění aplikace.**
   - Uživatel může vytvořit jiné uživatele.
   - Uživatel může upravit informace o sobě.
-  - Uživatel může přidat spolujízdu (bude u ní uveden jako řidič).
-  - Řidič může odebrat spolujezdce a zrušit spolujízdu.
-  - Uživatel může přidat svá auta a upravovat informace o nich.
-  - Uživatel vidí seznam spolujízd a může se přihlásit do neobsazené spolujízdy.
-  - Uživatel může **filtrovat** spolujízdy podle času začátku, míst startu a cíle.
+  - Uživatel může přidat záznam o aktivitě (bude u ní uveden jako osoba provádějící aktivitu).
+  - Uživatel vidí seznam projektů a může se přihlásit do projektu.
+  - Uživatel může **filtrovat** aktivity podle data, času začátku a konce.
+  - Uživatel může **filtrovat** aktivity uživatelsky přívětivě bez zadávání datumu za poslední týden, měsíc, předcházející měsíc a rok.
 
-> :warning: **Dobře se zamyslete jak budete implementovat jízdy!**: Uvědomte si, že uživatelé nemohou současně jet ve více spolujízdách. Při vytváření/editaci je nutné ověřit, že nově přidaný záznam je nekolizní.
+> :warning: **Dobře se zamyslete jak budete implementovat aktivity!**: Uvědomte si, že uživatel nemůže vykonávat duplicitní aktivitu ve stejný čas. Při vytváření/editaci je nutné ověřit, že nově přidaný záznam je nekolizní.
 
 > :warning: **Důrazně doporučujeme vyhnout se autentizaci/autorizaci** Bude postačovat, když při spuštění aplikace nabídnete možnost zvolit si identitu ze seznamu uživatelů.
-
 
 ---
 ## Architektura projektu
@@ -93,9 +83,9 @@ Při řešení projektu využijte Azure DevOps a GIT na sdílení kódu. Do své
 
 Účet **uciteliw5@vutbr.cz** přidejte jako poslední a ověřte, že má nastavena oprávnění na **Stakeholder**. V opačném případě jeden ze členů týmu nebude vidět zdrojový kód. Azure DevOps umožňuje v bezplatné verzi pouze 5 aktivních vývojářů.
 
-> :warning: **Je bezpodmínečně nutné**, abyste přidali účet **uciteliw5@vutbr.cz** do **Project Collection Administrator** v nastavení organizace - *https://dev.azure.com/ics-2023-team00XY/_settings/groups*. Toto nastavení nám umožní během opravování projektu jednomu členu Vašeho týmu změnit **access level** z **Basic** na **Stakeholder** a dočasně tak přiřadit úroveň **Basic** našemu účtu **uciteliw5@vutbr.cz**. Po skončení opravování Vám nastavení uvedeme do původního stavu. Pokud by se tak nestalo, neváhejte si nastavení změnit sami.
+> :warning: **Je bezpodmínečně nutné**, abyste přidali účet **uciteliw5@vutbr.cz** do **Project Collection Administrator** v nastavení organizace - *https://dev.azure.com/ics-2023-xlogin00/_settings/groups*. Toto nastavení nám umožní během opravování projektu jednomu členu Vašeho týmu změnit **access level** z **Basic** na **Stakeholder** a dočasně tak přiřadit úroveň **Basic** našemu účtu **uciteliw5@vutbr.cz**. Po skončení opravování Vám nastavení uvedeme do původního stavu. Pokud by se tak nestalo, neváhejte si nastavení změnit sami.
 
-Bez této změny bychom neměli přístup k vašemu kódu a nemohli bychom jej hodnotit. Tato změna se provede v nastavení organizace https://dev.azure.com/ics-2023-team0000/_settings/users.
+Bez této změny bychom neměli přístup k vašemu kódu a nemohli bychom jej hodnotit. Tato změna se provede v nastavení organizace https://dev.azure.com/ics-2023-xlogin00/_settings/users.
 
 Návod na přidání člena projektu můžete najít zde: *https://docs.microsoft.com/en-us/vsts/accounts/add-team-members-vs*
 
@@ -103,7 +93,7 @@ Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*
 
 Výrazně doporučujeme používat mechanismu **pull-request**ů a dělat si vzájemně review kódu, který následně mergnete do master nebo main větve. Projekt vypracováváte jako tým a nesete tak **kolektivní odpovědnost** za kvalitu kódu, proto je dobré, aby kód před začleněním vidělo více párů očí a vzájemně jste si jej připomínkovali. 
 
-Organizaci pojmenujte **ics-2023-team<0000>** dle Vašeho čísla týmu a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/ics-2023-team0000/project. Nezapomeňte nastavit **Work item process** template na **Scrum** nebo **Basic**.
+Organizaci pojmenujte **ics-2023-xlogin00** dle pojmenování týmu v IS (login zakladatele) a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/ics-2023-xlogin00/project. Nezapomeňte nastavit **Work item process** template na **Scrum** nebo **Basic**.
 
 Využijte možnost automatizovaných buildů spojených s otestováním Vámi provedených změn. Nastavte **Pipelines->Builds** tak, že při pushnutí do libovolné větve projektu se provede *build a spustí se veškeré přítomné testy*. Více informací na [Automate all things with Azure Pipelines - THR2101](https://www.youtube.com/watch?v=yr6PJxfACNc)
 
@@ -129,7 +119,7 @@ Pokud se **týmově** rozhodnete, že všichni členové nepřispěli rovnoměrn
 ### Fáze 1 – objektový návrh, databáze 
 V téhle fázi se zaměříme na *datový návrh*. Vyžaduje se po Vás, aby datový návrh splňoval zadání a nevynechal žádnou podstatnou část. Zamyslete se nad vazbami mezi jednotlivými entitami v datovém modelu. V této fázi budeme chtít, abyste **odevzdali kód**, kde budete mít *entitní třídy*, které budou obsahovat všechny vlastnosti, které budete dále potřebovat a vazby mezi třídami. 
 
-Abyste si vazby dokázali představit, vytvořte již v tuto chvíli DAL projekt obsahující `DbContext` s `DbSet`y Vašich entitních tříd. Přiložte **ER diagram** vygenerovaný z kódu doplňkem [TODO](TODO). 
+Abyste si vazby dokázali představit, vytvořte již v tuto chvíli DAL projekt obsahující `DbContext` s `DbSet`y Vašich entitních tříd. Přiložte **ER diagram** vygenerovaný z kódu např. doplňkem [EF Core Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools) . 
 
 > :warning: Ručně vytvořený ER diagram, který neodpovídá Vašemu kódu je neakceptovatelný.
 
