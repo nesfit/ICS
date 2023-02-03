@@ -146,6 +146,7 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 * [R. C. Martin SOLID](https://youtu.be/TMuno5RZNeE?t=757) Bob Martin SOLID Principles of Object Oriented and Agile Design
 * [Resharper features](https://www.jetbrains.com/resharper/features/) and how to use them.
 * [Pro Git book](https://git-scm.com/book/en/v2)
+* [LINQ explained with sketches - the eBook](https://steven-giesel.com/blogPost/8d12d9ef-c4e6-439c-9f88-46825cf35576)
 
 ---
 
