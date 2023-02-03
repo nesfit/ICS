@@ -98,6 +98,13 @@ Organizaci pojmenujte **ics-2023-xlogin00** dle pojmenování týmu v IS (login 
 Využijte možnost automatizovaných buildů spojených s otestováním Vámi provedených změn. Nastavte **Pipelines->Builds** tak, že při pushnutí do libovolné větve projektu se provede *build a spustí se veškeré přítomné testy*. Více informací na [Automate all things with Azure Pipelines - THR2101](https://www.youtube.com/watch?v=yr6PJxfACNc)
 
 ---
+### Konvence
+Pro zajištění konzistence kódu, který produkujete je závázné respektovat následující body:
+* EN_US je základním jazykem použitým pro pojmenování identifikátorů, tříd, atd... Jiné nádorní jazyky nejsou povoleny.
+* EN_US je základním jazykem použitým pro psaní komentářů. Jiné nádorní jazyky nejsou povoleny.
+* Dodržujte zásady CleanCode probírané na přednáškách. K zajištění konzistence můžete využít `.editorconfig` konfigurovaný dle domluvy ve Vašem týmu. Není vhodné, aby Vám IDE při odevzdání hlásilo nekonzistence s Vámi zvolenými politikami. 
+
+---
 ### Doporučení - za bonusové body při závěrečné obhajobě
 
 * Pro řízení projektu využijte metodologii **[Scrum](https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/scrum-process-workflow?view=azure-devops)**. 
