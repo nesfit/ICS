@@ -58,12 +58,12 @@ Pro uložení zvolte [SQL Server Express LocalDB](https://docs.microsoft.com/en-
   - Uživatel může upravit informace o sobě.
   - Uživatel může přidat záznam o aktivitě (bude u ní uveden jako osoba provádějící aktivitu).
   - Uživatel vidí seznam projektů a může se přihlásit do projektu.
-  - Uživatel může **filtrovat** aktivity podle data, času začátku a konce.
+  - Uživatel může **filtrovat** aktivity podle data + času začátku a konce.
   - Uživatel může **filtrovat** aktivity uživatelsky přívětivě bez zadávání datumu za poslední týden, měsíc, předcházející měsíc a rok.
 
 > :warning: **Dobře se zamyslete jak budete implementovat aktivity!**: Uvědomte si, že uživatel nemůže vykonávat duplicitní aktivitu ve stejný čas. Při vytváření/editaci je nutné ověřit, že nově přidaný záznam je nekolizní.
 
-> :warning: **Důrazně doporučujeme vyhnout se autentizaci/autorizaci** Bude postačovat, když při spuštění aplikace nabídnete možnost zvolit si identitu ze seznamu uživatelů.
+> :warning: **Důrazně doporučujeme vyhnout se práci s uživatelskými účty**, vytváření a ukládání hesel, přihlašování uživatelů atd. (autentizaci/autorizaci) Bude postačovat, když aplikace nabídne možnost zvolit si uživatela ze seznamu uživatelů. Pokud byste se i tak rozhodli implementovat práci s uživatelskými účty určitě se ozvěte a konzultujte Vaše zamýšlené řešení, tato problematika je poměrně komplexní a v předmětu se jí nevěnujeme.
 
 ---
 ## Architektura projektu
@@ -72,6 +72,8 @@ Architektura aplikace je jeden z důležitých stavebních kamenů při vývoji 
 V případě, kdy se rozhodnete použít jinou architekturu a rozdělení tříd do projektů musíte být schopni své rozhodnutí odůvodnit a flexibilně reagovat na dotazy při obhajobě.
 
 Řešení obsahující nevhodné rozdělení tříd do projektů, které si nedokážete obhájit bude penalizováno značnou bodovou ztrátou.
+
+Všechen kód ze vzorového projektu _CookBook_ máte k dispozici, můžete se jím inspirovat a také jeho libovolné části použí ve svém projektu.
 
 > :warning: **Solution obsahující jediný projekt není akceptovatelné!**
 
@@ -100,8 +102,8 @@ Využijte možnost automatizovaných buildů spojených s otestováním Vámi pr
 ---
 ### Konvence
 Pro zajištění konzistence kódu, který produkujete je závázné respektovat následující body:
-* EN_US je základním jazykem použitým pro pojmenování identifikátorů, tříd, atd... Jiné nádorní jazyky nejsou povoleny.
-* EN_US je základním jazykem použitým pro psaní komentářů. Jiné nádorní jazyky nejsou povoleny.
+* EN_US je základním jazykem použitým pro pojmenování identifikátorů, tříd, atd... Jiné národní jazyky nejsou povoleny.
+* EN_US je základním jazykem použitým pro psaní komentářů. Jiné národní jazyky nejsou povoleny.
 * Dodržujte zásady CleanCode probírané na přednáškách. K zajištění konzistence můžete využít `.editorconfig` konfigurovaný dle domluvy ve Vašem týmu. Není vhodné, aby Vám IDE při odevzdání hlásilo nekonzistence s Vámi zvolenými politikami. 
 
 ---
