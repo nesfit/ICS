@@ -58,7 +58,7 @@ Pro uložení zvolte [SQL Server Express LocalDB](https://docs.microsoft.com/en-
   - Uživatel může upravit informace o sobě.
   - Uživatel může přidat záznam o aktivitě (bude u ní uveden jako osoba provádějící aktivitu).
   - Uživatel vidí seznam projektů a může se přihlásit do projektu.
-  - Uživatel může **filtrovat** aktivity podle data + času začátku a konce.
+  - Uživatel může **filtrovat** aktivity podle začátku a konce.
   - Uživatel může **filtrovat** aktivity uživatelsky přívětivě bez zadávání datumu za poslední týden, měsíc, předcházející měsíc a rok.
 
 > :warning: **Dobře se zamyslete jak budete implementovat aktivity!**: Uvědomte si, že uživatel nemůže vykonávat duplicitní aktivitu ve stejný čas. Při vytváření/editaci je nutné ověřit, že nově přidaný záznam je nekolizní.
