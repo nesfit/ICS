@@ -13,7 +13,7 @@ Cílem je vytvořit intuitivní aplikaci, kterou bude radost používat.
 
 <!-- Project specific -->
 # Téma projektu
-Tématem letošního projektu bude vytvoření aplikace umožňující jejím uživatelů realizovat alternativu aplikací pro správu aktivit a meření času stráveného danou aktivitou - Toggl Track, Kimai, atd. 
+Tématem letošního projektu bude vytvoření aplikace umožňující jejím uživatelům správu aktivit a meření času stráveného danou aktivitou - Toggl Track, Kimai, atd. 
 
 ---
 
@@ -26,6 +26,7 @@ V rámci dat, se kterými se bude pracovat budeme požadovat minimálně násled
 - Příjmení
 - Fotografie (postačí url)
 - (Aktivity)
+- (Projekty)
 
 ### Aktivita
 - Začátek (datum, čas)
