@@ -13,7 +13,7 @@ Cílem je vytvořit intuitivní aplikaci, kterou bude radost používat.
 
 <!-- Project specific -->
 # Téma projektu
-Tématem letošního projektu bude vytvoření aplikace umožňující jejím uživatelů realizovat alternativu populární aplikace pro správu aktivit a meření času stráveného danou aktivitou - Toggl. 
+Tématem letošního projektu bude vytvoření aplikace umožňující jejím uživatelů realizovat alternativu aplikací pro správu aktivit a meření času stráveného danou aktivitou - Toggl Track, Kimai, atd. 
 
 ---
 
