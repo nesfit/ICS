@@ -33,7 +33,6 @@ V rámci dat, se kterými se bude pracovat budeme požadovat minimálně násled
 - Konec (datum, čas)
 - Typ / tag aktivity (postačí enum, nebo uživatelem definovaná hodnota)
 - Popis aktiviy
-- (Projekt)
   
 ### Projekt
 - Název
@@ -62,6 +61,7 @@ Pro uložení zvolte [SQL Server Express LocalDB](https://docs.microsoft.com/en-
   - Uživatel vidí seznam projektů a může se přihlásit do projektu.
   - Uživatel může **filtrovat** aktivity podle začátku a konce.
   - Uživatel může **filtrovat** aktivity uživatelsky přívětivě bez zadávání datumu za poslední týden, měsíc, předcházející měsíc a rok.
+  - Uživatel může vykonávat pouze jednu aktivitu v jeden čas. Tedy, zaznamenané aktivity se nesmí překrývat.
 
 > :warning: **Dobře se zamyslete jak budete implementovat aktivity!**: Uvědomte si, že uživatel nemůže vykonávat duplicitní aktivitu ve stejný čas. Při vytváření/editaci je nutné ověřit, že nově přidaný záznam je nekolizní.
  
