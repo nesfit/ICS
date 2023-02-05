@@ -103,8 +103,8 @@ Využijte možnost automatizovaných buildů spojených s otestováním Vámi pr
 ---
 ### Konvence
 Pro zajištění konzistence kódu, který produkujete je závazné respektovat následující body:
-* EN_US je základním jazykem použitým pro pojmenování identifikátorů, tříd, atd... Jiné národní jazyky nejsou povoleny.
-* EN_US je základním jazykem použitým pro psaní komentářů. Jiné národní jazyky nejsou povoleny.
+* Angličtina je základním jazykem použitým pro pojmenování identifikátorů, tříd, atd... Jiné národní jazyky nejsou povoleny.
+* Angličtina je základním jazykem použitým pro psaní komentářů. Jiné národní jazyky nejsou povoleny.
 * Dodržujte zásady CleanCode probírané na přednáškách. K zajištění konzistence můžete využít `.editorconfig` konfigurovaný dle domluvy ve Vašem týmu. Není vhodné, aby Vám IDE při odevzdání hlásilo nekonzistence s Vámi zvolenými politikami. 
 
 ---
