@@ -73,7 +73,6 @@ V případě, kdy se rozhodnete použít jinou architekturu a rozdělení tříd
 
 Řešení obsahující nevhodné rozdělení tříd do projektů, které si nedokážete obhájit bude penalizováno značnou bodovou ztrátou.
 
-Všechen kód ze vzorového projektu _CookBook_ máte k dispozici, můžete se jím inspirovat a také jeho libovolné části použí ve svém projektu.
 
 > :warning: **Solution obsahující jediný projekt není akceptovatelné!**
 
