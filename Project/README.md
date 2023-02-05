@@ -62,8 +62,8 @@ Pro uložení zvolte [SQL Server Express LocalDB](https://docs.microsoft.com/en-
   - Uživatel může **filtrovat** aktivity uživatelsky přívětivě bez zadávání datumu za poslední týden, měsíc, předcházející měsíc a rok.
 
 > :warning: **Dobře se zamyslete jak budete implementovat aktivity!**: Uvědomte si, že uživatel nemůže vykonávat duplicitní aktivitu ve stejný čas. Při vytváření/editaci je nutné ověřit, že nově přidaný záznam je nekolizní.
-
-> :warning: **Důrazně doporučujeme vyhnout se práci s uživatelskými účty**, vytváření a ukládání hesel, přihlašování uživatelů atd. (autentizaci/autorizaci) Bude postačovat, když aplikace nabídne možnost zvolit si uživatela ze seznamu uživatelů. Pokud byste se i tak rozhodli implementovat práci s uživatelskými účty určitě se ozvěte a konzultujte Vaše zamýšlené řešení, tato problematika je poměrně komplexní a v předmětu se jí nevěnujeme.
+ 
+> :warning: **Důrazně doporučujeme vyhnout se autentizaci/autorizaci** Bude postačovat, když při spuštění aplikace nabídnete možnost zvolit si identitu ze seznamu uživatelů. Pokud se rozhodnete implementovat autentizaci/autorizaci jako rozšíření, vystavujete se bodové penalizaci v případě, že nebudete dbát běžně zaužívaných standardních prvků bezpečnosti. 
 
 ---
 ## Architektura projektu
