@@ -30,7 +30,8 @@ V rámci dat, se kterými se bude pracovat budeme požadovat minimálně násled
 ### Aktivita
 - Začátek (datum, čas)
 - Konec (datum, čas)
-- Typ aktivity (postačí enum)
+- Typ / tag aktivity (postačí enum, nebo uživatelem definovaná hodnota)
+- Popis aktiviy
 - (Projekt)
   
 ### Projekt
