@@ -13,7 +13,7 @@ Cílem je vytvořit intuitivní aplikaci, kterou bude radost používat.
 
 <!-- Project specific -->
 # Téma projektu
-Tématem letošního projektu bude vytvoření aplikace umožňující jejím uživatelům správu aktivit a meření času stráveného danou aktivitou - Toggl Track, Kimai, atd. 
+Tématem letošního projektu bude vytvoření aplikace umožňující jejím uživatelům správu aktivit a měření času stráveného danou aktivitou - Toggl Track, Kimai, atd. 
 
 ---
 
@@ -32,7 +32,7 @@ V rámci dat, se kterými se bude pracovat budeme požadovat minimálně násled
 - Začátek (datum, čas)
 - Konec (datum, čas)
 - Typ / tag aktivity (postačí enum, nebo uživatelem definovaná hodnota)
-- Popis aktiviy
+- Popis aktivity
   
 ### Projekt
 - Název
@@ -63,9 +63,9 @@ Pro uložení zvolte [SQL Server Express LocalDB](https://docs.microsoft.com/en-
   - Uživatel může **filtrovat** aktivity uživatelsky přívětivě bez zadávání datumu za poslední týden, měsíc, předcházející měsíc a rok.
   - Uživatel může vykonávat pouze jednu aktivitu v jeden čas. Tedy, zaznamenané aktivity se nesmí překrývat.
 
-> :warning: **Dobře se zamyslete jak budete implementovat aktivity!**: Uvědomte si, že uživatel nemůže vykonávat duplicitní aktivitu ve stejný čas. Při vytváření/editaci je nutné ověřit, že nově přidaný záznam je nekolizní.
+> :warning: **Dobře se zamyslete jak budete implementovat aktivity!** Uvědomte si, že uživatel nemůže vykonávat duplicitní aktivitu ve stejný čas. Při vytváření/editaci je nutné ověřit, že nově přidaný záznam je nekolizní.
  
-> :warning: **Důrazně doporučujeme vyhnout se autentizaci/autorizaci** Bude postačovat, když při spuštění aplikace nabídnete možnost zvolit si identitu ze seznamu uživatelů. Pokud se rozhodnete implementovat autentizaci/autorizaci jako rozšíření, vystavujete se bodové penalizaci v případě, že nebudete dbát běžně zaužívaných standardních prvků bezpečnosti. 
+> :warning: **Důrazně doporučujeme vyhnout se autentizaci/autorizaci.** Bude postačovat, když při spuštění aplikace nabídnete možnost zvolit si identitu ze seznamu uživatelů. Pokud se rozhodnete implementovat autentizaci/autorizaci jako rozšíření, vystavujete se bodové penalizaci v případě, že nebudete dbát běžně zaužívaných standardních prvků bezpečnosti. 
 
 ---
 ## Architektura projektu
@@ -102,7 +102,7 @@ Využijte možnost automatizovaných buildů spojených s otestováním Vámi pr
 
 ---
 ### Konvence
-Pro zajištění konzistence kódu, který produkujete je závázné respektovat následující body:
+Pro zajištění konzistence kódu, který produkujete je závazné respektovat následující body:
 * EN_US je základním jazykem použitým pro pojmenování identifikátorů, tříd, atd... Jiné národní jazyky nejsou povoleny.
 * EN_US je základním jazykem použitým pro psaní komentářů. Jiné národní jazyky nejsou povoleny.
 * Dodržujte zásady CleanCode probírané na přednáškách. K zajištění konzistence můžete využít `.editorconfig` konfigurovaný dle domluvy ve Vašem týmu. Není vhodné, aby Vám IDE při odevzdání hlásilo nekonzistence s Vámi zvolenými politikami. 
@@ -117,13 +117,13 @@ Pro zajištění konzistence kódu, který produkujete je závázné respektovat
 # Odevzdávání
 Odevzdávání projektu má **3 fáze**. V každé fázi se hodnotí jiné vlastnosti projektu. Nicméně, fáze na sebe navazují a v následující fázi pokračujete v práci na svém kódu.
 
-**Kontroluje se kód, který je nahrán v GIT** ve větvi `master` nebo `main`. Vždy se kontroluje **poslední commit před časem odevzdávání** dané fáze projektu. Na commity nahrány po času odevzdávání nebo v jiných větvích nebude brán zřetel. Commit, který máme hodnotit otagujte (`review1, review2, review3`), čímž nám usnadníte orietaci při hodnocení.
+**Kontroluje se kód, který je nahrán v GIT** ve větvi `master` nebo `main`. Vždy se kontroluje **poslední commit před časem odevzdávání** dané fáze projektu. Na commity nahrány po času odevzdávání nebo v jiných větvích nebude brán zřetel. Commit, který máme hodnotit otagujte (`review1, review2, review3`), čímž nám usnadníte orientaci při hodnocení.
 
 > :warning: **Je povoleno převzít kód z libovolného zdroje vyjma kódu projektů ostatních týmů**. Převzatý kód vyznačte komentářem a uveďte zdroj. **Kódu musíte rozumět a být schopni při obhajobě objasnit jeho funkci.**
 
 Je silně doporučováno projekty v průběhu semestru konzultovat (ideálně po cvičení, nebo si dohodnout termín konzultace emailem), předejdete tak případným komplikacím při odevzdání.
 
-Pokud se **týmově** rozhodnete, že všichni členové nepřispěli rovnoměrně k vypracování projektu. Přidejte do kořene repozitáře textový soubor s názvem **ROZDELENI.txt**, ve kterém uveďte loginy všech členů týmu a poměrné rozdělení bodů v procentech (struktura není pevně daná). V případě, že soubor nepřiložíte nebo nebude srozumitelný tak implicitně uvažujeme rovnoměrné rozdělení bodů. Pro rovnoměrné rozložení bodů je tedy zbytečné soubor přikládat. **Tento soubor se bere v potaz až při finální obhajobě projektu, kdy je třeba na jeho existenci upozornit a okomentovat ono bodové rozdělení.**
+Pokud se **týmově** rozhodnete, že všichni členové nepřispěli rovnoměrně k vypracování projektu. Přidejte do kořene repositáře textový soubor s názvem **ROZDELENI.txt**, ve kterém uveďte loginy všech členů týmu a poměrné rozdělení bodů v procentech (struktura není pevně daná). V případě, že soubor nepřiložíte nebo nebude srozumitelný tak implicitně uvažujeme rovnoměrné rozdělení bodů. Pro rovnoměrné rozložení bodů je tedy zbytečné soubor přikládat. **Tento soubor se bere v potaz až při finální obhajobě projektu, kdy je třeba na jeho existenci upozornit a okomentovat ono bodové rozdělení.**
  
 ---
 ### Fáze 1 – objektový návrh, databáze 
@@ -135,23 +135,23 @@ Abyste si vazby dokázali představit, vytvořte již v tuto chvíli DAL projekt
 
 Pro zajištění vzájemného pochopení všemi členy týmu budeme nově také požadovat vytvoření **wirefame** na všechny pohledy (opět libovolný nástroj či ručně kreslené), které ve vaší výsledné aplikaci chcete implementovat. Tyto wireframy nebudou závazné, ale umožní Vám ihned na začátku vzájemně komunikovat představy o výsledné podobě aplikace. TIP: Při tvorbě wireframe zjistíte, jaká data budete potřebovat a navrhnete korektně nejen vazby v Entitní vrstvě, ale také Modely BL vrstvy, jejichž rozmyšlení jistě oceníte v druhém odevzdání.
 
-ER diagram a wireframy umístěte do kořene repozitáře do adresáře **docs**. Formát souborů zvolte tak, aby se daly otevřít rozumným způsobem bez nutnosti instalace specifických nástrojů přímo v prostředí Azure DevOps. Ideální je obrázek ve formátu png, jpeg, svg, pdf...
+ER diagram a wireframy umístěte do kořene repositáře do adresáře **docs**. Formát souborů zvolte tak, aby se daly otevřít rozumným způsobem bez nutnosti instalace specifických nástrojů přímo v prostředí Azure DevOps. Ideální je obrázek ve formátu png, jpeg, svg, pdf...
 
 Hodnotíme:
 -   logický návrh tříd
 -   využití abstrakce, zapouzdření, polymorfismu - kde to bude dávat smysl a eliminuje duplicity
 -   verzování v GITu po logických částech
--   logické rozšíření datového návrhu nad rámec zadání (bonusové body) - toto rozšíření ovšem zvažte; často se stává, že si tím založíte na spoustu komplikací v pozdějších fázích; body za rozšíření dostanete až u obhajoby pokud je naimplementujete kompletně do výsledné aplikace
+-   logické rozšíření datového návrhu nad rámec zadání (bonusové body) - toto rozšíření ovšem zvažte; často se stává, že si tím založíte na spoustu komplikací v pozdějších fázích; body za rozšíření dostanete až u obhajoby, pokud je naimplementujete kompletně do výsledné aplikace
 -   generovaný ER diagram (logickou strukturu)
 -   Wireframy (logickou strukturu, uživatelskou přívětivost, ne kvalitu grafického zpracování)
 -   využití **Entity Framework Core - Code First** přístupu na vytvoření databáze z entitních tříd
 -   existenci databázových migrací (alespoň InitialMigration)
 
 ---
-### Fáze 2 – repozitáře a mapování
+### Fáze 2 – repositáře a mapování
 Vytvořte napojení modelů/DTO tříd pomocí Entity Frameworku na databázi. 
 
-Vytvořte tedy repozitářovou (Repository) vrstvu, která zapouzdří databázové entity a Fasádu, která zpřístupní pouze data přemapovaná do modelů/DTO. **Inspirujte se ve cvičeních anebo vytvořte vlastní infrastrukturu**.
+Vytvořte tedy repositářovou (Repository) vrstvu, která zapouzdří databázové entity a Fasádu, která zpřístupní pouze data přemapovaná do modelů/DTO. **Inspirujte se ve cvičeních anebo vytvořte vlastní infrastrukturu**.
 
 Protože nemáte zatím UI, funkčnost aplikace ověřte automatizovanými testy! Kde to dává logický smysl tvořte **UnitTesty**, pro propojení s databází vytvářejte **Integrační testy**. Doporučujeme použití testovacího frameworku **xUnit**.
 
@@ -159,10 +159,10 @@ Dbejte kvality Vašeho kódu! Opravte si kód odevzdaný v předchozí fázi dle
 
 Hodnotíme:
 - opravení chyb a zapracování připomínek, které jsme vám dali v rámci hodnocení fáze 1
-- návrh a funkčnost repozitářů
+- návrh a funkčnost repositářů
 - návrh a funkčnost fasád
 - čistotu kódu
-- pokrytí aplikace testy - ukážete tím, že repozitáře opravdu fungují
+- pokrytí aplikace testy - ukážete tím, že repositáře opravdu fungují
 - dejte pozor na zapouzdření databázových entit pod vrstvou fasád, která je nepropaguje výše, ale přemapovává na modely/DTO
 - funkční build v Azure DevOps
 - výsledek testů v Azure DevOps po buildu
