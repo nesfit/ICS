@@ -5,15 +5,11 @@
     <TargetFramework>net6.0</TargetFramework>
     <nullable>enable</nullable>
     <AnalysisLevel>latest</AnalysisLevel>
-    <RootNamespace>Calculator.App</RootNamespace>
+    <RootNamespace>Exercise_01.ConsoleApp</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.8.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\CalculatorUtils\Calculator.Utils.csproj" />
+    <ProjectReference Include="..\Calculator.Utils\Calculator.Utils.csproj" />
   </ItemGroup>
 
 </Project>

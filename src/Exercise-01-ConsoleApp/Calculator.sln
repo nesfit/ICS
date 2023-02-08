@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator.App", "CalculatorConsoleApp\Calculator.App.csproj", "{9ACC3AB0-0800-4643-A2A6-A6BC9C586990}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator.App", "Calculator.Console.App\Calculator.App.csproj", "{9ACC3AB0-0800-4643-A2A6-A6BC9C586990}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator.Utils", "CalculatorUtils\Calculator.Utils.csproj", "{921F21D4-9321-4AD8-8E0C-9B53EAC9370F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator.Utils", "Calculator.Utils\Calculator.Utils.csproj", "{921F21D4-9321-4AD8-8E0C-9B53EAC9370F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator.Utils.Tests", "CalculatorUtilsTests\Calculator.Utils.Tests.csproj", "{1A46B613-9C77-4898-B346-849804CB9046}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator.Utils.Tests", "Calculator.Utils.Tests\Calculator.Utils.Tests.csproj", "{1A46B613-9C77-4898-B346-849804CB9046}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
