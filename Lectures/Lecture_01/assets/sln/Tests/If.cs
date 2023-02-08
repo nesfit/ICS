@@ -1,5 +1,7 @@
 using Xunit;
 
+#pragma warning disable CS0162 // Unreachable code detected
+
 namespace Tests
 {
     public class If
