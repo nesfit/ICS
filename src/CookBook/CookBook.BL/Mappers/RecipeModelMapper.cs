@@ -5,11 +5,11 @@ namespace CookBook.BL.Mappers;
 
 public class RecipeModelMapper : ModelMapperBase<RecipeEntity, RecipeListModel, RecipeDetailModel>, IRecipeModelMapper
 {
-    private readonly IIngredientAmountModelMapper ingredientAmountModelMapper;
+    private readonly IIngredientAmountModelMapper _ingredientAmountModelMapper;
 
     public RecipeModelMapper(IIngredientAmountModelMapper ingredientAmountModelMapper)
     {
-        this.ingredientAmountModelMapper = ingredientAmountModelMapper;
+        this._ingredientAmountModelMapper = ingredientAmountModelMapper;
     }
 
     public override RecipeListModel MapToListModel(RecipeEntity? entity)
@@ -35,7 +35,7 @@ public class RecipeModelMapper : ModelMapperBase<RecipeEntity, RecipeListModel, 
                 Duration = entity.Duration,
                 FoodType = entity.FoodType,
                 ImageUrl = entity.ImageUrl,
-                Ingredients = ingredientAmountModelMapper.MapToListModel(entity.Ingredients)
+                Ingredients = _ingredientAmountModelMapper.MapToListModel(entity.Ingredients)
                     .ToObservableCollection(),
             };
 

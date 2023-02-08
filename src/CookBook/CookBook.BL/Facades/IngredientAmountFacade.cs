@@ -10,21 +10,21 @@ namespace CookBook.BL.Facades;
 
 public class IngredientAmountFacade : FacadeBase<IngredientAmountEntity, IngredientAmountListModel, IngredientAmountDetailModel, IngredientAmountEntityMapper>, IIngredientAmountFacade
 {
-    private readonly IIngredientAmountModelMapper ingredientAmountModelMapper;
+    private readonly IIngredientAmountModelMapper _ingredientAmountModelMapper;
 
     public IngredientAmountFacade(
         IUnitOfWorkFactory unitOfWorkFactory,
         IIngredientAmountModelMapper ingredientAmountModelMapper)
         : base(unitOfWorkFactory, ingredientAmountModelMapper)
     {
-        this.ingredientAmountModelMapper = ingredientAmountModelMapper;
+        this._ingredientAmountModelMapper = ingredientAmountModelMapper;
     }
 
     public async Task SaveAsync(IngredientAmountListModel model, Guid recipeId)
     {
-        var entity = ingredientAmountModelMapper.MapToEntity(model, recipeId);
+        var entity = _ingredientAmountModelMapper.MapToEntity(model, recipeId);
 
-        await using var uow = unitOfWorkFactory.Create();
+        await using var uow = UnitOfWorkFactory.Create();
         var repository = uow.GetRepository<IngredientAmountEntity, IngredientAmountEntityMapper>();
 
         if (repository.Exists(entity))
@@ -36,14 +36,14 @@ public class IngredientAmountFacade : FacadeBase<IngredientAmountEntity, Ingredi
 
     public async Task<IngredientAmountDetailModel> SaveAsync(IngredientAmountDetailModel model, Guid recipeId)
     {
-        var entity = ingredientAmountModelMapper.MapToEntity(model, recipeId);
+        var entity = _ingredientAmountModelMapper.MapToEntity(model, recipeId);
 
-        await using var uow = unitOfWorkFactory.Create();
+        await using var uow = UnitOfWorkFactory.Create();
         var repository = uow.GetRepository<IngredientAmountEntity, IngredientAmountEntityMapper>();
 
         repository.Insert(entity);
         await uow.CommitAsync();
 
-        return modelMapper.MapToDetailModel(entity);
+        return ModelMapper.MapToDetailModel(entity);
     }
 }

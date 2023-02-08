@@ -17,74 +17,74 @@ public abstract class FacadeBase<TEntity, TListModel, TDetailModel, TEntityMappe
         where TDetailModel : class, IModel
         where TEntityMapper : IEntityMapper<TEntity>, new()
 { 
-    protected readonly IModelMapper<TEntity, TListModel, TDetailModel> modelMapper;
-    protected readonly IUnitOfWorkFactory unitOfWorkFactory;
+    protected readonly IModelMapper<TEntity, TListModel, TDetailModel> ModelMapper;
+    protected readonly IUnitOfWorkFactory UnitOfWorkFactory;
 
-    protected virtual string includesNavigationPathDetail => string.Empty;
+    protected virtual string IncludesNavigationPathDetail => string.Empty;
 
     protected FacadeBase(
         IUnitOfWorkFactory unitOfWorkFactory,
         IModelMapper<TEntity, TListModel, TDetailModel> modelMapper)
     {
-        this.unitOfWorkFactory = unitOfWorkFactory;
-        this.modelMapper = modelMapper;
+        this.UnitOfWorkFactory = unitOfWorkFactory;
+        this.ModelMapper = modelMapper;
     }
 
     public async Task DeleteAsync(Guid id)
     {
-        await using var uow = unitOfWorkFactory.Create();
+        await using var uow = UnitOfWorkFactory.Create();
         uow.GetRepository<TEntity, TEntityMapper>().Delete(id);
         await uow.CommitAsync().ConfigureAwait(false);
     }
 
     public virtual async Task<TDetailModel?> GetAsync(Guid id)
     {
-        await using var uow = unitOfWorkFactory.Create();
+        await using var uow = UnitOfWorkFactory.Create();
 
         var query = uow.GetRepository<TEntity, TEntityMapper>().Get();
 
-        if (string.IsNullOrWhiteSpace(includesNavigationPathDetail) is false)
+        if (string.IsNullOrWhiteSpace(IncludesNavigationPathDetail) is false)
         {
-            query = query.Include(includesNavigationPathDetail);
+            query = query.Include(IncludesNavigationPathDetail);
         }
 
         var entity = await query.SingleOrDefaultAsync(e => e.Id == id);
 
         return entity is null
             ? null
-            : modelMapper.MapToDetailModel(entity);
+            : ModelMapper.MapToDetailModel(entity);
     }
 
     public virtual async Task<IEnumerable<TListModel>> GetAsync()
     {
-        await using var uow = unitOfWorkFactory.Create();
+        await using var uow = UnitOfWorkFactory.Create();
         var entities = uow
             .GetRepository<TEntity, TEntityMapper>()
             .Get()
             .ToList();
 
-        return modelMapper.MapToListModel(entities);
+        return ModelMapper.MapToListModel(entities);
     }
 
     public virtual async Task<TDetailModel> SaveAsync(TDetailModel model)
     {
         TDetailModel result;
 
-        var entity = modelMapper.MapToEntity(model);
+        var entity = ModelMapper.MapToEntity(model);
 
-        var uow = unitOfWorkFactory.Create();
+        var uow = UnitOfWorkFactory.Create();
         var repository = uow.GetRepository<TEntity, TEntityMapper>();
 
         if (repository.Exists(entity))
         {
             var updatedEntity = repository.Update(entity);
-            result = modelMapper.MapToDetailModel(updatedEntity);
+            result = ModelMapper.MapToDetailModel(updatedEntity);
         }
         else
         {
             entity.Id = Guid.NewGuid();
             var insertedEntity = repository.Insert(entity);
-            result = modelMapper.MapToDetailModel(insertedEntity);
+            result = ModelMapper.MapToDetailModel(insertedEntity);
         }
 
         await uow.CommitAsync();

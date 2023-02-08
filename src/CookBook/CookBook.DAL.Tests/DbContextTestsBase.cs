@@ -18,7 +18,7 @@ public class  DbContextTestsBase : IAsyncLifetime
         
         // DbContextFactory = new DbContextTestingInMemoryFactory(GetType().Name, seedTestingData: true);
         // DbContextFactory = new DbContextLocalDBTestingFactory(GetType().FullName!, seedTestingData: true);
-        DbContextFactory = new DbContextSQLiteTestingFactory(GetType().FullName!, seedTestingData: true);
+        DbContextFactory = new DbContextSqLiteTestingFactory(GetType().FullName!, seedTestingData: true);
         
         CookBookDbContextSUT = DbContextFactory.CreateDbContext();
     }

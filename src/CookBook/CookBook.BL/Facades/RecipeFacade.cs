@@ -8,7 +8,7 @@ namespace CookBook.BL.Facades;
 
 public class RecipeFacade : FacadeBase<RecipeEntity, RecipeListModel, RecipeDetailModel, RecipeEntityMapper>, IRecipeFacade
 {
-    protected override string includesNavigationPathDetail => $"{nameof(RecipeEntity.Ingredients)}.{nameof(IngredientAmountEntity.Ingredient)}";
+    protected override string IncludesNavigationPathDetail => $"{nameof(RecipeEntity.Ingredients)}.{nameof(IngredientAmountEntity.Ingredient)}";
 
     public RecipeFacade(
         IUnitOfWorkFactory unitOfWorkFactory,

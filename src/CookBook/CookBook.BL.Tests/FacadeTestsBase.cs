@@ -29,7 +29,7 @@ public class FacadeTestsBase : IAsyncLifetime
         IngredientAmountModelMapper = new IngredientAmountModelMapper();
         RecipeModelMapper = new RecipeModelMapper(IngredientAmountModelMapper);
 
-        DbContextFactory = new DbContextSQLiteTestingFactory(GetType().FullName!, seedTestingData: true);
+        DbContextFactory = new DbContextSqLiteTestingFactory(GetType().FullName!, seedTestingData: true);
 
         UnitOfWorkFactory = new UnitOfWorkFactory(DbContextFactory);
     }
