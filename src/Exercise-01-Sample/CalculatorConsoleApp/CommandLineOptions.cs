@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Calculator.Utils;
 using CommandLine;
-using Calculator.Utils;
 
 namespace Calculator.App;
 

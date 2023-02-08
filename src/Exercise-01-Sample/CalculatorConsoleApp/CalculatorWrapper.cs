@@ -7,11 +7,11 @@ internal static class CalculatorWrapper
 {
     internal static void Calculate(CommandLineOptions options)
     {
-        var op1 = CheckOperand(options.First);
-        var op2 = CheckOperand(options.Second);
-        var operation = CheckOperation(options.Operation);
+        int op1 = CheckOperand(options.First);
+        int op2 = CheckOperand(options.Second);
+        MathOperation operation = CheckOperation(options.Operation);
 
-        var result = ExecuteOperation(op1, op2, operation);
+        int? result = ExecuteOperation(op1, op2, operation);
 
         if (result is not null)
         {
@@ -22,7 +22,9 @@ internal static class CalculatorWrapper
     private static int CheckOperand(int? operand)
     {
         if (operand == null)
+        {
             throw new ArgumentNullException(nameof(operand), "Operand cannot be null!");
+        }
 
         return operand.Value;
     }
@@ -30,7 +32,9 @@ internal static class CalculatorWrapper
     private static MathOperation CheckOperation(MathOperation? operation)
     {
         if (operation == null)
+        {
             throw new ArgumentNullException(nameof(operation), "Operation cannot be null!");
+        }
 
         return operation.Value;
     }
@@ -40,7 +44,6 @@ internal static class CalculatorWrapper
         try
         {
             return Utils.Calculator.Calculate(op1, op2, operation);
-
         }
         catch (Exception ex)
         {
@@ -49,6 +52,6 @@ internal static class CalculatorWrapper
         }
     }
 
-    private static void PublishResult(int op1, int op2, MathOperation operation, int result) 
+    private static void PublishResult(int op1, int op2, MathOperation operation, int result)
         => Console.WriteLine($"{op1}{operation.GetDescription()}{op2}={result}");
 }

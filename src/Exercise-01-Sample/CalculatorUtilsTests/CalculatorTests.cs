@@ -1,5 +1,4 @@
 using System;
-using Calculator.Utils;
 using Xunit;
 
 namespace Calculator.Utils.Tests;
@@ -13,7 +12,7 @@ public class CalculatorTests
     [InlineData(int.MinValue, int.MaxValue, -1)]
     public void Add_CorrectResult(int operand1, int operand2, int expectedResult)
     {
-        var computedResult = Calculator.Add(operand1, operand2);
+        int computedResult = Calculator.Add(operand1, operand2);
         Assert.Equal(expectedResult, computedResult);
     }
 
@@ -35,15 +34,13 @@ public class CalculatorTests
     [InlineData(MathOperation.Multiplication, int.MinValue, int.MaxValue, int.MinValue)]
     public void Calculate_CorrectResult(MathOperation mathOperation, int operand1, int operand2, int expectedResult)
     {
-        var computedResult = Calculator.Calculate(operand1, operand2, mathOperation);
+        int computedResult = Calculator.Calculate(operand1, operand2, mathOperation);
         Assert.Equal(expectedResult, computedResult);
     }
 
     [Fact]
-    public void Calculate_Division_ByZero_Throws()
-    {
+    public void Calculate_Division_ByZero_Throws() =>
         Assert.Throws<DivideByZeroException>(() => Calculator.Calculate(1, 0, MathOperation.Division));
-    }
 
     [Theory]
     [InlineData(1, 1, 0)]
@@ -52,7 +49,7 @@ public class CalculatorTests
     [InlineData(int.MinValue, int.MaxValue, 1)]
     public void Subtract_CorrectResult(int operand1, int operand2, int expectedResult)
     {
-        var computedResult = Calculator.Subtract(operand1, operand2);
+        int computedResult = Calculator.Subtract(operand1, operand2);
         Assert.Equal(expectedResult, computedResult);
     }
 
@@ -62,15 +59,12 @@ public class CalculatorTests
     [InlineData(int.MinValue, int.MaxValue, -1)]
     public void Divide_CorrectResult(int operand1, int operand2, int expectedResult)
     {
-        var computedResult = Calculator.Divide(operand1, operand2);
+        int computedResult = Calculator.Divide(operand1, operand2);
         Assert.Equal(expectedResult, computedResult);
     }
 
     [Fact]
-    public void Divide_ByZero_Throws()
-    {
-        Assert.Throws<DivideByZeroException>(() => Calculator.Divide(1, 0));
-    }
+    public void Divide_ByZero_Throws() => Assert.Throws<DivideByZeroException>(() => Calculator.Divide(1, 0));
 
     [Theory]
     [InlineData(1, 1, 1)]
@@ -79,7 +73,7 @@ public class CalculatorTests
     [InlineData(int.MinValue, int.MaxValue, int.MinValue)]
     public void Multiply_CorrectResult(int operand1, int operand2, int expectedResult)
     {
-        var computedResult = Calculator.Multiply(operand1, operand2);
+        int computedResult = Calculator.Multiply(operand1, operand2);
         Assert.Equal(expectedResult, computedResult);
     }
 }

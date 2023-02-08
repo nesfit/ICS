@@ -23,7 +23,10 @@ internal static class CodeDemonstrations
     /// </summary>
     public static void RunForLoop()
     {
-        for (var i = 0; i < 10; i++) Console.WriteLine("For: {0}", i);
+        for (int i = 0; i < 10; i++)
+        {
+            Console.WriteLine($"For: {i}");
+        }
     }
 
     /// <summary>
@@ -31,7 +34,7 @@ internal static class CodeDemonstrations
     /// </summary>
     public static void RunWhileLoop()
     {
-        var index = 0;
+        int index = 0;
 
         while (index < 11)
         {
@@ -47,9 +50,13 @@ internal static class CodeDemonstrations
     {
         // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
         if (condition > 3)
+        {
             Console.WriteLine("condition is greater than 3");
+        }
         else
+        {
             Console.WriteLine("condition is not greater than 3");
+        }
     }
 
     /// <summary>
@@ -61,7 +68,7 @@ internal static class CodeDemonstrations
     {
         const int operand1 = 1;
         const int operand2 = 2;
-        var sum = Calculator.Calculate(operand1, operand2, MathOperation.Addition);
+        int sum = Calculator.Utils.Calculator.Calculate(operand1, operand2, MathOperation.Addition);
         Console.WriteLine($"{operand1}+{operand2}={sum}");
     }
 
@@ -73,8 +80,8 @@ internal static class CodeDemonstrations
         try
         {
             Console.WriteLine("Waiting for input (number)...");
-            var input = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Input: {0}", input);
+            int input = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine($"Input: {input}");
         }
         catch (FormatException exception)
         {

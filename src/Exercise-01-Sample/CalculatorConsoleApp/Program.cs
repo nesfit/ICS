@@ -5,21 +5,16 @@ namespace Calculator.App;
 
 internal static class Program
 {
-    internal static void LogException(Exception exception)
-    {
+    internal static void LogException(Exception exception) =>
         Console.WriteLine($"Exception occurred: {exception.Message}");
-    }
 
-    internal static void LogMessage(string message)
-    {
-        Console.WriteLine(message);
-    }
+    internal static void LogMessage(string message) => Console.WriteLine(message);
 
     internal static void Main(string[]? args)
     {
         args ??= Array.Empty<string>();
 
-        var parser = new Parser(with =>
+        Parser parser = new(with =>
         {
             with.EnableDashDash = true;
             with.HelpWriter = Console.Error;
