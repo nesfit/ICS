@@ -1,4 +1,4 @@
----
+<!-- ---
 title: ICS 00 - ICS Organization
 theme: simple
 css: _reveal-md/theme.css
@@ -11,7 +11,7 @@ mouseWheel: false
 enableMenu: true
 enableChalkboard: true
 enableTitleFooter: true
----
+--- -->
 
 # Seminář C# - ICS, Organizační pokyny
 
