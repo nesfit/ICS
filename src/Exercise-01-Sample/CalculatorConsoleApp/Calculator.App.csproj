@@ -5,7 +5,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <nullable>enable</nullable>
     <AnalysisLevel>latest</AnalysisLevel>
-    <RootNamespace>Exercise_01.CalculatorConsoleApp</RootNamespace>
+    <RootNamespace>Calculator.App</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CalculatorUtils\CalculatorUtils.csproj" />
+    <ProjectReference Include="..\CalculatorUtils\Calculator.Utils.csproj" />
   </ItemGroup>
 
 </Project>

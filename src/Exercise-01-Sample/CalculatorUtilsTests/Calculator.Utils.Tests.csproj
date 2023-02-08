@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>Exercise_01.CalculatorUtilsTests</RootNamespace>
+    <RootNamespace>Calculator.Utils.Tests</RootNamespace>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CalculatorUtils\CalculatorUtils.csproj" />
+    <ProjectReference Include="..\CalculatorUtils\Calculator.Utils.csproj" />
   </ItemGroup>
 
 </Project>

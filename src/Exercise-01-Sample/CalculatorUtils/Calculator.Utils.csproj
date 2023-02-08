@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <nullable>enable</nullable>
     <AnalysisLevel>latest</AnalysisLevel>
-    <RootNamespace>Exercise_01.CalculatorUtils</RootNamespace>
+    <RootNamespace>Calculator.Utils</RootNamespace>
   </PropertyGroup>
 
 </Project>

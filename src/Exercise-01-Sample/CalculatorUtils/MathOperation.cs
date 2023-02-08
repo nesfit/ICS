@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel;
 
-namespace Exercise_01.CalculatorUtils
+namespace Calculator.Utils;
+
+public enum MathOperation
 {
-    public enum MathOperation
-    {
-        [Description("+")] Addition,
-        [Description("-")] Subtraction,
-        [Description("*")] Multiplication,
-        [Description("/")] Division
-    }
+    [Description("+")] Addition,
+    [Description("-")] Subtraction,
+    [Description("*")] Multiplication,
+    [Description("/")] Division
 }
