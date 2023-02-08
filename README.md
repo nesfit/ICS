@@ -13,7 +13,6 @@ enableChalkboard: true
 enableTitleFooter: true
 ---
 
-
 # Seminář C# - ICS, Organizační pokyny
 
 ---
@@ -47,7 +46,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 |        | E01 | Jan Pluskal     | Práce s Visual Studio 2022, debugování a Azure DevOps založení projektu (základy pro zracování projektu)                                                                                                                                                                                     |
 | 16.02. | L02 | Jan Pluskal     | [Úvod do Objektově Orientovaného Programování](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/?print-pdf))                                                                                                |
 |        | E02 | Jan Pluskal     | Objektově orientované programování a úvod do Entity Framework                                                                                                                                                                                                                                |
-| 23.02. | L03 |                 | [Představení základních knihovních funkcí (BCL)](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/) - dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/?print-pdf)) |
+| 23.02. | L03 | Tibor Jašek     | [Představení základních knihovních funkcí (BCL)](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/) - dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/?print-pdf)) |
 | 02.03. | L04 | Jan Pluskal     | [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/?print-pdf))                                                                                                               |
 |        | E03 | Jan Pluskal     | Entity framework                                                                                                                                                                                                                                                                             |
 | 05.03. | P01 |                 | **Odevzdání první fáze projektu**                                                                                                                                                                                                                                                            |
@@ -70,9 +69,17 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 |          | E06 | Jan Pluskal  | Takto můžete napsat projekt?!                                                                                                                                                                                                                          |
 | 27.04.   | L12 | Martin Dybal | Návrhové vzory - vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#                                                                                                                                                                    |
 | 02-03.05 | P03 |              | **Obhajoby projektu**                                                                                                                                                                                                                                  |
-| 04.05.   | L13 | Jan Pluskal  |                                                                                                                                                                                                                                                        |
+| 04.05.   | L13 |              | Téma bude doplněno                                                                                                                                                                                                                                     |
 
 LXY - přednáška | EXY - democvičení | P0X - projekt
+
+---
+
+# Výuka - bodové rozdělení
+
+| Typ výuky | Maximální bodový zisk |
+| --------- | --------------------- |
+| Projekt   | 100                   |
 
 ---
 
@@ -96,36 +103,20 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 
 | Nástroj                                                                                            | Typ                | Popis                                                                                                                             |
 | -------------------------------------------------------------------------------------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
-| [Visual Studio 2022](https://aka.ms/devtoolsforteaching)                                           | Samostatný program | Hlavní vývojové prostředí pro .Net                                                                                                |
+| [Visual Studio 2022](https://aka.ms/devtoolsforteaching)                                           | IDE                | Hlavní vývojové prostředí pro .Net                                                                                                |
 | [Resharper](https://www.jetbrains.com/resharper/)                                                  | Doplněk            | Nástroje na lepší produktivitu, refaktorování. Studentská licence je k dispozici zdarma [zde](https://www.jetbrains.com/student/) |
 | [LinqPad](http://www.linqpad.net/)                                                                 | Samostatný program | Nástroj na přístup do databáze přes Linq, SQL…                                                                                    |
 | [DotPeek](https://www.jetbrains.com/decompiler/)                                                   | Samostatný program | Dekompilátor C# kódu                                                                                                              |
 | [EF Core Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools) | Doplněk            | Přidává funkcionalitu k DbContext jako je např. generování ER diagramů.                                                           |
-| [Roslynator](https://github.com/JosefPihrt/Roslynator)                                             | Analyzér, Doplněk  | Open-source alternativa k Resharper postavená nad Roslyn.                                                                         |
 
 ---
 
-* Q: Connection string používaný v cvičeních.
-* A:
+# Další zajímavé nástroje
 
-```XML
-<connectionStrings>
-  <add name="TasksContext"
-       connectionString="Data Source=(LocalDB)\MSSQLLocalDB;
-                         Initial Catalog=TasksDB;
-                         MultipleActiveResultSets=True;
-                         Integrated Security=True;"
-           providerName="System.Data.SqlClient" />
-</connectionStrings>
-```
-
----
-
-# Výuka - bodové rozdělení
-
-| Typ výuky | Maximální bodový zisk |
-| --------- | --------------------- |
-| Projekt   | 100                   |
+| Nástroj                                                | Typ               | Popis                                                     |
+| ------------------------------------------------------ | ----------------- | --------------------------------------------------------- |
+| [Rider](https://www.jetbrains.com/rider/)              | IDE               | Vývojové prostředí od JetBrains.                          |
+| [Roslynator](https://github.com/JosefPihrt/Roslynator) | Analyzér, Doplněk | Open-source alternativa k Resharper postavená nad Roslyn. |
 
 ---
 
@@ -137,6 +128,7 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 * [Michal Tichý]()
 * [Jan Pluskal](https://www.fit.vut.cz/person/ipluskal)
 * [Michal Koutenský](https://www.fit.vut.cz/person/koutenmi)
+* [Daniel Dolejška](https://www.fit.vut.cz/person/dolejska)
 
 ---
 
