@@ -1,4 +1,4 @@
----
+<!-- ---
 title: ICS 00 - ICS Organization
 theme: simple
 css: _reveal-md/theme.css
@@ -11,7 +11,7 @@ mouseWheel: false
 enableMenu: true
 enableChalkboard: true
 enableTitleFooter: true
----
+--- -->
 
 # Seminář C# - ICS, Organizační pokyny
 
@@ -51,7 +51,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 |        | E03 | Jan Pluskal     | Entity framework                                                                                                                                                                                                                                                                             |
 | 05.03. | P01 |                 | **Odevzdání první fáze projektu**                                                                                                                                                                                                                                                            |
 | 09.03. | L05 | Martin Dybal    | Psaní čistého a udržovatelného kódu                                                                                                                                                                                                                                                          |
-| 16.03. | L06 | Michal Tichý    | Automatizované testování - práce s xUnit, CI  (MVVM)                                                                                                                                                                                                                                         |
+| 16.03. | L06 | Michal Tichý    | Automatizované testování - práce s xUnit, CI                                                                                                                                                                                                                                                 |
 | 23.03. | L07 | Michal Mrnuštík | Návrhový vzor Model-View-ViewModel                                                                                                                                                                                                                                                           |
 
 +++
