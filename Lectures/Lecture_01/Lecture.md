@@ -76,11 +76,11 @@ enableTitleFooter: true
 
 * Extensions:
   * **Resharper**
-  * **Code metrices**
   * **Markdown Editor**
   * EF Core Power Tools
-  * GitFlow
-  * Mnemonic templates
+  * ~~Code Metrices~~
+  * ~~GitFlow~~
+  * ...
 * Tools & Services:
   * **LinqPad**
   * DotPeek
@@ -138,13 +138,21 @@ For more details see [features](https://www.jetbrains.com/resharper/features/).
 +++
 ### [Code Metrices](https://marketplace.visualstudio.com/items?itemName=Elisha.CodeMetrices)
 
+<div class="left">
+
 Visual Studio extension that helps to monitor the code complexity.
 As you type, the method complexity "health" is updated, and the complexity is shown near the method.
 
 **Only Visual Studio 2019** - submit PR if you find some usable for 2022!
 
+</div>
 
-![Azure-DevOps](assets/img/code_metrices.jpg)
+<div class="right">
+
+<img src="assets/img/code_metrices.jpg" width="90%" style="margin-left: 10px;" />
+
+</div>
+
 
 +++
 ### [Mnemonic templates](https://github.com/JetBrains/mnemonics)
@@ -244,7 +252,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
   * and server side template rendering.
 
 ![](assets/img/Performance.png)
-[Source](https://www.techempower.com/benchmarks/#section=data-r16&hw=ph&test=plaintext)
+[Source](https://www.techempower.com/benchmarks/#section=data-r16&hw=ph&test=composite)
 
 +++
 ### Security
@@ -265,9 +273,10 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 * [.NET Core](https://github.com/dotnet/core)
 * [.NET Runtime/CoreFX](https://github.com/dotnet/runtime)
 * [ASP.NET Core](https://github.com/dotnet/aspnetcore)
-* [.NET Standard](https://github.com/dotnet/standard)
 * [EF Core](https://github.com/dotnet/efcore)
 * [WPF](https://github.com/dotnet/wpf)
+* [MAUI](https://github.com/dotnet/maui)* 
+* [.NET Standard (archived)](https://github.com/dotnet/standard)
 * [Reference Source - .NET Framework (readonly)](https://github.com/microsoft/referencesource)
 * Independent, Innovative, Commercially-friendly
 * Google, JetBrains, Red Hat, Samsung, Unity...
@@ -1090,9 +1099,9 @@ Expression<Action> tree = () => Console.WriteLine("Hello");
 Expression<Action> tree2 = () => { Console.WriteLine("Hello"); }; // Compile-time error
 ```
 
-* [An expression may be classified as] "nothing".
+* An expression may be classified as "nothing".
   * This occurs when the expression is an *invocation of a method with a return type of void*.
-  * An expression classified as nothing *is only valid in the context of a statement expression*.
+* An expression classified as nothing *is only valid in the context of a statement expression*.
 
 +++
 ### Assigning expression
