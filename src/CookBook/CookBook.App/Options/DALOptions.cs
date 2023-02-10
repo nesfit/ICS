@@ -3,5 +3,5 @@
 public record DALOptions
 {
     public string ConnectionString { get; init; } = null!;
-    public bool SkipMigrationAndSeedDemoData { get; }
+    public bool SkipMigrationAndSeedDemoData { get; init; } = false;
 }
