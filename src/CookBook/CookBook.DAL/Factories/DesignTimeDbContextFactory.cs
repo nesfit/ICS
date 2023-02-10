@@ -15,7 +15,9 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<CookBookDb
             @"Data Source=(LocalDB)\MSSQLLocalDB;
                 Initial Catalog = CookBook;
                 MultipleActiveResultSets = True;
-                Integrated Security = True; ");
+                Integrated Security = True;
+                Encrypt = False;
+                TrustServerCertificate = True;");
 
         return new CookBookDbContext(builder.Options);
     }
