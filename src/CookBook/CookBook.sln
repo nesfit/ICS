@@ -21,8 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Common.Tests", "Co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{F1D07B72-AF91-4B68-81A3-5855F9CC7CBB}"
 	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
+		.editorconfig = .editorconfig
 		nuget.config = nuget.config
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.App", "CookBook.App\CookBook.App.csproj", "{565FA1FD-8549-4F88-8D27-D72482F57C78}"

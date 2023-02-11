@@ -6,7 +6,8 @@ using CookBook.DAL.UnitOfWork;
 
 namespace CookBook.BL.Facades;
 
-public class IngredientFacade : FacadeBase<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper>, IIngredientFacade
+public class IngredientFacade :
+    FacadeBase<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper>, IIngredientFacade
 {
     public IngredientFacade(
         IUnitOfWorkFactory unitOfWorkFactory,

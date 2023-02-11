@@ -5,29 +5,27 @@ namespace CookBook.BL.Mappers;
 
 public class RecipeModelMapper : ModelMapperBase<RecipeEntity, RecipeListModel, RecipeDetailModel>, IRecipeModelMapper
 {
-    private readonly IIngredientAmountModelMapper ingredientAmountModelMapper;
+    private readonly IIngredientAmountModelMapper _ingredientAmountModelMapper;
 
-    public RecipeModelMapper(IIngredientAmountModelMapper ingredientAmountModelMapper)
-    {
-        this.ingredientAmountModelMapper = ingredientAmountModelMapper;
-    }
+    public RecipeModelMapper(IIngredientAmountModelMapper ingredientAmountModelMapper) =>
+        _ingredientAmountModelMapper = ingredientAmountModelMapper;
 
     public override RecipeListModel MapToListModel(RecipeEntity? entity)
         => entity is null
             ? RecipeListModel.Empty
-            : new()
+            : new RecipeListModel
             {
                 Id = entity.Id,
                 Name = entity.Name,
                 Duration = entity.Duration,
                 FoodType = entity.FoodType,
-                ImageUrl = entity.ImageUrl,
+                ImageUrl = entity.ImageUrl
             };
 
     public override RecipeDetailModel MapToDetailModel(RecipeEntity? entity)
         => entity is null
             ? RecipeDetailModel.Empty
-            : new()
+            : new RecipeDetailModel
             {
                 Id = entity.Id,
                 Name = entity.Name,
@@ -35,8 +33,8 @@ public class RecipeModelMapper : ModelMapperBase<RecipeEntity, RecipeListModel, 
                 Duration = entity.Duration,
                 FoodType = entity.FoodType,
                 ImageUrl = entity.ImageUrl,
-                Ingredients = ingredientAmountModelMapper.MapToListModel(entity.Ingredients)
-                    .ToObservableCollection(),
+                Ingredients = _ingredientAmountModelMapper.MapToListModel(entity.Ingredients)
+                    .ToObservableCollection()
             };
 
     public override RecipeEntity MapToEntity(RecipeDetailModel model)
@@ -47,6 +45,6 @@ public class RecipeModelMapper : ModelMapperBase<RecipeEntity, RecipeListModel, 
             Description = model.Description,
             Duration = model.Duration,
             FoodType = model.FoodType,
-            ImageUrl = model.ImageUrl,
+            ImageUrl = model.ImageUrl
         };
 }

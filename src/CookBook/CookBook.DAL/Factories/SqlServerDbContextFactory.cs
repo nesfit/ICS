@@ -15,12 +15,13 @@ public class SqlServerDbContextFactory : IDbContextFactory<CookBookDbContext>
 
     public CookBookDbContext CreateDbContext()
     {
-        var optionsBuilder = new DbContextOptionsBuilder<CookBookDbContext>();
-        optionsBuilder.UseSqlServer(_connectionString);
+        DbContextOptionsBuilder<CookBookDbContext> builder = new();
+        builder.UseSqlServer(_connectionString);
 
-        //optionsBuilder.LogTo(System.Console.WriteLine); //Enable in case you want to see tests details, enabled may cause some inconsistencies in tests
-        //optionsBuilder.EnableSensitiveDataLogging();
+        ////Enable in case you want to see tests details, enabled may cause some inconsistencies in tests
+        //builder.LogTo(System.Console.WriteLine);
+        //builder.EnableSensitiveDataLogging();
 
-        return new CookBookDbContext(optionsBuilder.Options, _seedDemoData);
+        return new CookBookDbContext(builder.Options, _seedDemoData);
     }
 }

@@ -3,7 +3,8 @@ using System.Linq;
 
 namespace CookBook.BL.Mappers;
 
-public abstract class ModelMapperBase<TEntity, TListModel, TDetailModel> : IModelMapper<TEntity, TListModel, TDetailModel>
+public abstract class
+    ModelMapperBase<TEntity, TListModel, TDetailModel> : IModelMapper<TEntity, TListModel, TDetailModel>
 {
     public abstract TListModel MapToListModel(TEntity? entity);
 

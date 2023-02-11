@@ -1,5 +1,5 @@
-﻿using CookBook.Common.Enums;
-using System;
+﻿using System;
+using CookBook.Common.Enums;
 
 namespace CookBook.BL.Models;
 
@@ -17,6 +17,6 @@ public record IngredientAmountDetailModel : ModelBase
         Id = Guid.NewGuid(),
         IngredientId = Guid.Empty,
         IngredientName = string.Empty,
-        IngredientDescription = string.Empty,
+        IngredientDescription = string.Empty
     };
 }

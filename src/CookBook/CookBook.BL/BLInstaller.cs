@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CookBook.BL;
 
-public static class ServiceCollectionExtension
+public static class BLInstaller
 {
     public static IServiceCollection AddBLServices(this IServiceCollection services)
     {
