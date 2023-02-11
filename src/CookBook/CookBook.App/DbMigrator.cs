@@ -32,7 +32,7 @@ public class SqliteDbMigrator : IDbMigrator
 
     public async Task MigrateAsync(CancellationToken cancellationToken)
     {
-        using var dbContext = dbContextFactory.CreateDbContext();
+        await using var dbContext = dbContextFactory.CreateDbContext();
 
         if(dalOptions.RecreateDatabseEachTime)
         {
