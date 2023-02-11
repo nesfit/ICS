@@ -67,12 +67,6 @@
                 <Grid>
                     <Image Source="{Binding Recipe.ImageUrl, TargetNullValue='recipe_placeholder.jpg'}"
                            Aspect="AspectFill" />
-
-                    <Button Margin="0, 0, 0, 10"
-                            CornerRadius="5" HorizontalOptions="Center"
-                            Style="{StaticResource PrimaryButtonStyle}"
-                            Text="Nahrát obrázek"
-                            VerticalOptions="End" />
                 </Grid>
             </Frame>
         </Grid>
