@@ -116,9 +116,6 @@ winget install Microsoft.VisualStudio.2022.Community
 winget install Microsoft.DotNet.SDK.6
 winget install Microsoft.DotNet.SDK.7
 winget install JetBrains.ReSharper
-
-dotnet tool install dotnet-ef
-dotnet workload install maui
 ```
 
 ---
