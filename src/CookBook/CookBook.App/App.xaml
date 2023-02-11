@@ -9,10 +9,13 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/ButtonStyle.xaml" />
                 <ResourceDictionary Source="Resources/Styles/ContentPageStyle.xaml" />
+                <ResourceDictionary Source="Resources/Styles/FrameStyle.xaml" />
                 <ResourceDictionary Source="Resources/Styles/LabelStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <converters:FoodTypeToColorConverter x:Key="FoodTypeToColorConverter" />
+            <converters:ModelIsNewToIsVisibleConverter x:Key="ModelIsNewToIsVisibleConverter" />
+            <converters:ModelIsNewToIsVisibleInvertedConverter x:Key="ModelIsNewToIsVisibleInvertedConverter" />
             <converters:FoodTypeToStringConverter x:Key="FoodTypeToStringConverter" />
             <converters:UnitToStringConverter x:Key="UnitToStringConverter"/>
         </ResourceDictionary>

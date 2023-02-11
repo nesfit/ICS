@@ -31,8 +31,7 @@
                     <DataTemplate x:DataType="m:RecipeListModel">
                         <Frame Padding="0"
                                CornerRadius="10"
-                               HeightRequest="200"
-                               WidthRequest="300"
+                               WidthRequest="320" HeightRequest="240"
                                IsClippedToBounds="True">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Source={x:Reference RecipeListViewRoot}, Path=BindingContext.GoToDetailCommand}"
@@ -43,6 +42,7 @@
                                 <Image Grid.Row="0"
                                        HorizontalOptions="Fill" VerticalOptions="Fill"
                                        Aspect="AspectFill"
+                                       WidthRequest="320" HeightRequest="240"
                                        Source="{Binding ImageUrl, TargetNullValue='recipe_placeholder.jpg'}" />
 
                                 <BoxView Grid.Row="0"

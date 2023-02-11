@@ -23,7 +23,8 @@ public class Repository<TEntity> : IRepository<TEntity>
     public IQueryable<TEntity> Get() => dbSet;
 
     public bool Exists(TEntity entity)
-        => dbSet.Any(e => e.Id == entity.Id);
+        => entity.Id != Guid.Empty 
+           && dbSet.Any(e => e.Id == entity.Id);
 
     public TEntity Insert(TEntity entity)
         => dbSet.Add(entity).Entity;

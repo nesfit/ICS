@@ -123,13 +123,13 @@
   <data name="Save_Button_Text" xml:space="preserve">
     <value>Uložit</value>
   </data>
-  <data name="SelectImage_Button_Text" xml:space="preserve">
-    <value>Nahrát obrázek</value>
-  </data>
   <data name="Name_Label_Text" xml:space="preserve">
     <value>Název</value>
   </data>
   <data name="Description_Label_Text" xml:space="preserve">
     <value>Popis</value>
+  </data>
+  <data name="ImageUrl_Label_Text" xml:space="preserve">
+    <value>URL obrázku</value>
   </data>
 </root>

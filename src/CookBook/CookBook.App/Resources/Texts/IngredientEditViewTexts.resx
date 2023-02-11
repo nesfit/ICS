@@ -103,13 +103,13 @@
   <data name="Save_Button_Text" xml:space="preserve">
     <value>Save</value>
   </data>
-  <data name="SelectImage_Button_Text" xml:space="preserve">
-    <value>Select Image</value>
-  </data>
   <data name="Name_Label_Text" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="Description_Label_Text" xml:space="preserve">
     <value>Description</value>
+  </data>
+  <data name="ImageUrl_Label_Text" xml:space="preserve">
+    <value>Image URL</value>
   </data>
 </root>

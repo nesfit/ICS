@@ -9,7 +9,7 @@ public record IngredientListModel : ModelBase
 
     public static IngredientListModel Empty => new()
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.Empty,
         Name = string.Empty,
         ImageUrl = string.Empty,
     };

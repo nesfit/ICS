@@ -82,6 +82,7 @@ public abstract class FacadeBase<TEntity, TListModel, TDetailModel, TEntityMappe
         }
         else
         {
+            entity.Id = Guid.NewGuid();
             var insertedEntity = repository.Insert(entity);
             result = modelMapper.MapToDetailModel(insertedEntity);
         }

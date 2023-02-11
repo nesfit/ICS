@@ -132,4 +132,7 @@
   <data name="Delete_Button_Text" xml:space="preserve">
     <value>Smazat</value>
   </data>
+  <data name="Ingredients_Label_Text" xml:space="preserve">
+    <value>Ingredience</value>
+  </data>
 </root>

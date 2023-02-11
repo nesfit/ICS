@@ -13,20 +13,18 @@
     <Grid RowDefinitions="Auto, *, Auto"
           RowSpacing="40">
         <Grid Grid.Row="0"
-              ColumnDefinitions="*, 300"
+              ColumnDefinitions="*, 320"
               ColumnSpacing="56">
             <Grid Grid.Column="0"
                   RowDefinitions="Auto, Auto, Auto"
                   RowSpacing="20">
-
-                <StackLayout Grid.Row="0"
-                             Orientation="Vertical"
-                             Spacing="10">
+                <VerticalStackLayout Grid.Row="0"
+                                     Spacing="10">
                     <Label Text="Název" />
 
                     <Entry HorizontalOptions="Fill"
                            Text="{Binding Recipe.Name}" />
-                </StackLayout>
+                </VerticalStackLayout>
 
                 <Grid Grid.Row="1"
                       RowDefinitions="Auto, Auto"
@@ -58,22 +56,11 @@
             </Grid>
 
             <Frame Grid.Column="1"
-                   Padding="0"
-                   CornerRadius="10"
-                   IsClippedToBounds="True"
-                   BorderColor="{StaticResource ImageBorderColor}"
                    HorizontalOptions="Fill" VerticalOptions="Fill"
-                   Margin="0">
-                <Grid>
-                    <Image Source="{Binding Recipe.ImageUrl, TargetNullValue='recipe_placeholder.jpg'}"
-                           Aspect="AspectFill" />
-
-                    <Button Margin="0, 0, 0, 10"
-                            CornerRadius="5" HorizontalOptions="Center"
-                            Style="{StaticResource PrimaryButtonStyle}"
-                            Text="Nahrát obrázek"
-                            VerticalOptions="End" />
-                </Grid>
+                   Style="{StaticResource ImageFrameStyle}">
+                <Image Source="{Binding Recipe.ImageUrl, TargetNullValue='recipe_placeholder.jpg'}"
+                       WidthRequest="320" HeightRequest="240"
+                       Aspect="AspectFill" />
             </Frame>
         </Grid>
 
@@ -89,30 +76,30 @@
 
                 <Editor Grid.Row="1"
                         Text="{Binding Recipe.Description}"
+                        AutoSize="TextChanges"
                         VerticalOptions="Fill" />
             </Grid>
 
-            <Grid Grid.Row="0"
-                  HorizontalOptions="End" VerticalOptions="Start" 
-                  RowDefinitions="Auto, *"
-                  RowSpacing="30">
-                <Label Grid.Row="0"
-                           Text="Ingredience" />
+            <VerticalStackLayout Grid.Row="0" Grid.Column="1"
+                                 Spacing="30">
+                <Button Text="Upravit ingredience"
+                        Command="{Binding GoToRecipeIngredientEditCommand}"
+                        IsVisible="{Binding Recipe, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter}}"
+                        Style="{StaticResource PrimaryButtonStyle}" />
+                <Label Text="Ingredience lze upravovat jenom u receptu, který je již vytvořen a uložen"
+                       HorizontalOptions="End"
+                       IsVisible="{Binding Recipe, Converter={StaticResource ModelIsNewToIsVisibleConverter}}" />
 
-                <CollectionView Grid.Row="1"
-                                    ItemsSource="{Binding Recipe.Ingredients}">
+                <CollectionView ItemsSource="{Binding Recipe.Ingredients}"
+                                HorizontalOptions="End">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:IngredientAmountDetailModel">
-                            <StackLayout Orientation="Horizontal"
-                                             Spacing="20"
-                                             Margin="0, 0, 0, 15">
-                                <Frame CornerRadius="10"
-                                           Padding="0"
-                                           IsClippedToBounds="True"
-                                           WidthRequest="60" HeightRequest="60">
+                            <HorizontalStackLayout>
+                                <Frame Margin="5, 5, 20, 5"
+                                       Style="{StaticResource ImageFrameStyle}">
                                     <Image Source="{Binding IngredientImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
-                                               HorizontalOptions="Fill" VerticalOptions="Fill"
-                                               Aspect="AspectFill" />
+                                           WidthRequest="60" HeightRequest="60"
+                                           Aspect="AspectFill" />
                                 </Frame>
 
                                 <Label VerticalOptions="Center">
@@ -126,17 +113,11 @@
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                            </StackLayout>
+                            </HorizontalStackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-
-                <Button Grid.Row="0"
-                            HorizontalOptions="End" VerticalOptions="Start" 
-                            Text="Upravit ingredience"
-                            Command="{Binding GoToRecipeIngredientEditCommand}"
-                            Style="{StaticResource PrimaryButtonStyle}" />
-            </Grid>
+            </VerticalStackLayout>
         </Grid>
 
         <Button Grid.Row="2"

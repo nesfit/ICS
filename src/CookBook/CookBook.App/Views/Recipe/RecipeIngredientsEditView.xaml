@@ -15,24 +15,18 @@
     <Grid RowDefinitions="Auto, Auto, Auto, *"
           HorizontalOptions="Fill"
           RowSpacing="20">
-        <StackLayout Grid.Row="0"
-                     Orientation="Horizontal"
-                     HorizontalOptions="Center"
-                     Spacing="10">
-            <Frame Padding="0"
-                   CornerRadius="10"
-                   IsClippedToBounds="True"
-                   BorderColor="{StaticResource ImageBorderColor}"
-                   WidthRequest="60" HeightRequest="40"
-                   Margin="0">
+        <HorizontalStackLayout Grid.Row="0"
+                               HorizontalOptions="Center"
+                               Spacing="10">
+            <Frame Style="{StaticResource ImageFrameStyle}">
                 <Image Source="{Binding Recipe.ImageUrl, TargetNullValue='recipe_placeholder.jpg'}"
+                       WidthRequest="320" HeightRequest="240"
                        Aspect="AspectFill" />
             </Frame>
 
             <Label Text="{Binding Recipe.Name}"
                    VerticalOptions="Center" />
-        </StackLayout>
-
+        </HorizontalStackLayout>
 
         <Label Grid.Row="1"
                Text="Ingredience" />
@@ -77,12 +71,10 @@
                     <Grid ColumnDefinitions="Auto, Auto, Auto, Auto, *"
                           ColumnSpacing="10">
                         <Frame Grid.Column="0"
-                               CornerRadius="10"
-                               Padding="0"
-                               IsClippedToBounds="True"
-                               WidthRequest="60" HeightRequest="60">
+                               Margin="5, 5, 20, 5"
+                               Style="{StaticResource ImageFrameStyle}">
                             <Image Source="{Binding IngredientImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
-                                   HorizontalOptions="Fill" VerticalOptions="Fill"
+                                   WidthRequest="60" HeightRequest="60"
                                    Aspect="AspectFill" />
                         </Frame>
 
@@ -113,7 +105,7 @@
                                Text="{Binding IngredientName}" />
 
                         <Button Grid.Column="4"
-                                HorizontalOptions="End" VerticalOptions="Center"
+                                HorizontalOptions="Start" VerticalOptions="Center"
                                 Text="Odstranit"
                                 Command="{Binding Source={x:Reference RecipeIngredientsEditViewRoot}, Path=BindingContext.RemoveIngredientCommand}"
                                 CommandParameter="{Binding .}"
