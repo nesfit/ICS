@@ -7,27 +7,25 @@ public class RecipeModelMapper : ModelMapperBase<RecipeEntity, RecipeListModel, 
 {
     private readonly IIngredientAmountModelMapper _ingredientAmountModelMapper;
 
-    public RecipeModelMapper(IIngredientAmountModelMapper ingredientAmountModelMapper)
-    {
-        this._ingredientAmountModelMapper = ingredientAmountModelMapper;
-    }
+    public RecipeModelMapper(IIngredientAmountModelMapper ingredientAmountModelMapper) =>
+        _ingredientAmountModelMapper = ingredientAmountModelMapper;
 
     public override RecipeListModel MapToListModel(RecipeEntity? entity)
         => entity is null
             ? RecipeListModel.Empty
-            : new()
+            : new RecipeListModel
             {
                 Id = entity.Id,
                 Name = entity.Name,
                 Duration = entity.Duration,
                 FoodType = entity.FoodType,
-                ImageUrl = entity.ImageUrl,
+                ImageUrl = entity.ImageUrl
             };
 
     public override RecipeDetailModel MapToDetailModel(RecipeEntity? entity)
         => entity is null
             ? RecipeDetailModel.Empty
-            : new()
+            : new RecipeDetailModel
             {
                 Id = entity.Id,
                 Name = entity.Name,
@@ -36,7 +34,7 @@ public class RecipeModelMapper : ModelMapperBase<RecipeEntity, RecipeListModel, 
                 FoodType = entity.FoodType,
                 ImageUrl = entity.ImageUrl,
                 Ingredients = _ingredientAmountModelMapper.MapToListModel(entity.Ingredients)
-                    .ToObservableCollection(),
+                    .ToObservableCollection()
             };
 
     public override RecipeEntity MapToEntity(RecipeDetailModel model)
@@ -47,6 +45,6 @@ public class RecipeModelMapper : ModelMapperBase<RecipeEntity, RecipeListModel, 
             Description = model.Description,
             Duration = model.Duration,
             FoodType = model.FoodType,
-            ImageUrl = model.ImageUrl,
+            ImageUrl = model.ImageUrl
         };
 }

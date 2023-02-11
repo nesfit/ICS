@@ -1,5 +1,5 @@
-﻿using CookBook.Common.Enums;
-using System;
+﻿using System;
+using CookBook.Common.Enums;
 
 namespace CookBook.BL.Models;
 
@@ -18,6 +18,6 @@ public record IngredientAmountListModel : ModelBase
         IngredientName = string.Empty,
         IngredientImageUrl = null,
         Amount = 0.0,
-        Unit = Unit.None,
+        Unit = Unit.None
     };
 }

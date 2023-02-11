@@ -1,5 +1,5 @@
-﻿using CookBook.Common.Enums;
-using System;
+﻿using System;
+using CookBook.Common.Enums;
 
 namespace CookBook.BL.Models;
 
@@ -14,6 +14,6 @@ public record RecipeListModel : ModelBase
     {
         Id = Guid.NewGuid(),
         Name = string.Empty,
-        Duration = TimeSpan.Zero,
+        Duration = TimeSpan.Zero
     };
 }

@@ -1,6 +1,6 @@
-﻿using CookBook.Common.Enums;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
+using CookBook.Common.Enums;
 
 namespace CookBook.BL.Models;
 
@@ -18,6 +18,6 @@ public record RecipeDetailModel : ModelBase
         Id = Guid.Empty,
         Name = string.Empty,
         Description = string.Empty,
-        Duration = TimeSpan.Zero,
+        Duration = TimeSpan.Zero
     };
 }

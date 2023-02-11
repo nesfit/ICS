@@ -12,6 +12,6 @@ public record IngredientDetailModel : ModelBase
     {
         Id = Guid.NewGuid(),
         Name = string.Empty,
-        Description = string.Empty,
+        Description = string.Empty
     };
 }
