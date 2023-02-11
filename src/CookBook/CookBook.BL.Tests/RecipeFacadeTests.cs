@@ -67,11 +67,7 @@ public class RecipeFacadeTests : FacadeTestsBase
         };
 
         //Act & Assert
-        try
-        {
-            await _facadeSUT.SaveAsync(model); //In-memory pass without exception
-        }
-        catch (DbUpdateException) { } //SqlServer throws on FK
+        await Assert.ThrowsAnyAsync<InvalidOperationException>(() => _facadeSUT.SaveAsync(model));
     }
 
     [Fact]
@@ -98,12 +94,8 @@ public class RecipeFacadeTests : FacadeTestsBase
             },
         };
 
-        //Act
-        var returnedModel = await _facadeSUT.SaveAsync(model);
-
-        //Assert
-        FixIds(model, returnedModel);
-        DeepAssert.Equal(model, returnedModel);
+        //Act && Assert
+        await Assert.ThrowsAnyAsync<InvalidOperationException>(() => _facadeSUT.SaveAsync(model));
     }
 
     [Fact]
@@ -131,13 +123,7 @@ public class RecipeFacadeTests : FacadeTestsBase
         };
 
         //Act & Assert
-        try
-        {
-            await _facadeSUT.SaveAsync(model);
-            Assert.True(false, "Assert Fail");
-        }
-        catch (DbUpdateException) { } //SqlServer
-        catch (ArgumentException) { } //In-memory
+        await Assert.ThrowsAnyAsync<InvalidOperationException>(() => _facadeSUT.SaveAsync(model));
     }
 
     [Fact]
@@ -174,7 +160,7 @@ public class RecipeFacadeTests : FacadeTestsBase
         detailModel.Name = "Changed recipe name";
 
         //Act & Assert
-        await _facadeSUT.SaveAsync(detailModel);
+        await _facadeSUT.SaveAsync(detailModel with {Ingredients = default});
     }
 
     [Fact]
@@ -185,7 +171,7 @@ public class RecipeFacadeTests : FacadeTestsBase
         detailModel.Name = "Changed recipe name 1";
 
         //Act
-        await _facadeSUT.SaveAsync(detailModel);
+        await _facadeSUT.SaveAsync(detailModel with { Ingredients = default});
 
         //Assert
         var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
@@ -193,7 +179,7 @@ public class RecipeFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task Update_RemoveIngredients_FromSeeded_CheckUpdated()
+    public async Task Update_RemoveIngredients_FromSeeded_CheckNotUpdated()
     {
         //Arrange
         var detailModel = RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity);
@@ -204,7 +190,7 @@ public class RecipeFacadeTests : FacadeTestsBase
 
         //Assert
         var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
-        DeepAssert.Equal(detailModel, returnedModel);
+        DeepAssert.Equal(RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity), returnedModel);
     }
 
     [Fact]
@@ -215,11 +201,11 @@ public class RecipeFacadeTests : FacadeTestsBase
         detailModel.Ingredients.Remove(detailModel.Ingredients.First());
 
         //Act
-        await _facadeSUT.SaveAsync(detailModel);
+        await Assert.ThrowsAnyAsync<InvalidOperationException>(() =>  _facadeSUT.SaveAsync(detailModel));
 
         //Assert
         var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
-        DeepAssert.Equal(detailModel, returnedModel);
+        DeepAssert.Equal(RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity), returnedModel);
     }
 
     [Fact]
