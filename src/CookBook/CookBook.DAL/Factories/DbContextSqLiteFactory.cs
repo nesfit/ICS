@@ -16,10 +16,9 @@ public class DbContextSqLiteFactory : IDbContextFactory<CookBookDbContext>
     {
         DbContextOptionsBuilder<CookBookDbContext> builder = new();
         builder.UseSqlite($"Data Source={_databaseName};Cache=Shared");
-        //builder.UseSqlite($"Data Source=Data/Database.db\";Cache=Shared");
 
-        // contextOptionsBuilder.LogTo(System.Console.WriteLine); //Enable in case you want to see tests details, enabled may cause some inconsistencies in tests
-        // builder.EnableSensitiveDataLogging();
+        builder.LogTo(System.Console.WriteLine); //Enable in case you want to see tests details, enabled may cause some inconsistencies in tests
+        builder.EnableSensitiveDataLogging();
 
         return new CookBookDbContext(builder.Options, _seedTestingData);
     }
