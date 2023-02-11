@@ -20,3 +20,11 @@ or
 ```
 winget install JetBrains.Rider #https://www.jetbrains.com/community/education/#students
 ```
+
+## Notes
+
+In case you are missing nuget source, e.g. `dotnet restore` fails
+
+```
+dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
+```
