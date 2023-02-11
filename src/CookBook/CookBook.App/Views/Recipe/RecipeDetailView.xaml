@@ -4,6 +4,7 @@
                        xmlns:views="clr-namespace:CookBook.App.Views"
                        xmlns:vm="clr-namespace:CookBook.App.ViewModels"
                        xmlns:texts="clr-namespace:CookBook.App.Resources.Texts"
+                       xmlns:models="clr-namespace:CookBook.BL.Models;assembly=CookBook.BL"
                        x:Class="CookBook.App.Views.Recipe.RecipeDetailView"
                        Title="{x:Static texts:RecipeDetailViewTexts.Page_Title}"
                        Style="{StaticResource ContentPageStyle}"
@@ -35,7 +36,7 @@
               ColumnDefinitions="*, Auto"
               ColumnSpacing="20">
             <ScrollView Orientation="Vertical">
-                <Grid RowDefinitions="Auto, Auto, Auto, *"
+                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *"
                       RowSpacing="20">
                     <Label Grid.Row="0"
                            Text="{Binding Recipe.Name}"
@@ -78,6 +79,38 @@
                     <Label Grid.Row="3"
                            Text="{Binding Recipe.Description}"
                            FontSize="14" />
+
+                    <Label Grid.Row="4"
+                           Text="{x:Static texts:RecipeDetailViewTexts.Ingredients_Label_Text}"
+                           FontSize="16" />
+
+                    <CollectionView Grid.Row="5"
+                                    ItemsSource="{Binding Recipe.Ingredients}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:IngredientAmountDetailModel">
+                                <HorizontalStackLayout>
+                                    <Frame Margin="5, 5, 20, 5"
+                                           Style="{StaticResource ImageFrameStyle}">
+                                        <Image Source="{Binding IngredientImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
+                                               WidthRequest="60" HeightRequest="60"
+                                               Aspect="AspectFill" />
+                                    </Frame>
+
+                                    <Label VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Amount}" />
+                                                <Span Text=" " />
+                                                <Span Text="{Binding Unit, Converter={StaticResource UnitToStringConverter}}" />
+                                                <Span Text=" " />
+                                                <Span Text="{Binding IngredientName}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </HorizontalStackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </Grid>
             </ScrollView>
 
