@@ -23,8 +23,8 @@
                     Command="{Binding SaveCommand}" />
         </Grid>
         <Grid Grid.Row="1"
-              HorizontalOptions="Center" VerticalOptions="Start"
-              RowDefinitions="170, *" ColumnDefinitions="*, Auto, Auto, *"
+              HorizontalOptions="Fill" VerticalOptions="Start"
+              RowDefinitions="170, *" ColumnDefinitions="*, Auto, *"
               RowSpacing="20" ColumnSpacing="20">
 
             <Frame Grid.Row="0" Grid.Column="1"
@@ -37,12 +37,6 @@
                     <Image Aspect="AspectFill" HeightRequest="170"
                            Source="{Binding Ingredient.ImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
                            WidthRequest="170" />
-
-                    <Button Margin="0,0,0,10"
-                            CornerRadius="5" HorizontalOptions="Center"
-                            Style="{StaticResource PrimaryButtonStyle}"
-                            Text="{x:Static texts:IngredientEditViewTexts.SelectImage_Button_Text}"
-                            VerticalOptions="End" />
                 </Grid>
             </Frame>
 
@@ -53,13 +47,16 @@
                          Orientation="Vertical">
                 <Label Text="{x:Static texts:IngredientEditViewTexts.Name_Label_Text}"
                        TextColor="{StaticResource PrimaryLabelTextColor}" />
-
                 <Entry HorizontalOptions="Fill"
                        Text="{Binding Ingredient.Name}" />
 
+                <Label Text="{x:Static texts:IngredientEditViewTexts.ImageUrl_Label_Text}"
+                       TextColor="{StaticResource PrimaryLabelTextColor}" />
+                <Entry HorizontalOptions="Fill"
+                       Text="{Binding Ingredient.ImageUrl}" />
+
                 <Label Text="{x:Static texts:IngredientEditViewTexts.Description_Label_Text}"
                        TextColor="{StaticResource PrimaryLabelTextColor}" />
-
                 <Editor HorizontalOptions="Fill"
                         TextColor="{StaticResource FormEntryTextColor}"
                         BackgroundColor="{StaticResource FormEntryBackgroundColor}"

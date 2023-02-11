@@ -70,6 +70,15 @@ namespace CookBook.App.Resources.Texts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image URL.
+        /// </summary>
+        internal static string ImageUrl_Label_Text {
+            get {
+                return ResourceManager.GetString("ImageUrl_Label_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Name_Label_Text {
@@ -93,15 +102,6 @@ namespace CookBook.App.Resources.Texts {
         internal static string Save_Button_Text {
             get {
                 return ResourceManager.GetString("Save_Button_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select Image.
-        /// </summary>
-        internal static string SelectImage_Button_Text {
-            get {
-                return ResourceManager.GetString("SelectImage_Button_Text", resourceCulture);
             }
         }
     }
