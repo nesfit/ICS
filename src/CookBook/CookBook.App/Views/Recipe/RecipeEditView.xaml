@@ -97,10 +97,10 @@
                   RowDefinitions="Auto, *"
                   RowSpacing="30">
                 <Label Grid.Row="0"
-                           Text="Ingredience" />
+                       Text="Ingredience" />
 
                 <CollectionView Grid.Row="1"
-                                    ItemsSource="{Binding Recipe.Ingredients}">
+                                ItemsSource="{Binding Recipe.Ingredients}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:IngredientAmountDetailModel">
                             <StackLayout Orientation="Horizontal"
@@ -132,10 +132,15 @@
                 </CollectionView>
 
                 <Button Grid.Row="0"
-                            HorizontalOptions="End" VerticalOptions="Start" 
-                            Text="Upravit ingredience"
-                            Command="{Binding GoToRecipeIngredientEditCommand}"
-                            Style="{StaticResource PrimaryButtonStyle}" />
+                        HorizontalOptions="End" VerticalOptions="Start" 
+                        Text="Upravit ingredience"
+                        Command="{Binding GoToRecipeIngredientEditCommand}"
+                        IsVisible="{Binding Recipe, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter}}"
+                        Style="{StaticResource PrimaryButtonStyle}" />
+                <Label Grid.Row="0"
+                       HorizontalOptions="End" VerticalOptions="Start" 
+                       Text="Ingredience lze upravovat jenom u receptu, který je již vytvořen a uložen"
+                       IsVisible="{Binding Recipe, Converter={StaticResource ModelIsNewToIsVisibleConverter}}" />
             </Grid>
         </Grid>
 

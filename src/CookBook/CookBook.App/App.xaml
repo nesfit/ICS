@@ -13,6 +13,8 @@
             </ResourceDictionary.MergedDictionaries>
 
             <converters:FoodTypeToColorConverter x:Key="FoodTypeToColorConverter" />
+            <converters:ModelIsNewToIsVisibleConverter x:Key="ModelIsNewToIsVisibleConverter" />
+            <converters:ModelIsNewToIsVisibleInvertedConverter x:Key="ModelIsNewToIsVisibleInvertedConverter" />
             <converters:FoodTypeToStringConverter x:Key="FoodTypeToStringConverter" />
             <converters:UnitToStringConverter x:Key="UnitToStringConverter"/>
         </ResourceDictionary>

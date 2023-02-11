@@ -26,6 +26,7 @@
 
 	<PropertyGroup>
 		<NoWarn>1591</NoWarn>
+		<UserSecretsId>00775e36-5374-4630-b80a-38bf58169d4e</UserSecretsId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.19041.0|AnyCPU'">
@@ -76,6 +77,7 @@
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
 	  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
 	  <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" PrivateAssets="All" />
 	  <PackageReference Include="Scrutor" Version="4.2.0" />
 	</ItemGroup>

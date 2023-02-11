@@ -15,7 +15,7 @@ public record RecipeDetailModel : ModelBase
 
     public static RecipeDetailModel Empty => new()
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.Empty,
         Name = string.Empty,
         Description = string.Empty,
         Duration = TimeSpan.Zero,
