@@ -19,24 +19,24 @@ public class NoneDbMigrator : IDbMigrator
 
 public class SqliteDbMigrator : IDbMigrator 
 {
-    private readonly IDbContextFactory<CookBookDbContext> dbContextFactory;
-    private readonly DALOptions.SqliteOptions dalOptions;
+    private readonly IDbContextFactory<CookBookDbContext> _dbContextFactory;
+    private readonly DALOptions.SqliteOptions _sqliteOptions;
 
-    public SqliteDbMigrator(IDbContextFactory<CookBookDbContext> dbContextFactory, IOptions<DALOptions.SqliteOptions> dalOptions)
+    public SqliteDbMigrator(IDbContextFactory<CookBookDbContext> dbContextFactory, DALOptions dalOptions)
     {
-        this.dbContextFactory = dbContextFactory;
-        this.dalOptions = dalOptions.Value;
+        _dbContextFactory = dbContextFactory;
+        _sqliteOptions = dalOptions.Sqlite ?? throw new ArgumentNullException(nameof(dalOptions),$@"{nameof(DALOptions.Sqlite)} are not set");
     }
 
     public void Migrate() => MigrateAsync(CancellationToken.None).GetAwaiter().GetResult();
 
     public async Task MigrateAsync(CancellationToken cancellationToken)
     {
-        await using var dbContext = dbContextFactory.CreateDbContext();
+        await using CookBookDbContext dbContext = await _dbContextFactory.CreateDbContextAsync(cancellationToken);
 
-        if(dalOptions.RecreateDatabseEachTime)
+        if(_sqliteOptions.RecreateDatabseEachTime)
         {
-            await dbContext.Database.EnsureDeletedAsync();
+            await dbContext.Database.EnsureDeletedAsync(cancellationToken);
         }
 
         await dbContext.Database.EnsureCreatedAsync(cancellationToken);

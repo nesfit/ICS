@@ -11,10 +11,10 @@ public static class DALInstaller
 {
     public static IServiceCollection AddDALServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.Configure<DALOptions>(options => configuration.GetSection("CookBook:DAL").Bind(options));
-
         DALOptions dalOptions = new();
         configuration.GetSection("CookBook:DAL").Bind(dalOptions);
+
+        services.AddSingleton<DALOptions>(dalOptions);
 
         if (dalOptions.LocalDb is null && dalOptions.Sqlite is null)
         {
