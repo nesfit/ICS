@@ -112,7 +112,7 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 +++
 
 ```pwsh
-winget install Microsoft.VisualStudio.2022.Community
+winget install Microsoft.VisualStudio.2022.Community --override "--add Microsoft.VisualStudio.Workload.NetCrossPlat --add Microsoft.VisualStudio.Workload.Data --add Microsoft.VisualStudio.Workload.ManagedDesktop"
 winget install Microsoft.DotNet.SDK.6
 winget install Microsoft.DotNet.SDK.7
 winget install JetBrains.ReSharper
