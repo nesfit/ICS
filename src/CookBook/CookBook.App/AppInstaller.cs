@@ -3,7 +3,6 @@ using CookBook.App.Services;
 using CookBook.App.Shells;
 using CookBook.App.ViewModels;
 using CookBook.App.Views;
-using CookBook.DAL.Mappers;
 
 namespace CookBook.App;
 
@@ -29,10 +28,6 @@ public static class AppInstaller
             .WithTransientLifetime());
 
         services.AddTransient<INavigationService, NavigationService>();
-
-        services.AddSingleton<IngredientEntityMapper>();
-        services.AddSingleton<IngredientAmountEntityMapper>();
-        services.AddSingleton<RecipeEntityMapper>();
 
         return services;
     }

@@ -22,9 +22,10 @@ public static class MauiProgram
 
         ConfigureAppSettings(builder);       
 
-        builder.Services.AddAppServices();
-        builder.Services.AddBLServices();
-        builder.Services.AddDALServices(builder.Configuration);
+        builder.Services
+            .AddDALServices(builder.Configuration)
+            .AddAppServices()
+            .AddBLServices();
 
         var app = builder.Build();
 

@@ -1,8 +1,8 @@
 ﻿using CookBook.App.Options;
 using CookBook.DAL.Factories;
 using CookBook.DAL;
+using CookBook.DAL.Mappers;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Configuration;
 
 namespace CookBook.App;
@@ -46,7 +46,11 @@ public static class DALInstaller
             }
             services.AddSingleton<IDbContextFactory<CookBookDbContext>>(provider => new DbContextSqLiteFactory(dalOptions.Sqlite.DatabaseName!, dalOptions?.Sqlite?.SeedDemoData ?? false));
             services.AddSingleton<IDbMigrator, SqliteDbMigrator>();
-        }     
+        }
+
+        services.AddSingleton<IngredientEntityMapper>();
+        services.AddSingleton<IngredientAmountEntityMapper>();
+        services.AddSingleton<RecipeEntityMapper>();
 
         return services;
     }
