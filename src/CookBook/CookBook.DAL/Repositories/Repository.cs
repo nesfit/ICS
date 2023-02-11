@@ -1,9 +1,9 @@
-﻿using CookBook.DAL.Entities;
-using CookBook.DAL.Mappers;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using CookBook.DAL.Entities;
+using CookBook.DAL.Mappers;
+using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.DAL.Repositories;
 
@@ -18,7 +18,7 @@ public class Repository<TEntity> : IRepository<TEntity>
         IEntityMapper<TEntity> entityMapper)
     {
         _dbSet = dbContext.Set<TEntity>();
-        this._entityMapper = entityMapper;
+        _entityMapper = entityMapper;
     }
 
     public IQueryable<TEntity> Get() => _dbSet;
@@ -31,7 +31,7 @@ public class Repository<TEntity> : IRepository<TEntity>
 
     public async Task<TEntity> UpdateAsync(TEntity entity)
     {
-        var existingEntity = await _dbSet.SingleAsync(e => e.Id == entity.Id);
+        TEntity existingEntity = await _dbSet.SingleAsync(e => e.Id == entity.Id);
         _entityMapper.MapToExistingEntity(existingEntity, entity);
         return existingEntity;
     }

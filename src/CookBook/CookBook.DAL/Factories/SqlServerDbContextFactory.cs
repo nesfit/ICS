@@ -18,7 +18,8 @@ public class SqlServerDbContextFactory : IDbContextFactory<CookBookDbContext>
         DbContextOptionsBuilder<CookBookDbContext> builder = new();
         builder.UseSqlServer(_connectionString);
 
-        //builder.LogTo(System.Console.WriteLine); //Enable in case you want to see tests details, enabled may cause some inconsistencies in tests
+        ////Enable in case you want to see tests details, enabled may cause some inconsistencies in tests
+        //builder.LogTo(System.Console.WriteLine);
         //builder.EnableSensitiveDataLogging();
 
         return new CookBookDbContext(builder.Options, _seedDemoData);
