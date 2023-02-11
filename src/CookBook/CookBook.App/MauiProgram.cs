@@ -1,17 +1,7 @@
 ﻿using CommunityToolkit.Maui;
-using CommunityToolkit.Mvvm.Messaging;
-using CookBook.App.Options;
 using CookBook.App.Services;
-using CookBook.App.Shells;
-using CookBook.App.ViewModels;
-using CookBook.App.Views;
 using CookBook.BL;
-using CookBook.DAL;
-using CookBook.DAL.Factories;
-using CookBook.DAL.Mappers;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 using System.Reflection;
 
 namespace CookBook.App;
@@ -28,50 +18,18 @@ public static class MauiProgram
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            });
+            });  
 
-        builder.Services.AddSingleton<AppShell>();
+        ConfigureAppSettings(builder);       
 
-        builder.Services.AddSingleton<IMessenger>(_ => StrongReferenceMessenger.Default);
-        builder.Services.AddSingleton<IMessengerService, MessengerService>();
-
-        builder.Services.Scan(selector => selector
-            .FromAssemblyOf<App>()
-            .AddClasses(filter => filter.AssignableTo<ContentPageBase>())
-            .AsSelf()
-            .WithTransientLifetime());
-
-        builder.Services.Scan(selector => selector
-            .FromAssemblyOf<App>()
-            .AddClasses(filter => filter.AssignableTo<IViewModel>())
-            .AsSelfWithInterfaces()
-            .WithTransientLifetime());
-
-        builder.Services.AddTransient<INavigationService, NavigationService>();
-
-        builder.Services.AddSingleton<IngredientEntityMapper>();
-        builder.Services.AddSingleton<IngredientAmountEntityMapper>();
-        builder.Services.AddSingleton<RecipeEntityMapper>();
-
-        ConfigureAppSettings(builder);
-        builder.Services.Configure<DALOptions>(options => builder.Configuration.GetSection("CookBook:DAL").Bind(options));
-
-        builder.Services.AddSingleton<IDbContextFactory<CookBookDbContext>>(provider =>
-        {
-            var dalOptions = provider.GetRequiredService<IOptions<DALOptions>>().Value;
-            return new SqlServerDbContextFactory(dalOptions.ConnectionString!, dalOptions.SkipMigrationAndSeedDemoData);
-        });
-
+        builder.Services.AddAppServices();
         builder.Services.AddBLServices();
+        builder.Services.AddDALServices(builder.Configuration);
 
         var app = builder.Build();
 
-        var routingService = app.Services.GetRequiredService<INavigationService>();
-
-        foreach (var route in routingService.Routes)
-        {
-            Routing.RegisterRoute(route.Route, route.ViewType);
-        }
+        app.Services.GetRequiredService<IDbMigrator>().Migrate();
+        RegisterRouting(app.Services.GetRequiredService<INavigationService>());
 
         return app;
     }
@@ -90,5 +48,13 @@ public static class MauiProgram
 
         var configuration = configurationBuilder.Build();
         builder.Configuration.AddConfiguration(configuration);
+    }
+
+    private static void RegisterRouting(INavigationService navigationService)
+    {
+        foreach (var route in navigationService.Routes)
+        {
+            Routing.RegisterRoute(route.Route, route.ViewType);
+        }
     }
 }
