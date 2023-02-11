@@ -75,15 +75,15 @@ public abstract class FacadeBase<TEntity, TListModel, TDetailModel, TEntityMappe
         var uow = UnitOfWorkFactory.Create();
         var repository = uow.GetRepository<TEntity, TEntityMapper>();
 
-        if (repository.Exists(entity))
+        if (await repository.ExistsAsync(entity))
         {
-            var updatedEntity = repository.Update(entity);
+            var updatedEntity = await repository.UpdateAsync(entity);
             result = ModelMapper.MapToDetailModel(updatedEntity);
         }
         else
         {
             entity.Id = Guid.NewGuid();
-            var insertedEntity = repository.Insert(entity);
+            var insertedEntity = await repository.InsertAsync(entity);
             result = ModelMapper.MapToDetailModel(insertedEntity);
         }
 

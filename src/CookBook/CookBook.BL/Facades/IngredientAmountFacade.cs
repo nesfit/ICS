@@ -27,9 +27,9 @@ public class IngredientAmountFacade : FacadeBase<IngredientAmountEntity, Ingredi
         await using var uow = UnitOfWorkFactory.Create();
         var repository = uow.GetRepository<IngredientAmountEntity, IngredientAmountEntityMapper>();
 
-        if (repository.Exists(entity))
+        if (await repository.ExistsAsync(entity))
         {
-            repository.Update(entity);
+            await repository.UpdateAsync(entity);
             await uow.CommitAsync();
         }
     }
@@ -41,7 +41,7 @@ public class IngredientAmountFacade : FacadeBase<IngredientAmountEntity, Ingredi
         await using var uow = UnitOfWorkFactory.Create();
         var repository = uow.GetRepository<IngredientAmountEntity, IngredientAmountEntityMapper>();
 
-        repository.Insert(entity);
+        await repository.InsertAsync(entity);
         await uow.CommitAsync();
 
         return ModelMapper.MapToDetailModel(entity);
