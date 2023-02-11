@@ -7,7 +7,7 @@ using CookBook.DAL.Mappers;
 
 namespace CookBook.App;
 
-public static class APPInstaller
+public static class AppInstaller
 {
     public static IServiceCollection AddAppServices(this IServiceCollection services)
     {
