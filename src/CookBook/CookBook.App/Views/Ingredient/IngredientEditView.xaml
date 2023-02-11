@@ -24,27 +24,22 @@
         </Grid>
         <Grid Grid.Row="1"
               HorizontalOptions="Fill" VerticalOptions="Start"
-              RowDefinitions="170, *" ColumnDefinitions="*, Auto, *"
+              RowDefinitions="170, *" ColumnDefinitions="Auto, *"
               RowSpacing="20" ColumnSpacing="20">
-
-            <Frame Grid.Row="0" Grid.Column="1"
-                   Padding="0"
-                   CornerRadius="10" HeightRequest="170"
-                   HorizontalOptions="Center" IsClippedToBounds="True"
-                   BorderColor="{StaticResource ImageBorderColor}"
-                   WidthRequest="170">
-                <Grid WidthRequest="170">
-                    <Image Aspect="AspectFill" HeightRequest="170"
-                           Source="{Binding Ingredient.ImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
-                           WidthRequest="170" />
+            <Frame Grid.Row="0" Grid.Column="0"
+                   HorizontalOptions="Center"
+                   Style="{StaticResource ImageFrameStyle}">
+                <Grid>
+                    <Image Source="{Binding Ingredient.ImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
+                           WidthRequest="170" HeightRequest="170"
+                           Aspect="AspectFill" />
                 </Grid>
             </Frame>
 
-            <StackLayout Grid.Row="0" Grid.RowSpan="2"
-                         Grid.Column="2"
-                         HorizontalOptions="Fill"
-                         Spacing="10"
-                         Orientation="Vertical">
+            <VerticalStackLayout Grid.Row="0" Grid.RowSpan="2"
+                                 Grid.Column="1"
+                                 HorizontalOptions="Fill"
+                                 Spacing="10">
                 <Label Text="{x:Static texts:IngredientEditViewTexts.Name_Label_Text}"
                        TextColor="{StaticResource PrimaryLabelTextColor}" />
                 <Entry HorizontalOptions="Fill"
@@ -59,9 +54,10 @@
                        TextColor="{StaticResource PrimaryLabelTextColor}" />
                 <Editor HorizontalOptions="Fill"
                         TextColor="{StaticResource FormEntryTextColor}"
+                        AutoSize="TextChanges"
                         BackgroundColor="{StaticResource FormEntryBackgroundColor}"
                         Text="{Binding Ingredient.Description}" />
-            </StackLayout>
+            </VerticalStackLayout>
         </Grid>
     </Grid>
 </views:ContentPageBase>

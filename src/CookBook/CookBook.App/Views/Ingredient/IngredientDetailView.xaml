@@ -9,12 +9,10 @@
                        Style="{StaticResource ContentPageStyle}"
                        x:Name="IngredientDetailViewRoot"
                        x:DataType="vm:IngredientDetailViewModel">
-    <StackLayout Orientation="Vertical"
-                 Spacing="20">
-        <StackLayout HorizontalOptions="End"
-                     Orientation="Horizontal"
-                     Spacing="15"
-                     HeightRequest="30">
+    <VerticalStackLayout Spacing="20">
+        <HorizontalStackLayout HorizontalOptions="End"
+                               Spacing="15"
+                               HeightRequest="30">
             <Button Text="{x:Static texts:IngredientDetailViewTexts.Delete_Button_Text}"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource ErrorColor}"
@@ -24,7 +22,7 @@
                     CornerRadius="5"
                     BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding GoToEditCommand}" />
-        </StackLayout>
+        </HorizontalStackLayout>
 
         <Grid HorizontalOptions="Center" VerticalOptions="Start"
               RowDefinitions="170, *" ColumnDefinitions="*, Auto, Auto, *"
@@ -32,24 +30,21 @@
 
             <Frame Grid.Row="0" Grid.Column="1"
                    HorizontalOptions="Center" VerticalOptions="Center"
-                   HeightRequest="170" WidthRequest="170"
-                   CornerRadius="10" 
-                   IsClippedToBounds="True"
-                   Padding="0">
+                   Style="{StaticResource ImageFrameStyle}">
                 <Image Aspect="AspectFill"
+                       WidthRequest="170" HeightRequest="170"
                        Source="{Binding Ingredient.ImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"/>
             </Frame>
 
-            <StackLayout Grid.Row="0" Grid.RowSpan="2"
-                         Grid.Column="2"
-                         Spacing="20"
-                         Orientation="Vertical">
+            <VerticalStackLayout Grid.Row="0" Grid.RowSpan="2"
+                                 Grid.Column="2"
+                                 Spacing="20">
                 <Label FontSize="24" 
                        Text="{Binding Ingredient.Name}" />
 
                 <Label FontSize="14" 
                        Text="{Binding Ingredient.Description}"/>
-            </StackLayout>
+            </VerticalStackLayout>
         </Grid>
-    </StackLayout>
+    </VerticalStackLayout>
 </views:ContentPageBase>

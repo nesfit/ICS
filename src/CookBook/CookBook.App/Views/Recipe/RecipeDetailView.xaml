@@ -85,12 +85,10 @@
                   RowDefinitions="Auto, *"
                   RowSpacing="20">
                 <Frame Grid.Row="0"
-                       Padding="0"
-                       CornerRadius="10"
-                       HeightRequest="200" WidthRequest="300"
-                       IsClippedToBounds="True">
+                       Style="{StaticResource ImageFrameStyle}">
                     <Image Source="{Binding Recipe.ImageUrl, TargetNullValue='recipe_placeholder.jpg'}"
-                           WidthRequest="300"/>
+                           WidthRequest="320" HeightRequest="240"
+                           Aspect="AspectFill" />
                 </Frame>
             </Grid>
         </Grid>

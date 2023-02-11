@@ -191,6 +191,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Resources\Styles\FrameStyle.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\ContentPageStyle.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -35,9 +35,7 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:IngredientListModel">
-                    <Frame Padding="0"
-                           CornerRadius="10" HeightRequest="200"
-                           IsClippedToBounds="True">
+                    <Frame Style="{StaticResource ImageFrameStyle}">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={x:Reference IngredientListViewRoot}, Path=BindingContext.GoToDetailCommand}"
                                                   CommandParameter="{Binding Id}" />
