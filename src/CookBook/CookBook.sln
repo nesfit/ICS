@@ -22,7 +22,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{F1D07B72-AF91-4B68-81A3-5855F9CC7CBB}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		global.json = global.json
 		nuget.config = nuget.config
 		README.md = README.md
 	EndProjectSection
