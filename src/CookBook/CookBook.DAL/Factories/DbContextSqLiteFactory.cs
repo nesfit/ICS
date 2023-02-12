@@ -17,6 +17,9 @@ public class DbContextSqLiteFactory : IDbContextFactory<CookBookDbContext>
     public CookBookDbContext CreateDbContext()
     {
         DbContextOptionsBuilder<CookBookDbContext> builder = new();
+
+        ////May be helpful for ad-hoc testing, not drop in replacement, needs some more configuration.
+        //builder.UseSqlite($"Data Source =:memory:;");
         builder.UseSqlite($"Data Source={_databaseName};Cache=Shared");
 
         ////Enable in case you want to see tests details, enabled may cause some inconsistencies in tests
