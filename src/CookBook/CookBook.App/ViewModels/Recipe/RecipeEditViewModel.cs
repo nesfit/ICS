@@ -40,7 +40,7 @@ public partial class RecipeEditViewModel : ViewModelBase, IRecipient<RecipeIngre
     [RelayCommand]
     private async Task SaveAsync()
     {
-        await recipeFacade.SaveAsync(Recipe);
+        await recipeFacade.SaveAsync(Recipe with{ Ingredients = default! });
 
         messengerService.Send(new RecipeEditMessage { RecipeId = Recipe.Id});
 
