@@ -20,7 +20,7 @@ public class NoneDbMigrator : IDbMigrator
 public class SqliteDbMigrator : IDbMigrator 
 {
     private readonly IDbContextFactory<CookBookDbContext> _dbContextFactory;
-    private readonly DALOptions.SqliteOptions _sqliteOptions;
+    private readonly SqliteOptions _sqliteOptions;
 
     public SqliteDbMigrator(IDbContextFactory<CookBookDbContext> dbContextFactory, DALOptions dalOptions)
     {
@@ -34,7 +34,7 @@ public class SqliteDbMigrator : IDbMigrator
     {
         await using CookBookDbContext dbContext = await _dbContextFactory.CreateDbContextAsync(cancellationToken);
 
-        if(_sqliteOptions.RecreateDatabseEachTime)
+        if(_sqliteOptions.RecreateDatabaseEachTime)
         {
             await dbContext.Database.EnsureDeletedAsync(cancellationToken);
         }

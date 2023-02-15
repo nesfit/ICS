@@ -44,7 +44,8 @@ public static class DALInstaller
                 throw new InvalidOperationException($"{nameof(dalOptions.Sqlite.DatabaseName)} is not set");
 
             }
-            services.AddSingleton<IDbContextFactory<CookBookDbContext>>(provider => new DbContextSqLiteFactory(dalOptions.Sqlite.DatabaseName!, dalOptions?.Sqlite?.SeedDemoData ?? false));
+            string databaseFilePath = Path.Combine(FileSystem.AppDataDirectory, dalOptions.Sqlite.DatabaseName!);
+            services.AddSingleton<IDbContextFactory<CookBookDbContext>>(provider => new DbContextSqLiteFactory(databaseFilePath, dalOptions?.Sqlite?.SeedDemoData ?? false));
             services.AddSingleton<IDbMigrator, SqliteDbMigrator>();
         }
 

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using CookBook.BL.Mappers;
 using CookBook.BL.Models;
@@ -9,6 +11,7 @@ using CookBook.DAL.Mappers;
 using CookBook.DAL.Repositories;
 using CookBook.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CookBook.BL.Facades;
 
@@ -72,6 +75,8 @@ public abstract class
     {
         TDetailModel result;
 
+        GuardCollectionsAreNotSet(model);
+
         TEntity entity = ModelMapper.MapToEntity(model);
 
         IUnitOfWork uow = UnitOfWorkFactory.Create();
@@ -92,5 +97,28 @@ public abstract class
         await uow.CommitAsync();
 
         return result;
+    }
+
+    /// <summary>
+    /// This Guard ensures that there is a clear understanding of current infrastructure limitations.
+    /// This version of BL/DAL infrastructure does not support insertion or update of adjacent entities
+    /// </summary>
+    /// <param name="model">Model to be inserted or updated</param>
+    /// <exception cref="InvalidOperationException"></exception>
+    public static void GuardCollectionsAreNotSet(TDetailModel model)
+    {
+        IEnumerable<PropertyInfo> collectionProperties = model
+            .GetType()
+            .GetProperties()
+            .Where(i => typeof(ICollection).IsAssignableFrom(i.PropertyType));
+
+        foreach (PropertyInfo collectionProperty in collectionProperties)
+        {
+            if (collectionProperty.GetValue(model) is ICollection { Count: > 0 })
+            {
+                throw new InvalidOperationException(
+                    "Current BL and DAL infrastructure disallows insert or update of models with adjacent collections.");
+            }
+        }
     }
 }
