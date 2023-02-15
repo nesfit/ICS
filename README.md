@@ -86,11 +86,11 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 # Projekt
 * Projekt bude vypracovaný v 5 členném týmu.
 
-| Fáze | Obsah                                   | Body |
-| ---- | --------------------------------------- | ---- |
-| 1    | Objektový návrh                         | 20   |
-| 2    | Entity Framework, Repository, Tests     | 30   |
-| 3    | Finalizace aplikace a následná obhajoba | 50   |
+| Fáze | Deadline | Obsah                                   | Body |
+| ---- | -------- | --------------------------------------- | ---- |
+| 1    | 05.03.   | Objektový návrh                         | 20   |
+| 2    | 09.04.   | Entity Framework, Repository, Tests     | 30   |
+| 3    | 02-03.05 | Finalizace aplikace a následná obhajoba | 50   |
 
 * Při obhajobě:
   * musí být přítomni všichni členové týmu (vyjímka je řádně omluvená nepřítomnost dle studijního řádu),
