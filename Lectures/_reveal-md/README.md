@@ -8,6 +8,14 @@ Presentation uses [`reveal-md`](https://github.com/webpro/reveal-md).
 npm install -g reveal-md
 ```
 
+**OR**
+
+Use [Nix](https://nixos.org/download.html#nix-install-windows) in WSL2
+
+```bash
+nix develop --extra-experimental-features nix-command --extra-experimental-features flakes github:/nesfit/ICS
+```
+
 ## Usage
 
 ```bash
