@@ -4,7 +4,8 @@ Presentation uses [`reveal-md`](https://github.com/webpro/reveal-md).
 
 ## Installation
 
-```bash
+```pwsh
+winget install OpenJS.NodeJS.LTS
 npm install -g reveal-md
 ```
 
