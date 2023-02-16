@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Specialized;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 [assembly:InternalsVisibleTo("Tests")]
 

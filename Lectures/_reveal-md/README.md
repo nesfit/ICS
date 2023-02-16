@@ -4,8 +4,17 @@ Presentation uses [`reveal-md`](https://github.com/webpro/reveal-md).
 
 ## Installation
 
-```bash
+```pwsh
+winget install OpenJS.NodeJS.LTS
 npm install -g reveal-md
+```
+
+**OR**
+
+Use [Nix](https://nixos.org/download.html#nix-install-windows) in WSL2
+
+```bash
+nix develop --extra-experimental-features nix-command --extra-experimental-features flakes github:/nesfit/ICS
 ```
 
 ## Usage

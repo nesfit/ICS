@@ -37,7 +37,7 @@
 </script></section><section data-markdown><script type="text/template">
 <pre><code data-sample='assets/sln/Examples/Dog.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-28] -->
-<!-- [Code sample](assets/sln/Examples/Dog.cs) -->
+[Code sample](assets/sln/Examples/Dog.cs)
 
 </script></section><section data-markdown><script type="text/template">
 ## Three Principles of OOP
@@ -70,6 +70,7 @@
 | `internal`           | accessible in the **same assembly**, but not from another assemblies                                                                                                       |
 | `protected internal` | accessible in the **same assembly** in which it is declared, **or** from within a **derived** *class* in another assembly(*internal* **OR** *protected*)                   |
 | `private protected`  | accessible **only within its declaring assembly**, in the **same** *class*, **and** in a *class* **that is derived** from the same *class*(*internal* **AND** *protected*) |
+| `file`               | accessible in the **top-level type's scope** and visibility to the file in which it's declared.                                                                            |
 
 
 </script></section><section data-markdown><script type="text/template">
@@ -733,27 +734,27 @@ Person student = new Student { FirstName = "Mads", LastName = "Nielsen", ID = 12
   * A `struct` is a **value type**, whereas a `class` and `records` are a **reference types**
   * A `struct` does not support inheritance(other than implicitly deriving from `System.ValueType`)
 * Can have all the members as `class`, except:
-  * ~~A parameter-less constructor(is implicit)~~ C# 10!
-  * ~~Field initializers~~ C# 10!
+  * ~~A parameter-less constructor(is implicit)~~ C# 10
+  * ~~Field initializers~~ C# 10
   * A finalizer
   * Virtual or protected members
-* Each constructor has to initialize all `struct`'s members
-* Members cannot be initialized in `struct`'s declaration
+* ~~Each constructor has to initialize all `struct`'s members~~ C# 11
+* ~~Members cannot be initialized in `struct`'s declaration~~ C# 10
 
 </script></section><section data-markdown><script type="text/template">
 ```C#
 public readonly struct Point
 {
-  int x, y;
-  public Point(int x, int y)
-  {
-    this.x = x;
-    this.y = y;
-  }
+    private readonly int _x, _y;
+    public Point(int x, int y)
+    {
+        _x = x;
+        _y = y;
+    }
 }
 
 Point p1 = new Point(1, 1); // p1.x and p1.y will be 1
-Point p2 = new Point(); // p2.x and p2.y will be 0
+Point p2 = new Point();     // p2.x and p2.y will be 0
 ```
 
 </script></section></section><section  data-markdown><script type="text/template">
@@ -1715,6 +1716,7 @@ static void Main()
         history: true,
         center: true,
         transition: 'default', // none/fade/slide/convex/concave/zoom
+        slideNumber: true,
         plugins: [
           RevealMarkdown,
           RevealHighlight,
