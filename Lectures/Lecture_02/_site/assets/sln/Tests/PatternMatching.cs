@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Examples;
+﻿using Examples;
 using Xunit;
 
 namespace Lecture02.Tests
