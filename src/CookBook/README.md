@@ -12,9 +12,11 @@ dotnet tool install dotnet-ef --global
 dotnet workload install maui
 ```
 
-> **Warning** Make sure that additional workload with VS 2022 is installed as well in case that application is not compiling or cannot start properly - [FAQ](https://github.com/nesfit/ICS/wiki/Projekt-CookBook-nelze-vůbec-spustit)
+> **Warning** Make sure that additional workloads for VS 2022 are installed as well in case that application is not compiling or cannot start properly - [FAQ](https://github.com/nesfit/ICS/wiki/Projekt-CookBook-nelze-vůbec-spustit)
 
 ### Recommended Tooling / IDEs
+
+> **Warning** Without VS 2022 installation with atleast the following workloads, MAUI application will not be runnable.
 
 - Visual Studio 2022 + Resharper
 ```
