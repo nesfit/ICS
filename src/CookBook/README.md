@@ -6,6 +6,7 @@
 
 ```pwsh
 winget install Microsoft.DotNet.SDK.7
+dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
 dotnet tool install dotnet-ef --global
 dotnet workload install maui
 ```
@@ -51,11 +52,3 @@ Make sure that your system settings reflects official documentation and you can 
 > **Note** If you decide to test this option, you must make additional configuration changes to the project. Look for `TargetFramework` configuration.
 
 > **Note** PRs reflecting your experience with additional dependencies/configurations are welcomed if you tried this option!
-
-## Notes
-
-In case you are missing nuget source, e.g. `dotnet restore` fails
-
-```
-dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
-```
