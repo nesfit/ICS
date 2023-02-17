@@ -5,6 +5,7 @@
 ### Dependencies
 
 ```pwsh
+winget install Git.Git
 winget install Microsoft.DotNet.SDK.7
 dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
 dotnet tool install dotnet-ef --global
@@ -17,7 +18,7 @@ dotnet workload install maui
 
 - Visual Studio 2022 + Resharper
 ```
-winget install Microsoft.VisualStudio.2022.Community --override "--add Microsoft.VisualStudio.Workload.NetCrossPlat --add Microsoft.VisualStudio.Workload.Data --add Microsoft.VisualStudio.Workload.ManagedDesktop"
+winget install Microsoft.VisualStudio.2022.Community --override "--add Microsoft.VisualStudio.Workload.NetCrossPlat --add Microsoft.VisualStudio.Workload.Data --add Microsoft.VisualStudio.Workload.ManagedDesktop Microsoft.VisualStudio.ComponentGroup.WindowsAppSDK.Cs"
 winget install JetBrains.ReSharper #https://www.jetbrains.com/community/education/#students
 ```
 
