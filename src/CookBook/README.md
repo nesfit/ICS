@@ -12,32 +12,40 @@ dotnet workload install maui
 
 > **Warning** Make sure that additional workload with VS 2022 is installed as well in case that application is not compiling or cannot start properly - [FAQ](https://github.com/nesfit/ICS/wiki/Projekt-CookBook-nelze-vůbec-spustit)
 
-### Recommended Tooling / IDE
+### Recommended Tooling / IDEs
 
+- Visual Studio 2022 + Resharper
 ```
 winget install Microsoft.VisualStudio.2022.Community --override "--add Microsoft.VisualStudio.Workload.NetCrossPlat --add Microsoft.VisualStudio.Workload.Data --add Microsoft.VisualStudio.Workload.ManagedDesktop"
-```
-
-OR
-
-```
 winget install JetBrains.ReSharper #https://www.jetbrains.com/community/education/#students
+```
+
+- Rider
+```
+winget install JetBrains.Rider #https://www.jetbrains.com/community/education/#students
 ```
 
 > **Note** Clean installation without VS 2022 is not tested. PRs reflecting your experience with additional dependencies/configurations are welcomed if you tried this option!
 
 ## MacOS
 
-> **Warning** This option was tested on Macbook Air 2021 M1. It has not been officially supported or recommended, nor will it be periodically tested further. Use this at your own risk.
+### Recommended Tooling / IDEs
+- [Visual Studio for MAC](https://visualstudio.microsoft.com/vs/mac/)
+- [Rider](https://www.jetbrains.com/rider/)
 
 Make sure that your system settings reflects official documentation and you can start [sample application](https://learn.microsoft.com/en-us/dotnet/maui/macos/cli?view=net-maui-7.0)
 
 [Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12) needs to be intalled, server enabled, all warnings resolved.
 
+> **Warning** This option was tested on Macbook Air 2021 M1. It has not been officially supported or recommended, nor will it be periodically tested further. Use this at your own risk.
+
 > **Note** PRs reflecting your experience with additional dependencies/configurations are welcomed if you tried this option!
 
 ## Linux
 
+### Recommended Tooling / IDEs
+- [Rider](https://www.jetbrains.com/rider/)
+  
 > **Warning** This option was not tested! It has not been officially supported or recommended, nor will it be periodically tested further. Use this at your own risk.
 
 > **Note** If you decide to test this option, you must make additional configuration changes to the project. Look for `TargetFramework` configuration.
