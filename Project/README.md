@@ -119,7 +119,11 @@ Odevzdávání projektu má **3 fáze**. V každé fázi se hodnotí jiné vlas
 
 **Kontroluje se kód, který je nahrán v GIT** ve větvi `master` nebo `main`. Vždy se kontroluje **poslední commit před časem odevzdávání** dané fáze projektu. Na commity nahrány po času odevzdávání nebo v jiných větvích nebude brán zřetel. Commit, který máme hodnotit otagujte (`review1, review2, review3`), čímž nám usnadníte orientaci při hodnocení.
 
-> :warning: **Je povoleno převzít kód z libovolného zdroje vyjma kódu projektů ostatních týmů**. Převzatý kód vyznačte komentářem a uveďte zdroj. **Kódu musíte rozumět a být schopni při obhajobě objasnit jeho funkci.**
+> :warning: **Je povoleno použít libovolnou knihovnu získanou standardním způsobem z NuGet zdroje.**
+
+> :warning: **Je povoleno převzít kód z libovolného zdroje vyjma kódu projektů ostatních týmů.** Převzatý kód vyznačte komentářem a uveďte zdroj. **Kódu musíte rozumět a být schopni při obhajobě objasnit jeho funkci.**
+
+> :warning: **Zkontrolujte, že převzatý kód i knihovny neporušují licence k nimž spřažené.**
 
 Je silně doporučováno projekty v průběhu semestru konzultovat (ideálně po cvičení, nebo si dohodnout termín konzultace emailem), předejdete tak případným komplikacím při odevzdání.
 
