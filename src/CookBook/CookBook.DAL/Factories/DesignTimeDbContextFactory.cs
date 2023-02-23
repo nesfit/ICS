@@ -11,13 +11,17 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<CookBookDb
     public CookBookDbContext CreateDbContext(string[] args)
     {
         DbContextOptionsBuilder<CookBookDbContext> builder = new();
-        builder.UseSqlServer(
-            @"Data Source=(LocalDB)\MSSQLLocalDB;
-                Initial Catalog = CookBook;
-                MultipleActiveResultSets = True;
-                Integrated Security = True;
-                Encrypt = False;
-                TrustServerCertificate = True;");
+
+        // // Use for LocalDB migrations
+        // builder.UseSqlServer(
+        //     @"Data Source=(LocalDB)\MSSQLLocalDB;
+        //         Initial Catalog = CookBook;
+        //         MultipleActiveResultSets = True;
+        //         Integrated Security = True;
+        //         Encrypt = False;
+        //         TrustServerCertificate = True;");
+
+        builder.UseSqlite($"Data Source=CookBook;Cache=Shared");
 
         return new CookBookDbContext(builder.Options);
     }

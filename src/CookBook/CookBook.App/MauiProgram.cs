@@ -4,8 +4,8 @@ using CookBook.BL;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
 
+[assembly:System.Resources.NeutralResourcesLanguage("en")]
 namespace CookBook.App;
-
 public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
@@ -18,9 +18,9 @@ public static class MauiProgram
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            });  
+            });
 
-        ConfigureAppSettings(builder);       
+        ConfigureAppSettings(builder);
 
         builder.Services
             .AddDALServices(builder.Configuration)
