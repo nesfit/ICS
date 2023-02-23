@@ -17,7 +17,7 @@ enableTitleFooter: true
 
 ## .NET Standard libraries, collections, MSSQL, XML
 
-<div class="right">[ Tibor Jašek &lt;tibor.jasek@gmail.com&gt;, Patrik Švikruha ]</div>
+<div class="right">[Tibor Jašek, Patrik Švikruha]</div>
 
 ---
 ## .NET Standard
@@ -35,26 +35,27 @@ enableTitleFooter: true
 * **Reduces conditional compilation** of *shared source* due to .NET APIs
 
 +++
-#### .NET Long ago
+#### .NET Long time ago
 
 ![](assets/img/NetLongAgo.png)
 
 +++
-#### .NET Yesterday
+#### .NET "Yesterday"
 
 ![](assets/img/NetYesterday.png)
 
 
 +++
-#### .NET Today
+#### .NET Today (.NET 7)
 
-![](assets/img/DotnetUnifiedPlatform.png)
+![.NET 7](assets/img/dotnet-platform2.png)
+<!-- ![](assets/img/DotnetUnifiedPlatform.png) -->
 
 +++
-### .NET Standard vs .NET Core (.NET 5, .NET 6)
+### .NET Standard vs .NET Core (.NET 5, .NET 6, ...)
 * **.NET Standard**
   * *specification* that *covers which APIs a .NET platform has to implement*
-* **.NET Core** (.NET 5, .NET 6)
+* **.NET Core** (.NET 5, .NET 6, ...)
   * **concrete .NET platform**
   * *implements the .NET Standard*
 
@@ -1170,7 +1171,7 @@ IEnumerable<string> query = names
 foreach (string name in query) Console.WriteLine(name);
 ```
 
-![LinqFluentSyntax](assets/img/LinqFluentSyntax.png)
+![LinqFluentSyntax](assets/img/LINQ/LinqFluentSyntax.png)
 
 +++
 ### Query syntax diagram
@@ -1187,8 +1188,7 @@ IEnumerable<string> query =
 
 +++
 ### Query syntax diagram
-
-![](assets/img/LinqQuerySyntax.png)
+![Query syntax diagram](assets/img/LINQ/LinqQuerySyntax.png)
 
 +++
 ### Fluent vs Query syntax
@@ -1252,6 +1252,8 @@ Filtering is an operation to restrict the result set to the point where it shows
 | `Where`  | Filter values based on a predicate function                    |
 | `OfType` | Filter values based on their ability to be as a specified type |
 
+![](assets/img/LINQ/LINQ_Where.png)
+![](assets/img/LINQ/LINQ_OfType.png)
 
 +++
 <pre><code  data-sample='assets/sln/Tests/LinqFilteringOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
@@ -1275,6 +1277,7 @@ Joining refers to an operation which directly targets data sources with difficul
 |   `Join`    | The operator join two sequences on basis of matching keys |
 | `GroupJoin` | Join two sequences and group the matching elements        |
 
+![](assets/img/LINQ/LINQ_Join.png)
 
 +++
 <pre><code  data-sample='assets/sln/Tests/LinqJoinOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
@@ -1304,6 +1307,8 @@ Projection is an operation in which an object is transformed into an altogether 
 |   `Select`   | The operator projects values on basis of a transform function                                                                         |
 | `SelectMany` | The operator projects the sequences of values which are based on a transform function as well as flattens them into a single sequence |
 
+![](assets/img/LINQ/LINQ_Select.png)
+![](assets/img/LINQ/LINQ_SelectMany.png)
 
 +++
 <pre><code  data-sample='assets/sln/Tests/LinqProjectionOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
@@ -1363,6 +1368,8 @@ The operators put data into some groups based on a common shared attribute.
 | `GroupBy`  | Organize a sequence of items in groups and return them as an `IEnumerable` collection of type `IGrouping<key, element>` |
 | `ToLookup` | Execute a grouping operation in which a sequence of key pairs is returned                                               |
 
+![GroupBy](assets/img/LINQ/LINQ_GroupBy.png)
+![ToLookup](assets/img/LINQ/LINQ_ToLookup.png)
 
 +++
 <pre><code  data-sample='assets/sln/Tests/LinqGroupingOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
@@ -1722,6 +1729,10 @@ All standard query element operators return a single element from a collection.
 [Code sample](assets/sln/Tests/LinqElementOperatorsTest.cs)
 
 +++
+### LINQ mind map
+![LINQ mind map](assets/img/LINQ/LINQ_MindMap.png)
+
++++
 ### How implement LINQ?
 * [TUTORIAL - Create your own LINQ implementation](http://codeblog.jonskeet.uk/category/edulinq/)
 * E.g. `Where`:
@@ -1974,21 +1985,37 @@ Connection: System.Data.SqlClient.SqlConnection
 [Code sample](assets/sln/Examples/XmlSerialization.cs)
 
 ---
+![Update Days MAUI](assets/img/A4_AI_contest.png)
+
+---
 ## References:
 [C# 7.0 in a Nutshell: The Definitive Reference](https://www.amazon.com/C-7-0-Nutshell-Definitive-Reference/dp/1491987650)
+
 [Microsoft documentation](https://docs.microsoft.com)
+
 [Microsoft documentation github](https://github.com/MicrosoftDocs)
+
 [.NET Standard web](http://immo.landwerth.net)
+
 [.NET Standard github](https://github.com/dotnet/standard)
+
 [Tutorials Point](https://www.tutorialspoint.com)
+
 [Regex Storm](http://regexstorm.net/tester)
+
 [Wikipedia](https://en.wikipedia.org)
 
 +++
-## Refences to images used:
+## Refences to used images:
 [.NET Standard Versions](https://github.com/dotnet/standard/blob/master/docs/versions.md#net-standard-versions)
+
 [Introduction to .NET Standard](https://blogs.msdn.microsoft.com/dotnet/2016/09/26/introducing-net-standard/)
+
 [Stanford University](https://www.stanford.edu/)
+
+[.NET 7 is Available Today](https://devblogs.microsoft.com/dotnet/announcing-dotnet-7/)
+
+[LINQ explained with sketches - the eBook](https://steven-giesel.com/blogPost/8d12d9ef-c4e6-439c-9f88-46825cf35576)
 
 +++
 ## Credits
