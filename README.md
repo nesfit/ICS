@@ -17,6 +17,10 @@ enableTitleFooter: true
 
 ---
 
+## [FAQ - Frequently Asked Questions](https://github.com/nesfit/ICS/wiki)
+
+---
+
 # Rozvrh
 
 ## Přednášky
