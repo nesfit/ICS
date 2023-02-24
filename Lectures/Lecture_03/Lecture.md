@@ -133,7 +133,7 @@ enableTitleFooter: true
 * `class Tuple` - provides methods for creating tuple objects
 
 +++
-## Sctruct types
+## Struct types
 * `struct Boolean`
 * `struct Byte`, `struct SByte`
 * `struct Char`
@@ -455,7 +455,7 @@ delegate TResult Func<in T1,in T2,out TResult>(T1 arg1, T2 arg2); //has two para
 * **List**
   * Stores values in list
   * *Grows automatically*
-* **Dictioniary**
+* **Dictionary**
   * Stores *key and value* pairs
 * **Stack**
   * Stores the values in *Last In First Out* style
@@ -487,7 +487,7 @@ delegate TResult Func<in T1,in T2,out TResult>(T1 arg1, T2 arg2); //has two para
 
 
 +++
-### Iterfaces Hierarchy
+### Interfaces Hierarchy
 ![](assets/img/CollectionHierarchy.png)
 
 +++
@@ -1193,7 +1193,7 @@ IEnumerable<string> query =
 +++
 ### Fluent vs Query syntax
 * Each has its own benefits
-* Can be combinated
+* Can be combined
 * Some operators exists only in **Fluent syntax**
 * **Query syntax** is better
   * When `let` is used to create new variable in query
@@ -2006,7 +2006,7 @@ Connection: System.Data.SqlClient.SqlConnection
 [Wikipedia](https://en.wikipedia.org)
 
 +++
-## Refences to used images:
+## References to used images:
 [.NET Standard Versions](https://github.com/dotnet/standard/blob/master/docs/versions.md#net-standard-versions)
 
 [Introduction to .NET Standard](https://blogs.msdn.microsoft.com/dotnet/2016/09/26/introducing-net-standard/)
