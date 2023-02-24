@@ -10,8 +10,8 @@ public record IngredientAmountEntity : IEntity
     public double Amount { get; set; }
     public Unit Unit { get; set; }
 
-    public RecipeEntity? Recipe { get; init; }
+    public required RecipeEntity Recipe { get; init; }
 
-    public IngredientEntity? Ingredient { get; init; }
+    public required IngredientEntity Ingredient { get; init; }
     public required Guid Id { get; set; }
 }
