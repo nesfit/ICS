@@ -20,7 +20,7 @@ public static class DALInstaller
         {
             throw new InvalidOperationException("No persistence provider configured");
         }
-        
+
         if (dalOptions.LocalDb?.Enabled == false && dalOptions.Sqlite?.Enabled == false)
         {
             throw new InvalidOperationException("No persistence provider enabled");
@@ -45,6 +45,7 @@ public static class DALInstaller
 
             }
             string databaseFilePath = Path.Combine(FileSystem.AppDataDirectory, dalOptions.Sqlite.DatabaseName!);
+            Console.WriteLine($@"SQLite DB file location: {databaseFilePath}");
             services.AddSingleton<IDbContextFactory<CookBookDbContext>>(provider => new DbContextSqLiteFactory(databaseFilePath, dalOptions?.Sqlite?.SeedDemoData ?? false));
             services.AddSingleton<IDbMigrator, SqliteDbMigrator>();
         }
