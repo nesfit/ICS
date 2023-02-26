@@ -184,6 +184,32 @@ enableTitleFooter: true
 ![](assets/img/ServerExplorer.gif)
 
 +++
+### SQLite
+* is a C-language library that implements:
+  *  a small,
+  *   fast,
+  *   self-contained,
+  *   high-reliability,
+  *   full-featured,
+  *   **SQL database engine**.
+* SQLite is built into all mobile phones and most computers and comes bundled inside countless other applications.
+* **SQLite Is Embedded, Not Client-Server**
+* [Quirks, Caveats, and Gotchas In SQLite](https://www.sqlite.org/quirks.html)   
+
++++
+### [DB Browser for SQLite](https://sqlitebrowser.org)
+
+![](./assets/img/sqlite_db_browser.png)
+
++++
+### [JetBrains Rider / Datagrip](https://jetbrains.com.xy2401.com/help/rider/Connecting_to_a_database.html#connect-to-sqlite)
+![](./assets/img/db_sqlite_integration.png)
+
++++
+### [JetBrains Rider / Datagrip](https://jetbrains.com.xy2401.com/help/rider/Connecting_to_a_database.html#connect-to-sqlite)
+![](./assets/img/Rider_SQLite.png)
+
++++
 ## Object-relational Mapping (ORM)
 <div id="left">
 
@@ -291,8 +317,8 @@ enableTitleFooter: true
   * Works only on .NET Framework
 * **Entity Framework Core**
   * open-source
-  * Current version 6.0.x
-  * Works on .NET Standard (supports .NET Core / .NET 6 -->  multiplatform)
+  * Current version 7.0.x
+  * Works on .NET Standard (supports .NET Core / .NET 5/6/7 -->  multiplatform)
   * Used in this course
 
 ![](assets/img/EFversions.png)
@@ -386,7 +412,8 @@ enableTitleFooter: true
 * Shared **design-time components** for Entity Framework Core tools
 * Package manager console cmdlets like `Add-Migration`, `dotnet ef` & `ef.exe`
 * Needed for **Migrations** or **Reverse Engineering**
-* NuGet package `Microsoft.EntityFrameworkCore.Design`
+* NuGet package `Microsoft.EntityFrameworkCore.Design` per project
+* Globally by `dotnet tool install --global dotnet-ef`
 
 ---
 ## Basic Concepts
