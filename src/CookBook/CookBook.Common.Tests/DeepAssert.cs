@@ -10,7 +10,7 @@ public static class DeepAssert
         {
             Config =
             {
-                MembersToIgnore = new List<string>(),
+                MembersToIgnore = propertiesToIgnore.ToList(),
                 IgnoreCollectionOrder = true,
                 IgnoreObjectTypes = true,
                 CompareStaticProperties = false,
@@ -18,11 +18,10 @@ public static class DeepAssert
             }
         };
 
-        foreach (var str in propertiesToIgnore)
-            compareLogic.Config.MembersToIgnore.Add(str);
-
-        var comparisonResult = compareLogic.Compare((object)expected!, (object)actual!);
+        ComparisonResult comparisonResult = compareLogic.Compare(expected!, actual!);
         if (!comparisonResult.AreEqual)
-            throw new ObjectEqualException((object)expected!, (object)actual!, comparisonResult.DifferencesString);
+        {
+            throw new ObjectEqualException(expected!, actual!, comparisonResult.DifferencesString);
+        }
     }
 }
