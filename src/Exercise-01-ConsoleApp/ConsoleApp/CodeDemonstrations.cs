@@ -19,7 +19,7 @@ internal static class CodeDemonstrations
     }
 
     /// <summary>
-    ///     Runs for loop, note: has to be static if we want to call it from Main
+    ///     Runs for loop, note: has to be static if we want to call it from Main.
     /// </summary>
     public static void RunForLoop()
     {
@@ -30,7 +30,7 @@ internal static class CodeDemonstrations
     }
 
     /// <summary>
-    ///     Runs while loop, note: has to be static if we want to call it from Main
+    ///     Runs while loop, note: has to be static if we want to call it from Main.
     /// </summary>
     public static void RunWhileLoop()
     {
@@ -44,7 +44,7 @@ internal static class CodeDemonstrations
     }
 
     /// <summary>
-    ///     Shows if branching, note: has to be static if we want to call it from Main
+    ///     Shows if branching, note: has to be static if we want to call it from Main.
     /// </summary>
     public static void ShowIf(int condition)
     {
@@ -61,8 +61,8 @@ internal static class CodeDemonstrations
 
     /// <summary>
     ///     Calculates basic mathematical operations (+,-,*,/) on given operands using
-    ///     mathematical assembly implemented by students them selves.
-    ///     Writes results on console.
+    ///     mathematical assembly implemented by students themselves.
+    ///     Writes the result to console.
     /// </summary>
     public static void Calculate()
     {
@@ -73,7 +73,7 @@ internal static class CodeDemonstrations
     }
 
     /// <summary>
-    ///     Gets input from keyboard, note: has to be static if we want to call it from Main
+    ///     Gets input from keyboard, note: has to be static if we want to call it from Main.
     /// </summary>
     public static void GetInput()
     {
@@ -90,12 +90,12 @@ internal static class CodeDemonstrations
         catch (Exception exception)
         {
             Console.WriteLine(exception.Message);
-            throw new ApplicationException("HUpsss....");
+            throw new ApplicationException("Upsss....");
         }
         finally
         {
             // executes always, after the try and/or catch
-            Console.WriteLine("Release resources... cleaning after my self");
+            Console.WriteLine("Release resources... cleaning after myself");
         }
     }
 }
