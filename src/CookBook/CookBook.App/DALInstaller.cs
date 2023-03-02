@@ -20,7 +20,7 @@ public static class DALInstaller
         {
             throw new InvalidOperationException("No persistence provider configured");
         }
-        
+
         if (dalOptions.LocalDb?.Enabled == false && dalOptions.Sqlite?.Enabled == false)
         {
             throw new InvalidOperationException("No persistence provider enabled");

@@ -8,21 +8,13 @@ namespace CookBook.DAL.Factories;
 /// </summary>
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<CookBookDbContext>
 {
-    public CookBookDbContext CreateDbContext(string[] args)
+    private readonly DbContextSqLiteFactory _dbContextSqLiteFactory;
+    private const string ConnectionString = $"Data Source=CookBook;Cache=Shared";
+
+    public DesignTimeDbContextFactory()
     {
-        DbContextOptionsBuilder<CookBookDbContext> builder = new();
-
-        // // Use for LocalDB migrations
-        // builder.UseSqlServer(
-        //     @"Data Source=(LocalDB)\MSSQLLocalDB;
-        //         Initial Catalog = CookBook;
-        //         MultipleActiveResultSets = True;
-        //         Integrated Security = True;
-        //         Encrypt = False;
-        //         TrustServerCertificate = True;");
-
-        builder.UseSqlite($"Data Source=CookBook;Cache=Shared");
-
-        return new CookBookDbContext(builder.Options);
+        _dbContextSqLiteFactory = new DbContextSqLiteFactory(ConnectionString);
     }
+    
+    public CookBookDbContext CreateDbContext(string[] args) => _dbContextSqLiteFactory.CreateDbContext();
 }
