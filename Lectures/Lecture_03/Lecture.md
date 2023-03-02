@@ -788,7 +788,7 @@ Console.WriteLine($"{Path.GetTempFileName()} is a file available for use.");
 [Code sample](assets/sln/Examples/FileSample.cs)
 
 +++
-## DirecoryInfo and FileInfo
+## DirectoryInfo and FileInfo
 * `class DirectoryInfo` and `class FileInfo`
 * Properties and instance methods
 * **DirectoryInfo**
