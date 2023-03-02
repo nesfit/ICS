@@ -45,7 +45,6 @@ public static class DALInstaller
 
             }
             string databaseFilePath = Path.Combine(FileSystem.AppDataDirectory, dalOptions.Sqlite.DatabaseName!);
-            Console.WriteLine($@"SQLite DB file location: {databaseFilePath}");
             services.AddSingleton<IDbContextFactory<CookBookDbContext>>(provider => new DbContextSqLiteFactory(databaseFilePath, dalOptions?.Sqlite?.SeedDemoData ?? false));
             services.AddSingleton<IDbMigrator, SqliteDbMigrator>();
         }
