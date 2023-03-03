@@ -110,7 +110,7 @@ enableTitleFooter: true
 <div id="left">
 
 * *Relational (SQL)* databases
-    * e.g., MySQL, PostgresSQL, MS SQL, Oracle, ...
+    * e.g., MySQL, PostgreSQL, MS SQL, Oracle, ...
     * Each table has firm structure
     * Relation validations
 </div>
@@ -420,7 +420,7 @@ enableTitleFooter: true
 ![](/assets/img/Overview_small.png) <!-- .element: class="overview" -->
 * DbContext
 * Entity
-* Persitence Scenarios
+* Persistence Scenarios
 * Conventions
 * Entity Configurations
 * Entity Relationships
@@ -549,7 +549,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
 +++
 ### Entity states
-* EF API maintains the state of each entity during an its lifetime
+* EF API maintains the state of each entity during its lifetime
 * **Each entity has a state** based on the operation performed on it via the *DbContext*
 * Represented by an enum [`Microsoft.EntityFrameworkCore.EntityState`](https://docs.microsoft.com/en-us/ef/core/api/microsoft.entityframeworkcore.entitystate) (in EF Core)
 * Tracking can be requested through `Entry()` method on `DbSet<>`
@@ -745,7 +745,7 @@ public class MSSQLLocalDBDbContextFactory : IDbContextFactory
 * Complex because an instance of the context does not track entities
 * Useful in web applications or applications with a remote database
 * *Pros*
-  * Utilizes less resources compared to the connected scenario
+  * Utilizes fewer resources compared to the connected scenario
   * No open connection with the database
 * *Cons*
   * Need to set an appropriate state to each entity before saving
@@ -757,11 +757,11 @@ public class MSSQLLocalDBDbContextFactory : IDbContextFactory
 
 ---
 ## Conventions
-* **Default rules** to builds a model based on your domain 
+* **Default rules** to build a model based on your domain 
   * **Tables** for all `DbSet<TEntity>` properties in a context class 
   * **Columns** for all the scalar properties of an entity class
-  * **Not null** collumn by default
-  * **Nullable** collumn by nullable primitive types properties
+  * **Not null** column by default
+  * **Nullable** column by nullable primitive types properties
   * **Primary key** for property named `Id` or `<Entity Class Name>Id` (case insensitive)
   * **Foreign Key** for reference navigation property named
     * `<Reference Navigation Property Name>Id`
@@ -840,7 +840,7 @@ public class Student
 | ------------------- | ------------------------------------------------------------------------------- |
 | `Table`             | The database table and/or schema that a class is mapped to                      |
 | `Column`            | The database column that a property is mapped to                                |
-| `ForeignKey`        | Specifies the property what is used as a foreign key in a relationship          |
+| `ForeignKey`        | Specifies the property that is used as a foreign key in a relationship          |
 | `DatabaseGenerated` | Specifies how the database generates values for a property                      |
 | `NotMapped`         | Applied to properties or classes that are to be excluded from database mapping. |
 | `InverseProperty`   | Specifies the inverse of a navigation property                                  |
@@ -1006,7 +1006,7 @@ using (var dbContext = CreateDbContext())
 +++
 ## Query Data
 
-* Any expresion created with LINQ
+* Any expression created with LINQ
 * When querying related object need to use `Include` expression
 
 ```C#
@@ -1240,7 +1240,7 @@ var students = context.Students
 * Object-relational mapper
 * **Open source**
 * Uses XML files and attributes for configuration
-* Functionality is simmilar to Entity Framework
+* Functionality is similar to Entity Framework
 * `PM> Install-Package NHibernate`
 * [Documentation](https://nhibernate.info/doc/index.html)
 * [GitHub](https://github.com/nhibernate/nhibernate-core)
@@ -1434,7 +1434,7 @@ public class Dapper : ITestSignature
 +++
 ### Performance Benchmarking results
 * Following results are for
-  * **10 iterations** each containg
+  * **10 iterations** each containing
     * **8 sports**
     * **30 teams** in each sport
     * **100 players** per team
@@ -1509,7 +1509,7 @@ public class Dapper : ITestSignature
 
 +++
 ### Repository Benefits
-* **Minimizes duplicit** query logic
+* **Minimizes duplicate** query logic
 * **Decouples** application from persistence frameworks
 * Promotes **testability**
 
@@ -1554,7 +1554,7 @@ public class Dapper : ITestSignature
 +++
 ### Entity Framework Problems
 * *Repository*
-  * **Minimizes duplicit** query logic
+  * **Minimizes duplicate** query logic
 * *Entity Framework*
   * `DbSet` returns `IQueriable`
   * Does not help with minimizing the duplicate:
@@ -1576,7 +1576,7 @@ var topSellingCourses = schoolCourses.Where(c => c.IsPublic && c.IsApproved).Ord
   * Only **repository methods have to be changed** when switching to different ORM
 * *Entity Framework*
   * Application is **tightly coupled** to Entity Framework
-  * Aplication **code has to be directly upgraded** when switching to different ORM
+  * Application **code has to be directly upgraded** when switching to different ORM
 
 
 ---
@@ -1750,7 +1750,7 @@ config.AssertConfigurationIsValid();
 [Wikipedia](https://en.wikipedia.org)
 
 +++
-## Refences to used images:
+## References to used images:
 [EntityFrameworkTutorial.net](http://www.entityframeworktutorial.net/)  
 [The Inquisitive Singh](https://inquisitivesingh.wordpress.com)  
 [Exception Not Found](https://exceptionnotfound.net/)  
