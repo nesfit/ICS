@@ -38,7 +38,15 @@ public partial class IngredientDetailViewModel : ViewModelBase, IRecipient<Ingre
     {
         if (Ingredient is not null)
         {
-            await ingredientFacade.DeleteAsync(Ingredient.Id);
+            try
+            {
+                await ingredientFacade.DeleteAsync(Ingredient.Id);
+            }
+            catch (InvalidOperationException)
+            {
+                //TODO handle ingredient deletion failed notification
+                navigationService.SendBackButtonPressed();
+            }
 
             messengerService.Send(new IngredientDeleteMessage());
 
