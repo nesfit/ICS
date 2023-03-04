@@ -106,6 +106,15 @@ namespace CookBook.App.Resources.Texts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} ingredients.
+        /// </summary>
+        internal static string IngredientsAmount_Label_StringFormat {
+            get {
+                return ResourceManager.GetString("IngredientsAmount_Label_StringFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CookBook.
         /// </summary>
         internal static string Page_Title {

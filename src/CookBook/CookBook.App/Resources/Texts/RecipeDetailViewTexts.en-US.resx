@@ -135,4 +135,7 @@
   <data name="Ingredients_Label_Text" xml:space="preserve">
     <value>Ingredients</value>
   </data>
+  <data name="IngredientsAmount_Label_StringFormat" xml:space="preserve">
+    <value>{0} ingredients</value>
+  </data>
 </root>
