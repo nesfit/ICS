@@ -138,7 +138,7 @@ winget install JetBrains.ReSharper
 * [Roman Jašek](https://www.linkedin.com/in/roman-jasek-16921839)
 * [Tibor Jašek](https://www.linkedin.com/in/tibor-jašek-717a5761)
 * [Michal Mrnuštík](https://www.linkedin.com/in/michal-mrnušt%C3%ADk-31050b60/)
-* [Michal Tichý]()
+* [Michal Tichý](edu@tichymichal.net)
 * [Jan Pluskal](https://www.fit.vut.cz/person/ipluskal)
 * [Michal Koutenský](https://www.fit.vut.cz/person/koutenmi)
 * [Daniel Dolejška](https://www.fit.vut.cz/person/dolejska)
