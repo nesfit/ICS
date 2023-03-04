@@ -120,4 +120,28 @@
   <data name="Page_Title" xml:space="preserve">
     <value>CookBook</value>
   </data>
+  <data name="Name_Label_Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="FoodType_Label_Text" xml:space="preserve">
+    <value>Food Type</value>
+  </data>
+  <data name="Duration_Label_Text" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="ImageUrl_Label_Text" xml:space="preserve">
+    <value>Image URL</value>
+  </data>
+  <data name="Description_Label_Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="EditIngredients_Button_Text" xml:space="preserve">
+    <value>Edit Ingredients</value>
+  </data>
+  <data name="ErrorUnsavedRecipe_Label_Text" xml:space="preserve">
+    <value>Ingredients can only be edited for recipe that is already saved</value>
+  </data>
+  <data name="Save_Button_Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>

@@ -20,7 +20,7 @@
                   RowSpacing="20">
                 <VerticalStackLayout Grid.Row="0"
                                      Spacing="10">
-                    <Label Text="Název" />
+                    <Label Text="{x:Static t:RecipeEditViewTexts.Name_Label_Text}" />
 
                     <Entry HorizontalOptions="Fill"
                            Text="{Binding Recipe.Name}" />
@@ -31,7 +31,7 @@
                       ColumnDefinitions="Auto, *"
                       RowSpacing="10" ColumnSpacing="17">
                     <Label Grid.Row="0" Grid.Column="0"
-                           Text="Typ jídla" />
+                           Text="{x:Static t:RecipeEditViewTexts.FoodType_Label_Text}" />
                     <Picker Grid.Row="1"
                             Grid.Column="0"
                             HorizontalOptions="Fill"
@@ -40,7 +40,7 @@
                             SelectedItem="{Binding Recipe.FoodType}" />
 
                     <Label Grid.Row="0" Grid.Column="1"
-                           Text="Čas přípravy" />
+                           Text="{x:Static t:RecipeEditViewTexts.Duration_Label_Text}" />
                     <TimePicker Grid.Row="1" Grid.Column="1"
                                 Time="{Binding Recipe.Duration}"
                                 Format="HH:mm" />
@@ -49,7 +49,7 @@
                 <StackLayout Grid.Row="2"
                              Orientation="Vertical"
                              Spacing="10">
-                    <Label Text="URL obrázku" />
+                    <Label Text="{x:Static t:RecipeEditViewTexts.ImageUrl_Label_Text}" />
 
                     <Entry Text="{Binding Recipe.ImageUrl}"/>
                 </StackLayout>
@@ -72,7 +72,7 @@
                   RowDefinitions="Auto, *"
                   RowSpacing="30">
                 <Label Grid.Row="0"
-                       Text="Postup" />
+                       Text="{x:Static t:RecipeEditViewTexts.Description_Label_Text}" />
 
                 <Editor Grid.Row="1"
                         Text="{Binding Recipe.Description}"
@@ -82,11 +82,11 @@
 
             <VerticalStackLayout Grid.Row="0" Grid.Column="1"
                                  Spacing="30">
-                <Button Text="Upravit ingredience"
+                <Button Text="{x:Static t:RecipeEditViewTexts.EditIngredients_Button_Text}"
                         Command="{Binding GoToRecipeIngredientEditCommand}"
                         IsVisible="{Binding Recipe, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter}}"
                         Style="{StaticResource PrimaryButtonStyle}" />
-                <Label Text="Ingredience lze upravovat jenom u receptu, který je již vytvořen a uložen"
+                <Label Text="{x:Static t:RecipeEditViewTexts.ErrorUnsavedRecipe_Label_Text}"
                        HorizontalOptions="End"
                        IsVisible="{Binding Recipe, Converter={StaticResource ModelIsNewToIsVisibleConverter}}" />
 
@@ -122,7 +122,7 @@
 
         <Button Grid.Row="2"
                 HorizontalOptions="End"
-                Text="Uložit"
+                Text="{x:Static t:RecipeEditViewTexts.Save_Button_Text}"
                 Command="{Binding SaveCommand}"
                 Style="{StaticResource PrimaryButtonStyle}" />
     </Grid>
