@@ -38,8 +38,15 @@ public abstract class
     public async Task DeleteAsync(Guid id)
     {
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
-        uow.GetRepository<TEntity, TEntityMapper>().Delete(id);
-        await uow.CommitAsync().ConfigureAwait(false);
+        try
+        {
+            uow.GetRepository<TEntity, TEntityMapper>().Delete(id);
+            await uow.CommitAsync().ConfigureAwait(false);
+        }
+        catch (DbUpdateException e)
+        {
+            throw new InvalidOperationException("Entity deletion failed.", e);
+        }
     }
 
     public virtual async Task<TDetailModel?> GetAsync(Guid id)

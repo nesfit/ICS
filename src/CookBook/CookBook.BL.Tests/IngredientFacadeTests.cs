@@ -67,6 +67,12 @@ public sealed class IngredientFacadeTests : FacadeTestsBase
         Assert.False(await dbxAssert.Ingredients.AnyAsync(i => i.Id == IngredientSeeds.Water.Id));
     }
 
+    [Fact]
+    public async Task Delete_IngredientUsedInRecipe_Throws()
+    {
+        //Act & Assert
+        await Assert.ThrowsAsync<InvalidOperationException>(async () => await _ingredientFacadeSUT.DeleteAsync(IngredientSeeds.IngredientEntity1.Id));
+    }
 
     [Fact]
     public async Task NewIngredient_InsertOrUpdate_IngredientAdded()

@@ -118,21 +118,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Back_Button_Text" xml:space="preserve">
-    <value>&lt; Zpět</value>
+    <value>&lt; Back</value>
   </data>
   <data name="Edit_Button_Text" xml:space="preserve">
-    <value>Upravit</value>
+    <value>Edit</value>
   </data>
   <data name="Description_Label_Text" xml:space="preserve">
-    <value>Popis</value>
+    <value>Description</value>
   </data>
   <data name="Page_Title" xml:space="preserve">
     <value>CookBook</value>
   </data>
   <data name="Delete_Button_Text" xml:space="preserve">
-    <value>Smazat</value>
+    <value>Delete</value>
   </data>
   <data name="Ingredients_Label_Text" xml:space="preserve">
-    <value>Ingredience</value>
+    <value>Ingredients</value>
+  </data>
+  <data name="IngredientsAmount_Label_StringFormat" xml:space="preserve">
+    <value>{0} ingredients</value>
   </data>
 </root>

@@ -17,6 +17,7 @@
             <converters:ModelIsNewToIsVisibleConverter x:Key="ModelIsNewToIsVisibleConverter" />
             <converters:ModelIsNewToIsVisibleInvertedConverter x:Key="ModelIsNewToIsVisibleInvertedConverter" />
             <converters:FoodTypeToStringConverter x:Key="FoodTypeToStringConverter" />
+            <converters:RecipeIngredientsCountToStringConverter x:Key="RecipeIngredientsCountToStringConverter"/>
             <converters:UnitToStringConverter x:Key="UnitToStringConverter"/>
         </ResourceDictionary>
     </Application.Resources>

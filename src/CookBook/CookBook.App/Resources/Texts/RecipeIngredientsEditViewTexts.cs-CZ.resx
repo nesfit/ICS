@@ -100,4 +100,22 @@
   <data name="Page_Title" xml:space="preserve">
     <value>CookBook</value>
   </data>
+  <data name="Ingredients_Label_Text" xml:space="preserve">
+    <value>Ingredience</value>
+  </data>
+  <data name="Amount_Label_Text" xml:space="preserve">
+    <value>Množství</value>
+  </data>
+  <data name="Unit_Label_Text" xml:space="preserve">
+    <value>Jednotka</value>
+  </data>
+  <data name="Name_Label_Text" xml:space="preserve">
+    <value>Název</value>
+  </data>
+  <data name="AddIngredient_Button_Text" xml:space="preserve">
+    <value>Přidat</value>
+  </data>
+  <data name="RemoveIngredient_Button_Text" xml:space="preserve">
+    <value>Odstranit</value>
+  </data>
 </root>

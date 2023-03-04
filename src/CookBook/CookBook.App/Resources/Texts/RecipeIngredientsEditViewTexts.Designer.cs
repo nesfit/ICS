@@ -61,11 +61,65 @@ namespace CookBook.App.Resources.Texts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        internal static string AddIngredient_Button_Text {
+            get {
+                return ResourceManager.GetString("AddIngredient_Button_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        internal static string Amount_Label_Text {
+            get {
+                return ResourceManager.GetString("Amount_Label_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingredients.
+        /// </summary>
+        internal static string Ingredients_Label_Text {
+            get {
+                return ResourceManager.GetString("Ingredients_Label_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string Name_Label_Text {
+            get {
+                return ResourceManager.GetString("Name_Label_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CookBook.
         /// </summary>
         internal static string Page_Title {
             get {
                 return ResourceManager.GetString("Page_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        internal static string RemoveIngredient_Button_Text {
+            get {
+                return ResourceManager.GetString("RemoveIngredient_Button_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit.
+        /// </summary>
+        internal static string Unit_Label_Text {
+            get {
+                return ResourceManager.GetString("Unit_Label_Text", resourceCulture);
             }
         }
     }

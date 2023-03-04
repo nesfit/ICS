@@ -22,14 +22,14 @@ namespace CookBook.App.Resources.Texts {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class RecipeDetailViewTexts {
+    internal class IngredientDetailViewModelTexts {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal RecipeDetailViewTexts() {
+        internal IngredientDetailViewModelTexts() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace CookBook.App.Resources.Texts {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CookBook.App.Resources.Texts.RecipeDetailViewTexts", typeof(RecipeDetailViewTexts).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CookBook.App.Resources.Texts.IngredientDetailViewModelTexts", typeof(IngredientDetailViewModelTexts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,20 @@ namespace CookBook.App.Resources.Texts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt; Back.
+        ///   Looks up a localized string similar to Ingredient cannot be deleted because it is used in a recipe.
         /// </summary>
-        internal static string Back_Button_Text {
+        internal static string DeleteError_Alert_Message {
             get {
-                return ResourceManager.GetString("Back_Button_Text", resourceCulture);
+                return ResourceManager.GetString("DeleteError_Alert_Message", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete.
+        ///   Looks up a localized string similar to Error.
         /// </summary>
-        internal static string Delete_Button_Text {
+        internal static string DeleteError_Alert_Title {
             get {
-                return ResourceManager.GetString("Delete_Button_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Description.
-        /// </summary>
-        internal static string Description_Label_Text {
-            get {
-                return ResourceManager.GetString("Description_Label_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Edit.
-        /// </summary>
-        internal static string Edit_Button_Text {
-            get {
-                return ResourceManager.GetString("Edit_Button_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ingredients.
-        /// </summary>
-        internal static string Ingredients_Label_Text {
-            get {
-                return ResourceManager.GetString("Ingredients_Label_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} ingredients.
-        /// </summary>
-        internal static string IngredientsAmount_Label_StringFormat {
-            get {
-                return ResourceManager.GetString("IngredientsAmount_Label_StringFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to CookBook.
-        /// </summary>
-        internal static string Page_Title {
-            get {
-                return ResourceManager.GetString("Page_Title", resourceCulture);
+                return ResourceManager.GetString("DeleteError_Alert_Title", resourceCulture);
             }
         }
     }
