@@ -61,7 +61,7 @@ namespace CookBook.App.Resources.Texts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Ingredient cannot be deleted because it is used in a recipe.
         /// </summary>
         internal static string DeleteError_AlertMessage {
             get {
@@ -70,7 +70,7 @@ namespace CookBook.App.Resources.Texts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string DeleteError_AlertTitle {
             get {
