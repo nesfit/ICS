@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DeleteError_AlertMessage" xml:space="preserve">
+  <data name="DeleteError_Alert_Message" xml:space="preserve">
     <value>Ingredient cannot be deleted because it is used in a recipe</value>
   </data>
-  <data name="DeleteError_AlertTitle" xml:space="preserve">
+  <data name="DeleteError_Alert_Title" xml:space="preserve">
     <value>Error</value>
   </data>
 </root>

@@ -50,7 +50,7 @@ public partial class IngredientDetailViewModel : ViewModelBase, IRecipient<Ingre
             }
             catch (InvalidOperationException)
             {
-                await alertService.DisplayAsync(IngredientDetailViewModelTexts.DeleteError_AlertTitle, IngredientDetailViewModelTexts.DeleteError_AlertMessage);
+                await alertService.DisplayAsync(IngredientDetailViewModelTexts.DeleteError_Alert_Title, IngredientDetailViewModelTexts.DeleteError_Alert_Message);
             }
         }
     }

@@ -63,18 +63,18 @@ namespace CookBook.App.Resources.Texts {
         /// <summary>
         ///   Looks up a localized string similar to Ingredient cannot be deleted because it is used in a recipe.
         /// </summary>
-        internal static string DeleteError_AlertMessage {
+        internal static string DeleteError_Alert_Message {
             get {
-                return ResourceManager.GetString("DeleteError_AlertMessage", resourceCulture);
+                return ResourceManager.GetString("DeleteError_Alert_Message", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
-        internal static string DeleteError_AlertTitle {
+        internal static string DeleteError_Alert_Title {
             get {
-                return ResourceManager.GetString("DeleteError_AlertTitle", resourceCulture);
+                return ResourceManager.GetString("DeleteError_Alert_Title", resourceCulture);
             }
         }
     }
