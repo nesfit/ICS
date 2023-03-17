@@ -8,13 +8,13 @@ public class DbContextSqLiteFactory : IDbContextFactory<CookBookDbContext>
     private readonly bool _seedTestingData;
     private readonly DbContextOptionsBuilder<CookBookDbContext> _contextOptionsBuilder = new();
 
-    public DbContextSqLiteFactory(string databaseName, bool seedTestingData = false)
+    public DbContextSqLiteFactory(string connectionString, bool seedTestingData = false)
     {
         _seedTestingData = seedTestingData;
 
         ////May be helpful for ad-hoc testing, not drop in replacement, needs some more configuration.
         //builder.UseSqlite($"Data Source =:memory:;");
-        _contextOptionsBuilder.UseSqlite($"Data Source={databaseName};Cache=Shared");
+        _contextOptionsBuilder.UseSqlite(connectionString);
 
         ////Enable in case you want to see tests details, enabled may cause some inconsistencies in tests
         //_contextOptionsBuilder.EnableSensitiveDataLogging();
