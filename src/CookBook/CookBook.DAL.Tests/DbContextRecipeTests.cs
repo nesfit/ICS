@@ -125,6 +125,17 @@ public class DbContextRecipeTests : DbContextTestsBase
     }
 
     [Fact]
+    public async Task GetAll_Recipes_ContainsSeededRecipe()
+    {
+        //Act
+        var entities = await CookBookDbContextSUT.Recipes.ToListAsync();
+
+        //Assert
+        DeepAssert.Contains(RecipeSeeds.RecipeEntity, entities,
+            nameof(RecipeEntity.Ingredients));
+    }
+
+    [Fact]
     public async Task GetById_Recipe()
     {
         //Act
