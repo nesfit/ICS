@@ -1,5 +1,5 @@
 ---
-title: ICS 13 - Multiplatform Development and Application Containerization
+title: ICS 10 - Multiplatform Development and Application Containerization
 theme: simple
 css: _reveal-md/theme.css
 separator: "^---$"

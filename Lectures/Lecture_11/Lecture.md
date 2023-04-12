@@ -1,5 +1,5 @@
 ---
-title: ICS 12 - Parallel programming
+title: ICS 11 - Parallel programming
 theme: simple
 css: _reveal-md/theme.css
 separator: "^---$"
