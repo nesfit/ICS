@@ -21,7 +21,11 @@ enableTitleFooter: true
 
 ## Motivation
 
+#### Multiplatform Development
 - Developer preference - not limited to Windows
+- Some tools are single-platform (or work better on some platforms)
+
+#### Multiplatform Deployment
 - Reaching more users
 - Single/familiar technology
 - Sharing code between platforms
@@ -135,12 +139,36 @@ https://dotnet.microsoft.com/en-us/platform/dotnet-standard#versions
 
 - *MAUI*
   - Evolution of *Xamarin.Forms*
-  - Android, iOS, Windows, MacOS, Linux, Tizen
-  - RC2
+  - Android, iOS, Windows, MacOS, Tizen
 
 ---
 
 ## Deployment
+
++++
+
+### Runtime Identifiers (RID)
+
+- Identify target platforms
+- Used for platform-specific assets in NuGet packages
+- A graph of values, the most specific match is used
+- `[os].[version]-[architecture]-[additional qualifiers]`
+
++++
+
+```c
+    win7-x64    win7-x86
+       |   \   /    |
+       |   win7     |
+       |     |      |
+    win-x64  |  win-x86
+          \  |  /
+            win
+             |
+            any
+```
+
++++
 
 ### Framework-dependent
 
@@ -156,15 +184,31 @@ https://dotnet.microsoft.com/en-us/platform/dotnet-standard#versions
 
 ### Self-contained
 
-- `dotnet publish -r <RID>` (linux-arm64)
+- `dotnet publish -r <RID>`
 - Bundled runtime & standard libraries
 - *Platform-specific* executable
 - Control .NET version
 - Larger output
 
++++
+
+### Trimming
+
+- Removal of unused code
+- Based on build time analysis
+- Dynamic runtime behavior not caught during build time can cause issues
+
+```
+<PropertyGroup>
+    <PublishTrimmed>true</PublishTrimmed>
+</PropertyGroup>
+```
+
 ---
 
 ## Containers
+
++++
 
 Distribution and deployment technology
 
@@ -173,14 +217,102 @@ Distribution and deployment technology
 - *Namespaces* — kernel feature
   - `man unshare`
   - `mount`, `UTS`, `IPC`, `network`, `PID`, `cgroup`, `user`, `time`
-- Common image format
-- Runtime
+- Open Container Initiative - common set of specifications
+
++++
+
+### Why Are Containers Useful?
+
+- Software makes demands and assumptions about the environment in which it executes
+- Dependencies on other software components
+- Version compatibility
+- Build-time variability
+- Finding dependencies
+- Non-software artifacts (e.g., configuration)
+- Conflicting assumptions
+
+=> Containers try to capture the necessary environment, isolate it and make it transferable
+
+"It works on my PC" -> "Here's my PC"
+
++++
+
+![](assets/img/container-architecture.svg)
 
 ---
 
-## Docker
+## Container Runtimes
 
-![](assets/img/docker-architecture.svg)
+- Low-level executor
+- Consumes resources (mountpoints/configuration) from engines
+- Interfaces with the kernel to spawn processes and set up namespaces
+
+E.g., runc, crun, youkai, kata-containers
+
+---
+
+## Container Engines
+
+- Handle user/API input
+- Manage available images
+- Prepare resources for runtime (root directory/configuration)
+- Call the runtime
+
+E.g., Docker, Podman, CRI-O
+
+---
+
+## Container Orchestrators
+
+- Varied features
+- Declarative definition of deployment units
+- Dynamic deployment scheduling
+
+E.g., Docker Compose, Docker Swarm, Kubernetes, Apache Mesos
+
+---
+
+## Container Images
+
+- Layered data + metadata
+- Each layer is its own archive
+- Running an image means extracting all layers in order
+
++++
+
+### Image Manifest
+
+```json
+{
+  "schemaVersion": 2,
+  "mediaType": "application/vnd.oci.image.manifest.v1+json",
+  "config": {
+    "mediaType": "application/vnd.oci.image.config.v1+json",
+    "size": 7023,
+    "digest": "sha256:b5b2b2c507a0944348e0303114d8d93aaaa081732b86451d9bce1f432a537bc7"
+  },
+  "layers": [
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "size": 32654,
+      "digest": "sha256:9834876dcfb05cb167a5c24953eba58c4ac89b1adf57f28f2f9d09af107ee8f0"
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "size": 73109,
+      "digest": "sha256:ec4b8955958665577945c89419d1af06b5f7636b4ac3da7f12184802ad867736"
+    }
+  ]
+}
+```
+
+---
+
+## Building Images
+
+- Dockerfile (Containerfile)
+- BuilKit
+- Buildah
 
 +++
 
@@ -190,7 +322,7 @@ Distribution and deployment technology
 - Instructions create image layers
 
 ```dockerfile
-FROM mcr.microsoft.com/dotnet/sdk:6.0
+FROM mcr.microsoft.com/dotnet/sdk:7.0
 COPY . /app
 WORKDIR /app
 RUN dotnet publish
@@ -199,118 +331,40 @@ CMD bin/MyApp.exe
 
 +++
 
-```sh
-$ docker build .
+### BuildKit
 
-Uploading context 10240 bytes
-Step 1/3 : FROM busybox
-Pulling repository busybox
- ---> e9aa60c60128MB/2.284 MB (100%) endpoint: https://cdn-registry-1.docker.io/v1/
-Step 2/3 : RUN ls -lh /
- ---> Running in 9c9e81692ae9
-total 24
-drwxr-xr-x    2 root     root        4.0K Mar 12  2013 bin
-drwxr-xr-x    5 root     root        4.0K Oct 19 00:19 dev
-…
- ---> b35f4035db3f
-Step 3/3 : CMD echo Hello world
- ---> Running in 02071fceb21b
- ---> f52f38b7823e
-Successfully built f52f38b7823e
-Removing intermediate container 9c9e81692ae9
-Removing intermediate container 02071fceb21b
-```
+Advanced "Dockerfile" builder, uses intermediate language
+
+- Dockerfile
+- Buildpacks
+- Mockerfile
+- Gockerfile
+- bldr (Pkgfile)
+- HLB
+- Earthfile (Earthly)
+- Cargo Wharf (Rust)
+- Nix
+- mopy (Python)
+- envd (starlark)
+- Blubber
+- Bass
 
 +++
 
-### Image
+### Buildah
 
-- Static data
-- Can be named, tagged, shared
-- Only changed layers are rebuilt — ordering matters
+CLI for manipulating images
 
-```sh
-docker run --name hello f52f38b7823e
-```
-+++
-
-![](assets/img/docker-layers.png)
-
-+++
-
-### Container
-
-- Running instance
-- Can have multiple instances of the same image
-- Should be disposable, replacable
-  - Data stored in volumes
-
-```sh
-$ docker ps
-
-CONTAINER ID        IMAGE                        COMMAND                CREATED              STATUS              PORTS               NAMES
-4c01db0b339c        ubuntu:12.04                 bash                   17 seconds ago       Up 16 seconds       3300-3310/tcp       webapp
-d7886598dbe2        crosbymichael/redis:latest   /redis-server --dir    33 minutes ago       Up 33 minutes       6379/tcp            redis,webapp/db
-```
-
-- `docker start/stop`
-
-+++
-
-### Docker Compose
-
-- Declarative configuration of containers
-- Larger deployment unit (e.g. frontend + backend + db)
-
-```docker-compose
-services:
-  frontend:
-    image: frontend
-    ports:
-      - "80:8080"
-    links:
-      - backend
-  backend:
-    image: backend
-    volumes:
-      - data:/var/myapp/data
-    links:
-      - db
-  db:
-    image: postgres
-    volumes:
-      - db-data:/var/postgres/data
-volumes:
-  data: {}
-  db-data: {}
-```
-
-- `docker compose up|down|status`
+| Command                                              | Description                                                                                          |
+| ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| [buildah-add(1)](/docs/buildah-add.1.md)               | Add the contents of a file, URL, or a directory to the container.                                    |
+| [buildah-build(1)](/docs/buildah-build.1.md)           | Build an image using instructions from Containerfiles or Dockerfiles.                                |
+| [buildah-commit(1)](/docs/buildah-commit.1.md)         | Create an image from a working container.                                                            |
+| [buildah-config(1)](/docs/buildah-config.1.md)         | Update image configuration settings.                                                                 |
+| [buildah-copy(1)](/docs/buildah-copy.1.md)             | Copies the contents of a file, URL, or directory into a container's working directory.               |
+| [buildah-mount(1)](/docs/buildah-mount.1.md)           | Mount the working container's root filesystem.                                                       |
+| [buildah-run(1)](/docs/buildah-run.1.md)               | Run a command inside of the container.                                                               |
+| [buildah-umount(1)](/docs/buildah-umount.1.md)         | Unmount a working container's root file system.                                                      |
+| [buildah-unshare(1)](/docs/buildah-unshare.1.md)       | Launch a command in a user namespace with modified ID mappings.                                      |
 
 ---
-
-## Podman
-
-- Drop-in replacement for Docker
-- Daemonless, rootless
-- REST API
-- Kubernetes-compatible pods
-  - All containers "sharing localhost" vs. Docker Compose
-
----
-
-## Language Server Protocol
-
-- Interface between language tools and editor plugins
-- *m * n* → *m + n* integrations
-- Language servers provide smart features and diagnostics
-  - C/C++ (*ccls*)
-  - C# (*omnisharp*)
-  - LaTeX (*digestif*)
-  - YAML (*yaml-language-server*)
-  - Dockerfile (*dockerfile-language-server-nodejs*)
-- Editor plugins (clients) provide integration
-  - VSCode (*builtin*)
-  - JetBrains IDEs (*intelij-lsp*)
-  - NeoVim (*builtin*)
-  - Emacs (*lsp-mode*)
