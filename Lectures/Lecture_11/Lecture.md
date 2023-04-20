@@ -79,7 +79,7 @@ Source: https://eloquentjavascript.net/11_async.html
 - **standalone** running program
 - has its process identification (PID)
 - **does not share code and variables** with other processes
-- needs OsS for synchronization (mutexes, ...)
+- needs OS for synchronization (mutexes, ...)
 - needs OS for data sharing (shared memory, ...)
 - STDIN/STDOUT/STDERR
 
