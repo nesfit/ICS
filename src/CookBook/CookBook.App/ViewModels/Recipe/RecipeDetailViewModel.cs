@@ -10,8 +10,8 @@ namespace CookBook.App.ViewModels;
 [QueryProperty(nameof(Id), nameof(Id))]
 public partial class RecipeDetailViewModel : ViewModelBase, IRecipient<RecipeEditMessage>, IRecipient<RecipeIngredientAddMessage>, IRecipient<RecipeIngredientDeleteMessage>
 {
-    private readonly IRecipeFacade recipeFacade;
-    private readonly INavigationService navigationService;
+    private readonly IRecipeFacade _recipeFacade;
+    private readonly INavigationService _navigationService;
 
     public Guid Id { get; set; }
     public RecipeDetailModel? Recipe { get; set; }
@@ -22,15 +22,15 @@ public partial class RecipeDetailViewModel : ViewModelBase, IRecipient<RecipeEdi
         IMessengerService messengerService)
         : base(messengerService)
     {
-        this.recipeFacade = recipeFacade;
-        this.navigationService = navigationService;
+        this._recipeFacade = recipeFacade;
+        this._navigationService = navigationService;
     }
 
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
 
-        Recipe = await recipeFacade.GetAsync(Id);
+        Recipe = await _recipeFacade.GetAsync(Id);
     }
 
     [RelayCommand]
@@ -38,11 +38,11 @@ public partial class RecipeDetailViewModel : ViewModelBase, IRecipient<RecipeEdi
     {
         if (Recipe is not null)
         {
-            await recipeFacade.DeleteAsync(Recipe.Id);
+            await _recipeFacade.DeleteAsync(Recipe.Id);
 
-            messengerService.Send(new RecipeDeleteMessage());
+            MessengerService.Send(new RecipeDeleteMessage());
 
-            navigationService.SendBackButtonPressed();
+            _navigationService.SendBackButtonPressed();
         }
     }
 
@@ -52,7 +52,7 @@ public partial class RecipeDetailViewModel : ViewModelBase, IRecipient<RecipeEdi
     {
         if (Recipe is not null)
         {
-            await navigationService.GoToAsync("/edit",
+            await _navigationService.GoToAsync("/edit",
                 new Dictionary<string, object?> { [nameof(RecipeEditViewModel.Recipe)] = Recipe with { } });
         }
     }

@@ -4,19 +4,19 @@ namespace CookBook.App.Views;
 
 public partial class ContentPageBase
 {
-    protected IViewModel viewModel { get; }
+    protected IViewModel ViewModel { get; }
 
     public ContentPageBase(IViewModel viewModel)
 	{
 		InitializeComponent();
 
-        BindingContext = this.viewModel = viewModel;
+        BindingContext = this.ViewModel = viewModel;
     }
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
         
-        await viewModel.OnAppearingAsync();
+        await ViewModel.OnAppearingAsync();
     }
 }
