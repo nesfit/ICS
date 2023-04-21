@@ -9,8 +9,8 @@ namespace CookBook.App.ViewModels;
 
 public partial class RecipeListViewModel : ViewModelBase, IRecipient<RecipeEditMessage>, IRecipient<RecipeDeleteMessage>
 {
-    private readonly IRecipeFacade recipeFacade;
-    private readonly INavigationService navigationService;
+    private readonly IRecipeFacade _recipeFacade;
+    private readonly INavigationService _navigationService;
 
     public IEnumerable<RecipeListModel> Recipes { get; set; } = null!;
 
@@ -20,26 +20,26 @@ public partial class RecipeListViewModel : ViewModelBase, IRecipient<RecipeEditM
         IMessengerService messengerService)
         : base(messengerService)
     {
-        this.recipeFacade = recipeFacade;
-        this.navigationService = navigationService;
+        _recipeFacade = recipeFacade;
+        _navigationService = navigationService;
     }
 
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
 
-        Recipes = await recipeFacade.GetAsync();
+        Recipes = await _recipeFacade.GetAsync();
     }
 
     [RelayCommand]
     private async Task GoToDetailAsync(Guid id)
-        => await navigationService.GoToAsync<RecipeDetailViewModel>(
+        => await _navigationService.GoToAsync<RecipeDetailViewModel>(
             new Dictionary<string, object?> { [nameof(RecipeDetailViewModel.Id)] = id });
 
     [RelayCommand]
     private async Task GoToCreateAsync()
     {
-        await navigationService.GoToAsync("/edit");
+        await _navigationService.GoToAsync("/edit");
     }
 
     public async void Receive(RecipeEditMessage message)

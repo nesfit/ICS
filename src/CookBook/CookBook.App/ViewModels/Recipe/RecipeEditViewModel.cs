@@ -11,8 +11,8 @@ namespace CookBook.App.ViewModels;
 [QueryProperty(nameof(Recipe), nameof(Recipe))]
 public partial class RecipeEditViewModel : ViewModelBase, IRecipient<RecipeIngredientEditMessage>, IRecipient<RecipeIngredientAddMessage>, IRecipient<RecipeIngredientDeleteMessage>
 {
-    private readonly IRecipeFacade recipeFacade;
-    private readonly INavigationService navigationService;
+    private readonly IRecipeFacade _recipeFacade;
+    private readonly INavigationService _navigationService;
 
     public RecipeDetailModel Recipe { get; set; } = RecipeDetailModel.Empty;
 
@@ -24,8 +24,8 @@ public partial class RecipeEditViewModel : ViewModelBase, IRecipient<RecipeIngre
         IMessengerService messengerService) 
         : base(messengerService)
     {
-        this.recipeFacade = recipeFacade;
-        this.navigationService = navigationService;
+        _recipeFacade = recipeFacade;
+        _navigationService = navigationService;
 
         FoodTypes = new List<FoodType>((FoodType[])Enum.GetValues(typeof(FoodType)));
     }
@@ -33,18 +33,18 @@ public partial class RecipeEditViewModel : ViewModelBase, IRecipient<RecipeIngre
     [RelayCommand]
     private async Task GoToRecipeIngredientEditAsync()
     {
-        await navigationService.GoToAsync("/ingredients",
+        await _navigationService.GoToAsync("/ingredients",
             new Dictionary<string, object?> { [nameof(RecipeIngredientsEditViewModel.Recipe)] = Recipe });
     }
 
     [RelayCommand]
     private async Task SaveAsync()
     {
-        await recipeFacade.SaveAsync(Recipe with{ Ingredients = default! });
+        await _recipeFacade.SaveAsync(Recipe with{ Ingredients = default! });
 
-        messengerService.Send(new RecipeEditMessage { RecipeId = Recipe.Id});
+        MessengerService.Send(new RecipeEditMessage { RecipeId = Recipe.Id});
 
-        navigationService.SendBackButtonPressed();
+        _navigationService.SendBackButtonPressed();
     }
 
     public async void Receive(RecipeIngredientEditMessage message)
@@ -64,7 +64,7 @@ public partial class RecipeEditViewModel : ViewModelBase, IRecipient<RecipeIngre
 
     private async Task ReloadDataAsync()
     {
-        Recipe = await recipeFacade.GetAsync(Recipe.Id)
+        Recipe = await _recipeFacade.GetAsync(Recipe.Id)
                  ?? RecipeDetailModel.Empty;
     }
 }

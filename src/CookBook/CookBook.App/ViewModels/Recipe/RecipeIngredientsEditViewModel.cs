@@ -12,9 +12,9 @@ namespace CookBook.App.ViewModels;
 [QueryProperty(nameof(Recipe), nameof(Recipe))]
 public partial class RecipeIngredientsEditViewModel : ViewModelBase
 {
-    private readonly IIngredientFacade ingredientFacade;
-    private readonly IIngredientAmountFacade ingredientAmountFacade;
-    private readonly IIngredientAmountModelMapper ingredientAmountModelMapper;
+    private readonly IIngredientFacade _ingredientFacade;
+    private readonly IIngredientAmountFacade _ingredientAmountFacade;
+    private readonly IIngredientAmountModelMapper _ingredientAmountModelMapper;
 
     public RecipeDetailModel? Recipe { get; set; }
     public List<Unit> Units { get; set; }
@@ -31,9 +31,9 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
         IMessengerService messengerService)
         : base(messengerService)
     {
-        this.ingredientFacade = ingredientFacade;
-        this.ingredientAmountFacade = ingredientAmountFacade;
-        this.ingredientAmountModelMapper = ingredientAmountModelMapper;
+        _ingredientFacade = ingredientFacade;
+        _ingredientAmountFacade = ingredientAmountFacade;
+        _ingredientAmountModelMapper = ingredientAmountModelMapper;
 
         Units = new List<Unit>((Unit[])Enum.GetValues(typeof(Unit)));
     }
@@ -43,7 +43,7 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
         await base.LoadDataAsync();
 
         Ingredients.Clear();
-        var ingredients = await ingredientFacade.GetAsync();
+        var ingredients = await _ingredientFacade.GetAsync();
         foreach (var ingredient in ingredients)
         {
             Ingredients.Add(ingredient);
@@ -58,14 +58,14 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
             && IngredientSelected is not null
             && Recipe is not null)
         {
-            ingredientAmountModelMapper.MapToExistingDetailModel(IngredientAmountNew, IngredientSelected);
+            _ingredientAmountModelMapper.MapToExistingDetailModel(IngredientAmountNew, IngredientSelected);
 
-            await ingredientAmountFacade.SaveAsync(IngredientAmountNew, Recipe.Id);
-            Recipe.Ingredients.Add(ingredientAmountModelMapper.MapToListModel(IngredientAmountNew));
+            await _ingredientAmountFacade.SaveAsync(IngredientAmountNew, Recipe.Id);
+            Recipe.Ingredients.Add(_ingredientAmountModelMapper.MapToListModel(IngredientAmountNew));
 
             IngredientAmountNew = GetIngredientAmountNew();
 
-            messengerService.Send(new RecipeIngredientAddMessage());
+            MessengerService.Send(new RecipeIngredientAddMessage());
         }
     }
 
@@ -75,9 +75,9 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
         if (model is not null
             && Recipe is not null)
         {
-            await ingredientAmountFacade.SaveAsync(model, Recipe.Id);
+            await _ingredientAmountFacade.SaveAsync(model, Recipe.Id);
 
-            messengerService.Send(new RecipeIngredientEditMessage());
+            MessengerService.Send(new RecipeIngredientEditMessage());
         }
     }
 
@@ -86,10 +86,10 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
     {
         if (Recipe is not null)
         {
-            await ingredientAmountFacade.DeleteAsync(model.Id);
+            await _ingredientAmountFacade.DeleteAsync(model.Id);
             Recipe.Ingredients.Remove(model);
 
-            messengerService.Send(new RecipeIngredientDeleteMessage());
+            MessengerService.Send(new RecipeIngredientDeleteMessage());
         }
     }
 

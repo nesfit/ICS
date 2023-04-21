@@ -36,7 +36,7 @@ public class IngredientAmountFacade :
         }
     }
 
-    public async Task<IngredientAmountDetailModel> SaveAsync(IngredientAmountDetailModel model, Guid recipeId)
+    public async Task SaveAsync(IngredientAmountDetailModel model, Guid recipeId)
     {
         IngredientAmountEntity entity = _ingredientAmountModelMapper.MapToEntity(model, recipeId);
 
@@ -46,7 +46,5 @@ public class IngredientAmountFacade :
 
         await repository.InsertAsync(entity);
         await uow.CommitAsync();
-
-        return ModelMapper.MapToDetailModel(entity);
     }
 }

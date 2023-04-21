@@ -9,8 +9,8 @@ namespace CookBook.App.ViewModels;
 [QueryProperty(nameof(Ingredient), nameof(Ingredient))]
 public partial class IngredientEditViewModel : ViewModelBase
 {
-    private readonly IIngredientFacade ingredientFacade;
-    private readonly INavigationService navigationService;
+    private readonly IIngredientFacade _ingredientFacade;
+    private readonly INavigationService _navigationService;
 
     public IngredientDetailModel Ingredient { get; init; } = IngredientDetailModel.Empty;
 
@@ -20,17 +20,17 @@ public partial class IngredientEditViewModel : ViewModelBase
         IMessengerService messengerService)
         : base(messengerService)
     {
-        this.ingredientFacade = ingredientFacade;
-        this.navigationService = navigationService;
+        _ingredientFacade = ingredientFacade;
+        _navigationService = navigationService;
     }
 
     [RelayCommand]
     private async Task SaveAsync()
     {
-        await ingredientFacade.SaveAsync(Ingredient);
+        await _ingredientFacade.SaveAsync(Ingredient);
 
-        messengerService.Send(new IngredientEditMessage { IngredientId = Ingredient.Id });
+        MessengerService.Send(new IngredientEditMessage { IngredientId = Ingredient.Id });
 
-        navigationService.SendBackButtonPressed();
+        _navigationService.SendBackButtonPressed();
     }
 }
