@@ -23,10 +23,6 @@ public class FacadeTestsBase : IAsyncLifetime
         // DbContextFactory = new DbContextLocalDBTestingFactory(GetType().FullName!, seedTestingData: true);
         DbContextFactory = new DbContextSqLiteTestingFactory(GetType().FullName!, seedTestingData: true);
 
-        IngredientEntityMapper = new IngredientEntityMapper();
-        IngredientAmountEntityMapper = new IngredientAmountEntityMapper();
-        RecipeEntityMapper = new RecipeEntityMapper();
-
         IngredientModelMapper = new IngredientModelMapper();
         IngredientAmountModelMapper = new IngredientAmountModelMapper();
         RecipeModelMapper = new RecipeModelMapper(IngredientAmountModelMapper);
@@ -35,10 +31,6 @@ public class FacadeTestsBase : IAsyncLifetime
     }
 
     protected IDbContextFactory<CookBookDbContext> DbContextFactory { get; }
-
-    protected IngredientEntityMapper IngredientEntityMapper { get; }
-    protected IngredientAmountEntityMapper IngredientAmountEntityMapper { get; }
-    protected RecipeEntityMapper RecipeEntityMapper { get; }
 
     protected IIngredientModelMapper IngredientModelMapper { get; }
     protected IngredientAmountModelMapper IngredientAmountModelMapper { get; }
