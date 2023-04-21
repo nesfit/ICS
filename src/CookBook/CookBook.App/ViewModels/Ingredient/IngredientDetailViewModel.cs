@@ -25,9 +25,9 @@ public partial class IngredientDetailViewModel : ViewModelBase, IRecipient<Ingre
         IAlertService alertService)
         : base(messengerService)
     {
-        this._ingredientFacade = ingredientFacade;
-        this._navigationService = navigationService;
-        this._alertService = alertService;
+        _ingredientFacade = ingredientFacade;
+        _navigationService = navigationService;
+        _alertService = alertService;
     }
 
     protected override async Task LoadDataAsync()

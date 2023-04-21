@@ -20,8 +20,8 @@ public partial class IngredientEditViewModel : ViewModelBase
         IMessengerService messengerService)
         : base(messengerService)
     {
-        this._ingredientFacade = ingredientFacade;
-        this._navigationService = navigationService;
+        _ingredientFacade = ingredientFacade;
+        _navigationService = navigationService;
     }
 
     [RelayCommand]

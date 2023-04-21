@@ -20,8 +20,8 @@ public partial class IngredientListViewModel : ViewModelBase, IRecipient<Ingredi
         IMessengerService messengerService)
         : base(messengerService)
     {
-        this._ingredientFacade = ingredientFacade;
-        this._navigationService = navigationService;
+        _ingredientFacade = ingredientFacade;
+        _navigationService = navigationService;
     }
 
     protected override async Task LoadDataAsync()

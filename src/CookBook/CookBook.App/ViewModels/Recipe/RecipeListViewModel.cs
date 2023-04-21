@@ -20,8 +20,8 @@ public partial class RecipeListViewModel : ViewModelBase, IRecipient<RecipeEditM
         IMessengerService messengerService)
         : base(messengerService)
     {
-        this._recipeFacade = recipeFacade;
-        this._navigationService = navigationService;
+        _recipeFacade = recipeFacade;
+        _navigationService = navigationService;
     }
 
     protected override async Task LoadDataAsync()

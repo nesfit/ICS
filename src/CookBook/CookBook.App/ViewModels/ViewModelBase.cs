@@ -12,7 +12,7 @@ public abstract class ViewModelBase : ObservableRecipient, IViewModel
     protected ViewModelBase(IMessengerService messengerService)
         : base(messengerService.Messenger)
     {
-        this.MessengerService = messengerService;
+        MessengerService = messengerService;
         IsActive = true;
     }
 

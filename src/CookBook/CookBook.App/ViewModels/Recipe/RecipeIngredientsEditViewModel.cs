@@ -31,9 +31,9 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
         IMessengerService messengerService)
         : base(messengerService)
     {
-        this._ingredientFacade = ingredientFacade;
-        this._ingredientAmountFacade = ingredientAmountFacade;
-        this._ingredientAmountModelMapper = ingredientAmountModelMapper;
+        _ingredientFacade = ingredientFacade;
+        _ingredientAmountFacade = ingredientAmountFacade;
+        _ingredientAmountModelMapper = ingredientAmountModelMapper;
 
         Units = new List<Unit>((Unit[])Enum.GetValues(typeof(Unit)));
     }

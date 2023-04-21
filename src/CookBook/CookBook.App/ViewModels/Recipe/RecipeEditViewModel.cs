@@ -24,8 +24,8 @@ public partial class RecipeEditViewModel : ViewModelBase, IRecipient<RecipeIngre
         IMessengerService messengerService) 
         : base(messengerService)
     {
-        this._recipeFacade = recipeFacade;
-        this._navigationService = navigationService;
+        _recipeFacade = recipeFacade;
+        _navigationService = navigationService;
 
         FoodTypes = new List<FoodType>((FoodType[])Enum.GetValues(typeof(FoodType)));
     }

@@ -10,7 +10,7 @@ public partial class ContentPageBase
 	{
 		InitializeComponent();
 
-        BindingContext = this.ViewModel = viewModel;
+        BindingContext = ViewModel = viewModel;
     }
 
     protected override async void OnAppearing()
