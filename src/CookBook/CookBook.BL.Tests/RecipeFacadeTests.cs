@@ -23,7 +23,7 @@ public class RecipeFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task Create_WithWithoutIngredient_DoesNotThrowAndEqualsCreated()
+    public async Task Create_WithWithoutIngredient_EqualsCreated()
     {
         //Arrange
         var model = new RecipeDetailModel()
@@ -71,7 +71,7 @@ public class RecipeFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task Create_WithIngredient_DoesNotThrowAndEqualsCreated()
+    public async Task Create_WithExistingIngredient_Throws()
     {
         //Arrange
         var model = new RecipeDetailModel()
@@ -127,7 +127,7 @@ public class RecipeFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task GetById_FromSeeded_DoesNotThrowAndEqualsSeeded()
+    public async Task GetById_FromSeeded_EqualsSeeded()
     {
         //Arrange
         var detailModel = RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity);
@@ -140,7 +140,7 @@ public class RecipeFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task GetAll_FromSeeded_DoesNotThrowAndContainsSeeded()
+    public async Task GetAll_FromSeeded_ContainsSeeded()
     {
         //Arrange
         var listModel = RecipeModelMapper.MapToListModel(RecipeSeeds.RecipeEntity);
@@ -164,7 +164,7 @@ public class RecipeFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task Update_Name_FromSeeded_CheckUpdated()
+    public async Task Update_Name_FromSeeded_Updated()
     {
         //Arrange
         var detailModel = RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity);
@@ -179,7 +179,7 @@ public class RecipeFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task Update_RemoveIngredients_FromSeeded_CheckNotUpdated()
+    public async Task Update_RemoveIngredients_FromSeeded_NotUpdated()
     {
         //Arrange
         var detailModel = RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity);
@@ -194,7 +194,7 @@ public class RecipeFacadeTests : FacadeTestsBase
     }
 
     [Fact]
-    public async Task Update_RemoveOneOfIngredients_FromSeeded_CheckUpdated()
+    public async Task Update_RemoveOneOfIngredients_FromSeeded_Updated()
     {
         //Arrange
         var detailModel = RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity);
