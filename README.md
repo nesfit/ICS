@@ -164,6 +164,49 @@ winget install JetBrains.ReSharper
 
 ---
 
+# Užitečné zdroje
+
+aneb co sledovat, pokud se chcete dozvědět víc
+
+* [IW5](https://github.com/nesfit/iw5) - předmět, který navazuje na ICS a pokračuje v tématu vývoje v .NET dál se zaměřením na client-server a webový vývoj
+
+## Co se děje v .NET a co se chystá
+* [.NET Conf](https://www.dotnetconf.net/) - konference, kde se představuje nová verze .NET (jednou ročně - **listopad**)
+* [Microsoft Build](https://build.microsoft.com/en-US/home) - největší konference pro vývojáře od Microsoftu, hromada novinek (jednou ročně - **květen**)
+* [.NET Blog](https://devblogs.microsoft.com/dotnet/) - blog s high-level zprávami o aktuálních novinkách (cca 10-15 článků za měsíc)
+* [Themes of .NET](https://aka.ms/dotnet-product-roadmap) - .NET roadmap - podrobný přehled toho, na čem se pracuje a kdy se to plánuje
+
+## Blogy
+* [Leomaris Reyes](https://askxammy.com/author/leoreyes/) - Blog zaměřený na .NET MAUI
+* [Scott Hanselman](https://www.hanselman.com/blog/) - Různorodá témata, většinou zaměrená na Microsoft technologie. Autor je zkušený speaker z řad Microsoftu.
+* [Steve Gordon](https://www.stevejgordon.co.uk/) - .NET, web development, cloud, low-level stuff...
+* [Jiří Činčura](https://www.tabsoverspaces.com/) - performance, Entity Framework, databázy, novinky v .NET...
+* [Robert Haken](https://knowledge-base.havit.cz/) - Blazor, webový vývoj, performance
+
+## Twitter
+* @davidfowl - **David Fowler**, jeden z hlavních lidí ve vývoji .NET a ASP .NET
+* @DamianEdwards - **Damian Edwards**, jeden z hlavních lidí ve vývoji .NET a ASP .NET
+* @davidortinau - **David Ortinau**, jeden z hlavních lidí v .NET MAUI
+* @MadsTorgersen - **Mads Torgersen**, hlavní člověk odpovědný za C#
+* @JamesNK - **James Newton-King**, autor NewtonSoft.Json, pracuje na gRPC integraci v .NET, (de)serializace, performance...
+* @jaredpar - **Jared Parsons**, pracuje na C# kompilátoru a návrhu jazyka
+* @TheCodeTraveler - **Brandon Minnick**, píše a točí hlavně o .NET MAUI
+* @troyhunt - **Troy Hunt**, záměr na bezpečnost, autor projektu https://haveibeenpwned.com
+* @dotnetmeme - memes ze světa .NET (ne od Microsoftu)
+
+## Youtube
+* [Nick Chapsas](https://www.youtube.com/@nickchapsas) - novinky v .NET, performance, webový vývoj
+* [James Montemagno](https://www.youtube.com/@JamesMontemagno) - novinky v .NET, .NET MAUI
+* [Gerald Versluis](https://www.youtube.com/@jfversluis) - .NET MAUI
+* [.NET Community Standups](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oX-DBuRG4u58ZTAJgBAeQ-t) - veřejně dostupné streamy z meetingů mezi vývojářema v Microsoftu ohledně toho, co se aktuálně děje a na čem se pracuje
+
+## Podcasty
+* [.NET Rocks](https://www.dotnetrocks.com/) - 2 hodně zkušení hostitelé - Richard Campbell a Carl Fralkin, 1 host, různá témata (hlavně) z .NET světa
+* [The .NET MAUI Podcast](https://www.dotnetmauipodcast.com/) - .NET MAUI, James Montemagno, David Ortinau a Matt Soucoup
+* [The ReadME Podcast](https://github.com/readme/podcast) - podcast GitHubu
+
+---
+
 # Lokální vývoj
 
 Repozitář používá symlinky, které jsou závislé na nastavení prostředí ve Windows.
