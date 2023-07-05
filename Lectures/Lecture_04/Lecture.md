@@ -1194,12 +1194,12 @@ var students = context.Students
 
 +++
 ### Migration commands
-| PMC Command                    | CLI Command          | Usage                                                             |
-| ------------------------------ | -------------------- | ----------------------------------------------------------------- |
-| Add-Migration <migration name> | Add <migration name> | Creates a migration by adding a migration snapshot.               |
-| Remove-Migration               | Remove               | Removes the last migration snapshot.                              |
-| Update-Database                | Update               | Updates the database schema based on the last migration snapshot. |
-| Script-Migration               | Script               | Generates a SQL script using all the migration snapshots.         |
+| PMC Command                    | CLI Command                               | Usage                                                             |
+| ------------------------------ | ----------------------------------------- | ----------------------------------------------------------------- |
+| Add-Migration <migration name> | dotnet ef migrations add <migration name> | Creates a migration by adding a migration snapshot.               |
+| Remove-Migration               | dotnet ef migrations remove               | Removes the last migration snapshot.                              |
+| Script-Migration               | dotnet ef migrations script               | Generates a SQL script using all the migration snapshots.         |
+| Update-Database                | dotnet ef database update                 | Updates the database schema based on the last migration snapshot. |
 
 ---
 ## Dapper
