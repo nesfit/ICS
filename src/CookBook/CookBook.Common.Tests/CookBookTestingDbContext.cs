@@ -4,21 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.Common.Tests;
 
-public class CookBookTestingDbContext : CookBookDbContext
+public class CookBookTestingDbContext(DbContextOptions contextOptions, bool seedTestingData = false)
+    : CookBookDbContext(contextOptions, seedDemoData: false)
 {
-    private readonly bool _seedTestingData;
-
-    public CookBookTestingDbContext(DbContextOptions contextOptions, bool seedTestingData = false)
-        : base(contextOptions, seedDemoData:false)
-    {
-        _seedTestingData = seedTestingData;
-    }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        if (_seedTestingData)
+        if (seedTestingData)
         {
             IngredientSeeds.Seed(modelBuilder);
             RecipeSeeds.Seed(modelBuilder);

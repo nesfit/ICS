@@ -3,13 +3,9 @@ using CookBook.DAL.Entities;
 
 namespace CookBook.BL.Mappers;
 
-public class RecipeModelMapper : ModelMapperBase<RecipeEntity, RecipeListModel, RecipeDetailModel>, IRecipeModelMapper
+public class RecipeModelMapper(IIngredientAmountModelMapper ingredientAmountModelMapper)
+    : ModelMapperBase<RecipeEntity, RecipeListModel, RecipeDetailModel>, IRecipeModelMapper
 {
-    private readonly IIngredientAmountModelMapper _ingredientAmountModelMapper;
-
-    public RecipeModelMapper(IIngredientAmountModelMapper ingredientAmountModelMapper) =>
-        _ingredientAmountModelMapper = ingredientAmountModelMapper;
-
     public override RecipeListModel MapToListModel(RecipeEntity? entity)
         => entity is null
             ? RecipeListModel.Empty
@@ -33,7 +29,7 @@ public class RecipeModelMapper : ModelMapperBase<RecipeEntity, RecipeListModel, 
                 Duration = entity.Duration,
                 FoodType = entity.FoodType,
                 ImageUrl = entity.ImageUrl,
-                Ingredients = _ingredientAmountModelMapper.MapToListModel(entity.Ingredients)
+                Ingredients = ingredientAmountModelMapper.MapToListModel(entity.Ingredients)
                     .ToObservableCollection()
             };
 

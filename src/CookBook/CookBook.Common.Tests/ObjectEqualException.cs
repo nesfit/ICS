@@ -2,13 +2,8 @@
 
 namespace CookBook.Common.Tests;
 
-public class ObjectEqualException : AssertActualExpectedException
+public class ObjectEqualException(object? expected, object? actual, string message)
+    : AssertActualExpectedException(expected, actual, "Assert.Equal() Failure")
 {
-    public ObjectEqualException(object? expected, object? actual, string message)
-        : base(expected, actual, "Assert.Equal() Failure")
-    {
-        Message = message;
-    }
-
-    public override string Message { get; }
+    public override string Message { get; } = message;
 }

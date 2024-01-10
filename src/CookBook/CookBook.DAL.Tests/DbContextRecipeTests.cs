@@ -12,12 +12,8 @@ using Xunit.Abstractions;
 
 namespace CookBook.DAL.Tests;
 
-public class DbContextRecipeTests : DbContextTestsBase
+public class DbContextRecipeTests(ITestOutputHelper output) : DbContextTestsBase(output)
 {
-    public DbContextRecipeTests(ITestOutputHelper output) : base(output)
-    {
-    }
-
     [Fact]
     public async Task AddNew_RecipeWithoutIngredients_Persisted()
     {

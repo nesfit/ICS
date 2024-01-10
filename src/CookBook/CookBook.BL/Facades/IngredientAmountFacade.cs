@@ -9,21 +9,16 @@ using CookBook.DAL.UnitOfWork;
 
 namespace CookBook.BL.Facades;
 
-public class IngredientAmountFacade :
-    FacadeBase<IngredientAmountEntity, IngredientAmountListModel, IngredientAmountDetailModel,
-        IngredientAmountEntityMapper>, IIngredientAmountFacade
+public class IngredientAmountFacade(
+    IUnitOfWorkFactory unitOfWorkFactory,
+    IIngredientAmountModelMapper ingredientAmountModelMapper)
+    :
+        FacadeBase<IngredientAmountEntity, IngredientAmountListModel, IngredientAmountDetailModel,
+            IngredientAmountEntityMapper>(unitOfWorkFactory, ingredientAmountModelMapper), IIngredientAmountFacade
 {
-    private readonly IIngredientAmountModelMapper _ingredientAmountModelMapper;
-
-    public IngredientAmountFacade(
-        IUnitOfWorkFactory unitOfWorkFactory,
-        IIngredientAmountModelMapper ingredientAmountModelMapper)
-        : base(unitOfWorkFactory, ingredientAmountModelMapper) =>
-        _ingredientAmountModelMapper = ingredientAmountModelMapper;
-
     public async Task SaveAsync(IngredientAmountListModel model, Guid recipeId)
     {
-        IngredientAmountEntity entity = _ingredientAmountModelMapper.MapToEntity(model, recipeId);
+        IngredientAmountEntity entity = ingredientAmountModelMapper.MapToEntity(model, recipeId);
 
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
         IRepository<IngredientAmountEntity> repository =
@@ -38,7 +33,7 @@ public class IngredientAmountFacade :
 
     public async Task SaveAsync(IngredientAmountDetailModel model, Guid recipeId)
     {
-        IngredientAmountEntity entity = _ingredientAmountModelMapper.MapToEntity(model, recipeId);
+        IngredientAmountEntity entity = ingredientAmountModelMapper.MapToEntity(model, recipeId);
 
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
         IRepository<IngredientAmountEntity> repository =

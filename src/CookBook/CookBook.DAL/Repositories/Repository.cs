@@ -7,19 +7,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.DAL.Repositories;
 
-public class Repository<TEntity> : IRepository<TEntity>
+public class Repository<TEntity>(
+    DbContext dbContext,
+    IEntityMapper<TEntity> entityMapper)
+    : IRepository<TEntity>
     where TEntity : class, IEntity
 {
-    private readonly DbSet<TEntity> _dbSet;
-    private readonly IEntityMapper<TEntity> _entityMapper;
-
-    public Repository(
-        DbContext dbContext,
-        IEntityMapper<TEntity> entityMapper)
-    {
-        _dbSet = dbContext.Set<TEntity>();
-        _entityMapper = entityMapper;
-    }
+    private readonly DbSet<TEntity> _dbSet = dbContext.Set<TEntity>();
 
     public IQueryable<TEntity> Get() => _dbSet;
 
@@ -32,7 +26,7 @@ public class Repository<TEntity> : IRepository<TEntity>
     public async Task<TEntity> UpdateAsync(TEntity entity)
     {
         TEntity existingEntity = await _dbSet.SingleAsync(e => e.Id == entity.Id);
-        _entityMapper.MapToExistingEntity(existingEntity, entity);
+        entityMapper.MapToExistingEntity(existingEntity, entity);
         return existingEntity;
     }
 

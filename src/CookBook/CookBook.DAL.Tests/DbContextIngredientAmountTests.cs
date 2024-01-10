@@ -8,12 +8,8 @@ using Xunit.Abstractions;
 
 namespace CookBook.DAL.Tests;
 
-public class DbContextIngredientAmountTests : DbContextTestsBase
+public class DbContextIngredientAmountTests(ITestOutputHelper output) : DbContextTestsBase(output)
 {
-    public DbContextIngredientAmountTests(ITestOutputHelper output) : base(output)
-    {
-    }
-        
     [Fact]
     public async Task GetAll_IngredientAmounts_ForRecipe()
     {
@@ -82,7 +78,7 @@ public class DbContextIngredientAmountTests : DbContextTestsBase
     {
         //Arrange
         var baseEntity = IngredientAmountSeeds.IngredientAmountEntityDelete;
-            
+
         //Act
         CookBookDbContextSUT.Remove(
             CookBookDbContextSUT.IngredientAmountEntities.Single(i => i.Id == baseEntity.Id));

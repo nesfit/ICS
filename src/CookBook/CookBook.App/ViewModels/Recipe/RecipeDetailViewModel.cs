@@ -8,29 +8,21 @@ using CookBook.BL.Models;
 namespace CookBook.App.ViewModels;
 
 [QueryProperty(nameof(Id), nameof(Id))]
-public partial class RecipeDetailViewModel : ViewModelBase, IRecipient<RecipeEditMessage>, IRecipient<RecipeIngredientAddMessage>, IRecipient<RecipeIngredientDeleteMessage>
+public partial class RecipeDetailViewModel(
+    IRecipeFacade recipeFacade,
+    INavigationService navigationService,
+    IMessengerService messengerService)
+    : ViewModelBase(messengerService), IRecipient<RecipeEditMessage>, IRecipient<RecipeIngredientAddMessage>,
+        IRecipient<RecipeIngredientDeleteMessage>
 {
-    private readonly IRecipeFacade _recipeFacade;
-    private readonly INavigationService _navigationService;
-
     public Guid Id { get; set; }
     public RecipeDetailModel? Recipe { get; set; }
-
-    public RecipeDetailViewModel(
-        IRecipeFacade recipeFacade,
-        INavigationService navigationService,
-        IMessengerService messengerService)
-        : base(messengerService)
-    {
-        _recipeFacade = recipeFacade;
-        _navigationService = navigationService;
-    }
 
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
 
-        Recipe = await _recipeFacade.GetAsync(Id);
+        Recipe = await recipeFacade.GetAsync(Id);
     }
 
     [RelayCommand]
@@ -38,11 +30,11 @@ public partial class RecipeDetailViewModel : ViewModelBase, IRecipient<RecipeEdi
     {
         if (Recipe is not null)
         {
-            await _recipeFacade.DeleteAsync(Recipe.Id);
+            await recipeFacade.DeleteAsync(Recipe.Id);
 
             MessengerService.Send(new RecipeDeleteMessage());
 
-            _navigationService.SendBackButtonPressed();
+            navigationService.SendBackButtonPressed();
         }
     }
 
@@ -52,7 +44,7 @@ public partial class RecipeDetailViewModel : ViewModelBase, IRecipient<RecipeEdi
     {
         if (Recipe is not null)
         {
-            await _navigationService.GoToAsync("/edit",
+            await navigationService.GoToAsync("/edit",
                 new Dictionary<string, object?> { [nameof(RecipeEditViewModel.Recipe)] = Recipe with { } });
         }
     }

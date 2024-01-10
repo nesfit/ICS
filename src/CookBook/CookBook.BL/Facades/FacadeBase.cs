@@ -16,22 +16,17 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 namespace CookBook.BL.Facades;
 
 public abstract class
-    FacadeBase<TEntity, TListModel, TDetailModel, TEntityMapper> : IFacade<TEntity, TListModel, TDetailModel>
+    FacadeBase<TEntity, TListModel, TDetailModel, TEntityMapper>(
+        IUnitOfWorkFactory unitOfWorkFactory,
+        IModelMapper<TEntity, TListModel, TDetailModel> modelMapper)
+    : IFacade<TEntity, TListModel, TDetailModel>
     where TEntity : class, IEntity
     where TListModel : IModel
     where TDetailModel : class, IModel
     where TEntityMapper : IEntityMapper<TEntity>, new()
 {
-    protected readonly IModelMapper<TEntity, TListModel, TDetailModel> ModelMapper;
-    protected readonly IUnitOfWorkFactory UnitOfWorkFactory;
-
-    protected FacadeBase(
-        IUnitOfWorkFactory unitOfWorkFactory,
-        IModelMapper<TEntity, TListModel, TDetailModel> modelMapper)
-    {
-        UnitOfWorkFactory = unitOfWorkFactory;
-        ModelMapper = modelMapper;
-    }
+    protected readonly IModelMapper<TEntity, TListModel, TDetailModel> ModelMapper = modelMapper;
+    protected readonly IUnitOfWorkFactory UnitOfWorkFactory = unitOfWorkFactory;
 
     protected virtual string IncludesNavigationPathDetail => string.Empty;
 

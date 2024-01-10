@@ -14,12 +14,8 @@ namespace CookBook.DAL.Tests;
 /// Tests shows an example of DbContext usage when querying strong entity with no navigation properties.
 /// Entity has no relations, holds no foreign keys.
 /// </summary>
-public class DbContextIngredientTests : DbContextTestsBase
+public class DbContextIngredientTests(ITestOutputHelper output) : DbContextTestsBase(output)
 {
-    public DbContextIngredientTests(ITestOutputHelper output) : base(output)
-    {
-    }
-
     [Fact]
     public async Task AddNew_Ingredient_Persisted()
     {
