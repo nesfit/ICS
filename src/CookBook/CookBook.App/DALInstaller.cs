@@ -16,25 +16,14 @@ public static class DALInstaller
 
         services.AddSingleton<DALOptions>(dalOptions);
 
-        if (dalOptions.LocalDb is null && dalOptions.Sqlite is null)
+        if (dalOptions.Sqlite is null)
         {
             throw new InvalidOperationException("No persistence provider configured");
         }
 
-        if (dalOptions.LocalDb?.Enabled == false && dalOptions.Sqlite?.Enabled == false)
+        if (dalOptions.Sqlite?.Enabled == false)
         {
             throw new InvalidOperationException("No persistence provider enabled");
-        }
-
-        if ((dalOptions.LocalDb?.Enabled == true) && (dalOptions.Sqlite?.Enabled == true))
-        {
-            throw new InvalidOperationException("Both persistence providers enabled");
-        }
-
-        if (dalOptions.LocalDb?.Enabled == true)
-        {
-            services.AddSingleton<IDbContextFactory<CookBookDbContext>>(provider => new SqlServerDbContextFactory(dalOptions.LocalDb.ConnectionString ));
-            services.AddSingleton<IDbMigrator, NoneDbMigrator>();
         }
 
         if (dalOptions.Sqlite?.Enabled == true)
