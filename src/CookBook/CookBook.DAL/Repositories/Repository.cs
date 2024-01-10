@@ -15,7 +15,8 @@ public class Repository<TEntity>(
     public IQueryable<TEntity> Get() => _dbSet;
 
     public async ValueTask<bool> ExistsAsync(TEntity entity)
-        => entity.Id != Guid.Empty && await _dbSet.AnyAsync(e => e.Id == entity.Id);
+        => entity.Id != Guid.Empty
+           && await _dbSet.AnyAsync(e => e.Id == entity.Id);
 
     public async Task<TEntity> InsertAsync(TEntity entity)
         => (await _dbSet.AddAsync(entity)).Entity;
@@ -27,5 +28,6 @@ public class Repository<TEntity>(
         return existingEntity;
     }
 
-    public void Delete(Guid entityId) => _dbSet.Remove(_dbSet.Single(i => i.Id == entityId));
+    public void Delete(Guid entityId)
+        => _dbSet.Remove(_dbSet.Single(i => i.Id == entityId));
 }

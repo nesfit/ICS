@@ -103,7 +103,7 @@ public abstract class
     /// </summary>
     /// <param name="model">Model to be inserted or updated</param>
     /// <exception cref="InvalidOperationException"></exception>
-    public static void GuardCollectionsAreNotSet(TDetailModel model)
+    private static void GuardCollectionsAreNotSet(TDetailModel model)
     {
         IEnumerable<PropertyInfo> collectionProperties = model
             .GetType()
