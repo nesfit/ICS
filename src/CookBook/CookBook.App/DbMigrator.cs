@@ -1,7 +1,6 @@
 ﻿using CookBook.App.Options;
 using CookBook.DAL;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 namespace CookBook.App;
 

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
-using CookBook.Common.Tests;
+﻿using CookBook.Common.Tests;
 using CookBook.Common.Tests.Factories;
-using CookBook.DAL.Factories;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;

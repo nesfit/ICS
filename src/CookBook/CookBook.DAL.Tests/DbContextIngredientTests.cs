@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using CookBook.Common.Tests.Factories;
-using CookBook.Common.Tests.Seeds;
+﻿using CookBook.Common.Tests.Seeds;
 using CookBook.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Xunit;

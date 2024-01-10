@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections;
 using System.Reflection;
-using System.Threading.Tasks;
 using CookBook.BL.Mappers;
 using CookBook.BL.Models;
 using CookBook.DAL.Entities;
@@ -11,7 +7,6 @@ using CookBook.DAL.Mappers;
 using CookBook.DAL.Repositories;
 using CookBook.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CookBook.BL.Facades;
 

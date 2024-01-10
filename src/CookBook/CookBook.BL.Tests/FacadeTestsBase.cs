@@ -2,11 +2,8 @@ using CookBook.BL.Mappers;
 using CookBook.Common.Tests;
 using CookBook.Common.Tests.Factories;
 using CookBook.DAL;
-using CookBook.DAL.Mappers;
 using CookBook.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 

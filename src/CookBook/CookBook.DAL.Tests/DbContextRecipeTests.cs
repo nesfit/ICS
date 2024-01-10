@@ -3,10 +3,6 @@ using CookBook.Common.Tests;
 using CookBook.Common.Tests.Seeds;
 using CookBook.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 

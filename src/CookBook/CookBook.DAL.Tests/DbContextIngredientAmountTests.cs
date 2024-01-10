@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using CookBook.Common.Enums;
+﻿using CookBook.Common.Enums;
 using CookBook.Common.Tests.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Xunit;

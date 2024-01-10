@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace CookBook.BL.Mappers;
+﻿namespace CookBook.BL.Mappers;
 
 public interface IModelMapper<TEntity, out TListModel, TDetailModel>
 {
