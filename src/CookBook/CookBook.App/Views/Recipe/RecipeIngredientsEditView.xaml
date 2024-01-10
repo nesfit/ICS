@@ -29,20 +29,20 @@
         </HorizontalStackLayout>
 
         <Label Grid.Row="1"
-               Text="Ingredience" />
+               Text="{x:Static texts:RecipeIngredientsEditViewTexts.Ingredients_Label_Text}" />
 
         <Grid Grid.Row="2"
               RowDefinitions="Auto, Auto"
               ColumnDefinitions="Auto, Auto, Auto, Auto, *"
               RowSpacing="10" ColumnSpacing="15">
             <Label Grid.Row="0" Grid.Column="0"
-                   Text="Množství" />
+                   Text="{x:Static texts:RecipeIngredientsEditViewTexts.Amount_Label_Text}" />
 
             <Entry Grid.Row="1" Grid.Column="0"
                    Text="{Binding IngredientAmountNew.Amount}" />
 
             <Label Grid.Row="0" Grid.Column="1"
-                   Text="Jednotka" />
+                   Text="{x:Static texts:RecipeIngredientsEditViewTexts.Unit_Label_Text}" />
 
             <Picker Grid.Row="1" Grid.Column="1"
                     ItemsSource="{Binding Units}"
@@ -50,7 +50,7 @@
                     SelectedItem="{Binding IngredientAmountNew.Unit}" />
 
             <Label Grid.Row="0" Grid.Column="2"
-                   Text="Název" />
+                   Text="{x:Static texts:RecipeIngredientsEditViewTexts.Name_Label_Text}" />
 
             <Picker Grid.Row="1" Grid.Column="2"
                     ItemsSource="{Binding Ingredients}"
@@ -58,7 +58,7 @@
                     SelectedItem="{Binding IngredientSelected}" />
 
             <Button Grid.Row="1" Grid.Column="3"
-                    Text="Přidat"
+                    Text="{x:Static texts:RecipeIngredientsEditViewTexts.AddIngredient_Button_Text}"
                     HorizontalOptions="Start"
                     Command="{Binding AddNewIngredientToRecipeCommand}"
                     Style="{StaticResource PrimaryButtonStyle}"/>
@@ -106,7 +106,7 @@
 
                         <Button Grid.Column="4"
                                 HorizontalOptions="Start" VerticalOptions="Center"
-                                Text="Odstranit"
+                                Text="{x:Static texts:RecipeIngredientsEditViewTexts.RemoveIngredient_Button_Text}"
                                 Command="{Binding Source={x:Reference RecipeIngredientsEditViewRoot}, Path=BindingContext.RemoveIngredientCommand}"
                                 CommandParameter="{Binding .}"
                                 Style="{StaticResource ErrorButtonStyle}" />

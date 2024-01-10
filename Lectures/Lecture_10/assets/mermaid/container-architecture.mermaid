@@ -1,0 +1,7 @@
+flowchart TD
+  registry[Image Registry] -- provides images --> engine[Container Engine]
+  engine -- provides configuration --> runtime[Container Runtime]
+  user(User) -- interacts with --> engine
+  orchestrator(Container Orchestrator) -- calls API --> engine
+  runtime -- spawns processes --> container[Container]
+  runtime -- spawns processes --> container2[Container]

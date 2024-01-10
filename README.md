@@ -60,20 +60,20 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 
 +++
 
-| Datum    | Typ | Vyučující    | Téma přednášky                                                                                                                                                                                                                                         |
-| -------- | --- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-|          |
-| 30.03.   | L08 | Roman Jašek  | MAUI                                                                                                                                                                                                                                                   |
-|          | E04 | Roman Jašek  | MAUI                                                                                                                                                                                                                                                   |
-| 06.04.   | L09 | Roman Jašek  | MAUI                                                                                                                                                                                                                                                   |
-|          | E05 | Roman Jašek  | MAUI                                                                                                                                                                                                                                                   |
-| 09.04.   | P02 |              | **Odevzdání druhé fáze projektu**                                                                                                                                                                                                                      |
-| 13.04.   | L10 | Jan Pluskal  | [Paralelní a asynchronní programování](https://nesfit.github.io/ICS/Lectures/Lecture_12/_site/) - proces, vlákno, úloha z pohledu C# a použitého .NET frameworku ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_12/_site/?print-pdf)) |
-| 20.04.   | L11 | Jan Pluskal  | Multiplatformní programování - .NET Standard, .NET Core., .NET, kontejnerizace a deployment aplikací                                                                                                                                                   |
-|          | E06 | Jan Pluskal  | Takto můžete napsat projekt?!                                                                                                                                                                                                                          |
-| 27.04.   | L12 | Martin Dybal | Návrhové vzory - vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#                                                                                                                                                                    |
-| 02-03.05 | P03 |              | **Obhajoby projektu**                                                                                                                                                                                                                                  |
-| 04.05.   | L13 | Jan Pluskal  | Téma bude doplněno                                                                                                                                                                                                                                     |
+| Datum                         | Typ | Vyučující        | Téma přednášky                                                                                                                                                                                                                                         |
+| ----------------------------- | --- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|                               |
+| 30.03.                        | L08 | Roman Jašek      | MAUI                                                                                                                                                                                                                                                   |
+|                               | E04 | Roman Jašek      | MAUI                                                                                                                                                                                                                                                   |
+| 06.04.                        | L09 | Roman Jašek      | MAUI                                                                                                                                                                                                                                                   |
+|                               | E05 | Roman Jašek      | MAUI                                                                                                                                                                                                                                                   |
+| 09.04.                        | P02 |                  | **Odevzdání druhé fáze projektu**                                                                                                                                                                                                                      |
+| **13.04. (14:00-15:50 D207)** | L10 | Michal Koutenský | [Multiplatformní programování - .NET Standard, .NET Core., .NET, kontejnerizace a deployment aplikací](https://nesfit.github.io/ICS/Lectures/Lecture_10/_site/)                                                                                        |
+| 20.04.                        | L11 | Jan Pluskal      | [Paralelní a asynchronní programování](https://nesfit.github.io/ICS/Lectures/Lecture_11/_site/) - proces, vlákno, úloha z pohledu C# a použitého .NET frameworku ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_11/_site/?print-pdf)) |
+|                               | E06 | Jan Pluskal      | Takto můžete napsat projekt?!                                                                                                                                                                                                                          |
+| 27.04.                        | L12 | Martin Dybal     | Návrhové vzory - vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#                                                                                                                                                                    |
+| 02-03.05                      | P03 |                  | **Obhajoby projektu**                                                                                                                                                                                                                                  |
+| 04.05.                        | L13 | Roman Jašek      | Napojení aplikace na API server                                                 |
 
 LXY - přednáška | EXY - democvičení | P0X - projekt
 
@@ -138,7 +138,7 @@ winget install JetBrains.ReSharper
 * [Roman Jašek](https://www.linkedin.com/in/roman-jasek-16921839)
 * [Tibor Jašek](https://www.linkedin.com/in/tibor-jašek-717a5761)
 * [Michal Mrnuštík](https://www.linkedin.com/in/michal-mrnušt%C3%ADk-31050b60/)
-* [Michal Tichý]()
+* [Michal Tichý](mailto:edu@tichymichal.net)
 * [Jan Pluskal](https://www.fit.vut.cz/person/ipluskal)
 * [Michal Koutenský](https://www.fit.vut.cz/person/koutenmi)
 * [Daniel Dolejška](https://www.fit.vut.cz/person/dolejska)
@@ -161,6 +161,49 @@ winget install JetBrains.ReSharper
 * [Agile Principles, Patterns, and Practices in C#](https://books.google.cz/books?id=hckt7v6g09oC), Robert C. Martin
 * [C# 3.0 Design Patterns](https://books.google.cz/books?id=pD2XMZLGUAYC), Judith Bishop
 * [The Art of Unit Testing](https://books.google.cz/books?id=2GRRmgEACAAJ&dq=the+art+of+unit+testing&hl=en&sa=X&ved=0ahUKEwjLhJeRx7DnAhU3AGMBHeScBisQ6AEILDAA), Roy Osherove
+
+---
+
+# Užitečné zdroje
+
+aneb co sledovat, pokud se chcete dozvědět víc
+
+* [IW5](https://github.com/nesfit/iw5) - předmět, který navazuje na ICS a pokračuje v tématu vývoje v .NET dál se zaměřením na client-server a webový vývoj
+
+## Co se děje v .NET a co se chystá
+* [.NET Conf](https://www.dotnetconf.net/) - konference, kde se představuje nová verze .NET (jednou ročně - **listopad**)
+* [Microsoft Build](https://build.microsoft.com/en-US/home) - největší konference pro vývojáře od Microsoftu, hromada novinek (jednou ročně - **květen**)
+* [.NET Blog](https://devblogs.microsoft.com/dotnet/) - blog s high-level zprávami o aktuálních novinkách (cca 10-15 článků za měsíc)
+* [Themes of .NET](https://aka.ms/dotnet-product-roadmap) - .NET roadmap - podrobný přehled toho, na čem se pracuje a kdy se to plánuje
+
+## Blogy
+* [Leomaris Reyes](https://askxammy.com/author/leoreyes/) - Blog zaměřený na .NET MAUI
+* [Scott Hanselman](https://www.hanselman.com/blog/) - Různorodá témata, většinou zaměrená na Microsoft technologie. Autor je zkušený speaker z řad Microsoftu.
+* [Steve Gordon](https://www.stevejgordon.co.uk/) - .NET, web development, cloud, low-level stuff...
+* [Jiří Činčura](https://www.tabsoverspaces.com/) - performance, Entity Framework, databázy, novinky v .NET...
+* [Robert Haken](https://knowledge-base.havit.cz/) - Blazor, webový vývoj, performance
+
+## Twitter
+* @davidfowl - **David Fowler**, jeden z hlavních lidí ve vývoji .NET a ASP .NET
+* @DamianEdwards - **Damian Edwards**, jeden z hlavních lidí ve vývoji .NET a ASP .NET
+* @davidortinau - **David Ortinau**, jeden z hlavních lidí v .NET MAUI
+* @MadsTorgersen - **Mads Torgersen**, hlavní člověk odpovědný za C#
+* @JamesNK - **James Newton-King**, autor NewtonSoft.Json, pracuje na gRPC integraci v .NET, (de)serializace, performance...
+* @jaredpar - **Jared Parsons**, pracuje na C# kompilátoru a návrhu jazyka
+* @TheCodeTraveler - **Brandon Minnick**, píše a točí hlavně o .NET MAUI
+* @troyhunt - **Troy Hunt**, záměr na bezpečnost, autor projektu https://haveibeenpwned.com
+* @dotnetmeme - memes ze světa .NET (ne od Microsoftu)
+
+## Youtube
+* [Nick Chapsas](https://www.youtube.com/@nickchapsas) - novinky v .NET, performance, webový vývoj
+* [James Montemagno](https://www.youtube.com/@JamesMontemagno) - novinky v .NET, .NET MAUI
+* [Gerald Versluis](https://www.youtube.com/@jfversluis) - .NET MAUI
+* [.NET Community Standups](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oX-DBuRG4u58ZTAJgBAeQ-t) - veřejně dostupné streamy z meetingů mezi vývojářema v Microsoftu ohledně toho, co se aktuálně děje a na čem se pracuje
+
+## Podcasty
+* [.NET Rocks](https://www.dotnetrocks.com/) - 2 hodně zkušení hostitelé - Richard Campbell a Carl Fralkin, 1 host, různá témata (hlavně) z .NET světa
+* [The .NET MAUI Podcast](https://www.dotnetmauipodcast.com/) - .NET MAUI, James Montemagno, David Ortinau a Matt Soucoup
+* [The ReadME Podcast](https://github.com/readme/podcast) - podcast GitHubu
 
 ---
 

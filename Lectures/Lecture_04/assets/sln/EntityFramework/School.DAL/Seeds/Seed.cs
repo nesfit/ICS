@@ -65,7 +65,7 @@ namespace School.DAL.Seeds
                 {
                     Id = StudentJane.Id,
                     Name = StudentJane.Name,
-                    AddressId = StudentJane.Address.Id, //AddressId is a shadow property (not defined on StudentEntity)
+                    AddressId = StudentJane.Address!.Id, //AddressId is a shadow property (not defined on StudentEntity)
                     //Address navigation properties needs to be seeded separately
                     GradeId = StudentJane.GradeId,
                     //Grade

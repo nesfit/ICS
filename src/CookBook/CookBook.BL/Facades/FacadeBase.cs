@@ -38,8 +38,15 @@ public abstract class
     public async Task DeleteAsync(Guid id)
     {
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
-        uow.GetRepository<TEntity, TEntityMapper>().Delete(id);
-        await uow.CommitAsync().ConfigureAwait(false);
+        try
+        {
+            uow.GetRepository<TEntity, TEntityMapper>().Delete(id);
+            await uow.CommitAsync().ConfigureAwait(false);
+        }
+        catch (DbUpdateException e)
+        {
+            throw new InvalidOperationException("Entity deletion failed.", e);
+        }
     }
 
     public virtual async Task<TDetailModel?> GetAsync(Guid id)
@@ -63,10 +70,10 @@ public abstract class
     public virtual async Task<IEnumerable<TListModel>> GetAsync()
     {
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
-        List<TEntity> entities = uow
+        List<TEntity> entities = await uow
             .GetRepository<TEntity, TEntityMapper>()
             .Get()
-            .ToList();
+            .ToListAsync();
 
         return ModelMapper.MapToListModel(entities);
     }
@@ -101,7 +108,8 @@ public abstract class
 
     /// <summary>
     /// This Guard ensures that there is a clear understanding of current infrastructure limitations.
-    /// This version of BL/DAL infrastructure does not support insertion or update of adjacent entities
+    /// This version of BL/DAL infrastructure does not support insertion or update of adjacent entities.
+    /// WARN: Does not guard navigation properties.
     /// </summary>
     /// <param name="model">Model to be inserted or updated</param>
     /// <exception cref="InvalidOperationException"></exception>

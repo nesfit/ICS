@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using CookBook.App.Messages;
+using CookBook.App.Resources.Texts;
 using CookBook.App.Services;
 using CookBook.BL.Facades;
 using CookBook.BL.Models;
@@ -10,8 +11,9 @@ namespace CookBook.App.ViewModels;
 [QueryProperty(nameof(Id), nameof(Id))]
 public partial class IngredientDetailViewModel : ViewModelBase, IRecipient<IngredientEditMessage>
 {
-    private readonly IIngredientFacade ingredientFacade;
-    private readonly INavigationService navigationService;
+    private readonly IIngredientFacade _ingredientFacade;
+    private readonly INavigationService _navigationService;
+    private readonly IAlertService _alertService;
 
     public Guid Id { get; set; }
     public IngredientDetailModel? Ingredient { get; private set; }
@@ -19,18 +21,20 @@ public partial class IngredientDetailViewModel : ViewModelBase, IRecipient<Ingre
     public IngredientDetailViewModel(
         IIngredientFacade ingredientFacade,
         INavigationService navigationService,
-        IMessengerService messengerService)
+        IMessengerService messengerService,
+        IAlertService alertService)
         : base(messengerService)
     {
-        this.ingredientFacade = ingredientFacade;
-        this.navigationService = navigationService;
+        _ingredientFacade = ingredientFacade;
+        _navigationService = navigationService;
+        _alertService = alertService;
     }
 
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
 
-        Ingredient = await ingredientFacade.GetAsync(Id);
+        Ingredient = await _ingredientFacade.GetAsync(Id);
     }
 
     [RelayCommand]
@@ -38,18 +42,23 @@ public partial class IngredientDetailViewModel : ViewModelBase, IRecipient<Ingre
     {
         if (Ingredient is not null)
         {
-            await ingredientFacade.DeleteAsync(Ingredient.Id);
-
-            messengerService.Send(new IngredientDeleteMessage());
-
-            navigationService.SendBackButtonPressed();
+            try
+            {
+                await _ingredientFacade.DeleteAsync(Ingredient.Id);
+                MessengerService.Send(new IngredientDeleteMessage());
+                _navigationService.SendBackButtonPressed();
+            }
+            catch (InvalidOperationException)
+            {
+                await _alertService.DisplayAsync(IngredientDetailViewModelTexts.DeleteError_Alert_Title, IngredientDetailViewModelTexts.DeleteError_Alert_Message);
+            }
         }
     }
 
     [RelayCommand]
     private async Task GoToEditAsync()
     {
-        await navigationService.GoToAsync("/edit",
+        await _navigationService.GoToAsync("/edit",
             new Dictionary<string, object?> { [nameof(IngredientEditViewModel.Ingredient)] = Ingredient });
     }
 

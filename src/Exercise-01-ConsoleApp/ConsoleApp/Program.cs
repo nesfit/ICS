@@ -5,10 +5,9 @@ namespace Exercise_01.ConsoleApp
     internal static class Program
     {
         /// <summary>
-        ///     function Main - has to be static, has to have a name "Main", doesn't have to return a value
-        ///     - cannot call non-static methods
+        ///     Method Main - has to be static, has to have a name "Main", doesn't have to return a value.
         /// </summary>
-        /// <param name="args">array of strings which represents parameters of the program</param>
+        /// <param name="args">Array of strings which represents parameters of the program.</param>
         private static void Main(string[] args)
         {
             CodeDemonstrations.RunAllDemonstrations();
@@ -18,8 +17,8 @@ namespace Exercise_01.ConsoleApp
         }
 
         /// <summary>
-        ///     Helper - waits for any key to be pressed on a keyboard
-        ///     Holds the command prompt opened before program exits.
+        ///     Helper - waits for any key to be pressed on a keyboard.
+        ///     Holds the command prompt open before program exits.
         /// </summary>
         private static void WaitForPressedKey()
         {

@@ -6,20 +6,20 @@ namespace CookBook.App.Shells;
 
 public partial class AppShell
 {
-    private readonly INavigationService navigationService;
+    private readonly INavigationService _navigationService;
 
     public AppShell(INavigationService navigationService)
     {
-        this.navigationService = navigationService;
+        _navigationService = navigationService;
 
         InitializeComponent();
     }
 
     [RelayCommand]
     private async Task GoToRecipesAsync()
-        => await navigationService.GoToAsync<RecipeListViewModel>();
+        => await _navigationService.GoToAsync<RecipeListViewModel>();
 
     [RelayCommand]
     private async Task GoToIngredientsAsync()
-        => await navigationService.GoToAsync<IngredientListViewModel>();
+        => await _navigationService.GoToAsync<IngredientListViewModel>();
 }
