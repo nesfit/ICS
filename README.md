@@ -73,7 +73,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 |        | E06 | Jan Pluskal  | Takto můžete napsat projekt?!                                                                                                                                                                                                                         |
 | 25.04. | L12 | Martin Dybal | Návrhové vzory - vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#                                                                                                                                                                   |
 | Dle IS | P03 |              | **Obhajoby projektu**                                                                                                                                                                                                                                 |
-| 04.05. | L13 | Roman Jašek  | Napojení aplikace na API server                                                                                                                                                                                                                       |
+| 02.05. | L13 | Roman Jašek  | Napojení aplikace na API server                                                                                                                                                                                                                       |
 
 LXY - přednáška | EXY - democvičení | P0X - projekt
 
