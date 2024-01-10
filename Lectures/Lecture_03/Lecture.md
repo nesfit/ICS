@@ -1619,7 +1619,6 @@ There are four operators for the set operations, each yielding a result based on
 | :--------: | :-------------------------------------------------------------------------------------------------------------------- |
 | `Distinct` | Returns a list of unique values from a collection by filtering duplicate data if any                                  |
 |  `Except`  | Compares the values of two collections and returns the ones from one collection which are not in the other collection |
-<!-- (A - B)? (B - A)? nedeterministické? -->
 | `Intersect` | Returns the set of values contained in both collections |
 | `Union` | Combines content of two different collections into a single list without any duplicate content |
 
