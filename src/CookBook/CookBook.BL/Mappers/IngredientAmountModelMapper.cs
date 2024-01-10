@@ -66,8 +66,8 @@ public class IngredientAmountModelMapper :
             IngredientId = model.IngredientId,
             Amount = model.Amount,
             Unit = model.Unit,
-            Recipe = null,
-            Ingredient = null
+            Recipe = null!,
+            Ingredient = null!
         };
 
     public IngredientAmountEntity MapToEntity(IngredientAmountListModel model, Guid recipeId)
@@ -78,7 +78,7 @@ public class IngredientAmountModelMapper :
             IngredientId = model.IngredientId,
             Amount = model.Amount,
             Unit = model.Unit,
-            Recipe = null,
-            Ingredient = null
+            Recipe = null!,
+            Ingredient = null!
         };
 }

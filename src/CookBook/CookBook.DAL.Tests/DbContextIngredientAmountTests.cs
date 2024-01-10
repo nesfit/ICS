@@ -19,8 +19,8 @@ public class DbContextIngredientAmountTests(ITestOutputHelper output) : DbContex
             .ToArrayAsync();
 
         //Assert
-        Assert.Contains(IngredientAmountSeeds.IngredientAmountEntity1 with { Recipe = null, Ingredient = null}, ingredientAmounts);
-        Assert.Contains(IngredientAmountSeeds.IngredientAmountEntity2 with { Recipe = null, Ingredient = null}, ingredientAmounts);
+        Assert.Contains(IngredientAmountSeeds.IngredientAmountEntity1 with { Recipe = null!, Ingredient = null!}, ingredientAmounts);
+        Assert.Contains(IngredientAmountSeeds.IngredientAmountEntity2 with { Recipe = null!, Ingredient = null!}, ingredientAmounts);
     }
 
     [Fact]
@@ -33,8 +33,8 @@ public class DbContextIngredientAmountTests(ITestOutputHelper output) : DbContex
             .ToArrayAsync();
 
         //Assert
-        Assert.Contains(IngredientAmountSeeds.IngredientAmountEntity1 with {Recipe = null}, ingredientAmounts);
-        Assert.Contains(IngredientAmountSeeds.IngredientAmountEntity2 with {Recipe = null}, ingredientAmounts);
+        Assert.Contains(IngredientAmountSeeds.IngredientAmountEntity1 with {Recipe = null!}, ingredientAmounts);
+        Assert.Contains(IngredientAmountSeeds.IngredientAmountEntity2 with {Recipe = null!}, ingredientAmounts);
     }
 
     [Fact]
