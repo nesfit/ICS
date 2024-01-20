@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
 namespace CookBook.DAL.Factories;
@@ -8,13 +8,7 @@ namespace CookBook.DAL.Factories;
 /// </summary>
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<CookBookDbContext>
 {
-    private readonly DbContextSqLiteFactory _dbContextSqLiteFactory;
-    private const string ConnectionString = $"Data Source=CookBook;Cache=Shared";
+    private readonly DbContextSqLiteFactory _dbContextSqLiteFactory = new($"Data Source=CookBook;Cache=Shared");
 
-    public DesignTimeDbContextFactory()
-    {
-        _dbContextSqLiteFactory = new DbContextSqLiteFactory(ConnectionString);
-    }
-    
     public CookBookDbContext CreateDbContext(string[] args) => _dbContextSqLiteFactory.CreateDbContext();
 }

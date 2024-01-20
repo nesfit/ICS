@@ -1,5 +1,4 @@
-﻿using System;
-using CookBook.BL.Models;
+﻿using CookBook.BL.Models;
 using CookBook.DAL.Entities;
 
 namespace CookBook.BL.Mappers;
@@ -65,7 +64,9 @@ public class IngredientAmountModelMapper :
             RecipeId = recipeId,
             IngredientId = model.IngredientId,
             Amount = model.Amount,
-            Unit = model.Unit
+            Unit = model.Unit,
+            Recipe = null!,
+            Ingredient = null!
         };
 
     public IngredientAmountEntity MapToEntity(IngredientAmountListModel model, Guid recipeId)
@@ -75,6 +76,8 @@ public class IngredientAmountModelMapper :
             RecipeId = recipeId,
             IngredientId = model.IngredientId,
             Amount = model.Amount,
-            Unit = model.Unit
+            Unit = model.Unit,
+            Recipe = null!,
+            Ingredient = null!
         };
 }

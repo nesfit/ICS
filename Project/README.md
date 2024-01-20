@@ -1,4 +1,8 @@
-# ICS projekt 
+# ICS projekt
+
+> [!WARNING]  
+> Zadání z minulého roku, vyčkejte s vypracováním projektu na letošní.
+> Informace k projektu se dozvíte na přednáškách.
 
 ## Důležité upozornění
 Pro hodnocení projektu 49+ body je nutné dokončit všechny fáze a projekt úspěšně obhájit. Každá fáze projektu musí být hodnocena minimálně 1b. Při obhajobě projektu je vyžadována demonstrace **základní funkcionality**, jinak je obhajoba hodnocena 0b.

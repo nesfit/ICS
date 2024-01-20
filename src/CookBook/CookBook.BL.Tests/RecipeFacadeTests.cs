@@ -3,11 +3,7 @@ using CookBook.BL.Models;
 using CookBook.Common.Enums;
 using CookBook.Common.Tests;
 using CookBook.Common.Tests.Seeds;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -108,9 +104,9 @@ public class RecipeFacadeTests : FacadeTestsBase
             Description = "Testing recipe 2",
             Duration = TimeSpan.FromHours(2),
             FoodType = FoodType.Dessert,
-            Ingredients = new ObservableCollection<IngredientAmountListModel>()
-            {
-                new ()
+            Ingredients =
+            [
+                new()
                 {
                     IngredientId = Guid.Empty,
                     IngredientName = "Ingredient 1",
@@ -118,8 +114,10 @@ public class RecipeFacadeTests : FacadeTestsBase
                     Amount = 0,
                     Unit = Unit.None
                 },
-                IngredientAmountModelMapper.MapToListModel(IngredientAmountSeeds.IngredientAmountEntity1),
-            },
+
+                IngredientAmountModelMapper.MapToListModel(IngredientAmountSeeds.IngredientAmountEntity1)
+
+            ],
         };
 
         //Act & Assert
@@ -160,7 +158,7 @@ public class RecipeFacadeTests : FacadeTestsBase
         detailModel.Name = "Changed recipe name";
 
         //Act & Assert
-        await _facadeSUT.SaveAsync(detailModel with {Ingredients = default});
+        await _facadeSUT.SaveAsync(detailModel with {Ingredients = default!});
     }
 
     [Fact]
@@ -171,7 +169,7 @@ public class RecipeFacadeTests : FacadeTestsBase
         detailModel.Name = "Changed recipe name 1";
 
         //Act
-        await _facadeSUT.SaveAsync(detailModel with { Ingredients = default});
+        await _facadeSUT.SaveAsync(detailModel with { Ingredients = default!});
 
         //Assert
         var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);

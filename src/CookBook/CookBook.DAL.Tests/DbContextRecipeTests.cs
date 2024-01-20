@@ -3,21 +3,13 @@ using CookBook.Common.Tests;
 using CookBook.Common.Tests.Seeds;
 using CookBook.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace CookBook.DAL.Tests;
 
-public class DbContextRecipeTests : DbContextTestsBase
+public class DbContextRecipeTests(ITestOutputHelper output) : DbContextTestsBase(output)
 {
-    public DbContextRecipeTests(ITestOutputHelper output) : base(output)
-    {
-    }
-
     [Fact]
     public async Task AddNew_RecipeWithoutIngredients_Persisted()
     {
@@ -122,6 +114,17 @@ public class DbContextRecipeTests : DbContextTestsBase
             .Include(i => i.Ingredients)
             .SingleAsync(i => i.Id == entity.Id);
         DeepAssert.Equal(entity, actualEntity);
+    }
+
+    [Fact]
+    public async Task GetAll_Recipes_ContainsSeededRecipe()
+    {
+        //Act
+        var entities = await CookBookDbContextSUT.Recipes.ToListAsync();
+
+        //Assert
+        DeepAssert.Contains(RecipeSeeds.RecipeEntity, entities,
+            nameof(RecipeEntity.Ingredients));
     }
 
     [Fact]

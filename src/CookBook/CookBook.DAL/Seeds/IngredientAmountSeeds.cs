@@ -1,5 +1,4 @@
-﻿using System;
-using CookBook.Common.Enums;
+﻿using CookBook.Common.Enums;
 using CookBook.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,7 +30,7 @@ public static class IngredientAmountSeeds
 
     public static void Seed(this ModelBuilder modelBuilder) =>
         modelBuilder.Entity<IngredientAmountEntity>().HasData(
-            LemonadeLemon with { Recipe = null, Ingredient = null },
-            LemonadeWater with { Recipe = null, Ingredient = null }
+            LemonadeLemon with { Recipe = null!, Ingredient = null! },
+            LemonadeWater with { Recipe = null!, Ingredient = null! }
         );
 }

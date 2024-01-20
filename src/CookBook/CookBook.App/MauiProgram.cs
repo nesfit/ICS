@@ -3,6 +3,9 @@ using CookBook.App.Services;
 using CookBook.BL;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
+using CookBook.DAL;
+using CookBook.DAL.Migrator;
+using CookBook.DAL.Options;
 
 [assembly:System.Resources.NeutralResourcesLanguage("en")]
 namespace CookBook.App;
@@ -23,13 +26,13 @@ public static class MauiProgram
         ConfigureAppSettings(builder);
 
         builder.Services
-            .AddDALServices(builder.Configuration)
+            .AddDALServices(GetDALOptions(builder.Configuration))
             .AddAppServices()
             .AddBLServices();
 
         var app = builder.Build();
 
-        app.Services.GetRequiredService<IDbMigrator>().Migrate();
+        MigrateDb(app.Services.GetRequiredService<IDbMigrator>());
         RegisterRouting(app.Services.GetRequiredService<INavigationService>());
 
         return app;
@@ -58,4 +61,16 @@ public static class MauiProgram
             Routing.RegisterRoute(route.Route, route.ViewType);
         }
     }
+
+    private static DALOptions GetDALOptions(IConfiguration configuration)
+    {
+        DALOptions dalOptions = new()
+        {
+            DatabaseDirectory = FileSystem.AppDataDirectory
+        };
+        configuration.GetSection("CookBook:DAL").Bind(dalOptions);
+        return dalOptions;
+    }
+
+    private static void MigrateDb(IDbMigrator migrator) => migrator.Migrate();
 }

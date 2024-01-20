@@ -9,32 +9,21 @@ using CookBook.BL.Models;
 namespace CookBook.App.ViewModels;
 
 [QueryProperty(nameof(Id), nameof(Id))]
-public partial class IngredientDetailViewModel : ViewModelBase, IRecipient<IngredientEditMessage>
+public partial class IngredientDetailViewModel(
+    IIngredientFacade ingredientFacade,
+    INavigationService navigationService,
+    IMessengerService messengerService,
+    IAlertService alertService)
+    : ViewModelBase(messengerService), IRecipient<IngredientEditMessage>
 {
-    private readonly IIngredientFacade _ingredientFacade;
-    private readonly INavigationService _navigationService;
-    private readonly IAlertService _alertService;
-
     public Guid Id { get; set; }
     public IngredientDetailModel? Ingredient { get; private set; }
-
-    public IngredientDetailViewModel(
-        IIngredientFacade ingredientFacade,
-        INavigationService navigationService,
-        IMessengerService messengerService,
-        IAlertService alertService)
-        : base(messengerService)
-    {
-        _ingredientFacade = ingredientFacade;
-        _navigationService = navigationService;
-        _alertService = alertService;
-    }
 
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
 
-        Ingredient = await _ingredientFacade.GetAsync(Id);
+        Ingredient = await ingredientFacade.GetAsync(Id);
     }
 
     [RelayCommand]
@@ -44,13 +33,13 @@ public partial class IngredientDetailViewModel : ViewModelBase, IRecipient<Ingre
         {
             try
             {
-                await _ingredientFacade.DeleteAsync(Ingredient.Id);
+                await ingredientFacade.DeleteAsync(Ingredient.Id);
                 MessengerService.Send(new IngredientDeleteMessage());
-                _navigationService.SendBackButtonPressed();
+                navigationService.SendBackButtonPressed();
             }
             catch (InvalidOperationException)
             {
-                await _alertService.DisplayAsync(IngredientDetailViewModelTexts.DeleteError_Alert_Title, IngredientDetailViewModelTexts.DeleteError_Alert_Message);
+                await alertService.DisplayAsync(IngredientDetailViewModelTexts.DeleteError_Alert_Title, IngredientDetailViewModelTexts.DeleteError_Alert_Message);
             }
         }
     }
@@ -58,7 +47,7 @@ public partial class IngredientDetailViewModel : ViewModelBase, IRecipient<Ingre
     [RelayCommand]
     private async Task GoToEditAsync()
     {
-        await _navigationService.GoToAsync("/edit",
+        await navigationService.GoToAsync("/edit",
             new Dictionary<string, object?> { [nameof(IngredientEditViewModel.Ingredient)] = Ingredient });
     }
 

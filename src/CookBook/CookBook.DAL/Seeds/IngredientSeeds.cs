@@ -1,5 +1,4 @@
-﻿using System;
-using CookBook.DAL.Entities;
+﻿using CookBook.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.DAL.Seeds;

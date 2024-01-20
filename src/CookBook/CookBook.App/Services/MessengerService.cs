@@ -2,14 +2,9 @@
 
 namespace CookBook.App.Services;
 
-public class MessengerService : IMessengerService
+public class MessengerService(IMessenger messenger) : IMessengerService
 {
-    public IMessenger Messenger { get; }
-
-    public MessengerService(IMessenger messenger)
-    {
-        Messenger = messenger;
-    }
+    public IMessenger Messenger { get; } = messenger;
 
     public void Send<TMessage>(TMessage message)
         where TMessage : class

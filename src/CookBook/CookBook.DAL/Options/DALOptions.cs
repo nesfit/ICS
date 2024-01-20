@@ -1,22 +1,11 @@
-﻿namespace CookBook.App.Options;
+﻿namespace CookBook.DAL.Options;
 
 public record DALOptions
-{    
-    public LocalDbOptions? LocalDb { get; init; }
-    public SqliteOptions? Sqlite { get; init; }
-}
-
-public record LocalDbOptions
 {
     public bool Enabled { get; init; }
-    public string ConnectionString { get; init; } = null!;
-}
-
-public record SqliteOptions
-{
-    public bool Enabled { get; init; }
-
+    public required string DatabaseDirectory { get; init; }
     public string DatabaseName { get; init; } = null!;
+    public string DatabaseFilePath => Path.Combine(DatabaseDirectory, DatabaseName!);
     /// <summary>
     /// Deletes database before application startup
     /// </summary>

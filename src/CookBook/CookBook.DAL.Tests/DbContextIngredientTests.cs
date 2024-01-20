@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using CookBook.Common.Tests.Factories;
-using CookBook.Common.Tests.Seeds;
+﻿using CookBook.Common.Tests.Seeds;
 using CookBook.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
@@ -14,17 +10,13 @@ namespace CookBook.DAL.Tests;
 /// Tests shows an example of DbContext usage when querying strong entity with no navigation properties.
 /// Entity has no relations, holds no foreign keys.
 /// </summary>
-public class DbContextIngredientTests : DbContextTestsBase
+public class DbContextIngredientTests(ITestOutputHelper output) : DbContextTestsBase(output)
 {
-    public DbContextIngredientTests(ITestOutputHelper output) : base(output)
-    {
-    }
-
     [Fact]
     public async Task AddNew_Ingredient_Persisted()
     {
         //Arrange
-        IngredientEntity entity = new() 
+        IngredientEntity entity = new()
         {
             Id = Guid.Parse("C5DE45D7-64A0-4E8D-AC7F-BF5CFDFB0EFC"),
             Name = "Salt",
@@ -112,12 +104,10 @@ public class DbContextIngredientTests : DbContextTestsBase
         //Assert
         Assert.False(await CookBookDbContextSUT.Ingredients.AnyAsync(i => i.Id == entityBase.Id));
     }
-        
+
     [Fact]
     public async Task Delete_IngredientUsedInRecipe_Throws()
     {
-        if(DbContextFactory is DbContextTestingInMemoryFactory) return; //In-Memory does not enforce FKs
-            
         //Arrange
         var entityBase = IngredientSeeds.IngredientEntity1;
 

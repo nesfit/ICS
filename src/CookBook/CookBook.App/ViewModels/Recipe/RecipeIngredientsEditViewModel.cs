@@ -10,40 +10,27 @@ using System.Collections.ObjectModel;
 namespace CookBook.App.ViewModels;
 
 [QueryProperty(nameof(Recipe), nameof(Recipe))]
-public partial class RecipeIngredientsEditViewModel : ViewModelBase
+public partial class RecipeIngredientsEditViewModel(
+    IIngredientFacade ingredientFacade,
+    IIngredientAmountFacade ingredientAmountFacade,
+    IIngredientAmountModelMapper ingredientAmountModelMapper,
+    IMessengerService messengerService)
+    : ViewModelBase(messengerService)
 {
-    private readonly IIngredientFacade _ingredientFacade;
-    private readonly IIngredientAmountFacade _ingredientAmountFacade;
-    private readonly IIngredientAmountModelMapper _ingredientAmountModelMapper;
-
     public RecipeDetailModel? Recipe { get; set; }
-    public List<Unit> Units { get; set; }
+    public List<Unit> Units { get; set; } = new((Unit[])Enum.GetValues(typeof(Unit)));
     public ObservableCollection<IngredientListModel> Ingredients { get; set; } = new();
 
     public IngredientListModel? IngredientSelected { get; set; }
 
     public IngredientAmountDetailModel? IngredientAmountNew { get; private set; }
 
-    public RecipeIngredientsEditViewModel(
-        IIngredientFacade ingredientFacade,
-        IIngredientAmountFacade ingredientAmountFacade,
-        IIngredientAmountModelMapper ingredientAmountModelMapper,
-        IMessengerService messengerService)
-        : base(messengerService)
-    {
-        _ingredientFacade = ingredientFacade;
-        _ingredientAmountFacade = ingredientAmountFacade;
-        _ingredientAmountModelMapper = ingredientAmountModelMapper;
-
-        Units = new List<Unit>((Unit[])Enum.GetValues(typeof(Unit)));
-    }
-
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
 
         Ingredients.Clear();
-        var ingredients = await _ingredientFacade.GetAsync();
+        var ingredients = await ingredientFacade.GetAsync();
         foreach (var ingredient in ingredients)
         {
             Ingredients.Add(ingredient);
@@ -58,10 +45,10 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
             && IngredientSelected is not null
             && Recipe is not null)
         {
-            _ingredientAmountModelMapper.MapToExistingDetailModel(IngredientAmountNew, IngredientSelected);
+            ingredientAmountModelMapper.MapToExistingDetailModel(IngredientAmountNew, IngredientSelected);
 
-            await _ingredientAmountFacade.SaveAsync(IngredientAmountNew, Recipe.Id);
-            Recipe.Ingredients.Add(_ingredientAmountModelMapper.MapToListModel(IngredientAmountNew));
+            await ingredientAmountFacade.SaveAsync(IngredientAmountNew, Recipe.Id);
+            Recipe.Ingredients.Add(ingredientAmountModelMapper.MapToListModel(IngredientAmountNew));
 
             IngredientAmountNew = GetIngredientAmountNew();
 
@@ -75,7 +62,7 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
         if (model is not null
             && Recipe is not null)
         {
-            await _ingredientAmountFacade.SaveAsync(model, Recipe.Id);
+            await ingredientAmountFacade.SaveAsync(model, Recipe.Id);
 
             MessengerService.Send(new RecipeIngredientEditMessage());
         }
@@ -86,7 +73,7 @@ public partial class RecipeIngredientsEditViewModel : ViewModelBase
     {
         if (Recipe is not null)
         {
-            await _ingredientAmountFacade.DeleteAsync(model.Id);
+            await ingredientAmountFacade.DeleteAsync(model.Id);
             Recipe.Ingredients.Remove(model);
 
             MessengerService.Send(new RecipeIngredientDeleteMessage());

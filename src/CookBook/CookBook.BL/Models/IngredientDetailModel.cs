@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CookBook.BL.Models;
+﻿namespace CookBook.BL.Models;
 
 public record IngredientDetailModel : ModelBase
 {

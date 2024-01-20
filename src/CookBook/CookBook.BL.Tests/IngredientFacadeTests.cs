@@ -3,9 +3,6 @@ using CookBook.BL.Models;
 using CookBook.Common.Tests;
 using CookBook.Common.Tests.Seeds;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 

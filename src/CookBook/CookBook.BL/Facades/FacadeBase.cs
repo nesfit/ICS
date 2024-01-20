@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections;
 using System.Reflection;
-using System.Threading.Tasks;
 using CookBook.BL.Mappers;
 using CookBook.BL.Models;
 using CookBook.DAL.Entities;
@@ -11,27 +7,21 @@ using CookBook.DAL.Mappers;
 using CookBook.DAL.Repositories;
 using CookBook.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CookBook.BL.Facades;
 
 public abstract class
-    FacadeBase<TEntity, TListModel, TDetailModel, TEntityMapper> : IFacade<TEntity, TListModel, TDetailModel>
+    FacadeBase<TEntity, TListModel, TDetailModel, TEntityMapper>(
+        IUnitOfWorkFactory unitOfWorkFactory,
+        IModelMapper<TEntity, TListModel, TDetailModel> modelMapper)
+    : IFacade<TEntity, TListModel, TDetailModel>
     where TEntity : class, IEntity
     where TListModel : IModel
     where TDetailModel : class, IModel
     where TEntityMapper : IEntityMapper<TEntity>, new()
 {
-    protected readonly IModelMapper<TEntity, TListModel, TDetailModel> ModelMapper;
-    protected readonly IUnitOfWorkFactory UnitOfWorkFactory;
-
-    protected FacadeBase(
-        IUnitOfWorkFactory unitOfWorkFactory,
-        IModelMapper<TEntity, TListModel, TDetailModel> modelMapper)
-    {
-        UnitOfWorkFactory = unitOfWorkFactory;
-        ModelMapper = modelMapper;
-    }
+    protected readonly IModelMapper<TEntity, TListModel, TDetailModel> ModelMapper = modelMapper;
+    protected readonly IUnitOfWorkFactory UnitOfWorkFactory = unitOfWorkFactory;
 
     protected virtual string IncludesNavigationPathDetail => string.Empty;
 
@@ -113,7 +103,7 @@ public abstract class
     /// </summary>
     /// <param name="model">Model to be inserted or updated</param>
     /// <exception cref="InvalidOperationException"></exception>
-    public static void GuardCollectionsAreNotSet(TDetailModel model)
+    private static void GuardCollectionsAreNotSet(TDetailModel model)
     {
         IEnumerable<PropertyInfo> collectionProperties = model
             .GetType()

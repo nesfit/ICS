@@ -1,8 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
-using CookBook.Common.Tests;
+﻿using CookBook.Common.Tests;
 using CookBook.Common.Tests.Factories;
-using CookBook.DAL.Factories;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;
@@ -15,11 +12,8 @@ public class  DbContextTestsBase : IAsyncLifetime
     {
         XUnitTestOutputConverter converter = new(output);
         Console.SetOut(converter);
-        
-        // DbContextFactory = new DbContextTestingInMemoryFactory(GetType().Name, seedTestingData: true);
-        // DbContextFactory = new DbContextLocalDBTestingFactory(GetType().FullName!, seedTestingData: true);
+
         DbContextFactory = new DbContextSqLiteTestingFactory(GetType().FullName!, seedTestingData: true);
-        
         CookBookDbContextSUT = DbContextFactory.CreateDbContext();
     }
 

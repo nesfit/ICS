@@ -6,17 +6,17 @@
 
 ```pwsh
 winget install Git.Git
-winget install Microsoft.DotNet.SDK.7
+winget install Microsoft.DotNet.SDK.8
 dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
-dotnet tool install dotnet-ef --global
-dotnet workload install maui
+dotnet tool install dotnet-ef --global # or local installation into your own projects
+dotnet workload install maui # or dotnet workload restore
 ```
 
 > **Warning** Make sure that additional workloads for VS 2022 are installed as well in case that application is not compiling or cannot start properly - [FAQ](https://github.com/nesfit/ICS/wiki/Projekt-CookBook-nelze-vůbec-spustit)
 
 ### Recommended Tooling / IDEs
 
-> **Warning** Without VS 2022 installation with atleast the following workloads, MAUI application will not be runnable.
+> **Warning** Without VS 2022 installation with at least the following workloads, MAUI application will not be runnable.
 
 - Visual Studio 2022 + Resharper
 ```
@@ -39,7 +39,7 @@ winget install JetBrains.Rider #https://www.jetbrains.com/community/education/#s
 
 Make sure that your system settings reflects official documentation and you can start [sample application](https://learn.microsoft.com/en-us/dotnet/maui/macos/cli?view=net-maui-7.0)
 
-[Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12) needs to be intalled, server enabled, all warnings resolved.
+[Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12) needs to be installed, server enabled, all warnings resolved.
 
 > **Warning** This option was tested on Macbook Air 2021 M1. It has not been officially supported or recommended, nor will it be periodically tested further. Use this at your own risk.
 
@@ -49,7 +49,7 @@ Make sure that your system settings reflects official documentation and you can 
 
 ### Recommended Tooling / IDEs
 - [Rider](https://www.jetbrains.com/rider/)
-  
+
 > **Warning** This option was not tested! It has not been officially supported or recommended, nor will it be periodically tested further. Use this at your own risk.
 
 > **Note** If you decide to test this option, you must make additional configuration changes to the project. Look for `TargetFramework` configuration.
