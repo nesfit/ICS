@@ -44,36 +44,39 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 
 ## Plán semestru
 
-| Datum  | Typ | Vyučující       | Téma přednášky                                                                                                                                                                                                                                                                               |
-| ------ | --- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 8.02.  | L01 | Jan Pluskal     | [Úvod do jazyka C# a platformy .NET](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/) - základní syntaxe jazyka ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/?print-pdf))                                                                                |
-|        | E01 | Jan Pluskal     | Práce s Visual Studio 2022, debugování a Azure DevOps založení projektu (základy pro zracování projektu)                                                                                                                                                                                     |
-| 15.02. | L02 | Jan Pluskal     | [Úvod do Objektově Orientovaného Programování](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/?print-pdf))                                                                                                |
-|        | E02 | Jan Pluskal     | Objektově orientované programování a úvod do Entity Framework                                                                                                                                                                                                                                |
-| 22.02. | L03 | Tibor Jašek     | [Představení základních knihovních funkcí (BCL)](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/) - dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/?print-pdf)) |
-| 29.02. | L04 | Jan Pluskal     | [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/?print-pdf))                                                                                                               |
-|        | E03 | Jan Pluskal     | Entity framework                                                                                                                                                                                                                                                                             |
-| 03.03. | P01 |                 | **Odevzdání první fáze projektu**                                                                                                                                                                                                                                                            |
-| 07.03. | L05 | Martin Dybal    | Psaní čistého a udržovatelného kódu                                                                                                                                                                                                                                                          |
-| 14.03. | L06 | Michal Tichý    | Automatizované testování - práce s xUnit, CI                                                                                                                                                                                                                                                 |
-| 21.03. | L07 | Michal Mrnuštík | Návrhový vzor Model-View-ViewModel                                                                                                                                                                                                                                                           |
+| Datum  | Typ | Vyučující   | Téma přednášky                                                                                                                                                                                                                                                                               |
+| ------ | --- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 8.02.  | L01 | Jan Pluskal | [Úvod do jazyka C# a platformy .NET](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/) - základní syntaxe jazyka ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/?print-pdf))                                                                                |
+|        | E01 | Jan Pluskal | Práce s Visual Studio 2022, debugování a Azure DevOps založení projektu (základy pro zracování projektu)                                                                                                                                                                                     |
+| 15.02. | L02 | Jan Pluskal | [Úvod do Objektově Orientovaného Programování](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/?print-pdf))                                                                                                |
+|        | E02 | Jan Pluskal | Objektově orientované programování a úvod do Entity Framework                                                                                                                                                                                                                                |
+| 22.02. | L03 | Tibor Jašek | [Představení základních knihovních funkcí (BCL)](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/) - dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/?print-pdf)) |
+| 29.02. | L04 | Jan Pluskal | [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/?print-pdf))                                                                                                               |
+|        | E03 | Jan Pluskal | Entity framework                                                                                                                                                                                                                                                                             |
+| 03.03. | P01 |             | **Odevzdání první fáze projektu**                                                                                                                                                                                                                                                            |
++++
+
+| Datum  | Typ | Vyučující       | Téma přednášky                               |
+| ------ | --- | --------------- | -------------------------------------------- |
+| 07.03. | L05 | Martin Dybal    | Psaní čistého a udržovatelného kódu          |
+| 14.03. | L06 | Michal Tichý    | Automatizované testování - práce s xUnit, CI |
+| 21.03. | L07 | Michal Mrnuštík | Návrhový vzor Model-View-ViewModel           |
+| 28.03. | L08 | Roman Jašek     | MAUI                                         |
+|        | E04 | Roman Jašek     | MAUI                                         |
+| 04.04. | L09 | Roman Jašek     | MAUI                                         |
+|        | E05 | Roman Jašek     | MAUI                                         |
+| 07.04. | P02 |                 | **Odevzdání druhé fáze projektu**            |
 
 +++
 
 | Datum  | Typ | Vyučující    | Téma přednášky                                                                                                                                                                                                                                        |
 | ------ | --- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|        |
-| 28.03. | L08 | Roman Jašek  | MAUI                                                                                                                                                                                                                                                  |
-|        | E04 | Roman Jašek  | MAUI                                                                                                                                                                                                                                                  |
-| 04.04. | L09 | Roman Jašek  | MAUI                                                                                                                                                                                                                                                  |
-|        | E05 | Roman Jašek  | MAUI                                                                                                                                                                                                                                                  |
-| 07.04. | P02 |              | **Odevzdání druhé fáze projektu**                                                                                                                                                                                                                     |
 | 11.04. | L10 | Jan Pluskal  | [Multiplatformní programování](https://nesfit.github.io/ICS/Lectures/Lecture_10/_site/) - .NET Standard, .NET Core., .NET, kontejnerizace a deployment aplikací ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_10/_site/?print-pdf)) |
 | 18.04. | L11 | Jan Pluskal  | [Paralelní a asynchronní programování](https://nesfit.github.io/ICS/Lectures/Lecture_11/_site/) - proces, vlákno, úloha z pohledu C# a použitého .NET frameworku                                                                                      |
 |        | E06 | Jan Pluskal  | Takto můžete napsat projekt?!                                                                                                                                                                                                                         |
 | 25.04. | L12 | Martin Dybal | Návrhové vzory - vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#                                                                                                                                                                   |
-| Dle IS | P03 |              | **Obhajoby projektu**                                                                                                                                                                                                                                 |
 | 02.05. | L13 | Roman Jašek  | Napojení aplikace na API server                                                                                                                                                                                                                       |
+| Dle IS | P03 |              | **Obhajoby projektu**                                                                                                                                                                                                                                 |
 
 LXY - přednáška | EXY - democvičení | P0X - projekt
 
@@ -116,9 +119,10 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 +++
 
 ```pwsh
-winget install Microsoft.VisualStudio.2022.Community --override "--add Microsoft.VisualStudio.Workload.NetCrossPlat --add Microsoft.VisualStudio.Workload.Data --add Microsoft.VisualStudio.Workload.ManagedDesktop"
-winget install Microsoft.DotNet.SDK.6
-winget install Microsoft.DotNet.SDK.7
+winget install Microsoft.DotNet.SDK.8
+
+winget install Microsoft.VisualStudio.2022.Community --override "--add Microsoft.VisualStudio.Workload.NetCrossPlat --add Microsoft.VisualStudio.Workload.Data --add Microsoft.VisualStudio.Workload.ManagedDesktop Microsoft.VisualStudio.ComponentGroup.WindowsAppSDK.Cs"
+
 winget install JetBrains.ReSharper
 ```
 
@@ -173,11 +177,15 @@ aneb co sledovat, pokud se chcete dozvědět víc
 
 * [IW5](https://github.com/nesfit/iw5) - předmět, který navazuje na ICS a pokračuje v tématu vývoje v .NET dál se zaměřením na client-server a webový vývoj
 
++++
+
 ## Co se děje v .NET a co se chystá
 * [.NET Conf](https://www.dotnetconf.net/) - konference, kde se představuje nová verze .NET (jednou ročně - **listopad**)
 * [Microsoft Build](https://build.microsoft.com/en-US/home) - největší konference pro vývojáře od Microsoftu, hromada novinek (jednou ročně - **květen**)
 * [.NET Blog](https://devblogs.microsoft.com/dotnet/) - blog s high-level zprávami o aktuálních novinkách (cca 10-15 článků za měsíc)
 * [Themes of .NET](https://aka.ms/dotnet-product-roadmap) - .NET roadmap - podrobný přehled toho, na čem se pracuje a kdy se to plánuje
+
++++
 
 ## Blogy
 * [Leomaris Reyes](https://askxammy.com/author/leoreyes/) - Blog zaměřený na .NET MAUI
@@ -185,6 +193,8 @@ aneb co sledovat, pokud se chcete dozvědět víc
 * [Steve Gordon](https://www.stevejgordon.co.uk/) - .NET, web development, cloud, low-level stuff...
 * [Jiří Činčura](https://www.tabsoverspaces.com/) - performance, Entity Framework, databázy, novinky v .NET...
 * [Robert Haken](https://knowledge-base.havit.cz/) - Blazor, webový vývoj, performance
+
++++
 
 ## Twitter
 * @davidfowl - **David Fowler**, jeden z hlavních lidí ve vývoji .NET a ASP .NET
@@ -197,11 +207,15 @@ aneb co sledovat, pokud se chcete dozvědět víc
 * @troyhunt - **Troy Hunt**, záměr na bezpečnost, autor projektu https://haveibeenpwned.com
 * @dotnetmeme - memes ze světa .NET (ne od Microsoftu)
 
++++
+
 ## Youtube
 * [Nick Chapsas](https://www.youtube.com/@nickchapsas) - novinky v .NET, performance, webový vývoj
 * [James Montemagno](https://www.youtube.com/@JamesMontemagno) - novinky v .NET, .NET MAUI
 * [Gerald Versluis](https://www.youtube.com/@jfversluis) - .NET MAUI
 * [.NET Community Standups](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oX-DBuRG4u58ZTAJgBAeQ-t) - veřejně dostupné streamy z meetingů mezi vývojářema v Microsoftu ohledně toho, co se aktuálně děje a na čem se pracuje
+
++++
 
 ## Podcasty
 * [.NET Rocks](https://www.dotnetrocks.com/) - 2 hodně zkušení hostitelé - Richard Campbell a Carl Fralkin, 1 host, různá témata (hlavně) z .NET světa
