@@ -49,6 +49,7 @@
             dotnet-combined
             pkgs.reveal-md
             pkgs.nodePackages.mermaid-cli
+            pkgs.nodejs_21
           ];
           buildInputs = [];
         };

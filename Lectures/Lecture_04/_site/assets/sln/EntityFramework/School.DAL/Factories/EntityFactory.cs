@@ -20,7 +20,7 @@ namespace School.DAL.Factories
                     .Entries<TEntity>()
                     .SingleOrDefault(i => i.Entity.Id == id)
                     ?.Entity;
-                if (entity == null)
+                if (entity is null)
                 {
                     entity = new TEntity { Id = id };
                     _changeTracker?.Context.Attach(entity);

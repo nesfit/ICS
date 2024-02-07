@@ -14,7 +14,7 @@ namespace School.BL.Mappers
             => entities?.Select(entity => Map(entity)).ToValueCollection();
 
         public AddressDetailModel Map(AddressEntity entity) 
-            => entity == null? null : new AddressDetailModel
+            => entity is null? null : new AddressDetailModel
             {
                 Id = entity.Id,
                 City = entity.City,

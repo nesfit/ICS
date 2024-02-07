@@ -19,7 +19,7 @@ namespace CookBook.App.Wrappers
     {
         protected ModelWrapper(T? model)
         {
-            if (model == null)
+            if (model is null)
             {
                 throw new ArgumentNullException(nameof(model));
             }

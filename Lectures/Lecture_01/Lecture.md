@@ -1,16 +1,10 @@
 ---
 title: ICS 01 - Introduction to C#, Visual Studio and .NET
-theme: simple
 css: _reveal-md/theme.css
+theme: simple
 separator: "^---$"
 verticalSeparator: "^\\+\\+\\+$"
-highlightTheme: vs
-progress: true
-slideNumber: true
-mouseWheel: false
-enableMenu: true
-enableChalkboard: true
-enableTitleFooter: true
+highlightTheme: "vs"
 ---
 
 
@@ -200,6 +194,45 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 <img src="assets/img/gitflow.png" width="40%">
 
++++
+
+### [Semantic Versioning 2.0.0](https://semver.org)
+
+Given a version number **MAJOR.MINOR.PATC**H, increment the:
+
+1. **MAJOR** version when you make incompatible API changes
+2. **MINOR** version when you add functionality in a backward compatible manner
+3. **PATCH** version when you make backward compatible bug fixes
+
+Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
+
++++
+
+### [semantic-release](https://semantic-release.gitbook.io/semantic-release/)
+
+semantic-release automates the whole package release workflow including: determining the next version number, generating the release notes, and publishing the package.
+
+This removes the immediate connection between human emotions and version numbers, strictly following the Semantic Versioning specification and communicating the impact of changes to consumers.
+
++++
+
+### [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+The commit contains the following structural elements, to communicate intent to the consumers of your library:
+
+1. *fix:* a commit of the type fix patches a bug in your codebase (this correlates with PATCH in Semantic Versioning).
+2. *feat:* a commit of the type feat introduces a new feature to the codebase (this correlates with MINOR in Semantic Versioning).
+3. *BREAKING CHANGE:* a commit that has a footer *BREAKING CHANGE:*, or appends a *!* after the type/scope, introduces a breaking API change (correlating with MAJOR in Semantic Versioning). A *BREAKING CHANGE* can be part of commits of any type.
+4. types other than *fix:* and *feat:* are allowed, for example @commitlint/config-conventional (based on the Angular convention) recommends *build:*, *chore:*, *ci:*, *docs:*, *style:*, *refactor:*, *perf:*, *test:*, and others.
+5. footers other than *BREAKING CHANGE:* <description> may be provided and follow a convention similar to git trailer format.
 
 ---
 ## Why To Choose .NET?
@@ -394,7 +427,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 ![](assets/img/csh.png)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/HelloWorld.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/HelloWorld.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 
 <!-- +++?code=assets/sln/Tests/HelloWorld.cs&lang=C#&title=Hello World Sample
 @[1]
@@ -739,7 +772,7 @@ int  cannotBeNull = null;      // Compile-time error
 ```
 
 +++
-<pre><code  data-sample='assets/sln/Tests/NullableType.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/NullableType.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](assets/sln/Tests/NullableType.cs)
 
 
@@ -860,7 +893,7 @@ string s = "a" + 5; // a5
   * `int[][]` is a *single-dimensional array of single-dimensional* array of int
 
 +++
-<pre><code  data-sample='assets/sln/Tests/Array.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Array.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- +++?code=assets/sln/Tests/Array.cs&lang=C#&title=Array Sample
 @[11-21] -->
 [Code sample](assets/sln/Tests/Array.cs)
@@ -978,7 +1011,7 @@ string s = "a" + 5; // a5
 | Boolean   | `false`       |
 
 +++
-<pre><code  data-sample='assets/sln/Tests/DefaultValue.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/DefaultValue.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[12-18] -->
 [Code sample](assets/sln/Tests/DefaultValue.cs)
 
@@ -995,22 +1028,22 @@ string s = "a" + 5; // a5
     * Variable **need not** *to be initialized* before the method call
 
 +++
-<pre><code  data-sample='assets/sln/Tests/ValueParameter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/ValueParameter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-26] -->
 [Code sample](assets/sln/Tests/ValueParameter.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/RefParameter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/RefParameter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-17] -->
 [Code sample](assets/sln/Tests/RefParameter.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/InParameter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/InParameter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-19] -->
 [Code sample](assets/sln/Tests/InParameter.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/OutParameter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/OutParameter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-24] -->
 [Code sample](assets/sln/Tests/OutParameter.cs)
 
@@ -1136,22 +1169,22 @@ x = y = 3;
 * Conditional (ternary) operand `?:`
 
 +++
-<pre><code  data-sample='assets/sln/Tests/If.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/If.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-17] -->
 [Code sample](assets/sln/Tests/If.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/Switch.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Switch.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[13-30] -->
 [Code sample](assets/sln/Tests/Switch.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/Switch.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Switch.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[45-64] -->
 [Code sample](assets/sln/Tests/Switch.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/TernaryOperand.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/TernaryOperand.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-12] -->
 [Code sample](assets/sln/Tests/TernaryOperand.cs)
 
@@ -1164,22 +1197,22 @@ x = y = 3;
 
 
 +++
-<pre><code  data-sample='assets/sln/Tests/While.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/While.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-16] -->
 [Code sample](assets/sln/Tests/While.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/DoWhile.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/DoWhile.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-15] -->
 [Code sample](assets/sln/Tests/DoWhile.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/For.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/For.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-13] -->
 [Code sample](assets/sln/Tests/For.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/ForEach.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/ForEach.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-14] -->
 [Code sample](assets/sln/Tests/ForEach.cs)
 
@@ -1194,28 +1227,28 @@ x = y = 3;
 
 
 +++
-<pre><code  data-sample='assets/sln/Tests/Break.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Break.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-20] -->
 [Code sample](assets/sln/Tests/Break.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/Continue.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Continue.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-17] -->
 [Code sample](assets/sln/Tests/Continue.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/Return.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Return.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-12]
 @[17-20] -->
 [Code sample](assets/sln/Tests/Return.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/Throw.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Throw.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-18] -->
 [Code sample](assets/sln/Tests/Throw.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/Goto.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Goto.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-17] -->
 [Code sample](assets/sln/Tests/Goto.cs)
 
@@ -1228,12 +1261,12 @@ x = y = 3;
   * Simplification of a *Monitor synchronization primitive*
 
 +++
-<pre><code  data-sample='assets/sln/Tests/Using.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Using.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-13] -->
 [Code sample](assets/sln/Tests/Using.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/Lock.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Lock.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[11-22]
 @[24-35] -->
 [Code sample](assets/sln/Tests/Lock.cs)

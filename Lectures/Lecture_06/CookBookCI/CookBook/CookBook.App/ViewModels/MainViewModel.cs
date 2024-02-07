@@ -114,7 +114,7 @@ namespace CookBook.App.ViewModels
             else
             {
                 var recipeDetailViewModel = RecipeDetailViewModels.SingleOrDefault(vm => vm.Model?.Id == id);
-                if (recipeDetailViewModel == null)
+                if (recipeDetailViewModel is null)
                 {
                     recipeDetailViewModel = _recipeDetailViewModelFactory.Create();
                     RecipeDetailViewModels.Add(recipeDetailViewModel);
@@ -135,7 +135,7 @@ namespace CookBook.App.ViewModels
             {
                 var ingredientDetailViewModel =
                     IngredientDetailViewModels.SingleOrDefault(vm => vm.Model?.Id == id);
-                if (ingredientDetailViewModel == null)
+                if (ingredientDetailViewModel is null)
                 {
                     ingredientDetailViewModel = _ingredientDetailViewModelFactory.Create();
                     IngredientDetailViewModels.Add(ingredientDetailViewModel);

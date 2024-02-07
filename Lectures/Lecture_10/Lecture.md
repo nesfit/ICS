@@ -1,16 +1,10 @@
 ---
 title: ICS 10 - Multiplatform Development and Application Containerization
-theme: simple
 css: _reveal-md/theme.css
+theme: simple
 separator: "^---$"
 verticalSeparator: "^\\+\\+\\+$"
-highlightTheme: vs
-progress: true
-slideNumber: true
-mouseWheel: false
-enableMenu: true
-enableChalkboard: true
-enableTitleFooter: true
+highlightTheme: "vs"
 ---
 
 # Multiplatform Development and Application Containerization

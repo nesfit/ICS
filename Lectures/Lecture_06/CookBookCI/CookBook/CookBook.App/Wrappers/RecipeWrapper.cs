@@ -46,7 +46,7 @@ namespace CookBook.App.Wrappers
 
         private void InitializeCollectionProperties(RecipeDetailModel model)
         {
-            if (model.Ingredients == null)
+            if (model.Ingredients is null)
             {
                 throw new ArgumentException("Ingredients cannot be null");
             }

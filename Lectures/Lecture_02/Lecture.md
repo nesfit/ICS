@@ -1,16 +1,10 @@
 ---
-title: ICS 01 - Introduction to C#, Visual Studio and .NET
-theme: simple
+title: ICS 02 - Object-oriented Programming and Advanced Constructs in C#
 css: _reveal-md/theme.css
+theme: simple
 separator: "^---$"
 verticalSeparator: "^\\+\\+\\+$"
-highlightTheme: vs
-progress: true
-slideNumber: true
-mouseWheel: false
-enableMenu: true
-enableChalkboard: true
-enableTitleFooter: true
+highlightTheme: "vs"
 ---
 
 # Object-oriented Programming and Advanced Constructs in C#
@@ -30,7 +24,7 @@ enableTitleFooter: true
   * **Methods** and **fields** together create objects
 
 +++
-<pre><code data-sample='assets/sln/Examples/Dog.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/Dog.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-28] -->
 [Code sample](assets/sln/Examples/Dog.cs)
 
@@ -69,7 +63,7 @@ enableTitleFooter: true
 
 
 +++
-<pre><code  data-sample='assets/sln/Examples/Dog.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/Dog.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[12,17-21] -->
 [Code sample](assets/sln/Examples/Dog.cs)
 
@@ -87,15 +81,15 @@ enableTitleFooter: true
   * `base` - a reference to a *subtype* of a *super class*
 
 +++
-<pre><code  data-sample='assets/sln/Examples/Animal.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/Animal.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](assets/sln/Examples/Animal.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Examples/Pet.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/Pet.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](assets/sln/Examples/Pet.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Examples/Dog.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/Dog.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-28] -->
 [Code sample](assets/sln/Examples/Dog.cs)
 
@@ -375,7 +369,7 @@ public string Name {
 * Constructors of the *base* class are accessible
 
 +++
-<pre><code  data-sample='assets/sln/Examples/Panda.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/Panda.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](assets/sln/Examples/Panda.cs)
 
 +++
@@ -399,15 +393,15 @@ public string Name {
   * `base` - refers to *base* class type instance
 
 +++
-<pre><code  data-sample='assets/sln/Examples/WildCat.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/WildCat.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](assets/sln/Examples/WildCat.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Examples/Cat.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/Cat.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](assets/sln/Examples/Cat.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/Constructor.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Constructor.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-14] -->
 [Code sample](assets/sln/Tests/Constructor.cs)
 
@@ -431,7 +425,7 @@ Point p = new(3, 5);
   * Have one or more out parameters
 
 +++
-<pre><code  data-sample='assets/sln/Examples/Rectangle.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/Rectangle.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](assets/sln/Examples/Rectangle.cs)
 
 +++
@@ -549,7 +543,7 @@ public class Stock: Asset
 * Only *members* provided by given *base* class can be accessed through up-casted reference
 
 +++
-<pre><code  data-sample='assets/sln/Tests/UpCast.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/UpCast.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-17] -->
 [Code sample](assets/sln/Tests/UpCast.cs)
 
@@ -559,7 +553,7 @@ public class Stock: Asset
 * It **fails**, if *base* class instance is not compatible with *inherited* one
 
 +++
-<pre><code  data-sample='assets/sln/Tests/DownCast.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/DownCast.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[11-17]
 @[20-25] -->
 [Code sample](assets/sln/Tests/DownCast.cs)
@@ -570,7 +564,7 @@ public class Stock: Asset
 * Returns `null`, if failed
 
 +++
-<pre><code  data-sample='assets/sln/Tests/AsOperator.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/AsOperator.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-14] -->
 [Code sample](assets/sln/Tests/AsOperator.cs)
 
@@ -580,12 +574,12 @@ public class Stock: Asset
 * Usually before downcast
 
 +++
-<pre><code  data-sample='assets/sln/Tests/IsOperator.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/IsOperator.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-15] -->
 [Code sample](assets/sln/Tests/IsOperator.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/PatternMatching.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/PatternMatching.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-18]
 @[21-28] -->
 [Code sample](assets/sln/Tests/PatternMatching.cs)
@@ -999,7 +993,7 @@ Action<Derived> d = b;
   * You **cannot** assign an instance of `List<Base>` to a variable of type `List<Derived>` or vice versa.
 
 +++
-<pre><code  data-sample='assets/sln/Examples/CovarianceContravariance.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/CovarianceContravariance.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[11]
 @[27-30]
 @[33-36]
@@ -1014,7 +1008,7 @@ Action<Derived> d = b;
 * Values of value types are treated as objects by performing **boxing** and **unboxing** operations
 
 +++
-<pre><code  data-sample='assets/sln/Tests/Boxing.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Boxing.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-16] -->
 [Code sample](assets/sln/Tests/Boxing.cs)
 
@@ -1159,7 +1153,7 @@ class Test
 {
   static void Display(string name)
   {
-    if(name == null)
+    if(name is null)
       throw new ArgumentNullException(nameof(name));
     Console.WriteLine(name);
   }

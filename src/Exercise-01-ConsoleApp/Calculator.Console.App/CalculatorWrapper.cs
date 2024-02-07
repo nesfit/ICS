@@ -21,7 +21,7 @@ internal static class CalculatorWrapper
 
     private static int CheckOperand(int? operand)
     {
-        if (operand == null)
+        if (operand is null)
         {
             throw new ArgumentNullException(nameof(operand), "Operand cannot be null!");
         }
@@ -31,7 +31,7 @@ internal static class CalculatorWrapper
 
     private static MathOperation CheckOperation(MathOperation? operation)
     {
-        if (operation == null)
+        if (operation is null)
         {
             throw new ArgumentNullException(nameof(operation), "Operation cannot be null!");
         }

@@ -22,7 +22,7 @@ namespace School.BL.Mappers
             }).ToValueCollection();
         }
 
-        public StudentDetailModel Map(StudentEntity entity) => entity == null
+        public StudentDetailModel Map(StudentEntity entity) => entity is null
             ? null
             : new StudentDetailModel
             {
