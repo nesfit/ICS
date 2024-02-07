@@ -6,7 +6,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>CookBook.App</RootNamespace>
     <UseMaui>true</UseMaui>
-    <MauiVersion>8.0.3</MauiVersion>
+    <MauiVersion>8.0.6</MauiVersion>
     <SingleProject>true</SingleProject>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
