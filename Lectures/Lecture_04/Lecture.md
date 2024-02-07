@@ -1,16 +1,10 @@
 ---
 title: ICS 04 - Data Persistence in .NET Applications
-theme: simple
 css: _reveal-md/theme.css
+theme: simple
 separator: "^---$"
 verticalSeparator: "^\\+\\+\\+$"
-highlightTheme: vs
-progress: true
-slideNumber: true
-mouseWheel: false
-enableMenu: true
-enableChalkboard: true
-enableTitleFooter: true
+highlightTheme: "vs"
 ---
 
 # Persistence
@@ -270,7 +264,7 @@ enableTitleFooter: true
 
 +++
 
-<pre><code  data-sample='assets/sln/Examples/SqlClientExample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/SqlClientExample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- +++?code=assets/sln/Examples/SqlClientExample.cs&lang=C#&title=ADO.NET SqlClient Sample
 @[10-53]
 @[10-12]
@@ -500,7 +494,7 @@ public class SchoolDbContext : DbContext
         * Represents multiplicity of many (*)
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
 
@@ -538,7 +532,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
   5. Each collection **property** must be `ICollection<T>`
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.DAL.Tests/EntityTypesTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.DAL.Tests/EntityTypesTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 
 <!-- +++?code=assets/sln/EntityFramework/School.DAL.Tests/EntityTypesTest.cs&lang=C#&title=Entity Types Sample
 @[13-21]
@@ -567,7 +561,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 * Other changes must be made **explicitly using** proper **methods of **`DbContext`** or **`DbSet`
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.DAL.Tests/EntityStatesTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.DAL.Tests/EntityStatesTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 
 <!-- +++?code=assets/sln/EntityFramework/School.DAL.Tests/EntityStatesTest.cs&lang=C#&title=Entity States Sample
 @[12-24]
@@ -661,16 +655,16 @@ public class MSSQLLocalDBDbContextFactory : IDbContextFactory
 ```
 
 +++
-<pre><code  data-sample='assets/sln/Dapper.DAL/appconfig.json' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Dapper.DAL/appconfig.json' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL/appconfig.json)
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.DAL/SchoolDbContext.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.DAL/SchoolDbContext.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-30] -->
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL/SchoolDbContext.cs)
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.DAL.Tests/LinqLazyEvaluationTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.DAL.Tests/LinqLazyEvaluationTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[13-21]
 @[23-34] -->
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL.Tests/LinqLazyEvaluationTest.cs)
@@ -1042,11 +1036,11 @@ modelBuilder.Entity<StudentEntity>()
 ```
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Entities/AddressEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.DAL/Entities/AddressEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL/Entities/AddressEntity.cs)
 
 +++
@@ -1117,11 +1111,11 @@ public class Grade
 ```
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Entities/GradeEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.DAL/Entities/GradeEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL/Entities/GradeEntity.cs)
 
 +++
@@ -1148,15 +1142,15 @@ modelBuilder.Entity<StudentCourse>()
 ```
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Entities/CourseEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.DAL/Entities/CourseEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL/Entities/CourseEntity.cs)
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Entities/StudentCourseEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.DAL/Entities/StudentCourseEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL/Entities/StudentCourseEntity.cs)
 
 
@@ -1219,11 +1213,11 @@ var students = context.Students
   3. *Pass query as a parameter in Execute method*
 
 +++
-<pre><code  data-sample='assets/sln/Dapper.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Dapper.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/Dapper.DAL/Entities/StudentEntity.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Dapper.DAL/StudentRepository.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Dapper.DAL/StudentRepository.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[20-30]
 @[32-42]
 @[44-53]
@@ -1231,7 +1225,7 @@ var students = context.Students
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/Dapper.DAL/StudentRepository.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Dapper.DAL.Tests/StudentRepositoryTests.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Dapper.DAL.Tests/StudentRepositoryTests.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[12-28] -->
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/Dapper.DAL.Tests/StudentRepositoryTests.cs)
 
@@ -1530,7 +1524,7 @@ public class Dapper : ITestSignature
   * **UnitOfWork** design pattern
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.DAL/Repositories/RepositoryBase.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.DAL/Repositories/RepositoryBase.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL/Repositories/RepositoryBase.cs)
 
 ---
@@ -1541,7 +1535,7 @@ public class Dapper : ITestSignature
 ![](assets/img/UnitOfWork.jpg)
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.DAL/UnitOfWork/UnitOfWork.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.DAL/UnitOfWork/UnitOfWork.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL/UnitOfWork/UnitOfWork.cs)
 
 ---
@@ -1597,27 +1591,27 @@ var topSellingCourses = schoolCourses.Where(c => c.IsPublic && c.IsApproved).Ord
   * Represents the **actual data and information**
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.BL/Mappers/IMapper.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.BL/Mappers/IMapper.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.BL/Mappers/IMapper.cs)
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.BL/Models/DetailModels/AddressDetailModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.BL/Models/DetailModels/AddressDetailModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.BL/DetailModels/AddressDetailModel.cs)
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.BL/Mappers/AddressMapper.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.BL/Mappers/AddressMapper.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.BL/Mappers/AddressMapper.cs)
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.BL/Models/ListModels/StudentListModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.BL/Models/ListModels/StudentListModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.BL/Models/ListModels/StudentListModel.cs)
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.BL/Models/DetailModels/StudentDetailModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.BL/Models/DetailModels/StudentDetailModel.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.BL/Models/DetailModels/StudentDetailModel.cs)
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.BL/Mappers/StudentMapper.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.BL/Mappers/StudentMapper.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.BL/Mappers/StudentMapper.cs)
 
 ---
@@ -1724,17 +1718,17 @@ config.AssertConfigurationIsValid();
   * Have no knowledge of the facade and keep no reference to it
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.BL/Facades/CrudFacadeBase.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.BL/Facades/CrudFacadeBase.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 
 
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.BL/Facades/CrudFacadeBase.cs)
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.BL.Tests/AddressFacadeTests.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.BL.Tests/AddressFacadeTests.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.BL.Tests/AddressFacadeTests.cs)
 
 +++
-<pre><code  data-sample='assets/sln/EntityFramework/School.BL.Tests/StudentFacadeTests.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.BL.Tests/StudentFacadeTests.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.BL.Tests/StudentFacadeTests.cs)
 
 ---

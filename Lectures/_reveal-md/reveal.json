@@ -3,7 +3,6 @@
     "controlsTutorial": true,
     "controlsLayout": "bottom-right",
     "progress": true,
-    "slideNumber": true,
     "showSlideNumber": "all",
     "keyboard": true,
     "overview": true,
@@ -13,5 +12,9 @@
     "help": true,
     "mouseWheel": false,
     "transition": "slide",
-    "transitionSpeed": "fast"
+    "transitionSpeed": "fast",
+    "slideNumber": "c/t",
+    "enableMenu": true,
+    "enableChalkboard": true,
+    "enableTitleFooter": true
 }

@@ -1,16 +1,10 @@
 ---
-title: ICS 01 - Introduction to C#, Visual Studio and .NET
-theme: simple
+title: ICS 03 - .NET Standard and Language Integrated Query (LINQ)
 css: _reveal-md/theme.css
+theme: simple
 separator: "^---$"
 verticalSeparator: "^\\+\\+\\+$"
-highlightTheme: vs
-progress: true
-slideNumber: true
-mouseWheel: false
-enableMenu: true
-enableChalkboard: true
-enableTitleFooter: true
+highlightTheme: "vs"
 ---
 
 # .NET Standard and Language Integrated Query (LINQ)
@@ -196,7 +190,7 @@ catch (System.OverflowException) {
 ```
 
 +++
-<pre><code  data-sample='assets/sln/Tests/ConvertTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/ConvertTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-21]
 @[12,17]
 @[13,18]
@@ -221,7 +215,7 @@ Console.WriteLine(BitConverter.ToString(sampleByteArray)); //01
 ```
 
 +++
-<pre><code  data-sample='assets/sln/Tests/BitConverterTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/BitConverterTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-16]
 @[11]
 @[12]
@@ -280,7 +274,7 @@ WebRequest webRequest = WebRequest.Create(uri);
 ```
 
 +++
-<pre><code  data-sample='assets/sln/Tests/UriTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/UriTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-15]
 @[11,12]
 @[14]
@@ -306,7 +300,7 @@ Console.ReadLine();
 ```
 
 +++
-<pre><code  data-sample='assets/sln/Examples/ConsoleSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/ConsoleSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-20]
 @[9]
 @[11-12,19]
@@ -515,7 +509,7 @@ delegate TResult Func<in T1,in T2,out TResult>(T1 arg1, T2 arg2); //has two para
   * Defines **non-generic collection** of objects that can be individually accessed by index
 
 +++
-<pre><code  data-sample='assets/sln/Examples/ArrayListSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/ArrayListSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-25]
 @[11-14]
 @[17-19]
@@ -535,7 +529,7 @@ delegate TResult Func<in T1,in T2,out TResult>(T1 arg1, T2 arg2); //has two para
   * Exposes an *enumerator*, which supports a simple iteration over a non-generic collection
 
 +++
-<pre><code  data-sample='assets/sln/Examples/StackSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/StackSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-24]
 @[11-14]
 @[17-18]
@@ -551,7 +545,7 @@ delegate TResult Func<in T1,in T2,out TResult>(T1 arg1, T2 arg2); //has two para
 * Implements the `IEnumerable` interface
 
 +++
-<pre><code  data-sample='assets/sln/Examples/QueueSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/QueueSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-24]
 @[11-14]
 @[17-18]
@@ -568,7 +562,7 @@ delegate TResult Func<in T1,in T2,out TResult>(T1 arg1, T2 arg2); //has two para
   * Nongeneric collection of key/value pairs
 
 +++
-<pre><code  data-sample='assets/sln/Tests/HashtableTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/HashtableTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-24]
 @[13, 17-21]
 @[22]
@@ -630,7 +624,7 @@ sortedList.Add("First", "Hello");
   * `class IComparer<T>`
 
 +++
-<pre><code  data-sample='assets/sln/Tests/GenericListTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/GenericListTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-18]
 @[21-27]
 @[30-36]
@@ -646,7 +640,7 @@ sortedList.Add("First", "Hello");
   * Instances of the **same specified type**
 
 +++
-<pre><code  data-sample='assets/sln/Tests/GenericStackTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/GenericStackTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-19]
 @[11-16]
 @[18]
@@ -661,7 +655,7 @@ sortedList.Add("First", "Hello");
 * Collection of instances of the **same specified type**
 
 +++
-<pre><code  data-sample='assets/sln/Tests/GenericQueueTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/GenericQueueTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-19]
 @[11-16]
 @[18]
@@ -685,7 +679,7 @@ sortedList.Add("First", "Hello");
   * `TValue` - the type of the values in the dictionary
 
 +++
-<pre><code  data-sample='assets/sln/Tests/GenericDictionaryTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/GenericDictionaryTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-20]
 @[11-16]
 @[18-19]
@@ -771,7 +765,7 @@ Console.WriteLine($"{Path.GetTempFileName()} is a file available for use.");
   * Creation of `FileStream` objects
 
 +++
-<pre><code  data-sample='assets/sln/Examples/DirectorySample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/DirectorySample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-21]
 @[10-11]
 @[13-20]
@@ -779,7 +773,7 @@ Console.WriteLine($"{Path.GetTempFileName()} is a file available for use.");
 [Code sample](assets/sln/Examples/DirectorySample.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Examples/FileSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/FileSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-16]
 @[10]
 @[12-13]
@@ -800,7 +794,7 @@ Console.WriteLine($"{Path.GetTempFileName()} is a file available for use.");
   * Creation of `FileStream` objects
 
 +++
-<pre><code  data-sample='assets/sln/Examples/DirectoryInfoSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/DirectoryInfoSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-34]
 @[10-11]
 @[12-13,29-33]
@@ -811,7 +805,7 @@ Console.WriteLine($"{Path.GetTempFileName()} is a file available for use.");
 [Code sample](assets/sln/Examples/DirectoryInfoSample.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Examples/FileInfoSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/FileInfoSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-20]
 @[10]
 @[12-13]
@@ -862,7 +856,7 @@ using (FileStream fileStream = File.OpenRead(@"c:\test.txt"))
 * In a **particular encoding**
 
 +++
-<pre><code  data-sample='assets/sln/Examples/StreamWriterSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/StreamWriterSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-30]
 @[10-11, 23-29]
 @[12-15, 22]
@@ -871,7 +865,7 @@ using (FileStream fileStream = File.OpenRead(@"c:\test.txt"))
 [Code sample](assets/sln/Examples/StreamWriterSample.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Examples/StreamReaderSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/StreamReaderSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-31]
 @[10-11, 24-30]
 @[12-15, 23]
@@ -903,7 +897,7 @@ using (FileStream fileStream = File.OpenRead(@"c:\test.txt"))
   * `class AnonymousPipeClientStream` - client side of an anonymous pipe stream
 
 +++
-<pre><code  data-sample='assets/sln/Examples/PipeServerSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/PipeServerSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-38]
 @[11-12]
 @[14]
@@ -914,7 +908,7 @@ using (FileStream fileStream = File.OpenRead(@"c:\test.txt"))
 [Code sample](assets/sln/Examples/PipeServerSample.cs)
 
 +++
-<pre><code  data-sample='assets/sln/Examples/PipeClientSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/PipeClientSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-34]
 @[11-12]
 @[15-17]
@@ -979,7 +973,7 @@ Console.WriteLine(c5);
 * **Manipulate instances of loaded types**
 
 +++
-<pre><code  data-sample='assets/sln/Tests/ReflectionTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/ReflectionTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-14]
 @[19-25]
 @[21]
@@ -1010,7 +1004,7 @@ x.FakeMethod();
 
 
 +++
-<pre><code  data-sample='assets/sln/Examples/DynamicParameter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/DynamicParameter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[5-27]
 @[7-10]
 @[12-19]
@@ -1064,7 +1058,7 @@ x.FakeMethod();
 
 
 +++
-<pre><code  data-sample='assets/sln/Examples/EncodingSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/EncodingSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10]
 @[12-14]
 @[16-17]
@@ -1096,7 +1090,7 @@ x.FakeMethod();
 
 
 +++
-<pre><code  data-sample='assets/sln/Tests/StringBuilderTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/StringBuilderTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-28]
 @[11-13]
 @[15-16]
@@ -1134,7 +1128,7 @@ x.FakeMethod();
 
 
 +++
-<pre><code  data-sample='assets/sln/Tests/RegexTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/RegexTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-27]
 @[12-14]
 @[16-17]
@@ -1224,7 +1218,7 @@ var query = from m in musos
 
 
 +++
-<pre><code  data-sample='assets/sln/Tests/LinqMaterializationTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqMaterializationTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-20]
 @[12]
 @[14-15]
@@ -1256,7 +1250,7 @@ Filtering is an operation to restrict the result set to the point where it shows
 ![](assets/img/LINQ/LINQ_OfType.png)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/LinqFilteringOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqFilteringOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-16]
 @[12-13]
 @[15]
@@ -1280,7 +1274,7 @@ Joining refers to an operation which directly targets data sources with difficul
 ![](assets/img/LINQ/LINQ_Join.png)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/LinqJoinOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqJoinOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[11-34]
 @[13-18]
 @[20-25]
@@ -1311,7 +1305,7 @@ Projection is an operation in which an object is transformed into an altogether 
 ![](assets/img/LINQ/LINQ_SelectMany.png)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/LinqProjectionOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqProjectionOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-23]
 @[12]
 @[14]
@@ -1339,7 +1333,7 @@ A sorting operation allows ordering the elements of a sequence on basis of a sin
 
 
 +++
-<pre><code  data-sample='assets/sln/Tests/LinqSortingOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqSortingOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-16]
 @[11-12]
 @[14-15]
@@ -1372,7 +1366,7 @@ The operators put data into some groups based on a common shared attribute.
 ![ToLookup](assets/img/LINQ/LINQ_ToLookup.png)
 
 +++
-<pre><code  data-sample='assets/sln/Tests/LinqGroupingOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqGroupingOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-29]
 @[11]
 @[13]
@@ -1402,7 +1396,7 @@ The operators change the type of input objects and are used in a diverse range o
 
 
 +++
-<pre><code  data-sample='assets/sln/Tests/LinqConversionsOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqConversionsOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[13-20]
 @[15]
 @[17]
@@ -1450,7 +1444,7 @@ Performs concatenation of two sequences and is quite similar to the Union operat
 
 
 +++
-<pre><code  data-sample='assets/sln/Tests/LinqConcatenationOperatorTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqConcatenationOperatorTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-19]
 @[11-12]
 @[14]
@@ -1474,7 +1468,7 @@ Performs any type of desired aggregation and allows creating custom aggregations
 
 
 +++
-<pre><code  data-sample='assets/sln/Tests/LinqAggregationOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqAggregationOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-17]
 @[12]
 @[14]
@@ -1525,7 +1519,7 @@ These operators return a Boolean value when some or all elements within a sequen
 
 
 +++
-<pre><code  data-sample='assets/sln/Tests/LinqQuantifierOperationsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqQuantifierOperationsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-14]
 @[11]
 @[13]
@@ -1554,7 +1548,7 @@ Divide an input sequence into two parts without rearranging the elements of the 
 
 
 +++
-<pre><code  data-sample='assets/sln/Tests/LinqPartitionOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqPartitionOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-19]
 @[11]
 @[13]
@@ -1590,7 +1584,7 @@ A new sequence of values is created by generational operators.
 
 
 +++
-<pre><code  data-sample='assets/sln/Tests/LinqGenerationOperationsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqGenerationOperationsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-18]
 @[11-13]
 @[15-17]
@@ -1624,7 +1618,7 @@ There are four operators for the set operations, each yielding a result based on
 
 
 +++
-<pre><code  data-sample='assets/sln/Tests/LinqSetOperationsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqSetOperationsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-16]
 @[11]
 @[13]
@@ -1657,7 +1651,7 @@ Compares two sequences (enumerable) and determines if they are an exact match or
 
 
 +++
-<pre><code  data-sample='assets/sln/Tests/LinqEqualityOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqEqualityOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-26]
 @[12-15]
 @[17-20]
@@ -1690,7 +1684,7 @@ All standard query element operators return a single element from a collection.
 
 
 +++
-<pre><code  data-sample='assets/sln/Tests/LinqElementOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqElementOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-17]
 @[12]
 @[14]
@@ -1867,7 +1861,7 @@ Connection: System.Data.SqlClient.SqlConnection
   * Writer provides way to **generate streams or files** that contain XML data
 
 +++
-<pre><code  data-sample='assets/sln/Examples/XmlReaderSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/XmlReaderSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-20]
 @[10]
 @[11-12, 18]
@@ -1878,7 +1872,7 @@ Connection: System.Data.SqlClient.SqlConnection
 
 
 +++
-<pre><code  data-sample='assets/sln/Examples/XmlDocumentReadSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/XmlDocumentReadSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-15]
 @[10]
 @[11]
@@ -1888,7 +1882,7 @@ Connection: System.Data.SqlClient.SqlConnection
 
 
 +++
-<pre><code  data-sample='assets/sln/Examples/XmlWriterSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/XmlWriterSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-25]
 @[9]
 @[11-12]
@@ -1900,7 +1894,7 @@ Connection: System.Data.SqlClient.SqlConnection
 
 
 +++
-<pre><code  data-sample='assets/sln/Examples/XmlDocumentWriteSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/XmlDocumentWriteSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-29]
 @[10]
 @[11-12]
@@ -1942,7 +1936,7 @@ Connection: System.Data.SqlClient.SqlConnection
 
 
 +++
-<pre><code  data-sample='assets/sln/Examples/XPathSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/XPathSample.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[8-23]
 @[10-11]
 @[13-15]
@@ -1973,7 +1967,7 @@ Connection: System.Data.SqlClient.SqlConnection
 
 
 +++
-<pre><code  data-sample='assets/sln/Examples/XmlSerialization.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Examples/XmlSerialization.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-12]
 @[14-20]
 @[24-42]
