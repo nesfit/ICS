@@ -12,9 +12,9 @@ namespace Tests
             int[] emptyInt = { };
             string[] words = { "one", "two", "three" };
 
-            Assert.True(emptyStr.DefaultIfEmpty().First() == null);
+            Assert.True(emptyStr.DefaultIfEmpty().First() is null);
             Assert.True(emptyInt.DefaultIfEmpty().First() == 0);
-            Assert.False(words.DefaultIfEmpty() == null);
+            Assert.False(words.DefaultIfEmpty() is null);
         }
 
         [Fact]

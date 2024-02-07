@@ -1153,7 +1153,7 @@ class Test
 {
   static void Display(string name)
   {
-    if(name == null)
+    if(name is null)
       throw new ArgumentNullException(nameof(name));
     Console.WriteLine(name);
   }

@@ -20,7 +20,7 @@ public static class QueryableExtensions
     public static IQueryable<TEntity> IncludeFirstLevelNavigationProperties<TEntity>(this IQueryable<TEntity> query, Microsoft.EntityFrameworkCore.Metadata.IModel model) where TEntity : class
     {
         var navigationProperties = model.FindEntityType(typeof(TEntity))?.GetNavigations();
-        if (navigationProperties == null)
+        if (navigationProperties is null)
             return query;
 
         foreach (var navigationProperty in navigationProperties)

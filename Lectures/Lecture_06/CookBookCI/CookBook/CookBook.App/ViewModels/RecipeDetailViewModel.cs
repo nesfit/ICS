@@ -144,7 +144,7 @@ namespace CookBook.App.ViewModels
 
         public async Task SaveAsync()
         {
-            if (Model == null)
+            if (Model is null)
             {
                 throw new InvalidOperationException("Null model cannot be saved");
             }

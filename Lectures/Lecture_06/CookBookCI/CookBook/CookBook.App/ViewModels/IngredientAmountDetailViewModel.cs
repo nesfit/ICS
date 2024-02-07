@@ -87,7 +87,7 @@ namespace CookBook.App.ViewModels
 
         private void Save()
         {
-            if (Model == null)
+            if (Model is null)
             {
                 throw new InvalidOperationException("Null model cannot be saved");
             }

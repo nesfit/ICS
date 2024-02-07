@@ -23,7 +23,7 @@ namespace School.BL.Mappers
             };
 
         public GradeDetailModel Map(GradeEntity entity) 
-            => entity == null
+            => entity is null
             ? null
             : new GradeDetailModel
             {

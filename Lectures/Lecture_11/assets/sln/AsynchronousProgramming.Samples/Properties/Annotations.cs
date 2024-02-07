@@ -180,7 +180,7 @@ namespace AsynchronousProgramming.Samples.Annotations
   /// </summary>
   /// <example><code>
   /// void Foo(string param) {
-  ///   if (param == null)
+  ///   if (param is null)
   ///     throw new ArgumentNullException("par"); // Warning: Cannot resolve symbol
   /// }
   /// </code></example>

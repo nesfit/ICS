@@ -67,7 +67,7 @@ public class RepositoryBase<TEntity>
         }
 
         var entityInDb = GetById(entity.Id);
-        if (entityInDb == null) return;
+        if (entityInDb is null) return;
 
         foreach (var collectionSelector in toBeSynchronized)
         {
