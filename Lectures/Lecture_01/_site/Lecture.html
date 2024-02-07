@@ -205,6 +205,45 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 <img src="assets/img/gitflow.png" width="40%">
 
+</script></section><section data-markdown><script type="text/template">
+
+### [Semantic Versioning 2.0.0](https://semver.org)
+
+Given a version number **MAJOR.MINOR.PATC**H, increment the:
+
+1. **MAJOR** version when you make incompatible API changes
+2. **MINOR** version when you add functionality in a backward compatible manner
+3. **PATCH** version when you make backward compatible bug fixes
+
+Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
+
+</script></section><section data-markdown><script type="text/template">
+
+### [semantic-release](https://semantic-release.gitbook.io/semantic-release/)
+
+semantic-release automates the whole package release workflow including: determining the next version number, generating the release notes, and publishing the package.
+
+This removes the immediate connection between human emotions and version numbers, strictly following the Semantic Versioning specification and communicating the impact of changes to consumers.
+
+</script></section><section data-markdown><script type="text/template">
+
+### [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+The commit contains the following structural elements, to communicate intent to the consumers of your library:
+
+1. *fix:* a commit of the type fix patches a bug in your codebase (this correlates with PATCH in Semantic Versioning).
+2. *feat:* a commit of the type feat introduces a new feature to the codebase (this correlates with MINOR in Semantic Versioning).
+3. *BREAKING CHANGE:* a commit that has a footer *BREAKING CHANGE:*, or appends a *!* after the type/scope, introduces a breaking API change (correlating with MAJOR in Semantic Versioning). A *BREAKING CHANGE* can be part of commits of any type.
+4. types other than *fix:* and *feat:* are allowed, for example @commitlint/config-conventional (based on the Angular convention) recommends *build:*, *chore:*, *ci:*, *docs:*, *style:*, *refactor:*, *perf:*, *test:*, and others.
+5. footers other than *BREAKING CHANGE:* <description> may be provided and follow a convention similar to git trailer format.
 
 </script></section></section><section ><section data-markdown><script type="text/template">
 ## Why To Choose .NET?
@@ -1640,7 +1679,7 @@ _Article_ [_originally published on the NDepend blog_](https://blog.ndepend.com/
       // options from URL query string
       var queryOptions = Reveal().getQueryHash() || {};
 
-      var options = extend(defaultOptions, {"controls":true,"controlsTutorial":true,"controlsLayout":"bottom-right","progress":true,"slideNumber":true,"showSlideNumber":"all","keyboard":true,"overview":true,"navigationMode":"linear","fragments":true,"fragmentInURL":false,"help":true,"mouseWheel":false,"transition":"slide","transitionSpeed":"fast"}, queryOptions);
+      var options = extend(defaultOptions, {"controls":true,"controlsTutorial":true,"controlsLayout":"bottom-right","progress":true,"showSlideNumber":"all","keyboard":true,"overview":true,"navigationMode":"linear","fragments":true,"fragmentInURL":false,"help":true,"mouseWheel":false,"transition":"slide","transitionSpeed":"fast","slideNumber":"c/t","enableMenu":true,"enableChalkboard":true,"enableTitleFooter":true}, queryOptions);
     </script>
 
     <script src="./_assets/_reveal-md/plugin/sampler.js"></script>
