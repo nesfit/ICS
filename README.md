@@ -142,6 +142,9 @@ winget install JetBrains.ReSharper
 * [Jan Pluskal](https://www.fit.vut.cz/person/ipluskal)
 * [Michal Koutenský](https://www.fit.vut.cz/person/koutenmi)
 * [Daniel Dolejška](https://www.fit.vut.cz/person/dolejska)
+* [Jan Zavřel](https://www.fit.vut.cz/person/izavrel)
+* [Miroslav Šafář](https://www.linkedin.com/in/miroslav-safar/)
+* [Matěj Mudra](https://www.linkedin.com/in/matěj-mudra-a874461a9/)
 
 ---
 
