@@ -11,7 +11,7 @@ highlightTheme: "vs"
 
 ## OOP, Exceptions, Events, Delegates, Lambda Expressions, and Generics
 
-<div class="right">[ Jan Pluskal &lt;ipluskal@fit.vutbr.cz&gt;  ]</div>
+<div class="right">[ Jan Pluskal &lt;pluskal@vut.cz&gt;  ]</div>
 
 ---
 ## Object Oriented Programming (OOP)

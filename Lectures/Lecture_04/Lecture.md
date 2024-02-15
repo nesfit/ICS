@@ -11,7 +11,7 @@ highlightTheme: "vs"
 
 ## Data Persistence in .NET Applications
 
-<div class="right">[ Jan Pluskal &lt;ipluskal@fit.vutbr.cz&gt;  ]</div>
+<div class="right">[ Jan Pluskal &lt;pluskal@vut.cz&gt;  ]</div>
 
 ---
 

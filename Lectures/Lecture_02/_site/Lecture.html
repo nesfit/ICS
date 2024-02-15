@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>ICS 01 - Introduction to C#, Visual Studio and .NET</title>
+    <title>ICS 02 - Object-oriented Programming and Advanced Constructs in C#</title>
     <link rel="shortcut icon" href="./favicon.ico" />
     <link rel="stylesheet" href="./dist/reset.css" />
     <link rel="stylesheet" href="./dist/reveal.css" />
@@ -22,7 +22,7 @@
 
 ## OOP, Exceptions, Events, Delegates, Lambda Expressions, and Generics
 
-<div class="right">[ Jan Pluskal &lt;ipluskal@fit.vutbr.cz&gt;  ]</div>
+<div class="right">[ Jan Pluskal &lt;pluskal@vut.cz&gt;  ]</div>
 
 </script></section><section ><section data-markdown><script type="text/template">
 ## Object Oriented Programming (OOP)
@@ -1164,7 +1164,7 @@ class Test
 {
   static void Display(string name)
   {
-    if(name == null)
+    if(name is null)
       throw new ArgumentNullException(nameof(name));
     Console.WriteLine(name);
   }
@@ -1729,7 +1729,7 @@ static void Main()
       // options from URL query string
       var queryOptions = Reveal().getQueryHash() || {};
 
-      var options = extend(defaultOptions, {"controls":true,"controlsTutorial":true,"controlsLayout":"bottom-right","progress":true,"slideNumber":true,"showSlideNumber":"all","keyboard":true,"overview":true,"navigationMode":"linear","fragments":true,"fragmentInURL":false,"help":true,"mouseWheel":false,"transition":"slide","transitionSpeed":"fast"}, queryOptions);
+      var options = extend(defaultOptions, {"controls":true,"controlsTutorial":true,"controlsLayout":"bottom-right","progress":true,"showSlideNumber":"all","keyboard":true,"overview":true,"navigationMode":"linear","fragments":true,"fragmentInURL":false,"help":true,"mouseWheel":false,"transition":"slide","transitionSpeed":"fast","slideNumber":"c/t","enableMenu":true,"enableChalkboard":true,"enableTitleFooter":true}, queryOptions);
     </script>
 
     <script src="./_assets/_reveal-md/plugin/sampler.js"></script>
