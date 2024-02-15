@@ -10,7 +10,7 @@ highlightTheme: "vs"
 # Parallel programming
 ## Process, thread, and task in .NET perspective
 
-<div class="right">[ Jan Pluskal &lt;ipluskal@fit.vutbr.cz&gt;  ]</div>
+<div class="right">[ Jan Pluskal &lt;pluskal@vut.cz&gt;  ]</div>
 
 ---
 

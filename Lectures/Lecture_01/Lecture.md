@@ -10,7 +10,7 @@ highlightTheme: "vs"
 
 # Introduction to C#, Visual Studio and .NET
 
-<div class="right">[ Jan Pluskal &lt;ipluskal@fit.vutbr.cz&gt;  ]
+<div class="right">[ Jan Pluskal &lt;pluskal@vut.cz&gt;  ]
 
 ---
 
