@@ -63,7 +63,7 @@ Pro uložení dat zvolte [SQLite](https://www.sqlite.org/index.html). Jako ORM f
 *Minimální* funkcionalita:
   - **Aplikace musí umožnit provést CRUD operace nad všemi daty.**
   - Uživatel může **filtrovat** aktivity podle začátku a konce ve zvoleném předmětu.
-  - Uživatel může vyhledávat předměty, studenty, aktivity.
+  - Uživatel může vyhledávat předměty, studenty.
   - Uživatel může řadit v listových pohledech dle všech položek, kde to dává logický smysl (jméno, body, zkratka předmětu, ...).
  
 ---
