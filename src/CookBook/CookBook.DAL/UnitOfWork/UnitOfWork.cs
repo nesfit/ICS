@@ -14,7 +14,7 @@ public sealed class UnitOfWork(DbContext dbContext) : IUnitOfWork
         where TEntityMapper : IEntityMapper<TEntity>, new()
         => new Repository<TEntity>(_dbContext, new TEntityMapper());
 
-    public async Task CommitAsync() => await _dbContext.SaveChangesAsync();
+    public async Task CommitAsync() => await _dbContext.SaveChangesAsync().ConfigureAwait(false);
 
-    public async ValueTask DisposeAsync() => await _dbContext.DisposeAsync();
+    public async ValueTask DisposeAsync() => await _dbContext.DisposeAsync().ConfigureAwait(false);
 }

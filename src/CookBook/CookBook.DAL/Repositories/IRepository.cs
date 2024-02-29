@@ -6,8 +6,8 @@ public interface IRepository<TEntity>
     where TEntity : class, IEntity
 {
     IQueryable<TEntity> Get();
-    void Delete(Guid entityId);
+    Task DeleteAsync(Guid entityId);
     ValueTask<bool> ExistsAsync(TEntity entity);
-    Task<TEntity> InsertAsync(TEntity entity);
+    TEntity Insert(TEntity entity);
     Task<TEntity> UpdateAsync(TEntity entity);
 }

@@ -30,7 +30,7 @@ public abstract class
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
         try
         {
-            uow.GetRepository<TEntity, TEntityMapper>().Delete(id);
+            await uow.GetRepository<TEntity, TEntityMapper>().DeleteAsync(id).ConfigureAwait(false);
             await uow.CommitAsync().ConfigureAwait(false);
         }
         catch (DbUpdateException e)
@@ -50,20 +50,21 @@ public abstract class
             query = query.Include(includePath);
         }
 
-        TEntity? entity = await query.SingleOrDefaultAsync(e => e.Id == id);
+        TEntity? entity = await query.SingleOrDefaultAsync(e => e.Id == id).ConfigureAwait(false);
 
         return entity is null
             ? null
             : ModelMapper.MapToDetailModel(entity);
     }
 
+    // Always use paging in production
     public virtual async Task<IEnumerable<TListModel>> GetAsync()
     {
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
         List<TEntity> entities = await uow
             .GetRepository<TEntity, TEntityMapper>()
             .Get()
-            .ToListAsync();
+            .ToListAsync().ConfigureAwait(false);
 
         return ModelMapper.MapToListModel(entities);
     }
@@ -79,19 +80,19 @@ public abstract class
         IUnitOfWork uow = UnitOfWorkFactory.Create();
         IRepository<TEntity> repository = uow.GetRepository<TEntity, TEntityMapper>();
 
-        if (await repository.ExistsAsync(entity))
+        if (await repository.ExistsAsync(entity).ConfigureAwait(false))
         {
-            TEntity updatedEntity = await repository.UpdateAsync(entity);
+            TEntity updatedEntity = await repository.UpdateAsync(entity).ConfigureAwait(false);
             result = ModelMapper.MapToDetailModel(updatedEntity);
         }
         else
         {
             entity.Id = Guid.NewGuid();
-            TEntity insertedEntity = await repository.InsertAsync(entity);
+            TEntity insertedEntity = repository.Insert(entity);
             result = ModelMapper.MapToDetailModel(insertedEntity);
         }
 
-        await uow.CommitAsync();
+        await uow.CommitAsync().ConfigureAwait(false);
 
         return result;
     }
