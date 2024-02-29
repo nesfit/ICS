@@ -48,6 +48,125 @@ highlightTheme: "vs"
 
 ---
 
+## Software Architectures
+- There are many recognized architectural patterns and styles, among them:
+  - Blackboard
+  - Client-server (2-tier, 3-tier, n-tier, cloud computing exhibit this style)
+  - Component-based
+  - Data-centric
+  - Event-driven (or implicit invocation)
+  - **Layered (or multilayered architecture)**
+  - Microservices architecture
+  - **Monolithic application**
+  - Peer-to-peer (P2P)
+  - Pipes and filters
+  - Plug-ins
+  - Reactive architecture
+  - Representational state transfer (REST)
+  - Rule-based
+  - Service-oriented
+  - Shared nothing architecture
+  - Space-based architecture
+  - Serverless architecture
+
++++
+### Layered (or multilayered architecture)
+
+- In a layered system, each layer:
+  - **Depends** on the layers beneath it;
+  - Is **independent** of the layers on top of it, having no knowledge of the layers using it.
+
+- The **advantages** are:
+  - We only need to *understand the layers beneath* the one we are working on;
+  - *Each layer is replaceable* by an equivalent implementation, with no impact on the other layers;
+  - Layers are optimal candidates for standardisation;
+  - A layer can be used by several different higher-level layers.
+
+- The **disadvantages** are:
+  - Layers can not encapsulate everything (a field that is added to the UI, most likely also needs to be added to the DB);
+  - Extra layers can harm performance, especially if in different tiers
+
+[Section source - read more](https://herbertograca.com/2017/08/03/layered-architecture/)
+
++++
+## The 60s and 70s - 1 tier
+
+- applications were very *simple*, they were not *scalable*
+- no GUI, usable only through a CLI, displayed in a dumb terminal
+- data being used from the same computer
+- mostly single user application
+
+![](assets/img/1960s-70s-layered-architecture-1-tier.png) <!-- .element: class="r-stretch" -->
+
++++
+### Layering during the 80s and 90s - 2 tier
+
+![](assets/img/1980s-90s-layered-architecture.png) <!-- .element: class="r-stretch" -->
+
++++
+### Layering during the 80s and 90s - 2 tier
+- At this time, there were mostly *three layers*:
+
+  - **User Interface (Presentation)**: The user interface, be it a web page, a CLI or a native desktop application; 
+    - ie: *A native Windows application* as the client (rich client), which the common user would use on his desktop computer, that would communicate with the server in order to actually make things happen. The client would be in charge of the application flow and user input validation;
+  - **Business logic (Domain)**: The logic that is the reason why the application exists; 
+    - ie: *An application server*, which would contain the business logic and would receive requests from the native client, act on them and persist the data to the data storage;
+  - **Data source**: The data persistence mechanism (DB), or communication with other applications.
+    - ie: *A database server*, which would be used by the application server for the persistence of data.
+
+- data access through the network
+- multiuser application
+- 2 tier - client/server
+
+
++++
+### Layering after the mid 90s - 3 tier / n-tier
+
+- **A native browser application**, rendering and running the user interface, sending requests to the server application;
+- **An application server**, containing the presentation layer, the application layer, the domain layer, and the persistence layer;
+- **A database server**, which would be used by the application server for the persistence of data.
+
+![](assets/img/2010s-layered-architecture.png) <!-- .element: class="r-stretch" -->
+
++++
+### Layering after the early 2000s - DDD
+![](assets/img/ddd_layers.png.webp) <!-- .element: class="r-stretch" -->
+
++++
+### Layering after the early 2000s - DDD
+
+- **User Interface / Presentation**
+  - Responsible for drawing the screens the users use to interact with the application and *translating the user’s inputs into application commands*. 
+  - It is important to note that the “users” can be human but can also be other applications, which corresponds entirely to the Boundary objects in the EBI Architecture by Ivar Jacobson (more on this in a later post);
+
+- **Application Layer**
+  - Orchestrates *Domain objects to perform tasks required by the users*. It *does not contain business logic*. 
+  - This relates to the Interactors in the EBIArchitecture by Ivar Jacobson, except that Jacobson’s interactors were any object that was not related to the UI nor an Entity;
+
+- **Domain Layer**
+  - This is the layer that *contains all business logic, the Entities, Events and any other object type that contains Business Logic*. 
+  - It obviously relates to the Entity object type of EBI. This is the heart of the system;
+
+- **Infrastructure**
+  - The technical capabilities that support the layers above, ie. *persistence* or *messaging*.
+
+
++++
+### Anti-pattern: Lasagna Architecture
+
+- Lasagna Architecture is the name commonly used to refer to the **anti-pattern for Layered Architecture**. 
+- It happens when:
+  - We decide to use **a strict layering approach**, where a layer only knows about the layer immediately below it. In such case, **we will end up creating proxy methods, and even proxy classes**, just so we go through the intermediate layers instead of directly using the layer we need;
+  - We lead the project into **over-abstraction** in an urge to create the perfect system;
+  - Small **updates reverberate through all areas of an application**, for example, tidying up a single layer can be a large undertaking with huge risks and small payoff.
+  - We end up with **too many layers**, which increases the complexity of the overall system;
+  - We end up with **too many tiers**, which both increases the complexity and damages the performance of the overall system;
+  - We explicitly **organise our monolith according to its layers** (ie. UI, Domain, DB), instead of organising it by its sub-domains/components (ie. Product, Payment, Checkout), destroying modularity and encapsulation of the domain concepts.
+
+![](assets/img/lasagna.png) <!-- .element: class="r-stretch" -->
+
+---
+
 ## Database
 * **Persistent** data storage
 * **Store**, **organize**, and **process information**
@@ -58,7 +177,7 @@ highlightTheme: "vs"
   * System specifically designed to hold databases
 
 +++
-### Database components
+### Relational database components
 * *Schema* - formal definition of database structure
 * *Table* - contains multiple columns (similar to the columns in a spreadsheet)
 * *Column* - contains one of several types of data
@@ -67,10 +186,10 @@ highlightTheme: "vs"
 +++
 ### Persistence
 * **Official definition**
-  * *The continuance of an effect after its cause is removed*
-  * *Information survives after the process with which it was created has ended*
+  * *The continuance of an effect after its cause is removed.*
+  * *Information survives after the process with which it was created has ended.*
 * **In database context**
-  * *Data is available after application or system reboot*
+  * *Data is available after application or system reboot.*
 
 +++
 ### ACID
@@ -187,7 +306,7 @@ highlightTheme: "vs"
   *   full-featured,
   *   **SQL database engine**.
 * SQLite is built into all mobile phones and most computers and comes bundled inside countless other applications.
-* **SQLite Is Embedded, Not Client-Server**
+* **SQLite Is Embedded, Not Client-Server**, i.e., in-process database
 * [Quirks, Caveats, and Gotchas In SQLite](https://www.sqlite.org/quirks.html)   
 
 +++
@@ -243,7 +362,7 @@ highlightTheme: "vs"
 ![](/assets/img/Overview_small.png) <!-- .element: class="overview" -->
 
 * **ADO.NET**
-* **Entity Framework** (used in this course)
+* **Entity Framework Core** (used in this course)
 * **Dapper**
 * **NHibernate**
 * ⋮
@@ -277,7 +396,7 @@ highlightTheme: "vs"
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/Examples/SqlClientExample.cs)
 
 ---
-## Entity Framework (EF)
+## Entity Framework (EF Core)
 * **Official definition:** *“Entity Framework is an object-relational mapper (ORM) that enables .NET developers to work with a database using .NET objects. It eliminates the need for most of the data-access code that developers usually need to write.”*
 * **Object-relational mapping framework**
 * By Microsoft
@@ -288,7 +407,7 @@ highlightTheme: "vs"
 * [Tutorial](http://www.entityframeworktutorial.net)
 
 +++
-### Entity Framework Main Features
+### Entity Framework Core Main Features
 * **Cross-platform** - EF Core is a cross-platform framework (Windows, Linux, Mac)
 * **Modelling** - creates an Entity Data Model (EDM) based on Plain Old CLR Object (POCO) entities with get/set properties of different data types (used when querying or saving entity data)
 * **Querying** - allows to use LINQ queries
@@ -311,8 +430,8 @@ highlightTheme: "vs"
   * Works only on .NET Framework
 * **Entity Framework Core**
   * open-source
-  * Current version 7.0.x
-  * Works on .NET Standard (supports .NET Core / .NET 5/6/7 -->  multiplatform)
+  * Current version 8.0.x
+  * Works on .NET Standard (supports .NET Core / .NET 5/6/7/8 -->  multiplatform)
   * Used in this course
 
 ![](assets/img/EFversions.png)
@@ -330,10 +449,10 @@ highlightTheme: "vs"
 
 +++
 ### Approaches
-* **Entity Framework Database First**
+* **Entity Framework Core Database First**
   * Creating Entity Data Model from your existing database
   * [EF Core Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools) may help a lot!
-* **Entity Framework Code First**
+* **Entity Framework Core Code First**
   * *Used in this course*
   * Creates the database based on your domain classes and configuration
   * Write entities in C# and then EF will create the database from the code for you
@@ -558,7 +677,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 ### Change Tracking
 * *DbContext* keeps track of entity states and **maintains modifications** made to the properties of the entity
 * Change from the *Unchanged* to the *Modified* is the only state that's **automatically handled by the** *DbContext*
-* Other changes must be made **explicitly using** proper **methods of **`DbContext`** or **`DbSet`
+* Other changes must be made **explicitly using** proper methods of **`DbContext`** or **`DbSet`**
 
 +++
 <pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.DAL.Tests/EntityStatesTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
@@ -584,7 +703,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
 ---
 ### DbContext
-* Integral part of Entity Framework
+* Integral part of Entity Framework Core
 * Instance **represents a session with the database**
 * Can be **used to query and save instances of your entities to a database**
 * Is a combination of the **Unit Of Work** and **Repository** patterns
@@ -655,6 +774,8 @@ public class MSSQLLocalDBDbContextFactory : IDbContextFactory
 ```
 
 +++
+`appconfig.json`:
+
 <pre><code class="language-csharp" data-sample='assets/sln/Dapper.DAL/appconfig.json' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL/appconfig.json)
 
@@ -673,10 +794,10 @@ public class MSSQLLocalDBDbContextFactory : IDbContextFactory
 ### DbContext Methods
 | Method          | Usage                                                                                                                                                                                              |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| *Add*           | Adds a new entity to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChanges()` is called.                                |
-| *AddAsync*      | Asynchronous method for adding a new entity to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChangesAsync()` is called. |
-| *AddRange*      | Adds a collection of new entities to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChanges()` is called.                |
-| *AddRangeAsync* | Asynchronous method for adding a collection of new entities which will be saved on `SaveChangesAsync()`.                                                                                           |
+| *Add*           | Adds a new entity to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChanges()`/`SaveChangesAsync()` is called.                                |
+| *AddAsync*      | Asynchronous method for adding a new entity to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChanges()`/`SaveChangesAsync()` is called. **Should only by used by source-generators.** |
+| *AddRange*      | Adds a collection of new entities to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChanges()`/`SaveChangesAsync()` is called.                |
+| *AddRangeAsync* | Asynchronous method for adding a collection of new entities which will be saved on `SaveChanges()`/`SaveChangesAsync()`. **Should only by used by source-generators.**.                                                                                           |
 
 +++
 ### DbContext Methods
@@ -721,7 +842,7 @@ public class MSSQLLocalDBDbContextFactory : IDbContextFactory
 * Keeps **track of all entities** during its lifetime
 * Useful in local database or the database on the same network
 * *Pros*
-  * Performs fast
+  * Performs *faster*
   * Track of all entities and automatically sets an appropriate state
 * *Cons*
   * The context stays alive, so the connection with the database stays open
@@ -740,10 +861,11 @@ public class MSSQLLocalDBDbContextFactory : IDbContextFactory
 * Useful in web applications or applications with a remote database
 * *Pros*
   * Utilizes fewer resources compared to the connected scenario
-  * No open connection with the database
+  * DB connection is disposed frequenty, not long living, except [
+DbContext pooling](https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics?tabs=with-di%2Cexpression-api-with-constant#dbcontext-pooling)
 * *Cons*
   * Need to set an appropriate state to each entity before saving
-  * Performs slower than the connected scenario
+  * Performs *slower* than the connected scenario
 
 +++
 ### Persistence Scenarios - Disconnected  Scenario
@@ -755,7 +877,7 @@ public class MSSQLLocalDBDbContextFactory : IDbContextFactory
   * **Tables** for all `DbSet<TEntity>` properties in a context class 
   * **Columns** for all the scalar properties of an entity class
   * **Not null** column by default
-  * **Nullable** column by nullable primitive types properties
+  * **Nullable** column by nullable primitive types properties | nullable annotation requires if nullables are enabled
   * **Primary key** for property named `Id` or `<Entity Class Name>Id` (case insensitive)
   * **Foreign Key** for reference navigation property named
     * `<Reference Navigation Property Name>Id`
@@ -1234,7 +1356,7 @@ var students = context.Students
 * Object-relational mapper
 * **Open source**
 * Uses XML files and attributes for configuration
-* Functionality is similar to Entity Framework
+* Functionality is similar to Entity Framework Core
 * `PM> Install-Package NHibernate`
 * [Documentation](https://nhibernate.info/doc/index.html)
 * [GitHub](https://github.com/nhibernate/nhibernate-core)
@@ -1242,7 +1364,7 @@ var students = context.Students
 ---
 ## ORM Performance Benchmarking
 * Tested technologies:
-  * **Entity Framework** representing "big" ORM
+  * **Entity Framework Core** representing "big" ORM
   * **Dapper** representing "micro" ORM
   * **ADO.NET** for straight queries
 
@@ -1272,7 +1394,7 @@ var students = context.Students
       * Average them out and get a set of numbers that should show which of the ORMs is the fastest
 
 +++
-### Performance Benchmarking test class - Entity Framework
+### Performance Benchmarking test class - Entity Framework Core
 ```C#
 public class EntityFramework : ITestSignature
 {
@@ -1434,7 +1556,7 @@ public class Dapper : ITestSignature
     * **100 players** per team
 
 +++
-### Performance Benchmarking results - Entity Framework
+### Performance Benchmarking results - Entity Framework Core
 | RUN         | PLAYER BY ID | PLAYERS FOR TEAM | TEAMS FOR SPORT |
 | ----------- | ------------ | ---------------- | --------------- |
 | **1**       | 1.64ms       | 4.57ms           | 127.75ms        |
@@ -1484,8 +1606,8 @@ public class Dapper : ITestSignature
 
 +++
 ### Performance Benchmarking analysis and conclusion
-* *Entity Framework* in *basic configuration* is 3-10 times **slower** than either *ADO.NET* or *Dapper*
-* *Dapper.NET* is unquestionably **faster** than *Entity Framework* and slightly faster than straight *ADO.NET*
+* *Entity Framework Core* in *basic configuration* is 3-10 times **slower** than either *ADO.NET* or *Dapper*
+* *Dapper.NET* is unquestionably **faster** than *Entity Framework Core* and slightly faster than straight *ADO.NET*
 
 
 ---
@@ -1539,17 +1661,17 @@ public class Dapper : ITestSignature
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL/UnitOfWork/UnitOfWork.cs)
 
 ---
-### Entity Framework as UnitOfWork and Repository
-* *UnitOfWork* and *Repository* are **already implemented** in *Entity Framework*
+### Entity Framework Core as UnitOfWork and Repository
+* *UnitOfWork* and *Repository* are **already implemented** in *Entity Framework Core*
 * **Do not bring the architectural benefits** from these patterns
 
 ![](assets/img/EntityFramework.jpg)
 
 +++
-### Entity Framework Problems
+### Entity Framework Core Problems
 * *Repository*
   * **Minimizes duplicate** query logic
-* *Entity Framework*
+* *Entity Framework Core*
   * `DbSet` returns `IQueriable`
   * Does not help with minimizing the duplicate:
 
@@ -1564,12 +1686,12 @@ var topSellingCourses = schoolCourses.Where(c => c.IsPublic && c.IsApproved).Ord
   * **Repository** with method `GetTopSellingCourses`
 
 +++
-### Entity Framework Problems
+### Entity Framework Core Problems
 * *Repository and UnitOfWork*
   * **Decouples** application from persistence frameworks
   * Only **repository methods have to be changed** when switching to different ORM
-* *Entity Framework*
-  * Application is **tightly coupled** to Entity Framework
+* *Entity Framework Core*
+  * Application is **tightly coupled** to Entity Framework Core
   * Application **code has to be directly upgraded** when switching to different ORM
 
 
@@ -1585,7 +1707,7 @@ var topSellingCourses = schoolCourses.Where(c => c.IsPublic && c.IsApproved).Ord
 
 +++
 #### Mapper School Sample
-* Mapping *Entity Framework entities* to *models*
+* Mapping *Entity Framework Core entities* to *models*
 * **Model**
   * Part of *Model-View-ViewModel(MVVM)* design pattern
   * Represents the **actual data and information**

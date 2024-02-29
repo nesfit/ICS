@@ -73,12 +73,12 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>
-    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>
+    <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 
     <PackageReference Include="CommunityToolkit.Maui" Version="7.0.1"/>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2"/>
-    <PackageReference Include="Fody" Version="6.6.4" PrivateAssets="All">
+    <PackageReference Include="Fody" Version="6.8.0" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0"/>

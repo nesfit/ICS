@@ -51,4 +51,4 @@ dotnet ef migrations remove --project .\CookBook.DAL\
 
 ## Notes
 
-- Advanced version of BL/DAL infrastrucutre including Automapper, M:N relation operation using principal relation entity, etc... [CookBook 2022](https://github.com/nesfit/ICS/tree/2022)
+- Advanced version of BL/DAL infrastructure including Automapper, M:N relation operation using principal relation entity, etc... [CookBook 2022](https://github.com/nesfit/ICS/tree/2022)

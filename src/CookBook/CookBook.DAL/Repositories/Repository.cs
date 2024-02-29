@@ -16,18 +16,18 @@ public class Repository<TEntity>(
 
     public async ValueTask<bool> ExistsAsync(TEntity entity)
         => entity.Id != Guid.Empty
-           && await _dbSet.AnyAsync(e => e.Id == entity.Id);
+           && await _dbSet.AnyAsync(e => e.Id == entity.Id).ConfigureAwait(false);
 
-    public async Task<TEntity> InsertAsync(TEntity entity)
-        => (await _dbSet.AddAsync(entity)).Entity;
+    public TEntity Insert(TEntity entity)
+        => _dbSet.Add(entity).Entity;
 
     public async Task<TEntity> UpdateAsync(TEntity entity)
     {
-        TEntity existingEntity = await _dbSet.SingleAsync(e => e.Id == entity.Id);
+        TEntity existingEntity = await _dbSet.SingleAsync(e => e.Id == entity.Id).ConfigureAwait(false);
         entityMapper.MapToExistingEntity(existingEntity, entity);
         return existingEntity;
     }
 
-    public void Delete(Guid entityId)
-        => _dbSet.Remove(_dbSet.Single(i => i.Id == entityId));
+    public async Task DeleteAsync(Guid entityId)
+        => _dbSet.Remove(await _dbSet.SingleAsync(i => i.Id == entityId).ConfigureAwait(false));
 }

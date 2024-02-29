@@ -37,7 +37,7 @@ public class IngredientAmountFacade(
         IRepository<IngredientAmountEntity> repository =
             uow.GetRepository<IngredientAmountEntity, IngredientAmountEntityMapper>();
 
-        await repository.InsertAsync(entity);
+        repository.Insert(entity);
         await uow.CommitAsync();
     }
 }
