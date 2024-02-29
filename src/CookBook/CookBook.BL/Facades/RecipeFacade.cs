@@ -12,6 +12,6 @@ public class RecipeFacade(
     : FacadeBase<RecipeEntity, RecipeListModel, RecipeDetailModel, RecipeEntityMapper>(unitOfWorkFactory, modelMapper),
         IRecipeFacade
 {
-    protected override string IncludesNavigationPathDetail =>
-        $"{nameof(RecipeEntity.Ingredients)}.{nameof(IngredientAmountEntity.Ingredient)}";
+    protected override ICollection<string> IncludesNavigationPathDetail =>
+        new[] {$"{nameof(RecipeEntity.Ingredients)}.{nameof(IngredientAmountEntity.Ingredient)}"};
 }
