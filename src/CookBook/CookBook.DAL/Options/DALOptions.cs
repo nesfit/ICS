@@ -2,7 +2,6 @@
 
 public record DALOptions
 {
-    public bool Enabled { get; init; }
     public required string DatabaseDirectory { get; init; }
     public string DatabaseName { get; init; } = null!;
     public string DatabaseFilePath => Path.Combine(DatabaseDirectory, DatabaseName!);
