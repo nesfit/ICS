@@ -8,7 +8,7 @@ namespace CookBook.BL.Facades;
 
 public class IngredientFacade(
     IUnitOfWorkFactory unitOfWorkFactory,
-    IIngredientModelMapper modelMapper)
+    IngredientModelMapper modelMapper)
     :
         FacadeBase<IngredientEntity, IngredientListModel, IngredientDetailModel, IngredientEntityMapper>(
             unitOfWorkFactory, modelMapper), IIngredientFacade;

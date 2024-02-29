@@ -29,9 +29,9 @@ public class FacadeTestsBase : IAsyncLifetime
 
     protected IDbContextFactory<CookBookDbContext> DbContextFactory { get; }
 
-    protected IIngredientModelMapper IngredientModelMapper { get; }
+    protected IngredientModelMapper IngredientModelMapper { get; }
     protected IngredientAmountModelMapper IngredientAmountModelMapper { get; }
-    protected IRecipeModelMapper RecipeModelMapper { get; }
+    protected RecipeModelMapper RecipeModelMapper { get; }
     protected UnitOfWorkFactory UnitOfWorkFactory { get; }
 
     public async Task InitializeAsync()

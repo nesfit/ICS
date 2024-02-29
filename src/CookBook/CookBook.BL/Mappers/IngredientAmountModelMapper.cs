@@ -4,8 +4,7 @@ using CookBook.DAL.Entities;
 namespace CookBook.BL.Mappers;
 
 public class IngredientAmountModelMapper :
-    ModelMapperBase<IngredientAmountEntity, IngredientAmountListModel, IngredientAmountDetailModel>,
-    IIngredientAmountModelMapper
+    ModelMapperBase<IngredientAmountEntity, IngredientAmountListModel, IngredientAmountDetailModel>
 {
     public override IngredientAmountListModel MapToListModel(IngredientAmountEntity? entity)
         => entity?.Ingredient is null

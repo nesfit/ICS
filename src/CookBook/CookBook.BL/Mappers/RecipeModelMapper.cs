@@ -3,8 +3,8 @@ using CookBook.DAL.Entities;
 
 namespace CookBook.BL.Mappers;
 
-public class RecipeModelMapper(IIngredientAmountModelMapper ingredientAmountModelMapper)
-    : ModelMapperBase<RecipeEntity, RecipeListModel, RecipeDetailModel>, IRecipeModelMapper
+public class RecipeModelMapper(IngredientAmountModelMapper ingredientAmountModelMapper)
+    : ModelMapperBase<RecipeEntity, RecipeListModel, RecipeDetailModel>
 {
     public override RecipeListModel MapToListModel(RecipeEntity? entity)
         => entity is null

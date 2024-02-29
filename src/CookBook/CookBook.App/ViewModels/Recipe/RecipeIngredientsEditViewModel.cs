@@ -13,7 +13,7 @@ namespace CookBook.App.ViewModels;
 public partial class RecipeIngredientsEditViewModel(
     IIngredientFacade ingredientFacade,
     IIngredientAmountFacade ingredientAmountFacade,
-    IIngredientAmountModelMapper ingredientAmountModelMapper,
+    IngredientAmountModelMapper ingredientAmountModelMapper,
     IMessengerService messengerService)
     : ViewModelBase(messengerService)
 {
