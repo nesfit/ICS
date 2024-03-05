@@ -8,7 +8,7 @@ namespace CookBook.DAL.Factories;
 /// </summary>
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<CookBookDbContext>
 {
-    private readonly DbContextSqLiteFactory _dbContextSqLiteFactory = new($"Data Source=CookBook;Cache=Shared");
+    private readonly DbContextSqLiteFactory _dbContextSqLiteFactory = new("cookbook.db");
 
     public CookBookDbContext CreateDbContext(string[] args) => _dbContextSqLiteFactory.CreateDbContext();
 }
