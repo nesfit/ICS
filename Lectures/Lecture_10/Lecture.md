@@ -69,24 +69,27 @@ Source: https://eloquentjavascript.net/11_async.html
 
 ## Process 
 
-- known from IOS
-- **standalone** running program
-- has its process identification (PID)
-- **does not share code and variables** with other processes
-- needs OS for synchronization (mutexes, ...)
-- needs OS for data sharing (shared memory, ...)
-- STDIN/STDOUT/STDERR
+- known from the [IOS course](https://www.fit.vut.cz/study/course/IOS/.en)
+- in the nutshell:
+  - **standalone** running program
+  - has its process identification (PID)
+  - **does not share code and variables** with other processes
+    - needs OS for runtime / memory synchronization (mutexes, ...)
+    - needs OS for data sharing (shared memory, ...)
+  - STDIN/STDOUT/STDERR
 
 ---
 
 ## Thread
 
-- runs **within a process**
-- **has its own stack but shares a heap**
-- error in one thread can kill the whole process
-- **shares code and variables** with other threads
-- needs RUNTIME synchronization mechanisms (locking, ...)
-- data are shared between threads using heap (needs protection)
+- known from the [IOS course](https://www.fit.vut.cz/study/course/IOS/.en)
+- in the nutshell:
+  - runs **within a process**
+  - **has its own stack but shares a heap**
+  - error in one thread can kill the whole process
+  - **shares code and variables** with other threads
+    - needs OS for memory synchronization (mutexes, ...)
+    - data are shared between threads using heap (needs protection - mutex, lock, semaphore, monitor, ...)
 
 ---
 
@@ -178,7 +181,7 @@ process.StandardInput.WriteLine("Hello world");
 
 - represented via `Thread` class
 - possible to get current `Thread` using `Thread.CurrentThread`
-- should never be created directly! Use `ThreadPool` instead.
+- should never be created manually! Use `ThreadPool` to queue work instead.
 - for waiting `Join()` method is present
 
 ---
@@ -418,7 +421,7 @@ public void Provider_DoOperationCompeted(string result)
 - empty task can be get via `Task.CompletedTask` or `Task.FromResult()`
 - important properties
     - `Status` - running/waiting/faulted/ran
-    - `Result` - `null` when running, value when finished
+    - `Result` - `null` while running, value when finished
     - `Exception` - thrown exception
 
 ---
@@ -464,10 +467,10 @@ public async Task<int> LoadResult(INetwork network)
 
 ## async/await
 
-- method marked `async` has to be `void` or return `Task`
-- returning `Task` is preferrable
+- method marked `async` has to be `void`, return `Task` or `ValueTask`
+- returning `Task` or `ValueTask` is preferrable
 - `await` can be used only inside methods marked as `async`
-- if `Task` is not awaited the execution will continue
+- if `Task` or `ValueTask` is not awaited the execution will continue
 
 ```C#
 public async Task AddFriendButtonClicked() 
@@ -486,6 +489,12 @@ class FriendFacade : IFriendFacade {
 
 
 # DEMO: `async`/`await`
+
+---
+
+### `Task` vs. `ValueTask`
+
+- [Understanding the Whys, Whats, and Whens of ValueTask](https://devblogs.microsoft.com/dotnet/understanding-the-whys-whats-and-whens-of-valuetask/)
 
 ---
 
