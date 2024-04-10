@@ -4,16 +4,9 @@ using Xunit.Abstractions;
 
 namespace ParallelProgramming.Samples.Process
 {
-    public class ProcessUsageSamples
+    public class ProcessUsageSamples(ITestOutputHelper output)
     {
-        private readonly ITestOutputHelper output;
-
         private int lineNumber;
-
-        public ProcessUsageSamples(ITestOutputHelper output)
-        {
-            this.output = output;
-        }
 
         private void OnOsProcessOutputDataReceived(object sender, DataReceivedEventArgs e)
         {
@@ -23,7 +16,7 @@ namespace ParallelProgramming.Samples.Process
         [Fact]
         public void OpeningFileViaProcess()
         {
-            using var process = new System.Diagnostics.Process
+            using System.Diagnostics.Process process = new()
             {
                 StartInfo =
                 {
@@ -42,7 +35,7 @@ namespace ParallelProgramming.Samples.Process
         [Fact]
         public void RunningOsProcess()
         {
-            using var process = new System.Diagnostics.Process
+            using System.Diagnostics.Process process = new()
             {
                 StartInfo =
                 {

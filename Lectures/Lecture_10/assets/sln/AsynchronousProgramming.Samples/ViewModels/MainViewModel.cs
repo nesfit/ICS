@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using AsynchronousProgramming.Samples.Annotations;
-using Microsoft.Toolkit.Mvvm.Input;
+﻿using AsynchronousProgramming.Samples.Annotations;
 
 namespace AsynchronousProgramming.Samples.ViewModels
 {

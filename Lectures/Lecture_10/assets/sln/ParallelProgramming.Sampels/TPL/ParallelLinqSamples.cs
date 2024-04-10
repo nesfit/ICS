@@ -5,15 +5,8 @@ using Xunit.Abstractions;
 
 namespace ParallelProgramming.Samples.TPL
 {
-    public class ParallelLinqSamples
+    public class ParallelLinqSamples(ITestOutputHelper output)
     {
-        public ParallelLinqSamples(ITestOutputHelper output)
-        {
-            this.output = output;
-        }
-
-        private readonly ITestOutputHelper output;
-
         private const int RangeEnd = 200_000_000;
 
         [Fact]

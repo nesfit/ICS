@@ -21,7 +21,7 @@ namespace ParallelProgramming.Samples.Synchronization
         [Fact]
         public void ThreadPoolReadWriteSample()
         {
-            var counter = new Counter();
+            Counter counter = new();
 
             for (var i = 0; i < 40; i++)
             {

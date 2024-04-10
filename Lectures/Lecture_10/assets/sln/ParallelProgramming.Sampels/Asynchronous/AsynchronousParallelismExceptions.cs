@@ -1,29 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace ParallelProgramming.Samples.Asynchronous
 {
-    public class AsynchronousParallelismExceptions
+    public class AsynchronousParallelismExceptions(ITestOutputHelper output)
     {
-        private readonly ITestOutputHelper output;
-
-        public AsynchronousParallelismExceptions(ITestOutputHelper output)
-        {
-            this.output = output;
-        }
-
-        private readonly SemaphoreSlim testOutputSemaphore = new(1);
-
         private Task ThrowExceptionAsync()
         {
             throw new Exception("Bum!");
         }
-
 
         [Fact]
         public async Task CatchAsyncExceptions()

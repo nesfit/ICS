@@ -47,7 +47,7 @@ namespace ParallelProgramming.Samples.Synchronization
         [Fact]
         public void LockLockedThreadPoolReadWriteSample()
         {
-            var counter = new LockedCounter();
+            LockedCounter counter = new();
 
             for (var i = 0; i < 40; i++)
                 ThreadPool.QueueUserWorkItem(state => { counter.Increment(); });
@@ -59,7 +59,7 @@ namespace ParallelProgramming.Samples.Synchronization
         [Fact]
         public void SemaphoreLockedThreadPoolReadWriteSample()
         {
-            var counter = new SemaphoredCounter();
+            SemaphoredCounter counter = new();
 
             for (var i = 0; i < 40; i++)
                 ThreadPool.QueueUserWorkItem(state => { counter.Increment(); });
