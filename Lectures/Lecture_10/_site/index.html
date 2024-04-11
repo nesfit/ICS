@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>ICS 10 - Multiplatform Development and Application Containerization</title>
+    <title>ICS 10 - Parallel programming</title>
     <link rel="shortcut icon" href="./favicon.ico" />
     <link rel="stylesheet" href="./dist/reset.css" />
     <link rel="stylesheet" href="./dist/reveal.css" />
@@ -18,362 +18,502 @@
     <div class="reveal">
       <div class="slides"><section  data-markdown><script type="text/template">
 
-# Multiplatform Development and Application Containerization
+# Parallel programming
+## Process, thread, and task in .NET perspective
 
-<div class="right">[ Michal Koutenský &lt;koutenmi@fit.vutbr.cz&gt; ]
-
-</script></section><section  data-markdown><script type="text/template">
-
-## Motivation
-
-#### Multiplatform Development
-- Developer preference - not limited to Windows
-- Some tools are single-platform (or work better on some platforms)
-
-#### Multiplatform Deployment
-- Reaching more users
-- Single/familiar technology
-- Sharing code between platforms
+<div class="right">[ Jan Pluskal &lt;pluskal@vut.cz&gt;  ]</div>
 
 </script></section><section  data-markdown><script type="text/template">
 
-## .NET Architecture
+## Lecture outline:  
+1. Motivation
+2. Parallel programming
+3. Asynchronous programming
 
-![](assets/img/net-architecture.svg)
-
-</script></section><section  data-markdown><script type="text/template">
-
-## .NET Implementations
-
-- .NET Framework (Windows)
-- Mono (Multiplatform)
-- Xamarin (Mobile)
-- UWP (Windows Apps)
-- .NET Core (Multiplatform)
-- .NET (Multiplatform)
-
-Different Standard Libraries → *.NET Standard*
-
-</script></section><section ><section data-markdown><script type="text/template">
-
-## .NET Standard
-
-- Attempt to unify various implementations
-- Specification of API coverage
-- *Interface* to program against
-- Eliminates conditional compilation and recompilation
-
-</script></section><section data-markdown><script type="text/template">
-
-https://dotnet.microsoft.com/en-us/platform/dotnet-standard#versions
-
-![](assets/img/net-standard.png)
-
-</script></section></section><section  data-markdown><script type="text/template">
-
-## .NET Core / .NET 5+
-
-- Unified cross-platform runtime
-  - Operating Systems (Windows, MacOS, Linux) and Architectures (x86, x64, ARM)
-- Open Source
-  - Managed by Microsoft
-  - [.NET Core GitHub](https://github.com/dotnet/core)
-  - [.NET Core Libraries GitHub](https://github.com/dotnet/runtime)
-
-</script></section><section ><section data-markdown><script type="text/template">
-
-## Target Framework Monikers (TFM)
-
-| Target                     | TFM            |
-|----------------------------|----------------|
-| .NET 6.0                   | net6.0         |
-| .NET Standard 2.1          | netstandard2.1 |
-| .NET Core                  | netcoreapp3.1  |
-| .NET Framework 4.8         | net48          |
-| Universal Windows Platform | uap10.0        |
-| .NET 6.0 Android           | net6.0-android |
-
-</script></section><section data-markdown><script type="text/template">
-
-```xml
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-  </PropertyGroup>
-
-...
-
-</Project>
-```
-
-</script></section><section data-markdown><script type="text/template">
-
-```xml
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFrameworks>net6.0;netstandard2.1</TargetFrameworks>
-  </PropertyGroup>
-
-...
-
-</Project>
-```
-
-</script></section></section><section  data-markdown><script type="text/template">
-
-## Portability Analyzer
-
-- Tool to check API compatibility
-  - CLI tool
-  - Visual Studio extension
-
-![](assets/img/portability-summary.jpg)
 
 </script></section><section  data-markdown><script type="text/template">
 
-## Multiplatform UI
+## Serial computing
 
-- *Mono*
-  - Multiplatform Windows Forms implementation
-  - Subset of APIs
-
-- *Xamarin.Forms*
-  - Android, iOS, Windows
-
-- *MAUI*
-  - Evolution of *Xamarin.Forms*
-  - Android, iOS, Windows, MacOS, Tizen
-
-</script></section><section ><section data-markdown><script type="text/template">
-
-## Deployment
-
-</script></section><section data-markdown><script type="text/template">
-
-### Runtime Identifiers (RID)
-
-- Identify target platforms
-- Used for platform-specific assets in NuGet packages
-- A graph of values, the most specific match is used
-- `[os].[version]-[architecture]-[additional qualifiers]`
-
-</script></section><section data-markdown><script type="text/template">
-
-```c
-    win7-x64    win7-x86
-       |   \   /    |
-       |   win7     |
-       |     |      |
-    win-x64  |  win-x86
-          \  |  /
-            win
-             |
-            any
-```
-
-</script></section><section data-markdown><script type="text/template">
-
-### Framework-dependent
-
-- `dotnet publish`
-- App & third-party libraries
-- *Cross-platform* binary (.dll)
-- *Platform-specific* executable
-- `dotnet <file.dll>`
-- Requires .NET to be installed
-- .NET can be updated independently
-
-</script></section><section data-markdown><script type="text/template">
-
-### Self-contained
-
-- `dotnet publish -r <RID>`
-- Bundled runtime & standard libraries
-- *Platform-specific* executable
-- Control .NET version
-- Larger output
-
-</script></section><section data-markdown><script type="text/template">
-
-### Trimming
-
-- Removal of unused code
-- Based on build time analysis
-- Dynamic runtime behavior not caught during build time can cause issues
-
-```
-<PropertyGroup>
-    <PublishTrimmed>true</PublishTrimmed>
-</PropertyGroup>
-```
-
-</script></section></section><section ><section data-markdown><script type="text/template">
-
-## Containers
-
-</script></section><section data-markdown><script type="text/template">
-
-Distribution and deployment technology
-
-- Lightweight VMs
-- Application only — no hardware, no kernel
-- *Namespaces* — kernel feature
-  - `man unshare`
-  - `mount`, `UTS`, `IPC`, `network`, `PID`, `cgroup`, `user`, `time`
-- Open Container Initiative - common set of specifications
-
-</script></section><section data-markdown><script type="text/template">
-
-### Why Are Containers Useful?
-
-- Software makes demands and assumptions about the environment in which it executes
-- Dependencies on other software components
-- Version compatibility
-- Build-time variability
-- Finding dependencies
-- Non-software artifacts (e.g., configuration)
-- Conflicting assumptions
-
-=> Containers try to capture the necessary environment, isolate it and make it transferable
-
-"It works on my PC" -> "Here's my PC"
-
-</script></section><section data-markdown><script type="text/template">
-
-![](assets/img/container-architecture.svg)
-
-</script></section></section><section  data-markdown><script type="text/template">
-
-## Container Runtimes
-
-- Low-level executor
-- Consumes resources (mountpoints/configuration) from engines
-- Interfaces with the kernel to spawn processes and set up namespaces
-
-E.g., runc, crun, youkai, kata-containers
+![Serial computing](assets/diagrams-SerialComputing.png)
 
 </script></section><section  data-markdown><script type="text/template">
 
-## Container Engines
+## Parallel computing
 
-- Handle user/API input
-- Manage available images
-- Prepare resources for runtime (root directory/configuration)
-- Call the runtime
-
-E.g., Docker, Podman, CRI-O
+![Parallel computing](assets/diagrams-ParallelComputing.png)
 
 </script></section><section  data-markdown><script type="text/template">
 
-## Container Orchestrators
+## Parallel computing
 
-- Varied features
-- Declarative definition of deployment units
-- Dynamic deployment scheduling
+- Concurrent processing / Running multiple things at once
+- May increase performance **if used appropriately**
+- Achieved by:
+    - Multiple **processes**
+    - Multiple **threads**
 
-E.g., Docker Compose, Docker Swarm, Kubernetes, Apache Mesos
+</script></section><section  data-markdown><script type="text/template">
 
-</script></section><section ><section data-markdown><script type="text/template">
+## Synchronous vs. asynchronous computing
 
-## Container Images
+- Synchronous execution
+    - *I/O operation, long running computation* blocks execution
 
-- Layered data + metadata
-- Each layer is its own archive
-- Running an image means extracting all layers in order
+- Asynchronous execution
+    - Non-blocking execution
+    - "*I don't wait, I get notified*"
 
-</script></section><section data-markdown><script type="text/template">
+</script></section><section  data-markdown><script type="text/template">
 
-### Image Manifest
+## Asynchronous computing
 
-```json
+![Asynchronous computing](https://eloquentjavascript.net/img/control-io.svg)
+
+Source: https://eloquentjavascript.net/11_async.html
+
+</script></section><section  data-markdown><script type="text/template">
+
+# Parallel programming
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Process 
+
+- known from the [IOS course](https://www.fit.vut.cz/study/course/IOS/.en)
+- in the nutshell:
+  - **standalone** running program
+  - has its process identification (PID)
+  - **does not share code and variables** with other processes
+    - needs OS for runtime / memory synchronization (mutexes, ...)
+    - needs OS for data sharing (shared memory, ...)
+  - STDIN/STDOUT/STDERR
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Thread
+
+- known from the [IOS course](https://www.fit.vut.cz/study/course/IOS/.en)
+- in the nutshell:
+  - runs **within a process**
+  - **has its own stack but shares a heap**
+  - error in one thread can kill the whole process
+  - **shares code and variables** with other threads
+    - needs OS for memory synchronization (mutexes, ...)
+    - data are shared between threads using heap (needs protection - mutex, lock, semaphore, monitor, ...)
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Thread vs. Process
+
+![Thread vs Process](https://techdifferences.com/wp-content/uploads/2017/01/Multithreading.jpg)
+
+Source:https://techdifferences.com/difference-between-multiprocessing-and-multithreading.html
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Process in .NET
+
+- represented by [`Process`](https://docs.microsoft.com/cs-cz/dotnet/api/system.diagnostics.process?view=netcore-2.2) class
+
+```C#
+using var process = new System.Diagnostics.Process
 {
-  "schemaVersion": 2,
-  "mediaType": "application/vnd.oci.image.manifest.v1+json",
-  "config": {
-    "mediaType": "application/vnd.oci.image.config.v1+json",
-    "size": 7023,
-    "digest": "sha256:b5b2b2c507a0944348e0303114d8d93aaaa081732b86451d9bce1f432a537bc7"
-  },
-  "layers": [
+    StartInfo =
     {
-      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
-      "size": 32654,
-      "digest": "sha256:9834876dcfb05cb167a5c24953eba58c4ac89b1adf57f28f2f9d09af107ee8f0"
-    },
-    {
-      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
-      "size": 73109,
-      "digest": "sha256:ec4b8955958665577945c89419d1af06b5f7636b4ac3da7f12184802ad867736"
+        FileName = "ping", 
+        Arguments = "8.8.8.8", 
+        RedirectStandardOutput = true
     }
-  ]
+};
+
+process.Start();
+// do some work....
+process.WaitForExit();
+```
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Process in .NET
+
+- Input/Output
+    - accessing output via events:
+        - `ErrorDataReceived` - output written to `stderr`
+        - `OutputDataReceived` - output written to `stdout`
+    - need to be enabled via `BeginOutputReadLine()` or `BeginErrorReadLine()`
+- allows opening of file with associated executable
+    - Set `FileName` to associated file and set `UseShellExecute` to `true`
+
+
+```C#
+var lineCount = 0;
+var output = new StringBuilder();
+process.OutputDataReceived += new DataReceivedEventHandler((sender, e) =>
+{
+    // Prepend line numbers to each line of the output.
+    if (!string.IsNullOrEmpty(e.Data))
+    {
+        lineCount++;
+        output.Append("\n[" + lineCount + "]: " + e.Data);
+    }
+});
+process.Start();
+process.BeginOutputReadLine();
+```
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Process in .NET
+
+- accesing input via `StandardInput` property
+
+```C#
+using var process = new System.Diagnostics.Process ...
+process.Start();
+process.StandardInput.WriteLine("Hello world");
+```
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Process in .NET
+
+- Exiting
+    - handled via `WaitForExit` method and its overloads
+    - initiated via `Close` method
+    - when needed `Kill` method can be used to force termination
+
+</script></section><section  data-markdown><script type="text/template">
+
+## DEMO: Process
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Threads in .NET
+
+- represented via `Thread` class
+- possible to get current `Thread` using `Thread.CurrentThread`
+- should never be created manually! Use `ThreadPool` to queue work instead.
+- for waiting `Join()` method is present
+
+</script></section><section  data-markdown><script type="text/template">
+
+## ThreadPool in .NET
+
+- `ThreadPool` class [documentation](https://docs.microsoft.com/cs-cz/dotnet/api/system.threading.threadpool?view=netcore-2.2)
+- uses *pool* design pattern
+- manages recycling and planning of thread executions
+- can be configured (methods `SetMaxThreads()`/`SetMinThread()`)
+
+```C#
+
+public static void Main() 
+{
+    ThreadPool.QueueUserWorkItem(ThreadProc);
+}
+
+static void ThreadProc(Object stateInfo) 
+{
+    Console.WriteLine("Hello from the thread pool.");
+}
+
+```
+
+</script></section><section  data-markdown><script type="text/template">
+
+## DEMO: Threads
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Parallel programming issues
+
+![Multithread meme](https://img.devrant.com/devrant/rant/r_346573_4iGrA.jpg)
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Parallel programming issues
+
+- shared resources
+- read/write synchronization
+- exceptions handling in threads
+- UI thread access
+- debugging multiple threads
+- deadlock
+
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Read-write synchronization
+
+```C#
+class Counter {
+    
+    int Count { get; private set; }= 0;
+
+    public void Increment() {
+        //Critical section
+        var count = Count + 1;
+        Count = count;
+        //End of critical section
+    }
+}
+```
+</script></section><section  data-markdown><script type="text/template">
+
+## Read-write synchronization
+
+```C#
+account = new Counter()
+T1:account.Increment();
+T2:account.Increment();
+
+T1: var count = Count + 1;  // Count = 0
+T2: var count = Count + 1   // Count = 0
+T1: Count = count           // Count = 1
+T2: Count = count           // Count = 1
+```
+
+</script></section><section  data-markdown><script type="text/template">
+
+# DEMO: Thread synchronization issues
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Synchronization mechanisms
+
+|         Method         |            Purpose            | Supports processes | Overhead |
+| :--------------------: | :---------------------------: | :----------------: | :------: |
+|         `lock`         |     Denies mutual access      |                    |   20ns   |
+|        `Mutex`         |     Denies mutual access      |         X          |  1000ns  |
+|    `SemaphoreSlim`     |     Allows n-time access      |                    |  200ns   |
+|      `Semaphore`       |     Allows n-time access      |         X          |  1000ns  |
+| `ReaderWriterLockSlim` | Reader-writer synchronization |                    |   40ns   |
+|   `ReaderWriterLock`   | Reader-writer synchronization |                    |  100ns   |
+
+Only `SemaphoreSlim` is reasonable to use in **async** context.
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Synchronization mechanisms examples
+
+```C#
+private IList<FriendModel> friendsList;
+private static object addFriendLock = new object(); 
+public void AddFriend(FriendModel friend)
+{
+    lock(addFriendLock) {
+        friendsList.Add(friend);
+    }
 }
 ```
 
-</script></section></section><section ><section data-markdown><script type="text/template">
+</script></section><section  data-markdown><script type="text/template">
 
-## Building Images
+## Synchronization mechanisms examples
 
-- Dockerfile (Containerfile)
-- BuilKit
-- Buildah
-
-</script></section><section data-markdown><script type="text/template">
-
-### Dockerfile
-
-- Instructions to create an image
-- Instructions create image layers
-
-```dockerfile
-FROM mcr.microsoft.com/dotnet/sdk:7.0
-COPY . /app
-WORKDIR /app
-RUN dotnet publish
-CMD bin/MyApp.exe
+```C#
+private IList<FriendModel> friendsList;
+private static SemaphoreSlim addFriendSemaphore = new SemaphoreSlim(1); 
+public void AddFriend(FriendModel friend)
+{
+    try
+    {
+        addFriendSemaphore.Wait();
+        friendsList.Add(friend);
+    }
+    finally 
+    {
+        addFriendSemaphore.Release();
+    }
+}
 ```
 
+</script></section><section  data-markdown><script type="text/template">
+
+## Synchronized collections 
+
+- provided in namespace `System.Collections.Concurrent`
+    - `BlockingCollection<T>` - ordered collection
+    - `ConcurrentQueue<T>` - queue
+    - `ConcurrentBag<T>` - unordered collection 
+    - `ConcurrentStack<T>` - stack
+
+</script></section><section  data-markdown><script type="text/template">
+
+# DEMO: Synchronization fixing
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Task Parallel Library
+
+- TPL [Documentation](https://docs.microsoft.com/cs-cz/dotnet/standard/parallel-programming/task-parallel-library-tpl)
+    - parallel `For` and `ForEach` implementation
+    - PLINQ - parallel implementation of LINQ queries - `AsParallel` method
+- Be careful! Parallel does not always mean faster!
+
+```C#
+//Parallel ForEach 
+Parallel.ForEach(sourceCollection, item => Handle(item));
+//PLINQ
+source.AsParallel()
+      .Where(n => n % 10 == 0)
+      .Select(n => n);
+```
+
+</script></section><section  data-markdown><script type="text/template">
+
+# DEMO: Task Parallel Library
+
+</script></section><section  data-markdown><script type="text/template">
+
+# Asynchronous programming
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Asynchronous programming in C# 
+
+- three options:
+    - Asynchronous Programming Model (APM)
+    - Event-based Asynchronous Pattern (EAP)
+    - Task-based Asynchronous Pattern (TAP)
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Asynchronous Programming Model
+
+- for each operation, we define `AsyncCallback` object
+- this object defines a method that should be called when the operation ends
+- the method accepts [`IAsyncResult`](https://docs.microsoft.com/cs-cz/dotnet/api/system.iasyncresult?view=netframework-4.7.2) parameter
+
+
+```C#
+private delegate int AddDelegate(int x, int y);
+
+public int Add(int x, int y) 
+{
+    return x+y;
+}
+
+AddDelegate operation = Add;
+operation.BeginInvoke(5, 5, new AsyncCallback(AddCompleted), null);
+
+public void AddCompleted(IAsyncResult result) 
+{
+    //Handle completion here
+    Console.WriteLine($"Is completed {result.IsCompleted}")
+}
+```
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Event-based Asynchronous Pattern
+
+- communication between the caller and the method is done via `event`s
+- typically used on UI components for retrieving results of UI operations
+
+```C#
+OperationProvider provider = new OperationProvider ();
+provider.DoOperationAsync ("some state data");
+provider.DoOperationCompleted += Provider_DoOperationCompleted;
+
+public void Provider_DoOperationCompeted(string result) 
+{
+    Console.WriteLine(result);
+}
+```
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Task-based Asynchronous Pattern
+
+- in C\# represented with `Task` class or `Task<T>`
+- `Task` is a representation of an operation that is running asynchronously
+- asynchronous methods return `Task` instead of `void` or `Task<T>` instead of `T`
+- when method returning `Task` is called the methods starts executing, but the caller method continues as well (unless waiting for task completion)
+- empty task can be get via `Task.CompletedTask` or `Task.FromResult()`
+- important properties
+    - `Status` - running/waiting/faulted/ran
+    - `Result` - `null` while running, value when finished
+    - `Exception` - thrown exception
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Task-based Asynchronous Pattern
+
+
+![Task running diagram](https://i.stack.imgur.com/asvWD.png)
+[Fullsize](https://i.stack.imgur.com/asvWD.png)
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Support in .NET
+
+- I/O handling classes
+    - `StreamReader`, `StreamWriter`- for streams and files access
+    - `HttpClient`, `WebClient` - for accessing web resources
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Task management
+
+- `Task.WhenAll()` - waiting for multiple tasks to finish
+- `GetAwaiter().GetResult()` - returns the (result|throws exception) of task in synchronous code
+- `await task` - returns the (result|throws exception) of task in asynchronous code
+- `ContinueWith(Task t)` - task chaining
+
+</script></section><section  data-markdown><script type="text/template">
+
+## async/await
+
+- syntactic constructs for better working with `Task`s
+
+```C#
+public async Task<int> LoadResult(INetwork network)
+{
+    var data = await network.LoadData();
+    return data.Sum();
+}
+```
+
+</script></section><section  data-markdown><script type="text/template">
+
+## async/await
+
+- method marked `async` has to be `void`, return `Task` or `ValueTask`
+- returning `Task` or `ValueTask` is preferrable
+- `await` can be used only inside methods marked as `async`
+- if `Task` or `ValueTask` is not awaited the execution will continue
+
+```C#
+public async Task AddFriendButtonClicked() 
+{
+    await friendFacade.AddFriend(SelectedFriend);
+}
+
+class FriendFacade : IFriendFacade {
+    public Task AddFriend(FriendModel model) {
+        ...
+    }
+}
+```
+
+</script></section><section  data-markdown><script type="text/template">
+
+
+# DEMO: `async`/`await`
+
+</script></section><section  data-markdown><script type="text/template">
+
+### `Task` vs. `ValueTask`
+
+- [Understanding the Whys, Whats, and Whens of ValueTask](https://devblogs.microsoft.com/dotnet/understanding-the-whys-whats-and-whens-of-valuetask/)
+
+</script></section><section ><section data-markdown><script type="text/template">
+
+<!-- Has to stay, because otherwise static build would not contain logo resources referenced in CSS theme -->
+![](_reveal-md/img/logo-ics.svg)
 </script></section><section data-markdown><script type="text/template">
-
-### BuildKit
-
-Advanced "Dockerfile" builder, uses intermediate language
-
-- Dockerfile
-- Buildpacks
-- Mockerfile
-- Gockerfile
-- bldr (Pkgfile)
-- HLB
-- Earthfile (Earthly)
-- Cargo Wharf (Rust)
-- Nix
-- mopy (Python)
-- envd (starlark)
-- Blubber
-- Bass
-
-</script></section><section data-markdown><script type="text/template">
-
-### Buildah
-
-CLI for manipulating images
-
-| Command                                              | Description                                                                                          |
-| ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| [buildah-add(1)](/docs/buildah-add.1.md)               | Add the contents of a file, URL, or a directory to the container.                                    |
-| [buildah-build(1)](/docs/buildah-build.1.md)           | Build an image using instructions from Containerfiles or Dockerfiles.                                |
-| [buildah-commit(1)](/docs/buildah-commit.1.md)         | Create an image from a working container.                                                            |
-| [buildah-config(1)](/docs/buildah-config.1.md)         | Update image configuration settings.                                                                 |
-| [buildah-copy(1)](/docs/buildah-copy.1.md)             | Copies the contents of a file, URL, or directory into a container's working directory.               |
-| [buildah-mount(1)](/docs/buildah-mount.1.md)           | Mount the working container's root filesystem.                                                       |
-| [buildah-run(1)](/docs/buildah-run.1.md)               | Run a command inside of the container.                                                               |
-| [buildah-umount(1)](/docs/buildah-umount.1.md)         | Unmount a working container's root file system.                                                      |
-| [buildah-unshare(1)](/docs/buildah-unshare.1.md)       | Launch a command in a user namespace with modified ID mappings.                                      |
-
-</script></section></section><section  data-markdown><script type="text/template">
-</script></section></div>
+![](_reveal-md/img/logo.png)
+</script></section></section></div>
     </div>
 
     <script src="./dist/reveal.js"></script>
@@ -404,6 +544,7 @@ CLI for manipulating images
         history: true,
         center: true,
         transition: 'default', // none/fade/slide/convex/concave/zoom
+        slideNumber: true,
         plugins: [
           RevealMarkdown,
           RevealHighlight,
