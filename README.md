@@ -173,7 +173,7 @@ aneb co sledovat, pokud se chcete dozvědět víc
 ## Co se děje v .NET a co se chystá
 * [.NET Conf](https://www.dotnetconf.net/) - konference, kde se představuje nová verze .NET (jednou ročně - **listopad**)
 * [Microsoft Build](https://build.microsoft.com/en-US/home) - největší konference pro vývojáře od Microsoftu, hromada novinek (jednou ročně - **květen**)
-* [.NET Blog](https://devblogs.microsoft.com/dotnet/) - blog s high-level zprávami o aktuálních novinkách (cca 10-15 článků za měsíc)
+* [.NET Announcements](https://github.com/dotnet/announcements) - repozitár, kam sa dá subscribnúť na notifikácie o nových veciach v .NET (a ostatných .NET frameworkoch - MAUI, ASP, EF...)
 * [Themes of .NET](https://aka.ms/dotnet-product-roadmap) - .NET roadmap - podrobný přehled toho, na čem se pracuje a kdy se to plánuje
 
 +++
