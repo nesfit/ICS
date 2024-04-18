@@ -165,11 +165,11 @@ Dbejte kvality Vašeho kódu! Opravte si kód odevzdaný v předchozí fázi dle
 Hodnotíme:
 - opravení chyb a zapracování připomínek, které jsme vám dali v rámci hodnocení fáze 1
 - návrh a funkčnost repositářů
-- návrh a funkčnost fasád
+- návrh a funkčnost fasád (včetně filtrování a řazení)
 - čistotu kódu
-- pokrytí aplikace testy - ukážete tím, že repositáře opravdu fungují (tedy testy BL vrstvy)
+- pokrytí aplikace testy - ukážete tím, že abstrakce repositáře/facade opravdu funguje (postačí testy BL vrstvy)
 - *dejte pozor na zapouzdření databázových entit pod vrstvou fasád, která je nepropaguje výše, ale přemapovává na modely/DTO*
-- funkční build v Azure DevOps
+- funkční build v Azure DevOps (nenechejte na poslední chvíli, může být třeba žádost o zpřístupnění CI)
 - výsledek testů v Azure DevOps po buildu
 
 ---
