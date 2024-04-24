@@ -77,7 +77,7 @@ public abstract class
 
         TEntity entity = ModelMapper.MapToEntity(model);
 
-        IUnitOfWork uow = UnitOfWorkFactory.Create();
+        await using IUnitOfWork uow = UnitOfWorkFactory.Create();
         IRepository<TEntity> repository = uow.GetRepository<TEntity, TEntityMapper>();
 
         if (await repository.ExistsAsync(entity).ConfigureAwait(false))
