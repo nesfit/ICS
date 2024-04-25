@@ -9,7 +9,7 @@ highlightTheme: "vs"
 
 # Multiplatform Development and Application Containerization
 
-<div class="right">[ Michal Koutenský &lt;koutenmi@fit.vutbr.cz&gt; ]
+<div class="right">[ Jan Pluskal &lt;pluskal@vut.cz&gt; ]
 
 ---
 
@@ -34,23 +34,39 @@ highlightTheme: "vs"
 
 ## .NET Implementations
 
-- .NET Framework (Windows)
-- Mono (Multiplatform)
-- Xamarin (Mobile)
-- UWP (Windows Apps)
-- .NET Core (Multiplatform)
-- .NET (Multiplatform)
+- Microsoft supports:
+  - .NET (5+ and later) (Multiplatform) (previously .NET Core)
+  - .NET Framework (Windows)
+  - Mono (Multiplatform)
+  - UWP (Windows Apps)
 
-Different Standard Libraries → *.NET Standard*
+- Other:
+  - Xamarin (Mobile) (IOS, Android)
+  - Unity
+  - Tizen
+  - ...
+
+.NET APIs that are available on multiple .NET implementations unified by → **.NET Standard**
+
+
+- References:
+  - [.NET implementations](https://learn.microsoft.com/en-us/dotnet/fundamentals/implementations)
+  - [.NET implementations supported by EF Core](https://learn.microsoft.com/en-us/ef/core/miscellaneous/platforms)
+  - [.NET Standard](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-1-0)
+
 
 ---
 
 ## .NET Standard
 
-- Attempt to unify various implementations
+- a formal specification of .NET APIs that are available on multiple .NET implementations
+- motivation behind .NET Standard was to establish greater uniformity in the .NET ecosystem.
 - Specification of API coverage
 - *Interface* to program against
-- Eliminates conditional compilation and recompilation
+- Eliminates conditional compilation
+
+**.NET 5 and later versions adopt a different approach to establishing uniformity that eliminates the need for .NET Standard in most scenarios.**
+[No new versions of .NET Standard will be released.](https://devblogs.microsoft.com/dotnet/the-future-of-net-standard/)
 
 +++
 
@@ -74,13 +90,18 @@ https://dotnet.microsoft.com/en-us/platform/dotnet-standard#versions
 ## Target Framework Monikers (TFM)
 
 | Target                     | TFM            |
-|----------------------------|----------------|
-| .NET 6.0                   | net6.0         |
+| -------------------------- | -------------- |
+| .NET 8.0                   | net8.0         |
 | .NET Standard 2.1          | netstandard2.1 |
 | .NET Core                  | netcoreapp3.1  |
 | .NET Framework 4.8         | net48          |
 | Universal Windows Platform | uap10.0        |
-| .NET 6.0 Android           | net6.0-android |
+| .NET 8.0 Android           | net8.0-android |
+
+- References:
+  - [Latest versions](https://learn.microsoft.com/en-us/dotnet/standard/frameworks#latest-versions)
+  - [Supported target frameworks](https://learn.microsoft.com/en-us/dotnet/standard/frameworks#supported-target-frameworks)
+  - [.NET 5+ OS-specific TFMs](https://learn.microsoft.com/en-us/dotnet/standard/frameworks#net-5-os-specific-tfms)
 
 +++
 
@@ -88,7 +109,7 @@ https://dotnet.microsoft.com/en-us/platform/dotnet-standard#versions
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
 ...
@@ -102,7 +123,7 @@ https://dotnet.microsoft.com/en-us/platform/dotnet-standard#versions
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>net7.0;netstandard2.1</TargetFrameworks>
   </PropertyGroup>
 
 ...
@@ -110,6 +131,52 @@ https://dotnet.microsoft.com/en-us/platform/dotnet-standard#versions
 </Project>
 ```
 
++++
+
+### Compatibility pitfalls 
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.4;net40;net45</TargetFrameworks>
+  </PropertyGroup>
+
+  <!-- Conditionally obtain references for the .NET Framework 4.0 target -->
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
+    <Reference Include="System.Net" />
+  </ItemGroup>
+
+  <!-- Conditionally obtain references for the .NET Framework 4.5 target -->
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Threading.Tasks" />
+  </ItemGroup>
+
+</Project>
+```
+
++++
+
+```C#
+public class MyClass
+{
+    static void Main()
+    {
+#if NET40
+        Console.WriteLine("Target framework: .NET Framework 4.0");
+#elif NET45
+        Console.WriteLine("Target framework: .NET Framework 4.5");
+#else
+        Console.WriteLine("Target framework: .NET Standard 1.4");
+#endif
+    }
+}
+```
+
+References:
+- [Preprocessor symbols](https://learn.microsoft.com/en-us/dotnet/standard/frameworks#preprocessor-symbols)
+  
 ---
 
 ## Portability Analyzer
@@ -120,6 +187,9 @@ https://dotnet.microsoft.com/en-us/platform/dotnet-standard#versions
 
 ![](assets/img/portability-summary.jpg)
 
+References:
+- [The .NET Portability Analyzer](https://learn.microsoft.com/en-us/dotnet/standard/analyzers/portability-analyzer)
+
 ---
 
 ## Multiplatform UI
@@ -129,7 +199,7 @@ https://dotnet.microsoft.com/en-us/platform/dotnet-standard#versions
   - Subset of APIs
 
 - *Xamarin.Forms*
-  - Android, iOS, Windows
+  - Android, iOS, UWP Windows
 
 - *MAUI*
   - Evolution of *Xamarin.Forms*
@@ -148,41 +218,61 @@ https://dotnet.microsoft.com/en-us/platform/dotnet-standard#versions
 - A graph of values, the most specific match is used
 - `[os].[version]-[architecture]-[additional qualifiers]`
 
-+++
 
 ```c
-    win7-x64    win7-x86
-       |   \   /    |
-       |   win7     |
-       |     |      |
-    win-x64  |  win-x86
-          \  |  /
-            win
-             |
-            any
+   linux-arm64    linux-arm32
+       |     \   /     |
+       |     linux     |
+       |       |       |
+  unix-arm64   |    unix-x64
+           \   |   /
+             unix
+               |
+              any
 ```
+
+References:
+- [.NET RID Catalog](https://learn.microsoft.com/en-us/dotnet/core/rid-catalog)
+
++++
+
+### `dotnet publish`
+
+- `dotnet publish` compiles the application, reads through its dependencies specified in the project file, and publishes the resulting set of files to a directory.
+- The output includes the following assets:
+  - *Intermediate Language (IL)* code in an *assembly* with a `dll` extension.
+  - A `.deps.json` file that includes all of the dependencies of the project.
+  - A `.runtimeconfig.json` file that specifies the shared runtime that the application expects, as well as other configuration options for the runtime (for example, garbage collection type).
+  - The *application's dependencies*, which are copied from the NuGet cache into the output folder
+- Implicit restore - restores NuGet packages, can be disabled with option `--no-restore` 
+
+References:
+- [Arguments, options, ...](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish#arguments)
+
+
 
 +++
 
 ### Framework-dependent
 
 - `dotnet publish`
-- App & third-party libraries
-- *Cross-platform* binary (.dll)
-- *Platform-specific* executable
+  - App & third-party libraries
+  - *Cross-platform* binary (.dll)
+  - *Platform-specific* executable
 - `dotnet <file.dll>`
-- Requires .NET to be installed
-- .NET can be updated independently
+  - Requires .NET to be installed
+  - .NET can be updated independently
 
 +++
 
 ### Self-contained
 
 - `dotnet publish -r <RID>`
-- Bundled runtime & standard libraries
-- *Platform-specific* executable
-- Control .NET version
-- Larger output
+  - Bundled runtime & standard libraries
+  - *Platform-specific* executable
+  - Control .NET version
+  - Larger output
+  - `--sc|--self-contained [true|false]` argument, default is `true` if `-r|--runtime <RUNTIME_IDENTIFIER>` is specified
 
 +++
 
@@ -197,6 +287,28 @@ https://dotnet.microsoft.com/en-us/platform/dotnet-standard#versions
     <PublishTrimmed>true</PublishTrimmed>
 </PropertyGroup>
 ```
+
+---
+
+## Virtualization, Containerization
+
++++
+
+### What is Virtualization
+
+![](assets/img/virtualization.png)
+
++++
+
+### What is Containerization
+
+![](assets/img/containerization.png)
+
++++
+
+### Advantages of Containerization over Virtualization
+
+![](assets/img/containerization_advantages.png)
 
 ---
 
@@ -349,16 +461,91 @@ Advanced "Dockerfile" builder, uses intermediate language
 
 CLI for manipulating images
 
-| Command                                              | Description                                                                                          |
-| ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| [buildah-add(1)](/docs/buildah-add.1.md)               | Add the contents of a file, URL, or a directory to the container.                                    |
-| [buildah-build(1)](/docs/buildah-build.1.md)           | Build an image using instructions from Containerfiles or Dockerfiles.                                |
-| [buildah-commit(1)](/docs/buildah-commit.1.md)         | Create an image from a working container.                                                            |
-| [buildah-config(1)](/docs/buildah-config.1.md)         | Update image configuration settings.                                                                 |
-| [buildah-copy(1)](/docs/buildah-copy.1.md)             | Copies the contents of a file, URL, or directory into a container's working directory.               |
-| [buildah-mount(1)](/docs/buildah-mount.1.md)           | Mount the working container's root filesystem.                                                       |
-| [buildah-run(1)](/docs/buildah-run.1.md)               | Run a command inside of the container.                                                               |
-| [buildah-umount(1)](/docs/buildah-umount.1.md)         | Unmount a working container's root file system.                                                      |
-| [buildah-unshare(1)](/docs/buildah-unshare.1.md)       | Launch a command in a user namespace with modified ID mappings.                                      |
+| Command                                          | Description                                                                            |
+| ------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| [buildah-add(1)](/docs/buildah-add.1.md)         | Add the contents of a file, URL, or a directory to the container.                      |
+| [buildah-build(1)](/docs/buildah-build.1.md)     | Build an image using instructions from Containerfiles or Dockerfiles.                  |
+| [buildah-commit(1)](/docs/buildah-commit.1.md)   | Create an image from a working container.                                              |
+| [buildah-config(1)](/docs/buildah-config.1.md)   | Update image configuration settings.                                                   |
+| [buildah-copy(1)](/docs/buildah-copy.1.md)       | Copies the contents of a file, URL, or directory into a container's working directory. |
+| [buildah-mount(1)](/docs/buildah-mount.1.md)     | Mount the working container's root filesystem.                                         |
+| [buildah-run(1)](/docs/buildah-run.1.md)         | Run a command inside of the container.                                                 |
+| [buildah-umount(1)](/docs/buildah-umount.1.md)   | Unmount a working container's root file system.                                        |
+| [buildah-unshare(1)](/docs/buildah-unshare.1.md) | Launch a command in a user namespace with modified ID mappings.                        |
 
 ---
+
+
+## Docker
+
++++
+
+### What is Docker?
+
+![](assets/img/docker.png)
+
++++
+
+### Benefits
+
+![](assets/img/docker_benefits.png)
+
++++
+
+### Architecture
+
+![](assets/img/docker_architecture.png)
+
++++
+
+### Use cases
+
+![](assets/img/docker_use_cases.png)
+
++++
+
+### Virtualization vs. Containerization
+
+![](assets/img/vm_vs_container.png)
+
++++
+
+### Dockerfile
+
+![](assets/img/docker_dockerfile.png)
+
++++
+
+### Image
+
+![](assets/img/docker_image.png)
+
++++
+
+### Docker Hub
+
+![](assets/img/docker_hub.png)
+
++++
+
+### Docker Compose
+
+![](assets/img/docker_compose.png)
+
+
+---
+
+# References
+- [Docker slides](https://www.slideteam.net/introduction-to-dockers-and-containers-powerpoint-presentation-slides.html)
+
++++
+
+## Credits
+* Michal Koutenský - for slides preparation 2022/2023
+  
+---
+
+<!-- Has to stay, because otherwise static build would not contain logo resources referenced in CSS theme -->
+![](_reveal-md/img/logo-ics.svg)
++++
+![](_reveal-md/img/logo.png)
