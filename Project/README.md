@@ -195,7 +195,7 @@ Hodnotíme:
 - čistotu kódu
 - validaci vstupů
 - funkčnost testů
-- vyhledávání, filtrování
+- vyhledávání, filtrování (musí být v DB, v UI pouze, kde to dává smysl)
 - veškeré CRUD operace
 
 Doporučujeme (bonusové body):
