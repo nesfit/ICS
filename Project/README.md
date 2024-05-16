@@ -208,4 +208,4 @@ Doporučujeme (bonusové body):
 
 Termíny obhajob budou vyhlášeny v průběhu semestru.
 
-Na obhajobu se dostaví **celý tým**. Z členů týmu bude vybrán jeden, který obhajobu povede. Na obhajobu nevytvářejte žádnou prezentaci! Budete nám muset ukázat, jak funguje váš kód, a že je správně navržen. Připravte se na naše otázky k funkcionalitě jednotlivých tříd a k důvodům jejich členění. Na obhajobu bude mít tým 10-15 minut.
+Na obhajobu se dostaví **celý tým**. Z členů týmu bude vybrán jeden, který obhajobu povede. Na obhajobu nevytvářejte žádnou prezentaci! Budete nám muset ukázat, jak funguje váš kód, a že je správně navržen. Připravte se na naše otázky k funkcionalitě jednotlivých tříd a k důvodům jejich členění. Na obhajobu bude mít tým 10-15 minut. Prezentujete z vlastního zařízení s připojením k projektoru pomocí HDMI, USB-C.
