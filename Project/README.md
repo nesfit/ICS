@@ -165,11 +165,11 @@ Dbejte kvality Vašeho kódu! Opravte si kód odevzdaný v předchozí fázi dle
 Hodnotíme:
 - opravení chyb a zapracování připomínek, které jsme vám dali v rámci hodnocení fáze 1
 - návrh a funkčnost repositářů
-- návrh a funkčnost fasád
+- návrh a funkčnost fasád (včetně filtrování a řazení)
 - čistotu kódu
-- pokrytí aplikace testy - ukážete tím, že repositáře opravdu fungují (tedy testy BL vrstvy)
+- pokrytí aplikace testy - ukážete tím, že abstrakce repositáře/facade opravdu funguje (postačí testy BL vrstvy)
 - *dejte pozor na zapouzdření databázových entit pod vrstvou fasád, která je nepropaguje výše, ale přemapovává na modely/DTO*
-- funkční build v Azure DevOps
+- funkční build v Azure DevOps (nenechejte na poslední chvíli, může být třeba žádost o zpřístupnění CI)
 - výsledek testů v Azure DevOps po buildu
 
 ---
@@ -195,7 +195,7 @@ Hodnotíme:
 - čistotu kódu
 - validaci vstupů
 - funkčnost testů
-- vyhledávání, filtrování
+- vyhledávání, filtrování (musí být v DB, v UI pouze, kde to dává smysl)
 - veškeré CRUD operace
 
 Doporučujeme (bonusové body):
@@ -208,4 +208,4 @@ Doporučujeme (bonusové body):
 
 Termíny obhajob budou vyhlášeny v průběhu semestru.
 
-Na obhajobu se dostaví **celý tým**. Z členů týmu bude vybrán jeden, který obhajobu povede. Na obhajobu nevytvářejte žádnou prezentaci! Budete nám muset ukázat, jak funguje váš kód, a že je správně navržen. Připravte se na naše otázky k funkcionalitě jednotlivých tříd a k důvodům jejich členění. Na obhajobu bude mít tým 10-15 minut.
+Na obhajobu se dostaví **celý tým**. Z členů týmu bude vybrán jeden, který obhajobu povede. Na obhajobu nevytvářejte žádnou prezentaci! Budete nám muset ukázat, jak funguje váš kód, a že je správně navržen. Připravte se na naše otázky k funkcionalitě jednotlivých tříd a k důvodům jejich členění. Na obhajobu bude mít tým 10-15 minut. Prezentujete z vlastního zařízení s připojením k projektoru pomocí HDMI, USB-C.
