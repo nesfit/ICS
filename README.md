@@ -53,7 +53,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 | 26.02. | L03 | Tibor Jašek     | [Představení základních knihovních funkcí (BCL)](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/) - dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/?print-pdf)) |
 | 05.03. | L04 | Jan Pluskal     | [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/?print-pdf))                                                                                                               |
 |        | E03 | Jan Pluskal     | Entity framework                                                                                                                                                                                                                                                                             |
-| 11.03. | P01 |                 | **Odevzdání první fáze projektu**                                                                                                                                                                                                                                                            |
+| 09.03. | P01 |                 | **Odevzdání první fáze projektu**                                                                                                                                                                                                                                                            |
 | 12.03. | L05 | Martin Dybal    | Psaní čistého a udržovatelného kódu                                                                                                                                                                                                                                                          |
 | 19.03. | L06 | Michal Tichý    | Automatizované testování - práce s xUnit, CI                                                                                                                                                                                                                                                 |
 | 26.03. | L07 | Michal Mrnuštík | Návrhový vzor Model-View-ViewModel                                                                                                                                                                                                                                                           |
@@ -132,14 +132,10 @@ winget install JetBrains.ReSharper
 * [Martin Dybal](https://www.linkedin.com/in/martin-dybal)
 * [Roman Jašek](https://www.linkedin.com/in/roman-jasek-16921839)
 * [Tibor Jašek](https://www.linkedin.com/in/tibor-jašek-717a5761)
-* [Michal Mrnuštík](https://www.linkedin.com/in/michal-mrnušt%C3%ADk-31050b60/)
+* [Michal Mrnuštík](https://www.linkedin.com/in/michal-mrnušt%C3%ADk-31050b60/)* 
+* [Matěj Mudra](https://www.linkedin.com/in/matěj-mudra-a874461a9/)
 * [Michal Tichý](mailto:edu@tichymichal.net)
 * [Jan Pluskal](https://www.fit.vut.cz/person/pluskal)
-* [Michal Koutenský](https://www.fit.vut.cz/person/koutenmi)
-* [Daniel Dolejška](https://www.fit.vut.cz/person/dolejska)
-* [Jan Zavřel](https://www.fit.vut.cz/person/izavrel)
-* [Miroslav Šafář](https://www.linkedin.com/in/miroslav-safar/)
-* [Matěj Mudra](https://www.linkedin.com/in/matěj-mudra-a874461a9/)
 
 ---
 
