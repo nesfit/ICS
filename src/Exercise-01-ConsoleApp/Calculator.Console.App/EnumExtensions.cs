@@ -15,6 +15,6 @@ internal static class EnumExtensions
         DescriptionAttribute[] attributes =
             (DescriptionAttribute[])field.GetCustomAttributes(typeof(DescriptionAttribute), false);
 
-        return attributes.Any() ? attributes[0].Description : value.ToString();
+        return attributes.Length != 0 ? attributes[0].Description : value.ToString();
     }
 }

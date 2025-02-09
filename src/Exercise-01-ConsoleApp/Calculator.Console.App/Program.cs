@@ -12,7 +12,7 @@ internal static class Program
 
     internal static void Main(string[]? args)
     {
-        args ??= Array.Empty<string>();
+        args ??= [];
 
         Parser parser = new(with =>
         {

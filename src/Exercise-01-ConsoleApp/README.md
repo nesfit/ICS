@@ -6,9 +6,9 @@
   * PluralSight subscription!
   * [Azure Dev Tools for Teaching - Microsoft](https://azureforeducation.microsoft.com/devtools)
 
-## Install prerequisities [Optional]
+## Install prerequisites [Optional]
 
-* VS 2022 Community 
+* VS 2022 Community
 * Chocolatey?
   * choco install dotnet-sdk -y
   * choco install jetbrainstoolbox -y
@@ -16,7 +16,7 @@
 
 ## Project demonstration
 * Look at the project draft and clarify what is unclear.
-     
+
 ## Azure DevOps
 * [Login](https://dev.azure.com/) - https://dev.azure.com/
 * Create a new organization
@@ -28,11 +28,11 @@
 * Open the new repository in Visual Studio
 * Commit & push & finish the *Initial commit task*.
 
-## Visual Studio 2022 
-* Visual Studio -- Start page 
+## Visual Studio 2022
+* Visual Studio -- Start page
 * Look at the Visual Studio components, VIEW, BUILD, TOOLS, TESTS, RESHARPER ...
   * Editor, Solution Explorer, Team Explorer, Error list, Outputs, ...
-* Demonstrate debugging  -- breakpoint,  windows (watch, locals, breakpoints, call stack, Immediate window), conditional breakpoint, stepping, F5, F10, F11, Shift+F11 
+* Demonstrate debugging  -- breakpoint,  windows (watch, locals, breakpoints, call stack, Immediate window), conditional breakpoint, stepping, F5, F10, F11, Shift+F11
 * Create a simple calculator, use shortcuts and refactorings as much as possible!
 * Do not forget to commit logical, compilable parts!
 
@@ -41,8 +41,8 @@
 * VSCode
 * SourceTree
 
-## Individual Assignment 
-* Create project *CalculatorApp* 
+## Individual Assignment
+* Create project *CalculatorApp*
 * Add *CommandLineParser* lib from NuGet
 * Refactor the application to be modular each class should respect **Single Responsibility Principle**
 * Try to compile with `$ dotnet build /warnaserror`
@@ -50,43 +50,43 @@
 
 ## Shortcuts
 
-### Visual Studio 
-* F1 - help, context help for the selected class 
-* F7 - go to code-behind 
-* F12 - Go to definitions 
+### Visual Studio
+* F1 - help, context help for the selected class
+* F7 - go to code-behind
+* F12 - Go to definitions
 * alt + mouse select - selects multiple rows
 * Alt + Shift + up/down - moves current line up or down
 * Ctrl + C, Ctrl + V, Ctrl + X - copy/past/cut when some text is selected, otherwise the whole line
 * Ctrl + shift + V - Past text from clipboard's history
-* Ctrl + [ + s - Shows Solution Explorer 
+* Ctrl + [ + s - Shows Solution Explorer
 * Ctrl + R,M - Extracts Method
-* Ctrl + Shift + F - Find In Files 
+* Ctrl + Shift + F - Find In Files
 * Ctrl + K,R - Find All References
-* Ctrl + shift + B - Build 
+* Ctrl + shift + B - Build
 * Ctrl + b + n - next tab
 * Ctrl + k + d - code format
 * Ctrl + k + c - comments selected lines
 * Ctrl + k + u - uncomments selected lines
-* Ctrl + m + m - wrap current "region" 
+* Ctrl + m + m - wrap current "region"
 * Ctrl + , - Find in file, class, method names
 * Ctrl + shift + F - Find
-* Ctrl + space - intelisence 
-* Ctrl + shift + space - intelisence in oveloads
+* Ctrl + space - intellisense
+* Ctrl + shift + space - intellisense in oveloads
 
-### Debug 
-* F5 - start to debug 
-* Shift + F5 - stop debug 
-* F10 - Next step 
-* F11 - Next into 
-* Shift + F11 - Step Out 
-* Ctrl + shift + F10 - Set Next Statement 
-* Ctrl + shift + ; - Code map 
+### Debug
+* F5 - start to debug
+* Shift + F5 - stop debug
+* F10 - Next step
+* F11 - Next into
+* Shift + F11 - Step Out
+* Ctrl + shift + F10 - Set Next Statement
+* Ctrl + shift + ; - Code map
 
-### R# 
+### R#
 * Alt + Enter - R#'s universal shortcut
-* Ctrl + w - selects logical code blocks (variable => row => block => methods => region) 
+* Ctrl + w - selects logical code blocks (variable => row => block => methods => region)
 * Ctrl + Shift + W - unselects logical blocks
 * Ctrl + Alt + Shift + up/down - moves method up or down
 * Ctrl + Shift + R - Refactor context menu
-* Ctrl + R,V - Extract Variable   
+* Ctrl + R,V - Extract Variable
 * Ctrl + R,M - Extract Method

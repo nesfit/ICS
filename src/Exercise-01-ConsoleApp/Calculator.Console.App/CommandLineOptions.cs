@@ -1,4 +1,5 @@
-﻿using Calculator.Utils;
+﻿using System.Diagnostics.CodeAnalysis;
+using Calculator.Utils;
 using CommandLine;
 
 namespace Calculator.App;
@@ -7,6 +8,7 @@ namespace Calculator.App;
 ///     CommandLine parser settings
 ///     https://commandline.codeplex.com/
 /// </summary>
+[SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
 internal class CommandLineOptions
 {
     [Option('f', "first", Required = false, HelpText = "The first operand.")]
