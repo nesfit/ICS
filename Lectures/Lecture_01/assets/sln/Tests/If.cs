@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 #pragma warning disable CS0162 // Unreachable code detected
 
 namespace Tests
 {
+    [SuppressMessage("Assertions", "xUnit2020:Do not use always-failing boolean assertions")]
     public class If
     {
         [Fact]
