@@ -27,7 +27,7 @@ enableTitleFooter: true
 
 | Typ       | Místnost             | Čas            |
 | --------- | -------------------- | -------------- |
-| Přednáška | **E112**, E104, E105 | Čt 12:00-13:50 |
+| Přednáška | **E112**, E104, E105 | St 08:00-09:50 |
 
 E104 a E105 bude otevřeno pouze v případě naplnění E112.
 
@@ -38,7 +38,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 
 | Typ                             | Místnost  | Čas            |
 | ------------------------------- | --------- | -------------- |
-| Dobrovolné demonstrační cvičení | **D0207** | Čt 14:00-15:50 |
+| Dobrovolné demonstrační cvičení | **D0206** | Čt 10:00-11:50 |
 
 +++
 
@@ -46,27 +46,27 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 
 | Datum  | Typ | Vyučující       | Téma přednášky                                                                                                                                                                                                                                                                               |
 | ------ | --- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 8.02.  | L01 | Jan Pluskal     | [Úvod do jazyka C# a platformy .NET](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/) - základní syntaxe jazyka ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/?print-pdf))                                                                                |
+| 12.02. | L01 | Jan Pluskal     | [Úvod do jazyka C# a platformy .NET](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/) - základní syntaxe jazyka ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_01/_site/?print-pdf))                                                                                |
 |        | E01 | Jan Pluskal     | Práce s Visual Studio 2022, debugování a Azure DevOps založení projektu (základy pro zracování projektu)                                                                                                                                                                                     |
-| 15.02. | L02 | Jan Pluskal     | [Úvod do Objektově Orientovaného Programování](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/?print-pdf))                                                                                                |
+| 19.02. | L02 | Jan Pluskal     | [Úvod do Objektově Orientovaného Programování](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_02/_site/?print-pdf))                                                                                                |
 |        | E02 | Jan Pluskal     | Objektově orientované programování a úvod do Entity Framework                                                                                                                                                                                                                                |
-| 22.02. | L03 | Tibor Jašek     | [Představení základních knihovních funkcí (BCL)](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/) - dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/?print-pdf)) |
-| 29.02. | L04 | Jan Pluskal     | [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/?print-pdf))                                                                                                               |
+| 26.02. | L03 | Tibor Jašek     | [Představení základních knihovních funkcí (BCL)](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/) - dotazování za pomocí vestavěného nástroje LINQ nad datovými zdroji (kolekcemi, XML, MSSQL) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_03/_site/?print-pdf)) |
+| 05.03. | L04 | Jan Pluskal     | [Propojení aplikace s databází](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/) ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_04/_site/?print-pdf))                                                                                                               |
 |        | E03 | Jan Pluskal     | Entity framework                                                                                                                                                                                                                                                                             |
-| 03.03. | P01 |                 | **Odevzdání první fáze projektu**                                                                                                                                                                                                                                                            |
-| 07.03. | L05 | Martin Dybal    | Psaní čistého a udržovatelného kódu                                                                                                                                                                                                                                                          |
-| 14.03. | L06 | Michal Tichý    | Automatizované testování - práce s xUnit, CI                                                                                                                                                                                                                                                 |
-| 21.03. | L07 | Michal Mrnuštík | Návrhový vzor Model-View-ViewModel                                                                                                                                                                                                                                                           |
-| 28.03. | L08 | Roman Jašek     | MAUI                                                                                                                                                                                                                                                                                         |
+| 09.03. | P01 |                 | **Odevzdání první fáze projektu**                                                                                                                                                                                                                                                            |
+| 12.03. | L05 | Martin Dybal    | Psaní čistého a udržovatelného kódu                                                                                                                                                                                                                                                          |
+| 19.03. | L06 | Michal Tichý    | Automatizované testování - práce s xUnit, CI                                                                                                                                                                                                                                                 |
+| 26.03. | L07 | Michal Mrnuštík | Návrhový vzor Model-View-ViewModel                                                                                                                                                                                                                                                           |
+| 02.04. | L08 | Roman Jašek     | MAUI                                                                                                                                                                                                                                                                                         |
 |        | E04 | Roman Jašek     | MAUI                                                                                                                                                                                                                                                                                         |
-| 04.04. | L09 | Roman Jašek     | MAUI                                                                                                                                                                                                                                                                                         |
+| 09.04. | L09 | Roman Jašek     | MAUI                                                                                                                                                                                                                                                                                         |
 |        | E05 | Roman Jašek     | MAUI                                                                                                                                                                                                                                                                                         |
-| 07.04. | P02 |                 | **Odevzdání druhé fáze projektu**                                                                                                                                                                                                                                                            |
-| 11.04. | L10 | Jan Pluskal     | [Paralelní a asynchronní programování](https://nesfit.github.io/ICS/Lectures/Lecture_10/_site/) - proces, vlákno, úloha z pohledu C# a použitého .NET frameworku ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_10/_site/?print-pdf))                                       |
-| 18.04. | L11 | Roman Jašek     | Napojení aplikace na API server                                                                                                                                                                                                                                                              |
+| 13.04. | P02 |                 | **Odevzdání druhé fáze projektu**                                                                                                                                                                                                                                                            |
+| 16.04. | L10 | Jan Pluskal     | [Paralelní a asynchronní programování](https://nesfit.github.io/ICS/Lectures/Lecture_10/_site/) - proces, vlákno, úloha z pohledu C# a použitého .NET frameworku                                                                                                                             |
+| 23.04. | L11 | Roman Jašek     | Napojení aplikace na API server                                                                                                                                                                                                                                                              |
 |        | E06 | Jan Pluskal     | Takto můžete napsat projekt?!                                                                                                                                                                                                                                                                |
-| 25.04. | L12 | Jan Pluskal     | [Multiplatformní programování](https://nesfit.github.io/ICS/Lectures/Lecture_12/_site/) - .NET Standard, .NET Core., .NET, kontejnerizace a deployment aplikací ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_12/_site/?print-pdf))                                        |
-| 02.05. | L13 | Martin Dybal    | Návrhové vzory - vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#                                                                                                                                                                                                          |
+| 30.05. | L12 | Jan Pluskal     | [Multiplatformní programování](https://nesfit.github.io/ICS/Lectures/Lecture_13/_site/) - .NET Standard, .NET Core., .NET, kontejnerizace a deployment aplikací ([verze pro tisk](https://nesfit.github.io/ICS/Lectures/Lecture_10/_site/?print-pdf))                                        |
+| 07.05. | L13 | Martin Dybal    | Návrhové vzory - vytvářecí, strukturní a chování - Gang of Four (GoF) v kontextu C#                                                                                                                                                                                                          |
 | Dle IS | P03 |                 | **Obhajoby projektu**                                                                                                                                                                                                                                                                        |
 
 LXY - přednáška | EXY - democvičení | P0X - projekt
@@ -132,14 +132,10 @@ winget install JetBrains.ReSharper
 * [Martin Dybal](https://www.linkedin.com/in/martin-dybal)
 * [Roman Jašek](https://www.linkedin.com/in/roman-jasek-16921839)
 * [Tibor Jašek](https://www.linkedin.com/in/tibor-jašek-717a5761)
-* [Michal Mrnuštík](https://www.linkedin.com/in/michal-mrnušt%C3%ADk-31050b60/)
+* [Michal Mrnuštík](https://www.linkedin.com/in/michal-mrnušt%C3%ADk-31050b60/)* 
+* [Matěj Mudra](https://www.linkedin.com/in/matěj-mudra-a874461a9/)
 * [Michal Tichý](mailto:edu@tichymichal.net)
 * [Jan Pluskal](https://www.fit.vut.cz/person/pluskal)
-* [Michal Koutenský](https://www.fit.vut.cz/person/koutenmi)
-* [Daniel Dolejška](https://www.fit.vut.cz/person/dolejska)
-* [Jan Zavřel](https://www.fit.vut.cz/person/izavrel)
-* [Miroslav Šafář](https://www.linkedin.com/in/miroslav-safar/)
-* [Matěj Mudra](https://www.linkedin.com/in/matěj-mudra-a874461a9/)
 
 ---
 
