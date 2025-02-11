@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection.Emit;
-using Xunit;
+﻿using Xunit;
 
 namespace Tests
 {
