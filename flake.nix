@@ -1,26 +1,92 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs-reveal-md.url = "github:NixOS/nixpkgs/nixos-24.05";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    haumea = {
+      url = "github:nix-community/haumea";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    flake-utils,
-  }:
-    flake-utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
-        devShell = pkgs.mkShell {
-          nativeBuildInputs = [
-            pkgs.dotnetCorePackages.dotnet_8.sdk
-            pkgs.reveal-md
-            pkgs.nodePackages.mermaid-cli
-            pkgs.nodejs
-          ];
+  outputs =
+    inputs:
+    let
+      inherit (inputs.nixpkgs) lib;
+      h = inputs.haumea.lib;
+    in
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        inputs.treefmt-nix.flakeModule
+      ];
+
+      systems = [
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
+
+      ### Per-System
+      perSystem =
+        {
+          self',
+          inputs',
+          pkgs,
+          config,
+          system,
+          ...
+        }:
+        {
+          _module.args = {
+            pkgs = import inputs.nixpkgs {
+              inherit system;
+              config.allowUnfree = true;
+            };
+          };
+
+          devShells = h.load {
+            src = ./nix/devShells;
+            inputs = {
+              inherit
+                pkgs
+                self'
+                inputs'
+                inputs
+                ;
+            };
+          };
+          treefmt = {
+            projectRootFile = "flake.nix";
+            programs.nixfmt.enable = true;
+          };
         };
-      }
-    );
+    };
+
+  # outputs = {
+  #   self,
+  #   nixpkgs,
+  #   flake-utils,
+  # }:
+  #   flake-utils.lib.eachDefaultSystem (
+  #     system: let
+  #       pkgs = nixpkgs.legacyPackages.${system};
+  #       pkgs-reveal-md = self.inputs.nixpkgs-reveal-md.legacyPackages.${system};
+  #     in {
+  #       devShell = pkgs.mkShell {
+  #         nativeBuildInputs = with pkgs; [
+  #           dotnetCorePackages.dotnet_8.sdk
+  #           nodePackages.mermaid-cli
+  #           nodejs
+  #           http-server
+  #           pkgs-reveal-md.reveal-md
+  #         ];
+  #       };
+  #     }
+  #   );
 }
