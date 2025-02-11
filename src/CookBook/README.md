@@ -21,7 +21,7 @@ dotnet workload install maui # or dotnet workload restore
 - Visual Studio 2022 + Resharper
 ```
 winget install Microsoft.VisualStudio.2022.Community --override "--add Microsoft.VisualStudio.Workload.NetCrossPlat --add Microsoft.VisualStudio.Workload.Data --add Microsoft.VisualStudio.Workload.ManagedDesktop Microsoft.VisualStudio.ComponentGroup.WindowsAppSDK.Cs"
-winget install JetBrains.ReSharper #https://www.jetbrains.com/community/education/#students
+winget install JetBrains.Toolbox #https://www.jetbrains.com/community/education/#students
 ```
 
 - Rider

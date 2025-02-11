@@ -474,6 +474,7 @@ The commit contains the following structural elements, to communicate intent to 
 +++
 ## Literals
 * Data inserted in a code
+
 ```C#
 var hitchhikerConstant = 42;
 var helloWorld = "Hello World";
@@ -639,11 +640,13 @@ Using specific character as a suffix
 * 8 and 16 bits types do not have arithmetical operations
   * E.g., `byte, sbyte, short, ushort`
   * Compiler does implicitly cast to a large type `int, uint`
+
 ```C#
 short x = 1, y = 1;
 short z = x + y;    // Compile-time error
 ```
   * Solution is to do an explicit cast
+
 ```C#
 short x = 1, y = 1;
 short z = (short)(x + y); // OK
@@ -652,12 +655,14 @@ short z = (short)(x + y); // OK
 +++
 ### Numerical Overflow
 * Overflow of integral types
+
 ```C#
 int a = int.MinValue;
 a--;
 Console.WriteLine(a == int.MaxValue); // True
 ```
 * Usage of `checked` keyword or compiler option **/checked+**
+
 ```C#
 int a = int.MinValue;
 var i = checked(a--); // throw OverflowException
@@ -1605,19 +1610,35 @@ _Article_ [_originally published on the NDepend blog_](https://blog.ndepend.com/
 
 ## C# version 8.0
 
-[What's new in C# 8.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8)
+[What's new in C# 8.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8) - .NET Core 3.0.
 
 ---
 
 ## C# version 9.0
 
-[What's new in C# 9.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9)
+[What's new in C# 9.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9) - .NET 5
 
 ---
 
 ## C# version 10.0
 
-[What's new in C# 10.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10)
+[What's new in C# 10.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10) - .NET 6
+---
+
+## C# version 11.0
+
+[What's new in C# 11.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11) - .NET 7
+---
+
+## C# version 12.0
+
+[What's new in C# 12.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12) - .NET 8
+---
+
+## C# version 13.0
+
+[What's new in C# 13.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13) - .NET 9
+
 
 ---
 
