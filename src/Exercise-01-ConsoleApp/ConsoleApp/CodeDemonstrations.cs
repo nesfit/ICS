@@ -21,7 +21,7 @@ internal static class CodeDemonstrations
     /// <summary>
     ///     Runs for loop, note: has to be static if we want to call it from Main.
     /// </summary>
-    public static void RunForLoop()
+    private static void RunForLoop()
     {
         for (int i = 0; i < 10; i++)
         {
@@ -32,7 +32,7 @@ internal static class CodeDemonstrations
     /// <summary>
     ///     Runs while loop, note: has to be static if we want to call it from Main.
     /// </summary>
-    public static void RunWhileLoop()
+    private static void RunWhileLoop()
     {
         int index = 0;
 
@@ -46,7 +46,7 @@ internal static class CodeDemonstrations
     /// <summary>
     ///     Shows if branching, note: has to be static if we want to call it from Main.
     /// </summary>
-    public static void ShowIf(int condition)
+    private static void ShowIf(int condition)
     {
         // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
         if (condition > 3)
@@ -64,7 +64,7 @@ internal static class CodeDemonstrations
     ///     mathematical assembly implemented by students themselves.
     ///     Writes the result to console.
     /// </summary>
-    public static void Calculate()
+    private static void Calculate()
     {
         const int operand1 = 1;
         const int operand2 = 2;
@@ -75,7 +75,7 @@ internal static class CodeDemonstrations
     /// <summary>
     ///     Gets input from keyboard, note: has to be static if we want to call it from Main.
     /// </summary>
-    public static void GetInput()
+    private static void GetInput()
     {
         try
         {

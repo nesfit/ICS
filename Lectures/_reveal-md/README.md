@@ -38,6 +38,12 @@ reveal-md Lecture.md --static _site --static-dirs=assets
 ## Preview exported static content
 
 ```
+http-server _site/
+```
+
+or
+
+```
 # docker stop ICS-Lecture-nginx; docker rm ICS-Lecture-nginx
 docker run --name ICS-Lecture-nginx -p 80:80 -d nginx
 docker cp _site ICS-Lecture-nginx:/usr/share/nginx/html

@@ -45,7 +45,7 @@ public static class DeepAssert
 
             if (!collection.Any(item => compareLogic.Compare(expected!, item).AreEqual))
             {
-                throw ContainsException.ForCollectionItemNotFound(expected.ToString(), nameof(collection));
+                throw ContainsException.ForCollectionItemNotFound(expected!.ToString()!, nameof(collection));
             }
         }
 }

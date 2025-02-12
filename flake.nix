@@ -1,58 +1,92 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-reveal-md.url = "github:NixOS/nixpkgs/nixos-24.05";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    haumea = {
+      url = "github:nix-community/haumea";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-unstable,
-    flake-utils,
-  }:
-    flake-utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-        dotnet-combined =
-          (with pkgs.dotnetCorePackages;
-            combinePackages [
-              sdk_8_0
-            ])
-          .overrideAttrs (finalAttrs: previousAttrs: {
-            # This is needed to install workload in $HOME
-            # https://discourse.nixos.org/t/dotnet-maui-workload/20370/2
+  outputs =
+    inputs:
+    let
+      inherit (inputs.nixpkgs) lib;
+      h = inputs.haumea.lib;
+    in
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        inputs.treefmt-nix.flakeModule
+      ];
 
-            # postBuild =
-            #   (previousAttrs.postBuild or '''')
-            #   + ''
+      systems = [
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
 
-            #     for i in $out/sdk/*
-            #     do
-            #       i=$(basename $i)
-            #       mkdir -p $out/metadata/workloads/''${i/-*}
-            #       touch $out/metadata/workloads/''${i/-*}/userlocal
-            #     done
-            #   '';
+      ### Per-System
+      perSystem =
+        {
+          self',
+          inputs',
+          pkgs,
+          config,
+          system,
+          ...
+        }:
+        {
+          _module.args = {
+            pkgs = import inputs.nixpkgs {
+              inherit system;
+              config.allowUnfree = true;
+            };
+          };
 
-            #   postInstall = (previousAttrs.postBuild or '''')
-            #   + ''
-            #     if [ ! -w "$HOME" ]; then
-            #       export HOME=$(mktemp -d) # Dotnet expects a writable home directory for its configuration files
-            #     fi
-            #     $out/bin/dotnet workload install maui
-            #   '';
-          });
-      in {
-        devShell = pkgs.mkShell {
-          nativeBuildInputs = [
-            dotnet-combined
-            pkgs.reveal-md
-            pkgs.nodePackages.mermaid-cli
-            pkgs.nodejs_21
-          ];
-          buildInputs = [];
+          devShells = h.load {
+            src = ./nix/devShells;
+            inputs = {
+              inherit
+                pkgs
+                self'
+                inputs'
+                inputs
+                ;
+            };
+          };
+          treefmt = {
+            projectRootFile = "flake.nix";
+            programs.nixfmt.enable = true;
+          };
         };
-      }
-    );
+    };
+
+  # outputs = {
+  #   self,
+  #   nixpkgs,
+  #   flake-utils,
+  # }:
+  #   flake-utils.lib.eachDefaultSystem (
+  #     system: let
+  #       pkgs = nixpkgs.legacyPackages.${system};
+  #       pkgs-reveal-md = self.inputs.nixpkgs-reveal-md.legacyPackages.${system};
+  #     in {
+  #       devShell = pkgs.mkShell {
+  #         nativeBuildInputs = with pkgs; [
+  #           dotnetCorePackages.dotnet_8.sdk
+  #           nodePackages.mermaid-cli
+  #           nodejs
+  #           http-server
+  #           pkgs-reveal-md.reveal-md
+  #         ];
+  #       };
+  #     }
+  #   );
 }
