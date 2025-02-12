@@ -38,7 +38,7 @@ Cvičení jsou demonstrační. Pokud možno, přineste si vlastní zařízení, 
 
 | Typ                             | Místnost  | Čas            |
 | ------------------------------- | --------- | -------------- |
-| Dobrovolné demonstrační cvičení | **D0206** | Čt 10:00-11:50 |
+| Dobrovolné demonstrační cvičení | **D0206** | St 10:00-11:50 |
 
 +++
 
