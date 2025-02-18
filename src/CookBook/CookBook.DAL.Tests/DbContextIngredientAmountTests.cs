@@ -44,7 +44,9 @@ public class DbContextIngredientAmountTests(ITestOutputHelper output) : DbContex
             baseEntity with
             {
                 Amount = baseEntity.Amount + 1,
-                Unit = Unit.None
+                Unit = Unit.None,
+                Recipe = null!,
+                Ingredient = null!
             };
 
         //Act

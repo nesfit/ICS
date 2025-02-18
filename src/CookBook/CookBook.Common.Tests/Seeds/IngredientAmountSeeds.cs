@@ -43,13 +43,14 @@ public static class IngredientAmountSeeds
     public static readonly IngredientAmountEntity IngredientAmountEntityUpdate = IngredientAmountEntity1 with { Id = Guid.Parse("A2E6849D-A158-4436-980C-7FC26B60C674"), Ingredient = null!, Recipe = null!, RecipeId = RecipeSeeds.RecipeForIngredientAmountEntityUpdate.Id};
     public static readonly IngredientAmountEntity IngredientAmountEntityDelete = IngredientAmountEntity1 with { Id = Guid.Parse("30872EFF-CED4-4F2B-89DB-0EE83A74D279"), Ingredient = null!, Recipe = null!, RecipeId = RecipeSeeds.RecipeForIngredientAmountEntityDelete.Id };
 
-    public static void Seed(this ModelBuilder modelBuilder)
+    public static DbContext SeedIngredientAmounts(this DbContext dbx)
     {
-        modelBuilder.Entity<IngredientAmountEntity>().HasData(
-            IngredientAmountEntity1 with { Recipe = null!, Ingredient = null! },
-            IngredientAmountEntity2 with { Recipe = null!, Ingredient = null! },
+        dbx.Set<IngredientAmountEntity>().AddRange(
+            IngredientAmountEntity1,
+            IngredientAmountEntity2,
             IngredientAmountEntityUpdate,
             IngredientAmountEntityDelete
         );
+        return dbx;
     }
 }

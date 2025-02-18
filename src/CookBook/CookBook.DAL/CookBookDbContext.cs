@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.DAL;
 
-public class CookBookDbContext(DbContextOptions contextOptions, bool seedDemoData = false) : DbContext(contextOptions)
+public class CookBookDbContext(DbContextOptions contextOptions) : DbContext(contextOptions)
 {
     public DbSet<IngredientAmountEntity> IngredientAmountEntities => Set<IngredientAmountEntity>();
     public DbSet<RecipeEntity> Recipes => Set<RecipeEntity>();
@@ -23,12 +23,5 @@ public class CookBookDbContext(DbContextOptions contextOptions, bool seedDemoDat
             .HasMany<IngredientAmountEntity>()
             .WithOne(i => i.Ingredient)
             .OnDelete(DeleteBehavior.Restrict);
-
-        if (seedDemoData)
-        {
-            IngredientSeeds.Seed(modelBuilder);
-            RecipeSeeds.Seed(modelBuilder);
-            IngredientAmountSeeds.Seed(modelBuilder);
-        }
     }
 }

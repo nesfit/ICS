@@ -6,6 +6,7 @@ using System.Reflection;
 using CookBook.DAL;
 using CookBook.DAL.Migrator;
 using CookBook.DAL.Options;
+using CookBook.DAL.Seeds;
 
 [assembly:System.Resources.NeutralResourcesLanguage("en")]
 namespace CookBook.App;
@@ -33,6 +34,7 @@ public static class MauiProgram
         var app = builder.Build();
 
         MigrateDb(app.Services.GetRequiredService<IDbMigrator>());
+        SeedDb(app.Services.GetRequiredService<IDbSeeder>());
         RegisterRouting(app.Services.GetRequiredService<INavigationService>());
 
         return app;
@@ -73,4 +75,5 @@ public static class MauiProgram
     }
 
     private static void MigrateDb(IDbMigrator migrator) => migrator.Migrate();
+    private static void SeedDb(IDbSeeder dbSeeder) => dbSeeder.Seed();
 }

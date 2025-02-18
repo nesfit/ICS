@@ -2,6 +2,7 @@
 using CookBook.DAL.Mappers;
 using CookBook.DAL.Migrator;
 using CookBook.DAL.Options;
+using CookBook.DAL.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,9 +28,9 @@ public static class DALInstaller
             throw new InvalidOperationException($"{nameof(options.DatabaseName)} is not set");
         }
 
-        services.AddSingleton<IDbContextFactory<CookBookDbContext>>(_ =>
-            new DbContextSqLiteFactory(options.DatabaseFilePath, options?.SeedDemoData ?? false));
+        services.AddSingleton<IDbContextFactory<CookBookDbContext>>(_ => new DbContextSqLiteFactory(options.DatabaseFilePath));
         services.AddSingleton<IDbMigrator, DbMigrator>();
+        services.AddSingleton<IDbSeeder, DbSeeder>();
 
         services.AddSingleton<IngredientEntityMapper>();
         services.AddSingleton<IngredientAmountEntityMapper>();

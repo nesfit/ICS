@@ -23,8 +23,12 @@ public static class RecipeSeeds
         LemonadeRecipe.Ingredients.Add(IngredientAmountSeeds.LemonadeWater);
     }
 
-    public static void Seed(this ModelBuilder modelBuilder) =>
-        modelBuilder.Entity<RecipeEntity>().HasData(
-            LemonadeRecipe with { Ingredients = Array.Empty<IngredientAmountEntity>() }
+    public static DbContext SeedRecipes(this DbContext dbx)
+    {
+        dbx.Set<RecipeEntity>().AddRange(
+            LemonadeRecipe with { Ingredients = new List<IngredientAmountEntity>() }
         );
+
+        return dbx;
+    }
 }

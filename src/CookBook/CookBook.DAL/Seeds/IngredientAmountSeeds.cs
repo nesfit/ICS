@@ -28,9 +28,13 @@ public static class IngredientAmountSeeds
         Ingredient = IngredientSeeds.Water
     };
 
-    public static void Seed(this ModelBuilder modelBuilder) =>
-        modelBuilder.Entity<IngredientAmountEntity>().HasData(
+    public static DbContext SeedIngredientAmounts(this DbContext dbx)
+    {
+        dbx.Set<IngredientAmountEntity>().AddRange(
             LemonadeLemon with { Recipe = null!, Ingredient = null! },
             LemonadeWater with { Recipe = null!, Ingredient = null! }
         );
+
+        return dbx;
+    }
 }

@@ -12,7 +12,7 @@ public static class IngredientSeeds
         Description = default!,
         ImageUrl = default!
     };
-    
+
     public static readonly IngredientEntity Water = new()
     {
         Id = Guid.Parse(input: "06a8a2cf-ea03-4095-a3e4-aa0291fe9c75"),
@@ -41,13 +41,10 @@ public static class IngredientSeeds
         ImageUrl = null
     };
 
-    public static void Seed(this ModelBuilder modelBuilder)
+    public static DbContext SeedIngredients(this DbContext dbx)
     {
-        modelBuilder.Entity<IngredientEntity>().HasData(
-            IngredientEntity1,
-            IngredientEntity2,
-            Water,
-            WaterUpdate,
-            WaterDelete);
+        dbx.Set<IngredientEntity>()
+            .AddRange(IngredientEntity1, IngredientEntity2, Water, WaterUpdate, WaterDelete);
+        return dbx;
     }
 }

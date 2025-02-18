@@ -1,7 +1,8 @@
 using CookBook.BL.Mappers;
 using CookBook.Common.Tests;
-using CookBook.Common.Tests.Factories;
+using CookBook.Common.Tests.Seeds;
 using CookBook.DAL;
+using CookBook.DAL.Factories;
 using CookBook.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
@@ -16,9 +17,7 @@ public class FacadeTestsBase : IAsyncLifetime
         XUnitTestOutputConverter converter = new(output);
         Console.SetOut(converter);
 
-        // DbContextFactory = new DbContextTestingInMemoryFactory(GetType().Name, seedTestingData: true);
-        // DbContextFactory = new DbContextLocalDBTestingFactory(GetType().FullName!, seedTestingData: true);
-        DbContextFactory = new DbContextSqLiteTestingFactory(GetType().FullName!, seedTestingData: true);
+        DbContextFactory = new DbContextSqLiteFactory(GetType().FullName!);
 
         IngredientModelMapper = new IngredientModelMapper();
         IngredientAmountModelMapper = new IngredientAmountModelMapper();
@@ -39,6 +38,11 @@ public class FacadeTestsBase : IAsyncLifetime
         await using var dbx = await DbContextFactory.CreateDbContextAsync();
         await dbx.Database.EnsureDeletedAsync();
         await dbx.Database.EnsureCreatedAsync();
+
+        dbx.SeedIngredients()
+            .SeedRecipes()
+            .SeedIngredientAmounts();
+        await dbx.SaveChangesAsync();
     }
 
     public async Task DisposeAsync()
