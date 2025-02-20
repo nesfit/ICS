@@ -12,11 +12,13 @@ Pokud Vám přijde, že v zadání chybí nějaká funkcionalita, neváhejte ji 
 
 <!-- Project specific -->
 # Téma projektu
-Tématem letošního projektu je vytvoření "Správce osobních multimédií".
+Tématem letošního projektu je vytvoření "Správce playlistů multimédií".
 
 Vytváříte aplikaci, která je schopna uchovávat informace o multimediálních souborech (hudba, video, audiobook), dle Vaší volby, tedy může to být jen jeden typ souboru, nebo všechny. Uživatel si je schopen zobrazit jaká multimédia má k dispozici, vytvořit si playlisty.
 
-Jako rozšíření můžete implementovat [přehrávání daných multimédií](https://devblogs.microsoft.com/dotnet/announcing-dotnet-maui-communitytoolkit-mediaelement/).
+> :info: Zadání zvažuje pouze práci s metadaty, ne soubory samotnými. Pokud se rozhodnete pracovat se soubory, budeme to považovat za rozšíření. Doporučujeme nepracovat se soubory jako takovými, ale pouze URL na soubory, které jsou volně na internetu k dispozici. Pokud se rozhodnete pracovat se soubory samotnými, nebudeme bodově penalizovat chyby, které nespadají do vyučovaného rozsahu předmětu. Dostanete pouze zpětnou vazbu k implementaci funkcionality nad rámce řešení.
+
+> Jako rozšíření můžete implementovat [přehrávání daných multimédií](https://devblogs.microsoft.com/dotnet/announcing-dotnet-maui-communitytoolkit-mediaelement/).
 
 ---
 
