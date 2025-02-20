@@ -67,7 +67,7 @@ Pro uložení dat zvolte [SQLite](https://www.sqlite.org/index.html). Jako ORM f
   - V aplikaci se dá **filtrovat** dle všech položek, které dávají smysl v kontextu aplikace.
   - V aplikaci se dá **vyhledávat** dle všech položek, které dávají smysl v kontextu aplikace.
   - V aplikaci se dá **řadit** v listových pohledech dle všech položek, které dávají smysl v kontextu aplikace.
-  - Operace **filtrace, vyhledávání, řazení probíhají v databázi**. Aplikace si **nesmí** stáhnout všechna data / DB tabulku do paměti a provádět tyto operace nad objektama v paměti.
+  - Operace **filtrace, vyhledávání, řazení probíhají v databázi**. Aplikace si **nesmí** stáhnout všechna data / DB tabulku do paměti a provádět tyto operace nad objekty v paměti.
  
 ---
 ## Architektura projektu
