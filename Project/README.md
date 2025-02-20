@@ -1,8 +1,5 @@
 # ICS projekt
 
-> :warning: **Varování**  
-> Zadání je z minulého roku, finální podoba bude zveřejněna po druhém týdnu semestru.
-
 ## Důležité upozornění
 Pro hodnocení projektu 49+ body je nutné dokončit všechny fáze a projekt úspěšně obhájit. Každá fáze projektu musí být hodnocena minimálně 1b. Při obhajobě projektu je vyžadována demonstrace **základní funkcionality**, jinak je obhajoba hodnocena 0b.
 
@@ -15,7 +12,11 @@ Pokud Vám přijde, že v zadání chybí nějaká funkcionalita, neváhejte ji 
 
 <!-- Project specific -->
 # Téma projektu
-Tématem letošního projektu je vytvoření "školního informačního systému".
+Tématem letošního projektu je vytvoření "Správce osobních multimédií".
+
+Vytváříte aplikaci, která je schopna uchovávat informace o multimediálních souborech (hudba, video, audiobook), dle Vaší volby, tedy může to být jen jeden typ souboru, nebo všechny. Uživatel si je schopen zobrazit jaká multimédia má k dispozici, vytvořit si playlisty.
+
+Jako rozšíření můžete implementovat [přehrávání daných multimédií](https://devblogs.microsoft.com/dotnet/announcing-dotnet-maui-communitytoolkit-mediaelement/).
 
 ---
 
@@ -23,34 +24,30 @@ Tématem letošního projektu je vytvoření "školního informačního systému
 ## Data
 V rámci dat, se kterými se bude pracovat budeme požadovat minimálně následující data.
 
-### Student
-- Jméno
-- Příjmení
-- Fotografie (postačí url)
-- (Předměty)
+Zamyslete se, zdali je třeba všechny informace ukládat do databáze a nebo něktré můžete dopočítat během dotazování.
 
-### Aktivita (cvičení, zkouška)
-- Začátek (datum, čas)
-- Konec (datum, čas)
-- Místnost (postačí enum, nebo uživatelem definovaná hodnota)
-- Typ / tag aktivity (postačí enum, nebo uživatelem definovaná hodnota)
-- Popis aktivity
-- (Předmět)
-- (Hodnocení)
-  
-### Předmět
+### Multimediální soubor
 - Název
-- Zkratka
-- (Aktivity)
-- (Studenti)
+- Popis
+- Velikost
+- Délka
+- Autor (pokud dává smysl v tématu Vaší aplikace)
+- Kategorie (pokud dává smysl v tématu Vaší aplikace)
+- (Playlisty)
 
-### Hodnocení
-- Body
-- Poznámka
-- (Aktivita)
-- (Student)
+### Playlist
+- Název
+- Popis
+- Počet obsažených multimédií
+- Celková délka obsažených multimédií
+- (Multimédia)
 
-> () anotují vazby mezi entitami
+
+> () anotují možné/doporučené vazby mezi entitami
+
+---
+
+Další možné datové entity: uživatel, autor, metadata multimédií... 
 
 ---
 ## Základní funkcionalita
@@ -65,13 +62,16 @@ Pro uložení dat zvolte [SQLite](https://www.sqlite.org/index.html). Jako ORM f
 <!-- Project specific -->
 *Minimální* funkcionalita:
   - **Aplikace musí umožnit provést CRUD operace nad všemi daty.**
-  - Uživatel může **filtrovat** aktivity podle začátku a konce ve zvoleném předmětu.
-  - Uživatel může vyhledávat předměty, studenty.
-  - Uživatel může řadit v listových pohledech dle všech položek, kde to dává logický smysl (jméno, body, zkratka předmětu, ...).
+  - Uživatel může **filtrovat** dle všech položek, které dávají smysl v kontextu aplikace.
+  - Uživatel může **vyhledávat** dle všech položek, které dávají smysl v kontextu aplikace.
+  - Uživatel může **řadit** v listových pohledech dle všech položek, které dávají smysl v kontextu aplikace.
+  - Operace **filtrace, vyhledávání, řazení probíhají v databázi**. Aplikace si **nesmí** stáhnout všechna data / DB tabulku do paměti a provádět operace nad ní.
  
 ---
 ## Architektura projektu
-Architektura aplikace je jeden z důležitých stavebních kamenů při vývoji SW. V rámci cvičení se seznámíte s vrstvenou architekturou demonstrující logickou separaci tříd do projektů (alespoň App, BL, DAL), kterou vřele doporučujeme využít i ve Vašich projektech (klidně 1:1). 
+Architektura aplikace je jeden z důležitých stavebních kamenů při vývoji SW. V rámci cvičení se seznámíte s vrstvenou architekturou demonstrující logickou separaci tříd do projektů (alespoň App, BL, DAL), kterou vřele doporučujeme využít i ve Vašich projektech (klidně 1:1).
+
+> :warning: Pokud by měl někdo zájem využít jinou architekturu, nepř. CleanArchitecture (bonus body), tak je vhodné [předem konzultovat](pluskal@vut.cz).
 
 V případě, kdy se rozhodnete použít jinou architekturu a rozdělení tříd do projektů musíte být schopni své rozhodnutí odůvodnit a flexibilně reagovat na dotazy při obhajobě.
 
@@ -81,23 +81,21 @@ V případě, kdy se rozhodnete použít jinou architekturu a rozdělení tříd
 
 ---
 ## Správa projektu - Azure DevOps
-Při řešení projektu využijte Azure DevOps a GIT na sdílení kódu. Do svého projektu přidělte přístup vyučujícím (způsob bude vysvětlen v rámci 1. cvičení); tj. do Vašeho týmového projektu si v části Members přidejte účet **uciteliw5@vutbr.cz**.
+Při řešení projektu využijte Azure DevOps a GIT na sdílení kódu. Do svého projektu přidělte přístup vyučujícím (viz E01); tj. do Vašeho týmového projektu si v části Members přidejte účet **uciteliw5@vutbr.cz**.
 
 Účet **uciteliw5@vutbr.cz** budou používat vyučující pro přístup k odevzdávaným souborům. Bez přidání tohoto účtu není možné přistoupit k vašemu projektu, a tedy není možné jej ze strany vyučujících hodnotit.
 
 Účet **uciteliw5@vutbr.cz** přidejte jako poslední a ověřte, že má nastavena oprávnění na **Stakeholder**. V opačném případě jeden ze členů týmu nebude vidět zdrojový kód. Azure DevOps umožňuje v bezplatné verzi pouze 5 aktivních vývojářů.
 
-> :warning: **Je bezpodmínečně nutné**, abyste přidali účet **uciteliw5@vutbr.cz** do **Project Collection Administrator** v nastavení organizace - *https://dev.azure.com/ics-2024-xlogin00/_settings/groups*. Toto nastavení nám umožní během opravování projektu jednomu členu Vašeho týmu změnit **access level** z **Basic** na **Stakeholder** a dočasně tak přiřadit úroveň **Basic** našemu účtu **uciteliw5@vutbr.cz**. Po skončení opravování Vám nastavení uvedeme do původního stavu. Pokud by se tak nestalo, neváhejte si nastavení změnit sami. **Základní práce s Azure DevOps byla vysvětlena na prvním cvičení**.
-
-Bez této změny bychom neměli přístup k vašemu kódu a nemohli bychom jej hodnotit. Tato změna se provede v nastavení organizace https://dev.azure.com/ics-2024-xlogin00/_settings/users.
+> :warning: **Je bezpodmínečně nutné**, abyste přidali účet **uciteliw5@vutbr.cz** do **Project Collection Administrator** v nastavení organizace - *https://dev.azure.com/ics-2025-xlogin00/_settings/groups*. Toto nastavení nám umožní během opravování projektu jednomu členu Vašeho týmu změnit **access level** z **Basic** na **Stakeholder** a dočasně tak přiřadit úroveň **Basic** našemu účtu **uciteliw5@vutbr.cz**. Po skončení opravování Vám nastavení uvedeme do původního stavu. Pokud by se tak nestalo, neváhejte si nastavení změnit sami. **Základní práce s Azure DevOps byla vysvětlena na prvním cvičení (E01)**.
 
 Návod na přidání člena projektu můžete najít zde: *https://docs.microsoft.com/en-us/vsts/accounts/add-team-members-vs*
 
 Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*. Pokud uvidíme, že existuje malé množství nelogických a nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a může to vést na snížení bodového hodnocení. Doporučujeme použít [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
-Výrazně doporučujeme používat mechanismu **pull-request**ů a dělat si vzájemně review kódu, který následně mergnete do master nebo main větve. Projekt vypracováváte jako tým a nesete tak **kolektivní odpovědnost** za kvalitu kódu, proto je dobré, aby kód před začleněním vidělo více párů očí a vzájemně jste si jej připomínkovali. 
+Výrazně doporučujeme používat mechanismu **pull-request**ů ["GIT Branching strategy"](https://medium.com/@sreekanth.thummala/choosing-the-right-git-branching-strategy-a-comparative-analysis-f5e635443423) a dělat si vzájemně review kódu, který následně mergnete do master nebo main větve. Projekt vypracováváte jako tým a nesete tak **kolektivní odpovědnost** za kvalitu kódu, proto je dobré, aby kód před začleněním vidělo více párů očí a vzájemně jste si jej připomínkovali. 
 
-Organizaci pojmenujte **ics-2024-xlogin00** dle pojmenování týmu v IS (login zakladatele) a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/ics-2024-xlogin00/project. Nezapomeňte nastavit **Work item process** template na **Scrum** nebo **Basic**.
+Organizaci pojmenujte **ics-2025-xlogin00** dle pojmenování týmu v IS (login zakladatele) a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/ics-2025-xlogin00/project. Nezapomeňte nastavit **Work item process** template na **Scrum** nebo **Basic** (pokud to UI nabízí).
 
 Využijte možnost automatizovaných buildů spojených s otestováním Vámi provedených změn. Nastavte **Pipelines->Builds** tak, že při pushnutí do libovolné větve projektu se provede *build a spustí se veškeré přítomné testy*. Více informací na [Automate all things with Azure Pipelines - THR2101](https://www.youtube.com/watch?v=yr6PJxfACNc)
 
@@ -143,17 +141,17 @@ Pro zajištění vzájemného pochopení všemi členy týmu je vyžadované vyt
 ER diagram a wireframy umístěte do kořene repositáře do adresáře **docs**. Formát souborů zvolte tak, aby se daly otevřít rozumným způsobem bez nutnosti instalace specifických nástrojů přímo v prostředí Azure DevOps (**ověřte**). Ideální je obrázek ve formátu png, jpeg, svg, pdf...
 
 Hodnotíme:
--   logický návrh tříd
--   využití abstrakce, zapouzdření, polymorfismu - kde to bude dávat smysl a eliminuje duplicity
--   verzování v GITu po logických částech
+-   logický návrh tříd (L02/E02)
+-   využití abstrakce, zapouzdření, polymorfismu - kde to bude dávat smysl a eliminuje duplicity (L02/E02)
+-   verzování v GITu po logických částech, nejsou commitnuty binární soubory, v ideálním případě používáte "nějakou" ["GIT Branching strategy"](https://medium.com/@sreekanth.thummala/choosing-the-right-git-branching-strategy-a-comparative-analysis-f5e635443423)
 -   logické rozšíření datového návrhu nad rámec zadání (bonusové body) - toto rozšíření ovšem zvažte; často se stává, že si tím založíte na spoustu komplikací v pozdějších fázích; body za rozšíření dostanete až u obhajoby, pokud je naimplementujete kompletně do výsledné aplikace
--   generovaný ER diagram (logickou strukturu)
+-   generovaný ER diagram (logickou strukturu) (L04/E03)
 -   wireframy (logickou strukturu, uživatelskou přívětivost, ne kvalitu grafického zpracování)
--   využití **Entity Framework Core - Code First** přístupu na vytvoření databáze z entitních tříd
--   existenci databázových migrací (alespoň InitialMigration)
+-   využití **Entity Framework Core - Code First** přístupu na vytvoření databáze z entitních tříd (L04/E03)
+-   existenci databázových migrací (alespoň InitialMigration) (L04/E03)
+-   **základní** DAL testy (E02)
 -   možné rozšíření:
-    -   CI v Azure DevOps - build, spuštění testů
-    -   DAL testy
+    -   CI v Azure DevOps - build, spuštění testů (L06) (nenechejte na poslední chvíli, může být třeba žádost o zpřístupnění CI)
 
 ---
 ### Fáze 2 – repositáře a mapování
@@ -168,9 +166,9 @@ Dbejte kvality Vašeho kódu! Opravte si kód odevzdaný v předchozí fázi dle
 Hodnotíme:
 - opravení chyb a zapracování připomínek, které jsme vám dali v rámci hodnocení fáze 1
 - návrh a funkčnost repositářů
-- návrh a funkčnost fasád (včetně filtrování a řazení)
+- návrh a funkčnost fasád (včetně filtrování, řazení, vyhledávání)
 - čistotu kódu
-- pokrytí aplikace testy - ukážete tím, že abstrakce repositáře/facade opravdu funguje (postačí testy BL vrstvy)
+- pokrytí aplikace testy - ukážete tím, že abstrakce repositáře/facade opravdu funguje (hodnotí se testy BL vrstvy)
 - *dejte pozor na zapouzdření databázových entit pod vrstvou fasád, která je nepropaguje výše, ale přemapovává na modely/DTO*
 - funkční build v Azure DevOps (nenechejte na poslední chvíli, může být třeba žádost o zpřístupnění CI)
 - výsledek testů v Azure DevOps po buildu
@@ -193,12 +191,12 @@ Hodnotíme:
 - opravení chyb a zapracování připomínek, které jsme vám dali v rámci hodnocení fází 1 a 2
 - funkčnost celé výsledné aplikace
 - vytvoření View, ViewModelů
-- zobrazení jednotlivých informací dle zadání – seznam, detail…
+- zobrazení jednotlivých informací dle zadání – seznam, detail …
 - správné využití data-bindingu v XAML
 - čistotu kódu
 - validaci vstupů
 - funkčnost testů
-- vyhledávání, filtrování (musí být v DB, v UI pouze, kde to dává smysl)
+- vyhledávání, filtrování, řazení (musí být v DB, v UI pouze, kde to dává smysl)
 - veškeré CRUD operace
 
 Doporučujeme (bonusové body):
@@ -211,4 +209,4 @@ Doporučujeme (bonusové body):
 
 Termíny obhajob budou vyhlášeny v průběhu semestru.
 
-Na obhajobu se dostaví **celý tým**. Z členů týmu bude vybrán jeden, který obhajobu povede. Na obhajobu nevytvářejte žádnou prezentaci! Budete nám muset ukázat, jak funguje váš kód, a že je správně navržen. Připravte se na naše otázky k funkcionalitě jednotlivých tříd a k důvodům jejich členění. Na obhajobu bude mít tým 10-15 minut. Prezentujete z vlastního zařízení s připojením k projektoru pomocí HDMI, USB-C.
+Na obhajobu se dostaví **celý tým**. Z členů týmu bude vybrán jeden, který obhajobu povede. Na obhajobu nevytvářejte žádnou prezentaci! Budete nám muset ukázat, jak funguje váš kód, a že je správně navržen. Připravte se na naše otázky k funkcionalitě jednotlivých tříd a k důvodům jejich členění. Na obhajobu bude mít tým 10-15 minut. **Prezentujete z vlastního zařízení s připojením k projektoru pomocí HDMI, USB-C**.
