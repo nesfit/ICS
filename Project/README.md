@@ -16,7 +16,7 @@ Tématem letošního projektu je vytvoření "Správce playlistů multimédií".
 
 Vytváříte aplikaci, která je schopna uchovávat informace o multimediálních souborech (hudba, video, audiobook), dle Vaší volby, tedy může to být jen jeden typ souboru, nebo všechny. Uživatel si je schopen zobrazit jaká multimédia má k dispozici, vytvořit si playlisty.
 
-> :info: Zadání zvažuje pouze práci s metadaty, ne soubory samotnými. Pokud se rozhodnete pracovat se soubory, budeme to považovat za rozšíření. Doporučujeme nepracovat se soubory jako takovými, ale pouze URL na soubory, které jsou volně na internetu k dispozici. Pokud se rozhodnete pracovat se soubory samotnými, nebudeme bodově penalizovat chyby, které nespadají do vyučovaného rozsahu předmětu. Dostanete pouze zpětnou vazbu k implementaci funkcionality nad rámce řešení.
+> :info: Zadání zvažuje pouze práci s metadaty, ne soubory samotnými. Pokud se rozhodnete pracovat se soubory, budeme to považovat za rozšíření. Doporučujeme nepracovat se soubory jako takovými, ale pouze URL na soubory, které jsou volně na internetu k dispozici. Pokud se rozhodnete pracovat se soubory samotnými, nebudeme bodově penalizovat chyby, které nespadají do vyučovaného rozsahu předmětu. Dostanete pouze zpětnou vazbu k implementaci funkcionality nad rámec řešení.
 
 > Jako rozšíření můžete implementovat [přehrávání daných multimédií](https://devblogs.microsoft.com/dotnet/announcing-dotnet-maui-communitytoolkit-mediaelement/).
 
@@ -49,7 +49,7 @@ Zamyslete se, zdali je třeba všechny informace ukládat do databáze a nebo n�
 
 ---
 
-Další možné datové entity: uživatel, autor, metadata multimédií... 
+Další možné datové entity pro nepovinné rozšíření aplikace: uživatel, autor, metadata multimédií... 
 
 ---
 ## Základní funkcionalita
@@ -64,16 +64,16 @@ Pro uložení dat zvolte [SQLite](https://www.sqlite.org/index.html). Jako ORM f
 <!-- Project specific -->
 *Minimální* funkcionalita:
   - **Aplikace musí umožnit provést CRUD operace nad všemi daty.**
-  - Uživatel může **filtrovat** dle všech položek, které dávají smysl v kontextu aplikace.
-  - Uživatel může **vyhledávat** dle všech položek, které dávají smysl v kontextu aplikace.
-  - Uživatel může **řadit** v listových pohledech dle všech položek, které dávají smysl v kontextu aplikace.
-  - Operace **filtrace, vyhledávání, řazení probíhají v databázi**. Aplikace si **nesmí** stáhnout všechna data / DB tabulku do paměti a provádět operace nad ní.
+  - V aplikaci se dá **filtrovat** dle všech položek, které dávají smysl v kontextu aplikace.
+  - V aplikaci se dá **vyhledávat** dle všech položek, které dávají smysl v kontextu aplikace.
+  - V aplikaci se dá **řadit** v listových pohledech dle všech položek, které dávají smysl v kontextu aplikace.
+  - Operace **filtrace, vyhledávání, řazení probíhají v databázi**. Aplikace si **nesmí** stáhnout všechna data / DB tabulku do paměti a provádět tyto operace nad objektama v paměti.
  
 ---
 ## Architektura projektu
 Architektura aplikace je jeden z důležitých stavebních kamenů při vývoji SW. V rámci cvičení se seznámíte s vrstvenou architekturou demonstrující logickou separaci tříd do projektů (alespoň App, BL, DAL), kterou vřele doporučujeme využít i ve Vašich projektech (klidně 1:1).
 
-> :warning: Pokud by měl někdo zájem využít jinou architekturu, nepř. CleanArchitecture (bonus body), tak je vhodné [předem konzultovat](pluskal@vut.cz).
+> :warning: Pokud by měl někdo zájem využít jinou architekturu, např. Clean architecture (bonus body), tak je vhodné [předem konzultovat](pluskal@vut.cz).
 
 V případě, kdy se rozhodnete použít jinou architekturu a rozdělení tříd do projektů musíte být schopni své rozhodnutí odůvodnit a flexibilně reagovat na dotazy při obhajobě.
 
@@ -83,13 +83,13 @@ V případě, kdy se rozhodnete použít jinou architekturu a rozdělení tříd
 
 ---
 ## Správa projektu - Azure DevOps
-Při řešení projektu využijte Azure DevOps a GIT na sdílení kódu. Do svého projektu přidělte přístup vyučujícím (viz E01); tj. do Vašeho týmového projektu si v části Members přidejte účet **uciteliw5@vutbr.cz**.
+Při řešení projektu využijte Azure DevOps a GIT na sdílení kódu. Do svého projektu přidělte přístup vyučujícím (způsob byl vysvětlen v rámci 1. cvičení (E01)); tj. do Vašeho týmového projektu si v části Members přidejte účet **uciteliw5@vutbr.cz**.
 
 Účet **uciteliw5@vutbr.cz** budou používat vyučující pro přístup k odevzdávaným souborům. Bez přidání tohoto účtu není možné přistoupit k vašemu projektu, a tedy není možné jej ze strany vyučujících hodnotit.
 
 Účet **uciteliw5@vutbr.cz** přidejte jako poslední a ověřte, že má nastavena oprávnění na **Stakeholder**. V opačném případě jeden ze členů týmu nebude vidět zdrojový kód. Azure DevOps umožňuje v bezplatné verzi pouze 5 aktivních vývojářů.
 
-> :warning: **Je bezpodmínečně nutné**, abyste přidali účet **uciteliw5@vutbr.cz** do **Project Collection Administrator** v nastavení organizace - *https://dev.azure.com/ics-2025-xlogin00/_settings/groups*. Toto nastavení nám umožní během opravování projektu jednomu členu Vašeho týmu změnit **access level** z **Basic** na **Stakeholder** a dočasně tak přiřadit úroveň **Basic** našemu účtu **uciteliw5@vutbr.cz**. Po skončení opravování Vám nastavení uvedeme do původního stavu. Pokud by se tak nestalo, neváhejte si nastavení změnit sami. **Základní práce s Azure DevOps byla vysvětlena na prvním cvičení (E01)**.
+> :warning: **Je bezpodmínečně nutné**, abyste přidali účet **uciteliw5@vutbr.cz** do **Project Collection Administrator** v nastavení organizace - *https://dev.azure.com/ics-2025-xlogin00/_settings/groups*. Toto nastavení nám umožní během opravování projektu jednomu členu Vašeho týmu změnit **access level** z **Basic** na **Stakeholder** a dočasně tak přiřadit úroveň **Basic** našemu účtu **uciteliw5@vutbr.cz**. Po skončení opravování Vám nastavení uvedeme do původního stavu. Pokud by se tak nestalo, neváhejte si nastavení změnit sami. **Základní práce s Azure DevOps byla vysvětlena na 1. demonstračním cvičení (E01)**.
 
 Návod na přidání člena projektu můžete najít zde: *https://docs.microsoft.com/en-us/vsts/accounts/add-team-members-vs*
 
@@ -143,17 +143,17 @@ Pro zajištění vzájemného pochopení všemi členy týmu je vyžadované vyt
 ER diagram a wireframy umístěte do kořene repositáře do adresáře **docs**. Formát souborů zvolte tak, aby se daly otevřít rozumným způsobem bez nutnosti instalace specifických nástrojů přímo v prostředí Azure DevOps (**ověřte**). Ideální je obrázek ve formátu png, jpeg, svg, pdf...
 
 Hodnotíme:
--   logický návrh tříd (L02/E02)
--   využití abstrakce, zapouzdření, polymorfismu - kde to bude dávat smysl a eliminuje duplicity (L02/E02)
+-   logický návrh tříd (viz 2. přednáška (L02) a 2. demonstrační cvičení (E02))
+-   využití abstrakce, zapouzdření, polymorfismu - kde to bude dávat smysl a eliminuje duplicity (viz 2. přednáška (L02) a 2. demonstrační cvičení (E02))
 -   verzování v GITu po logických částech, nejsou commitnuty binární soubory, v ideálním případě používáte "nějakou" ["GIT Branching strategy"](https://medium.com/@sreekanth.thummala/choosing-the-right-git-branching-strategy-a-comparative-analysis-f5e635443423)
 -   logické rozšíření datového návrhu nad rámec zadání (bonusové body) - toto rozšíření ovšem zvažte; často se stává, že si tím založíte na spoustu komplikací v pozdějších fázích; body za rozšíření dostanete až u obhajoby, pokud je naimplementujete kompletně do výsledné aplikace
 -   generovaný ER diagram (logickou strukturu) (L04/E03)
 -   wireframy (logickou strukturu, uživatelskou přívětivost, ne kvalitu grafického zpracování)
--   využití **Entity Framework Core - Code First** přístupu na vytvoření databáze z entitních tříd (L04/E03)
--   existenci databázových migrací (alespoň InitialMigration) (L04/E03)
--   **základní** DAL testy (E02)
+-   využití **Entity Framework Core - Code First** přístupu na vytvoření databáze z entitních tříd (viz 4. přednáška (L04) a 3. demonstrační cvičení (E03))
+-   existenci databázových migrací (alespoň InitialMigration) (viz 4. přednáška (L04) a 3. demonstrační cvičení (E03))
+-   **základní** DAL testy (viz 2. demonstrační cvičení (E02))
 -   možné rozšíření:
-    -   CI v Azure DevOps - build, spuštění testů (L06) (nenechejte na poslední chvíli, může být třeba žádost o zpřístupnění CI)
+    -   CI v Azure DevOps - build, spuštění testů (viz 6. přednáška (L06)) (nenechejte na poslední chvíli, může být třeba žádost o zpřístupnění CI)
 
 ---
 ### Fáze 2 – repositáře a mapování
@@ -211,4 +211,4 @@ Doporučujeme (bonusové body):
 
 Termíny obhajob budou vyhlášeny v průběhu semestru.
 
-Na obhajobu se dostaví **celý tým**. Z členů týmu bude vybrán jeden, který obhajobu povede. Na obhajobu nevytvářejte žádnou prezentaci! Budete nám muset ukázat, jak funguje váš kód, a že je správně navržen. Připravte se na naše otázky k funkcionalitě jednotlivých tříd a k důvodům jejich členění. Na obhajobu bude mít tým 10-15 minut. **Prezentujete z vlastního zařízení s připojením k projektoru pomocí HDMI, USB-C**.
+Na obhajobu se dostaví **celý tým**. Z členů týmu bude vybrán jeden, který obhajobu povede. Na obhajobu nevytvářejte žádnou prezentaci! Budete nám muset ukázat, jak funguje váš kód, a že je správně navržen. Připravte se na naše otázky k funkcionalitě jednotlivých tříd a k důvodům jejich členění. Na obhajobu bude mít tým 10-15 minut. **Prezentujete z vlastního zařízení s připojením k projektoru pomocí HDMI nebo USB-C**.
