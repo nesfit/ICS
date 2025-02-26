@@ -130,7 +130,7 @@ winget install JetBrains.Toolbox
 
 # Vyučující
 * [Martin Dybal](https://www.linkedin.com/in/martin-dybal)
-* [Roman Jašek](https://www.linkedin.com/in/roman-jasek-16921839)
+* [Roman Jašek](https://www.linkedin.com/in/roman-jasek-16921839) - [e-mail](mailto:roman.jasek@riganti.cz)
 * [Tibor Jašek](https://www.linkedin.com/in/tibor-jašek-717a5761)
 * [Michal Mrnuštík](https://www.linkedin.com/in/michal-mrnušt%C3%ADk-31050b60/)* 
 * [Matěj Mudra](https://www.linkedin.com/in/matěj-mudra-a874461a9/)
