@@ -26,7 +26,7 @@ Vytváříte aplikaci, která je schopna uchovávat informace o multimediálníc
 ## Data
 V rámci dat, se kterými se bude pracovat budeme požadovat minimálně následující data.
 
-Zamyslete se, zdali je třeba všechny informace ukládat do databáze a nebo něktré můžete dopočítat během dotazování.
+Zamyslete se, zdali je třeba všechny informace ukládat do databáze anebo některé můžete dopočítat během dotazování.
 
 ### Multimediální soubor
 - Název
@@ -82,14 +82,14 @@ V případě, kdy se rozhodnete použít jinou architekturu a rozdělení tříd
 > :warning: **Solution obsahující jediný projekt není akceptovatelné!**
 
 ---
-## Správa projektu - Azure DevOps
+## Správa projektu – Azure DevOps
 Při řešení projektu využijte Azure DevOps a GIT na sdílení kódu. Do svého projektu přidělte přístup vyučujícím (způsob byl vysvětlen v rámci 1. cvičení (E01)); tj. do Vašeho týmového projektu si v části Members přidejte účet **uciteliw5@vutbr.cz**.
 
 Účet **uciteliw5@vutbr.cz** budou používat vyučující pro přístup k odevzdávaným souborům. Bez přidání tohoto účtu není možné přistoupit k vašemu projektu, a tedy není možné jej ze strany vyučujících hodnotit.
 
 Účet **uciteliw5@vutbr.cz** přidejte jako poslední a ověřte, že má nastavena oprávnění na **Stakeholder**. V opačném případě jeden ze členů týmu nebude vidět zdrojový kód. Azure DevOps umožňuje v bezplatné verzi pouze 5 aktivních vývojářů.
 
-> :warning: **Je bezpodmínečně nutné**, abyste přidali účet **uciteliw5@vutbr.cz** do **Project Collection Administrator** v nastavení organizace - *https://dev.azure.com/ics-2025-xlogin00/_settings/groups*. Toto nastavení nám umožní během opravování projektu jednomu členu Vašeho týmu změnit **access level** z **Basic** na **Stakeholder** a dočasně tak přiřadit úroveň **Basic** našemu účtu **uciteliw5@vutbr.cz**. Po skončení opravování Vám nastavení uvedeme do původního stavu. Pokud by se tak nestalo, neváhejte si nastavení změnit sami. **Základní práce s Azure DevOps byla vysvětlena na 1. demonstračním cvičení (E01)**.
+> :warning: **Je bezpodmínečně nutné**, abyste přidali účet **uciteliw5@vutbr.cz** do **Project Collection Administrator** v nastavení organizace – *https://dev.azure.com/ics-2025-xlogin00/_settings/groups*. Toto nastavení nám umožní během opravování projektu jednomu členu Vašeho týmu změnit **access level** z **Basic** na **Stakeholder** a dočasně tak přiřadit úroveň **Basic** našemu účtu **uciteliw5@vutbr.cz**. Po skončení opravování Vám nastavení uvedeme do původního stavu. Pokud by se tak nestalo, neváhejte si nastavení změnit sami. **Základní práce s Azure DevOps byla vysvětlena na 1. demonstračním cvičení (E01)**.
 
 Návod na přidání člena projektu můžete najít zde: *https://docs.microsoft.com/en-us/vsts/accounts/add-team-members-vs*
 
@@ -99,17 +99,17 @@ Výrazně doporučujeme používat mechanismu **pull-request**ů ["GIT Branching
 
 Organizaci pojmenujte **ics-2025-xlogin00** dle pojmenování týmu v IS (login zakladatele) a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/ics-2025-xlogin00/project. Nezapomeňte nastavit **Work item process** template na **Scrum** nebo **Basic** (pokud to UI nabízí).
 
-Využijte možnost automatizovaných buildů spojených s otestováním Vámi provedených změn. Nastavte **Pipelines->Builds** tak, že při pushnutí do libovolné větve projektu se provede *build a spustí se veškeré přítomné testy*. Více informací na [Automate all things with Azure Pipelines - THR2101](https://www.youtube.com/watch?v=yr6PJxfACNc)
+Využijte možnost automatizovaných buildů spojených s otestováním Vámi provedených změn. Nastavte **Pipelines->Builds** tak, že při pushnutí do libovolné větve projektu se provede *build a spustí se veškeré přítomné testy*. Více informací na [Automate all things with Azure Pipelines – THR2101](https://www.youtube.com/watch?v=yr6PJxfACNc)
 
 ---
 ### Konvence
 Pro zajištění konzistence kódu, který produkujete je závazné respektovat následující body:
-* Angličtina je základním jazykem použitým pro pojmenování identifikátorů, tříd, atd... Jiné národní jazyky nejsou povoleny.
+* Angličtina je základním jazykem použitým pro pojmenování identifikátorů, tříd atd... Jiné národní jazyky nejsou povoleny.
 * Angličtina je základním jazykem použitým pro psaní komentářů. Jiné národní jazyky nejsou povoleny.
 * Dodržujte zásady CleanCode probírané na přednáškách. K zajištění konzistence můžete využít `.editorconfig` konfigurovaný dle domluvy ve Vašem týmu. Není vhodné, aby Vám IDE při odevzdání hlásilo nekonzistence s Vámi zvolenými politikami. 
 
 ---
-### Doporučení - za bonusové body při závěrečné obhajobě
+### Doporučení – za bonusové body při závěrečné obhajobě
 
 * Pro řízení projektu využijte metodologii **[Scrum](https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/scrum-process-workflow?view=azure-devops)**. 
 * Plánujte sprinty na jednotlivé fáze odevzdání. Práci rozdělte minimálně na **Product Backlog Item (PBI), Tasks a Bugs**. Využijete záložky **Boards** pro vzájemnou synchronizaci a **[Burndown chart](https://docs.microsoft.com/en-us/azure/devops/report/sql-reports/sprint-burndown-scrum?view=azure-devops-2019&viewFallbackFrom=azure-devops)** bude na konci každého sprintu, tj. při každém odevzdání, reflektovat reálný stav projektu.
@@ -138,22 +138,22 @@ Abyste si vazby dokázali představit, vytvořte již v tuto chvíli DAL projekt
 
 > :warning: Ručně vytvořený ER diagram, který neodpovídá Vašemu kódu je neakceptovatelný.
 
-Pro zajištění vzájemného pochopení všemi členy týmu je vyžadované vytvoření **wirefame** na všechny pohledy (opět libovolný nástroj či ručně kreslené), které ve vaší výsledné aplikaci chcete implementovat. Tyto wireframy nebudou závazné, ale umožní Vám ihned na začátku vzájemně komunikovat představy o výsledné podobě aplikace. TIP: Při tvorbě wireframe zjistíte, jaká data budete potřebovat a navrhnete korektně nejen vazby v Entitní vrstvě, ale také Modely BL vrstvy, jejichž rozmyšlení jistě oceníte v druhém odevzdání.
+Pro zajištění vzájemného pochopení všemi členy týmu je vyžadované vytvoření **wireframe** na všechny pohledy (opět libovolný nástroj či ručně kreslené), které ve vaší výsledné aplikaci chcete implementovat. Tyto wireframy nebudou závazné, ale umožní Vám ihned na začátku vzájemně komunikovat představy o výsledné podobě aplikace. TIP: Při tvorbě wireframe zjistíte, jaká data budete potřebovat a navrhnete korektně nejen vazby v Entitní vrstvě, ale také Modely BL vrstvy, jejichž rozmyšlení jistě oceníte v druhém odevzdání.
 
-ER diagram a wireframy umístěte do kořene repositáře do adresáře **docs**. Formát souborů zvolte tak, aby se daly otevřít rozumným způsobem bez nutnosti instalace specifických nástrojů přímo v prostředí Azure DevOps (**ověřte**). Ideální je obrázek ve formátu png, jpeg, svg, pdf...
+ER diagram a wireframy umístěte do kořene repositáře do adresáře **docs**. Formát souborů zvolte tak, aby se daly otevřít rozumným způsobem bez nutnosti instalace specifických nástrojů přímo v prostředí Azure DevOps (**ověřte**). Ideální je obrázek ve formátu png, jpeg, svg, pdf, ...
 
 Hodnotíme:
 -   logický návrh tříd (viz 2. přednáška (L02) a 2. demonstrační cvičení (E02))
--   využití abstrakce, zapouzdření, polymorfismu - kde to bude dávat smysl a eliminuje duplicity (viz 2. přednáška (L02) a 2. demonstrační cvičení (E02))
+-   využití abstrakce, zapouzdření, polymorfismu – kde to bude dávat smysl a eliminuje duplicity (viz 2. přednáška (L02) a 2. demonstrační cvičení (E02))
 -   verzování v GITu po logických částech, nejsou commitnuty binární soubory, v ideálním případě používáte "nějakou" ["GIT Branching strategy"](https://medium.com/@sreekanth.thummala/choosing-the-right-git-branching-strategy-a-comparative-analysis-f5e635443423)
--   logické rozšíření datového návrhu nad rámec zadání (bonusové body) - toto rozšíření ovšem zvažte; často se stává, že si tím založíte na spoustu komplikací v pozdějších fázích; body za rozšíření dostanete až u obhajoby, pokud je naimplementujete kompletně do výsledné aplikace
+-   logické rozšíření datového návrhu nad rámec zadání (bonusové body) – toto rozšíření ovšem zvažte; často se stává, že si tím založíte na spoustu komplikací v pozdějších fázích; body za rozšíření dostanete až u obhajoby, pokud je naimplementujete kompletně do výsledné aplikace
 -   generovaný ER diagram (logickou strukturu) (L04/E03)
 -   wireframy (logickou strukturu, uživatelskou přívětivost, ne kvalitu grafického zpracování)
--   využití **Entity Framework Core - Code First** přístupu na vytvoření databáze z entitních tříd (viz 4. přednáška (L04) a 3. demonstrační cvičení (E03))
+-   využití **Entity Framework Core – Code First** přístupu na vytvoření databáze z entitních tříd (viz 4. přednáška (L04) a 3. demonstrační cvičení (E03))
 -   existenci databázových migrací (alespoň InitialMigration) (viz 4. přednáška (L04) a 3. demonstrační cvičení (E03))
 -   **základní** DAL testy (viz 2. demonstrační cvičení (E02))
 -   možné rozšíření:
-    -   CI v Azure DevOps - build, spuštění testů (viz 6. přednáška (L06)) (nenechejte na poslední chvíli, může být třeba žádost o zpřístupnění CI)
+    -   CI v Azure DevOps – build, spuštění testů (viz 6. přednáška (L06)) (nenechejte na poslední chvíli, může být třeba žádost o zpřístupnění CI)
 
 ---
 ### Fáze 2 – repositáře a mapování
@@ -170,7 +170,7 @@ Hodnotíme:
 - návrh a funkčnost repositářů
 - návrh a funkčnost fasád (včetně filtrování, řazení, vyhledávání)
 - čistotu kódu
-- pokrytí aplikace testy - ukážete tím, že abstrakce repositáře/facade opravdu funguje (hodnotí se testy BL vrstvy)
+- pokrytí aplikace testy – ukážete tím, že abstrakce repositáře/facade opravdu funguje (hodnotí se testy BL vrstvy)
 - *dejte pozor na zapouzdření databázových entit pod vrstvou fasád, která je nepropaguje výše, ale přemapovává na modely/DTO*
 - funkční build v Azure DevOps (nenechejte na poslední chvíli, může být třeba žádost o zpřístupnění CI)
 - výsledek testů v Azure DevOps po buildu
