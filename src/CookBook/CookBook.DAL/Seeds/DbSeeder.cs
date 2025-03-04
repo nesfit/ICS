@@ -6,11 +6,9 @@ namespace CookBook.DAL.Seeds;
 public class DbSeeder(IDbContextFactory<CookBookDbContext> dbContextFactory, DALOptions options)
     : IDbSeeder
 {
-    public void Seed() => SeedAsync(CancellationToken.None).GetAwaiter().GetResult();
-
-    public async Task SeedAsync(CancellationToken cancellationToken)
+    public void Seed()
     {
-        await using CookBookDbContext dbContext = await dbContextFactory.CreateDbContextAsync(cancellationToken);
+        using CookBookDbContext dbContext = dbContextFactory.CreateDbContext();
 
         if(options.SeedDemoData)
         {
@@ -18,7 +16,7 @@ public class DbSeeder(IDbContextFactory<CookBookDbContext> dbContextFactory, DAL
                 .SeedIngredients()
                 .SeedRecipes()
                 .SeedIngredientAmounts();
-            await dbContext.SaveChangesAsync(cancellationToken);
+            dbContext.SaveChanges();
         }
     }
 }
