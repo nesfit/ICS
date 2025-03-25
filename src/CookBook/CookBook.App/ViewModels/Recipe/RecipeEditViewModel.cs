@@ -9,7 +9,7 @@ using CookBook.Common.Enums;
 
 namespace CookBook.App.ViewModels;
 
-[QueryProperty(nameof(Recipe), nameof(Recipe))]
+[QueryProperty(nameof(Id), nameof(Id))]
 public partial class RecipeEditViewModel(
     IRecipeFacade recipeFacade,
     INavigationService navigationService,
@@ -17,16 +17,30 @@ public partial class RecipeEditViewModel(
     : ViewModelBase(messengerService), IRecipient<RecipeIngredientEditMessage>, IRecipient<RecipeIngredientAddMessage>,
         IRecipient<RecipeIngredientDeleteMessage>
 {
+    public Guid Id { get; set; }
+
     [ObservableProperty]
     private RecipeDetailModel _recipe = RecipeDetailModel.Empty;
 
     public List<FoodType> FoodTypes { get; set; } = [.. (FoodType[])Enum.GetValues(typeof(FoodType))];
 
+    protected override async Task LoadDataAsync()
+    {
+        await base.LoadDataAsync();
+
+        Recipe = await recipeFacade.GetAsync(Id)
+                 ?? RecipeDetailModel.Empty;
+    }
+
     [RelayCommand]
     private async Task GoToRecipeIngredientEditAsync()
     {
         await navigationService.GoToAsync(NavigationService.RecipeIngredientsEditRouteRelative,
-            new Dictionary<string, object?> { [nameof(RecipeIngredientsEditViewModel.Recipe)] = Recipe });
+            new Dictionary<string, object?>
+            {
+                [nameof(RecipeIngredientsEditViewModel.Id)] = Recipe.Id
+                }
+            );
     }
 
     [RelayCommand]

@@ -50,8 +50,11 @@ public partial class IngredientDetailViewModel(
     [RelayCommand]
     private async Task GoToEditAsync()
     {
-        await navigationService.GoToAsync(NavigationService.IngredientEditRouteRelative,
-            new Dictionary<string, object?> { [nameof(IngredientEditViewModel.Ingredient)] = Ingredient });
+        if(Ingredient?.Id is not null)
+        {
+            await navigationService.GoToAsync(NavigationService.IngredientEditRouteRelative,
+                new Dictionary<string, object?> { [nameof(IngredientEditViewModel.Id)] = Ingredient.Id });
+        }
     }
 
     public async void Receive(IngredientEditMessage message)

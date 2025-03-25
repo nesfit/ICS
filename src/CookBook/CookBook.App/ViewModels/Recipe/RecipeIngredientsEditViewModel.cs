@@ -10,14 +10,17 @@ using System.Collections.ObjectModel;
 
 namespace CookBook.App.ViewModels;
 
-[QueryProperty(nameof(Recipe), nameof(Recipe))]
+[QueryProperty(nameof(Id), nameof(Id))]
 public partial class RecipeIngredientsEditViewModel(
     IIngredientFacade ingredientFacade,
     IIngredientAmountFacade ingredientAmountFacade,
+    IRecipeFacade recipeFacade,
     IngredientAmountModelMapper ingredientAmountModelMapper,
     IMessengerService messengerService)
     : ViewModelBase(messengerService)
 {
+    public Guid Id { get; set; }
+
     public List<Unit> Units { get; set; } = [.. (Unit[])Enum.GetValues(typeof(Unit))];
 
     [ObservableProperty]
@@ -35,6 +38,9 @@ public partial class RecipeIngredientsEditViewModel(
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
+
+        Recipe = await recipeFacade.GetAsync(Id)
+            ?? RecipeDetailModel.Empty;
 
         Ingredients.Clear();
         var ingredients = await ingredientFacade.GetAsync();

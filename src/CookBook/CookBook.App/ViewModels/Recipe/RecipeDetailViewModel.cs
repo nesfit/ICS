@@ -48,7 +48,11 @@ public partial class RecipeDetailViewModel(
         if (Recipe is not null)
         {
             await navigationService.GoToAsync(NavigationService.RecipeEditRouteRelative,
-                new Dictionary<string, object?> { [nameof(RecipeEditViewModel.Recipe)] = Recipe with { } });
+                new Dictionary<string, object?>
+                {
+                    [nameof(RecipeEditViewModel.Id)] = Recipe.Id
+                }
+            );
         }
     }
 
