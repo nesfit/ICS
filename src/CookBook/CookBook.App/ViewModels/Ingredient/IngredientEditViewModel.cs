@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CookBook.App.Messages;
 using CookBook.App.Services;
 using CookBook.BL.Facades;
@@ -13,7 +14,8 @@ public partial class IngredientEditViewModel(
     IMessengerService messengerService)
     : ViewModelBase(messengerService)
 {
-    public IngredientDetailModel Ingredient { get; init; } = IngredientDetailModel.Empty;
+    [ObservableProperty]
+    private IngredientDetailModel _ingredient = IngredientDetailModel.Empty;
 
     [RelayCommand]
     private async Task SaveAsync()

@@ -5,24 +5,24 @@ namespace CookBook.App.ViewModels;
 
 public abstract class ViewModelBase : ObservableRecipient
 {
-    private bool _isRefreshRequired = true;
-
     protected readonly IMessengerService MessengerService;
+    protected bool ForceDataRefresh = true;
 
     protected ViewModelBase(IMessengerService messengerService)
         : base(messengerService.Messenger)
     {
         MessengerService = messengerService;
+
         IsActive = true;
     }
 
     public async Task OnAppearingAsync()
     {
-        if (_isRefreshRequired)
+        if (ForceDataRefresh)
         {
             await LoadDataAsync();
 
-            _isRefreshRequired = false;
+            ForceDataRefresh = false;
         }
     }
 

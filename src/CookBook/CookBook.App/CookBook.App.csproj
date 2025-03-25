@@ -28,6 +28,7 @@
 
   <PropertyGroup>
     <NoWarn>1591</NoWarn>
+    <WarningsAsErrors>MVVMTK0034</WarningsAsErrors>
     <UserSecretsId>00775e36-5374-4630-b80a-38bf58169d4e</UserSecretsId>
   </PropertyGroup>
 
@@ -78,13 +79,9 @@
 
     <PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-    <PackageReference Include="Fody" Version="6.8.0" PrivateAssets="all">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
-    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" PrivateAssets="All" />
     <PackageReference Include="Scrutor" Version="4.2.2" />
   </ItemGroup>
 

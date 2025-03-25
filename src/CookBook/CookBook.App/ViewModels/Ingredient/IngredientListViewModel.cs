@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 //
 
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using CookBook.App.Messages;
@@ -17,7 +18,8 @@ public partial class IngredientListViewModel(
     IMessengerService messengerService)
     : ViewModelBase(messengerService), IRecipient<IngredientEditMessage>, IRecipient<IngredientDeleteMessage>
 {
-    public IEnumerable<IngredientListModel> Ingredients { get; set; } = null!;
+    [ObservableProperty]
+    private IEnumerable<IngredientListModel> _ingredients = [];
 
     protected override async Task LoadDataAsync()
     {

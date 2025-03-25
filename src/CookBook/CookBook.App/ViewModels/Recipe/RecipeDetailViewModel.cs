@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using CookBook.App.Messages;
 using CookBook.App.Services;
@@ -16,7 +17,9 @@ public partial class RecipeDetailViewModel(
         IRecipient<RecipeIngredientDeleteMessage>
 {
     public Guid Id { get; set; }
-    public RecipeDetailModel? Recipe { get; set; }
+
+    [ObservableProperty]
+    private RecipeDetailModel? _recipe;
 
     protected override async Task LoadDataAsync()
     {

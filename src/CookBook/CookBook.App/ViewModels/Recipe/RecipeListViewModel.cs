@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using CookBook.App.Messages;
 using CookBook.App.Services;
@@ -13,7 +14,8 @@ public partial class RecipeListViewModel(
     IMessengerService messengerService)
     : ViewModelBase(messengerService), IRecipient<RecipeEditMessage>, IRecipient<RecipeDeleteMessage>
 {
-    public IEnumerable<RecipeListModel> Recipes { get; set; } = null!;
+    [ObservableProperty]
+    private IEnumerable<RecipeListModel> _recipes = [];
 
     protected override async Task LoadDataAsync()
     {

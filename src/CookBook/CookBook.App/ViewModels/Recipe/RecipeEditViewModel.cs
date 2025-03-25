@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using CookBook.App.Messages;
 using CookBook.App.Services;
@@ -16,9 +17,10 @@ public partial class RecipeEditViewModel(
     : ViewModelBase(messengerService), IRecipient<RecipeIngredientEditMessage>, IRecipient<RecipeIngredientAddMessage>,
         IRecipient<RecipeIngredientDeleteMessage>
 {
-    public RecipeDetailModel Recipe { get; set; } = RecipeDetailModel.Empty;
+    [ObservableProperty]
+    private RecipeDetailModel _recipe = RecipeDetailModel.Empty;
 
-    public List<FoodType> FoodTypes { get; set; } = new((FoodType[])Enum.GetValues(typeof(FoodType)));
+    public List<FoodType> FoodTypes { get; set; } = [.. (FoodType[])Enum.GetValues(typeof(FoodType))];
 
     [RelayCommand]
     private async Task GoToRecipeIngredientEditAsync()

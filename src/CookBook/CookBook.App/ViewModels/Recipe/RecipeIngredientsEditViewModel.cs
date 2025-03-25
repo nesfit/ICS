@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CookBook.App.Messages;
 using CookBook.App.Services;
 using CookBook.BL.Facades;
@@ -17,13 +18,19 @@ public partial class RecipeIngredientsEditViewModel(
     IMessengerService messengerService)
     : ViewModelBase(messengerService)
 {
-    public RecipeDetailModel? Recipe { get; set; }
-    public List<Unit> Units { get; set; } = new((Unit[])Enum.GetValues(typeof(Unit)));
-    public ObservableCollection<IngredientListModel> Ingredients { get; set; } = new();
+    public List<Unit> Units { get; set; } = [.. (Unit[])Enum.GetValues(typeof(Unit))];
 
-    public IngredientListModel? IngredientSelected { get; set; }
+    [ObservableProperty]
+    private RecipeDetailModel? _recipe;
 
-    public IngredientAmountDetailModel? IngredientAmountNew { get; private set; }
+    [ObservableProperty]
+    private ObservableCollection<IngredientListModel> _ingredients = new();
+
+    [ObservableProperty]
+    private IngredientListModel? _ingredientSelected;
+
+    [ObservableProperty]
+    private IngredientAmountDetailModel? _ingredientAmountNew;
 
     protected override async Task LoadDataAsync()
     {
