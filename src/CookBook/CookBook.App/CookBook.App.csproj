@@ -150,11 +150,20 @@
     <Compile Update="Views\Ingredient\IngredientEditView.xaml.cs">
       <DependentUpon>IngredientEditView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Ingredient\IngredientListView.xaml.cs">
+      <DependentUpon>IngredientListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Recipe\RecipeDetailView.xaml.cs">
+      <DependentUpon>RecipeDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Recipe\RecipeEditView.xaml.cs">
       <DependentUpon>RecipeEditView.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Recipe\RecipeIngredientsEditView.xaml.cs">
       <DependentUpon>RecipeIngredientsEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Recipe\RecipeListView.xaml.cs">
+      <DependentUpon>RecipeListView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
