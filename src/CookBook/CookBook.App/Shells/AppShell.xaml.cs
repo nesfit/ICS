@@ -1,6 +1,5 @@
 using CommunityToolkit.Mvvm.Input;
 using CookBook.App.Services;
-using CookBook.App.ViewModels;
 
 namespace CookBook.App.Shells;
 
@@ -17,9 +16,9 @@ public partial class AppShell
 
     [RelayCommand]
     private async Task GoToRecipesAsync()
-        => await _navigationService.GoToAsync<RecipeListViewModel>();
+        => await _navigationService.GoToAsync(NavigationService.RecipeListRouteAbsolute);
 
     [RelayCommand]
     private async Task GoToIngredientsAsync()
-        => await _navigationService.GoToAsync<IngredientListViewModel>();
+        => await _navigationService.GoToAsync(NavigationService.IngredientListRouteAbsolute);
 }

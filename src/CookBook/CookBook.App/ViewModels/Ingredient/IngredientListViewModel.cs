@@ -1,4 +1,8 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿// Copyright (c) .NET Foundation and contributors. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+//
+
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using CookBook.App.Messages;
 using CookBook.App.Services;
@@ -25,14 +29,18 @@ public partial class IngredientListViewModel(
     [RelayCommand]
     private async Task GoToCreateAsync()
     {
-        await navigationService.GoToAsync("/edit");
+        await navigationService.GoToAsync(NavigationService.IngredientEditRouteRelative);
     }
 
     [RelayCommand]
     private async Task GoToDetailAsync(Guid id)
     {
-        await navigationService.GoToAsync<IngredientDetailViewModel>(
-            new Dictionary<string, object?> { [nameof(IngredientDetailViewModel.Id)] = id });
+        await navigationService.GoToAsync(NavigationService.IngredientDetailRouteRelative,
+            new Dictionary<string, object?>
+            {
+                [nameof(IngredientDetailViewModel.Id)] = id
+            }
+        );
     }
 
     public async void Receive(IngredientEditMessage message)

@@ -47,7 +47,7 @@ public partial class IngredientDetailViewModel(
     [RelayCommand]
     private async Task GoToEditAsync()
     {
-        await navigationService.GoToAsync("/edit",
+        await navigationService.GoToAsync(NavigationService.IngredientEditRouteRelative,
             new Dictionary<string, object?> { [nameof(IngredientEditViewModel.Ingredient)] = Ingredient });
     }
 

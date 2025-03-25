@@ -23,7 +23,7 @@ public partial class RecipeEditViewModel(
     [RelayCommand]
     private async Task GoToRecipeIngredientEditAsync()
     {
-        await navigationService.GoToAsync("/ingredients",
+        await navigationService.GoToAsync(NavigationService.RecipeIngredientsEditRouteRelative,
             new Dictionary<string, object?> { [nameof(RecipeIngredientsEditViewModel.Recipe)] = Recipe });
     }
 

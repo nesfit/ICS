@@ -24,13 +24,17 @@ public partial class RecipeListViewModel(
 
     [RelayCommand]
     private async Task GoToDetailAsync(Guid id)
-        => await navigationService.GoToAsync<RecipeDetailViewModel>(
-            new Dictionary<string, object?> { [nameof(RecipeDetailViewModel.Id)] = id });
+        => await navigationService.GoToAsync(NavigationService.RecipeDetailRouteRelative,
+            new Dictionary<string, object?>
+            {
+                [nameof(RecipeDetailViewModel.Id)] = id
+            }
+        );
 
     [RelayCommand]
     private async Task GoToCreateAsync()
     {
-        await navigationService.GoToAsync("/edit");
+        await navigationService.GoToAsync(NavigationService.RecipeEditRouteRelative);
     }
 
     public async void Receive(RecipeEditMessage message)

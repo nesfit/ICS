@@ -44,7 +44,7 @@ public partial class RecipeDetailViewModel(
     {
         if (Recipe is not null)
         {
-            await navigationService.GoToAsync("/edit",
+            await navigationService.GoToAsync(NavigationService.RecipeEditRouteRelative,
                 new Dictionary<string, object?> { [nameof(RecipeEditViewModel.Recipe)] = Recipe with { } });
         }
     }
