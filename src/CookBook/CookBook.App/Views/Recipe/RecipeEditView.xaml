@@ -55,13 +55,13 @@
                 </StackLayout>
             </Grid>
 
-            <Frame Grid.Column="1"
-                   HorizontalOptions="Fill" VerticalOptions="Fill"
-                   Style="{StaticResource ImageFrameStyle}">
+            <Border Grid.Column="1"
+                    HorizontalOptions="Fill" VerticalOptions="Fill"
+                    Style="{StaticResource ImageBorderStyle}">
                 <Image Source="{Binding Recipe.ImageUrl, TargetNullValue='recipe_placeholder.jpg'}"
                        WidthRequest="320" HeightRequest="240"
                        Aspect="AspectFill" />
-            </Frame>
+            </Border>
         </Grid>
 
         <Grid Grid.Row="1"
@@ -95,12 +95,12 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:IngredientAmountDetailModel">
                             <HorizontalStackLayout>
-                                <Frame Margin="5, 5, 20, 5"
-                                       Style="{StaticResource ImageFrameStyle}">
+                                <Border Margin="5, 5, 20, 5"
+                                        Style="{StaticResource ImageBorderStyle}">
                                     <Image Source="{Binding IngredientImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
                                            WidthRequest="60" HeightRequest="60"
                                            Aspect="AspectFill" />
-                                </Frame>
+                                </Border>
 
                                 <Label VerticalOptions="Center">
                                     <Label.FormattedText>

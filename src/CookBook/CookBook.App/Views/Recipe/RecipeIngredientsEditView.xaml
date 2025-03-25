@@ -18,11 +18,11 @@
         <HorizontalStackLayout Grid.Row="0"
                                HorizontalOptions="Center"
                                Spacing="10">
-            <Frame Style="{StaticResource ImageFrameStyle}">
+            <Border Style="{StaticResource ImageBorderStyle}">
                 <Image Source="{Binding Recipe.ImageUrl, TargetNullValue='recipe_placeholder.jpg'}"
                        WidthRequest="320" HeightRequest="240"
                        Aspect="AspectFill" />
-            </Frame>
+            </Border>
 
             <Label Text="{Binding Recipe.Name}"
                    VerticalOptions="Center" />
@@ -70,13 +70,13 @@
                 <DataTemplate x:DataType="m:IngredientAmountDetailModel">
                     <Grid ColumnDefinitions="Auto, Auto, Auto, Auto, *"
                           ColumnSpacing="10">
-                        <Frame Grid.Column="0"
-                               Margin="5, 5, 20, 5"
-                               Style="{StaticResource ImageFrameStyle}">
+                        <Border Grid.Column="0"
+                                Margin="5, 5, 20, 5"
+                                Style="{StaticResource ImageBorderStyle}">
                             <Image Source="{Binding IngredientImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
                                    WidthRequest="60" HeightRequest="60"
                                    Aspect="AspectFill" />
-                        </Frame>
+                        </Border>
 
                         <Entry Grid.Column="1"
                                VerticalOptions="Center"

@@ -44,31 +44,31 @@
     <!-- <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" /> -->
 
     <!-- Splash Screen -->
-    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128"/>
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
     <!-- Images -->
-    <MauiImage Include="Resources\Images\*"/>
-    <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208"/>
+    <MauiImage Include="Resources\Images\*" />
+    <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
     <!-- Custom Fonts -->
-    <MauiFont Include="Resources\Fonts\*"/>
+    <MauiFont Include="Resources\Fonts\*" />
 
     <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
-    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)"/>
+    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="appsettings.json"/>
-    <None Remove="Resources\Images\ingredient_placeholder.jpg"/>
-    <None Remove="Resources\Images\recipe_placeholder.jpg"/>
+    <None Remove="appsettings.json" />
+    <None Remove="Resources\Images\ingredient_placeholder.jpg" />
+    <None Remove="Resources\Images\recipe_placeholder.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="appsettings.json"/>
+    <EmbeddedResource Include="appsettings.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CookBook.BL\CookBook.BL.csproj"/>
+    <ProjectReference Include="..\CookBook.BL\CookBook.BL.csproj" />
   </ItemGroup>
 
 
@@ -76,16 +76,16 @@
     <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
     <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 
-    <PackageReference Include="CommunityToolkit.Maui" Version="7.0.1"/>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2"/>
+    <PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="Fody" Version="6.8.0" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0"/>
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0"/>
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0"/>
-    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" PrivateAssets="All"/>
-    <PackageReference Include="Scrutor" Version="4.2.2"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" PrivateAssets="All" />
+    <PackageReference Include="Scrutor" Version="4.2.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -206,7 +206,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <MauiXaml Update="Resources\Styles\FrameStyle.xaml">
+    <MauiXaml Update="Resources\Styles\BorderStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Resources\Styles\ContentPageStyle.xaml">

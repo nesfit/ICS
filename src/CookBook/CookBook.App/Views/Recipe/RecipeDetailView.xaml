@@ -43,11 +43,13 @@
                            TextColor="{StaticResource PrimaryLabelTextColor}"
                            FontSize="20" />
 
-                    <Frame Grid.Row="1"
-                           BackgroundColor="{Binding Recipe.FoodType, Converter={StaticResource FoodTypeToColorConverter}}"
-                           HeightRequest="100"
-                           CornerRadius="10"
-                           Padding="0">
+                    <Border Grid.Row="1"
+                            BackgroundColor="{Binding Recipe.FoodType, Converter={StaticResource FoodTypeToColorConverter}}"
+                            HeightRequest="100">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10"/>
+                        </Border.StrokeShape>
+                        
                         <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, *, *"
                               HorizontalOptions="Fill" VerticalOptions="Center"
                               RowSpacing="5">
@@ -70,7 +72,7 @@
                                    TextColor="White"
                                    FontSize="11" />
                         </Grid>
-                    </Frame>
+                    </Border>
 
                     <Label Grid.Row="2"
                            Text="{x:Static texts:RecipeDetailViewTexts.Description_Label_Text}"
@@ -89,12 +91,12 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="models:IngredientAmountDetailModel">
                                 <HorizontalStackLayout>
-                                    <Frame Margin="5, 5, 20, 5"
-                                           Style="{StaticResource ImageFrameStyle}">
+                                    <Border Margin="5, 5, 20, 5"
+                                            Style="{StaticResource ImageBorderStyle}">
                                         <Image Source="{Binding IngredientImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
                                                WidthRequest="60" HeightRequest="60"
                                                Aspect="AspectFill" />
-                                    </Frame>
+                                    </Border>
 
                                     <Label VerticalOptions="Center">
                                         <Label.FormattedText>
@@ -117,12 +119,12 @@
             <Grid Grid.Column="1"
                   RowDefinitions="Auto, *"
                   RowSpacing="20">
-                <Frame Grid.Row="0"
-                       Style="{StaticResource ImageFrameStyle}">
+                <Border Grid.Row="0"
+                        Style="{StaticResource ImageBorderStyle}">
                     <Image Source="{Binding Recipe.ImageUrl, TargetNullValue='recipe_placeholder.jpg'}"
                            WidthRequest="320" HeightRequest="240"
                            Aspect="AspectFill" />
-                </Frame>
+                </Border>
             </Grid>
         </Grid>
     </Grid>
