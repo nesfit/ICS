@@ -3,7 +3,7 @@ using CookBook.App.Services;
 
 namespace CookBook.App.ViewModels;
 
-public abstract class ViewModelBase : ObservableRecipient, IViewModel
+public abstract class ViewModelBase : ObservableRecipient
 {
     private bool _isRefreshRequired = true;
 
