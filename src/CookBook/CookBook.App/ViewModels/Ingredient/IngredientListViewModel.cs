@@ -45,13 +45,13 @@ public partial class IngredientListViewModel(
         );
     }
 
-    public async void Receive(IngredientEditMessage message)
+    public void Receive(IngredientEditMessage message)
     {
-        await LoadDataAsync();
+        ForceDataRefresh = true;
     }
 
-    public async void Receive(IngredientDeleteMessage message)
+    public void Receive(IngredientDeleteMessage message)
     {
-        await LoadDataAsync();
+        ForceDataRefresh = true;
     }
 }

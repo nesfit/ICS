@@ -39,8 +39,7 @@ public partial class RecipeEditViewModel(
             new Dictionary<string, object?>
             {
                 [nameof(RecipeIngredientsEditViewModel.Id)] = Recipe.Id
-                }
-            );
+                });
     }
 
     [RelayCommand]
@@ -53,24 +52,18 @@ public partial class RecipeEditViewModel(
         navigationService.SendBackButtonPressed();
     }
 
-    public async void Receive(RecipeIngredientEditMessage message)
+    public void Receive(RecipeIngredientEditMessage message)
     {
-        await ReloadDataAsync();
+        ForceDataRefresh = true;
     }
 
-    public async void Receive(RecipeIngredientAddMessage message)
+    public void Receive(RecipeIngredientAddMessage message)
     {
-        await ReloadDataAsync();
+        ForceDataRefresh = true;
     }
 
-    public async void Receive(RecipeIngredientDeleteMessage message)
+    public void Receive(RecipeIngredientDeleteMessage message)
     {
-        await ReloadDataAsync();
-    }
-
-    private async Task ReloadDataAsync()
-    {
-        Recipe = await recipeFacade.GetAsync(Recipe.Id)
-                 ?? RecipeDetailModel.Empty;
+        ForceDataRefresh = true;
     }
 }

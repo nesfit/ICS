@@ -39,13 +39,13 @@ public partial class RecipeListViewModel(
         await navigationService.GoToAsync(NavigationService.RecipeEditRouteRelative);
     }
 
-    public async void Receive(RecipeEditMessage message)
+    public void Receive(RecipeEditMessage message)
     {
-        await LoadDataAsync();
+        ForceDataRefresh = true;
     }
 
-    public async void Receive(RecipeDeleteMessage message)
+    public void Receive(RecipeDeleteMessage message)
     {
-        await LoadDataAsync();
+        ForceDataRefresh = true;
     }
 }

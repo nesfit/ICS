@@ -57,11 +57,11 @@ public partial class IngredientDetailViewModel(
         }
     }
 
-    public async void Receive(IngredientEditMessage message)
+    public void Receive(IngredientEditMessage message)
     {
         if (message.IngredientId == Ingredient?.Id)
         {
-            await LoadDataAsync();
+            ForceDataRefresh = true;
         }
     }
 }

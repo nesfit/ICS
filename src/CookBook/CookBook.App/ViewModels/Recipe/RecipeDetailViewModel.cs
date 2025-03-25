@@ -56,21 +56,21 @@ public partial class RecipeDetailViewModel(
         }
     }
 
-    public async void Receive(RecipeEditMessage message)
+    public void Receive(RecipeEditMessage message)
     {
         if (message.RecipeId == Recipe?.Id)
         {
-            await LoadDataAsync();
+            ForceDataRefresh = true;
         }
     }
 
-    public async void Receive(RecipeIngredientAddMessage message)
+    public void Receive(RecipeIngredientAddMessage message)
     {
-        await LoadDataAsync();
+        ForceDataRefresh = true;
     }
 
-    public async void Receive(RecipeIngredientDeleteMessage message)
+    public void Receive(RecipeIngredientDeleteMessage message)
     {
-        await LoadDataAsync();
+        ForceDataRefresh = true;
     }
 }
