@@ -30,7 +30,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="m:RecipeListModel">
                         <Border Padding="0"
-                                WidthRequest="320" HeightRequest="240">
+                                WidthRequest="300" HeightRequest="200">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10" />
                             </Border.StrokeShape>

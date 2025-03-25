@@ -35,11 +35,13 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:IngredientListModel">
-                    <Border Style="{StaticResource ImageBorderStyle}">
+                    <Border Style="{StaticResource ImageBorderStyle}"
+                            HeightRequest="200">
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={x:Reference IngredientListViewRoot}, Path=BindingContext.GoToDetailCommand}"
                                                   CommandParameter="{Binding Id}" />
                         </Border.GestureRecognizers>
+                        
                         <Grid RowDefinitions="*, *">
                             <Image Grid.Row="0" Grid.RowSpan="2"
                                    Aspect="AspectFill"
