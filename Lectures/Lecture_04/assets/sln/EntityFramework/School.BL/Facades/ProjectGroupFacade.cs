@@ -12,18 +12,18 @@ using School.DAL.UnitOfWork;
 
 namespace School.BL.Facades
 {
-    public class GradeFacade : CrudFacadeBase<GradeEntity, GradeListModel, GradeDetailModel>
+    public class ProjectGroupFacade : CrudFacadeBase<ProjectGroupEntity, ProjectGroupListModel, ProjectGroupDetailModel>
     {
-        public GradeFacade(
+        public ProjectGroupFacade(
             UnitOfWork unitOfWork, 
-            RepositoryBase<GradeEntity> repository, 
-            IMapper<GradeEntity, GradeListModel, GradeDetailModel> mapper, 
+            RepositoryBase<ProjectGroupEntity> repository, 
+            IMapper<ProjectGroupEntity, ProjectGroupListModel, ProjectGroupDetailModel> mapper, 
             IEntityFactory entityFactory) 
             : base(unitOfWork, repository, mapper, entityFactory)
         {
         }
 
-        protected override Func<IQueryable<GradeEntity>, IIncludableQueryable<GradeEntity, object>>[] Includes { get; } = new Func<IQueryable<GradeEntity>, IIncludableQueryable<GradeEntity, object>>[]
+        protected override Func<IQueryable<ProjectGroupEntity>, IIncludableQueryable<ProjectGroupEntity, object>>[] Includes { get; } = new Func<IQueryable<ProjectGroupEntity>, IIncludableQueryable<ProjectGroupEntity, object>>[]
         {
             entities => entities.Include(i=>i.Students)
         };

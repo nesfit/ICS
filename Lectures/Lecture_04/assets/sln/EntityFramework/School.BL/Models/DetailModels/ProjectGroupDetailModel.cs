@@ -4,12 +4,12 @@ using School.BL.Models.ListModels;
 
 namespace School.BL.Models.DetailModels
 {
-    public record GradeDetailModel : IModel
+    public record ProjectGroupDetailModel : IModel
     {
         public Guid Id { get; set; }
 
-        public string Name { get; set; }
-        public string Section { get; set; }
+        public int? MaxCapacity { get; set; }
+        public int? AvailableSpots { get; set; }
 
         public ICollection<StudentListModel> Students { get; set; }
     }
