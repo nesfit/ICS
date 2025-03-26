@@ -1,9 +1,10 @@
 ﻿using CookBook.DAL.Options;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace CookBook.DAL.Seeds;
 
-public class DbSeeder(IDbContextFactory<CookBookDbContext> dbContextFactory, DALOptions options)
+public class DbSeeder(IDbContextFactory<CookBookDbContext> dbContextFactory, IOptions<DALOptions> options)
     : IDbSeeder
 {
     public void Seed() => SeedAsync(CancellationToken.None).GetAwaiter().GetResult();
@@ -12,7 +13,7 @@ public class DbSeeder(IDbContextFactory<CookBookDbContext> dbContextFactory, DAL
     {
         await using CookBookDbContext dbContext = await dbContextFactory.CreateDbContextAsync(cancellationToken);
 
-        if(options.SeedDemoData)
+        if(options.Value.SeedDemoData)
         {
             dbContext
                 .SeedIngredients()

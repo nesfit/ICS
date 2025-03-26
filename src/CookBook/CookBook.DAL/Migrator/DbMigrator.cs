@@ -1,9 +1,10 @@
 ﻿using CookBook.DAL.Options;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace CookBook.DAL.Migrator;
 
-public class DbMigrator(IDbContextFactory<CookBookDbContext> dbContextFactory, DALOptions options)
+public class DbMigrator(IDbContextFactory<CookBookDbContext> dbContextFactory, IOptions<DALOptions> options)
     : IDbMigrator
 {
     public void Migrate() => MigrateAsync(CancellationToken.None).GetAwaiter().GetResult();
@@ -12,7 +13,7 @@ public class DbMigrator(IDbContextFactory<CookBookDbContext> dbContextFactory, D
     {
         await using CookBookDbContext dbContext = await dbContextFactory.CreateDbContextAsync(cancellationToken);
 
-        if(options.RecreateDatabaseEachTime)
+        if(options.Value.RecreateDatabaseEachTime)
         {
             await dbContext.Database.EnsureDeletedAsync(cancellationToken);
         }

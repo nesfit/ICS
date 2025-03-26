@@ -7,6 +7,7 @@ using CookBook.DAL;
 using CookBook.DAL.Migrator;
 using CookBook.DAL.Options;
 using CookBook.DAL.Seeds;
+using Microsoft.Extensions.Options;
 
 [assembly:System.Resources.NeutralResourcesLanguage("en")]
 namespace CookBook.App;
@@ -27,12 +28,13 @@ public static class MauiProgram
         ConfigureAppSettings(builder);
 
         builder.Services
-            .AddDALServices(GetDALOptions(builder.Configuration))
-            .AddAppServices()
-            .AddBLServices();
+            .AddDALServices()
+            .AddBLServices()
+            .AddAppServices();
 
         var app = builder.Build();
 
+        AssetDALOptionsConfiguration(app);
         MigrateDb(app.Services.GetRequiredService<IDbMigrator>());
         SeedDb(app.Services.GetRequiredService<IDbSeeder>());
         RegisterRouting(app.Services.GetRequiredService<INavigationService>());
@@ -54,6 +56,8 @@ public static class MauiProgram
 
         var configuration = configurationBuilder.Build();
         builder.Configuration.AddConfiguration(configuration);
+
+        builder.Services.Configure<DALOptions>(builder.Configuration.GetSection("CookBook:DAL"));
     }
 
     private static void RegisterRouting(INavigationService navigationService)
@@ -64,16 +68,21 @@ public static class MauiProgram
         }
     }
 
-    private static DALOptions GetDALOptions(IConfiguration configuration)
-    {
-        DALOptions dalOptions = new()
-        {
-            DatabaseDirectory = FileSystem.AppDataDirectory
-        };
-        configuration.GetSection("CookBook:DAL").Bind(dalOptions);
-        return dalOptions;
-    }
-
     private static void MigrateDb(IDbMigrator migrator) => migrator.Migrate();
     private static void SeedDb(IDbSeeder dbSeeder) => dbSeeder.Seed();
+
+    private static void AssetDALOptionsConfiguration(MauiApp app)
+    {
+        var dalOptions = app.Services.GetRequiredService<IOptions<DALOptions>>();
+
+        if (dalOptions?.Value is null)
+        {
+            throw new InvalidOperationException("No persistence provider configured");
+        }
+
+        if (string.IsNullOrEmpty(dalOptions.Value.DatabaseName))
+        {
+            throw new InvalidOperationException($"{nameof(DALOptions.DatabaseName)} is not set");
+        }
+    }
 }
