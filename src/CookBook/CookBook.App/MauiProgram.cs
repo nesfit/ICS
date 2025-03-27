@@ -34,7 +34,7 @@ public static class MauiProgram
 
         var app = builder.Build();
 
-        AssetDALOptionsConfiguration(app);
+        AssertDALOptionsConfiguration(app);
         MigrateDb(app.Services.GetRequiredService<IDbMigrator>());
         SeedDb(app.Services.GetRequiredService<IDbSeeder>());
         RegisterRouting(app.Services.GetRequiredService<INavigationService>());
@@ -71,7 +71,7 @@ public static class MauiProgram
     private static void MigrateDb(IDbMigrator migrator) => migrator.Migrate();
     private static void SeedDb(IDbSeeder dbSeeder) => dbSeeder.Seed();
 
-    private static void AssetDALOptionsConfiguration(MauiApp app)
+    private static void AssertDALOptionsConfiguration(MauiApp app)
     {
         var dalOptions = app.Services.GetRequiredService<IOptions<DALOptions>>();
 
