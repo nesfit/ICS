@@ -80,7 +80,7 @@ public static class MauiProgram
             throw new InvalidOperationException("No persistence provider configured");
         }
 
-        if (string.IsNullOrEmpty(dalOptions.Value.DatabaseName))
+        if (string.IsNullOrEmpty(dalOptions?.Value.DatabaseName))
         {
             throw new InvalidOperationException($"{nameof(DALOptions.DatabaseName)} is not set");
         }
