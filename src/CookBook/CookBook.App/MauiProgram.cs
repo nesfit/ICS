@@ -26,15 +26,16 @@ public static class MauiProgram
 
         ConfigureAppSettings(builder);
 
+        var dbOptions = GetDALOptions(builder.Configuration);
         builder.Services
-            .AddDALServices(GetDALOptions(builder.Configuration))
+            .AddDALServices(dbOptions)
             .AddAppServices()
             .AddBLServices();
 
         var app = builder.Build();
 
         MigrateDb(app.Services.GetRequiredService<IDbMigrator>());
-        SeedDb(app.Services.GetRequiredService<IDbSeeder>());
+        SeedDb(app.Services.GetRequiredService<IDbSeeder>(), dbOptions);
         RegisterRouting(app.Services.GetRequiredService<INavigationService>());
 
         return app;
@@ -75,5 +76,11 @@ public static class MauiProgram
     }
 
     private static void MigrateDb(IDbMigrator migrator) => migrator.Migrate();
-    private static void SeedDb(IDbSeeder dbSeeder) => dbSeeder.Seed();
+    private static void SeedDb(IDbSeeder dbSeeder, DALOptions dalOptions)
+    {
+        if (dalOptions.SeedDemoData)
+        {
+            dbSeeder.Seed();
+        }
+    }
 }
