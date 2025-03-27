@@ -16,11 +16,11 @@ namespace School.DAL.Seeds
             State = "Monaco",
         };
 
-        public static readonly GradeEntity GradeJane = new()
+        public static readonly ProjectGroupEntity ProjectGroupJane = new()
         {
             Id = Guid.Parse("A464EAA4-867E-45F4-81F1-48465E2C236F"),
-            Name = "Best class",
-            Section = "The best",
+            AvailableSpots = 2,
+            MaxCapacity = 5,
             Students = new List<StudentEntity>()
         };
 
@@ -37,8 +37,8 @@ namespace School.DAL.Seeds
             Id = Guid.Parse("0A7EE49A-C6AC-41AF-97D0-9F91B9FAF966"),
             Name = "Jane",
             Address = AddressJane,
-            GradeId = GradeJane.Id,
-            Grade = GradeJane,
+            ProjectGroupId = ProjectGroupJane.Id,
+            ProjectGroup = ProjectGroupJane,
             StudentCourses = new List<StudentCourseEntity>() {}
         };
 
@@ -53,7 +53,7 @@ namespace School.DAL.Seeds
 
         static Seed()
         {
-            GradeJane.Students.Add(StudentJane);
+            ProjectGroupJane.Students.Add(StudentJane);
             IcsCourse.StudentCourses.Add(StudentCourseJane);
             StudentJane.StudentCourses.Add(StudentCourseJane);
         }
@@ -67,8 +67,8 @@ namespace School.DAL.Seeds
                     Name = StudentJane.Name,
                     AddressId = StudentJane.Address!.Id, //AddressId is a shadow property (not defined on StudentEntity)
                     //Address navigation properties needs to be seeded separately
-                    GradeId = StudentJane.GradeId,
-                    //Grade
+                    ProjectGroupId = StudentJane.ProjectGroupId,
+                    //ProjectGroup
                     //StudentCourses 
                 });
         }
@@ -79,14 +79,14 @@ namespace School.DAL.Seeds
                 .HasData(AddressJane);
         }
 
-        public static void SeedGrades(this ModelBuilder modelBuilder)
+        public static void SeedProjectGroups(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<GradeEntity>()
-                .HasData(new GradeEntity()
+            modelBuilder.Entity<ProjectGroupEntity>()
+                .HasData(new ProjectGroupEntity()
                 {
-                    Id = GradeJane.Id,
-                    Name = GradeJane.Name,
-                    Section = GradeJane.Section
+                    Id = ProjectGroupJane.Id,
+                    AvailableSpots = ProjectGroupJane.AvailableSpots,
+                    MaxCapacity = ProjectGroupJane.MaxCapacity
                 });
         }
 

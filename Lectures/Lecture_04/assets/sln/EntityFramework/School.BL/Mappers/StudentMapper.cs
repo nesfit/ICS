@@ -37,7 +37,7 @@ namespace School.BL.Mappers
                         StudentId = entity.Id,
                         Name = courseEntity.Course.Name
                     }).ToValueCollection(),
-                Grade = new GradeListModel() { Id = entity.Grade.Id, Name = entity.Grade.Name}
+                ProjectGroup = new ProjectGroupListModel() { Id = entity.ProjectGroup.Id, AvailableSpots = entity.ProjectGroup.AvailableSpots}
             };
 
         public StudentEntity Map(StudentDetailModel detailModel, IEntityFactory entityFactory
@@ -58,7 +58,7 @@ namespace School.BL.Mappers
                 return studentCourseEntity;
             }).ToValueCollection();
 
-            entity.GradeId = detailModel.Grade.Id;
+            entity.ProjectGroupId = detailModel.ProjectGroup.Id;
 
             return entity;
         }

@@ -12,7 +12,7 @@ namespace School.BL.Models.DetailModels
         public string Name { get; set; }
 
         public AddressDetailModel Address { get; set; }
-        public GradeListModel Grade { get; set; }
+        public ProjectGroupListModel ProjectGroup { get; set; }
 
         public ICollection<StudentCourseListModel> Courses { get; set; }
     }

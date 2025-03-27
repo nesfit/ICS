@@ -576,7 +576,7 @@ public record CourseEntity(Guid Id, string Name, string Description)
 ### Entity in DbContext
 * Classes become entities when they are **included as** `DbSet<TEntity>` properties **in a context class**
 * Properties of type `DbSet<TEntity>` are called **entity sets**
-* `AddressEntity`, `CourseEntity`, `GradeEntity`, `StudentEntity`, `StudentCourseEntity` are **entities** (also known as entity types)
+* `AddressEntity`, `CourseEntity`, `ProjectGroupEntity`, `StudentEntity`, `StudentCourseEntity` are **entities** (also known as entity types)
 
 ```C#
 public class SchoolDbContext : DbContext
@@ -587,7 +587,7 @@ public class SchoolDbContext : DbContext
 
     public DbSet<AddressEntity> Addresses => Set<AddressEntity>();
     public DbSet<CourseEntity> Courses => Set<CourseEntity>();
-    public DbSet<GradeEntity> Grades => Set<GradeEntity>();
+    public DbSet<ProjectGroupEntity> ProjectGroups => Set<ProjectGroupEntity>();
     public DbSet<StudentEntity> Students => Set<StudentEntity>();
     public DbSet<StudentCourseEntity> StudentCourses => Set<StudentCourseEntity>();
 }
@@ -730,7 +730,7 @@ public class SchoolDbContext : DbContext
     
     public DbSet<AddressEntity> Addresses => Set<AddressEntity>();
     public DbSet<CourseEntity> Courses => Set<CourseEntity>();
-    public DbSet<GradeEntity> Grades => Set<GradeEntity>();
+    public DbSet<ProjectGroupEntity> ProjectGroups => Set<ProjectGroupEntity>();
     public DbSet<StudentEntity> Students => Set<StudentEntity>();
     public DbSet<StudentCourseEntity> StudentCourses => Set<StudentCourseEntity>();
 
@@ -1173,9 +1173,9 @@ modelBuilder.Entity<StudentEntity>()
 
 ```C#
 modelBuilder.Entity<StudentEntity>()
-                .HasOne(i => i.Grade)
+                .HasOne(i => i.ProjectGroup)
                 .WithMany(i => i.Students)
-                .HasForeignKey(i=>i.GradeId);
+                .HasForeignKey(i=>i.ProjectGroupId);
 ```
 
 +++
@@ -1185,10 +1185,10 @@ modelBuilder.Entity<StudentEntity>()
 ```C#
 public class Student
 {
-    public Grade Grade { get; set; }
+    public ProjectGroup ProjectGroup { get; set; }
 }
 
-public class Grade{}
+public class ProjectGroup{}
 ```
 
 * *2*
@@ -1196,7 +1196,7 @@ public class Grade{}
 ```C#
 public class Student{}
 
-public class Grade
+public class ProjectGroup
 {
     public ICollection<Student> Students { get; set; } 
 }
@@ -1209,10 +1209,10 @@ public class Grade
 ```C#
 public class Student
 {
-    public Grade Grade { get; set; }
+    public ProjectGroup ProjectGroup { get; set; }
 }
 
-public class Grade
+public class ProjectGroup
 {
     public ICollection<Student> Students { get; set; }
 }
@@ -1223,10 +1223,10 @@ public class Grade
 ```C#
 public class Student
 {
-    public int GradeId { get; set; }
-    public Grade Grade { get; set; }
+    public int ProjectGroupId { get; set; }
+    public ProjectGroup ProjectGroup { get; set; }
 }
-public class Grade
+public class ProjectGroup
 {
     public ICollection<Student> Students { get; set; }
 }
@@ -1237,8 +1237,8 @@ public class Grade
 [Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL/Entities/StudentEntity.cs)
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.DAL/Entities/GradeEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
-[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL/Entities/GradeEntity.cs)
+<pre><code class="language-csharp" data-sample='assets/sln/EntityFramework/School.DAL/Entities/ProjectGroupEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](https://github.com/nesfit/ICS/blob/master/Lectures/Lecture_04/assets/sln/EntityFramework/School.DAL/Entities/ProjectGroupEntity.cs)
 
 +++
 ### Cascade Delete using Fluent API
@@ -1246,9 +1246,9 @@ public class Grade
 
 ```C#
 modelBuilder.Entity<StudentEntity>()
-                .HasOne(i => i.Grade)
+                .HasOne(i => i.ProjectGroup)
                 .WithMany(i => i.Students)
-                .HasForeignKey(i=>i.GradeId)
+                .HasForeignKey(i=>i.ProjectGroupId)
                 .OnDelete(DeleteBehavior.Cascade);
 ```
 
