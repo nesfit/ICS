@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CookBook.App.Resources.Styles.BorderStyle">
+    
+    <Style x:Key="ImageBorderStyle" TargetType="Border">
+        <Setter Property="Stroke" Value="{StaticResource ImageBorderColor}" />
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="10" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,4 +1,9 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿// Copyright (c) .NET Foundation and contributors. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+//
+
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using CookBook.App.Messages;
 using CookBook.App.Services;
@@ -13,7 +18,8 @@ public partial class IngredientListViewModel(
     IMessengerService messengerService)
     : ViewModelBase(messengerService), IRecipient<IngredientEditMessage>, IRecipient<IngredientDeleteMessage>
 {
-    public IEnumerable<IngredientListModel> Ingredients { get; set; } = null!;
+    [ObservableProperty]
+    private IEnumerable<IngredientListModel> _ingredients = [];
 
     protected override async Task LoadDataAsync()
     {
@@ -25,23 +31,27 @@ public partial class IngredientListViewModel(
     [RelayCommand]
     private async Task GoToCreateAsync()
     {
-        await navigationService.GoToAsync("/edit");
+        await navigationService.GoToAsync(NavigationService.IngredientEditRouteRelative);
     }
 
     [RelayCommand]
     private async Task GoToDetailAsync(Guid id)
     {
-        await navigationService.GoToAsync<IngredientDetailViewModel>(
-            new Dictionary<string, object?> { [nameof(IngredientDetailViewModel.Id)] = id });
+        await navigationService.GoToAsync(NavigationService.IngredientDetailRouteRelative,
+            new Dictionary<string, object?>
+            {
+                [nameof(IngredientDetailViewModel.Id)] = id
+            }
+        );
     }
 
-    public async void Receive(IngredientEditMessage message)
+    public void Receive(IngredientEditMessage message)
     {
-        await LoadDataAsync();
+        ForceDataRefreshOnNextAppearing();
     }
 
-    public async void Receive(IngredientDeleteMessage message)
+    public void Receive(IngredientDeleteMessage message)
     {
-        await LoadDataAsync();
+        ForceDataRefreshOnNextAppearing();
     }
 }

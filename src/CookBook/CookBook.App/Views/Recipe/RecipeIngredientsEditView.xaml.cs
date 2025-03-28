@@ -2,7 +2,7 @@
 
 namespace CookBook.App.Views.Recipe;
 
-public partial class RecipeIngredientsEditView
+public partial class RecipeIngredientsEditView : ContentPageBase
 {
     public RecipeIngredientsEditView(RecipeIngredientsEditViewModel viewModel)
         : base(viewModel)

@@ -3,9 +3,9 @@ using CookBook.App.Services;
 
 namespace CookBook.App.ViewModels;
 
-public abstract class ViewModelBase : ObservableRecipient, IViewModel
+public abstract class ViewModelBase : ObservableRecipient
 {
-    private bool _isRefreshRequired = true;
+    private bool forceDataRefresh = true;
 
     protected readonly IMessengerService MessengerService;
 
@@ -13,17 +13,23 @@ public abstract class ViewModelBase : ObservableRecipient, IViewModel
         : base(messengerService.Messenger)
     {
         MessengerService = messengerService;
+
         IsActive = true;
     }
 
     public async Task OnAppearingAsync()
     {
-        if (_isRefreshRequired)
+        if (forceDataRefresh)
         {
             await LoadDataAsync();
 
-            _isRefreshRequired = false;
+            forceDataRefresh = false;
         }
+    }
+
+    protected void ForceDataRefreshOnNextAppearing()
+    {
+        forceDataRefresh = true;
     }
 
     protected virtual Task LoadDataAsync()

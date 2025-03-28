@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using CookBook.App.Messages;
 using CookBook.App.Services;
@@ -8,7 +9,7 @@ using CookBook.Common.Enums;
 
 namespace CookBook.App.ViewModels;
 
-[QueryProperty(nameof(Recipe), nameof(Recipe))]
+[QueryProperty(nameof(Id), nameof(Id))]
 public partial class RecipeEditViewModel(
     IRecipeFacade recipeFacade,
     INavigationService navigationService,
@@ -16,15 +17,29 @@ public partial class RecipeEditViewModel(
     : ViewModelBase(messengerService), IRecipient<RecipeIngredientEditMessage>, IRecipient<RecipeIngredientAddMessage>,
         IRecipient<RecipeIngredientDeleteMessage>
 {
-    public RecipeDetailModel Recipe { get; set; } = RecipeDetailModel.Empty;
+    public Guid Id { get; set; }
 
-    public List<FoodType> FoodTypes { get; set; } = new((FoodType[])Enum.GetValues(typeof(FoodType)));
+    [ObservableProperty]
+    private RecipeDetailModel _recipe = RecipeDetailModel.Empty;
+
+    public List<FoodType> FoodTypes { get; set; } = [.. (FoodType[])Enum.GetValues(typeof(FoodType))];
+
+    protected override async Task LoadDataAsync()
+    {
+        await base.LoadDataAsync();
+
+        Recipe = await recipeFacade.GetAsync(Id)
+                 ?? RecipeDetailModel.Empty;
+    }
 
     [RelayCommand]
     private async Task GoToRecipeIngredientEditAsync()
     {
-        await navigationService.GoToAsync("/ingredients",
-            new Dictionary<string, object?> { [nameof(RecipeIngredientsEditViewModel.Recipe)] = Recipe });
+        await navigationService.GoToAsync(NavigationService.RecipeIngredientsEditRouteRelative,
+            new Dictionary<string, object?>
+            {
+                [nameof(RecipeIngredientsEditViewModel.Id)] = Recipe.Id
+                });
     }
 
     [RelayCommand]
@@ -37,24 +52,18 @@ public partial class RecipeEditViewModel(
         navigationService.SendBackButtonPressed();
     }
 
-    public async void Receive(RecipeIngredientEditMessage message)
+    public void Receive(RecipeIngredientEditMessage message)
     {
-        await ReloadDataAsync();
+        ForceDataRefreshOnNextAppearing();
     }
 
-    public async void Receive(RecipeIngredientAddMessage message)
+    public void Receive(RecipeIngredientAddMessage message)
     {
-        await ReloadDataAsync();
+        ForceDataRefreshOnNextAppearing();
     }
 
-    public async void Receive(RecipeIngredientDeleteMessage message)
+    public void Receive(RecipeIngredientDeleteMessage message)
     {
-        await ReloadDataAsync();
-    }
-
-    private async Task ReloadDataAsync()
-    {
-        Recipe = await recipeFacade.GetAsync(Recipe.Id)
-                 ?? RecipeDetailModel.Empty;
+        ForceDataRefreshOnNextAppearing();
     }
 }

@@ -5,30 +5,19 @@ using CookBook.DAL.Options;
 using CookBook.DAL.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace CookBook.DAL;
 
 public static class DALInstaller
 {
-    public static IServiceCollection AddDALServices(this IServiceCollection services, DALOptions options)
+    public static IServiceCollection AddDALServices(this IServiceCollection services)
     {
-        services.AddSingleton(options);
-
-        if (options is null)
+        services.AddSingleton<IDbContextFactory<CookBookDbContext>>(serviceProvider =>
         {
-            throw new InvalidOperationException("No persistence provider configured");
-        }
-
-        if (string.IsNullOrEmpty(options.DatabaseDirectory))
-        {
-            throw new InvalidOperationException($"{nameof(options.DatabaseDirectory)} is not set");
-        }
-        if (string.IsNullOrEmpty(options.DatabaseName))
-        {
-            throw new InvalidOperationException($"{nameof(options.DatabaseName)} is not set");
-        }
-
-        services.AddSingleton<IDbContextFactory<CookBookDbContext>>(_ => new DbContextSqLiteFactory(options.DatabaseFilePath));
+            var dalOptions = serviceProvider.GetRequiredService<IOptions<DALOptions>>();
+            return new DbContextSqLiteFactory(dalOptions.Value.DatabaseFilePath);
+        });
         services.AddSingleton<IDbMigrator, DbMigrator>();
         services.AddSingleton<IDbSeeder, DbSeeder>();
 

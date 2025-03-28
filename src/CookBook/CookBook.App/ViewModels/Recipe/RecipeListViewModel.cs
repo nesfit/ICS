@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using CookBook.App.Messages;
 using CookBook.App.Services;
@@ -13,7 +14,8 @@ public partial class RecipeListViewModel(
     IMessengerService messengerService)
     : ViewModelBase(messengerService), IRecipient<RecipeEditMessage>, IRecipient<RecipeDeleteMessage>
 {
-    public IEnumerable<RecipeListModel> Recipes { get; set; } = null!;
+    [ObservableProperty]
+    private IEnumerable<RecipeListModel> _recipes = [];
 
     protected override async Task LoadDataAsync()
     {
@@ -24,22 +26,26 @@ public partial class RecipeListViewModel(
 
     [RelayCommand]
     private async Task GoToDetailAsync(Guid id)
-        => await navigationService.GoToAsync<RecipeDetailViewModel>(
-            new Dictionary<string, object?> { [nameof(RecipeDetailViewModel.Id)] = id });
+        => await navigationService.GoToAsync(NavigationService.RecipeDetailRouteRelative,
+            new Dictionary<string, object?>
+            {
+                [nameof(RecipeDetailViewModel.Id)] = id
+            }
+        );
 
     [RelayCommand]
     private async Task GoToCreateAsync()
     {
-        await navigationService.GoToAsync("/edit");
+        await navigationService.GoToAsync(NavigationService.RecipeEditRouteRelative);
     }
 
-    public async void Receive(RecipeEditMessage message)
+    public void Receive(RecipeEditMessage message)
     {
-        await LoadDataAsync();
+        ForceDataRefreshOnNextAppearing();
     }
 
-    public async void Receive(RecipeDeleteMessage message)
+    public void Receive(RecipeDeleteMessage message)
     {
-        await LoadDataAsync();
+        ForceDataRefreshOnNextAppearing();
     }
 }

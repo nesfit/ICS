@@ -1,4 +1,9 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿// Copyright (c) .NET Foundation and contributors. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+//
+
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using CookBook.App.Messages;
 using CookBook.App.Services;
@@ -16,7 +21,9 @@ public partial class RecipeDetailViewModel(
         IRecipient<RecipeIngredientDeleteMessage>
 {
     public Guid Id { get; set; }
-    public RecipeDetailModel? Recipe { get; set; }
+
+    [ObservableProperty]
+    private RecipeDetailModel? _recipe;
 
     protected override async Task LoadDataAsync()
     {
@@ -44,26 +51,30 @@ public partial class RecipeDetailViewModel(
     {
         if (Recipe is not null)
         {
-            await navigationService.GoToAsync("/edit",
-                new Dictionary<string, object?> { [nameof(RecipeEditViewModel.Recipe)] = Recipe with { } });
+            await navigationService.GoToAsync(NavigationService.RecipeEditRouteRelative,
+                new Dictionary<string, object?>
+                {
+                    [nameof(RecipeEditViewModel.Id)] = Recipe.Id
+                }
+            );
         }
     }
 
-    public async void Receive(RecipeEditMessage message)
+    public void Receive(RecipeEditMessage message)
     {
         if (message.RecipeId == Recipe?.Id)
         {
-            await LoadDataAsync();
+            ForceDataRefreshOnNextAppearing();
         }
     }
 
-    public async void Receive(RecipeIngredientAddMessage message)
+    public void Receive(RecipeIngredientAddMessage message)
     {
-        await LoadDataAsync();
+        ForceDataRefreshOnNextAppearing();
     }
 
-    public async void Receive(RecipeIngredientDeleteMessage message)
+    public void Receive(RecipeIngredientDeleteMessage message)
     {
-        await LoadDataAsync();
+        ForceDataRefreshOnNextAppearing();
     }
 }

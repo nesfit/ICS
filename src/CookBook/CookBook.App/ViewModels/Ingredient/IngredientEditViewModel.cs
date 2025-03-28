@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CookBook.App.Messages;
 using CookBook.App.Services;
 using CookBook.BL.Facades;
@@ -6,14 +7,25 @@ using CookBook.BL.Models;
 
 namespace CookBook.App.ViewModels;
 
-[QueryProperty(nameof(Ingredient), nameof(Ingredient))]
+[QueryProperty(nameof(Id), nameof(Id))]
 public partial class IngredientEditViewModel(
     IIngredientFacade ingredientFacade,
     INavigationService navigationService,
     IMessengerService messengerService)
     : ViewModelBase(messengerService)
 {
-    public IngredientDetailModel Ingredient { get; init; } = IngredientDetailModel.Empty;
+    public Guid Id { get; set; }
+
+    [ObservableProperty]
+    private IngredientDetailModel _ingredient = IngredientDetailModel.Empty;
+
+    protected override async Task LoadDataAsync()
+    {
+        await base.LoadDataAsync();
+
+        Ingredient = await ingredientFacade.GetAsync(Id)
+                    ?? IngredientDetailModel.Empty;
+    }
 
     [RelayCommand]
     private async Task SaveAsync()

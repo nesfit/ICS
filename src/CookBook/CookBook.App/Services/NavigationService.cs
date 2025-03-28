@@ -1,5 +1,4 @@
 ﻿using CookBook.App.Models;
-using CookBook.App.ViewModels;
 using CookBook.App.Views.Ingredient;
 using CookBook.App.Views.Recipe;
 
@@ -7,35 +6,31 @@ namespace CookBook.App.Services;
 
 public class NavigationService : INavigationService
 {
+    public const string RecipeListRouteAbsolute = "//recipes";
+    public const string RecipeDetailRouteRelative = "/detail";
+    public const string RecipeEditRouteRelative = "/edit";
+    public const string RecipeIngredientsEditRouteRelative = "/ingredients";
+
+    public const string IngredientListRouteAbsolute = "//ingredients";
+    public const string IngredientDetailRouteRelative = "/detail";
+    public const string IngredientEditRouteRelative = "/edit";
+
     public IEnumerable<RouteModel> Routes { get; } = new List<RouteModel>
     {
-        new("//ingredients", typeof(IngredientListView), typeof(IngredientListViewModel)),
-        new("//ingredients/detail", typeof(IngredientDetailView), typeof(IngredientDetailViewModel)),
+        new(IngredientListRouteAbsolute, typeof(IngredientListView)),
+        new(IngredientListRouteAbsolute + IngredientDetailRouteRelative, typeof(IngredientDetailView)),
         
-        new("//ingredients/edit", typeof(IngredientEditView), typeof(IngredientEditViewModel)),
-        new("//ingredients/detail/edit", typeof(IngredientEditView), typeof(IngredientEditViewModel)),
+        new(IngredientListRouteAbsolute + IngredientEditRouteRelative, typeof(IngredientEditView)),
+        new(IngredientListRouteAbsolute + IngredientDetailRouteRelative + IngredientEditRouteRelative, typeof(IngredientEditView)),
 
-        new("//recipes", typeof(RecipeListView), typeof(RecipeListViewModel)),
-        new("//recipes/detail", typeof(RecipeDetailView), typeof(RecipeDetailViewModel)),
+        new(RecipeListRouteAbsolute, typeof(RecipeListView)),
+        new(RecipeListRouteAbsolute + RecipeDetailRouteRelative, typeof(RecipeDetailView)),
 
-        new("//recipes/edit", typeof(RecipeEditView), typeof(RecipeEditViewModel)),
-        new("//recipes/detail/edit", typeof(RecipeEditView), typeof(RecipeEditViewModel)),
+        new(RecipeListRouteAbsolute + RecipeEditRouteRelative, typeof(RecipeEditView)),
+        new(RecipeListRouteAbsolute + RecipeDetailRouteRelative + RecipeEditRouteRelative, typeof(RecipeEditView)),
 
-        new("//recipes/detail/edit/ingredients", typeof(RecipeIngredientsEditView), typeof(RecipeIngredientsEditViewModel)),
+        new(RecipeListRouteAbsolute + RecipeDetailRouteRelative + RecipeEditRouteRelative + RecipeIngredientsEditRouteRelative, typeof(RecipeIngredientsEditView)),
     };
-
-    public async Task GoToAsync<TViewModel>()
-        where TViewModel : IViewModel
-    {
-        var route = GetRouteByViewModel<TViewModel>();
-        await Shell.Current.GoToAsync(route);
-    }
-    public async Task GoToAsync<TViewModel>(IDictionary<string, object?> parameters)
-        where TViewModel : IViewModel
-    {
-        var route = GetRouteByViewModel<TViewModel>();
-        await Shell.Current.GoToAsync(route, parameters);
-    }
 
     public async Task GoToAsync(string route)
         => await Shell.Current.GoToAsync(route);
@@ -45,8 +40,4 @@ public class NavigationService : INavigationService
 
     public bool SendBackButtonPressed()
         => Shell.Current.SendBackButtonPressed();
-
-    private string GetRouteByViewModel<TViewModel>()
-        where TViewModel : IViewModel 
-        => Routes.First(route => route.ViewModelType == typeof(TViewModel)).Route;
 }

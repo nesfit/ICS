@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using CookBook.App.Messages;
 using CookBook.App.Resources.Texts;
@@ -17,7 +18,9 @@ public partial class IngredientDetailViewModel(
     : ViewModelBase(messengerService), IRecipient<IngredientEditMessage>
 {
     public Guid Id { get; set; }
-    public IngredientDetailModel? Ingredient { get; private set; }
+
+    [ObservableProperty]
+    private IngredientDetailModel? _ingredient;
 
     protected override async Task LoadDataAsync()
     {
@@ -47,15 +50,18 @@ public partial class IngredientDetailViewModel(
     [RelayCommand]
     private async Task GoToEditAsync()
     {
-        await navigationService.GoToAsync("/edit",
-            new Dictionary<string, object?> { [nameof(IngredientEditViewModel.Ingredient)] = Ingredient });
+        if(Ingredient?.Id is not null)
+        {
+            await navigationService.GoToAsync(NavigationService.IngredientEditRouteRelative,
+                new Dictionary<string, object?> { [nameof(IngredientEditViewModel.Id)] = Ingredient.Id });
+        }
     }
 
-    public async void Receive(IngredientEditMessage message)
+    public void Receive(IngredientEditMessage message)
     {
         if (message.IngredientId == Ingredient?.Id)
         {
-            await LoadDataAsync();
+            ForceDataRefreshOnNextAppearing();
         }
     }
 }

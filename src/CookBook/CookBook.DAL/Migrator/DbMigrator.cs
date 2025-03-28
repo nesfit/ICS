@@ -1,16 +1,17 @@
 ﻿using CookBook.DAL.Options;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace CookBook.DAL.Migrator;
 
-public class DbMigrator(IDbContextFactory<CookBookDbContext> dbContextFactory, DALOptions options)
+public class DbMigrator(IDbContextFactory<CookBookDbContext> dbContextFactory, IOptions<DALOptions> options)
     : IDbMigrator
 {
     public void Migrate()
     {
         using CookBookDbContext dbContext = dbContextFactory.CreateDbContext();
 
-        if(options.RecreateDatabaseEachTime)
+        if(options.Value.RecreateDatabaseEachTime)
         {
             dbContext.Database.EnsureDeleted();
         }

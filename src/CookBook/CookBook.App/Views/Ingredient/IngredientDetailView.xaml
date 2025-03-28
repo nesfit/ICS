@@ -28,13 +28,13 @@
               RowDefinitions="170, *" ColumnDefinitions="*, Auto, Auto, *"
               RowSpacing="20" ColumnSpacing="20">
 
-            <Frame Grid.Row="0" Grid.Column="1"
-                   HorizontalOptions="Center" VerticalOptions="Center"
-                   Style="{StaticResource ImageFrameStyle}">
+            <Border Grid.Row="0" Grid.Column="1"
+                    HorizontalOptions="Center" VerticalOptions="Center"
+                    Style="{StaticResource ImageBorderStyle}">
                 <Image Aspect="AspectFill"
                        WidthRequest="170" HeightRequest="170"
                        Source="{Binding Ingredient.ImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"/>
-            </Frame>
+            </Border>
 
             <VerticalStackLayout Grid.Row="0" Grid.RowSpan="2"
                                  Grid.Column="2"

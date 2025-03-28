@@ -2,11 +2,11 @@ using CookBook.App.ViewModels;
 
 namespace CookBook.App.Views;
 
-public partial class ContentPageBase
+public abstract partial class ContentPageBase
 {
-    protected IViewModel ViewModel { get; }
+    protected ViewModelBase ViewModel { get; }
 
-    public ContentPageBase(IViewModel viewModel)
+    public ContentPageBase(ViewModelBase viewModel)
 	{
 		InitializeComponent();
 
