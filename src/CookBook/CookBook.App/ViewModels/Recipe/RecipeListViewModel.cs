@@ -41,11 +41,11 @@ public partial class RecipeListViewModel(
 
     public void Receive(RecipeEditMessage message)
     {
-        ForceDataRefresh = true;
+        ForceDataRefreshOnNextAppearing();
     }
 
     public void Receive(RecipeDeleteMessage message)
     {
-        ForceDataRefresh = true;
+        ForceDataRefreshOnNextAppearing();
     }
 }

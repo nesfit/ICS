@@ -54,16 +54,16 @@ public partial class RecipeEditViewModel(
 
     public void Receive(RecipeIngredientEditMessage message)
     {
-        ForceDataRefresh = true;
+        ForceDataRefreshOnNextAppearing();
     }
 
     public void Receive(RecipeIngredientAddMessage message)
     {
-        ForceDataRefresh = true;
+        ForceDataRefreshOnNextAppearing();
     }
 
     public void Receive(RecipeIngredientDeleteMessage message)
     {
-        ForceDataRefresh = true;
+        ForceDataRefreshOnNextAppearing();
     }
 }

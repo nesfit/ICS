@@ -47,11 +47,11 @@ public partial class IngredientListViewModel(
 
     public void Receive(IngredientEditMessage message)
     {
-        ForceDataRefresh = true;
+        ForceDataRefreshOnNextAppearing();
     }
 
     public void Receive(IngredientDeleteMessage message)
     {
-        ForceDataRefresh = true;
+        ForceDataRefreshOnNextAppearing();
     }
 }

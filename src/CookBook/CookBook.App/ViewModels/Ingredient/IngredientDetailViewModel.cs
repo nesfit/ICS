@@ -61,7 +61,7 @@ public partial class IngredientDetailViewModel(
     {
         if (message.IngredientId == Ingredient?.Id)
         {
-            ForceDataRefresh = true;
+            ForceDataRefreshOnNextAppearing();
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿// Copyright (c) .NET Foundation and contributors. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+//
+
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using CookBook.App.Messages;
@@ -60,17 +64,17 @@ public partial class RecipeDetailViewModel(
     {
         if (message.RecipeId == Recipe?.Id)
         {
-            ForceDataRefresh = true;
+            ForceDataRefreshOnNextAppearing();
         }
     }
 
     public void Receive(RecipeIngredientAddMessage message)
     {
-        ForceDataRefresh = true;
+        ForceDataRefreshOnNextAppearing();
     }
 
     public void Receive(RecipeIngredientDeleteMessage message)
     {
-        ForceDataRefresh = true;
+        ForceDataRefreshOnNextAppearing();
     }
 }
