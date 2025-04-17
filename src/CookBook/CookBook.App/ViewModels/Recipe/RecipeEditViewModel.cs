@@ -20,7 +20,7 @@ public partial class RecipeEditViewModel(
     public Guid Id { get; set; }
 
     [ObservableProperty]
-    private RecipeDetailModel _recipe = RecipeDetailModel.Empty;
+    public partial RecipeDetailModel Recipe { get; set; } = RecipeDetailModel.Empty;
 
     public List<FoodType> FoodTypes { get; set; } = [.. (FoodType[])Enum.GetValues(typeof(FoodType))];
 
@@ -45,7 +45,7 @@ public partial class RecipeEditViewModel(
     [RelayCommand]
     private async Task SaveAsync()
     {
-        await recipeFacade.SaveAsync(Recipe with{ Ingredients = default! });
+        await recipeFacade.SaveAsync(RecipeDetailModel.Copy(Recipe, ingredients: []));
 
         MessengerService.Send(new RecipeEditMessage { RecipeId = Recipe.Id});
 

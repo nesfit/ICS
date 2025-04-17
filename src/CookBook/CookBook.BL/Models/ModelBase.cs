@@ -1,14 +1,8 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CookBook.BL.Models;
 
-public abstract record ModelBase : INotifyPropertyChanged, IModel
+public abstract class ModelBase : ObservableObject
 {
     public Guid Id { get; set; }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    protected void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 }

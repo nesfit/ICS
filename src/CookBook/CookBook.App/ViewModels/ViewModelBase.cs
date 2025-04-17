@@ -5,7 +5,7 @@ namespace CookBook.App.ViewModels;
 
 public abstract class ViewModelBase : ObservableRecipient
 {
-    private bool forceDataRefresh = true;
+    private bool _forceDataRefresh = true;
 
     protected readonly IMessengerService MessengerService;
 
@@ -19,17 +19,17 @@ public abstract class ViewModelBase : ObservableRecipient
 
     public async Task OnAppearingAsync()
     {
-        if (forceDataRefresh)
+        if (_forceDataRefresh)
         {
             await LoadDataAsync();
 
-            forceDataRefresh = false;
+            _forceDataRefresh = false;
         }
     }
 
     protected void ForceDataRefreshOnNextAppearing()
     {
-        forceDataRefresh = true;
+        _forceDataRefresh = true;
     }
 
     protected virtual Task LoadDataAsync()

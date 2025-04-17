@@ -24,16 +24,16 @@ public partial class RecipeIngredientsEditViewModel(
     public List<Unit> Units { get; set; } = [.. (Unit[])Enum.GetValues(typeof(Unit))];
 
     [ObservableProperty]
-    private RecipeDetailModel? _recipe;
+    public partial RecipeDetailModel? Recipe { get; set; }
 
     [ObservableProperty]
-    private ObservableCollection<IngredientListModel> _ingredients = new();
+    public partial ObservableCollection<IngredientListModel> Ingredients { get; set; } = [];
 
     [ObservableProperty]
-    private IngredientListModel? _ingredientSelected;
+    public partial IngredientListModel? IngredientSelected { get; set; }
 
     [ObservableProperty]
-    private IngredientAmountDetailModel? _ingredientAmountNew;
+    public partial IngredientAmountDetailModel? IngredientAmountNew { get; set; }
 
     protected override async Task LoadDataAsync()
     {

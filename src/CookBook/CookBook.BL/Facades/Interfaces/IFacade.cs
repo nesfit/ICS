@@ -5,8 +5,8 @@ namespace CookBook.BL.Facades;
 
 public interface IFacade<TEntity, TListModel, TDetailModel>
     where TEntity : class, IEntity
-    where TListModel : IModel
-    where TDetailModel : class, IModel
+    where TListModel : ModelBase
+    where TDetailModel : ModelBase
 {
     Task DeleteAsync(Guid id);
     Task<TDetailModel?> GetAsync(Guid id);

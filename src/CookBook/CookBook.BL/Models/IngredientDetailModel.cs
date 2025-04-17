@@ -1,10 +1,17 @@
-﻿namespace CookBook.BL.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public record IngredientDetailModel : ModelBase
+namespace CookBook.BL.Models;
+
+public partial class IngredientDetailModel : ModelBase
 {
-    public required string Name { get; set; }
-    public required string Description { get; set; }
-    public string? ImageUrl { get; set; }
+    [ObservableProperty]
+    public required partial string Name { get; set; }
+
+    [ObservableProperty]
+    public required partial string Description { get; set; }
+
+    [ObservableProperty]
+    public partial string? ImageUrl { get; set; }
 
     public static IngredientDetailModel Empty => new()
     {
