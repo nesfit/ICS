@@ -1,31 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using AsynchronousProgramming.Samples.Annotations;
-using Microsoft.Toolkit.Mvvm.Input;
+﻿using AsynchronousProgramming.Samples.Annotations;
 
 namespace AsynchronousProgramming.Samples.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private int dataValue;
+        private int _dataValue;
 
         public int DataValue
         {
-            get => dataValue;
+            get => _dataValue;
             set
             {
-                if (dataValue == value)
+                if (_dataValue == value)
                 {
                     return;
                 }
-                dataValue = value;
+                _dataValue = value;
                 OnPropertyChanged();
             }
         }
@@ -51,10 +41,10 @@ namespace AsynchronousProgramming.Samples.ViewModels
 
         private async void LoadDataAsynchronously() => DataValue = await PerformSomeHeavyWorkAsync();
 
-        private readonly Random random = new();
+        private readonly Random _random = new();
         private async Task<int> PerformSomeHeavyWorkAsync()
         {
-            var randomWaitIntervalSimulatingHeavyWork = random.Next(100, 2000);
+            var randomWaitIntervalSimulatingHeavyWork = _random.Next(100, 2000);
             await Task.Delay(randomWaitIntervalSimulatingHeavyWork);
             return randomWaitIntervalSimulatingHeavyWork;
         }

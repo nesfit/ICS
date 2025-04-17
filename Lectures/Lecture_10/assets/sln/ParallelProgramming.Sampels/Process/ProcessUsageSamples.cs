@@ -6,11 +6,11 @@ namespace ParallelProgramming.Samples.Process
 {
     public class ProcessUsageSamples(ITestOutputHelper output)
     {
-        private int lineNumber;
+        private int _lineNumber;
 
         private void OnOsProcessOutputDataReceived(object sender, DataReceivedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(e.Data)) output.WriteLine($"[{lineNumber++}]{e.Data}");
+            if (!string.IsNullOrEmpty(e.Data)) output.WriteLine($"[{_lineNumber++}]{e.Data}");
         }
 
         [Fact]
@@ -40,7 +40,7 @@ namespace ParallelProgramming.Samples.Process
                 StartInfo =
                 {
                     FileName = "ping", 
-                    Arguments = "8.8.8.8", 
+                    Arguments = "-c 4 8.8.8.8", 
                     RedirectStandardOutput = true
                 }
             };

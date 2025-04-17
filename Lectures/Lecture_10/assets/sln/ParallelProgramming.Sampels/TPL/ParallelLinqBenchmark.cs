@@ -13,25 +13,25 @@ namespace ParallelProgramming.Samples.TPL
     {
         public static void Main(string[] args) => BenchmarkRunner.Run(typeof(ParallelLinqBenchmark).Assembly);
 
-        private readonly IEnumerable<int> range = Enumerable.Range(0, 2_000_000);
+        private readonly IEnumerable<int> _range = Enumerable.Range(0, 200_000_000);
 
         [Benchmark]
         public double AverageWithUseOfParallelLinq() =>
-            range.AsParallel()
+            _range.AsParallel()
                 .Average();
 
         [Benchmark]
-        public double AverageWithUseOfSerialLinq() => range.Average();
+        public double AverageWithUseOfSerialLinq() => _range.Average();
 
         [Benchmark]
         public IList FilteringWithUseOfParallelLinq() =>
-            range.AsParallel()
+            _range.AsParallel()
                 .Where(t => t % 10 == 0)
                 .ToList();
 
         [Benchmark]
         public IList FilteringWithUseOfSerialLinq() =>
-            range.Where(t => t % 10 == 0)
+            _range.Where(t => t % 10 == 0)
                 .ToList();
     }
 }

@@ -7,12 +7,12 @@ namespace ParallelProgramming.Samples.Synchronization
     {
         private class LockedCounter
         {
-            private readonly object incrementMethodLockHandle = new();
+            private readonly Lock _incrementMethodLockHandle = new();
             public int Count { get; private set; }
 
             public void Increment()
             {
-                lock (incrementMethodLockHandle)
+                lock (_incrementMethodLockHandle)
                 {
                     //Critical section
                     var count = Count + 1;
@@ -24,12 +24,12 @@ namespace ParallelProgramming.Samples.Synchronization
 
         private class SemaphoredCounter
         {
-            private readonly SemaphoreSlim counterAddSemaphore = new(1);
+            private readonly SemaphoreSlim _counterAddSemaphore = new(1);
             public int Count { get; private set; }
 
             public void Increment()
             {
-                counterAddSemaphore.Wait();
+                _counterAddSemaphore.Wait();
                 try
                 {
                     //Critical section
@@ -39,7 +39,7 @@ namespace ParallelProgramming.Samples.Synchronization
                 }
                 finally
                 {
-                    counterAddSemaphore.Release();
+                    _counterAddSemaphore.Release();
                 }
             }
         }
@@ -47,7 +47,7 @@ namespace ParallelProgramming.Samples.Synchronization
         [Fact]
         public void LockLockedThreadPoolReadWriteSample()
         {
-            var counter = new LockedCounter();
+            LockedCounter counter = new();
 
             for (var i = 0; i < 40; i++)
                 ThreadPool.QueueUserWorkItem(state => { counter.Increment(); });
@@ -59,7 +59,7 @@ namespace ParallelProgramming.Samples.Synchronization
         [Fact]
         public void SemaphoreLockedThreadPoolReadWriteSample()
         {
-            var counter = new SemaphoredCounter();
+            SemaphoredCounter counter = new();
 
             for (var i = 0; i < 40; i++)
                 ThreadPool.QueueUserWorkItem(state => { counter.Increment(); });

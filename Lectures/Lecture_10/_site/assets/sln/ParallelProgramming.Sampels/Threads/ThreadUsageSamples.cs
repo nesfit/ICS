@@ -4,31 +4,23 @@ using Xunit.Abstractions;
 
 namespace ParallelProgramming.Samples.Threads
 {
-    public class ThreadUsageSamples
+    public class ThreadUsageSamples(ITestOutputHelper output)
     {
-        public ThreadUsageSamples(ITestOutputHelper output)
-        {
-            this.output = output;
-        }
-
-        private readonly ITestOutputHelper output;
-
-
         private void PrintCurrentThreadInfo()
         {
-            var th = Thread.CurrentThread;
-            output.WriteLine("Managed thread #{0}: ", th.ManagedThreadId);
-            output.WriteLine("   Background thread: {0}", th.IsBackground);
-            output.WriteLine("   Thread pool thread: {0}", th.IsThreadPoolThread);
-            output.WriteLine("   Priority: {0}", th.Priority);
-            output.WriteLine("   Culture: {0}", th.CurrentCulture.Name);
-            output.WriteLine("   UI culture: {0}", th.CurrentUICulture.Name);
+            Thread thread = Thread.CurrentThread;
+            output.WriteLine("Managed thread #{0}: ", thread.ManagedThreadId);
+            output.WriteLine("   Background thread: {0}", thread.IsBackground);
+            output.WriteLine("   Thread pool thread: {0}", thread.IsThreadPoolThread);
+            output.WriteLine("   Priority: {0}", thread.Priority);
+            output.WriteLine("   Culture: {0}", thread.CurrentCulture.Name);
+            output.WriteLine("   UI culture: {0}", thread.CurrentUICulture.Name);
         }
 
         [Fact]
         public void CreateThreadAndThenJoinIt()
         {
-            var createdThread = new Thread(() =>
+            Thread createdThread = new(() =>
             {
                 output.WriteLine("New thread started");
                 PrintCurrentThreadInfo();

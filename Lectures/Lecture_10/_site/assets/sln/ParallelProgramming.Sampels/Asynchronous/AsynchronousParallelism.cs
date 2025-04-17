@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -8,23 +6,16 @@ using Xunit.Abstractions;
 
 namespace ParallelProgramming.Samples.Asynchronous
 {
-    public class AsynchronousParallelism
+    public class AsynchronousParallelism(ITestOutputHelper output)
     {
-        private readonly ITestOutputHelper output;
-
-        public AsynchronousParallelism(ITestOutputHelper output)
-        {
-            this.output = output;
-        }
-
-        private readonly SemaphoreSlim testOutputSemaphore = new(1);
+        private readonly SemaphoreSlim _testOutputSemaphore = new(1);
 
         private void PrintCurrentThreadInfo()
         {
-            testOutputSemaphore.Wait();
+            _testOutputSemaphore.Wait();
             try
             {
-                var th = Thread.CurrentThread;
+                Thread th = Thread.CurrentThread;
                 output.WriteLine("Managed thread #{0}: ", th.ManagedThreadId);
                 output.WriteLine("   Background thread: {0}", th.IsBackground);
                 output.WriteLine("   Thread pool thread: {0}", th.IsThreadPoolThread);
@@ -34,7 +25,7 @@ namespace ParallelProgramming.Samples.Asynchronous
             }
             finally
             {
-                testOutputSemaphore.Release();
+                _testOutputSemaphore.Release();
             }
         }
 

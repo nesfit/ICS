@@ -4,26 +4,19 @@ using Xunit.Abstractions;
 
 namespace ParallelProgramming.Samples.Process
 {
-    public class ProcessUsageSamples
+    public class ProcessUsageSamples(ITestOutputHelper output)
     {
-        private readonly ITestOutputHelper output;
-
-        private int lineNumber;
-
-        public ProcessUsageSamples(ITestOutputHelper output)
-        {
-            this.output = output;
-        }
+        private int _lineNumber;
 
         private void OnOsProcessOutputDataReceived(object sender, DataReceivedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(e.Data)) output.WriteLine($"[{lineNumber++}]{e.Data}");
+            if (!string.IsNullOrEmpty(e.Data)) output.WriteLine($"[{_lineNumber++}]{e.Data}");
         }
 
         [Fact]
         public void OpeningFileViaProcess()
         {
-            using var process = new System.Diagnostics.Process
+            using System.Diagnostics.Process process = new()
             {
                 StartInfo =
                 {
@@ -42,12 +35,12 @@ namespace ParallelProgramming.Samples.Process
         [Fact]
         public void RunningOsProcess()
         {
-            using var process = new System.Diagnostics.Process
+            using System.Diagnostics.Process process = new()
             {
                 StartInfo =
                 {
                     FileName = "ping", 
-                    Arguments = "8.8.8.8", 
+                    Arguments = "-c 4 8.8.8.8", 
                     RedirectStandardOutput = true
                 }
             };

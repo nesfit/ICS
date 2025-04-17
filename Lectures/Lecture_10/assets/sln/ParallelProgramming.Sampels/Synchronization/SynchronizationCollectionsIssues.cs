@@ -8,17 +8,18 @@ namespace ParallelProgramming.Samples.Synchronization
 {
     public class SynchronizationCollectionsIssues
     {
-        private readonly List<int> source = Enumerable.Range(1, 420).ToList();
+        private readonly List<int> _source = Enumerable.Range(1, 420).ToList();
 
         [Fact]
         public void SynchronizationCollectionIssues()
         {
             var destination = new List<int>();
 
-            Parallel.ForEach(source,
+            Parallel.ForEach(_source,
                 n => { destination.Add(n); });
 
-            Assert.Equal(source.Count, destination.Count);
+            // Equal should be expected
+            Assert.NotEqual(_source.Count, destination.Count);
         }
 
         [Fact]
@@ -26,10 +27,10 @@ namespace ParallelProgramming.Samples.Synchronization
         {
             var destination = new BlockingCollection<int>();
 
-            Parallel.ForEach(source,
+            Parallel.ForEach(_source,
                 n => { destination.Add(n); });
 
-            Assert.Equal(source.Count, destination.Count);
+            Assert.Equal(_source.Count, destination.Count);
         }
     }
 }

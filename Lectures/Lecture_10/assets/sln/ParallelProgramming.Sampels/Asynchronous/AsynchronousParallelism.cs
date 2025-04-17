@@ -8,11 +8,11 @@ namespace ParallelProgramming.Samples.Asynchronous
 {
     public class AsynchronousParallelism(ITestOutputHelper output)
     {
-        private readonly SemaphoreSlim testOutputSemaphore = new(1);
+        private readonly SemaphoreSlim _testOutputSemaphore = new(1);
 
         private void PrintCurrentThreadInfo()
         {
-            testOutputSemaphore.Wait();
+            _testOutputSemaphore.Wait();
             try
             {
                 Thread th = Thread.CurrentThread;
@@ -25,7 +25,7 @@ namespace ParallelProgramming.Samples.Asynchronous
             }
             finally
             {
-                testOutputSemaphore.Release();
+                _testOutputSemaphore.Release();
             }
         }
 
