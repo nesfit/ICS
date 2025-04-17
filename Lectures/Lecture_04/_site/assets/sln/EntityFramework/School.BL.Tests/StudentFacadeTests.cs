@@ -45,7 +45,7 @@ namespace School.BL.Tests
                     State = "Czechia",
                     Street = "Bozetechova 2",
                 },
-                Grade = new GradeMapper().MapListModel(Seed.GradeJane),
+                ProjectGroup = new ProjectGroupMapper().MapListModel(Seed.ProjectGroupJane),
                 Courses = new List<StudentCourseListModel>()
                 {
                     new()
