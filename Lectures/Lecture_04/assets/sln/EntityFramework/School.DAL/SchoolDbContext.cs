@@ -13,7 +13,7 @@ namespace School.DAL
 
         public DbSet<AddressEntity> Addresses => Set<AddressEntity>();
         public DbSet<CourseEntity> Courses => Set<CourseEntity>();
-        public DbSet<GradeEntity> Grades => Set<GradeEntity>();
+        public DbSet<ProjectGroupEntity> ProjectGroups => Set<ProjectGroupEntity>();
         public DbSet<StudentEntity> Students => Set<StudentEntity>();
         public DbSet<StudentCourseEntity> StudentCourses => Set<StudentCourseEntity>();
         
@@ -25,7 +25,7 @@ namespace School.DAL
 
             modelBuilder.SeedStudents();
             modelBuilder.SeedAddresses();
-            modelBuilder.SeedGrades();
+            modelBuilder.SeedProjectGroups();
             modelBuilder.SeedCourses();
             modelBuilder.SeedStudentCourses();
         }

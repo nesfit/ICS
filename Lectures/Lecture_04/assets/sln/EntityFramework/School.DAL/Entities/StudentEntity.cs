@@ -13,8 +13,8 @@ namespace School.DAL.Entities
 
         public virtual AddressEntity? Address { get; set; }
 
-        public Guid GradeId { get; set; }
-        public virtual GradeEntity? Grade { get; set; }
+        public Guid ProjectGroupId { get; set; }
+        public virtual ProjectGroupEntity? ProjectGroup { get; set; }
 
         public virtual ICollection<StudentCourseEntity> StudentCourses { get; set; } = new List<StudentCourseEntity>();
 
@@ -29,8 +29,8 @@ namespace School.DAL.Entities
                 return x.Id.Equals(y.Id)
                        && x.Name == y.Name
                        && AddressEntity.AddressEntityComparer.Equals(x.Address, y.Address) // Address needs to be compared on members not reference
-                       && Equals(x.GradeId, y.GradeId)
-                       && GradeEntity.IdNameSectionComparer.Equals(x.Grade, y.Grade)
+                       && Equals(x.ProjectGroupId, y.ProjectGroupId)
+                       && ProjectGroupEntity.IdMaxCapacityAvailableSpotsComparer.Equals(x.ProjectGroup, y.ProjectGroup)
                        && x.StudentCourses.OrderBy(i => i.Id).SequenceEqual(y.StudentCourses.OrderBy(I => I.Id), StudentCourseEntity.StudentCourseEntityComparer); //Assigned courses needs to be ordered and compared on members
             }
 
@@ -41,7 +41,7 @@ namespace School.DAL.Entities
                     var hashCode = obj.Id.GetHashCode();
                     hashCode = (hashCode * 397) ^ (obj.Name != null ? obj.Name.GetHashCode() : 0);
                     hashCode = (hashCode * 397) ^ (obj.Address != null ? obj.Address.GetHashCode() : 0);
-                    hashCode = (hashCode * 397) ^ (obj.Grade != null ? obj.Grade.GetHashCode() : 0);
+                    hashCode = (hashCode * 397) ^ (obj.ProjectGroup != null ? obj.ProjectGroup.GetHashCode() : 0);
                     hashCode = (hashCode * 397) ^ (obj.StudentCourses != null ? obj.StudentCourses.GetHashCode() : 0);
                     return hashCode;
                 }

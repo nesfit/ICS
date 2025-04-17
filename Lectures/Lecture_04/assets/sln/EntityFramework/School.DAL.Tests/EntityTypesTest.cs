@@ -34,7 +34,7 @@ namespace School.DAL.Tests
             var jane = _schoolDbContextSut
                 .Students
                 .Include(s => s.Address)
-                .Include(i=>i.Grade)
+                .Include(i=>i.ProjectGroup)
                 .Include(i=>i.StudentCourses)
                 .ThenInclude(i=>i.Course)
                 .Single(s => s.Id == Seed.StudentJane.Id);

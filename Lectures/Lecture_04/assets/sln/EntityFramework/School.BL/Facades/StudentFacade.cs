@@ -29,7 +29,7 @@ namespace School.BL.Facades
         } = new Func<IQueryable<StudentEntity>, IIncludableQueryable<StudentEntity, object>>[]
         {
             entities => entities.Include(i=>i.Address),
-            entities => entities.Include(i=>i.Grade),
+            entities => entities.Include(i=>i.ProjectGroup),
             entities => entities.Include(i=>i.StudentCourses)
                 .ThenInclude(i=>i.Course),
         };
