@@ -1,3 +1,6 @@
+> :warning: **Varování**  
+> Zadání je z minulého roku, finální podoba bude zveřejněna po druhém týdnu semestru.
+
 # ICS projekt
 
 ## Důležité upozornění
