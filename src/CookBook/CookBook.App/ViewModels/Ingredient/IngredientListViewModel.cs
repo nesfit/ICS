@@ -19,7 +19,7 @@ public partial class IngredientListViewModel(
     : ViewModelBase(messengerService), IRecipient<IngredientEditMessage>, IRecipient<IngredientDeleteMessage>
 {
     [ObservableProperty]
-    private IEnumerable<IngredientListModel> _ingredients = [];
+    public partial IEnumerable<IngredientListModel> Ingredients { get; set; } = [];
 
     protected override async Task LoadDataAsync()
     {

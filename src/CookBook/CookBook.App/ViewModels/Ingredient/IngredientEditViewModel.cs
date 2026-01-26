@@ -17,7 +17,7 @@ public partial class IngredientEditViewModel(
     public Guid Id { get; set; }
 
     [ObservableProperty]
-    private IngredientDetailModel _ingredient = IngredientDetailModel.Empty;
+    public partial IngredientDetailModel Ingredient { get; set; } = IngredientDetailModel.Empty;
 
     protected override async Task LoadDataAsync()
     {

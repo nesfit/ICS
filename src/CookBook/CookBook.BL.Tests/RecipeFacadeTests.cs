@@ -158,7 +158,7 @@ public class RecipeFacadeTests : FacadeTestsBase
         detailModel.Name = "Changed recipe name";
 
         //Act & Assert
-        await _facadeSUT.SaveAsync(detailModel with {Ingredients = default!});
+        await _facadeSUT.SaveAsync(RecipeDetailModel.Copy(detailModel, ingredients: []));
     }
 
     [Fact]
@@ -169,7 +169,7 @@ public class RecipeFacadeTests : FacadeTestsBase
         detailModel.Name = "Changed recipe name 1";
 
         //Act
-        await _facadeSUT.SaveAsync(detailModel with { Ingredients = default!});
+        await _facadeSUT.SaveAsync(RecipeDetailModel.Copy(detailModel, ingredients: []));
 
         //Assert
         var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);

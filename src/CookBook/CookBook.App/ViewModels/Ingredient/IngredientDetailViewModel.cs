@@ -20,7 +20,7 @@ public partial class IngredientDetailViewModel(
     public Guid Id { get; set; }
 
     [ObservableProperty]
-    private IngredientDetailModel? _ingredient;
+    public partial IngredientDetailModel? Ingredient { get; set; }
 
     protected override async Task LoadDataAsync()
     {

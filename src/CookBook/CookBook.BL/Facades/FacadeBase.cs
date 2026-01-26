@@ -16,8 +16,8 @@ public abstract class
         IModelMapper<TEntity, TListModel, TDetailModel> modelMapper)
     : IFacade<TEntity, TListModel, TDetailModel>
     where TEntity : class, IEntity
-    where TListModel : IModel
-    where TDetailModel : class, IModel
+    where TListModel : ModelBase
+    where TDetailModel : ModelBase
     where TEntityMapper : IEntityMapper<TEntity>, new()
 {
     protected readonly IModelMapper<TEntity, TListModel, TDetailModel> ModelMapper = modelMapper;

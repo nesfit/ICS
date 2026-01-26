@@ -15,7 +15,7 @@ public partial class RecipeListViewModel(
     : ViewModelBase(messengerService), IRecipient<RecipeEditMessage>, IRecipient<RecipeDeleteMessage>
 {
     [ObservableProperty]
-    private IEnumerable<RecipeListModel> _recipes = [];
+    public partial IEnumerable<RecipeListModel> Recipes { get; set; } = [];
 
     protected override async Task LoadDataAsync()
     {
