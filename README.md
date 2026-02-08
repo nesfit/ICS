@@ -113,7 +113,8 @@ LXY - přednáška | EXY - democvičení | P0X - projekt
 ```pwsh
 winget install Microsoft.DotNet.SDK.10
 
-winget install Microsoft.VisualStudio.2026.Community --override "--add Microsoft.VisualStudio.Workload.NetCrossPlat --add Microsoft.VisualStudio.Workload.Data --add Microsoft.VisualStudio.Workload.ManagedDesktop Microsoft.VisualStudio.ComponentGroup.WindowsAppSDK.Cs"
+winget install Microsoft.VisualStudio.Enterprise --override "--add Microsoft.VisualStudio.Workload.NetCrossPlat --add Microsoft.VisualStudio.Workload.Data --add Microsoft.VisualStudio.Workload.ManagedDesktop --add Microsoft.VisualStudio.Workload.NetWeb"
+
 
 winget install JetBrains.Toolbox
 ```
