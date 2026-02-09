@@ -12,23 +12,27 @@
 
 ```pwsh
 winget install Git.Git
-winget install Microsoft.DotNet.SDK.8
+winget install Microsoft.DotNet.SDK.10
 dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
 ```
 
 ### Recommended Tooling / IDEs
 
-> **Warning** Without VS 2022 installation with at least the following workloads, MAUI application will not be runnable.
+> **Warning** Without VS 2026 installation with at least the following workloads, MAUI application will not be runnable.
 
-- Visual Studio 2022 + Resharper
+- Visual Studio 2026 + Resharper
+
 ```
-winget install Microsoft.VisualStudio.2022.Community --override "--add Microsoft.VisualStudio.Workload.NetCrossPlat --add Microsoft.VisualStudio.Workload.Data --add Microsoft.VisualStudio.Workload.ManagedDesktop Microsoft.VisualStudio.ComponentGroup.WindowsAppSDK.Cs"
-winget install JetBrains.Toolbox #https://www.jetbrains.com/community/education/#students
+winget install Microsoft.VisualStudio.Enterprise --override "--add Microsoft.VisualStudio.Workload.NetCrossPlat --add Microsoft.VisualStudio.Workload.Data --add Microsoft.VisualStudio.Workload.ManagedDesktop --add Microsoft.VisualStudio.Workload.NetWeb"
+
+#https://www.jetbrains.com/community/education/#students
+winget install JetBrains.Toolbox 
 ```
 
 - Rider
 ```
-winget install JetBrains.Rider #https://www.jetbrains.com/community/education/#students
+#https://www.jetbrains.com/community/education/#students
+winget install JetBrains.Rider
 ```
 
 ## Project demonstration
@@ -45,7 +49,7 @@ winget install JetBrains.Rider #https://www.jetbrains.com/community/education/#s
 * Open the new repository in Visual Studio
 * Commit & push & finish the *Initial commit task*.
 
-## Visual Studio 2022
+## Visual Studio 2026
 * Visual Studio -- Start page
 * Look at the Visual Studio components, VIEW, BUILD, TOOLS, TESTS, RESHARPER ...
   * Editor, Solution Explorer, Team Explorer, Error list, Outputs, ...
