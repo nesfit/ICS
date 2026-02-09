@@ -1,5 +1,5 @@
 > :warning: **Varování**  
-> Zadání je z minulého roku, finální podoba bude zveřejněna po druhém týdnu semestru.
+> Zadání je prozatím DRAFT, finální podoba bude zveřejněna po druhém týdnu semestru.
 
 # ICS projekt
 
@@ -15,13 +15,14 @@ Pokud Vám přijde, že v zadání chybí nějaká funkcionalita, neváhejte ji 
 
 <!-- Project specific -->
 # Téma projektu
-Tématem letošního projektu je vytvoření "Správce playlistů multimédií".
+Tématem letošního projektu bylo vybráno na základě Vaší zpětné vazby z dotazníků: `"launcher" her (na způsob EA launcheru, Epic games, Steam atd.), kde si může uživatel procházet různé tituly, a případně si je přidat do knihovny ..`
 
-Vytváříte aplikaci, která je schopna uchovávat informace o multimediálních souborech (hudba, video, audiobook), dle Vaší volby, tedy může to být jen jeden typ souboru, nebo všechny. Uživatel si je schopen zobrazit jaká multimédia má k dispozici, vytvořit si playlisty.
+Vytváříte tedy aplikaci, která je schopna uchovávat informace o herních titulech. Uživatel si je schopen zobrazit jaké hry na platformě existují a může si je přidat do knihovny (oblíbené).
 
-> :info: Zadání zvažuje pouze práci s metadaty, ne soubory samotnými. Pokud se rozhodnete pracovat se soubory, budeme to považovat za rozšíření. Doporučujeme nepracovat se soubory jako takovými, ale pouze URL na soubory, které jsou volně na internetu k dispozici. Pokud se rozhodnete pracovat se soubory samotnými, nebudeme bodově penalizovat chyby, které nespadají do vyučovaného rozsahu předmětu. Dostanete pouze zpětnou vazbu k implementaci funkcionality nad rámec řešení.
-
-> Jako rozšíření můžete implementovat [přehrávání daných multimédií](https://devblogs.microsoft.com/dotnet/announcing-dotnet-maui-communitytoolkit-mediaelement/).
+> Jako rozšíření můžete implementovat:
+>  - uživatel může mít více knihoven,
+>  - statistické info o herních titulech v knihovnách uživatelů,
+>  - bodové hodnocení titulů s komentáři, statistiky z hodnocení, atd...
 
 ---
 
@@ -31,38 +32,46 @@ V rámci dat, se kterými se bude pracovat budeme požadovat minimálně násled
 
 Zamyslete se, zdali je třeba všechny informace ukládat do databáze anebo některé můžete dopočítat během dotazování.
 
-### Multimediální soubor
+### Herní titul
 - Název
 - Popis
-- Velikost
-- Délka
-- Autor (pokud dává smysl v tématu Vaší aplikace)
+- PEGI rating
+- Herní studio (pokud dává smysl v tématu Vaší aplikace)
 - Kategorie (pokud dává smysl v tématu Vaší aplikace)
-- (Playlisty)
+- (Knihovny)
 
-### Playlist
+### Knihovna
 - Název
-- Popis
-- Počet obsažených multimédií
-- Celková délka obsažených multimédií
-- (Multimédia)
+- [Popis]
+- Počet obsažených položek
+- (Herní tituly)
+
+### Uživatel
+- [Jméno]
+- [Příjmení]
+- Username
+- Email
+- ...
+- (Knihovna)
 
 
-> () anotují možné/doporučené vazby mezi entitami
+> () možné/doporučené vazby mezi entitami
+> [] volitelné položky
 
 ---
 
-Další možné datové entity pro nepovinné rozšíření aplikace: uživatel, autor, metadata multimédií... 
+Další možné datové entity pro nepovinné rozšíření aplikace: herní studio, kategorie, ...
+
+---
+
+> :warning: **Důrazně nedoporučujeme implementovat autentizaci/autorizaci!** Očekává se, že aplikace na úvodní stránce zobrazí seznam uživatelů, případně umožní "registraci" uživatele, a následně po zvolení uživatele aplikace pracuje v kontextu tohoto uživatele. Během běhu aplikace je možné uživtele "přepnout".
+
 
 ---
 ## Základní funkcionalita
-Aplikace bude obsahovat několik pohledů pro zobrazování přehledu, zobrazení detailu a vložení dat. 
+Aplikace bude obsahovat pohledy pro zobrazování: *přehledu, detailu a vložení dat*.
 
-Je požadováno **perzistentní** uložení. To znamená, že když se aplikace restartuje, tak nesmí přijít o data. Uložení dat musí být provedeno neprodleně po zadání operace uživatelem. 
-
-Při demonstraci bude vyžadováno souběžné spuštění několika aplikací a změny v jedné aplikaci se musí projevit v ostatních instancích. **Znovu-načtení** dat může být inicializováno uživatelem. 
-
-Pro uložení dat zvolte [SQLite](https://www.sqlite.org/index.html). Jako ORM framework použijte [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/).
+Je požadováno **perzistentní** uložení dat. Při demonstraci může být vyžadováno souběžné spuštění několika aplikací a bude očekávané, že změny v jedné instanci aplikaci se projeví v ostatních instancích. **Znovu-načtení** dat může být inicializováno uživatelem. Pro uložení dat očekáváme [SQLite](https://www.sqlite.org/index.html) a ORM framework [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/).
 
 <!-- Project specific -->
 *Minimální* funkcionalita:
@@ -92,7 +101,7 @@ Při řešení projektu využijte Azure DevOps a GIT na sdílení kódu. Do své
 
 Účet **uciteliw5@vutbr.cz** přidejte jako poslední a ověřte, že má nastavena oprávnění na **Stakeholder**. V opačném případě jeden ze členů týmu nebude vidět zdrojový kód. Azure DevOps umožňuje v bezplatné verzi pouze 5 aktivních vývojářů.
 
-> :warning: **Je bezpodmínečně nutné**, abyste přidali účet **uciteliw5@vutbr.cz** do **Project Collection Administrator** v nastavení organizace – *https://dev.azure.com/ics-2025-xlogin00/_settings/groups*. Toto nastavení nám umožní během opravování projektu jednomu členu Vašeho týmu změnit **access level** z **Basic** na **Stakeholder** a dočasně tak přiřadit úroveň **Basic** našemu účtu **uciteliw5@vutbr.cz**. Po skončení opravování Vám nastavení uvedeme do původního stavu. Pokud by se tak nestalo, neváhejte si nastavení změnit sami. **Základní práce s Azure DevOps byla vysvětlena na 1. demonstračním cvičení (E01)**.
+> :warning: **Je bezpodmínečně nutné**, abyste přidali účet **uciteliw5@vutbr.cz** do **Project Collection Administrator** v nastavení organizace – *https://dev.azure.com/ics-2026-xlogin00/_settings/groups*. Toto nastavení nám umožní během opravování projektu jednomu členu Vašeho týmu změnit **access level** z **Basic** na **Stakeholder** a dočasně tak přiřadit úroveň **Basic** našemu účtu **uciteliw5@vutbr.cz**. Po skončení opravování Vám nastavení uvedeme do původního stavu. Pokud by se tak nestalo, neváhejte si nastavení změnit sami. **Základní práce s Azure DevOps byla vysvětlena na 1. demonstračním cvičení (E01)**.
 
 Návod na přidání člena projektu můžete najít zde: *https://docs.microsoft.com/en-us/vsts/accounts/add-team-members-vs*
 
@@ -100,15 +109,17 @@ Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*
 
 Výrazně doporučujeme používat mechanismu **pull-request**ů ["GIT Branching strategy"](https://medium.com/@sreekanth.thummala/choosing-the-right-git-branching-strategy-a-comparative-analysis-f5e635443423) a dělat si vzájemně review kódu, který následně mergnete do master nebo main větve. Projekt vypracováváte jako tým a nesete tak **kolektivní odpovědnost** za kvalitu kódu, proto je dobré, aby kód před začleněním vidělo více párů očí a vzájemně jste si jej připomínkovali. 
 
-Organizaci pojmenujte **ics-2025-xlogin00** dle pojmenování týmu v IS (login zakladatele) a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/ics-2025-xlogin00/project. Nezapomeňte nastavit **Work item process** template na **Scrum** nebo **Basic** (pokud to UI nabízí).
+Organizaci pojmenujte **ics-2026-xlogin00** dle pojmenování týmu v IS (login zakladatele) a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/ics-2026-xlogin00/project. Nezapomeňte nastavit **Work item process** template na **Scrum** nebo **Basic** (pokud to UI nabízí).
 
 Využijte možnost automatizovaných buildů spojených s otestováním Vámi provedených změn. Nastavte **Pipelines->Builds** tak, že při pushnutí do libovolné větve projektu se provede *build a spustí se veškeré přítomné testy*. Více informací na [Automate all things with Azure Pipelines – THR2101](https://www.youtube.com/watch?v=yr6PJxfACNc)
+
+> :warning: Nenechte nastavení CI buildů na poslední chvilku. Azure často vyžaduje vyplnění formuláře pro aktivaci CI runnerů což může nějakou dobu trvat. URL pro vyplnění aktivačního formuláře najdete v logu failnutého CI buildu.
 
 ---
 ### Konvence
 Pro zajištění konzistence kódu, který produkujete je závazné respektovat následující body:
-* Angličtina je základním jazykem použitým pro pojmenování identifikátorů, tříd atd... Jiné národní jazyky nejsou povoleny.
-* Angličtina je základním jazykem použitým pro psaní komentářů. Jiné národní jazyky nejsou povoleny.
+* Angličtina je základním jazykem použitým pro *pojmenování identifikátorů, tříd* atd... Jiné národní jazyky nejsou povoleny.
+* Angličtina je základním jazykem použitým pro *psaní komentářů*. Jiné národní jazyky nejsou povoleny.
 * Dodržujte zásady CleanCode probírané na přednáškách. K zajištění konzistence můžete využít `.editorconfig` konfigurovaný dle domluvy ve Vašem týmu. Není vhodné, aby Vám IDE při odevzdání hlásilo nekonzistence s Vámi zvolenými politikami. 
 
 ---
@@ -129,7 +140,7 @@ Odevzdávání projektu má **3 fáze**. V každé fázi se hodnotí jiné vlas
 
 > :warning: **Zkontrolujte, že převzatý kód i knihovny neporušují licence k nimž spřažené.**
 
-Je silně doporučováno projekty v průběhu semestru konzultovat (ideálně po cvičení, nebo si dohodnout termín konzultace emailem), předejdete tak případným komplikacím při odevzdání.
+Je silně doporučováno projekty v průběhu semestru konzultovat (ideálně po přednášce/cvičení, nebo si dohodnout termín konzultace emailem), předejdete tak případným komplikacím při odevzdání.
 
 Pokud se **týmově** rozhodnete, že všichni členové nepřispěli rovnoměrně k vypracování projektu. Přidejte do kořene repositáře textový soubor s názvem **ROZDELENI.txt**, ve kterém uveďte loginy všech členů týmu a poměrné rozdělení bodů v procentech (struktura není pevně daná). V případě, že soubor nepřiložíte nebo nebude srozumitelný tak implicitně uvažujeme rovnoměrné rozdělení bodů. Pro rovnoměrné rozložení bodů je tedy zbytečné soubor přikládat. **Tento soubor se bere v potaz až při finální obhajobě projektu, kdy je třeba na jeho existenci upozornit a okomentovat ono bodové rozdělení.**
  
@@ -150,8 +161,8 @@ Hodnotíme:
 -   využití abstrakce, zapouzdření, polymorfismu – kde to bude dávat smysl a eliminuje duplicity (viz 2. přednáška (L02) a 2. demonstrační cvičení (E02))
 -   verzování v GITu po logických částech, nejsou commitnuty binární soubory, v ideálním případě používáte "nějakou" ["GIT Branching strategy"](https://medium.com/@sreekanth.thummala/choosing-the-right-git-branching-strategy-a-comparative-analysis-f5e635443423)
 -   logické rozšíření datového návrhu nad rámec zadání (bonusové body) – toto rozšíření ovšem zvažte; často se stává, že si tím založíte na spoustu komplikací v pozdějších fázích; body za rozšíření dostanete až u obhajoby, pokud je naimplementujete kompletně do výsledné aplikace
--   generovaný ER diagram (logickou strukturu) (L04/E03)
--   wireframy (logickou strukturu, uživatelskou přívětivost, ne kvalitu grafického zpracování)
+-   v ./docs existuje generovaný ER diagram (logickou strukturu) (L04/E03)
+-   v ./docs existují wireframy (logickou strukturu, uživatelskou přívětivost, ne kvalitu grafického zpracování)
 -   využití **Entity Framework Core – Code First** přístupu na vytvoření databáze z entitních tříd (viz 4. přednáška (L04) a 3. demonstrační cvičení (E03))
 -   existenci databázových migrací (alespoň InitialMigration) (viz 4. přednáška (L04) a 3. demonstrační cvičení (E03))
 -   **základní** DAL testy (viz 2. demonstrační cvičení (E02))
