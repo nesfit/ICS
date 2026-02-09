@@ -3,41 +3,49 @@
 
 # ICS projekt
 
-## Důležité upozornění
-Pro hodnocení projektu 49+ body je nutné dokončit všechny fáze a projekt úspěšně obhájit. Každá fáze projektu musí být hodnocena minimálně 1b. Při obhajobě projektu je vyžadována demonstrace **základní funkcionality**, jinak je obhajoba hodnocena 0b.
-
-## Cíl
-Cílem je vytvořit použitelnou a snadno rozšiřitelnou aplikaci, která splňuje požadavky zadání. Aplikace nesmí padat nebo zamrzávat. Pokud uživatel vyplní něco špatně, je upozorněn **validační hláškou**.
-
-Zadání ponechává volnost, pro vlastní realizaci. Při hodnocení je kladen důraz na technické zpracování a kvalitu kódu, nicméně hodnotí se i uživatelská přívětivost a grafické zpracování. 
-
-Pokud Vám přijde, že v zadání chybí nějaká funkcionalita, neváhejte ji doplnit a zdokumentovat v **README.md**. 
-
-<!-- Project specific -->
-# Téma projektu
-Tématem letošního projektu bylo vybráno na základě Vaší zpětné vazby z dotazníků: `"launcher" her (na způsob EA launcheru, Epic games, Steam atd.), kde si může uživatel procházet různé tituly, a případně si je přidat do knihovny ..`
-
-Vytváříte tedy aplikaci, která je schopna uchovávat informace o herních titulech. Uživatel si je schopen zobrazit jaké hry na platformě existují a může si je přidat do knihovny (oblíbené).
-
-> Jako rozšíření můžete implementovat:
->  - uživatel může mít více knihoven,
->  - statistické info o herních titulech v knihovnách uživatelů,
->  - bodové hodnocení titulů s komentáři, statistiky z hodnocení, atd...
+## Tl;dr
+- Téma: launcher her (Steam/Epic styl) se seznamem titulů a knihovnami uživatelů.
+- Povinné entity: Herní titul, Knihovna, Uživatel.
+- Povinné operace: CRUD nad všemi entitami.
+- Filtrace, vyhledávání, řazení musí probíhat v databázi.
+- Perzistence: SQLite + Entity Framework Core (Code First).
+- Architektura: více projektů (např. App, BL, DAL). Jediný projekt je neakceptovatelný.
+- Bez autentizace/autorizace. Uživatel se volí z UI, lze přepnout uživatele.
+- Odevzdání má 3 fáze a hodnotí se poslední commit před deadlinem.
+- Pro 49+ bodů musí být splněny všechny fáze a obhájena základní funkcionalita.
 
 ---
 
-<!-- Project specific -->
-## Data
-V rámci dat, se kterými se bude pracovat budeme požadovat minimálně následující data.
+## Cíl
+Cílem je vytvořit použitelnou a snadno rozšiřitelnou aplikaci, která splňuje požadavky zadání. Aplikace nesmí padat nebo zamrzávat. Pokud uživatel vyplní něco špatně, je upozorněn validační hláškou.
 
-Zamyslete se, zdali je třeba všechny informace ukládat do databáze anebo některé můžete dopočítat během dotazování.
+Zadání ponechává volnost pro vlastní realizaci. Při hodnocení je kladen důraz na technické zpracování a kvalitu kódu, hodnotí se ale i uživatelská přívětivost a grafické zpracování.
+
+Pokud Vám přijde, že v zadání chybí nějaká funkcionalita, můžete ji doplnit a zdokumentovat v `README.md`.
+
+---
+
+## Téma projektu
+Téma projektu bylo vybráno na základě zpětné vazby z dotazníku k předmětu: `"launcher" her (na způsob EA launcheru, Epic games, Steam atd.), kde si může uživatel procházet různé tituly, a případně si je přidat do knihovny ..`
+
+Aplikace tedy uchovává informace o herních titulech. Uživatel si zobrazí, jaké hry na platformě existují, a může si je přidat do knihovny (oblíbené).
+
+Možná rozšíření:
+- uživatel může mít více knihoven
+- statistické informace o herních titulech v knihovnách uživatelů
+- bodové hodnocení titulů s komentáři a statistikami
+
+---
+
+## Data a entity
+V rámci dat požadujeme minimálně následující položky. Zamyslete se, zda je třeba vše ukládat do databáze, nebo zda lze některá data dopočítat při dotazování.
 
 ### Herní titul
 - Název
 - Popis
 - PEGI rating
-- Herní studio (pokud dává smysl v tématu Vaší aplikace)
-- Kategorie (pokud dává smysl v tématu Vaší aplikace)
+- Herní studio (pokud dává smysl)
+- Kategorie (pokud dává smysl)
 - (Knihovny)
 
 ### Knihovna
@@ -54,161 +62,155 @@ Zamyslete se, zdali je třeba všechny informace ukládat do databáze anebo ně
 - ...
 - (Knihovna)
 
+Poznámky:
+- `()` označuje možné/doporučené vazby mezi entitami
+- `[]` označuje volitelné položky
 
-> () možné/doporučené vazby mezi entitami
-> [] volitelné položky
-
----
-
-Další možné datové entity pro nepovinné rozšíření aplikace: herní studio, kategorie, ...
+Další možné entity pro nepovinné rozšíření: herní studio, kategorie, ...
 
 ---
 
-> :warning: **Důrazně nedoporučujeme implementovat autentizaci/autorizaci!** Očekává se, že aplikace na úvodní stránce zobrazí seznam uživatelů, případně umožní "registraci" uživatele, a následně po zvolení uživatele aplikace pracuje v kontextu tohoto uživatele. Během běhu aplikace je možné uživtele "přepnout".
-
+## Důležitá upozornění
+- Pro hodnocení projektu 49+ body je nutné dokončit všechny fáze a projekt úspěšně obhájit. Každá fáze musí být hodnocena minimálně 1 bodem.
+- Při obhajobě je vyžadována demonstrace základní funkcionality, jinak je obhajoba hodnocena 0 body.
+- Důrazně nedoporučujeme implementovat autentizaci/autorizaci. Aplikace má na úvodní stránce zobrazit seznam uživatelů a umožnit „registraci“. Po zvolení uživatele aplikace pracuje v jeho kontextu. Během běhu lze uživatele přepnout.
 
 ---
+
 ## Základní funkcionalita
-Aplikace bude obsahovat pohledy pro zobrazování: *přehledu, detailu a vložení dat*.
+Aplikace bude obsahovat pohledy pro:
+- přehled
+- detail
+- vložení dat
 
-Je požadováno **perzistentní** uložení dat. Při demonstraci může být vyžadováno souběžné spuštění několika aplikací a bude očekávané, že změny v jedné instanci aplikaci se projeví v ostatních instancích. **Znovu-načtení** dat může být inicializováno uživatelem. Pro uložení dat očekáváme [SQLite](https://www.sqlite.org/index.html) a ORM framework [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/).
+Minimální funkcionalita:
+- Aplikace musí umožnit CRUD operace nad všemi daty.
+- V aplikaci lze filtrovat dle všech položek, které dávají smysl v kontextu aplikace.
+- V aplikaci lze vyhledávat dle všech položek, které dávají smysl v kontextu aplikace.
+- V aplikaci lze řadit v listových pohledech dle všech položek, které dávají smysl v kontextu aplikace.
+- Filtrace, vyhledávání, řazení probíhají v databázi. Aplikace nesmí stáhnout všechna data do paměti a provádět tyto operace nad objekty v paměti.
 
-<!-- Project specific -->
-*Minimální* funkcionalita:
-  - **Aplikace musí umožnit provést CRUD operace nad všemi daty.**
-  - V aplikaci se dá **filtrovat** dle všech položek, které dávají smysl v kontextu aplikace.
-  - V aplikaci se dá **vyhledávat** dle všech položek, které dávají smysl v kontextu aplikace.
-  - V aplikaci se dá **řadit** v listových pohledech dle všech položek, které dávají smysl v kontextu aplikace.
-  - Operace **filtrace, vyhledávání, řazení probíhají v databázi**. Aplikace si **nesmí** stáhnout všechna data / DB tabulku do paměti a provádět tyto operace nad objekty v paměti.
- 
+Perzistence:
+- Je vyžadováno perzistentní uložení dat.
+- Při demonstraci může být vyžadováno souběžné spuštění několika instancí aplikace a očekává se, že změny v jedné instanci se projeví v ostatních.
+- Znovu-načtení dat může být iniciováno uživatelem.
+
+Technologie:
+- SQLite a Entity Framework Core (ORM).
+
 ---
+
 ## Architektura projektu
-Architektura aplikace je jeden z důležitých stavebních kamenů při vývoji SW. V rámci cvičení se seznámíte s vrstvenou architekturou demonstrující logickou separaci tříd do projektů (alespoň App, BL, DAL), kterou vřele doporučujeme využít i ve Vašich projektech (klidně 1:1).
+Architektura je důležitým stavebním kamenem. Doporučujeme vrstvenou architekturu (alespoň App, BL, DAL). Řešení obsahující jediný projekt není akceptovatelné.
 
-> :warning: Pokud by měl někdo zájem využít jinou architekturu, např. Clean architecture (bonus body), tak je vhodné [předem konzultovat](pluskal@vut.cz).
-
-V případě, kdy se rozhodnete použít jinou architekturu a rozdělení tříd do projektů musíte být schopni své rozhodnutí odůvodnit a flexibilně reagovat na dotazy při obhajobě.
-
-Řešení obsahující nevhodné rozdělení tříd do projektů, které si nedokážete obhájit bude penalizováno značnou bodovou ztrátou.
-
-> :warning: **Solution obsahující jediný projekt není akceptovatelné!**
+Pokud se rozhodnete pro jinou architekturu (např. Clean Architecture), je vhodné to [předem konzultovat](pluskal@vut.cz) a být schopni své rozhodnutí obhájit.
 
 ---
-## Správa projektu – Azure DevOps
-Při řešení projektu využijte Azure DevOps a GIT na sdílení kódu. Do svého projektu přidělte přístup vyučujícím (způsob byl vysvětlen v rámci 1. cvičení (E01)); tj. do Vašeho týmového projektu si v části Members přidejte účet **uciteliw5@vutbr.cz**.
 
-Účet **uciteliw5@vutbr.cz** budou používat vyučující pro přístup k odevzdávaným souborům. Bez přidání tohoto účtu není možné přistoupit k vašemu projektu, a tedy není možné jej ze strany vyučujících hodnotit.
+## Odevzdávání
+Odevzdávání má 3 fáze. V každé fázi se hodnotí jiné vlastnosti, ale fáze na sebe navazují.
 
-Účet **uciteliw5@vutbr.cz** přidejte jako poslední a ověřte, že má nastavena oprávnění na **Stakeholder**. V opačném případě jeden ze členů týmu nebude vidět zdrojový kód. Azure DevOps umožňuje v bezplatné verzi pouze 5 aktivních vývojářů.
+Kontroluje se kód nahraný v GIT ve větvi `main` nebo `master`. Vždy se kontroluje poslední commit před časem odevzdávání. Commity nahrané po času odevzdávání nebo v jiných větvích nebudou brány v potaz.
 
-> :warning: **Je bezpodmínečně nutné**, abyste přidali účet **uciteliw5@vutbr.cz** do **Project Collection Administrator** v nastavení organizace – *https://dev.azure.com/ics-2026-xlogin00/_settings/groups*. Toto nastavení nám umožní během opravování projektu jednomu členu Vašeho týmu změnit **access level** z **Basic** na **Stakeholder** a dočasně tak přiřadit úroveň **Basic** našemu účtu **uciteliw5@vutbr.cz**. Po skončení opravování Vám nastavení uvedeme do původního stavu. Pokud by se tak nestalo, neváhejte si nastavení změnit sami. **Základní práce s Azure DevOps byla vysvětlena na 1. demonstračním cvičení (E01)**.
+Commit, který máme hodnotit, otagujte (`review1`, `review2`, `review3`).
 
-Návod na přidání člena projektu můžete najít zde: *https://docs.microsoft.com/en-us/vsts/accounts/add-team-members-vs*
+Je povoleno:
+- použít libovolnou knihovnu z NuGet
+- převzít kód z libovolného zdroje vyjma projektů ostatních týmů (včetně ChatGPT, Copilot a jiných LLM), pokud je řádně označen a zdroj uveden
 
-Z GITu *musí být viditelná postupná práce na projektu a spolupráce týmu*. Pokud uvidíme, že existuje malé množství nelogických a nepřeložitelných commitů tak nás bude zajímat, jak jste spolupracovali a může to vést na snížení bodového hodnocení. Doporučujeme použít [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
+Poznámka:
+- Převzatému kódu musíte rozumět a být schopni při obhajobě objasnit jeho funkci.
+- Zkontrolujte, že převzatý kód i knihovny neporušují licence.
 
-Výrazně doporučujeme používat mechanismu **pull-request**ů ["GIT Branching strategy"](https://medium.com/@sreekanth.thummala/choosing-the-right-git-branching-strategy-a-comparative-analysis-f5e635443423) a dělat si vzájemně review kódu, který následně mergnete do master nebo main větve. Projekt vypracováváte jako tým a nesete tak **kolektivní odpovědnost** za kvalitu kódu, proto je dobré, aby kód před začleněním vidělo více párů očí a vzájemně jste si jej připomínkovali. 
+Týmová spolupráce:
+- Z GITu musí být viditelná postupná práce na projektu a spolupráce týmu.
+- Doporučujeme Conventional Commits a ["GIT Branching strategy"](https://medium.com/@sreekanth.thummala/choosing-the-right-git-branching-strategy-a-comparative-analysis-f5e635443423).
 
-Organizaci pojmenujte **ics-2026-xlogin00** dle pojmenování týmu v IS (login zakladatele) a projekt **project** tak, že výsledné URL pro přístup pro tento imaginární tým by bylo https://dev.azure.com/ics-2026-xlogin00/project. Nezapomeňte nastavit **Work item process** template na **Scrum** nebo **Basic** (pokud to UI nabízí).
-
-Využijte možnost automatizovaných buildů spojených s otestováním Vámi provedených změn. Nastavte **Pipelines->Builds** tak, že při pushnutí do libovolné větve projektu se provede *build a spustí se veškeré přítomné testy*. Více informací na [Automate all things with Azure Pipelines – THR2101](https://www.youtube.com/watch?v=yr6PJxfACNc)
-
-> :warning: Nenechte nastavení CI buildů na poslední chvilku. Azure často vyžaduje vyplnění formuláře pro aktivaci CI runnerů což může nějakou dobu trvat. URL pro vyplnění aktivačního formuláře najdete v logu failnutého CI buildu.
-
----
-### Konvence
-Pro zajištění konzistence kódu, který produkujete je závazné respektovat následující body:
-* Angličtina je základním jazykem použitým pro *pojmenování identifikátorů, tříd* atd... Jiné národní jazyky nejsou povoleny.
-* Angličtina je základním jazykem použitým pro *psaní komentářů*. Jiné národní jazyky nejsou povoleny.
-* Dodržujte zásady CleanCode probírané na přednáškách. K zajištění konzistence můžete využít `.editorconfig` konfigurovaný dle domluvy ve Vašem týmu. Není vhodné, aby Vám IDE při odevzdání hlásilo nekonzistence s Vámi zvolenými politikami. 
+ROZDELENI.txt:
+- Pokud členové týmu nepřispěli rovnoměrně, přidejte do kořene soubor `ROZDELENI.txt` s loginy a poměrným rozdělením bodů.
+- Pokud soubor nepřiložíte, bere se rovnoměrné rozdělení bodů.
 
 ---
-### Doporučení – za bonusové body při závěrečné obhajobě
 
-* Pro řízení projektu využijte metodologii **[Scrum](https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/scrum-process-workflow?view=azure-devops)**. 
-* Plánujte sprinty na jednotlivé fáze odevzdání. Práci rozdělte minimálně na **Product Backlog Item (PBI), Tasks a Bugs**. Využijete záložky **Boards** pro vzájemnou synchronizaci a **[Burndown chart](https://docs.microsoft.com/en-us/azure/devops/report/sql-reports/sprint-burndown-scrum?view=azure-devops-2019&viewFallbackFrom=azure-devops)** bude na konci každého sprintu, tj. při každém odevzdání, reflektovat reálný stav projektu.
-* Vaše vlastní rozšíření projektu zdokumentované v `README.md`.
+## Fáze 1 – objektový návrh, databáze
+V této fázi se zaměřte na datový návrh. Vyžaduje se, aby datový návrh splňoval zadání a nevynechal žádnou podstatnou část. Zamyslete se nad vazbami mezi entitami v datovém modelu. V této fázi odevzdáváte kód s entitními třídami, které obsahují všechny vlastnosti potřebné pro další fáze, včetně vazeb mezi třídami.
 
-# Odevzdávání
-Odevzdávání projektu má **3 fáze**. V každé fázi se hodnotí jiné vlastnosti projektu. Nicméně, fáze na sebe navazují a v následující fázi pokračujete v práci na svém kódu.
+Abyste si vazby dokázali představit, vytvořte DAL projekt obsahující `DbContext` s `DbSet`y entitních tříd. Přiložte ER diagram vygenerovaný z kódu. Ručně vytvořený ER diagram, který neodpovídá kódu, je neakceptovatelný.
 
-**Kontroluje se kód, který je nahrán v GIT** ve větvi `master` nebo `main`. Vždy se kontroluje **poslední commit před časem odevzdávání** dané fáze projektu. Na commity nahrány po času odevzdávání nebo v jiných větvích nebude brán zřetel. Commit, který máme hodnotit otagujte (`review1, review2, review3`), čímž nám usnadníte orientaci při hodnocení.
+Pro zajištění pochopení v týmu vytvořte wireframy všech pohledů. Wireframy nejsou závazné, ale pomohou sladit představy o výsledné aplikaci a včas odhalit potřebná data.
 
-> :warning: **Je povoleno použít libovolnou knihovnu získanou standardním způsobem z NuGet zdroje.**
+Požadavky:
+- Entitní třídy s vlastnostmi a vazbami.
+- DAL projekt s `DbContext` a `DbSet`y.
+- ER diagram vygenerovaný z kódu (např. [EF Core Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools) nebo [Rider/Datagrip](https://www.jetbrains.com/help/rider/Creating_diagrams.html)).
+- Wireframy všech pohledů.
+- Použití EF Core Code First.
+- Existující databázové migrace (alespoň InitialMigration).
+- Základní DAL testy.
 
-> :warning: **Je povoleno převzít kód z libovolného zdroje vyjma kódu projektů ostatních týmů.** Převzatý kód vyznačte komentářem a uveďte zdroj, a to včetně zdrojů jako je ChatGPT, Copilot, či jiné LLM. **Kódu musíte rozumět a být schopni při obhajobě objasnit jeho funkci.**
+Umístění výstupů:
+- ER diagram a wireframy do `./docs`.
+- Formát souborů musí jít otevřít bez speciálních nástrojů (png, jpeg, svg, pdf...).
 
-> :warning: **Zkontrolujte, že převzatý kód i knihovny neporušují licence k nimž spřažené.**
-
-Je silně doporučováno projekty v průběhu semestru konzultovat (ideálně po přednášce/cvičení, nebo si dohodnout termín konzultace emailem), předejdete tak případným komplikacím při odevzdání.
-
-Pokud se **týmově** rozhodnete, že všichni členové nepřispěli rovnoměrně k vypracování projektu. Přidejte do kořene repositáře textový soubor s názvem **ROZDELENI.txt**, ve kterém uveďte loginy všech členů týmu a poměrné rozdělení bodů v procentech (struktura není pevně daná). V případě, že soubor nepřiložíte nebo nebude srozumitelný tak implicitně uvažujeme rovnoměrné rozdělení bodů. Pro rovnoměrné rozložení bodů je tedy zbytečné soubor přikládat. **Tento soubor se bere v potaz až při finální obhajobě projektu, kdy je třeba na jeho existenci upozornit a okomentovat ono bodové rozdělení.**
- 
----
-### Fáze 1 – objektový návrh, databáze 
-V téhle fázi se zaměříme na *datový návrh*. Vyžaduje se po Vás, aby datový návrh splňoval zadání a nevynechal žádnou podstatnou část. Zamyslete se nad vazbami mezi jednotlivými entitami v datovém modelu. V této fázi budeme chtít, abyste **odevzdali kód**, kde budete mít *entitní třídy*, které budou obsahovat všechny vlastnosti, které budete dále potřebovat a vazby mezi třídami. 
-
-Abyste si vazby dokázali představit, vytvořte již v tuto chvíli DAL projekt obsahující `DbContext` s `DbSet`y Vašich entitních tříd. Přiložte **ER diagram** vygenerovaný z kódu např. doplňkem [EF Core Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools), nebo generovaným v [Rider/Datagrip](https://www.jetbrains.com/help/rider/Creating_diagrams.html). 
-
-> :warning: Ručně vytvořený ER diagram, který neodpovídá Vašemu kódu je neakceptovatelný.
-
-Pro zajištění vzájemného pochopení všemi členy týmu je vyžadované vytvoření **wireframe** na všechny pohledy (opět libovolný nástroj či ručně kreslené), které ve vaší výsledné aplikaci chcete implementovat. Tyto wireframy nebudou závazné, ale umožní Vám ihned na začátku vzájemně komunikovat představy o výsledné podobě aplikace. TIP: Při tvorbě wireframe zjistíte, jaká data budete potřebovat a navrhnete korektně nejen vazby v Entitní vrstvě, ale také Modely BL vrstvy, jejichž rozmyšlení jistě oceníte v druhém odevzdání.
-
-ER diagram a wireframy umístěte do kořene repositáře do adresáře **docs**. Formát souborů zvolte tak, aby se daly otevřít rozumným způsobem bez nutnosti instalace specifických nástrojů přímo v prostředí Azure DevOps (**ověřte**). Ideální je obrázek ve formátu png, jpeg, svg, pdf, ...
+> :warning: **Důležité**  
+> V sekci [Správa projektu – Azure DevOps](#správa-projektu--azure-devops) jsou zásadní informace k nastavení přístupů.
 
 Hodnotíme:
--   logický návrh tříd (viz 2. přednáška (L02) a 2. demonstrační cvičení (E02))
--   využití abstrakce, zapouzdření, polymorfismu – kde to bude dávat smysl a eliminuje duplicity (viz 2. přednáška (L02) a 2. demonstrační cvičení (E02))
--   verzování v GITu po logických částech, nejsou commitnuty binární soubory, v ideálním případě používáte "nějakou" ["GIT Branching strategy"](https://medium.com/@sreekanth.thummala/choosing-the-right-git-branching-strategy-a-comparative-analysis-f5e635443423)
--   logické rozšíření datového návrhu nad rámec zadání (bonusové body) – toto rozšíření ovšem zvažte; často se stává, že si tím založíte na spoustu komplikací v pozdějších fázích; body za rozšíření dostanete až u obhajoby, pokud je naimplementujete kompletně do výsledné aplikace
--   v ./docs existuje generovaný ER diagram (logickou strukturu) (L04/E03)
--   v ./docs existují wireframy (logickou strukturu, uživatelskou přívětivost, ne kvalitu grafického zpracování)
--   využití **Entity Framework Core – Code First** přístupu na vytvoření databáze z entitních tříd (viz 4. přednáška (L04) a 3. demonstrační cvičení (E03))
--   existenci databázových migrací (alespoň InitialMigration) (viz 4. přednáška (L04) a 3. demonstrační cvičení (E03))
--   **základní** DAL testy (viz 2. demonstrační cvičení (E02))
--   možné rozšíření:
-    -   CI v Azure DevOps – build, spuštění testů (viz 6. přednáška (L06)) (nenechejte na poslední chvíli, může být třeba žádost o zpřístupnění CI)
+- logický návrh tříd (viz 2. přednáška L02 a 2. demonstrační cvičení E02)
+- využití abstrakce, zapouzdření, polymorfismu – kde to bude dávat smysl a eliminuje duplicity (viz 2. přednáška L02 a 2. demonstrační cvičení E02)
+- verzování v GITu po logických částech, nejsou commitnuty binární soubory, v ideálním případě používáte „nějakou“ branching strategy
+- logické rozšíření datového návrhu nad rámec zadání (bonusové body) – rozšíření dostane body až u obhajoby, pokud je kompletně implementováno
+- v `./docs` existuje generovaný ER diagram (logickou strukturu) (L04/E03)
+- v `./docs` existují wireframy (logickou strukturu, uživatelskou přívětivost, ne kvalitu grafického zpracování)
+- využití Entity Framework Core – Code First přístupu na vytvoření databáze z entitních tříd (viz 4. přednáška L04 a 3. demonstrační cvičení E03)
+- existenci databázových migrací (alespoň InitialMigration) (viz 4. přednáška L04 a 3. demonstrační cvičení E03)
+- základní DAL testy (viz 2. demonstrační cvičení E02)
+- možné rozšíření: CI v Azure DevOps – build, spuštění testů (viz 6. přednáška L06)
 
 ---
-### Fáze 2 – repositáře a mapování
-Vytvořte napojení modelů/DTO tříd pomocí Entity Frameworku na databázi. 
 
-Vytvořte repositářovou (Repository) vrstvu, která zapouzdří databázové entity a Fasádu, která zpřístupní pouze data přemapovaná do modelů/DTO. **Inspirujte se ve cvičeních anebo vytvořte vlastní infrastrukturu**.
+## Fáze 2 – repositáře a mapování
+V této fázi vytvořte napojení modelů/DTO tříd na databázi pomocí Entity Frameworku. Vytvořte repository vrstvu, která zapouzdří databázové entity, a fasádu, která zpřístupní data přemapovaná do modelů/DTO. Inspirujte se ve cvičeních, nebo vytvořte vlastní infrastrukturu.
 
-Protože nemáte zatím UI, **funkčnost aplikace ověřte automatizovanými testy**! Kde to dává logický smysl tvořte **UnitTesty**, pro propojení s databází vytvářejte **Integrační testy**. Doporučujeme použití testovacího frameworku **xUnit**.
+Protože ještě nemáte UI, ověřte funkčnost aplikace automatizovanými testy. Kde to dává smysl, pište unit testy; pro propojení s databází používejte integrační testy.
 
-Dbejte kvality Vašeho kódu! Opravte si kód odevzdaný v předchozí fázi dle doporučení v review a zásad *Clean Code / SOLID*, které dále důsledně dodržujte. Můžete si dopomoct rozšířeními a analyzátory kódu.
+Požadavky:
+- Napojení modelů/DTO tříd na DB přes Entity Framework.
+- Repository vrstva zapouzdřující DB entity.
+- Fasáda zpřístupňující pouze data přemapovaná do modelů/DTO.
+- Filtrace, řazení, vyhledávání implementované přes DB.
+- Automatizované testy (unit + integrační). Doporučen xUnit.
+- Oprava chyb a připomínek z fáze 1.
 
 Hodnotíme:
-- opravení chyb a zapracování připomínek, které jsme vám dali v rámci hodnocení fáze 1
+- opravení chyb a zapracování připomínek z hodnocení fáze 1
 - návrh a funkčnost repositářů
 - návrh a funkčnost fasád (včetně filtrování, řazení, vyhledávání)
 - čistotu kódu
-- pokrytí aplikace testy – ukážete tím, že abstrakce repositáře/facade opravdu funguje (hodnotí se testy BL vrstvy)
-- *dejte pozor na zapouzdření databázových entit pod vrstvou fasád, která je nepropaguje výše, ale přemapovává na modely/DTO*
-- funkční build v Azure DevOps (nenechejte na poslední chvíli, může být třeba žádost o zpřístupnění CI)
+- pokrytí aplikace testy – ověřuje se funkčnost repositáře/facade (hodnotí se testy BL vrstvy)
+- zapouzdření databázových entit pod vrstvou fasád, které je nepropagují výše a přemapovávají na modely/DTO
+- funkční build v Azure DevOps (nenechávejte na poslední chvíli, může být třeba žádost o zpřístupnění CI)
 - výsledek testů v Azure DevOps po buildu
 
 ---
-### Fáze 3 – MAUI frontend, data binding
-V této fázi se od Vás již požaduje vytvoření MAUI aplikace. 
 
-Napište backend aplikace (ViewModely), který napojíte na Vámi navržené datové modely z 2. fáze, které jsou zapouzdřeny za vrstvou fasád. 
+## Fáze 3 – MAUI frontend, data binding
+V této fázi již vytváříte MAUI aplikaci. Napište backend (ViewModely) napojený na datové modely z 2. fáze (přes fasády) a frontend (View), který zobrazí data připravená ve ViewModelech. Zamyslete se, jaká data a kde zobrazovat.
 
-A dále frontend (View), který bude zobrazovat data předpřipravená ve ViewModelech. Zamyslete se nad tím, jakým způsobem je vhodné jednotlivá data zobrazovat.
+Požadavky:
+- MAUI aplikace.
+- Backend (ViewModely) napojený na datové modely z 2. fáze (přes fasády).
+- Frontend (View) zobrazující data z ViewModelů.
 
-> :warning: **Použití aplikace by mělo být intuitivní.**
-
-Využijte *binding* v XAML kódu (vyvarujte se code-behind). Účelem není jenom udělat aplikaci, která funguje, ale také aplikaci, která je správně navržena a může být dále jednoduše upravitelná a rozšířitelná. Dbejte tedy zásad probíraných ve cvičeních.
-
-Za aplikace, jejichž vizuální návrh bude proveden dobře, a zároveň budou plně funkční, budeme udělovat bonusové body.
+Poznámka:
+- Použití aplikace by mělo být intuitivní.
 
 Hodnotíme:
-- opravení chyb a zapracování připomínek, které jsme vám dali v rámci hodnocení fází 1 a 2
+- opravení chyb a zapracování připomínek, které jsme Vám dali v rámci hodnocení fází 1 a 2
 - funkčnost celé výsledné aplikace
-- vytvoření View, ViewModelů
-- zobrazení jednotlivých informací dle zadání – seznam, detail …
-- správné využití data-bindingu v XAML
+- vytvoření View a ViewModelů
+- zobrazení jednotlivých informací dle zadání – seznam, detail, ...
+- správné využití data-bindingu v XAML
 - čistotu kódu
 - validaci vstupů
 - funkčnost testů
@@ -221,8 +223,44 @@ Doporučujeme (bonusové body):
 - plánování projektu (logická struktura rozložení práce)
 
 ---
-## Obhajoba
 
-Termíny obhajob budou vyhlášeny v průběhu semestru.
+## Správa projektu – Azure DevOps
+Využijte Azure DevOps a GIT pro sdílení kódu. Přidejte do projektu vyučující účet **uciteliw5@vutbr.cz**.
 
-Na obhajobu se dostaví **celý tým**. Z členů týmu bude vybrán jeden, který obhajobu povede. Na obhajobu nevytvářejte žádnou prezentaci! Budete nám muset ukázat, jak funguje váš kód, a že je správně navržen. Připravte se na naše otázky k funkcionalitě jednotlivých tříd a k důvodům jejich členění. Na obhajobu bude mít tým 10-15 minut. **Prezentujete z vlastního zařízení s připojením k projektoru pomocí HDMI nebo USB-C**.
+> :warning: **Velmi důležité upozornění**  
+> Účet **uciteliw5@vutbr.cz** musí být přidán jako poslední a mít oprávnění **Stakeholder**.  
+> Zároveň je nutné tento účet přidat do **Project Collection Administrator** v nastavení organizace.  
+> Bez splnění obou bodů není možné korektně hodnotit projekt.
+
+Důležité:
+- Účet přidejte jako poslední a ověřte, že má oprávnění **Stakeholder**.
+- Je nutné přidat účet do **Project Collection Administrator** v nastavení organizace.
+- Organizaci pojmenujte `ics-2026-xlogin00` a projekt `project` (příklad URL: `https://dev.azure.com/ics-2026-xlogin00/project`).
+- Nastavte **Work item process** template na **Scrum** nebo **Basic**.
+
+CI doporučení:
+- Nastavte Pipelines->Builds tak, aby při pushnutí do libovolné větve proběhl build a testy.
+> :warning: **Upozornění k CI**  
+> Nenechte nastavení CI na poslední chvíli. Aktivace CI runnerů může vyžadovat vyplnění formuláře a může nějakou dobu trvat.
+
+Návody a odkazy:
+- Přidání člena projektu: `https://docs.microsoft.com/en-us/vsts/accounts/add-team-members-vs`
+- Scrum workflow: `https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/scrum-process-workflow?view=azure-devops`
+- Burndown chart: `https://docs.microsoft.com/en-us/azure/devops/report/sql-reports/sprint-burndown-scrum?view=azure-devops-2019&viewFallbackFrom=azure-devops-2019`
+- Azure Pipelines video: `https://www.youtube.com/watch?v=yr6PJxfACNc`
+
+---
+
+## Konvence
+- Angličtina je povinný jazyk pro pojmenování identifikátorů, tříd a komentářů.
+- Dodržujte zásady Clean Code.
+- Pro konzistenci použijte `.editorconfig` dle domluvy v týmu.
+
+---
+
+## Doporučení (bonusové body)
+- Využijte Scrum v Azure DevOps.
+- Plánujte sprinty na jednotlivé fáze odevzdání.
+- Práci rozdělte na PBI, Tasks a Bugs.
+- Využijte Boards a Burndown chart.
+- Vaše rozšíření projektu dokumentujte v `README.md`.
