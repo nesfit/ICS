@@ -6,7 +6,7 @@
 pkgs.mkShell {
   stdenv = pkgs.stdenvNoCc;
   nativeBuildInputs = with pkgs; [
-    dotnetCorePackages.dotnet_8.sdk
+    dotnetCorePackages.dotnet_10.sdk
     nodePackages.mermaid-cli
     nodejs
     http-server

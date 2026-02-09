@@ -8,7 +8,7 @@ highlightTheme: "vs"
 ---
 
 
-# Introduction to C#, Visual Studio and .NET
+# Introduction to C#, Visual Studio, and .NET
 
 <div class="right">[ Jan Pluskal &lt;pluskal@vut.cz&gt;  ]
 
@@ -34,8 +34,8 @@ highlightTheme: "vs"
   * completion tools
   * graphical designers
   * etc..
-* [Free download](https://visualstudio.microsoft.com/vs/")
-* [Installation guide](https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio?view=vs-2017)
+* [Free download](https://visualstudio.microsoft.com/vs/)
+* [Installation guide](https://learn.microsoft.com/en-us/visualstudio/install/install-visual-studio?view=vs-2017)
 
 </div>
 
@@ -69,7 +69,7 @@ highlightTheme: "vs"
 <div class="left">
 
 * Extensions:
-  * **Resharper**
+* **ReSharper**
   * **Markdown Editor**
   * EF Core Power Tools
   * ~~Code Metrices~~
@@ -78,7 +78,7 @@ highlightTheme: "vs"
 * Tools & Services:
   * **LinqPad**
   * DotPeek
-  * Source Tree
+  * SourceTree
   * **VSCode**
   * **Rider**
   * Azure DevOps
@@ -93,7 +93,7 @@ highlightTheme: "vs"
 </div>
 
 +++
-### [Resharper](https://www.jetbrains.com/resharper/)
+### [ReSharper](https://www.jetbrains.com/resharper/)
 
 <div class="left">
 
@@ -188,7 +188,7 @@ Useful design-time utilities for EF Core, accessible through the Visual Studio S
 ![](assets/img/ef-powertool.PNG)
 
 +++
-### [GitFlow](hhttps://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio2019)
+### [GitFlow](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio2019)
 
 Team Explorer extension integrates GitFlow into your development workflow. It lets you easily create and finish feature, release and hotfix branches right from Team Explorer.  For more details about git recommends [Pro Git book](https://git-scm.com/book/en/v2).
 
@@ -198,7 +198,7 @@ Team Explorer extension integrates GitFlow into your development workflow. It le
 
 ### [Semantic Versioning 2.0.0](https://semver.org)
 
-Given a version number **MAJOR.MINOR.PATC**H, increment the:
+Given a version number **MAJOR.MINOR.PATCH**, increment the:
 
 1. **MAJOR** version when you make incompatible API changes
 2. **MINOR** version when you add functionality in a backward compatible manner
@@ -235,7 +235,7 @@ The commit contains the following structural elements, to communicate intent to 
 5. footers other than *BREAKING CHANGE:* <description> may be provided and follow a convention similar to git trailer format.
 
 ---
-## Why To Choose .NET?
+## Why Choose .NET?
 <div class="right">
 
 ![](assets/img/Overview_small.png)
@@ -296,7 +296,7 @@ The commit contains the following structural elements, to communicate intent to 
 +++
 ### Large ecosystem
 * Libraries from the [NuGet package manager](https://www.nuget.org/)
-* Visual studio [marketplace](https://marketplace.visualstudio.com/)
+* Visual Studio [marketplace](https://marketplace.visualstudio.com/)
 * [Extensive partners network](https://vspartner.com/Directory)
 * Community support, MVPs, ...
 
@@ -417,11 +417,11 @@ The commit contains the following structural elements, to communicate intent to 
 +++
 ## C# is
 * **multi-paradigm**;
-* **strong typed**;
-* **object oriented** (class-based);
+* **strongly typed**;
+* **object-oriented** (class-based);
 * imperative, declarative;
 * functional, generic;
-* based on c++;
+* influenced by C++ and Java;
 * programming language.
 
 ![](assets/img/csh.png)
@@ -448,32 +448,32 @@ The commit contains the following structural elements, to communicate intent to 
   ```C#
   int value;
   ```
-* **Reserved keywords** can not be used unless prefix `@` is added
+* **Reserved keywords** cannot be used unless prefix `@` is added
   ```C#
   int @class;
   ```
 +++
 ## Keywords
 * **Reserved** words that have *special meaning*
-* Meaning can not be changed
-* **Can not be directly** used as *identifies*
+* Meaning cannot be changed
+* **Cannot be directly** used as *identifiers*
 * `long` is a keyword:
   ```C#
   long count;
   ```
 * E.g. ```int, bool, if, for, class, false, public, break```
-* [List of all Keywords](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/)
+* [List of all Keywords](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/)
 
 +++
 ## Contextual Keywords
 * **Specific meaning** in a limited program *context*
 * **Can be used** as *identifiers outside the context*
 * E.g. ```var, await, async, where, set```
-* [List of all Contextual Keywords](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/)
+* [List of all Contextual Keywords](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/)
 
 +++
 ## Literals
-* Data inserted in a code
+* Data inserted in code
 
 ```C#
 var hitchhikerConstant = 42;
@@ -489,7 +489,7 @@ var pi = 3.14159;
   * Used to **impart a scope**
 * Semicolon `;`
   * **Delimits statements**
-  * Statement *can be written on multiple lines*.
+  * Statements *can be written on multiple lines*.
 
 ```C#
 Console.WriteLine
@@ -531,10 +531,10 @@ var sum = 1 + 5 * (6 / 2);
   * **Have to be** assigned before accessing
   * Two variables, each have their copy of the data; *an operation on one variable* **DOES NOT** *affect the other*.
 * **Reference types** (objects)
-  * Variable **stores reference** to the data
-  * **DO NOT have to be** assigned before accessing
-  * IF two variables reference the same object; *operation on one variable* **DOES** *affect the object referenced by the other variable*.
-* [Documentation](https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/types-and-variables)
+  * Variable **stores a reference** to the data
+  * **DO NOT have to be** assigned before access
+  * IF two variables reference the same object, *operation on one variable* **DOES** *affect the object referenced by the other variable*.
+* [Documentation](https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/types-and-variables)
 
 +++
 ## Value Types
@@ -550,9 +550,10 @@ var sum = 1 + 5 * (6 / 2);
   * User-defined types of the form `enum E {...}`
 * **Struct types**
   * User-defined types of the form `struct S {...}`
-* **Nullable value types** - become reference types
+* **Nullable value types** - value types with `null`
+  * Nullable value types are still value types (with `HasValue`/`Value`)
   * Extensions of all other value types with a `null` value
-  * [Boxing/Unboxing](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types#boxing-and-unboxing)
+  * [Boxing/Unboxing](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types#boxing-and-unboxing)
 
 +++
 ### Signed Integral
@@ -600,7 +601,7 @@ var sum = 1 + 5 * (6 / 2);
 
 +++
 ### Numerical data types specification
-Using specific character as a suffix
+Using a specific character as a suffix
 
 ```C#
  Console.WriteLine(1f.GetType());  // Float   (float)
@@ -616,12 +617,12 @@ Using specific character as a suffix
 * Transformation of **integral type** to **integral type**:
   * *implicit* when *target type* can accommodate the whole range of *source type*
   * *explicit* otherwise
-* Transformation of **decimal type** to **decimal type**:
-  * `float` can be *implicitly* casted to `double`
-  * `double` has to be casted *explicitly* to `float`
-* Transformation of **integral type** to **decimal type**:
+* Transformation of **floating-point type** to **floating-point type**:
+  * `float` can be *implicitly* cast to `double`
+  * `double` has to be cast *explicitly* to `float`
+* Transformation of **integral type** to **floating-point type**:
   * Casting is *implicit*
-* Transformation of **decimal type** to **integral type**:
+* Transformation of **floating-point type** to **integral type**:
   * Casting has to be *explicit*
     * Lost precision
     * Truncation can occur
@@ -632,12 +633,12 @@ Using specific character as a suffix
 * `-` subtraction
 * `*` multiplication
 * `/` division
-* `++` incrementation
-* `--` decrementation
+* `++` increment
+* `--` decrement
 
 +++
 ### Byte, sbyte, short, ushort types
-* 8 and 16 bits types do not have arithmetical operations
+* 8 and 16 bits types do not have arithmetic operations
   * E.g., `byte, sbyte, short, ushort`
   * Compiler does implicitly cast to a large type `int, uint`
 
@@ -665,7 +666,7 @@ Console.WriteLine(a == int.MaxValue); // True
 
 ```C#
 int a = int.MinValue;
-var i = checked(a--); // throw OverflowException
+var i = checked(a--); // throws OverflowException
 Console.WriteLine(i == int.MaxValue);
 ```
 
@@ -710,14 +711,14 @@ Console.WriteLine(notQuiteWholeD < 1.0);        // True
 +++
 ## Boolean type
 * `System.Boolean`/`bool`
-* Store logical values
+* Stores logical values
   * `true` or `false`
 
 ```C#
 sizeof(bool) == sizeof(uint8) == sizeof(sbyte)
 ```
 
-* Nothing can be casted to `bool`
+* Nothing can be cast to `bool`
 * Operators:
   * Equality `==`, `!=`
   * Conditional operators `&&`, `||`
@@ -764,8 +765,7 @@ struct Foo
 
 +++
 ## Nullable value types
-* **Do not have to be assigned** *before they can be accessed*
-* Because they are reference types, thus their `default` value is `null`
+* Their default value is `null` (`default(T?)`)
 * For each non-nullable value type `T` there is a corresponding nullable value type `System.Nullable<T>`, `T?`
   * With the same value range as `T` + **additional value** - `null`
 
@@ -782,7 +782,7 @@ int  cannotBeNull = null;      // Compile-time error
 
 
 +++
-##  Reference types
+## Reference types
 
 * **Class types**
   * Ultimate base class of all other types: `object`
@@ -863,8 +863,8 @@ class MyClass
 * Represents *sequence of characters*
 * **Reference** data type
 * Always *immutable*
-* Literal is denote by double-quotes. e.g., `"string value"`
-* Verbatim string is denote by `@` prefix, e.g.,
+* Literal is denoted by double-quotes, e.g., `"string value"`
+* Verbatim string is denoted by `@` prefix, e.g.,
 ```C#
 @"Multi-line
 string"
@@ -878,7 +878,7 @@ string"
 ```C#
 string s = "a" + 5; // a5
 ```
-* For multiple string concatenation operations avoid usage of `+`, use:
+* For multiple string concatenation operations, avoid `+` and use:
   * `System.Text.StringBuilder`
   * `s = System.String.Format("{0} times {1} = {2}", i, j, (i*j));`
   * `s = $"{i} times {j} = {i*j}";`
@@ -887,7 +887,7 @@ string s = "a" + 5; // a5
 ### Array
 * Represents *fixed length data structure of homogeneous items*
 * Stored in a sequential block of memory
-* *Do not have to be declared before it can be used*
+* *Does not have to be declared before it can be used*
 * **Initialization**
   * Value types - default value
   * Reference types - `null`
@@ -906,7 +906,7 @@ string s = "a" + 5; // a5
 ---
 ### Variables
 * Has a specific **type**, which determines:
-  * The **size** and layout of the memory
+  * The **size** and layout of memory
   * The **range of values** that can be stored within that memory
   * The **set of operations** that can be applied
 
@@ -1030,7 +1030,7 @@ string s = "a" + 5; // a5
     * Variable **cannot** *be modified* by the called method
   * **Out** reference
     * Variable **must** *be assigned* by the called method
-    * Variable **need not** *to be initialized* before the method call
+    * Variable **need not** *be initialized* before the method call
 
 +++
 <pre><code class="language-csharp" data-sample='assets/sln/Tests/ValueParameter.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
@@ -1109,7 +1109,7 @@ Foo(y: 1);
 * **Primary expression**
   * Used to build the language
   * `Math.Log(1)` contains two primary operators `.` and `()`
-* [List of all operators](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/operators)
+* [List of all operators](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/operators)
 
 +++
 ## Expressions
@@ -1158,7 +1158,7 @@ a = b = c = d = e = 0;
 +++
 ### Priority and assignment
 * Priority is evaluated by the *priority of operators*
-* *The same priority* operators are evaluated starting with *the most left one*
+* *The same priority* operators are evaluated starting with *the leftmost one*
 * Left-associative operators
   * `8/4/2` equals `(8/4)/2`
 * Right-associative operators
@@ -1194,7 +1194,7 @@ x = y = 3;
 [Code sample](assets/sln/Tests/TernaryOperand.cs)
 
 +++
-## Statements - Cycles
+## Statements - Loops
 * `while`
 * `do while`
 * `for`
@@ -1258,7 +1258,7 @@ x = y = 3;
 [Code sample](assets/sln/Tests/Goto.cs)
 
 +++
-## Statements - other
+## Statements - Other
 * `using`
   * Encapsulates the use of a disposable resource
 * `lock`
@@ -1385,18 +1385,18 @@ namespace N2
 ## References:
 
 [C# 8.0 in a Nutshell: The Definitive Reference](https://www.amazon.com/C-8-0-Nutshell-Definitive-Reference/dp/1492051136)
-[Visual Studio Documentation](https://docs.microsoft.com/en-us/visualstudio)
+[Visual Studio Documentation](https://learn.microsoft.com/en-us/visualstudio)
 [Microsoft Visual Studio](https://visualstudio.microsoft.com)
 [Microsoft](https://www.microsoft.com)
-[Resharper](https://www.jetbrains.com/resharper)
+[ReSharper](https://www.jetbrains.com/resharper)
 [Wikipedia](https://en.wikipedia.org)
 [Programiz](https://www.programiz.com)
 [C# in depth](http://csharpindepth.com)
 
 +++
-## Refences to used images:
+## References to used images:
 [Amazon books](https://www.amazon.com/)
-[Welcome to the Visual Studio IDE](https://docs.microsoft.com/en-us/visualstudio/ide/visual-studio-ide?view=vs-2017)
+[Welcome to the Visual Studio IDE](https://learn.microsoft.com/en-us/visualstudio/ide/visual-studio-ide?view=vs-2017)
 [Why Choose .NET?](https://www.microsoft.com/net/platform/why-choose-dotnet)
 [Wikipedia .Net Framework](https://en.wikipedia.org/wiki/.NET_Framework)
 [CLR In Process](https://scottdorman.github.io/2008/11/10/clr-4.0-in-process-side-by-side-clr-hosting/)
@@ -1411,7 +1411,7 @@ namespace N2
 
 
 ---
-source: [https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-version-history](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-version-history)
+source: [https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-version-history](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-version-history)
 title: The history of C# - C# Guide
 
 description: What did the language look like in its earliest versions, and how has it evolved since?
@@ -1421,7 +1421,7 @@ author: erikdietrich
 ms.date: 09/20/2017
 ---
 
-# The history of CSharp
+# The history of C#
 
 This article provides a history of each major release of the C# language. The C# team is continuing to innovate and add new features. Detailed language feature status, including features considered for upcoming releases can be found [on the dotnet/roslyn repository](https://github.com/dotnet/roslyn/blob/master/docs/Language%20Feature%20Status.md) on GitHub.
 
@@ -1610,34 +1610,34 @@ _Article_ [_originally published on the NDepend blog_](https://blog.ndepend.com/
 
 ## C# version 8.0
 
-[What's new in C# 8.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8) - .NET Core 3.0.
+[What's new in C# 8.0](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8) - .NET Core 3.0.
 
 ---
 
 ## C# version 9.0
 
-[What's new in C# 9.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9) - .NET 5
+[What's new in C# 9.0](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9) - .NET 5
 
 ---
 
 ## C# version 10.0
 
-[What's new in C# 10.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10) - .NET 6
+[What's new in C# 10.0](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-10) - .NET 6
 ---
 
 ## C# version 11.0
 
-[What's new in C# 11.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11) - .NET 7
+[What's new in C# 11.0](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11) - .NET 7
 ---
 
 ## C# version 12.0
 
-[What's new in C# 12.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12) - .NET 8
+[What's new in C# 12.0](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12) - .NET 8
 ---
 
 ## C# version 13.0
 
-[What's new in C# 13.0](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13) - .NET 9
+[What's new in C# 13.0](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13) - .NET 9
 
 
 ---

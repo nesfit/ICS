@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="Calculator.Console.App/Calculator.App.csproj" />
+  <Project Path="Calculator.Utils.Tests/Calculator.Utils.Tests.csproj" />
+  <Project Path="Calculator.Utils/Calculator.Utils.csproj" />
+  <Project Path="ConsoleApp/ConsoleApp.csproj" />
+</Solution>

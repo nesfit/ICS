@@ -1,6 +1,6 @@
 # Lecture
 
-Presentation uses [`reveal-md`](https://github.com/webpro/reveal-md).
+The presentation uses [`reveal-md`](https://github.com/webpro/reveal-md).
 
 ## Installation
 
@@ -11,7 +11,7 @@ npm install -g reveal-md
 
 **OR**
 
-Use [Nix](https://nixos.org/download.html#nix-install-windows) in WSL2
+Use [Nix](https://nixos.org/download.html#nix-install-windows) in WSL2:
 
 ```bash
 nix develop --extra-experimental-features nix-command --extra-experimental-features flakes github:/nesfit/ICS
@@ -64,5 +64,5 @@ podman cp _site ICS-Lecture-nginx:/usr/share/nginx/html
 ln -sfh ../_reveal-md _reveal-md
 ln -sfh ../_reveal-md/README.md README.md
 ln -sfh ../_reveal-md/reveal.json reveal.json
-ln -sfh ../_reveal-md/reveal-md.json reveal-md.json 
+ln -sfh ../_reveal-md/reveal-md.json reveal-md.json
 ```

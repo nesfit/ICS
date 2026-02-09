@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework Condition="$([MSBuild]::IsOSPlatform('OSX'))">net8.0-maccatalyst</TargetFramework>
-    <TargetFramework Condition=" '$(OS)' == 'Windows_NT' ">net8.0-windows10.0.19041.0</TargetFramework>
+    <TargetFramework Condition="$([MSBuild]::IsOSPlatform('OSX'))">net10.0-maccatalyst</TargetFramework>
+    <TargetFramework Condition=" '$(OS)' == 'Windows_NT' ">net10.0-windows10.0.19041.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <RootNamespace>CookBook.App</RootNamespace>
     <UseMaui>true</UseMaui>
@@ -32,11 +32,11 @@
     <UserSecretsId>00775e36-5374-4630-b80a-38bf58169d4e</UserSecretsId>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-windows10.0.19041.0|AnyCPU'">
     <Optimize>True</Optimize>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-windows10.0.19041.0|AnyCPU'">
     <Optimize>False</Optimize>
   </PropertyGroup>
 
