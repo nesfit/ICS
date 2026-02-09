@@ -8,6 +8,7 @@ using CookBook.DAL.Migrator;
 using CookBook.DAL.Options;
 using CookBook.DAL.Seeds;
 using Microsoft.Extensions.Options;
+using Microsoft.Maui.Storage;
 
 [assembly:System.Resources.NeutralResourcesLanguage("en")]
 namespace CookBook.App;
@@ -58,6 +59,13 @@ public static class MauiProgram
         builder.Configuration.AddConfiguration(configuration);
 
         builder.Services.Configure<DALOptions>(builder.Configuration.GetSection("CookBook:DAL"));
+        builder.Services.PostConfigure<DALOptions>(options =>
+        {
+            if (string.IsNullOrWhiteSpace(options.DatabaseDirectory))
+            {
+                options.DatabaseDirectory = FileSystem.AppDataDirectory;
+            }
+        });
     }
 
     private static void RegisterRouting(INavigationService navigationService)
