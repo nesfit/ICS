@@ -1,0 +1,23 @@
+<Solution>
+  <Folder Name="/App/">
+    <Project Path="CookBook.App/CookBook.App.csproj">
+      <Deploy />
+    </Project>
+    <Project Path="CookBook.BL/CookBook.BL.csproj" />
+    <Project Path="CookBook.Common/CookBook.Common.csproj" />
+    <Project Path="CookBook.DAL/CookBook.DAL.csproj" />
+  </Folder>
+  <Folder Name="/SolutionFiles/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Packages.props" />
+    <File Path="Directory.Build.props" />
+    <File Path="global.json" />
+    <File Path="nuget.config" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="CookBook.BL.Tests/CookBook.BL.Tests.csproj" />
+    <Project Path="CookBook.Common.Tests/CookBook.Common.Tests.csproj" />
+    <Project Path="CookBook.DAL.Tests/CookBook.DAL.Tests.csproj" />
+  </Folder>
+</Solution>

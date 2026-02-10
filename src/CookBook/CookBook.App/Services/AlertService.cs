@@ -1,14 +1,17 @@
-﻿namespace CookBook.App.Services;
+﻿using System.Linq;
+
+namespace CookBook.App.Services;
 
 public class AlertService : IAlertService
 {
     public async Task DisplayAsync(string title, string message)
     {
-        var displayAlert = Application.Current?.MainPage?.DisplayAlert(title, message, "OK");
-        
-        if (displayAlert is not null)
+        var page = Application.Current?.Windows.FirstOrDefault()?.Page;
+        if (page is null)
         {
-            await displayAlert;
+            return;
         }
+
+        await page.DisplayAlertAsync(title, message, "OK");
     }
 }
