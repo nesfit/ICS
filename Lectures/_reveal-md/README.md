@@ -35,6 +35,12 @@ reveal-md .\Lecture.md --print slides.pdf
 reveal-md Lecture.md --static _site --static-dirs=assets
 ```
 
+or just 
+
+```
+nix develop .# -c reveal-md Lecture.md --static _site --static-dirs=assets
+```
+
 ## Preview exported static content
 
 ```
