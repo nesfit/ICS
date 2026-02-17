@@ -22,6 +22,11 @@ nix develop --extra-experimental-features nix-command --extra-experimental-featu
 ```bash
 reveal-md Lecture.md --port 8080 -w
 ```
+or just 
+
+```
+nix develop .# -c reveal-md Lecture.md --port 8080 -w
+```
 
 ## Export as PDF
 
