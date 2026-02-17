@@ -49,7 +49,7 @@
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="10"/>
                         </Border.StrokeShape>
-                        
+
                         <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, *, *"
                               HorizontalOptions="Fill" VerticalOptions="Center"
                               RowSpacing="5">
@@ -89,7 +89,7 @@
                     <CollectionView Grid.Row="5"
                                     ItemsSource="{Binding Recipe.Ingredients}">
                         <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="models:IngredientAmountDetailModel">
+                            <DataTemplate x:DataType="models:IngredientAmountListModel">
                                 <HorizontalStackLayout>
                                     <Border Margin="5, 5, 20, 5"
                                             Style="{StaticResource ImageBorderStyle}">
