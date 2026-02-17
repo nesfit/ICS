@@ -147,7 +147,7 @@ public class RecipeFacadeTests : FacadeTestsBase
         var returnedModel = await _facadeSUT.GetAsync();
 
         //Assert
-        Assert.Contains(listModel, returnedModel);
+        DeepAssert.Contains(listModel, returnedModel);
     }
 
     [Fact]
