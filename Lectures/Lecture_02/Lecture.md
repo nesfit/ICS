@@ -146,6 +146,8 @@ highlightTheme: "vs"
 | *Following* **the class name**    | Generic type parameters, a base class, and interfaces          |
 | *Within* **the class body**       | Methods, properties, indexers, events, fields, constructors... |
 
+* C# 12: `[Experimental]` attribute and interceptors were introduced as preview compiler features
+
 +++
 ### Class Components
 * **fields** – a *member variable*
@@ -153,12 +155,24 @@ highlightTheme: "vs"
 * **constants** - *fields* or properties whose values are set at compile time and cannot be changed
 * **methods** - named *procedures or functions*
 * **events** - *notify* on object state changes
-* **operators** - overloaded operators
+* **operators** - overloaded operators (C# 14 adds user-defined compound assignment operators such as `+=`) 
 * **indexers** - allow object to *be indexed as an array*
 * **constructors** - **methods** that run initialization code
 * **deconstructors** - **methods** that decompose an object into out parameters
 * **finalizer** - **method** called during object destruction
 * **nested types** - *types declared within* a class scope
+
++++
+### Object Initializers (C# 13)
+* Implicit indexer access is allowed in object initializers (including `^`)
+
+```C#
+var buffer = new Buffer
+{
+  [^1] = 0,
+  [^2] = 1
+};
+```
 
 +++
 ### Field
@@ -191,6 +205,8 @@ highlightTheme: "vs"
 * Can
   * accept parameters - *values*, *reference types*, `ref`, `in`
   * return a result via `return`, or via `ref` or `out` parameters
+* C# 12: `ref readonly` parameters provide a read-only by-ref alternative to `ref` and `in`
+* C# 13: `params` can target collections (not only arrays), including `Span<T>`, `ReadOnlySpan<T>`, and collection types that implement `IEnumerable<T>` and expose `Add`
 
 +++
 #### Method Modifiers
@@ -199,6 +215,7 @@ highlightTheme: "vs"
 * inheritance - `new, virtual, abstract, override, sealed, partial`
 * unsafe code - `unsafe, extern`
 * asynchronous - `async`
+* C# 13: `ref` locals and `unsafe` are allowed in iterators and `async` methods
 
 +++
 #### Method Types
@@ -246,6 +263,8 @@ void Foo(int x) => Console.WriteLine(x);
   int    Foo(int x) {...}
   double Foo(double x) {...} // OK
   ```
+* C# 13: method group natural type improvements can affect overload resolution in some cases
+* C# 13: overload resolution priority provides a way to prefer specific overloads for library evolution
 
 +++
 #### Local Methods
@@ -269,6 +288,8 @@ void Foo(int x) => Console.WriteLine(x);
 * It is a safety mechanism that unifies *read* and *write* operations
 * Hides *implementation details*
 * Typically used to check values, do validation, ensure consistency...
+* C# 14: field-backed properties allow access to the compiler-generated backing field via `field` inside accessors
+* C# 13: partial properties and indexers are allowed in `partial` types
 
 +++
 #### Read-only and Write-only Properties
@@ -367,6 +388,7 @@ public string Name {
 * Defined like a method
   * Method *name and return type* are reduced to the *name of the enclosing type*
 * Base-class constructors are accessible via `base`
+* C# 12: primary constructors are available for `class` and `struct` (not only records)
 
 +++
 <pre><code class="language-csharp" data-sample='assets/sln/Examples/Panda.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
@@ -574,6 +596,15 @@ public class Stock: Asset
 * Often used before downcast
 
 +++
+#### Null-conditional Assignment (C# 14)
+* Allows conditional assignment with `?.` and `?[]`
+
+```C#
+person?.Name = "Alice";
+list?[0] = 42;
+```
+
++++
 <pre><code class="language-csharp" data-sample='assets/sln/Tests/IsOperator.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-15] -->
 [Code sample](assets/sln/Tests/IsOperator.cs)
@@ -623,6 +654,11 @@ public class Kitten : Cat {}
 * Typically used in WPF, WinForms
   * one file is auto-generated
   * one file is hand-edited
+* C# 14: partial constructors are allowed in `partial` types
+
++++
+### Extension Members (C# 14)
+* Extension members generalize extension methods to allow more kinds of members to be added to existing types
 
 ```C#
 partial class PaymentForm // In auto-generated file
@@ -729,6 +765,9 @@ Person student = new Student { FirstName = "Mads", LastName = "Nielsen", ID = 12
   * virtual or protected members
 * ~~Each constructor has to initialize all `struct`'s members~~ C# 11
 * ~~Members cannot be initialized in `struct`'s declaration~~ C# 10
+* C# 12: inline arrays allow fixed-size buffers in `struct`s
+* C# 13: `ref struct` can implement interfaces and be used as generic type arguments
+* C# 14: additional implicit conversions exist for `Span<T>` and `ReadOnlySpan<T>`
 
 +++
 ```C#
@@ -771,6 +810,14 @@ Breeding = 2, ForSausages = 4, Dead = 8 }
 HorseType type = HorseType.Racing | HorseType.Breeding;
           type |= HorseType.ForSausages;
 Console.WriteLine(type); // Racing, Breeding, ForSausages
+```
+
+---
+## Literals (C# 13)
+* New escape sequence `\e` represents the ASCII escape character
+
+```C#
+char esc = '\e';
 ```
 
 ---
@@ -967,6 +1014,28 @@ static void Swap<T>(ref T a, ref T b) {
   * `where T : <interface name>` - T must be or implement the specified interface, non-nullable
   * `where T : <interface name>?` - T must be or implement the specified interface, non-nullable or nullable
   * `where T : U` - T must be or derive from the argument supplied for U
+
++++
+### Collection Expressions (C# 12)
+* Terse syntax for creating arrays, spans, and collection types with optional spread (`..`)
+
+```C#
+int[] a = [1, 2, 3];
+int[] b = [..a, 4, 5];
+Span<char> s = ['h', 'i'];
+```
+
++++
+### Alias Any Type (C# 12)
+* `using` aliases can target any type, including tuples and arrays
+
+```C#
+using PointList = System.Collections.Generic.List<(int X, int Y)>;
+```
+
++++
+### `nameof` with Unbound Generics (C# 14)
+* `nameof` now supports unbound generic types (e.g., `nameof(List<>)`)
 
 ---
 ## Covariance and Contravariance
@@ -1435,6 +1504,7 @@ Console.WriteLine(delegate1 == delegate2); // True
 ## Events
 * A construct that exposes the subset of delegate features required for the broadcaster/subscriber model
 * [Read more](https://docs.microsoft.com/en-us/dotnet/csharp/distinguish-delegates-events)
+* C# 14: partial events are allowed in `partial` types
 
 ```C#
 public delegate void PriceChangedHandler(decimal oldPrice, decimal newPrice);
@@ -1509,6 +1579,10 @@ public class Stock
 * `static`
 
 ---
+## Synchronization (C# 13)
+* New `lock` type and updated `lock` semantics for improved performance and correctness
+
+---
 ## Lambda Expressions
 * From C# 3.0
 * *Anonymous function* written in place of a delegate instance
@@ -1518,6 +1592,8 @@ public class Stock
 x => x * x;              // Expression form
 x => { return x * x; };  // Statement form
 ```
+* C# 12: lambda parameters can have default values
+* C# 14: simple lambda parameters can include modifiers (e.g., `ref`, `in`, `scoped`)
 
 +++
 ### Lambda Expressions Usage Example
@@ -1620,6 +1696,10 @@ static void Main()
 ```C#
 public void Foo(Func<int,bool> predicate) { ... }
 ```
+
+---
+## File-based Apps (C# 14)
+* New preprocessor directives support file-based apps
 
 ---
 ## Tuples
