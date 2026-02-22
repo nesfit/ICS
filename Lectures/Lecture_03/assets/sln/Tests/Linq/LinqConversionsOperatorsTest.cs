@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using Xunit;
 
-namespace Tests
+namespace Tests.Linq
 {
     public class LinqConversionsOperatorsTest
     {
@@ -32,7 +32,7 @@ namespace Tests
         [Fact]
         public void CastTest()
         {
-            var arrayList = new ArrayList {"India", "USA", "UK", "Australia"};
+            var arrayList = new ArrayList { "India", "USA", "UK", "Australia" };
 
             IEnumerable<string> results = arrayList.Cast<string>();
 
@@ -53,7 +53,7 @@ namespace Tests
         [Fact]
         public void ToArrayTest()
         {
-            var numbers = new List<int>{ 1, 2, 3, 4 };
+            var numbers = new List<int> { 1, 2, 3, 4 };
 
             var result = numbers.ToArray();
 

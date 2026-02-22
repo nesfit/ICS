@@ -3,7 +3,7 @@ using System.Linq;
 using Xunit;
 using Xunit.Sdk;
 
-namespace Tests
+namespace Tests.Linq
 {
     public class LinqJoinOperatorsTest
     {

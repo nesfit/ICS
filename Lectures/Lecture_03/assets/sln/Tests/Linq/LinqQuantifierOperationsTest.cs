@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Xunit;
 
-namespace Tests
+namespace Tests.Linq
 {
     public class LinqQuantifierOperationsTest
     {

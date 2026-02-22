@@ -2,7 +2,7 @@
 using System.Linq;
 using Xunit;
 
-namespace Tests
+namespace Tests.Linq
 {
     public class LinqElementOperatorsTest
     {
@@ -72,7 +72,7 @@ namespace Tests
             string[] empty = { };
 
             Assert.Equal("Peter", names1.Single());
-            Assert.Throws<InvalidOperationException> (() => names2.Single());
+            Assert.Throws<InvalidOperationException>(() => names2.Single());
             Assert.Throws<InvalidOperationException>(() => empty.Single());
         }
 
