@@ -40,16 +40,16 @@ highlightTheme: "vs"
 
 
 +++
-#### .NET Today (.NET 7)
+#### .NET Today (.NET 8+)
 
 ![.NET 7](assets/img/dotnet-platform2.png)
 <!-- ![](assets/img/DotnetUnifiedPlatform.png) -->
 
 +++
-### .NET Standard vs .NET Core (.NET 5, .NET 6, ...)
+### .NET Standard vs .NET (.NET 5+)
 * **.NET Standard**
   * *specification* that *covers which APIs a .NET platform has to implement*
-* **.NET Core** (.NET 5, .NET 6, ...)
+* **.NET** (.NET 5+)
   * **concrete .NET platform**
   * *implements the .NET Standard*
 
@@ -1268,8 +1268,8 @@ Joining combines two sequences based on matching keys and is useful for traversi
 
 |  Operator   | Description                                               |
 | :---------: | :-------------------------------------------------------- |
-|   `Join`    | The operator join two sequences on basis of matching keys |
-| `GroupJoin` | Join two sequences and group the matching elements        |
+|   `Join`    | The operator joins two sequences on the basis of matching keys |
+| `GroupJoin` | Joins two sequences and groups the matching elements          |
 
 ![](assets/img/LINQ/LINQ_Join.png)
 
@@ -1514,8 +1514,8 @@ These operators return a Boolean value when some or all elements within a sequen
 |  Operator  | Description                                                                                                                                         |
 | :--------: | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
 |   `All`    | Returns `True` if all elements of a sequence satisfy a predicate condition                                                                          |
-|   `Any`    | Determines by searching a sequence that whether any element of the same satisfy a specified condition                                               |
-| `Contains` | Returns `True` if finds that a specific element is there in a sequence if the sequence doe not contains that specific element , `false` is returned |
+|   `Any`    | Returns `True` if any element in a sequence satisfies a specified condition                                              |
+| `Contains` | Returns `True` if a specific element is present in a sequence; otherwise returns `False`                                |
 
 
 +++
@@ -1573,12 +1573,12 @@ Divide an input sequence into two parts without rearranging the elements of the 
 
 +++
 ### LINQ Generation Operators
-A new sequence of values is created by generational operators.
+A new sequence of values is created by generation operators.
 
 |     Operator     | Description                                                                     |
 | :--------------: | :------------------------------------------------------------------------------ |
-| `DefaultIfEmpty` | When applied to an empty sequence, generate a default element within a sequence |
-|     `Empty`      | Returns an empty sequence of values and is the simplest generational operator   |
+| `DefaultIfEmpty` | When applied to an empty sequence, generates a default element within a sequence |
+|     `Empty`      | Returns an empty sequence of values and is the simplest generation operator      |
 |     `Range`      | Generates a collection having a sequence of integers or numbers                 |
 |     `Repeat`     | Generates a sequence of a specific length containing repeated values            |
 
@@ -1647,7 +1647,7 @@ Compares two sequences (enumerable) and determines if they are an exact match or
 
 |    Operator     | Description                                                                      |
 | :-------------: | :------------------------------------------------------------------------------- |
-| `SequenceEqual` | Results a Boolean value if two sequences are found to be identical to each other |
+| `SequenceEqual` | Returns a Boolean value if two sequences are found to be identical to each other |
 
 
 +++
@@ -1726,7 +1726,7 @@ All standard query element operators return a single element from a collection.
 ![LINQ mind map](assets/img/LINQ/LINQ_MindMap.png)
 
 +++
-### How implement LINQ?
+### How to implement LINQ?
 * [TUTORIAL - Create your own LINQ implementation](http://codeblog.jonskeet.uk/category/edulinq/)
 * E.g. `Where`:
 
@@ -1798,10 +1798,10 @@ Connection: System.Data.SqlClient.SqlConnection
 
 +++
 ## LINQ to...
-* LINQ to **Entity framework** - next lecture
+* LINQ to **Entity Framework** - next lecture
 * LINQ to Parallel LINQ (PLINQ)
 * LINQ to NHibernate
-* LINQ to Sharepoint
+* LINQ to SharePoint
 * LINQ to ActiveDirectory
 * LINQ to JSON
 * LINQ to SNMP
@@ -1810,7 +1810,7 @@ Connection: System.Data.SqlClient.SqlConnection
 * LINQ to FQL (Facebook Query Language)
 
 ---
-## eXtensible Markup Language (XML)
+## Extensible Markup Language (XML)
 * Readable for both humans and machines
 * Stricter version of *HTML*
 * **Storing and transporting data**
@@ -1905,7 +1905,7 @@ Connection: System.Data.SqlClient.SqlConnection
 [Code sample](assets/sln/Examples/XmlDocumentWriteSample.cs)
 
 +++
-## Reading XML with the XPath input
+## Reading XML with XPath
 ```XML
 <bookstore>
     <book genre="autobiography" publicationdate="1981-03-22" ISBN="1-861003-11-0">
