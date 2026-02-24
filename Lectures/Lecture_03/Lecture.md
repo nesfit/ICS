@@ -1144,6 +1144,7 @@ x.FakeMethod();
 * Classes and interfaces that support queries that use **Language-Integrated Query** (LINQ)
 * The `Enumerable` class contains LINQ standard query operators that operate on objects that implement `IEnumerable<T>`
 * The `Queryable` class contains LINQ standard query operators that operate on objects that implement `IQueryable<T>`
+* `AsEnumerable()` creates a boundary where the rest of the query runs in-memory
 
 +++
 ## Language integrated query
@@ -1362,6 +1363,8 @@ The operators put data into some groups based on a common shared attribute.
 | `GroupBy`  | Organize a sequence of items in groups and return them as an `IEnumerable` collection of type `IGrouping<key, element>` |
 | `ToLookup` | Execute a grouping operation in which a sequence of key pairs is returned                                               |
 
+`GroupBy` is deferred; `ToLookup` executes immediately and captures a snapshot.
+
 ![GroupBy](assets/img/LINQ/LINQ_GroupBy.png)
 ![ToLookup](assets/img/LINQ/LINQ_ToLookup.png)
 
@@ -1394,6 +1397,7 @@ The operators change the type of input objects and are used in a diverse range o
 | `ToDictionary` | On basis of a key selector function transforms elements into a `Dictionary<TKey, TValue>` and forces execution of a LINQ query |
 |    `ToList`    | Forces execution of a query by converting a collection to a `List<T>`                                                          |
 
+`Cast<T>` throws on incompatible elements; `OfType<T>` skips them.
 
 +++
 <pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqConversionsOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
@@ -1516,6 +1520,8 @@ These operators return a Boolean value when some or all elements within a sequen
 |   `All`    | Returns `True` if all elements of a sequence satisfy a predicate condition                                                                          |
 |   `Any`    | Returns `True` if any element in a sequence satisfies a specified condition                                              |
 | `Contains` | Returns `True` if a specific element is present in a sequence; otherwise returns `False`                                |
+
+Use `Any()` for existence checks; avoid `Count() > 0` if you only need a Boolean.
 
 
 +++
@@ -1744,6 +1750,83 @@ public static IEnumerable<TSource> Where<TSource>(
     }
 }
 ```
+
++++
+## LINQ Gotchas in Practice
+* Deferred execution runs queries at enumeration time.
+* Materialization (`ToList`, `ToArray`, `ToDictionary`) creates snapshots.
+* Re-enumerating a query can repeat work and side effects.
+
++++
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/LinqExecutionModelTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[7-40]
+@[9-22]
+@[25-38] -->
+[Code sample](assets/sln/Tests/LinqExecutionModelTest.cs)
+
++++
+### Provider Boundary (`IQueryable` vs `IEnumerable`)
+* `IQueryable<T>` stores expression trees for a provider.
+* `AsEnumerable()` switches the rest of the pipeline to LINQ to Objects.
+* Use this boundary intentionally.
+
++++
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqProviderBoundaryTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[6-32]
+@[8-16]
+@[19-29] -->
+[Code sample](assets/sln/Tests/LinqProviderBoundaryTest.cs)
+
++++
+### Performance Pattern: `Any()` vs `Count() > 0`
+* `Any()` stops as soon as it finds the first match.
+* `Count()` needs to process all matching elements.
+* Prefer `Any()` for existence checks.
+
++++
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqPerformancePatternsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[7-34]
+@[9-23]
+@[25-32] -->
+[Code sample](assets/sln/Tests/LinqPerformancePatternsTest.cs)
+
++++
+### Grouping and Join Semantics
+* `GroupBy` is deferred; `ToLookup` is an immediate snapshot.
+* Left join in LINQ uses `GroupJoin` + `DefaultIfEmpty()`.
+
++++
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqGroupingSemanticsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[7-28]
+@[9-17]
+@[20-27] -->
+[Code sample](assets/sln/Tests/LinqGroupingSemanticsTest.cs)
+
++++
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqJoinAdvancedTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[6-39]
+@[8-34] -->
+[Code sample](assets/sln/Tests/LinqJoinAdvancedTest.cs)
+
++++
+### Equality and Casting Pitfalls
+* `Distinct`/set operators need equality rules for custom types.
+* Use custom comparers where needed.
+* `Cast<T>` throws, `OfType<T>` filters.
+
++++
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqComparerPitfallsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[7-64]
+@[9-31]
+@[42-61] -->
+[Code sample](assets/sln/Tests/LinqComparerPitfallsTest.cs)
+
++++
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqCastingPitfallsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<!-- @[7-24]
+@[9-14]
+@[17-23] -->
+[Code sample](assets/sln/Tests/LinqCastingPitfallsTest.cs)
 
 +++
 ## LINQ to SQL
