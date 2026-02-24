@@ -1829,6 +1829,23 @@ public static IEnumerable<TSource> Where<TSource>(
 [Code sample](assets/sln/Tests/Linq/Gotchas/LinqCastingPitfallsTest.cs)
 
 +++
+### Modern LINQ Operators (.NET 6+)
+* Key-based selection and set operations:
+  * `MinBy`, `MaxBy`, `DistinctBy`, `ExceptBy`, `IntersectBy`, `UnionBy`
+* Sequence shaping:
+  * `Chunk`, `Zip`, `Prepend`, `Append`, `TakeLast`, `SkipLast`
+* Utility:
+  * `ToHashSet`, `TryGetNonEnumeratedCount`
+
++++
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/Modern/LinqModernOperatorsTest.cs#1-60' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](assets/sln/Tests/Linq/Modern/LinqModernOperatorsTest.cs)
+
++++
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/Modern/LinqModernOperatorsTest.cs#62-97' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+[Code sample](assets/sln/Tests/Linq/Modern/LinqModernOperatorsTest.cs)
+
++++
 ## LINQ to SQL
 * *ORM* - Object Relational Mapper
 * *LINQ* query to *SQL* query

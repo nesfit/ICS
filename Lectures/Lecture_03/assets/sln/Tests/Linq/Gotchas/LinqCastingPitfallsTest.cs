@@ -3,7 +3,7 @@ using System.Collections;
 using System.Linq;
 using Xunit;
 
-namespace Tests.Linq
+namespace Tests.Linq.Gotchas
 {
     public class LinqCastingPitfallsTest
     {
