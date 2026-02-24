@@ -1978,7 +1978,23 @@ Connection: System.Data.SqlClient.SqlConnection
 [Code sample](assets/sln/Examples/XmlSerialization.cs)
 
 ---
-![Update Days MAUI](assets/img/A4_AI_contest.png)
+
+![MeetUpdate topic](assets/img/130-02-25-M-brno-feed-topic.png)
+
+---
+
+![MeetUpdate Jan Řezáč](assets/img/130-02-25-M-brno-feed-Rezac.png)
+
+---
+
+![MeetUpdate BoB Marvan](assets/img/130-02-25-M-brno-feed-Marvan.png)
+
+---
+
+<div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%; text-align:center;">
+  <div style="font-size:2.2em; font-weight:700;">Kód pro friends</div>
+  <div style="font-size:2.8em; font-weight:700; margin-top:0.35em;">43135C73</div>
+</div>
 
 ---
 ## References:
