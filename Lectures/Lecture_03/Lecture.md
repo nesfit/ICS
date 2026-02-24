@@ -1219,14 +1219,14 @@ var query = from m in musos
 
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqMaterializationTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/LinqMaterializationTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-20]
 @[12]
 @[14-15]
 @[17]
 @[19]
 @[10-20] -->
-[Code sample](assets/sln/Tests/LinqMaterializationTest.cs)
+[Code sample](assets/sln/Tests/Linq/LinqMaterializationTest.cs)
 
 +++
 ### LINQ Operators
@@ -1251,7 +1251,7 @@ Filtering is an operation to restrict the result set to the point where it shows
 ![](assets/img/LINQ/LINQ_OfType.png)
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqFilteringOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/LinqFilteringOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-16]
 @[12-13]
 @[15]
@@ -1260,7 +1260,7 @@ Filtering is an operation to restrict the result set to the point where it shows
 @[21-22]
 @[24]
 @[19-25] -->
-[Code sample](assets/sln/Tests/LinqFilteringOperatorsTest.cs)
+[Code sample](assets/sln/Tests/Linq/LinqFilteringOperatorsTest.cs)
 
 +++
 ### LINQ Join Operators
@@ -1275,7 +1275,7 @@ Joining combines two sequences based on matching keys and is useful for traversi
 ![](assets/img/LINQ/LINQ_Join.png)
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqJoinOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/LinqJoinOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[11-34]
 @[13-18]
 @[20-25]
@@ -1291,7 +1291,7 @@ Joining combines two sequences based on matching keys and is useful for traversi
 @[62-63]
 @[65-68]
 @[49-69] -->
-[Code sample](assets/sln/Tests/LinqJoinOperatorsTest.cs)
+[Code sample](assets/sln/Tests/Linq/LinqJoinOperatorsTest.cs)
 
 +++
 ### LINQ Projection Operators
@@ -1306,7 +1306,7 @@ Projection is an operation in which an object is transformed into an altogether 
 ![](assets/img/LINQ/LINQ_SelectMany.png)
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqProjectionOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/LinqProjectionOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-23]
 @[12]
 @[14]
@@ -1318,7 +1318,7 @@ Projection is an operation in which an object is transformed into an altogether 
 @[31-35]
 @[37-43]
 @[26-44] -->
-[Code sample](assets/sln/Tests/LinqProjectionOperatorsTest.cs)
+[Code sample](assets/sln/Tests/Linq/LinqProjectionOperatorsTest.cs)
 
 +++
 ### LINQ Sorting Operators
@@ -1334,7 +1334,7 @@ A sorting operation allows ordering the elements of a sequence on basis of a sin
 
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqSortingOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/LinqSortingOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-16]
 @[11-12]
 @[14-15]
@@ -1352,7 +1352,7 @@ A sorting operation allows ordering the elements of a sequence on basis of a sin
 @[44-45]
 @[47-48]
 @[39-49] -->
-[Code sample](assets/sln/Tests/LinqSortingOperatorsTest.cs)
+[Code sample](assets/sln/Tests/Linq/LinqSortingOperatorsTest.cs)
 
 +++
 ### LINQ Grouping Operators
@@ -1369,7 +1369,7 @@ The operators put data into some groups based on a common shared attribute.
 ![ToLookup](assets/img/LINQ/LINQ_ToLookup.png)
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqGroupingOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/LinqGroupingOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-29]
 @[11]
 @[13]
@@ -1381,7 +1381,7 @@ The operators put data into some groups based on a common shared attribute.
 @[34]
 @[36]
 @[38-42] -->
-[Code sample](assets/sln/Tests/LinqGroupingOperatorsTest.cs)
+[Code sample](assets/sln/Tests/Linq/LinqGroupingOperatorsTest.cs)
 
 +++
 ### LINQ Conversion Operators
@@ -1400,7 +1400,7 @@ The operators change the type of input objects and are used in a diverse range o
 `Cast<T>` throws on incompatible elements; `OfType<T>` skips them.
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqConversionsOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/LinqConversionsOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[13-20]
 @[15]
 @[17]
@@ -1436,7 +1436,7 @@ The operators change the type of input objects and are used in a diverse range o
 @[84]
 @[86]
 @[80-87] -->
-[Code sample](assets/sln/Tests/LinqConversionsOperatorsTest.cs)
+[Code sample](assets/sln/Tests/Linq/LinqConversionsOperatorsTest.cs)
 
 +++
 ### LINQ Concatenation Operators
@@ -1448,13 +1448,13 @@ Performs concatenation of two sequences and is quite similar to the Union operat
 
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqConcatenationOperatorTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/LinqConcatenationOperatorTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-19]
 @[11-12]
 @[14]
 @[16-18]
 @[9-19] -->
-[Code sample](assets/sln/Tests/LinqConcatenationOperatorTest.cs)
+[Code sample](assets/sln/Tests/Linq/LinqConcatenationOperatorTest.cs)
 
 +++
 ### LINQ Aggregation Operators
@@ -1472,7 +1472,7 @@ Performs any type of desired aggregation and allows creating custom aggregations
 
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqAggregationOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/LinqAggregationOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-17]
 @[12]
 @[14]
@@ -1508,7 +1508,7 @@ Performs any type of desired aggregation and allows creating custom aggregations
 @[75]
 @[77]
 @[71-78] -->
-[Code sample](assets/sln/Tests/LinqAggregationOperatorsTest.cs)
+[Code sample](assets/sln/Tests/Linq/LinqAggregationOperatorsTest.cs)
 
 +++
 ### LINQ Quantifier Operators
@@ -1525,7 +1525,7 @@ Use `Any()` for existence checks; avoid `Count() > 0` if you only need a Boolean
 
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqQuantifierOperationsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/LinqQuantifierOperationsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-14]
 @[11]
 @[13]
@@ -1538,7 +1538,7 @@ Use `Any()` for existence checks; avoid `Count() > 0` if you only need a Boolean
 @[27]
 @[29]
 @[25-30] -->
-[Code sample](assets/sln/Tests/LinqQuantifierOperationsTest.cs)
+[Code sample](assets/sln/Tests/Linq/LinqQuantifierOperationsTest.cs)
 
 +++
 ### LINQ Partition Operators
@@ -1554,7 +1554,7 @@ Divide an input sequence into two parts without rearranging the elements of the 
 
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqPartitionOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/LinqPartitionOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-19]
 @[11]
 @[13]
@@ -1575,7 +1575,7 @@ Divide an input sequence into two parts without rearranging the elements of the 
 @[52]
 @[54-57]
 @[48-58] -->
-[Code sample](assets/sln/Tests/LinqPartitionOperatorsTest.cs)
+[Code sample](assets/sln/Tests/Linq/LinqPartitionOperatorsTest.cs)
 
 +++
 ### LINQ Generation Operators
@@ -1590,7 +1590,7 @@ A new sequence of values is created by generation operators.
 
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqGenerationOperationsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/LinqGenerationOperationsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-18]
 @[11-13]
 @[15-17]
@@ -1608,7 +1608,7 @@ A new sequence of values is created by generation operators.
 @[45]
 @[47-50]
 @[40-51] -->
-[Code sample](assets/sln/Tests/LinqGenerationOperationsTest.cs)
+[Code sample](assets/sln/Tests/Linq/LinqGenerationOperationsTest.cs)
 
 +++
 ### LINQ Set Operators
@@ -1624,7 +1624,7 @@ There are four operators for the set operations, each yielding a result based on
 
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqSetOperationsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/LinqSetOperationsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[9-16]
 @[11]
 @[13]
@@ -1645,7 +1645,7 @@ There are four operators for the set operations, each yielding a result based on
 @[49]
 @[51]
 @[44-52] -->
-[Code sample](assets/sln/Tests/LinqSetOperationsTest.cs)
+[Code sample](assets/sln/Tests/Linq/LinqSetOperationsTest.cs)
 
 +++
 ### LINQ Equality
@@ -1657,13 +1657,13 @@ Compares two sequences (enumerable) and determines if they are an exact match or
 
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqEqualityOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/LinqEqualityOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-26]
 @[12-15]
 @[17-20]
 @[22-25]
 @[10-26] -->
-[Code sample](assets/sln/Tests/LinqEqualityOperatorsTest.cs)
+[Code sample](assets/sln/Tests/Linq/LinqEqualityOperatorsTest.cs)
 
 +++
 ### LINQ Element Operators
@@ -1690,7 +1690,7 @@ All standard query element operators return a single element from a collection.
 
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqElementOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/LinqElementOperatorsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[10-17]
 @[12]
 @[14]
@@ -1725,7 +1725,7 @@ All standard query element operators return a single element from a collection.
 @[82-84]
 @[86-88]
 @[80-89] -->
-[Code sample](assets/sln/Tests/LinqElementOperatorsTest.cs)
+[Code sample](assets/sln/Tests/Linq/LinqElementOperatorsTest.cs)
 
 +++
 ### LINQ mind map
@@ -1758,11 +1758,11 @@ public static IEnumerable<TSource> Where<TSource>(
 * Re-enumerating a query can repeat work and side effects.
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/LinqExecutionModelTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/Gotchas/LinqExecutionModelTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-40]
 @[9-22]
 @[25-38] -->
-[Code sample](assets/sln/Tests/LinqExecutionModelTest.cs)
+[Code sample](assets/sln/Tests/Linq/Gotchas/LinqExecutionModelTest.cs)
 
 +++
 ### Provider Boundary (`IQueryable` vs `IEnumerable`)
@@ -1771,11 +1771,11 @@ public static IEnumerable<TSource> Where<TSource>(
 * Use this boundary intentionally.
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqProviderBoundaryTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/Gotchas/LinqProviderBoundaryTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[6-32]
 @[8-16]
 @[19-29] -->
-[Code sample](assets/sln/Tests/LinqProviderBoundaryTest.cs)
+[Code sample](assets/sln/Tests/Linq/Gotchas/LinqProviderBoundaryTest.cs)
 
 +++
 ### Performance Pattern: `Any()` vs `Count() > 0`
@@ -1784,11 +1784,11 @@ public static IEnumerable<TSource> Where<TSource>(
 * Prefer `Any()` for existence checks.
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqPerformancePatternsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/Gotchas/LinqPerformancePatternsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-34]
 @[9-23]
 @[25-32] -->
-[Code sample](assets/sln/Tests/LinqPerformancePatternsTest.cs)
+[Code sample](assets/sln/Tests/Linq/Gotchas/LinqPerformancePatternsTest.cs)
 
 +++
 ### Grouping and Join Semantics
@@ -1796,17 +1796,17 @@ public static IEnumerable<TSource> Where<TSource>(
 * Left join in LINQ uses `GroupJoin` + `DefaultIfEmpty()`.
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqGroupingSemanticsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/Gotchas/LinqGroupingSemanticsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-28]
 @[9-17]
 @[20-27] -->
-[Code sample](assets/sln/Tests/LinqGroupingSemanticsTest.cs)
+[Code sample](assets/sln/Tests/Linq/Gotchas/LinqGroupingSemanticsTest.cs)
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqJoinAdvancedTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/Gotchas/LinqJoinAdvancedTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[6-39]
 @[8-34] -->
-[Code sample](assets/sln/Tests/LinqJoinAdvancedTest.cs)
+[Code sample](assets/sln/Tests/Linq/Gotchas/LinqJoinAdvancedTest.cs)
 
 +++
 ### Equality and Casting Pitfalls
@@ -1815,18 +1815,18 @@ public static IEnumerable<TSource> Where<TSource>(
 * `Cast<T>` throws, `OfType<T>` filters.
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqComparerPitfallsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/Gotchas/LinqComparerPitfallsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-64]
 @[9-31]
 @[42-61] -->
-[Code sample](assets/sln/Tests/LinqComparerPitfallsTest.cs)
+[Code sample](assets/sln/Tests/Linq/Gotchas/LinqComparerPitfallsTest.cs)
 
 +++
-<pre><code class="language-csharp" data-sample='assets/sln/Tests/LinqCastingPitfallsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
+<pre><code class="language-csharp" data-sample='assets/sln/Tests/Linq/Gotchas/LinqCastingPitfallsTest.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
 <!-- @[7-24]
 @[9-14]
 @[17-23] -->
-[Code sample](assets/sln/Tests/LinqCastingPitfallsTest.cs)
+[Code sample](assets/sln/Tests/Linq/Gotchas/LinqCastingPitfallsTest.cs)
 
 +++
 ## LINQ to SQL
