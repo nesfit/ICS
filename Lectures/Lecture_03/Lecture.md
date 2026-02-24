@@ -1188,7 +1188,7 @@ IEnumerable<string> query =
 ### Fluent vs Query syntax
 * Each has its own benefits
 * Can be combined
-* Some operators exists only in **Fluent syntax**
+* Some operators exist only in **Fluent syntax**
 * **Query syntax** is better
   * When `let` is used to create new variable in query
   * When using `SelectMany`, `Join`, `GroupJoin` with inner variable
@@ -1200,7 +1200,7 @@ IEnumerable<string> query =
 * It is possible to use LINQ query inside LINQ query
 
 ```C#
-var musos = { "David Gilmour", "Roger Waters", "Rick Wright",
+var musos = new[] { "David Gilmour", "Roger Waters", "Rick Wright",
 	"Nick Mason" };
 ```
 
@@ -1263,7 +1263,7 @@ Filtering is an operation to restrict the result set to the point where it shows
 
 +++
 ### LINQ Join Operators
-Joining refers to an operation which directly targets data sources with difficult to follow relationships with each other in a direct way.
+Joining combines two sequences based on matching keys and is useful for traversing related data.
 <!-- Toto je dosť nezrozumiteľné. -->
 
 |  Operator   | Description                                               |
@@ -1767,7 +1767,7 @@ foreach (var z in q)
 
 DbCommand dc = db.GetCommand(q);
 Console.WriteLine("\nCommand Text: \n{0}",dc.CommandText);
-Console.WriteLine("\nCommand Type: {0}",dc.CommandType);Combines content of two different collections into a single list without any duplicate content.
+Console.WriteLine("\nCommand Type: {0}",dc.CommandType);
 Console.WriteLine("\nConnection: {0}",dc.Connection);
 ```
 
@@ -1799,7 +1799,7 @@ Connection: System.Data.SqlClient.SqlConnection
 +++
 ## LINQ to...
 * LINQ to **Entity framework** - next lecture
-* LINQ to Paralel LINQ (PLINQ)
+* LINQ to Parallel LINQ (PLINQ)
 * LINQ to NHibernate
 * LINQ to Sharepoint
 * LINQ to ActiveDirectory

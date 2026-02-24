@@ -14,7 +14,7 @@ namespace Tests.Linq
             IEnumerable<string> enumerableNames = names.Where(n => n.Contains('M'));
             enumerableNames = names.Where(n => n.Contains('o'));
 
-            var name = enumerableNames.First().ToList();
+            var name = enumerableNames.First();
 
             Assert.Equal("Moin", name);
         }
