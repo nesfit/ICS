@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <IsPackable>false</IsPackable>
-    <RootNamespace>Lecture03.Tests</RootNamespace>
+    <RootNamespace>Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
