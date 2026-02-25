@@ -2079,15 +2079,15 @@ Connection: System.Data.SqlClient.SqlConnection
 
 ---
 
-![MeetUpdate topic](assets/img/130-02-25-M-brno-feed-topic.png)
+<img src="assets/img/130-02-25-M-brno-feed-topic.png" alt="MeetUpdate topic" style="display: block; margin: 0 auto; padding: 10px 0; max-width: 100%; max-height: 60vh; width: auto; height: auto; object-fit: contain;">
 
 ---
 
-![MeetUpdate Jan Řezáč](assets/img/130-02-25-M-brno-feed-Rezac.png)
+<img src="assets/img/130-02-25-M-brno-feed-Rezac.png" alt="MeetUpdate Jan Řezáč" style="display: block; margin: 0 auto; padding: 10px 0; max-width: 100%; max-height: 60vh; width: auto; height: auto; object-fit: contain;">
 
 ---
 
-![MeetUpdate BoB Marvan](assets/img/130-02-25-M-brno-feed-Marvan.png)
+<img src="assets/img/130-02-25-M-brno-feed-Marvan.png" alt="MeetUpdate BoB Marvan" style="display: block; margin: 0 auto; padding: 10px 0; max-width: 100%; max-height: 60vh; width: auto; height: auto; object-fit: contain;">
 
 ---
 
