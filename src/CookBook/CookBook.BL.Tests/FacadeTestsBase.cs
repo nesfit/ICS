@@ -1,5 +1,4 @@
 using CookBook.BL.Mappers;
-using CookBook.Common.Tests;
 using CookBook.Common.Tests.Seeds;
 using CookBook.DAL;
 using CookBook.DAL.Factories;
@@ -18,9 +17,6 @@ public class FacadeTestsBase : IAsyncLifetime
 
     protected FacadeTestsBase(ITestOutputHelper output)
     {
-        XUnitTestOutputConverter converter = new(output);
-        Console.SetOut(converter);
-
         var databaseName = $"{GetType().FullName}_{Guid.NewGuid():N}.db";
         DbContextFactory = new DbContextSqLiteFactory(databaseName);
 
