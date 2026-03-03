@@ -21,7 +21,8 @@ public class FacadeTestsBase : IAsyncLifetime
         XUnitTestOutputConverter converter = new(output);
         Console.SetOut(converter);
 
-        DbContextFactory = new DbContextSqLiteFactory(GetType().FullName!);
+        var databaseName = $"{GetType().FullName}_{Guid.NewGuid():N}.db";
+        DbContextFactory = new DbContextSqLiteFactory(databaseName);
 
         IngredientModelMapper = new IngredientModelMapper();
         IngredientAmountModelMapper = new IngredientAmountModelMapper();

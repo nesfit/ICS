@@ -34,7 +34,8 @@ public class RecipeFacadeTests : FacadeTestsBase
         var returnedModel = await _facadeSUT.SaveAsync(model);
 
         //Assert
-        FixIds(model, returnedModel);
+        Assert.NotEqual(Guid.Empty, returnedModel.Id);
+        model.Id = returnedModel.Id;
         Assert.Equivalent(model, returnedModel, strict: true);
     }
 
@@ -213,23 +214,4 @@ public class RecipeFacadeTests : FacadeTestsBase
         await _facadeSUT.DeleteAsync(RecipeSeeds.RecipeEntity.Id);
     }
 
-    private static void FixIds(RecipeDetailModel expectedModel, RecipeDetailModel returnedModel)
-    {
-        returnedModel.Id = expectedModel.Id;
-
-        foreach (var ingredientAmountModel in returnedModel.Ingredients)
-        {
-            var ingredientAmountDetailModel = expectedModel.Ingredients.FirstOrDefault(i =>
-                i.IngredientName == ingredientAmountModel.IngredientName
-                && i.IngredientImageUrl == ingredientAmountModel.IngredientImageUrl
-                && Math.Abs(i.Amount - ingredientAmountModel.Amount) <= 0
-                && i.Unit == ingredientAmountModel.Unit);
-
-            if (ingredientAmountDetailModel != null)
-            {
-                ingredientAmountModel.Id = ingredientAmountDetailModel.Id;
-                ingredientAmountModel.IngredientId = ingredientAmountDetailModel.IngredientId;
-            }
-        }
-    }
 }
