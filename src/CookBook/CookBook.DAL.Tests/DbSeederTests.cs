@@ -30,5 +30,11 @@ public class DbSeederTests(ITestOutputHelper output) : DbContextTestsBase(output
         Assert.Equal(2, await dbx.Ingredients.CountAsync());
         Assert.Single(await dbx.Recipes.ToListAsync());
         Assert.Equal(2, await dbx.IngredientAmountEntities.CountAsync());
+
+        Assert.Contains(await dbx.Ingredients.ToListAsync(), i => i.Id == IngredientSeeds.Lemon.Id && i.Name == IngredientSeeds.Lemon.Name);
+        Assert.Contains(await dbx.Ingredients.ToListAsync(), i => i.Id == IngredientSeeds.Water.Id && i.Name == IngredientSeeds.Water.Name);
+        Assert.Contains(await dbx.Recipes.ToListAsync(), r => r.Id == RecipeSeeds.LemonadeRecipe.Id && r.Name == RecipeSeeds.LemonadeRecipe.Name);
+        Assert.Contains(await dbx.IngredientAmountEntities.ToListAsync(), i => i.Id == IngredientAmountSeeds.LemonadeLemon.Id);
+        Assert.Contains(await dbx.IngredientAmountEntities.ToListAsync(), i => i.Id == IngredientAmountSeeds.LemonadeWater.Id);
     }
 }
