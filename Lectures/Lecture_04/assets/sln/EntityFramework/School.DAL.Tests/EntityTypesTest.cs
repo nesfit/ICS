@@ -18,7 +18,7 @@ namespace School.DAL.Tests
         }
         
         [Fact]
-        public void POCO_EntitiesTest()
+        public void WithoutLazyLoading_NavigationPropertyStaysNullWhenNotIncluded()
         {
             var jane = _schoolDbContextSut.Students.Single(a => a.Id == Seed.StudentJane.Id);
 
@@ -26,7 +26,7 @@ namespace School.DAL.Tests
         }
 
         [Fact]
-        public void POCO_EntitiesIncludeTest()
+        public void Include_LoadsRequestedNavigationGraph()
         {
             var jane = _schoolDbContextSut
                 .Students
@@ -40,7 +40,7 @@ namespace School.DAL.Tests
         }
 
         [Fact]
-        public void POCO_ProxyTest()
+        public void WithLazyLoadingProxy_AccessingNavigationsLoadsRelatedData()
         {
             using var schoolDbContextSut = TestDbContextFactory.CreateInMemory(
                 lazyLoading: true,

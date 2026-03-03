@@ -19,7 +19,7 @@ namespace School.DAL.Tests
         }
 
         [Fact]
-        public void LazyEvaluationTest()
+        public void DeferredQuery_ThrowsObjectDisposedException_WhenEnumeratedAfterContextDispose()
         {
             IEnumerable<StudentEntity> students;
             using (var schoolDbContextSut = TestDbContextFactory.CreateInMemory(databaseName: _databaseName))

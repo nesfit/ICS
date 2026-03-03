@@ -50,7 +50,7 @@ public sealed class RepositoryRobustnessTests : IDisposable
     }
 
     [Fact]
-    public void InsertOrUpdate_PersistsGraph_AndLoadsRelations()
+    public void InsertOrUpdate_NewStudent_PersistsEntityGraphAndRelations()
     {
         var studentId = Guid.NewGuid();
         var studentCourseId = Guid.NewGuid();
@@ -104,7 +104,7 @@ public sealed class RepositoryRobustnessTests : IDisposable
     }
 
     [Fact]
-    public void InsertOrUpdate_RemovesOrphanedJoinRows()
+    public void InsertOrUpdate_UpdatedStudentCourses_RemovesOrphanedJoinRows()
     {
         var studentId = Guid.NewGuid();
         var courseA = Seed.IcsCourse.Id;
@@ -170,7 +170,7 @@ public sealed class RepositoryRobustnessTests : IDisposable
     }
 
     [Fact]
-    public void DeleteById_RemovesEntity()
+    public void DeleteById_ExistingStudent_RemovesRow()
     {
         var studentId = Guid.NewGuid();
 
