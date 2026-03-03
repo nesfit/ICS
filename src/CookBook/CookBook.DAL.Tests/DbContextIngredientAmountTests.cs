@@ -85,6 +85,6 @@ public class DbContextIngredientAmountTests(ITestOutputHelper output) : DbContex
         await CookBookDbContextSUT.SaveChangesAsync();
 
         //Assert
-        Assert.False(await CookBookDbContextSUT.Ingredients.AnyAsync(i => i.Id == baseEntity.Id));
+        Assert.False(await CookBookDbContextSUT.IngredientAmountEntities.AnyAsync(i => i.Id == baseEntity.Id));
     }
 }

@@ -23,11 +23,24 @@ public class Repository<TEntity>(
 
     public async Task<TEntity> UpdateAsync(TEntity entity)
     {
-        TEntity existingEntity = await _dbSet.SingleAsync(e => e.Id == entity.Id).ConfigureAwait(false);
+        TEntity? existingEntity = await _dbSet.SingleOrDefaultAsync(e => e.Id == entity.Id).ConfigureAwait(false);
+        if (existingEntity is null)
+        {
+            throw new EntityNotFoundException(typeof(TEntity), entity.Id);
+        }
+
         entityMapper.MapToExistingEntity(existingEntity, entity);
         return existingEntity;
     }
 
     public async Task DeleteAsync(Guid entityId)
-        => _dbSet.Remove(await _dbSet.SingleAsync(i => i.Id == entityId).ConfigureAwait(false));
+    {
+        TEntity? entity = await _dbSet.SingleOrDefaultAsync(i => i.Id == entityId).ConfigureAwait(false);
+        if (entity is null)
+        {
+            throw new EntityNotFoundException(typeof(TEntity), entityId);
+        }
+
+        _dbSet.Remove(entity);
+    }
 }

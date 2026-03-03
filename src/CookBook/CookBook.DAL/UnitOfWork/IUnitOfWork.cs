@@ -8,7 +8,7 @@ public interface IUnitOfWork : IAsyncDisposable
 {
     IRepository<TEntity> GetRepository<TEntity, TEntityMapper>()
         where TEntity : class, IEntity
-        where TEntityMapper : IEntityMapper<TEntity>, new();
+        where TEntityMapper : class, IEntityMapper<TEntity>;
 
     Task CommitAsync();
 }
