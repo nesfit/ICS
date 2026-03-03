@@ -372,7 +372,7 @@ highlightTheme: "vs"
 +++
 ## ADO.NET
 * Set of classes that **expose data access services**
-  * *SqlClient* (`System.Data.SqlClient`)
+  * *SqlClient* (`Microsoft.Data.SqlClient` for new projects; `System.Data.SqlClient` is legacy/deprecated)
   * *OleDb* (`System.Data.OleDb`)
   * *Odbc* (`System.Data.Odbc`)
   * ⋮
@@ -422,27 +422,28 @@ highlightTheme: "vs"
 
 +++
 ### Entity Framework Versions
-* [Differences](https://docs.microsoft.com/en-us/ef/efcore-and-ef6/)
+* [Differences](https://learn.microsoft.com/en-us/ef/efcore-and-ef6/)
 * Currently, there are two major versions of Entity Framework
 * **Entity Framework**
   * Current version 6.x
-  * "Old framework"
-  * Works only on .NET Framework
+  * Mature/legacy framework
+  * Primarily associated with .NET Framework workloads
 * **Entity Framework Core**
   * open-source
-  * Current version 8.0.x
-  * Works on .NET Standard (supports .NET Core / .NET 5/6/7/8 -->  multiplatform)
+  * Current stable version 10.0.x (released in November 2025, LTS)
+  * Follows .NET release cadence (current supported releases: EF Core 8/9/10)
+  * EF Core 10 requires .NET 10 (does not run on .NET Framework)
   * Used in this course
 
 ![](assets/img/EFversions.png)
 
 +++
 ### Entity Framework Core
-* [GitHub](https://github.com/aspnet/EntityFrameworkCore)
-* [Documentation](https://docs.microsoft.com/sk-sk/ef/core/)
-* Is not part of *.NET*, *.NET Core*, or *.NET Standard*
+* [GitHub](https://github.com/dotnet/efcore)
+* [Documentation](https://learn.microsoft.com/en-us/ef/core/)
+* Is distributed as NuGet packages (not as part of the base class library)
 * Intended to be used with *.NET* applications
-* Can also be used with standard *.NET Framework 4.5+* based applications
+* EF Core 10 targets modern .NET (not .NET Framework)
 * Supported application types:
 
 ![](assets/img/EFCoreSupport.png)
@@ -514,7 +515,7 @@ highlightTheme: "vs"
   * E.g. migrations, scaffolding etc.
 * Available as NuGet packages
   * For **Package Manager Console** (PMC) as `Microsoft.EntityFrameworkCore.Tools`
-  * For **Command Line Interface** (CLI) as `Microsoft.EntityFrameworkCore.Tools.DotNet`
+  * For **Command Line Interface** (CLI), install `dotnet-ef` as a global or local .NET tool
 
 +++
 ### Install Tools Image
@@ -639,7 +640,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         .UseLazyLoadingProxies()
         .UseSqlServer(myConnectionString);
 ```
-[Source](https://docs.microsoft.com/en-us/ef/core/querying/related-data#lazy-loading)
+[Source](https://learn.microsoft.com/en-us/ef/core/querying/related-data/lazy)
 
 +++
 ### POCO Proxy Requirements
@@ -664,7 +665,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 ### Entity states
 * EF API maintains the state of each entity during its lifetime
 * **Each entity has a state** based on the operation performed on it via the *DbContext*
-* Represented by an enum [`Microsoft.EntityFrameworkCore.EntityState`](https://docs.microsoft.com/en-us/ef/core/api/microsoft.entityframeworkcore.entitystate) (in EF Core)
+* Represented by an enum [`Microsoft.EntityFrameworkCore.EntityState`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.entitystate) (in EF Core)
 * Tracking can be requested through `Entry()` method on `DbSet<>`
 * Enum values
   1. *Added*
@@ -1256,7 +1257,7 @@ modelBuilder.Entity<StudentEntity>()
 +++
 ### Many-to-Many Relationships
 * In the database they are **represented by a joining table** which includes the foreign keys of both tables
-* There are no default conventions
+* Modern EF Core supports many-to-many **by convention** via skip navigations
 * Fluent API
 
 ```C#
@@ -1287,15 +1288,18 @@ string name = "Bill";
 var context = new SchoolDbContext();
 
 var students = context.Students
-              .FromSql($"Select * from Students where Name = '{name}'")
+              .FromSql($"SELECT * FROM Students WHERE Name = {name}") // parameterized
               .ToList();
 ```
 
 +++
 ### RAW SQL Limitations
-* SQL queries **must return entities of the same type** as `DbSet<T>` type, e.g., the specified query cannot return the `CourseEntity` entities if `FromSql()` is used after `Students`. Returning ad-hoc types from `FromSql()` method is in the backlog
-* The SQL query **must return all the columns** of the table. e.g. `context.Students.FromSql("Select Id, Name from Students).ToList()` will throw an exception
-* The SQL query **cannot include JOIN queries** to get related data. Use `Include` method to load related entities after `FromSql()` method.
+* `FromSql()` **must start from a `DbSet<T>`** and map to that entity type (or a configured keyless entity type)
+* For tracked entity results, SQL should provide all required mapped columns
+* SQL injection safety matters:
+  * Prefer `FromSql` / `FromSqlInterpolated` for parameterized values
+  * Use `FromSqlRaw` only when dynamic SQL is necessary, and sanitize inputs carefully
+* You can compose with LINQ and use `Include`, provided the SQL is composable
 
 ---
 ## Migration
@@ -1303,8 +1307,8 @@ var students = context.Students
 * Set of commands for
   * NuGet Package Manager Console (PMC)
   * Dotnet Command Line Interface (CLI)
-* Requires `Microsoft.EntityFrameworkCore.Tools` NuGet package to be installed
-* You have to implement `IDesignTimeDbContextFactory<TDbContext>` class
+* Requires the appropriate EF tools (`Microsoft.EntityFrameworkCore.Tools` for PMC and/or `dotnet-ef` for CLI)
+* `IDesignTimeDbContextFactory<TDbContext>` is optional, but useful when tools cannot create `DbContext` automatically
 
 
 ![](assets/img/ef-core-migration.png)
@@ -1607,8 +1611,8 @@ public class Dapper : ITestSignature
 
 +++
 ### Performance Benchmarking analysis and conclusion
-* *Entity Framework Core* in *basic configuration* is 3-10 times **slower** than either *ADO.NET* or *Dapper*
-* *Dapper.NET* is unquestionably **faster** than *Entity Framework Core* and slightly faster than straight *ADO.NET*
+* In this specific benchmark and configuration, *Entity Framework Core* measured slower than *ADO.NET* and *Dapper*
+* Treat these numbers as workload-specific and time-specific, not universal performance rules
 
 
 ---
@@ -1860,8 +1864,8 @@ config.AssertConfigurationIsValid();
 [EntityFrameworkTutorial.net](http://www.entityframeworktutorial.net/)  
 [Learn Entity Framework Core](https://www.learnentityframeworkcore.com)
 [Dapper-tutorial.net](https://dapper-tutorial.net/)
-[Microsoft documentation](https://docs.microsoft.com)  
-[Entity Framework GitHub](https://github.com/aspnet/EntityFrameworkCore)  
+[Microsoft documentation](https://learn.microsoft.com)  
+[Entity Framework GitHub](https://github.com/dotnet/efcore)  
 [NuGetMustHaves.com](https://nugetmusthaves.com/)  
 [Computer Hope](https://www.computerhope.com)  
 [Wikipedia](https://en.wikipedia.org)
