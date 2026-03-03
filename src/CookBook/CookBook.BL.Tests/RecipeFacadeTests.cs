@@ -1,7 +1,6 @@
 ﻿using CookBook.BL.Facades;
 using CookBook.BL.Models;
 using CookBook.Common.Enums;
-using CookBook.Common.Tests;
 using CookBook.Common.Tests.Seeds;
 using System.Collections.ObjectModel;
 using Microsoft.EntityFrameworkCore;
@@ -149,7 +148,18 @@ public class RecipeFacadeTests : FacadeTestsBase
         var returnedModel = await _facadeSUT.GetAsync();
 
         //Assert
-        DeepAssert.Contains(listModel, returnedModel);
+        Assert.Contains(returnedModel, model =>
+        {
+            try
+            {
+                Assert.Equivalent(listModel, model, strict: true);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        });
     }
 
     [Fact]
