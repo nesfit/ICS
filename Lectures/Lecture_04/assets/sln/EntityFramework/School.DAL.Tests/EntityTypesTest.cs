@@ -2,7 +2,6 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using School.DAL.Entities;
-using School.DAL.Factories;
 using School.DAL.Seeds;
 using Xunit;
 
@@ -15,9 +14,7 @@ namespace School.DAL.Tests
 
         public EntityTypesTest()
         {
-            var dbContextFactory = new DbContextInMemoryFactory(DbName);
-            _schoolDbContextSut = dbContextFactory.Create();
-            _schoolDbContextSut.Database.EnsureCreated();
+            _schoolDbContextSut = TestDbContextFactory.CreateInMemory(databaseName: DbName);
         }
         
         [Fact]
@@ -45,10 +42,9 @@ namespace School.DAL.Tests
         [Fact]
         public void POCO_ProxyTest()
         {
-            var lazyLoadingDbContextInMemoryFactory = new LazyLoadingDbContextInMemoryFactory(DbName);
-
-            using var schoolDbContextSut = lazyLoadingDbContextInMemoryFactory.Create();
-            schoolDbContextSut.Database.EnsureCreated();
+            using var schoolDbContextSut = TestDbContextFactory.CreateInMemory(
+                lazyLoading: true,
+                databaseName: DbName);
 
             var jane = schoolDbContextSut.Students.Single(a => a.Id == Seed.StudentJane.Id);
 

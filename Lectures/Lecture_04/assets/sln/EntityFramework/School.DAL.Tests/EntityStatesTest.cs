@@ -2,7 +2,6 @@
 using School.DAL;
 using Microsoft.EntityFrameworkCore;
 using School.DAL.Entities;
-using School.DAL.Factories;
 using Xunit;
 
 namespace School.DAL.Tests
@@ -13,9 +12,7 @@ namespace School.DAL.Tests
 
         public EntityStatesTest()
         {
-            var dbContextFactory = new DbContextInMemoryFactory(nameof(EntityStatesTest));
-            _schoolDbContextSut = dbContextFactory.Create();
-            _schoolDbContextSut.Database.EnsureCreated();
+            _schoolDbContextSut = TestDbContextFactory.CreateInMemory(databaseName: nameof(EntityStatesTest));
         }
 
         private readonly StudentEntity _studentEntity = new()
