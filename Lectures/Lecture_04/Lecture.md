@@ -20,7 +20,7 @@ highlightTheme: "vs"
 2. Object relationship mapping (ORM)
 3. ORM using Entity Framework Core
 4. Persistence architectural patterns
-5. How to setup Entity Framework Core
+5. How to set up Entity Framework Core
 6. `Repository` and `UnitOfWork` Patterns
 
 ---
@@ -83,7 +83,7 @@ highlightTheme: "vs"
   - A layer can be used by several different higher-level layers.
 
 - The **disadvantages** are:
-  - Layers can not encapsulate everything (a field that is added to the UI, most likely also needs to be added to the DB);
+  - Layers cannot encapsulate everything (a field that is added to the UI, most likely also needs to be added to the DB);
   - Extra layers can harm performance, especially if in different tiers
 
 [Section source - read more](https://herbertograca.com/2017/08/03/layered-architecture/)
@@ -278,7 +278,7 @@ highlightTheme: "vs"
 
 <div id="left">
 
-* **Server management** console for *Visual Studio**
+* **Server management** console for *Visual Studio*
 * **Open data connections**
 * **Log on to servers**
   * **Explore their databases and system services**
@@ -340,20 +340,20 @@ highlightTheme: "vs"
 </div>
 
 +++
-### Pros of Object Relation Mapping
+### Pros of Object-relational Mapping
 * **Abstract**
 * **Portable**
-* Writing code in **one language** (ORM takes care of vendor specific code by itself)
+* Write code in **one language** (ORM takes care of vendor-specific code)
 * **Code reduction** (most of the time)
 * **Cache management**
   * Entities are cached in memory (reducing load on the database)
 
 +++
-### Cons of Object Relation Mapping
-* Maybe **Slow** in some scenarios
+### Cons of Object-relational Mapping
+* Can be **slow** in some scenarios
 * **Complex queries take time**
-  * Minimize the DBMS hits
-  * Reduce bad queries which hurts performance
+  * Minimize the number of DBMS hits
+  * Reduce bad queries that hurt performance
 * **Limitations** if complex queries are needed
   * Sometimes it is faster to write raw SQL
 
@@ -371,7 +371,7 @@ highlightTheme: "vs"
 
 +++
 ## ADO.NET
-* Set of classes that **expose data access service**
+* Set of classes that **expose data access services**
   * *SqlClient* (`System.Data.SqlClient`)
   * *OleDb* (`System.Data.OleDb`)
   * *Odbc* (`System.Data.Odbc`)
@@ -410,20 +410,20 @@ highlightTheme: "vs"
 ### Entity Framework Core Main Features
 * **Cross-platform** - EF Core is a cross-platform framework (Windows, Linux, Mac)
 * **Modelling** - creates an Entity Data Model (EDM) based on Plain Old CLR Object (POCO) entities with get/set properties of different data types (used when querying or saving entity data)
-* **Querying** - allows to use LINQ queries
-* **Change Tracking** - keeps track of changes occurred to instances of your entities 
-* **Saving** - executes commands to the database based on the changes occurred to your entities 
-* **Concurrency** - uses Optimistic Concurrency by default to protect overwriting changes made by another user since data was fetched from the database
+* **Querying** - allows LINQ queries
+* **Change Tracking** - keeps track of changes made to instances of your entities
+* **Saving** - executes commands against the database based on changes made to your entities
+* **Concurrency** - uses optimistic concurrency by default to protect against overwriting changes made by another user since data was fetched from the database
 * **Transactions** - automatic customizable transaction management
-* **Caching** - includes first level of caching out of the box (repeated querying will return data from the cache)
+* **Caching** - includes first-level caching out of the box (repeated queries can return data from the cache)
 * **Built-in Conventions** - follows conventions over the configuration programming pattern, and includes a set of default rules which automatically configure the EF model
 * **Configurations** - allows us to configure the EF model by using data annotation attributes or Fluent API to override default conventions
-* **Migrations** - set of migration commands to create or manage underlying database Schema
+* **Migrations** - set of migration commands to create or manage the underlying database schema
 
 +++
 ### Entity Framework Versions
 * [Differences](https://docs.microsoft.com/en-us/ef/efcore-and-ef6/)
-* Currently, there are two latest versions of Entity Framework
+* Currently, there are two major versions of Entity Framework
 * **Entity Framework**
   * Current version 6.x
   * "Old framework"
@@ -440,7 +440,7 @@ highlightTheme: "vs"
 ### Entity Framework Core
 * [GitHub](https://github.com/aspnet/EntityFrameworkCore)
 * [Documentation](https://docs.microsoft.com/sk-sk/ef/core/)
-* Is not a part of *.NET*,  *.NET Core* or *Standard*
+* Is not part of *.NET*, *.NET Core*, or *.NET Standard*
 * Intended to be used with *.NET* applications
 * Can also be used with standard *.NET Framework 4.5+* based applications
 * Supported application types:
@@ -564,7 +564,7 @@ public record CourseEntity
     public ICollection<StudentCourseEntity> StudentCourses { get; set; } = new List<StudentCourseEntity>();
 }
 ```
-or (beaware of `init` only properties)
+or (be aware of `init` only properties)
 ```C#
 public record CourseEntity(Guid Id, string Name, string Description)
 {
@@ -738,6 +738,7 @@ public class SchoolDbContext : DbContext
     {
     }
 } 
+```
 
 +++
 
@@ -795,9 +796,9 @@ public class MSSQLLocalDBDbContextFactory : IDbContextFactory
 | Method          | Usage                                                                                                                                                                                              |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | *Add*           | Adds a new entity to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChanges()`/`SaveChangesAsync()` is called.                                |
-| *AddAsync*      | Asynchronous method for adding a new entity to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChanges()`/`SaveChangesAsync()` is called. **Should only by used by source-generators.** |
+| *AddAsync*      | Asynchronous method for adding a new entity to `DbContext` with *Added* state and starting tracking. This new entity data will be inserted into the database when `SaveChanges()`/`SaveChangesAsync()` is called. **Should only be used by source generators.** |
 | *AddRange*      | Adds a collection of new entities to `DbContext` with *Added* state and starts tracking it. This new entity data will be inserted into the database when `SaveChanges()`/`SaveChangesAsync()` is called.                |
-| *AddRangeAsync* | Asynchronous method for adding a collection of new entities which will be saved on `SaveChanges()`/`SaveChangesAsync()`. **Should only by used by source-generators.**.                                                                                           |
+| *AddRangeAsync* | Asynchronous method for adding a collection of new entities, which will be saved on `SaveChanges()`/`SaveChangesAsync()`. **Should only be used by source generators.**                                                                                           |
 
 +++
 ### DbContext Methods
@@ -823,8 +824,8 @@ public class MSSQLLocalDBDbContextFactory : IDbContextFactory
 | Method            | Usage                                                                                                                                                                       |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | *Set*             | Creates a `DbSet<TEntity>` that can be used to query and save instances of `TEntity`.                                                                                       |
-| *Update*          | Attaches disconnected entity with Modified state and start tracking it. The data will be saved when `SaveChagnes()` is called.                                              |
-| *UpdateRange*     | Attaches a collection of disconnected entities with Modified state and start tracking it. The data will be saved when `SaveChagnes()` is called.                            |
+| *Update*          | Attaches a disconnected entity with *Modified* state and starts tracking it. The data will be saved when `SaveChanges()` is called.                                        |
+| *UpdateRange*     | Attaches a collection of disconnected entities with *Modified* state and starts tracking them. The data will be saved when `SaveChanges()` is called.                      |
 | *OnConfiguring*   | Override this method to configure the database (and other options) to be used for this context. This method is called for each instance of the context that is created.     |
 | *OnModelCreating* | Override this method to further configure the model that was discovered by convention from the entity types exposed in `DbSet<TEntity>` properties on your derived context. |
 
@@ -843,10 +844,10 @@ public class MSSQLLocalDBDbContextFactory : IDbContextFactory
 * Useful in local database or the database on the same network
 * *Pros*
   * Performs *faster*
-  * Track of all entities and automatically sets an appropriate state
+  * Tracks all entities and automatically sets an appropriate state
 * *Cons*
   * The context stays alive, so the connection with the database stays open
-  * Utilizes more resource
+  * Utilizes more resources
 
 +++
 ### Persistence Scenarios - Connected Scenario
@@ -856,15 +857,15 @@ public class MSSQLLocalDBDbContextFactory : IDbContextFactory
 ### Persistence Scenarios - Disconnected  Scenario
 * **Used in this course**
 * **Different instances of the context are used** to retrieve and save entities to the database
-* Instance of the dbcontext is **disposed after retrieving data** and a new instance is created to save entities to the database
+* An instance of `DbContext` is **disposed after retrieving data**, and a new instance is created to save entities to the database
 * Complex because an instance of the context does not track entities
 * Useful in web applications or applications with a remote database
 * *Pros*
   * Utilizes fewer resources compared to the connected scenario
-  * DB connection is disposed frequenty, not long living, except [
+  * The DB connection is disposed frequently and is not long-lived, except with [
 DbContext pooling](https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics?tabs=with-di%2Cexpression-api-with-constant#dbcontext-pooling)
 * *Cons*
-  * Need to set an appropriate state to each entity before saving
+  * You need to set an appropriate state for each entity before saving
   * Performs *slower* than the connected scenario
 
 +++
@@ -914,7 +915,7 @@ DbContext pooling](https://learn.microsoft.com/en-us/ef/core/performance/advance
 
 +++
 ### Annotation Attributes
-* Namespace `System.ComponentModel.DataAnnotations` and `System.ComponentModel.DataAnnotations`
+* Namespaces `System.ComponentModel.DataAnnotations` and `System.ComponentModel.DataAnnotations.Schema`
 * Simple **attribute based configuration method**
 * .NET attributes can be **applied to domain classes and properties to configure the model**
 * Also used in *ASP.NET MVC*
@@ -963,7 +964,7 @@ public class Student
 | `Owned`             | Denotes that the class is a weak entity.                                        |
 
 +++
-### `System.ComponentModel.Annotations` attributes
+### `System.ComponentModel.DataAnnotations` attributes
 | Attribute          | Description                                                             |
 | ------------------ | ----------------------------------------------------------------------- |
 | `Key`              | Identifies one or more properties as a Key                              |
@@ -982,16 +983,16 @@ public class Student
 * **Higher precedence than data annotation attributes**
 
 +++
-### Fluent API Configures
+### Fluent API Configuration
 * **Model Configuration**
-  * Configures an EF model to database mappings
+  * Configures mappings between the EF model and the database
   * Default Schema, DB functions, additional data annotation attributes and entities to be excluded from mapping
 * **Entity Configuration**
-  * Configures entity to table and relationships mapping 
+  * Configures entity-to-table and relationship mappings
   * e.g. PrimaryKey, AlternateKey, Index, table name, one-to-one, one-to-many, many-to-many relationships...
 * **Property Configuration**
-  * Configures property to column mapping 
-  * e.g. column name, default value, nullability, Foreignkey, data type, concurrency column...
+  * Configures property-to-column mapping
+  * e.g. column name, default value, nullability, foreign key, data type, concurrency column...
 
 +++
 ### Fluent API Sample
@@ -1123,7 +1124,7 @@ using (var dbContext = CreateDbContext())
 ## Query Data
 
 * Any expression created with LINQ
-* When querying related object need to use `Include` expression
+* When querying related objects, you need to use `Include`
 
 ```C#
 dbContext.Todos
@@ -1146,8 +1147,8 @@ dbContext.Todos
 +++
 ### One-to-One Relationships
 * Default conventions
-  * Reference **navigation property at both sides**
-* Fluent Api
+  * Reference **navigation properties on both sides**
+* Fluent API
   * Only useful when foreign key **property does not follow the convention**
 
 ```C#
@@ -1169,7 +1170,7 @@ modelBuilder.Entity<StudentEntity>()
 ### One-to-Many Relationships
 * Default conventions
   * There are more options
-* Fluent Api
+* Fluent API
 
 ```C#
 modelBuilder.Entity<StudentEntity>()
@@ -1179,7 +1180,7 @@ modelBuilder.Entity<StudentEntity>()
 ```
 
 +++
-### Default Convertions
+### Default Conventions
 * *1*
 
 ```C#
@@ -1203,7 +1204,7 @@ public class ProjectGroup
 ```
 
 +++
-### Default Convertions
+### Default Conventions
 * *3*
 
 ```C#
@@ -1242,7 +1243,7 @@ public class ProjectGroup
 
 +++
 ### Cascade Delete using Fluent API
-* Automatically deletes the **dependant entity** when the related **principal entity** is deleted
+* Automatically deletes the **dependent entity** when the related **principal entity** is deleted
 
 ```C#
 modelBuilder.Entity<StudentEntity>()
@@ -1256,7 +1257,7 @@ modelBuilder.Entity<StudentEntity>()
 ### Many-to-Many Relationships
 * In the database they are **represented by a joining table** which includes the foreign keys of both tables
 * There are no default conventions
-* Fluent Api
+* Fluent API
 
 ```C#
 modelBuilder.Entity<StudentCourse>()
@@ -1278,7 +1279,7 @@ modelBuilder.Entity<StudentCourse>()
 
 ---
 ## RAW SQL Queries
-* `DbSet.FromSql()` - method to execute raw SQL queries
+* `DbSet.FromSql()` - method for executing raw SQL queries
 
 
 ```C#
@@ -1328,11 +1329,11 @@ var students = context.Students
 
 +++
 ### How Dapper works
-* Works with **any database provider** since **there is no DB specific implementation**
+* Works with **any database provider** since **there is no DB-specific implementation**
 * Three step process:
-  1. *Create an `IDbConnection` object**
+  1. *Create an `IDbConnection` object*
   2. *Write a query to perform CRUD operations*
-  3. *Pass query as a parameter in Execute method*
+  3. *Pass the query as a parameter to the `Execute` method*
 
 +++
 <pre><code class="language-csharp" data-sample='assets/sln/Dapper.DAL/Entities/StudentEntity.cs' data-sample-line-numbers="true" data-sample-indent="remove"></code></pre>
@@ -1640,9 +1641,9 @@ public class Dapper : ITestSignature
 +++
 ### Repository vs UnitOfWork
 * **Repository** design pattern
-  * Should **not have sematics of database**
+  * Should **not expose database semantics**
   * E.g. *Update*, *Save*, *Delete*... 
-* How are these objects going to be saved to database?
+* How are these objects saved to the database?
   * **UnitOfWork** design pattern
 
 +++
@@ -1672,7 +1673,7 @@ public class Dapper : ITestSignature
 * *Repository*
   * **Minimizes duplicate** query logic
 * *Entity Framework Core*
-  * `DbSet` returns `IQueriable`
+  * `DbSet` returns `IQueryable`
   * Does not help with minimizing the duplicate:
 
 ```C#
@@ -1747,7 +1748,7 @@ var topSellingCourses = schoolCourses.Where(c => c.IsPublic && c.IsApproved).Ord
 
 +++
 ### Auto Mapper
-* Automatic **object-object mapping**
+* Automatic **object-to-object mapping**
   * **Same properties**
   * From *one object* of *one type*
   * To *another object* of *another type*
