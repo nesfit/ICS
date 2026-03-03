@@ -26,7 +26,12 @@ public sealed class IngredientFacadeTests : FacadeTestsBase
             Description = @"Testovací ingredience",
         };
 
-        var _ = await _ingredientFacadeSUT.SaveAsync(model);
+        var created = await _ingredientFacadeSUT.SaveAsync(model);
+
+        Assert.NotEqual(Guid.Empty, created.Id);
+        await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
+        var ingredientFromDb = await dbxAssert.Ingredients.SingleAsync(i => i.Id == created.Id);
+        Assert.Equivalent(created, IngredientModelMapper.MapToDetailModel(ingredientFromDb), strict: true);
     }
 
     [Fact]

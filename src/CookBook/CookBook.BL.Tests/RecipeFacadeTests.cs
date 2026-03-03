@@ -4,6 +4,7 @@ using CookBook.Common.Enums;
 using CookBook.Common.Tests;
 using CookBook.Common.Tests.Seeds;
 using System.Collections.ObjectModel;
+using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -158,8 +159,12 @@ public class RecipeFacadeTests : FacadeTestsBase
         var detailModel = RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity);
         detailModel.Name = "Changed recipe name";
 
-        //Act & Assert
+        //Act
         await _facadeSUT.SaveAsync(RecipeDetailModel.Copy(detailModel, ingredients: []));
+
+        //Assert
+        var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
+        Assert.Equal("Changed recipe name", returnedModel?.Name);
     }
 
     [Fact]
@@ -210,8 +215,12 @@ public class RecipeFacadeTests : FacadeTestsBase
     [Fact]
     public async Task DeleteById_FromSeeded_DoesNotThrow()
     {
-        //Arrange & Act & Assert
+        //Act
         await _facadeSUT.DeleteAsync(RecipeSeeds.RecipeEntity.Id);
+
+        //Assert
+        await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
+        Assert.False(await dbxAssert.Recipes.AnyAsync(i => i.Id == RecipeSeeds.RecipeEntity.Id));
     }
 
 }
