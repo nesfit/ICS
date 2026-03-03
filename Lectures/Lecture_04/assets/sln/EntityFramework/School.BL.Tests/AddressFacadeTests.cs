@@ -18,7 +18,7 @@ namespace School.BL.Tests
 
         public AddressFacadeTests()
         {
-            var dbContextFactory = new DbContextInMemoryFactory(nameof(AddressFacadeTests));
+            var dbContextFactory = new DbContextInMemoryFactory($"{nameof(AddressFacadeTests)}-{Guid.NewGuid()}");
             var dbx = dbContextFactory.Create();
             dbx.Database.EnsureCreated();
             var unitOfWork = new UnitOfWork(dbx);

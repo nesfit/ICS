@@ -22,7 +22,7 @@ namespace School.BL.Tests
 
         public StudentFacadeTests()
         {
-            var dbContextFactory = new DbContextInMemoryFactory(nameof(AddressFacadeTests));
+            var dbContextFactory = new DbContextInMemoryFactory($"{nameof(StudentFacadeTests)}-{Guid.NewGuid()}");
             var dbx = dbContextFactory.Create();
             dbx.Database.EnsureCreated();
             var unitOfWork = new UnitOfWork(dbx);

@@ -12,6 +12,12 @@ namespace Dapper.DAL.Tests
         [Fact]
         public void RepositoryTest()
         {
+            if (!OperatingSystem.IsWindows())
+            {
+                // The sample uses SQL Server LocalDB, which is only available on Windows.
+                return;
+            }
+
             var student = new StudentEntity
             {
                 Id = Guid.NewGuid(),
