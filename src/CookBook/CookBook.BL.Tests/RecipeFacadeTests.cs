@@ -35,7 +35,7 @@ public class RecipeFacadeTests : FacadeTestsBase
 
         //Assert
         FixIds(model, returnedModel);
-        DeepAssert.Equal(model, returnedModel);
+        Assert.Equivalent(model, returnedModel, strict: true);
     }
 
     [Fact]
@@ -134,7 +134,7 @@ public class RecipeFacadeTests : FacadeTestsBase
         var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
 
         //Assert
-        DeepAssert.Equal(detailModel, returnedModel);
+        Assert.Equivalent(detailModel, returnedModel, strict: true);
     }
 
     [Fact]
@@ -173,7 +173,7 @@ public class RecipeFacadeTests : FacadeTestsBase
 
         //Assert
         var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
-        DeepAssert.Equal(detailModel, returnedModel);
+        Assert.Equivalent(detailModel, returnedModel, strict: true);
     }
 
     [Fact]
@@ -188,7 +188,7 @@ public class RecipeFacadeTests : FacadeTestsBase
 
         //Assert
         var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
-        DeepAssert.Equal(RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity), returnedModel);
+        Assert.Equivalent(RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity), returnedModel, strict: true);
     }
 
     [Fact]
@@ -203,7 +203,7 @@ public class RecipeFacadeTests : FacadeTestsBase
 
         //Assert
         var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
-        DeepAssert.Equal(RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity), returnedModel);
+        Assert.Equivalent(RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity), returnedModel, strict: true);
     }
 
     [Fact]
