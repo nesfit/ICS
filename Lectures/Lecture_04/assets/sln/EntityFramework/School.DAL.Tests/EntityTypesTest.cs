@@ -39,7 +39,7 @@ namespace School.DAL.Tests
                 .ThenInclude(i=>i.Course)
                 .Single(s => s.Id == Seed.StudentJane.Id);
 
-            Assert.Equal(jane, Seed.StudentJane, StudentEntity.StudentEntityComparer);
+            Assert.Equivalent(ToComparableSnapshot(Seed.StudentJane), ToComparableSnapshot(jane));
         }
 
         [Fact]
@@ -52,8 +52,51 @@ namespace School.DAL.Tests
 
             var jane = schoolDbContextSut.Students.Single(a => a.Id == Seed.StudentJane.Id);
 
-            Assert.Equal(jane, Seed.StudentJane, StudentEntity.StudentEntityComparer);
+            Assert.Equivalent(ToComparableSnapshot(Seed.StudentJane), ToComparableSnapshot(jane));
         }
+
+        private static object ToComparableSnapshot(StudentEntity student)
+            => new
+            {
+                student.Id,
+                student.Name,
+                student.ProjectGroupId,
+                Address = student.Address is null
+                    ? null
+                    : new
+                    {
+                        student.Address.Id,
+                        student.Address.Street,
+                        student.Address.City,
+                        student.Address.State,
+                        student.Address.Country
+                    },
+                ProjectGroup = student.ProjectGroup is null
+                    ? null
+                    : new
+                    {
+                        student.ProjectGroup.Id,
+                        student.ProjectGroup.MaxCapacity,
+                        student.ProjectGroup.AvailableSpots
+                    },
+                StudentCourses = student.StudentCourses
+                    .OrderBy(i => i.Id)
+                    .Select(i => new
+                    {
+                        i.Id,
+                        i.StudentId,
+                        i.CourseId,
+                        Course = i.Course is null
+                            ? null
+                            : new
+                            {
+                                i.Course.Id,
+                                i.Course.Name,
+                                i.Course.Description
+                            }
+                    })
+                    .ToList()
+            };
 
         public void Dispose() => _schoolDbContextSut?.Dispose();
     }

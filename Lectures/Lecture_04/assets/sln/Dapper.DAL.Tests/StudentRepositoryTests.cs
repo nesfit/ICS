@@ -26,7 +26,7 @@ namespace Dapper.DAL.Tests
             _studentRepository.Insert(student);
 
             var result = _studentRepository.GetById(student.Id);
-            Assert.Equal(result, student, StudentEntity.IdNameComparer);
+            Assert.Equivalent(student, result);
 
             var count = _studentRepository.GetAll().Count();
             _studentRepository.Delete(student.Id);
