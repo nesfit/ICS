@@ -1133,6 +1133,29 @@ dbContext.Todos
     .First(t => t.Id == todo.Id);
 ```
 
++++
+### Query Performance: Tracking vs `AsNoTracking`
+* Default query behavior is **tracking** (good when you plan to update entities)
+* For read-only queries, use `AsNoTracking()` to reduce memory usage and tracking overhead
+* For complex read models, prefer **projection** (`Select`) to load only required columns
+
+```C#
+var students = await dbContext.Students
+    .AsNoTracking()
+    .Select(s => new { s.Id, s.Name })
+    .ToListAsync();
+```
+
++++
+### Query Pitfall: `N+1` Problem
+* `N+1` appears when one query loads a list and then triggers extra queries per item
+* Typical causes:
+  * Lazy loading in loops
+  * Navigation property access without eager loading/projection
+* Mitigation:
+  * Use `Include()` for needed relations
+  * Or use projection (`Select`) for precise result shape
+
 ---
 ## Entity Relationships
 
@@ -1312,6 +1335,15 @@ var students = context.Students
 
 
 ![](assets/img/ef-core-migration.png)
+
++++
+### Migration Good Practice
+* Keep migrations in source control
+* Review generated migration SQL before applying changes to production
+* In production, prefer:
+  1. Generate SQL script (`dotnet ef migrations script`)
+  2. Review and approve script
+  3. Apply script in controlled deployment
 
 +++
 ### Migration commands
