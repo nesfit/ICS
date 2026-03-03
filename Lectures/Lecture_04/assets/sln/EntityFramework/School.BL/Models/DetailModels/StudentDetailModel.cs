@@ -9,11 +9,11 @@ namespace School.BL.Models.DetailModels
     {
         public Guid Id { get; set; }
 
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
-        public AddressDetailModel Address { get; set; }
-        public ProjectGroupListModel ProjectGroup { get; set; }
+        public required AddressDetailModel Address { get; set; }
+        public ProjectGroupListModel ProjectGroup { get; set; } = new();
 
-        public ICollection<StudentCourseListModel> Courses { get; set; }
+        public ICollection<StudentCourseListModel> Courses { get; set; } = new List<StudentCourseListModel>();
     }
 }

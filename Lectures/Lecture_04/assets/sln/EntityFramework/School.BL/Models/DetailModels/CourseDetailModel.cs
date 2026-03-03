@@ -8,9 +8,9 @@ namespace School.BL.Models.DetailModels
     {
         public Guid Id { get; set; }
 
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public required string Name { get; set; }
+        public string? Description { get; set; }
 
-        public ICollection<StudentCourseListModel> Students { get; set; }
+        public ICollection<StudentCourseListModel> Students { get; set; } = new List<StudentCourseListModel>();
     }
 }

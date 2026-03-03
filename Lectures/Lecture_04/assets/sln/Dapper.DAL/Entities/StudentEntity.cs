@@ -6,13 +6,13 @@ namespace Dapper.DAL.Entities
     public class StudentEntity
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public static IEqualityComparer<StudentEntity> IdNameComparer { get; } = new IdNameEqualityComparer();
+        public static IEqualityComparer<StudentEntity?> IdNameComparer { get; } = new IdNameEqualityComparer();
 
-        private sealed class IdNameEqualityComparer : IEqualityComparer<StudentEntity>
+        private sealed class IdNameEqualityComparer : IEqualityComparer<StudentEntity?>
         {
-            public bool Equals(StudentEntity x, StudentEntity y)
+            public bool Equals(StudentEntity? x, StudentEntity? y)
             {
                 if (ReferenceEquals(x, y)) return true;
                 if (ReferenceEquals(x, null)) return false;

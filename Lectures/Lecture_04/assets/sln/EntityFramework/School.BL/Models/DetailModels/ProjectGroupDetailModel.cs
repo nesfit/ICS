@@ -11,6 +11,6 @@ namespace School.BL.Models.DetailModels
         public int? MaxCapacity { get; set; }
         public int? AvailableSpots { get; set; }
 
-        public ICollection<StudentListModel> Students { get; set; }
+        public ICollection<StudentListModel> Students { get; set; } = new List<StudentListModel>();
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore.Query;
 using School.BL.Mappers;
 using School.BL.Models;
 using School.DAL.Entities;
@@ -13,8 +12,8 @@ namespace School.BL.Facades
 {
     public abstract class CrudFacadeBase<TEntity, TListModel, TDetailModel>
         where TEntity : class, IEntity, new()
-        where TListModel : IModel, new()
-        where TDetailModel : IModel, new()
+        where TListModel : IModel
+        where TDetailModel : IModel
     {
         private readonly IMapper<TEntity, TListModel, TDetailModel> _mapper;
         private readonly IEntityFactory _entityFactory;
@@ -33,11 +32,11 @@ namespace School.BL.Facades
             _unitOfWork = unitOfWork;
         }
         
-        protected virtual Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>[] Includes { get; } = Array.Empty<Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>>();
+        protected virtual Func<IQueryable<TEntity>, IQueryable<TEntity>>[] Includes { get; } = Array.Empty<Func<IQueryable<TEntity>, IQueryable<TEntity>>>();
         
         public IEnumerable<TListModel> GetAllList() => _mapper.Map(_repository.GetAll());
 
-        public TDetailModel GetById(Guid id)
+        public TDetailModel? GetById(Guid id)
         {
             var query = _repository.GetAll();
 
@@ -69,7 +68,8 @@ namespace School.BL.Facades
             entity = _repository.InsertOrUpdate(entity);
             _unitOfWork.Commit();
 
-            return GetById(entity.Id); //To fill properties not mapped from model to entity
+            return GetById(entity.Id) //To fill properties not mapped from model to entity
+                   ?? throw new InvalidOperationException("Entity could not be loaded after save.");
         }
     }
 }

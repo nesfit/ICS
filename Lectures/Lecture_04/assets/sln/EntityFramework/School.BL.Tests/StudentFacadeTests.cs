@@ -51,7 +51,7 @@ namespace School.BL.Tests
                     new()
                     {
                         CourseId = Seed.IcsCourse.Id,
-                        Name = Seed.IcsCourse.Name,
+                        Name = Seed.IcsCourse.Name ?? string.Empty,
                     }
                 }
             };
@@ -61,7 +61,8 @@ namespace School.BL.Tests
             Assert.NotEqual(Guid.Empty, detail.Id);
 
             var entityFromDb = _repository.GetById(detail.Id);
-            Assert.Equal(detail, _mapper.Map(entityFromDb));
+            Assert.NotNull(entityFromDb);
+            Assert.Equal(detail, _mapper.Map(entityFromDb!));
         }
 
         [Fact]
@@ -69,6 +70,7 @@ namespace School.BL.Tests
         {
             var detail = _facadeSUT.GetById(Seed.StudentJane.Id);
 
+            Assert.NotNull(detail);
             Assert.Equal(detail, _mapper.Map(Seed.StudentJane));
         }
     }
