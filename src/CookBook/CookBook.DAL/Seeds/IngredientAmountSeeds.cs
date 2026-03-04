@@ -22,7 +22,7 @@ public static class IngredientAmountSeeds
         Id = Guid.Parse("87833e66-05ba-4d6b-900b-fe5ace88dbd8"),
         RecipeId = RecipeSeeds.LemonadeRecipe.Id,
         IngredientId = IngredientSeeds.Water.Id,
-        Amount = 2.0,
+        Amount = 2.0m,
         Unit = Unit.L,
         Recipe = RecipeSeeds.LemonadeRecipe,
         Ingredient = IngredientSeeds.Water

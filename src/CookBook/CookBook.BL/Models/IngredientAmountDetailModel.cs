@@ -18,7 +18,7 @@ public partial class IngredientAmountDetailModel : ModelBase
     public partial string? IngredientImageUrl { get; set; }
 
     [ObservableProperty]
-    public partial double Amount { get; set; }
+    public partial decimal Amount { get; set; }
 
     [ObservableProperty]
     public partial Unit Unit { get; set; }
