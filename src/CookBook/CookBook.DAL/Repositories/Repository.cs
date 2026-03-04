@@ -12,10 +12,7 @@ public class Repository<TEntity>(
 {
     private readonly DbSet<TEntity> _dbSet = dbContext.Set<TEntity>();
 
-    public IQueryable<TEntity> Get(bool asNoTracking = false)
-        => asNoTracking
-            ? _dbSet.AsNoTracking()
-            : _dbSet;
+    public IQueryable<TEntity> Get() => _dbSet.AsNoTracking();
 
     public async ValueTask<bool> ExistsAsync(TEntity entity, CancellationToken cancellationToken = default)
         => entity.Id != Guid.Empty
