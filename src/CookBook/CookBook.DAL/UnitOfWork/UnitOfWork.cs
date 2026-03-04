@@ -16,7 +16,8 @@ public sealed class UnitOfWork(DbContext dbContext, IServiceScope serviceScope) 
         where TEntityMapper : class, IEntityMapper<TEntity>
         => new Repository<TEntity>(_dbContext, _serviceScope.ServiceProvider.GetRequiredService<TEntityMapper>());
 
-    public async Task CommitAsync() => await _dbContext.SaveChangesAsync().ConfigureAwait(false);
+    public async Task CommitAsync(CancellationToken cancellationToken = default)
+        => await _dbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
     public async ValueTask DisposeAsync()
     {

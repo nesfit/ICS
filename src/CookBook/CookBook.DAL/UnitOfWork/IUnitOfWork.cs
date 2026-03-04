@@ -10,5 +10,5 @@ public interface IUnitOfWork : IAsyncDisposable
         where TEntity : class, IEntity
         where TEntityMapper : class, IEntityMapper<TEntity>;
 
-    Task CommitAsync();
+    Task CommitAsync(CancellationToken cancellationToken = default);
 }
