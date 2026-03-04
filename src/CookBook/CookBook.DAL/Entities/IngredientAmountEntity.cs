@@ -6,7 +6,7 @@ public record IngredientAmountEntity : IEntity
 {
     public required Guid RecipeId { get; set; }
     public required Guid IngredientId { get; set; }
-    public double Amount { get; set; }
+    public decimal Amount { get; set; }
     public Unit Unit { get; set; }
 
     public required RecipeEntity Recipe { get; init; }

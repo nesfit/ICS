@@ -1,6 +1,5 @@
 ﻿using CookBook.BL.Facades;
 using CookBook.BL.Models;
-using CookBook.Common.Tests;
 using CookBook.Common.Tests.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
@@ -27,7 +26,12 @@ public sealed class IngredientFacadeTests : FacadeTestsBase
             Description = @"Testovací ingredience",
         };
 
-        var _ = await _ingredientFacadeSUT.SaveAsync(model);
+        var created = await _ingredientFacadeSUT.SaveAsync(model);
+
+        Assert.NotEqual(Guid.Empty, created.Id);
+        await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
+        var ingredientFromDb = await dbxAssert.Ingredients.SingleAsync(i => i.Id == created.Id);
+        Assert.Equivalent(created, IngredientModelMapper.MapToDetailModel(ingredientFromDb), strict: true);
     }
 
     [Fact]
@@ -36,7 +40,7 @@ public sealed class IngredientFacadeTests : FacadeTestsBase
         var ingredients = await _ingredientFacadeSUT.GetAsync();
         var ingredient = ingredients.Single(i => i.Id == IngredientSeeds.Water.Id);
 
-        DeepAssert.Equal(IngredientModelMapper.MapToListModel(IngredientSeeds.Water), ingredient);
+        Assert.Equivalent(IngredientModelMapper.MapToListModel(IngredientSeeds.Water), ingredient, strict: true);
     }
 
     [Fact]
@@ -44,7 +48,7 @@ public sealed class IngredientFacadeTests : FacadeTestsBase
     {
         var ingredient = await _ingredientFacadeSUT.GetAsync(IngredientSeeds.Water.Id);
 
-        DeepAssert.Equal(IngredientModelMapper.MapToDetailModel(IngredientSeeds.Water), ingredient);
+        Assert.Equivalent(IngredientModelMapper.MapToDetailModel(IngredientSeeds.Water), ingredient, strict: true);
     }
 
     [Fact]
@@ -88,7 +92,7 @@ public sealed class IngredientFacadeTests : FacadeTestsBase
         //Assert
         await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
         var ingredientFromDb = await dbxAssert.Ingredients.SingleAsync(i => i.Id == ingredient.Id);
-        DeepAssert.Equal(ingredient, IngredientModelMapper.MapToDetailModel(ingredientFromDb));
+        Assert.Equivalent(ingredient, IngredientModelMapper.MapToDetailModel(ingredientFromDb), strict: true);
     }
 
     [Fact]
@@ -110,6 +114,6 @@ public sealed class IngredientFacadeTests : FacadeTestsBase
         //Assert
         await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
         var ingredientFromDb = await dbxAssert.Ingredients.SingleAsync(i => i.Id == ingredient.Id);
-        DeepAssert.Equal(ingredient, IngredientModelMapper.MapToDetailModel(ingredientFromDb));
+        Assert.Equivalent(ingredient, IngredientModelMapper.MapToDetailModel(ingredientFromDb), strict: true);
     }
 }

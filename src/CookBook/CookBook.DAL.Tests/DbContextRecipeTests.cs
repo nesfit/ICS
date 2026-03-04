@@ -123,8 +123,7 @@ public class DbContextRecipeTests(ITestOutputHelper output) : DbContextTestsBase
         var entities = await CookBookDbContextSUT.Recipes.ToListAsync();
 
         //Assert
-        DeepAssert.Contains(RecipeSeeds.RecipeEntity, entities,
-            nameof(RecipeEntity.Ingredients));
+        DeepAssert.Contains(RecipeSeeds.RecipeEntity, entities, nameof(RecipeEntity.Ingredients));
     }
 
     [Fact]
@@ -220,4 +219,5 @@ public class DbContextRecipeTests(ITestOutputHelper output) : DbContextTestsBase
         Assert.False(await CookBookDbContextSUT.IngredientAmountEntities
             .AnyAsync(i => baseEntity.Ingredients.Select(ingredientAmount => ingredientAmount.Id).Contains(i.Id)));
     }
+
 }

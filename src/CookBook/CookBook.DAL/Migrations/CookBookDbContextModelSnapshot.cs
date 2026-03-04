@@ -15,7 +15,7 @@ namespace CookBook.DAL.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
+            modelBuilder.HasAnnotation("ProductVersion", "10.0.2");
 
             modelBuilder.Entity("CookBook.DAL.Entities.IngredientAmountEntity", b =>
                 {
@@ -23,8 +23,9 @@ namespace CookBook.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Amount")
-                        .HasColumnType("REAL");
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("TEXT");
 
                     b.Property<Guid>("IngredientId")
                         .HasColumnType("TEXT");
@@ -39,7 +40,8 @@ namespace CookBook.DAL.Migrations
 
                     b.HasIndex("IngredientId");
 
-                    b.HasIndex("RecipeId");
+                    b.HasIndex("RecipeId", "IngredientId")
+                        .IsUnique();
 
                     b.ToTable("IngredientAmountEntities");
                 });
@@ -52,13 +54,16 @@ namespace CookBook.DAL.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
+                        .HasMaxLength(2000)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ImageUrl")
+                        .HasMaxLength(2048)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(200)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -74,6 +79,7 @@ namespace CookBook.DAL.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
+                        .HasMaxLength(2000)
                         .HasColumnType("TEXT");
 
                     b.Property<TimeSpan>("Duration")
@@ -83,10 +89,12 @@ namespace CookBook.DAL.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ImageUrl")
+                        .HasMaxLength(2048)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(200)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

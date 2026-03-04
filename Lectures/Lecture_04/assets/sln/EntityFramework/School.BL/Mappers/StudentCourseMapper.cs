@@ -7,17 +7,24 @@ namespace School.BL.Mappers
 {
     public class StudentCourseMapper 
     {
-        public IEnumerable<StudentCourseListModel> Map(IEnumerable<StudentEntity> entities) 
-            => entities?.SelectMany(MapStudentCourse).ToValueCollection();
+        public IEnumerable<StudentCourseListModel> Map(IEnumerable<StudentEntity>? entities)
+            => entities is null
+                ? Enumerable.Empty<StudentCourseListModel>().ToValueCollection()
+                : entities.SelectMany(MapStudentCourse).ToValueCollection();
 
-        public IEnumerable<StudentCourseListModel> MapStudentCourse(StudentEntity studentEntity)
+        public IEnumerable<StudentCourseListModel> MapStudentCourse(StudentEntity? studentEntity)
         {
-            return studentEntity?.StudentCourses.Select(courseEntity => new StudentCourseListModel()
+            if (studentEntity is null)
+            {
+                return Enumerable.Empty<StudentCourseListModel>().ToValueCollection();
+            }
+
+            return studentEntity.StudentCourses.Select(courseEntity => new StudentCourseListModel
             {
                 Id = courseEntity.Id,
                 StudentId = courseEntity.StudentId,
                 CourseId = courseEntity.CourseId,
-                Name = studentEntity.Name
+                Name = studentEntity.Name ?? string.Empty
             }).ToValueCollection();
         }
     }

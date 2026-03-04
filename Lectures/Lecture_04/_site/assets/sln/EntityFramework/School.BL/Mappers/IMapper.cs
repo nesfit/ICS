@@ -8,11 +8,11 @@ namespace School.BL.Mappers
 {
     public interface IMapper<TEntity, out TListModel, TDetailModel>
         where TEntity : class, IEntity, new()
-        where TListModel : IModel, new()
-        where TDetailModel : IModel, new()
+        where TListModel : IModel
+        where TDetailModel : IModel
     {
-        IEnumerable<TListModel> Map(IQueryable<TEntity> entities);
-        TDetailModel Map(TEntity entity);
+        IEnumerable<TListModel> Map(IQueryable<TEntity>? entities);
+        TDetailModel? Map(TEntity? entity);
         TEntity Map(TDetailModel detailModel, IEntityFactory entityFactory);
     }
 }

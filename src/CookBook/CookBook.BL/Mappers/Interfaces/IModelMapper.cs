@@ -7,6 +7,6 @@ public interface IModelMapper<TEntity, out TListModel, TDetailModel>
     IEnumerable<TListModel> MapToListModel(IEnumerable<TEntity> entities)
         => entities.Select(MapToListModel);
 
-    TDetailModel MapToDetailModel(TEntity entity);
+    TDetailModel MapToDetailModel(TEntity? entity);
     TEntity MapToEntity(TDetailModel model);
 }

@@ -1,0 +1,22 @@
+<Solution>
+  <Folder Name="/ADO.NET/">
+    <Project Path="Examples/Examples.csproj" />
+  </Folder>
+  <Folder Name="/Dapper/">
+    <Project Path="Dapper.DAL/Dapper.DAL.csproj" />
+    <Project Path="Dapper.DAL.Tests/Dapper.DAL.Tests.csproj" />
+  </Folder>
+  <Folder Name="/EntityFrameworkCore/">
+    <Project Path="EntityFramework/School.DAL/School.DAL.csproj" />
+    <Project Path="EntityFramework/School.DAL.Tests/School.DAL.Tests.csproj" />
+    <Project Path="EntityFramework/School.BL/School.BL.csproj" />
+    <Project Path="EntityFramework/School.BL.Tests/School.BL.Tests.csproj" />
+  </Folder>
+  <Folder Name="/SolutionFiles/">
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="global.json" />
+    <File Path="Lecture04.sln" />
+  </Folder>
+</Solution>

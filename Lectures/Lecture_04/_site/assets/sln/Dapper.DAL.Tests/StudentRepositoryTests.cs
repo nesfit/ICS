@@ -12,6 +12,12 @@ namespace Dapper.DAL.Tests
         [Fact]
         public void RepositoryTest()
         {
+            if (!OperatingSystem.IsWindows())
+            {
+                // The sample uses SQL Server LocalDB, which is only available on Windows.
+                return;
+            }
+
             var student = new StudentEntity
             {
                 Id = Guid.NewGuid(),
@@ -20,7 +26,7 @@ namespace Dapper.DAL.Tests
             _studentRepository.Insert(student);
 
             var result = _studentRepository.GetById(student.Id);
-            Assert.Equal(result, student, StudentEntity.IdNameComparer);
+            Assert.Equivalent(student, result);
 
             var count = _studentRepository.GetAll().Count();
             _studentRepository.Delete(student.Id);

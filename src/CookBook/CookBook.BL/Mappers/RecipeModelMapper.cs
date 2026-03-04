@@ -3,7 +3,7 @@ using CookBook.DAL.Entities;
 
 namespace CookBook.BL.Mappers;
 
-public class RecipeModelMapper(IngredientAmountModelMapper ingredientAmountModelMapper)
+public class RecipeModelMapper
     : ModelMapperBase<RecipeEntity, RecipeListModel, RecipeDetailModel>
 {
     public override RecipeListModel MapToListModel(RecipeEntity? entity)
@@ -29,7 +29,7 @@ public class RecipeModelMapper(IngredientAmountModelMapper ingredientAmountModel
                 Duration = entity.Duration,
                 FoodType = entity.FoodType,
                 ImageUrl = entity.ImageUrl,
-                Ingredients = ingredientAmountModelMapper.MapToListModel(entity.Ingredients)
+                Ingredients = MapIngredientAmountToListModel(entity.Ingredients)
                     .ToObservableCollection()
             };
 
@@ -42,5 +42,33 @@ public class RecipeModelMapper(IngredientAmountModelMapper ingredientAmountModel
             Duration = model.Duration,
             FoodType = model.FoodType,
             ImageUrl = model.ImageUrl
+        };
+
+    public IngredientAmountListModel MapIngredientAmountToListModel(IngredientAmountEntity? entity)
+        => entity?.Ingredient is null
+            ? IngredientAmountListModel.Empty
+            : new IngredientAmountListModel
+            {
+                Id = entity.Id,
+                IngredientId = entity.Ingredient.Id,
+                IngredientName = entity.Ingredient.Name,
+                IngredientImageUrl = entity.Ingredient.ImageUrl,
+                Amount = entity.Amount,
+                Unit = entity.Unit
+            };
+
+    public IEnumerable<IngredientAmountListModel> MapIngredientAmountToListModel(IEnumerable<IngredientAmountEntity> entities)
+        => entities.Select(MapIngredientAmountToListModel);
+
+    public IngredientAmountEntity MapIngredientAmountToEntity(IngredientAmountListModel model, Guid recipeId)
+        => new()
+        {
+            Id = model.Id,
+            RecipeId = recipeId,
+            IngredientId = model.IngredientId,
+            Amount = model.Amount,
+            Unit = model.Unit,
+            Recipe = null!,
+            Ingredient = null!
         };
 }

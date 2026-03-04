@@ -18,7 +18,7 @@ public abstract class
     where TEntity : class, IEntity
     where TListModel : ModelBase
     where TDetailModel : ModelBase
-    where TEntityMapper : IEntityMapper<TEntity>, new()
+    where TEntityMapper : class, IEntityMapper<TEntity>
 {
     protected readonly IModelMapper<TEntity, TListModel, TDetailModel> ModelMapper = modelMapper;
     protected readonly IUnitOfWorkFactory UnitOfWorkFactory = unitOfWorkFactory;

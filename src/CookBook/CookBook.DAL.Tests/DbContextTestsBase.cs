@@ -1,5 +1,4 @@
-﻿using CookBook.Common.Tests;
-using CookBook.Common.Tests.Seeds;
+﻿using CookBook.Common.Tests.Seeds;
 using CookBook.DAL.Entities;
 using CookBook.DAL.Factories;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +11,8 @@ public class DbContextTestsBase : IAsyncLifetime
 {
     protected DbContextTestsBase(ITestOutputHelper output)
     {
-        XUnitTestOutputConverter converter = new(output);
-        Console.SetOut(converter);
-
-        DbContextFactory = new DbContextSqLiteFactory(GetType().FullName!);
+        var databaseName = $"{GetType().FullName}_{Guid.NewGuid():N}.db";
+        DbContextFactory = new DbContextSqLiteFactory(databaseName);
         CookBookDbContextSUT = DbContextFactory.CreateDbContext();
     }
 

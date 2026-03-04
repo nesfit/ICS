@@ -85,6 +85,22 @@ public class DbContextIngredientAmountTests(ITestOutputHelper output) : DbContex
         await CookBookDbContextSUT.SaveChangesAsync();
 
         //Assert
-        Assert.False(await CookBookDbContextSUT.Ingredients.AnyAsync(i => i.Id == baseEntity.Id));
+        Assert.False(await CookBookDbContextSUT.IngredientAmountEntities.AnyAsync(i => i.Id == baseEntity.Id));
+    }
+
+    [Fact]
+    public async Task Add_DuplicateIngredientForRecipe_Throws()
+    {
+        // Arrange
+        var duplicate = IngredientAmountSeeds.IngredientAmountEntity1 with
+        {
+            Id = Guid.Parse("8d0e0946-5834-4f22-8d0b-436d0bc29de5"),
+            Recipe = null!,
+            Ingredient = null!
+        };
+
+        // Act & Assert
+        CookBookDbContextSUT.IngredientAmountEntities.Add(duplicate);
+        await Assert.ThrowsAsync<DbUpdateException>(() => CookBookDbContextSUT.SaveChangesAsync());
     }
 }

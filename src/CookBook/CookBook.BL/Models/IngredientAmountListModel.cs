@@ -15,7 +15,7 @@ public partial class IngredientAmountListModel : ModelBase
     public required partial string? IngredientImageUrl { get; set; }
 
     [ObservableProperty]
-    public required partial double Amount { get; set; }
+    public required partial decimal Amount { get; set; }
 
     [ObservableProperty]
     public required partial Unit Unit { get; set; }
@@ -26,7 +26,7 @@ public partial class IngredientAmountListModel : ModelBase
         IngredientId = Guid.Empty,
         IngredientName = string.Empty,
         IngredientImageUrl = null,
-        Amount = 0.0,
+        Amount = 0m,
         Unit = Unit.None
     };
 }

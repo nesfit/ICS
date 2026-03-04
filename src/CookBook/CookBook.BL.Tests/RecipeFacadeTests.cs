@@ -1,9 +1,9 @@
 ﻿using CookBook.BL.Facades;
 using CookBook.BL.Models;
 using CookBook.Common.Enums;
-using CookBook.Common.Tests;
 using CookBook.Common.Tests.Seeds;
 using System.Collections.ObjectModel;
+using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -34,8 +34,9 @@ public class RecipeFacadeTests : FacadeTestsBase
         var returnedModel = await _facadeSUT.SaveAsync(model);
 
         //Assert
-        FixIds(model, returnedModel);
-        DeepAssert.Equal(model, returnedModel);
+        Assert.NotEqual(Guid.Empty, returnedModel.Id);
+        model.Id = returnedModel.Id;
+        Assert.Equivalent(model, returnedModel, strict: true);
     }
 
     [Fact]
@@ -115,7 +116,7 @@ public class RecipeFacadeTests : FacadeTestsBase
                     Unit = Unit.None
                 },
 
-                IngredientAmountModelMapper.MapToListModel(IngredientAmountSeeds.IngredientAmountEntity1)
+                RecipeModelMapper.MapIngredientAmountToListModel(IngredientAmountSeeds.IngredientAmountEntity1)
 
             ],
         };
@@ -134,7 +135,7 @@ public class RecipeFacadeTests : FacadeTestsBase
         var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
 
         //Assert
-        DeepAssert.Equal(detailModel, returnedModel);
+        Assert.Equivalent(detailModel, returnedModel, strict: true);
     }
 
     [Fact]
@@ -147,7 +148,18 @@ public class RecipeFacadeTests : FacadeTestsBase
         var returnedModel = await _facadeSUT.GetAsync();
 
         //Assert
-        DeepAssert.Contains(listModel, returnedModel);
+        Assert.Contains(returnedModel, model =>
+        {
+            try
+            {
+                Assert.Equivalent(listModel, model, strict: true);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        });
     }
 
     [Fact]
@@ -157,8 +169,12 @@ public class RecipeFacadeTests : FacadeTestsBase
         var detailModel = RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity);
         detailModel.Name = "Changed recipe name";
 
-        //Act & Assert
+        //Act
         await _facadeSUT.SaveAsync(RecipeDetailModel.Copy(detailModel, ingredients: []));
+
+        //Assert
+        var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
+        Assert.Equal("Changed recipe name", returnedModel?.Name);
     }
 
     [Fact]
@@ -173,7 +189,7 @@ public class RecipeFacadeTests : FacadeTestsBase
 
         //Assert
         var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
-        DeepAssert.Equal(detailModel, returnedModel);
+        Assert.Equivalent(detailModel, returnedModel, strict: true);
     }
 
     [Fact]
@@ -188,7 +204,7 @@ public class RecipeFacadeTests : FacadeTestsBase
 
         //Assert
         var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
-        DeepAssert.Equal(RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity), returnedModel);
+        Assert.Equivalent(RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity), returnedModel, strict: true);
     }
 
     [Fact]
@@ -203,33 +219,89 @@ public class RecipeFacadeTests : FacadeTestsBase
 
         //Assert
         var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
-        DeepAssert.Equal(RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity), returnedModel);
+        Assert.Equivalent(RecipeModelMapper.MapToDetailModel(RecipeSeeds.RecipeEntity), returnedModel, strict: true);
+    }
+
+    [Fact]
+    public async Task AddIngredient_FromSeeded_Inserted()
+    {
+        // Arrange
+        var recipeId = RecipeSeeds.RecipeEntityWithNoIngredients.Id;
+        var model = new IngredientAmountListModel
+        {
+            Id = Guid.NewGuid(),
+            IngredientId = IngredientSeeds.Water.Id,
+            IngredientName = IngredientSeeds.Water.Name,
+            IngredientImageUrl = IngredientSeeds.Water.ImageUrl,
+            Amount = 3.5m,
+            Unit = Unit.L
+        };
+
+        // Act
+        await _facadeSUT.AddIngredientAsync(recipeId, model);
+
+        // Assert
+        await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
+        var ingredientAmount = await dbxAssert.IngredientAmountEntities
+            .SingleAsync(i => i.Id == model.Id);
+
+        Assert.Equal(recipeId, ingredientAmount.RecipeId);
+        Assert.Equal(model.IngredientId, ingredientAmount.IngredientId);
+        Assert.Equal(model.Amount, ingredientAmount.Amount);
+        Assert.Equal(model.Unit, ingredientAmount.Unit);
+    }
+
+    [Fact]
+    public async Task UpdateIngredient_FromSeeded_Updated()
+    {
+        // Arrange
+        var recipeId = RecipeSeeds.RecipeForIngredientAmountEntityUpdate.Id;
+        var model = new IngredientAmountListModel
+        {
+            Id = IngredientAmountSeeds.IngredientAmountEntityUpdate.Id,
+            IngredientId = IngredientAmountSeeds.IngredientAmountEntityUpdate.IngredientId,
+            IngredientName = IngredientSeeds.IngredientEntity1.Name,
+            IngredientImageUrl = IngredientSeeds.IngredientEntity1.ImageUrl,
+            Amount = 42m,
+            Unit = Unit.G
+        };
+
+        // Act
+        await _facadeSUT.UpdateIngredientAsync(recipeId, model);
+
+        // Assert
+        await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
+        var ingredientAmount = await dbxAssert.IngredientAmountEntities
+            .SingleAsync(i => i.Id == model.Id);
+
+        Assert.Equal(recipeId, ingredientAmount.RecipeId);
+        Assert.Equal(model.Amount, ingredientAmount.Amount);
+        Assert.Equal(model.Unit, ingredientAmount.Unit);
+    }
+
+    [Fact]
+    public async Task RemoveIngredient_FromSeeded_Deleted()
+    {
+        // Arrange
+        var ingredientAmountId = IngredientAmountSeeds.IngredientAmountEntityDelete.Id;
+
+        // Act
+        await _facadeSUT.RemoveIngredientAsync(ingredientAmountId);
+
+        // Assert
+        await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
+        Assert.False(await dbxAssert.IngredientAmountEntities.AnyAsync(i => i.Id == ingredientAmountId));
     }
 
     [Fact]
     public async Task DeleteById_FromSeeded_DoesNotThrow()
     {
-        //Arrange & Act & Assert
+        //Act
         await _facadeSUT.DeleteAsync(RecipeSeeds.RecipeEntity.Id);
+
+        //Assert
+        await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
+        Assert.False(await dbxAssert.Recipes.AnyAsync(i => i.Id == RecipeSeeds.RecipeEntity.Id));
     }
 
-    private static void FixIds(RecipeDetailModel expectedModel, RecipeDetailModel returnedModel)
-    {
-        returnedModel.Id = expectedModel.Id;
-
-        foreach (var ingredientAmountModel in returnedModel.Ingredients)
-        {
-            var ingredientAmountDetailModel = expectedModel.Ingredients.FirstOrDefault(i =>
-                i.IngredientName == ingredientAmountModel.IngredientName
-                && i.IngredientImageUrl == ingredientAmountModel.IngredientImageUrl
-                && Math.Abs(i.Amount - ingredientAmountModel.Amount) <= 0
-                && i.Unit == ingredientAmountModel.Unit);
-
-            if (ingredientAmountDetailModel != null)
-            {
-                ingredientAmountModel.Id = ingredientAmountDetailModel.Id;
-                ingredientAmountModel.IngredientId = ingredientAmountDetailModel.IngredientId;
-            }
-        }
-    }
 }

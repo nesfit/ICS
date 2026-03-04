@@ -27,7 +27,7 @@ namespace Dapper.DAL
             return result.ToList();
         }
 
-        public StudentEntity GetById(Guid id)
+        public StudentEntity? GetById(Guid id)
         {
             using var connection = new SqlConnection(_connectionString);
             var statement = "SELECT * FROM Students WHERE Id = @Id";
@@ -62,7 +62,8 @@ namespace Dapper.DAL
                 .AddJsonFile("appconfig.json"); //beware of static file reference in code... also, the DB has to be created manually
 
             var configuration = builder.Build();
-            return configuration.GetConnectionString("SchoolContext");
+            return configuration.GetConnectionString("SchoolContext")
+                   ?? throw new InvalidOperationException("Missing connection string 'SchoolContext'.");
         }
     }
 }
