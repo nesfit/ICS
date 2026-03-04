@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using CookBook.App.Messages;
 using CookBook.App.Services;
 using CookBook.BL.Facades;
-using CookBook.BL.Mappers;
 using CookBook.BL.Models;
 using CookBook.Common.Enums;
 using System.Collections.ObjectModel;
@@ -13,9 +12,7 @@ namespace CookBook.App.ViewModels;
 [QueryProperty(nameof(Id), nameof(Id))]
 public partial class RecipeIngredientsEditViewModel(
     IIngredientFacade ingredientFacade,
-    IIngredientAmountFacade ingredientAmountFacade,
     IRecipeFacade recipeFacade,
-    IngredientAmountModelMapper ingredientAmountModelMapper,
     IMessengerService messengerService)
     : ViewModelBase(messengerService)
 {
@@ -58,9 +55,11 @@ public partial class RecipeIngredientsEditViewModel(
             && IngredientSelected is not null
             && Recipe is not null)
         {
-            ingredientAmountModelMapper.MapToExistingListModel(IngredientAmountNew, IngredientSelected);
+            IngredientAmountNew.IngredientId = IngredientSelected.Id;
+            IngredientAmountNew.IngredientName = IngredientSelected.Name;
+            IngredientAmountNew.IngredientImageUrl = IngredientSelected.ImageUrl;
 
-            await ingredientAmountFacade.SaveAsync(IngredientAmountNew, Recipe.Id);
+            await recipeFacade.AddIngredientAsync(Recipe.Id, IngredientAmountNew);
             Recipe.Ingredients.Add(IngredientAmountNew);
 
             IngredientAmountNew = GetIngredientAmountNew();
@@ -75,7 +74,7 @@ public partial class RecipeIngredientsEditViewModel(
         if (model is not null
             && Recipe is not null)
         {
-            await ingredientAmountFacade.SaveAsync(model, Recipe.Id);
+            await recipeFacade.UpdateIngredientAsync(Recipe.Id, model);
 
             MessengerService.Send(new RecipeIngredientEditMessage());
         }
@@ -86,7 +85,7 @@ public partial class RecipeIngredientsEditViewModel(
     {
         if (Recipe is not null)
         {
-            await ingredientAmountFacade.DeleteAsync(model.Id);
+            await recipeFacade.RemoveIngredientAsync(model.Id);
             Recipe.Ingredients.Remove(model);
 
             MessengerService.Send(new RecipeIngredientDeleteMessage());

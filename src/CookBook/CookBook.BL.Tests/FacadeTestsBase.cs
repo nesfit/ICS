@@ -21,8 +21,7 @@ public class FacadeTestsBase : IAsyncLifetime
         DbContextFactory = new DbContextSqLiteFactory(databaseName);
 
         IngredientModelMapper = new IngredientModelMapper();
-        IngredientAmountModelMapper = new IngredientAmountModelMapper();
-        RecipeModelMapper = new RecipeModelMapper(IngredientAmountModelMapper);
+        RecipeModelMapper = new RecipeModelMapper();
 
         var services = new ServiceCollection();
         services.AddSingleton<IngredientEntityMapper>();
@@ -38,7 +37,6 @@ public class FacadeTestsBase : IAsyncLifetime
     protected IDbContextFactory<CookBookDbContext> DbContextFactory { get; }
 
     protected IngredientModelMapper IngredientModelMapper { get; }
-    protected IngredientAmountModelMapper IngredientAmountModelMapper { get; }
     protected RecipeModelMapper RecipeModelMapper { get; }
     protected UnitOfWorkFactory UnitOfWorkFactory { get; }
 
