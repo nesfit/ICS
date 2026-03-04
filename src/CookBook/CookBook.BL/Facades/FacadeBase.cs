@@ -43,7 +43,7 @@ public abstract class
     {
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
 
-        IQueryable<TEntity> query = uow.GetRepository<TEntity, TEntityMapper>().Get();
+        IQueryable<TEntity> query = uow.GetRepository<TEntity, TEntityMapper>().Get(asNoTracking: true);
 
         foreach (string includePath in IncludesNavigationPathDetail)
         {
@@ -63,7 +63,7 @@ public abstract class
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
         List<TEntity> entities = await uow
             .GetRepository<TEntity, TEntityMapper>()
-            .Get()
+            .Get(asNoTracking: true)
             .ToListAsync().ConfigureAwait(false);
 
         return ModelMapper.MapToListModel(entities);
