@@ -1,4 +1,5 @@
 ﻿using CookBook.BL.Models;
+using CookBook.Common.Enums;
 using CookBook.DAL.Entities;
 
 namespace CookBook.BL.Mappers;
@@ -53,29 +54,27 @@ public class IngredientAmountModelMapper :
     }
 
     public override IngredientAmountEntity MapToEntity(IngredientAmountDetailModel model)
-        => throw new NotImplementedException("This method is unsupported. Use the other overload.");
-
+        => MapToEntity(model.Id, Guid.Empty, model.IngredientId, model.Amount, model.Unit);
 
     public IngredientAmountEntity MapToEntity(IngredientAmountDetailModel model, Guid recipeId)
-        => new()
-        {
-            Id = model.Id,
-            RecipeId = recipeId,
-            IngredientId = model.IngredientId,
-            Amount = model.Amount,
-            Unit = model.Unit,
-            Recipe = null!,
-            Ingredient = null!
-        };
+        => MapToEntity(model.Id, recipeId, model.IngredientId, model.Amount, model.Unit);
 
     public IngredientAmountEntity MapToEntity(IngredientAmountListModel model, Guid recipeId)
+        => MapToEntity(model.Id, recipeId, model.IngredientId, model.Amount, model.Unit);
+
+    private static IngredientAmountEntity MapToEntity(
+        Guid id,
+        Guid recipeId,
+        Guid ingredientId,
+        decimal amount,
+        Unit unit)
         => new()
         {
-            Id = model.Id,
+            Id = id,
             RecipeId = recipeId,
-            IngredientId = model.IngredientId,
-            Amount = model.Amount,
-            Unit = model.Unit,
+            IngredientId = ingredientId,
+            Amount = amount,
+            Unit = unit,
             Recipe = null!,
             Ingredient = null!
         };
