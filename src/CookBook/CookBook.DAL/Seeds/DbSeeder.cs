@@ -17,24 +17,32 @@ public class DbSeeder(IDbContextFactory<CookBookDbContext> dbContextFactory, IOp
             return;
         }
 
-        bool hasLemon = dbContext.Set<IngredientEntity>().Any(i => i.Id == IngredientSeeds.Lemon.Id);
-        bool hasWater = dbContext.Set<IngredientEntity>().Any(i => i.Id == IngredientSeeds.Water.Id);
-        if (!hasLemon && !hasWater)
+        if (!dbContext.Set<IngredientEntity>().Any(i => i.Id == IngredientSeeds.Lemon.Id))
         {
-            dbContext.SeedIngredients();
+            dbContext.Set<IngredientEntity>().Add(IngredientSeeds.Lemon);
         }
 
-        bool hasLemonadeRecipe = dbContext.Set<RecipeEntity>().Any(i => i.Id == RecipeSeeds.LemonadeRecipe.Id);
-        if (!hasLemonadeRecipe)
+        if (!dbContext.Set<IngredientEntity>().Any(i => i.Id == IngredientSeeds.Water.Id))
         {
-            dbContext.SeedRecipes();
+            dbContext.Set<IngredientEntity>().Add(IngredientSeeds.Water);
         }
 
-        bool hasLemonadeLemon = dbContext.Set<IngredientAmountEntity>().Any(i => i.Id == IngredientAmountSeeds.LemonadeLemon.Id);
-        bool hasLemonadeWater = dbContext.Set<IngredientAmountEntity>().Any(i => i.Id == IngredientAmountSeeds.LemonadeWater.Id);
-        if (!hasLemonadeLemon && !hasLemonadeWater)
+        if (!dbContext.Set<RecipeEntity>().Any(i => i.Id == RecipeSeeds.LemonadeRecipe.Id))
         {
-            dbContext.SeedIngredientAmounts();
+            dbContext.Set<RecipeEntity>().Add(
+                RecipeSeeds.LemonadeRecipe with { Ingredients = new List<IngredientAmountEntity>() });
+        }
+
+        if (!dbContext.Set<IngredientAmountEntity>().Any(i => i.Id == IngredientAmountSeeds.LemonadeLemon.Id))
+        {
+            dbContext.Set<IngredientAmountEntity>().Add(
+                IngredientAmountSeeds.LemonadeLemon with { Recipe = null!, Ingredient = null! });
+        }
+
+        if (!dbContext.Set<IngredientAmountEntity>().Any(i => i.Id == IngredientAmountSeeds.LemonadeWater.Id))
+        {
+            dbContext.Set<IngredientAmountEntity>().Add(
+                IngredientAmountSeeds.LemonadeWater with { Recipe = null!, Ingredient = null! });
         }
 
         dbContext.SaveChanges();
