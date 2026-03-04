@@ -5,7 +5,7 @@ using CookBook.DAL.Entities;
 namespace CookBook.BL.Mappers;
 
 public class IngredientAmountModelMapper :
-    ModelMapperBase<IngredientAmountEntity, IngredientAmountListModel, IngredientAmountDetailModel>
+    ModelMapperBase<IngredientAmountEntity, IngredientAmountListModel, IngredientAmountListModel>
 {
     public override IngredientAmountListModel MapToListModel(IngredientAmountEntity? entity)
         => entity?.Ingredient is null
@@ -20,44 +20,19 @@ public class IngredientAmountModelMapper :
                 Unit = entity.Unit
             };
 
-    public override IngredientAmountDetailModel MapToDetailModel(IngredientAmountEntity? entity)
-        => entity?.Ingredient is null
-            ? IngredientAmountDetailModel.Empty
-            : new IngredientAmountDetailModel
-            {
-                Id = entity.Id,
-                IngredientId = entity.Ingredient.Id,
-                IngredientName = entity.Ingredient.Name,
-                IngredientDescription = entity.Ingredient.Description,
-                IngredientImageUrl = entity.Ingredient.ImageUrl,
-                Amount = entity.Amount,
-                Unit = entity.Unit
-            };
+    public override IngredientAmountListModel MapToDetailModel(IngredientAmountEntity? entity)
+        => MapToListModel(entity);
 
-    public IngredientAmountListModel MapToListModel(IngredientAmountDetailModel detailModel)
-        => new()
-        {
-            Id = detailModel.Id,
-            IngredientId = detailModel.IngredientId,
-            IngredientName = detailModel.IngredientName,
-            IngredientImageUrl = detailModel.IngredientImageUrl,
-            Amount = detailModel.Amount,
-            Unit = detailModel.Unit
-        };
-
-    public void MapToExistingDetailModel(IngredientAmountDetailModel existingDetailModel,
+    public void MapToExistingListModel(IngredientAmountListModel existingListModel,
         IngredientListModel ingredient)
     {
-        existingDetailModel.IngredientId = ingredient.Id;
-        existingDetailModel.IngredientName = ingredient.Name;
-        existingDetailModel.IngredientImageUrl = ingredient.ImageUrl;
+        existingListModel.IngredientId = ingredient.Id;
+        existingListModel.IngredientName = ingredient.Name;
+        existingListModel.IngredientImageUrl = ingredient.ImageUrl;
     }
 
-    public override IngredientAmountEntity MapToEntity(IngredientAmountDetailModel model)
+    public override IngredientAmountEntity MapToEntity(IngredientAmountListModel model)
         => MapToEntity(model.Id, Guid.Empty, model.IngredientId, model.Amount, model.Unit);
-
-    public IngredientAmountEntity MapToEntity(IngredientAmountDetailModel model, Guid recipeId)
-        => MapToEntity(model.Id, recipeId, model.IngredientId, model.Amount, model.Unit);
 
     public IngredientAmountEntity MapToEntity(IngredientAmountListModel model, Guid recipeId)
         => MapToEntity(model.Id, recipeId, model.IngredientId, model.Amount, model.Unit);

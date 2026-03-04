@@ -11,7 +11,7 @@ public class IngredientAmountFacade(
     IUnitOfWorkFactory unitOfWorkFactory,
     IngredientAmountModelMapper ingredientAmountModelMapper)
     :
-        FacadeBase<IngredientAmountEntity, IngredientAmountListModel, IngredientAmountDetailModel,
+        FacadeBase<IngredientAmountEntity, IngredientAmountListModel, IngredientAmountListModel,
             IngredientAmountEntityMapper>(unitOfWorkFactory, ingredientAmountModelMapper), IIngredientAmountFacade
 {
     public async Task SaveAsync(IngredientAmountListModel model, Guid recipeId)
@@ -29,15 +29,4 @@ public class IngredientAmountFacade(
         }
     }
 
-    public async Task SaveAsync(IngredientAmountDetailModel model, Guid recipeId)
-    {
-        IngredientAmountEntity entity = ingredientAmountModelMapper.MapToEntity(model, recipeId);
-
-        await using IUnitOfWork uow = UnitOfWorkFactory.Create();
-        IRepository<IngredientAmountEntity> repository =
-            uow.GetRepository<IngredientAmountEntity, IngredientAmountEntityMapper>();
-
-        repository.Insert(entity);
-        await uow.CommitAsync();
-    }
 }

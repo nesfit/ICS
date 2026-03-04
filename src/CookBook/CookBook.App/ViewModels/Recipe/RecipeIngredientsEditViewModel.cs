@@ -33,7 +33,7 @@ public partial class RecipeIngredientsEditViewModel(
     public partial IngredientListModel? IngredientSelected { get; set; }
 
     [ObservableProperty]
-    public partial IngredientAmountDetailModel? IngredientAmountNew { get; set; }
+    public partial IngredientAmountListModel? IngredientAmountNew { get; set; }
 
     protected override async Task LoadDataAsync()
     {
@@ -58,10 +58,10 @@ public partial class RecipeIngredientsEditViewModel(
             && IngredientSelected is not null
             && Recipe is not null)
         {
-            ingredientAmountModelMapper.MapToExistingDetailModel(IngredientAmountNew, IngredientSelected);
+            ingredientAmountModelMapper.MapToExistingListModel(IngredientAmountNew, IngredientSelected);
 
             await ingredientAmountFacade.SaveAsync(IngredientAmountNew, Recipe.Id);
-            Recipe.Ingredients.Add(ingredientAmountModelMapper.MapToListModel(IngredientAmountNew));
+            Recipe.Ingredients.Add(IngredientAmountNew);
 
             IngredientAmountNew = GetIngredientAmountNew();
 
@@ -93,7 +93,7 @@ public partial class RecipeIngredientsEditViewModel(
         }
     }
 
-    private IngredientAmountDetailModel GetIngredientAmountNew()
+    private IngredientAmountListModel GetIngredientAmountNew()
     {
         var ingredientFirst = Ingredients.First();
         return new()
@@ -101,7 +101,7 @@ public partial class RecipeIngredientsEditViewModel(
             Id = Guid.NewGuid(),
             IngredientId = ingredientFirst.Id,
             IngredientName = ingredientFirst.Name,
-            IngredientDescription = string.Empty,
+            IngredientImageUrl = ingredientFirst.ImageUrl,
             Amount = 0,
             Unit = Unit.None,
         };
