@@ -10,17 +10,19 @@ namespace School.BL.Mappers
 {
     public class AddressMapper : IMapper<AddressEntity, AddressDetailModel, AddressDetailModel>
     {
-        public IEnumerable<AddressDetailModel> Map(IQueryable<AddressEntity> entities) 
-            => entities?.Select(entity => Map(entity)).ToValueCollection();
+        public IEnumerable<AddressDetailModel> Map(IQueryable<AddressEntity>? entities)
+            => entities is null
+                ? Enumerable.Empty<AddressDetailModel>().ToValueCollection()
+                : entities.Select(entity => Map(entity)!).ToValueCollection();
 
-        public AddressDetailModel Map(AddressEntity entity) 
-            => entity is null? null : new AddressDetailModel
+        public AddressDetailModel? Map(AddressEntity? entity)
+            => entity is null ? null : new AddressDetailModel
             {
                 Id = entity.Id,
-                City = entity.City,
-                Street = entity.Street,
-                State = entity.State,
-                Country = entity.Country
+                City = entity.City ?? string.Empty,
+                Street = entity.Street ?? string.Empty,
+                State = entity.State ?? string.Empty,
+                Country = entity.Country ?? string.Empty
             };
 
         public AddressEntity Map(AddressDetailModel detailModel, IEntityFactory entityFactory)

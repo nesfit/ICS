@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using School.DAL.Entities;
 
@@ -38,8 +40,20 @@ public class RepositoryBase<TEntity>
 
     public TEntity InsertOrUpdate(TEntity entity)
     {
-        _unitOfWork.DbContext.Update(entity);
-        SynchronizeCollections(entity);
+        var exists = _unitOfWork.DbContext
+            .Set<TEntity>()
+            .AsNoTracking()
+            .Any(e => e.Id == entity.Id);
+
+        if (exists)
+        {
+            _unitOfWork.DbContext.Update(entity);
+            SynchronizeCollections(entity);
+        }
+        else
+        {
+            _unitOfWork.DbContext.Add(entity);
+        }
 
 #if DEBUG
         DisplayStates(_unitOfWork.DbContext.ChangeTracker.Entries());
@@ -66,17 +80,40 @@ public class RepositoryBase<TEntity>
             return;
         }
 
-        var entityInDb = GetById(entity.Id);
+        IQueryable<TEntity> query = _unitOfWork.DbContext
+            .Set<TEntity>()
+            .AsNoTracking();
+
+        foreach (var collectionSelector in toBeSynchronized)
+        {
+            query = query.Include(collectionSelector.Name);
+        }
+
+        var entityInDb = query.SingleOrDefault(i => i.Id == entity.Id);
         if (entityInDb is null) return;
 
         foreach (var collectionSelector in toBeSynchronized)
         {
-            var updatedCollection = (collectionSelector.GetValue(entity) as ICollection<IEntity> ?? ArraySegment<IEntity>.Empty).ToArray();
-            var collectionInDb = (collectionSelector.GetValue(entityInDb) as ICollection<IEntity> ?? ArraySegment<IEntity>.Empty).ToArray();
+            var updatedCollection = (collectionSelector.GetValue(entity) as IEnumerable)
+                ?.Cast<IEntity>()
+                .ToArray() ?? Array.Empty<IEntity>();
+            var collectionInDb = (collectionSelector.GetValue(entityInDb) as IEnumerable)
+                ?.Cast<IEntity>()
+                .ToArray() ?? Array.Empty<IEntity>();
 
             foreach (var item in collectionInDb)
+            {
                 if (!updatedCollection.Contains(item, PrimaryKeyComparers.IdComparer))
-                    DeleteById(item.Id);
+                {
+                    // Delete by key-only stub to avoid attaching a graph that may conflict with
+                    // already tracked principal entities with the same key.
+                    if (Activator.CreateInstance(item.GetType()) is IEntity entityToDelete)
+                    {
+                        entityToDelete.Id = item.Id;
+                        _unitOfWork.DbContext.Entry(entityToDelete).State = EntityState.Deleted;
+                    }
+                }
+            }
         }
     }
 

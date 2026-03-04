@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using School.DAL.Entities;
-using School.DAL.Factories;
 using School.DAL.Seeds;
 using Xunit;
 
@@ -11,20 +10,19 @@ namespace School.DAL.Tests
     public class LinqLazyEvaluationTest : IDisposable
     {
         private readonly SchoolDbContext _schoolDbContextSut;
-        private readonly DbContextInMemoryFactory _dbContextFactory;
+        private readonly string _databaseName;
 
         public LinqLazyEvaluationTest()
         {
-            _dbContextFactory = new DbContextInMemoryFactory(nameof(EntityStatesTest));
-            _schoolDbContextSut = _dbContextFactory.Create();
-            _schoolDbContextSut.Database.EnsureCreated();
+            _databaseName = nameof(EntityStatesTest);
+            _schoolDbContextSut = TestDbContextFactory.CreateInMemory(databaseName: _databaseName);
         }
 
         [Fact]
-        public void LazyEvaluationTest()
+        public void DeferredQuery_ThrowsObjectDisposedException_WhenEnumeratedAfterContextDispose()
         {
             IEnumerable<StudentEntity> students;
-            using (var schoolDbContextSut = _dbContextFactory.Create())
+            using (var schoolDbContextSut = TestDbContextFactory.CreateInMemory(databaseName: _databaseName))
             {
                 students = schoolDbContextSut.Students.Where(s => s.Id == Seed.StudentJane.Id);
             }

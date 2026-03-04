@@ -2,7 +2,6 @@
 using School.DAL;
 using Microsoft.EntityFrameworkCore;
 using School.DAL.Entities;
-using School.DAL.Factories;
 using Xunit;
 
 namespace School.DAL.Tests
@@ -13,9 +12,7 @@ namespace School.DAL.Tests
 
         public EntityStatesTest()
         {
-            var dbContextFactory = new DbContextInMemoryFactory(nameof(EntityStatesTest));
-            _schoolDbContextSut = dbContextFactory.Create();
-            _schoolDbContextSut.Database.EnsureCreated();
+            _schoolDbContextSut = TestDbContextFactory.CreateInMemory(databaseName: nameof(EntityStatesTest));
         }
 
         private readonly StudentEntity _studentEntity = new()
@@ -24,14 +21,14 @@ namespace School.DAL.Tests
         };
 
         [Fact]
-        public void AddedStateTest()
+        public void Add_SetsEntityStateToAdded()
         {
             _schoolDbContextSut.Students.Add(_studentEntity);
             Assert.Equal(EntityState.Added, _schoolDbContextSut.Entry(_studentEntity).State);
         }
 
         [Fact]
-        public void UnchangedStateTest()
+        public void SaveChanges_TransitionsAddedEntityToUnchanged()
         {
             _schoolDbContextSut.Students.Add(_studentEntity);
             _schoolDbContextSut.SaveChanges();
@@ -39,7 +36,7 @@ namespace School.DAL.Tests
         }
 
         [Fact]
-        public void ModifiedStateTest()
+        public void ChangingTrackedProperty_SetsEntityStateToModified()
         {
             var entityEntry = _schoolDbContextSut.Students.Add(_studentEntity);
             _schoolDbContextSut.SaveChanges();
@@ -48,7 +45,7 @@ namespace School.DAL.Tests
         }
 
         [Fact]
-        public void DeletedStateTest()
+        public void Remove_SetsEntityStateToDeleted()
         {
             _schoolDbContextSut.Students.Add(_studentEntity);
             _schoolDbContextSut.SaveChanges();
@@ -57,7 +54,7 @@ namespace School.DAL.Tests
         }
 
         [Fact]
-        public void DetachedStateTest()
+        public void NewEntity_IsDetachedBeforeTracking()
         {
             Assert.Equal(EntityState.Detached, _schoolDbContextSut.Entry(_studentEntity).State);
         }

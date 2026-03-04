@@ -10,10 +10,12 @@ namespace School.BL.Mappers
 {
     public class ProjectGroupMapper : IMapper<ProjectGroupEntity, ProjectGroupListModel, ProjectGroupDetailModel>
     {
-        public IMapper<StudentEntity, StudentListModel, StudentDetailModel> StudentMapper { get; set; }
+        public IMapper<StudentEntity, StudentListModel, StudentDetailModel> StudentMapper { get; set; } = new StudentMapper();
 
-        public IEnumerable<ProjectGroupListModel> Map(IQueryable<ProjectGroupEntity> entities) 
-            => entities?.Select(entity => MapListModel(entity)).ToValueCollection();
+        public IEnumerable<ProjectGroupListModel> Map(IQueryable<ProjectGroupEntity>? entities)
+            => entities is null
+                ? Enumerable.Empty<ProjectGroupListModel>().ToValueCollection()
+                : entities.Select(MapListModel).ToValueCollection();
 
         public ProjectGroupListModel MapListModel(ProjectGroupEntity entity) =>
             new()
@@ -22,7 +24,7 @@ namespace School.BL.Mappers
                 AvailableSpots = entity.AvailableSpots,
             };
 
-        public ProjectGroupDetailModel Map(ProjectGroupEntity entity) 
+        public ProjectGroupDetailModel? Map(ProjectGroupEntity? entity)
             => entity is null
             ? null
             : new ProjectGroupDetailModel

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
 using School.BL.Mappers;
 using School.BL.Models.DetailModels;
 using School.BL.Models.ListModels;
@@ -23,7 +22,7 @@ namespace School.BL.Facades
         {
         }
 
-        protected override Func<IQueryable<ProjectGroupEntity>, IIncludableQueryable<ProjectGroupEntity, object>>[] Includes { get; } = new Func<IQueryable<ProjectGroupEntity>, IIncludableQueryable<ProjectGroupEntity, object>>[]
+        protected override Func<IQueryable<ProjectGroupEntity>, IQueryable<ProjectGroupEntity>>[] Includes { get; } = new Func<IQueryable<ProjectGroupEntity>, IQueryable<ProjectGroupEntity>>[]
         {
             entities => entities.Include(i=>i.Students)
         };
