@@ -225,11 +225,16 @@ Doporučujeme (bonusové body):
 Využijte Azure DevOps a GIT pro sdílení kódu. Přidejte do projektu vyučující účet **uciteliw5@vutbr.cz**.
 
 > :warning: **Velmi důležité upozornění**  
+> Organizaci v Azure DevOps je bezpodmínečně nutné vytvořit pod **VUT loginem**, nikoliv pod soukromým Microsoft účtem.  
+> Organizace vytvořené pod soukromým účtem nejsou přístupné pro hodnoticí účet a je nutné je znovu založit pod VUT loginem, což vyžaduje řadu manuálních zásahů.  
+> Chybně vytvořené organizace budou při hodnocení bodově penalizovány.  
+>  
 > Účet **uciteliw5@vutbr.cz** musí být přidán jako poslední a mít oprávnění **Stakeholder**.  
 > Zároveň je nutné tento účet přidat do **Project Collection Administrator** v nastavení organizace.  
 > Bez splnění obou bodů není možné korektně hodnotit projekt.
 
 Důležité:
+- Organizaci v Azure DevOps zakládejte výhradně pod VUT loginem, nikdy pod soukromým účtem.
 - Účet přidejte jako poslední a ověřte, že má oprávnění **Stakeholder**.
 - Je nutné přidat účet do **Project Collection Administrator** v nastavení organizace.
 - Organizaci pojmenujte `ics-2026-xlogin00` a projekt `project` (příklad URL: `https://dev.azure.com/ics-2026-xlogin00/project`).
