@@ -1,6 +1,3 @@
-> :warning: **Varování**  
-> Zadání je prozatím DRAFT, finální podoba bude zveřejněna po druhém týdnu semestru.
-
 # ICS projekt
 
 ## Tl;dr
