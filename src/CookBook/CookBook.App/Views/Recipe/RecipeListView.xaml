@@ -11,7 +11,7 @@
                        x:Name="RecipeListViewRoot"
                        Style="{StaticResource ContentPageStyle}">
     <Grid>
-        <Grid HorizontalOptions="FillAndExpand"
+        <Grid HorizontalOptions="Fill"
               RowDefinitions="Auto, *"
               RowSpacing="20"
               Margin="{OnIdiom Phone='10, 0'}">
@@ -20,7 +20,7 @@
                    Text="{x:Static t:RecipeListViewTexts.Title_Label}" />
 
             <CollectionView Grid.Row="1" ItemsSource="{Binding Recipes}"
-                            VerticalOptions="FillAndExpand">
+                            VerticalOptions="Fill">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Horizontal"
                                      HorizontalItemSpacing="10" VerticalItemSpacing="10"
@@ -88,7 +88,7 @@
                 HorizontalOptions="End" VerticalOptions="Start"
                 Text="{x:Static t:RecipeListViewTexts.Add_Button_Text}"
                 Command="{Binding GoToCreateCommand}"
-                CornerRadius="5" FontFamily="MontserratMedium"
+                CornerRadius="5"
                 FontSize="14"
                 Style="{StaticResource PrimaryButtonStyle}" />
     </Grid>

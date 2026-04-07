@@ -21,7 +21,7 @@
                 HorizontalOptions="End" VerticalOptions="Start"
                 Text="{x:Static texts:IngredientListViewTexts.Add_Button_Text}"
                 Command="{Binding GoToCreateCommand}"
-                CornerRadius="5" FontFamily="MontserratMedium"
+                CornerRadius="5"
                 FontSize="14"
                 Style="{StaticResource PrimaryButtonStyle}" />
 
