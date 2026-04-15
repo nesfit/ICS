@@ -13,7 +13,7 @@ namespace ParallelProgramming.Samples.TPL
     {
         public static void Main(string[] args) => BenchmarkRunner.Run(typeof(ParallelLinqBenchmark).Assembly);
 
-        private readonly IEnumerable<int> _range = Enumerable.Range(0, 200_000_000);
+        private readonly IEnumerable<int> _range = Enumerable.Range(0, 200_000);
 
         [Benchmark]
         public double AverageWithUseOfParallelLinq() =>

@@ -19,16 +19,30 @@
       <div class="slides"><section  data-markdown><script type="text/template">
 
 # Parallel programming
-## Process, thread, and task in .NET perspective
+## Process, thread, and task from a .NET perspective
 
 <div class="right">[ Jan Pluskal &lt;pluskal@vut.cz&gt;  ]</div>
 
 </script></section><section  data-markdown><script type="text/template">
 
 ## Lecture outline:  
-1. Motivation
-2. Parallel programming
-3. Asynchronous programming
+1. Decision framework: parallel vs. async
+2. Parallel programming fundamentals
+3. Asynchronous programming fundamentals
+4. Production concurrency patterns
+5. Observability, testing, and lab
+
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Learning outcomes
+
+After this lecture, you should be able to:
+
+- choose between parallelism and asynchrony based on workload shape
+- design bounded, cancelable, and observable concurrent workflows
+- avoid common production failures (deadlocks, thread pool starvation, runaway fan-out)
+- validate concurrency behavior using metrics, traces, and targeted tests
 
 
 </script></section><section  data-markdown><script type="text/template">
@@ -47,7 +61,7 @@
 
 ## Parallel computing
 
-- Concurrent processing / Running multiple things at once
+- Concurrent processing: running multiple things at once
 - May increase performance **if used appropriately**
 - Achieved by:
     - Multiple **processes**
@@ -58,7 +72,7 @@
 ## Synchronous vs. asynchronous computing
 
 - Synchronous execution
-    - *I/O operation, long running computation* blocks execution
+    - *I/O operations and long-running computations* block execution
 
 - Asynchronous execution
     - Non-blocking execution
@@ -74,6 +88,39 @@ Source: https://eloquentjavascript.net/11_async.html
 
 </script></section><section  data-markdown><script type="text/template">
 
+## Decision matrix: parallel vs. async
+
+| Question | Prefer parallelism | Prefer asynchrony |
+| :------- | :----------------- | :---------------- |
+| Is the bottleneck CPU? | Yes | No |
+| Is the bottleneck I/O wait? | No | Yes |
+| Need lower wall-clock for heavy compute? | Yes | Sometimes |
+| Need high scalability under I/O load? | Sometimes | Yes |
+
+Rule of thumb:
+- CPU-bound => parallelism
+- I/O-bound => async/await
+- mixed pipeline => combine both, but keep concurrency bounded
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Workload classification
+
+CPU-bound examples:
+- image/video processing
+- cryptography and compression
+- scoring/ML inference
+
+I/O-bound examples:
+- HTTP/database/file/network calls
+- message bus consumption
+- cloud storage access
+
+Mixed workloads:
+- load data asynchronously, then process CPU-heavy batches in parallel
+
+</script></section><section  data-markdown><script type="text/template">
+
 # Parallel programming
 
 </script></section><section  data-markdown><script type="text/template">
@@ -81,23 +128,23 @@ Source: https://eloquentjavascript.net/11_async.html
 ## Process 
 
 - known from the [IOS course](https://www.fit.vut.cz/study/course/IOS/.en)
-- in the nutshell:
-  - **standalone** running program
-  - has its process identification (PID)
-  - **does not share code and variables** with other processes
-    - needs OS for runtime / memory synchronization (mutexes, ...)
-    - needs OS for data sharing (shared memory, ...)
-  - STDIN/STDOUT/STDERR
+- in a nutshell:
+    - a **standalone** running program
+    - has its process identifier (PID)
+    - **does not share code and variables** with other processes
+        - needs OS support for runtime / memory synchronization (mutexes, ...)
+        - needs OS support for data sharing (shared memory, ...)
+    - STDIN/STDOUT/STDERR
 
 </script></section><section  data-markdown><script type="text/template">
 
 ## Thread
 
 - known from the [IOS course](https://www.fit.vut.cz/study/course/IOS/.en)
-- in the nutshell:
+- in a nutshell:
   - runs **within a process**
   - **has its own stack but shares a heap**
-  - error in one thread can kill the whole process
+  - an error in one thread can kill the whole process
   - **shares code and variables** with other threads
     - needs OS for memory synchronization (mutexes, ...)
     - data are shared between threads using heap (needs protection - mutex, lock, semaphore, monitor, ...)
@@ -108,7 +155,7 @@ Source: https://eloquentjavascript.net/11_async.html
 
 ![Thread vs Process](https://techdifferences.com/wp-content/uploads/2017/01/Multithreading.jpg)
 
-Source:https://techdifferences.com/difference-between-multiprocessing-and-multithreading.html
+Source: https://techdifferences.com/difference-between-multiprocessing-and-multithreading.html
 
 </script></section><section  data-markdown><script type="text/template">
 
@@ -137,11 +184,11 @@ process.WaitForExit();
 ## Process in .NET
 
 - Input/Output
-    - accessing output via events:
+    - access output via events:
         - `ErrorDataReceived` - output written to `stderr`
         - `OutputDataReceived` - output written to `stdout`
-    - need to be enabled via `BeginOutputReadLine()` or `BeginErrorReadLine()`
-- allows opening of file with associated executable
+    - enable it via `BeginOutputReadLine()` or `BeginErrorReadLine()`
+- allows opening a file with an associated executable
     - Set `FileName` to associated file and set `UseShellExecute` to `true`
 
 
@@ -165,7 +212,7 @@ process.BeginOutputReadLine();
 
 ## Process in .NET
 
-- accesing input via `StandardInput` property
+- accessing input via `StandardInput` property
 
 ```C#
 using var process = new System.Diagnostics.Process ...
@@ -180,7 +227,7 @@ process.StandardInput.WriteLine("Hello world");
 - Exiting
     - handled via `WaitForExit` method and its overloads
     - initiated via `Close` method
-    - when needed `Kill` method can be used to force termination
+    - if needed, `Kill` can be used to force termination
 
 </script></section><section  data-markdown><script type="text/template">
 
@@ -192,8 +239,9 @@ process.StandardInput.WriteLine("Hello world");
 
 - represented via `Thread` class
 - possible to get current `Thread` using `Thread.CurrentThread`
-- should never be created manually! Use `ThreadPool` to queue work instead.
-- for waiting `Join()` method is present
+- should generally not be created manually in application code; prefer `Task`/`async` APIs.
+- `ThreadPool` is used under the hood for most task scheduling scenarios.
+- `Join()` can be used to wait for a thread to finish
 
 </script></section><section  data-markdown><script type="text/template">
 
@@ -201,8 +249,8 @@ process.StandardInput.WriteLine("Hello world");
 
 - `ThreadPool` class [documentation](https://docs.microsoft.com/cs-cz/dotnet/api/system.threading.threadpool?view=netcore-2.2)
 - uses *pool* design pattern
-- manages recycling and planning of thread executions
-- can be configured (methods `SetMaxThreads()`/`SetMinThread()`)
+- manages thread reuse and scheduling
+- can be configured (methods `SetMaxThreads()`/`SetMinThreads()`)
 
 ```C#
 
@@ -234,7 +282,7 @@ static void ThreadProc(Object stateInfo)
 
 - shared resources
 - read/write synchronization
-- exceptions handling in threads
+- exception handling in threads
 - UI thread access
 - debugging multiple threads
 - deadlock
@@ -289,7 +337,7 @@ T2: Count = count           // Count = 1
 | `ReaderWriterLockSlim` | Reader-writer synchronization |                    |   40ns   |
 |   `ReaderWriterLock`   | Reader-writer synchronization |                    |  100ns   |
 
-Only `SemaphoreSlim` is reasonable to use in **async** context.
+Only `SemaphoreSlim` provides async-aware waiting (`WaitAsync`) in **async** context.
 
 </script></section><section  data-markdown><script type="text/template">
 
@@ -331,7 +379,7 @@ public void AddFriend(FriendModel friend)
 
 ## Synchronized collections 
 
-- provided in namespace `System.Collections.Concurrent`
+- provided in the `System.Collections.Concurrent` namespace
     - `BlockingCollection<T>` - ordered collection
     - `ConcurrentQueue<T>` - queue
     - `ConcurrentBag<T>` - unordered collection 
@@ -346,8 +394,8 @@ public void AddFriend(FriendModel friend)
 ## Task Parallel Library
 
 - TPL [Documentation](https://docs.microsoft.com/cs-cz/dotnet/standard/parallel-programming/task-parallel-library-tpl)
-    - parallel `For` and `ForEach` implementation
-    - PLINQ - parallel implementation of LINQ queries - `AsParallel` method
+    - parallel `For` and `ForEach` implementations
+    - PLINQ - parallel implementation of LINQ queries via `AsParallel`
 - Be careful! Parallel does not always mean faster!
 
 ```C#
@@ -369,9 +417,23 @@ source.AsParallel()
 
 </script></section><section  data-markdown><script type="text/template">
 
-## Asynchronous programming in C# 
+## Parallel vs. asynchronous
 
-- three options:
+| Aspect | Parallel | Asynchronous |
+| :----- | :------- | :----------- |
+| Primary goal | Use multiple CPU cores | Avoid blocking while waiting |
+| Typical workload | CPU-bound | I/O-bound |
+| Thread usage | Multiple active worker threads | May use few threads while operations are pending |
+| Typical APIs | `Parallel.ForEach`, PLINQ | `async`/`await`, `Task`, `Task.WhenAll` |
+
+Use parallelism to speed up expensive computations.
+Use asynchrony to keep applications responsive and scalable during I/O waits.
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Asynchronous programming in C# (historical context)
+
+- three historical options:
     - Asynchronous Programming Model (APM)
     - Event-based Asynchronous Pattern (EAP)
     - Task-based Asynchronous Pattern (TAP)
@@ -380,9 +442,9 @@ source.AsParallel()
 
 ## Asynchronous Programming Model
 
-- for each operation, we define `AsyncCallback` object
-- this object defines a method that should be called when the operation ends
-- the method accepts [`IAsyncResult`](https://docs.microsoft.com/cs-cz/dotnet/api/system.iasyncresult?view=netframework-4.7.2) parameter
+- for each operation, we define an `AsyncCallback`
+- this callback is invoked when the operation ends
+- the callback receives an [`IAsyncResult`](https://docs.microsoft.com/cs-cz/dotnet/api/system.iasyncresult?view=netframework-4.7.2)
 
 
 ```C#
@@ -399,7 +461,7 @@ operation.BeginInvoke(5, 5, new AsyncCallback(AddCompleted), null);
 public void AddCompleted(IAsyncResult result) 
 {
     //Handle completion here
-    Console.WriteLine($"Is completed {result.IsCompleted}")
+    Console.WriteLine($"Is completed {result.IsCompleted}");
 }
 ```
 
@@ -408,14 +470,14 @@ public void AddCompleted(IAsyncResult result)
 ## Event-based Asynchronous Pattern
 
 - communication between the caller and the method is done via `event`s
-- typically used on UI components for retrieving results of UI operations
+- typically used in UI components to retrieve results of UI operations
 
 ```C#
 OperationProvider provider = new OperationProvider ();
 provider.DoOperationAsync ("some state data");
 provider.DoOperationCompleted += Provider_DoOperationCompleted;
 
-public void Provider_DoOperationCompeted(string result) 
+public void Provider_DoOperationCompleted(string result) 
 {
     Console.WriteLine(result);
 }
@@ -428,10 +490,10 @@ public void Provider_DoOperationCompeted(string result)
 - in C\# represented with `Task` class or `Task<T>`
 - `Task` is a representation of an operation that is running asynchronously
 - asynchronous methods return `Task` instead of `void` or `Task<T>` instead of `T`
-- when method returning `Task` is called the methods starts executing, but the caller method continues as well (unless waiting for task completion)
-- empty task can be get via `Task.CompletedTask` or `Task.FromResult()`
+- when an async method returning `Task` is called, it runs synchronously until the first `await`; then control returns to the caller if it is not awaiting that task
+- an empty task can be obtained via `Task.CompletedTask` or `Task.FromResult()`
 - important properties
-    - `Status` - running/waiting/faulted/ran
+    - `Status` - lifecycle state (for example `Running`, `RanToCompletion`, `Faulted`, `Canceled`)
     - `Result` - `null` while running, value when finished
     - `Exception` - thrown exception
 
@@ -446,20 +508,42 @@ public void Provider_DoOperationCompeted(string result)
 [Fullsize](_reveal-md/img/asvWD.png)
 </script></section><section  data-markdown><script type="text/template">
 
-## Support in .NET
+## I/O async support in .NET
 
 - I/O handling classes
-    - `StreamReader`, `StreamWriter`- for streams and files access
-    - `HttpClient`, `WebClient` - for accessing web resources
+    - `StreamReader`, `StreamWriter` - for stream and file access (use async members)
+    - `HttpClient` for accessing web resources (`WebClient` is legacy)
 
 </script></section><section  data-markdown><script type="text/template">
 
 ## Task management
 
 - `Task.WhenAll()` - waiting for multiple tasks to finish
-- `GetAwaiter().GetResult()` - returns the (result|throws exception) of task in synchronous code
-- `await task` - returns the (result|throws exception) of task in asynchronous code
-- `ContinueWith(Task t)` - task chaining
+- `GetAwaiter().GetResult()` - returns the result (or throws exception) in synchronous code; use carefully to avoid blocking/deadlocks
+- `await task` - returns the result (or throws exception) in asynchronous code
+- `ContinueWith(Task t)` - legacy task chaining; modern code usually prefers `await`
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Cancellation and timeouts
+
+- production async code should support `CancellationToken`
+- pass the token to all cancellable async calls
+- combine cancellation with timeouts for bounded latency
+
+```C#
+using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(2));
+
+try
+{
+    using var response = await httpClient.GetAsync(url, cts.Token);
+    response.EnsureSuccessStatusCode();
+}
+catch (OperationCanceledException)
+{
+    Console.WriteLine("Request canceled or timed out.");
+}
+```
 
 </script></section><section  data-markdown><script type="text/template">
 
@@ -479,10 +563,11 @@ public async Task<int> LoadResult(INetwork network)
 
 ## async/await
 
-- method marked `async` has to be `void`, return `Task` or `ValueTask`
-- returning `Task` or `ValueTask` is preferrable
+- method marked `async` should return `Task`, `Task<T>`, `ValueTask`, or `ValueTask<T>`
+- `async void` should be used only for event handlers
+- returning `Task` or `ValueTask` is preferable
 - `await` can be used only inside methods marked as `async`
-- if `Task` or `ValueTask` is not awaited the execution will continue
+- if `Task` or `ValueTask` is not awaited, execution continues immediately
 
 ```C#
 public async Task AddFriendButtonClicked() 
@@ -507,6 +592,293 @@ class FriendFacade : IFriendFacade {
 ### `Task` vs. `ValueTask`
 
 - [Understanding the Whys, Whats, and Whens of ValueTask](https://devblogs.microsoft.com/dotnet/understanding-the-whys-whats-and-whens-of-valuetask/)
+
+</script></section><section  data-markdown><script type="text/template">
+
+# Production concurrency patterns
+
+</script></section><section  data-markdown><script type="text/template">
+
+## ThreadPool starvation (important failure mode)
+
+Symptoms:
+- rising request latency under load
+- many queued work items, low effective throughput
+- blocked worker threads waiting on `.Result` / `.Wait()`
+
+Typical causes:
+- sync-over-async code paths
+- long blocking operations on pool threads
+- unbounded task fan-out
+
+Mitigations:
+- prefer async end-to-end
+- avoid blocking waits in request paths
+- limit concurrency explicitly
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Bounded concurrency with `SemaphoreSlim`
+
+```C#
+var gate = new SemaphoreSlim(maxConcurrency: 8);
+
+var tasks = items.Select(async item =>
+{
+    await gate.WaitAsync(token);
+    try
+    {
+        await ProcessItemAsync(item, token);
+    }
+    finally
+    {
+        gate.Release();
+    }
+});
+
+await Task.WhenAll(tasks);
+```
+
+Use this to protect downstream services and your own process from overload.
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Guardrails for `Task.WhenAll`
+
+`Task.WhenAll` is excellent for independent operations.
+
+Do:
+- use it for a moderate number of independent I/O calls
+- include cancellation and timeout handling
+
+Do not:
+- create thousands of tasks at once without a concurrency gate
+- hide exceptions (always observe aggregate failures)
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Producer-consumer with `Channel<T>`
+
+```C#
+var channel = Channel.CreateBounded<Job>(new BoundedChannelOptions(200)
+{
+    FullMode = BoundedChannelFullMode.Wait
+});
+
+// Producer
+_ = Task.Run(async () =>
+{
+    foreach (var job in jobs)
+        await channel.Writer.WriteAsync(job, token);
+    channel.Writer.Complete();
+});
+
+// Consumers
+var workers = Enumerable.Range(0, 4).Select(_ => Task.Run(async () =>
+{
+    await foreach (var job in channel.Reader.ReadAllAsync(token))
+        await HandleJobAsync(job, token);
+}));
+
+await Task.WhenAll(workers);
+```
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Backpressure strategy
+
+When consumers are slower than producers, choose one explicit policy:
+
+- wait: throttle producers (safer for data integrity)
+- drop oldest/newest: protect latency (acceptable for telemetry)
+- reject new work: fail fast under overload
+
+Backpressure is a design decision, not an implementation detail.
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Timeout budgeting
+
+Prefer a request-level deadline over unrelated local timeouts.
+
+Pattern:
+- incoming request has total budget (for example 1500 ms)
+- each downstream call consumes part of that budget
+- if budget expires, cancel all remaining work
+
+Benefits:
+- predictable tail latency
+- less wasted work after client disconnects
+- easier SLA reasoning
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Exception handling with `Task.WhenAll`
+
+```C#
+var tasks = new[]
+{
+    CallAAsync(token),
+    CallBAsync(token),
+    CallCAsync(token)
+};
+
+try
+{
+    await Task.WhenAll(tasks);
+}
+catch
+{
+    var failures = tasks.Where(t => t.IsFaulted)
+                        .SelectMany(t => t.Exception!.InnerExceptions);
+    foreach (var ex in failures)
+        logger.LogError(ex, "Downstream call failed");
+    throw;
+}
+```
+
+</script></section><section  data-markdown><script type="text/template">
+
+## `ConfigureAwait(false)` guidance
+
+- application code (ASP.NET Core): usually not required
+- reusable libraries: often recommended to avoid context assumptions
+- use intentionally and consistently, not mechanically everywhere
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Resilience patterns for async workflows
+
+Core principles:
+- retry only transient faults
+- use exponential backoff + jitter
+- make operations idempotent when retries are possible
+- combine retry with timeout and cancellation
+
+Do not retry:
+- validation/business rule errors
+- deterministic failures (for example malformed payload)
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Observability: what to measure
+
+Minimum concurrency dashboard:
+- throughput (req/s, jobs/s)
+- latency percentiles (p50, p95, p99)
+- queue depth / backlog size
+- failure rate and timeout rate
+- thread pool queue length and active workers
+
+Without these metrics, tuning is mostly guesswork.
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Performance tooling in .NET
+
+- `dotnet-counters`: live runtime counters
+- `dotnet-trace`: event tracing for deeper analysis
+- `dotnet-stack`: process stack snapshots
+- BenchmarkDotNet: micro-benchmarking for isolated code paths
+
+Profile before changing architecture.
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Testing concurrent code
+
+Test types you should include:
+- race-condition focused tests (repeat many times)
+- cancellation-path tests
+- timeout-path tests
+- overload tests (bounded concurrency is respected)
+- deadlock regression tests
+
+Correctness under concurrency is a feature, not a side effect.
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Common anti-patterns
+
+- sync-over-async (`.Result`, `.Wait()` in async flow)
+- fire-and-forget without supervision/monitoring
+- unbounded `Task.WhenAll` fan-out
+- swallowing exceptions from background work
+- using `async void` outside UI event handlers
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Demo 1: API aggregator (I/O-bound)
+
+Goal:
+- aggregate 3-5 downstream HTTP calls
+
+Required constraints:
+- end-to-end cancellation token propagation
+- bounded concurrency
+- timeout budget
+- clear error reporting for partial failures
+
+Success criteria:
+- lower tail latency without overload amplification
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Demo 2: CPU batch processing
+
+Goal:
+- compare serial vs `Parallel.ForEach` implementation
+
+Method:
+- run on realistic dataset size
+- measure wall-clock time and CPU utilization
+- test multiple degrees of parallelism
+
+Success criteria:
+- show where parallel overhead starts to pay off
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Demo 3: Channel pipeline
+
+Goal:
+- implement producer-consumer pipeline with backpressure
+
+Required constraints:
+- bounded channel
+- multiple consumers
+- graceful shutdown with cancellation
+- metrics: processed/sec and queue depth
+
+Success criteria:
+- stable throughput under bursty producer load
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Mini-lab assignment (in class)
+
+Implement a resilient import pipeline:
+
+1. Read item identifiers asynchronously from source API
+2. Fetch details concurrently with bounded parallelism
+3. Process details with CPU-bound transformation stage
+4. Persist results with cancellation and timeout support
+5. Emit metrics (throughput, p95 latency, failures)
+
+Deliverables:
+- architecture diagram
+- key code excerpts
+- measured before/after comparison
+
+</script></section><section  data-markdown><script type="text/template">
+
+## Historical appendix
+
+APM and EAP are important for understanding legacy codebases.
+
+For new development in modern .NET:
+- prefer TAP (`Task`, `Task<T>`, `async`/`await`)
+- keep legacy patterns only for interoperability
 
 </script></section><section ><section data-markdown><script type="text/template">
 
