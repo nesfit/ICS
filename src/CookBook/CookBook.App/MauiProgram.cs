@@ -1,14 +1,14 @@
-﻿using CommunityToolkit.Maui;
+﻿using System.Reflection;
+using CommunityToolkit.Maui;
 using CookBook.App.Services;
 using CookBook.BL;
-using Microsoft.Extensions.Configuration;
-using System.Reflection;
 using CookBook.DAL;
 using CookBook.DAL.Migrator;
 using CookBook.DAL.Options;
 using CookBook.DAL.Seeds;
+using Microsoft.Maui.DevFlow.Agent;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using Microsoft.Maui.Storage;
 
 [assembly:System.Resources.NeutralResourcesLanguage("en")]
 namespace CookBook.App;
@@ -32,6 +32,10 @@ public static class MauiProgram
             .AddDALServices()
             .AddBLServices()
             .AddAppServices();
+
+#if DEBUG
+        builder.AddMauiDevFlowAgent();
+#endif
 
         var app = builder.Build();
 
