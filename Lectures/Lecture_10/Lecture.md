@@ -15,9 +15,23 @@ highlightTheme: "vs"
 ---
 
 ## Lecture outline:  
-1. Motivation
-2. Parallel programming
-3. Asynchronous programming
+1. Decision framework: parallel vs. async
+2. Parallel programming fundamentals
+3. Asynchronous programming fundamentals
+4. Production concurrency patterns
+5. Observability, testing, and lab
+
+
+---
+
+## Learning outcomes
+
+After this lecture, you should be able to:
+
+- choose between parallelism and asynchrony based on workload shape
+- design bounded, cancelable, and observable concurrent workflows
+- avoid common production failures (deadlocks, thread pool starvation, runaway fan-out)
+- validate concurrency behavior using metrics, traces, and targeted tests
 
 
 ---
@@ -63,6 +77,39 @@ Source: https://eloquentjavascript.net/11_async.html
 
 ---
 
+## Decision matrix: parallel vs. async
+
+| Question | Prefer parallelism | Prefer asynchrony |
+| :------- | :----------------- | :---------------- |
+| Is the bottleneck CPU? | Yes | No |
+| Is the bottleneck I/O wait? | No | Yes |
+| Need lower wall-clock for heavy compute? | Yes | Sometimes |
+| Need high scalability under I/O load? | Sometimes | Yes |
+
+Rule of thumb:
+- CPU-bound => parallelism
+- I/O-bound => async/await
+- mixed pipeline => combine both, but keep concurrency bounded
+
+---
+
+## Workload classification
+
+CPU-bound examples:
+- image/video processing
+- cryptography and compression
+- scoring/ML inference
+
+I/O-bound examples:
+- HTTP/database/file/network calls
+- message bus consumption
+- cloud storage access
+
+Mixed workloads:
+- load data asynchronously, then process CPU-heavy batches in parallel
+
+---
+
 # Parallel programming
 
 ---
@@ -73,9 +120,9 @@ Source: https://eloquentjavascript.net/11_async.html
 - in a nutshell:
     - a **standalone** running program
     - has its process identifier (PID)
-      - **does not share code and variables** with other processes
-          - needs OS support for runtime / memory synchronization (mutexes, ...)
-          - needs OS support for data sharing (shared memory, ...)
+    - **does not share code and variables** with other processes
+        - needs OS support for runtime / memory synchronization (mutexes, ...)
+        - needs OS support for data sharing (shared memory, ...)
     - STDIN/STDOUT/STDERR
 
 ---
@@ -373,7 +420,7 @@ Use asynchrony to keep applications responsive and scalable during I/O waits.
 
 ---
 
-## Asynchronous programming in C# 
+## Asynchronous programming in C# (historical context)
 
 - three historical options:
     - Asynchronous Programming Model (APM)
@@ -534,6 +581,293 @@ class FriendFacade : IFriendFacade {
 ### `Task` vs. `ValueTask`
 
 - [Understanding the Whys, Whats, and Whens of ValueTask](https://devblogs.microsoft.com/dotnet/understanding-the-whys-whats-and-whens-of-valuetask/)
+
+---
+
+# Production concurrency patterns
+
+---
+
+## ThreadPool starvation (important failure mode)
+
+Symptoms:
+- rising request latency under load
+- many queued work items, low effective throughput
+- blocked worker threads waiting on `.Result` / `.Wait()`
+
+Typical causes:
+- sync-over-async code paths
+- long blocking operations on pool threads
+- unbounded task fan-out
+
+Mitigations:
+- prefer async end-to-end
+- avoid blocking waits in request paths
+- limit concurrency explicitly
+
+---
+
+## Bounded concurrency with `SemaphoreSlim`
+
+```C#
+var gate = new SemaphoreSlim(maxConcurrency: 8);
+
+var tasks = items.Select(async item =>
+{
+    await gate.WaitAsync(token);
+    try
+    {
+        await ProcessItemAsync(item, token);
+    }
+    finally
+    {
+        gate.Release();
+    }
+});
+
+await Task.WhenAll(tasks);
+```
+
+Use this to protect downstream services and your own process from overload.
+
+---
+
+## Guardrails for `Task.WhenAll`
+
+`Task.WhenAll` is excellent for independent operations.
+
+Do:
+- use it for a moderate number of independent I/O calls
+- include cancellation and timeout handling
+
+Do not:
+- create thousands of tasks at once without a concurrency gate
+- hide exceptions (always observe aggregate failures)
+
+---
+
+## Producer-consumer with `Channel<T>`
+
+```C#
+var channel = Channel.CreateBounded<Job>(new BoundedChannelOptions(200)
+{
+    FullMode = BoundedChannelFullMode.Wait
+});
+
+// Producer
+_ = Task.Run(async () =>
+{
+    foreach (var job in jobs)
+        await channel.Writer.WriteAsync(job, token);
+    channel.Writer.Complete();
+});
+
+// Consumers
+var workers = Enumerable.Range(0, 4).Select(_ => Task.Run(async () =>
+{
+    await foreach (var job in channel.Reader.ReadAllAsync(token))
+        await HandleJobAsync(job, token);
+}));
+
+await Task.WhenAll(workers);
+```
+
+---
+
+## Backpressure strategy
+
+When consumers are slower than producers, choose one explicit policy:
+
+- wait: throttle producers (safer for data integrity)
+- drop oldest/newest: protect latency (acceptable for telemetry)
+- reject new work: fail fast under overload
+
+Backpressure is a design decision, not an implementation detail.
+
+---
+
+## Timeout budgeting
+
+Prefer a request-level deadline over unrelated local timeouts.
+
+Pattern:
+- incoming request has total budget (for example 1500 ms)
+- each downstream call consumes part of that budget
+- if budget expires, cancel all remaining work
+
+Benefits:
+- predictable tail latency
+- less wasted work after client disconnects
+- easier SLA reasoning
+
+---
+
+## Exception handling with `Task.WhenAll`
+
+```C#
+var tasks = new[]
+{
+    CallAAsync(token),
+    CallBAsync(token),
+    CallCAsync(token)
+};
+
+try
+{
+    await Task.WhenAll(tasks);
+}
+catch
+{
+    var failures = tasks.Where(t => t.IsFaulted)
+                        .SelectMany(t => t.Exception!.InnerExceptions);
+    foreach (var ex in failures)
+        logger.LogError(ex, "Downstream call failed");
+    throw;
+}
+```
+
+---
+
+## `ConfigureAwait(false)` guidance
+
+- application code (ASP.NET Core): usually not required
+- reusable libraries: often recommended to avoid context assumptions
+- use intentionally and consistently, not mechanically everywhere
+
+---
+
+## Resilience patterns for async workflows
+
+Core principles:
+- retry only transient faults
+- use exponential backoff + jitter
+- make operations idempotent when retries are possible
+- combine retry with timeout and cancellation
+
+Do not retry:
+- validation/business rule errors
+- deterministic failures (for example malformed payload)
+
+---
+
+## Observability: what to measure
+
+Minimum concurrency dashboard:
+- throughput (req/s, jobs/s)
+- latency percentiles (p50, p95, p99)
+- queue depth / backlog size
+- failure rate and timeout rate
+- thread pool queue length and active workers
+
+Without these metrics, tuning is mostly guesswork.
+
+---
+
+## Performance tooling in .NET
+
+- `dotnet-counters`: live runtime counters
+- `dotnet-trace`: event tracing for deeper analysis
+- `dotnet-stack`: process stack snapshots
+- BenchmarkDotNet: micro-benchmarking for isolated code paths
+
+Profile before changing architecture.
+
+---
+
+## Testing concurrent code
+
+Test types you should include:
+- race-condition focused tests (repeat many times)
+- cancellation-path tests
+- timeout-path tests
+- overload tests (bounded concurrency is respected)
+- deadlock regression tests
+
+Correctness under concurrency is a feature, not a side effect.
+
+---
+
+## Common anti-patterns
+
+- sync-over-async (`.Result`, `.Wait()` in async flow)
+- fire-and-forget without supervision/monitoring
+- unbounded `Task.WhenAll` fan-out
+- swallowing exceptions from background work
+- using `async void` outside UI event handlers
+
+---
+
+## Demo 1: API aggregator (I/O-bound)
+
+Goal:
+- aggregate 3-5 downstream HTTP calls
+
+Required constraints:
+- end-to-end cancellation token propagation
+- bounded concurrency
+- timeout budget
+- clear error reporting for partial failures
+
+Success criteria:
+- lower tail latency without overload amplification
+
+---
+
+## Demo 2: CPU batch processing
+
+Goal:
+- compare serial vs `Parallel.ForEach` implementation
+
+Method:
+- run on realistic dataset size
+- measure wall-clock time and CPU utilization
+- test multiple degrees of parallelism
+
+Success criteria:
+- show where parallel overhead starts to pay off
+
+---
+
+## Demo 3: Channel pipeline
+
+Goal:
+- implement producer-consumer pipeline with backpressure
+
+Required constraints:
+- bounded channel
+- multiple consumers
+- graceful shutdown with cancellation
+- metrics: processed/sec and queue depth
+
+Success criteria:
+- stable throughput under bursty producer load
+
+---
+
+## Mini-lab assignment (in class)
+
+Implement a resilient import pipeline:
+
+1. Read item identifiers asynchronously from source API
+2. Fetch details concurrently with bounded parallelism
+3. Process details with CPU-bound transformation stage
+4. Persist results with cancellation and timeout support
+5. Emit metrics (throughput, p95 latency, failures)
+
+Deliverables:
+- architecture diagram
+- key code excerpts
+- measured before/after comparison
+
+---
+
+## Historical appendix
+
+APM and EAP are important for understanding legacy codebases.
+
+For new development in modern .NET:
+- prefer TAP (`Task`, `Task<T>`, `async`/`await`)
+- keep legacy patterns only for interoperability
 
 ---
 
