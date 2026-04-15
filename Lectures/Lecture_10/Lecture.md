@@ -8,7 +8,7 @@ highlightTheme: "vs"
 ---
 
 # Parallel programming
-## Process, thread, and task in .NET perspective
+## Process, thread, and task from a .NET perspective
 
 <div class="right">[ Jan Pluskal &lt;pluskal@vut.cz&gt;  ]</div>
 
@@ -36,7 +36,7 @@ highlightTheme: "vs"
 
 ## Parallel computing
 
-- Concurrent processing / Running multiple things at once
+- Concurrent processing: running multiple things at once
 - May increase performance **if used appropriately**
 - Achieved by:
     - Multiple **processes**
@@ -47,7 +47,7 @@ highlightTheme: "vs"
 ## Synchronous vs. asynchronous computing
 
 - Synchronous execution
-    - *I/O operation, long running computation* blocks execution
+    - *I/O operations and long-running computations* block execution
 
 - Asynchronous execution
     - Non-blocking execution
@@ -70,23 +70,23 @@ Source: https://eloquentjavascript.net/11_async.html
 ## Process 
 
 - known from the [IOS course](https://www.fit.vut.cz/study/course/IOS/.en)
-- in the nutshell:
-  - **standalone** running program
-  - has its process identification (PID)
-  - **does not share code and variables** with other processes
-    - needs OS for runtime / memory synchronization (mutexes, ...)
-    - needs OS for data sharing (shared memory, ...)
-  - STDIN/STDOUT/STDERR
+- in a nutshell:
+    - a **standalone** running program
+    - has its process identifier (PID)
+      - **does not share code and variables** with other processes
+          - needs OS support for runtime / memory synchronization (mutexes, ...)
+          - needs OS support for data sharing (shared memory, ...)
+    - STDIN/STDOUT/STDERR
 
 ---
 
 ## Thread
 
 - known from the [IOS course](https://www.fit.vut.cz/study/course/IOS/.en)
-- in the nutshell:
+- in a nutshell:
   - runs **within a process**
   - **has its own stack but shares a heap**
-  - error in one thread can kill the whole process
+  - an error in one thread can kill the whole process
   - **shares code and variables** with other threads
     - needs OS for memory synchronization (mutexes, ...)
     - data are shared between threads using heap (needs protection - mutex, lock, semaphore, monitor, ...)
@@ -97,7 +97,7 @@ Source: https://eloquentjavascript.net/11_async.html
 
 ![Thread vs Process](https://techdifferences.com/wp-content/uploads/2017/01/Multithreading.jpg)
 
-Source:https://techdifferences.com/difference-between-multiprocessing-and-multithreading.html
+Source: https://techdifferences.com/difference-between-multiprocessing-and-multithreading.html
 
 ---
 
@@ -126,11 +126,11 @@ process.WaitForExit();
 ## Process in .NET
 
 - Input/Output
-    - accessing output via events:
+    - access output via events:
         - `ErrorDataReceived` - output written to `stderr`
         - `OutputDataReceived` - output written to `stdout`
-    - need to be enabled via `BeginOutputReadLine()` or `BeginErrorReadLine()`
-- allows opening of file with associated executable
+    - enable it via `BeginOutputReadLine()` or `BeginErrorReadLine()`
+- allows opening a file with an associated executable
     - Set `FileName` to associated file and set `UseShellExecute` to `true`
 
 
@@ -154,7 +154,7 @@ process.BeginOutputReadLine();
 
 ## Process in .NET
 
-- accesing input via `StandardInput` property
+- accessing input via `StandardInput` property
 
 ```C#
 using var process = new System.Diagnostics.Process ...
@@ -169,7 +169,7 @@ process.StandardInput.WriteLine("Hello world");
 - Exiting
     - handled via `WaitForExit` method and its overloads
     - initiated via `Close` method
-    - when needed `Kill` method can be used to force termination
+    - if needed, `Kill` can be used to force termination
 
 ---
 
@@ -181,8 +181,9 @@ process.StandardInput.WriteLine("Hello world");
 
 - represented via `Thread` class
 - possible to get current `Thread` using `Thread.CurrentThread`
-- should never be created manually! Use `ThreadPool` to queue work instead.
-- for waiting `Join()` method is present
+- should generally not be created manually in application code; prefer `Task`/`async` APIs.
+- `ThreadPool` is used under the hood for most task scheduling scenarios.
+- `Join()` can be used to wait for a thread to finish
 
 ---
 
@@ -190,8 +191,8 @@ process.StandardInput.WriteLine("Hello world");
 
 - `ThreadPool` class [documentation](https://docs.microsoft.com/cs-cz/dotnet/api/system.threading.threadpool?view=netcore-2.2)
 - uses *pool* design pattern
-- manages recycling and planning of thread executions
-- can be configured (methods `SetMaxThreads()`/`SetMinThread()`)
+- manages thread reuse and scheduling
+- can be configured (methods `SetMaxThreads()`/`SetMinThreads()`)
 
 ```C#
 
@@ -223,7 +224,7 @@ static void ThreadProc(Object stateInfo)
 
 - shared resources
 - read/write synchronization
-- exceptions handling in threads
+- exception handling in threads
 - UI thread access
 - debugging multiple threads
 - deadlock
@@ -278,7 +279,7 @@ T2: Count = count           // Count = 1
 | `ReaderWriterLockSlim` | Reader-writer synchronization |                    |   40ns   |
 |   `ReaderWriterLock`   | Reader-writer synchronization |                    |  100ns   |
 
-Only `SemaphoreSlim` is reasonable to use in **async** context.
+Only `SemaphoreSlim` provides async-aware waiting (`WaitAsync`) in **async** context.
 
 ---
 
@@ -320,7 +321,7 @@ public void AddFriend(FriendModel friend)
 
 ## Synchronized collections 
 
-- provided in namespace `System.Collections.Concurrent`
+- provided in the `System.Collections.Concurrent` namespace
     - `BlockingCollection<T>` - ordered collection
     - `ConcurrentQueue<T>` - queue
     - `ConcurrentBag<T>` - unordered collection 
@@ -335,8 +336,8 @@ public void AddFriend(FriendModel friend)
 ## Task Parallel Library
 
 - TPL [Documentation](https://docs.microsoft.com/cs-cz/dotnet/standard/parallel-programming/task-parallel-library-tpl)
-    - parallel `For` and `ForEach` implementation
-    - PLINQ - parallel implementation of LINQ queries - `AsParallel` method
+    - parallel `For` and `ForEach` implementations
+    - PLINQ - parallel implementation of LINQ queries via `AsParallel`
 - Be careful! Parallel does not always mean faster!
 
 ```C#
@@ -358,9 +359,23 @@ source.AsParallel()
 
 ---
 
+## Parallel vs. asynchronous
+
+| Aspect | Parallel | Asynchronous |
+| :----- | :------- | :----------- |
+| Primary goal | Use multiple CPU cores | Avoid blocking while waiting |
+| Typical workload | CPU-bound | I/O-bound |
+| Thread usage | Multiple active worker threads | May use few threads while operations are pending |
+| Typical APIs | `Parallel.ForEach`, PLINQ | `async`/`await`, `Task`, `Task.WhenAll` |
+
+Use parallelism to speed up expensive computations.
+Use asynchrony to keep applications responsive and scalable during I/O waits.
+
+---
+
 ## Asynchronous programming in C# 
 
-- three options:
+- three historical options:
     - Asynchronous Programming Model (APM)
     - Event-based Asynchronous Pattern (EAP)
     - Task-based Asynchronous Pattern (TAP)
@@ -369,9 +384,9 @@ source.AsParallel()
 
 ## Asynchronous Programming Model
 
-- for each operation, we define `AsyncCallback` object
-- this object defines a method that should be called when the operation ends
-- the method accepts [`IAsyncResult`](https://docs.microsoft.com/cs-cz/dotnet/api/system.iasyncresult?view=netframework-4.7.2) parameter
+- for each operation, we define an `AsyncCallback`
+- this callback is invoked when the operation ends
+- the callback receives an [`IAsyncResult`](https://docs.microsoft.com/cs-cz/dotnet/api/system.iasyncresult?view=netframework-4.7.2)
 
 
 ```C#
@@ -388,7 +403,7 @@ operation.BeginInvoke(5, 5, new AsyncCallback(AddCompleted), null);
 public void AddCompleted(IAsyncResult result) 
 {
     //Handle completion here
-    Console.WriteLine($"Is completed {result.IsCompleted}")
+    Console.WriteLine($"Is completed {result.IsCompleted}");
 }
 ```
 
@@ -397,14 +412,14 @@ public void AddCompleted(IAsyncResult result)
 ## Event-based Asynchronous Pattern
 
 - communication between the caller and the method is done via `event`s
-- typically used on UI components for retrieving results of UI operations
+- typically used in UI components to retrieve results of UI operations
 
 ```C#
 OperationProvider provider = new OperationProvider ();
 provider.DoOperationAsync ("some state data");
 provider.DoOperationCompleted += Provider_DoOperationCompleted;
 
-public void Provider_DoOperationCompeted(string result) 
+public void Provider_DoOperationCompleted(string result) 
 {
     Console.WriteLine(result);
 }
@@ -417,10 +432,10 @@ public void Provider_DoOperationCompeted(string result)
 - in C\# represented with `Task` class or `Task<T>`
 - `Task` is a representation of an operation that is running asynchronously
 - asynchronous methods return `Task` instead of `void` or `Task<T>` instead of `T`
-- when method returning `Task` is called the methods starts executing, but the caller method continues as well (unless waiting for task completion)
-- empty task can be get via `Task.CompletedTask` or `Task.FromResult()`
+- when an async method returning `Task` is called, it runs synchronously until the first `await`; then control returns to the caller if it is not awaiting that task
+- an empty task can be obtained via `Task.CompletedTask` or `Task.FromResult()`
 - important properties
-    - `Status` - running/waiting/faulted/ran
+    - `Status` - lifecycle state (for example `Running`, `RanToCompletion`, `Faulted`, `Canceled`)
     - `Result` - `null` while running, value when finished
     - `Exception` - thrown exception
 
@@ -435,20 +450,42 @@ public void Provider_DoOperationCompeted(string result)
 [Fullsize](_reveal-md/img/asvWD.png)
 ---
 
-## Support in .NET
+## I/O async support in .NET
 
 - I/O handling classes
-    - `StreamReader`, `StreamWriter`- for streams and files access
-    - `HttpClient`, `WebClient` - for accessing web resources
+    - `StreamReader`, `StreamWriter` - for stream and file access (use async members)
+    - `HttpClient` for accessing web resources (`WebClient` is legacy)
 
 ---
 
 ## Task management
 
 - `Task.WhenAll()` - waiting for multiple tasks to finish
-- `GetAwaiter().GetResult()` - returns the (result|throws exception) of task in synchronous code
-- `await task` - returns the (result|throws exception) of task in asynchronous code
-- `ContinueWith(Task t)` - task chaining
+- `GetAwaiter().GetResult()` - returns the result (or throws exception) in synchronous code; use carefully to avoid blocking/deadlocks
+- `await task` - returns the result (or throws exception) in asynchronous code
+- `ContinueWith(Task t)` - legacy task chaining; modern code usually prefers `await`
+
+---
+
+## Cancellation and timeouts
+
+- production async code should support `CancellationToken`
+- pass the token to all cancellable async calls
+- combine cancellation with timeouts for bounded latency
+
+```C#
+using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(2));
+
+try
+{
+    using var response = await httpClient.GetAsync(url, cts.Token);
+    response.EnsureSuccessStatusCode();
+}
+catch (OperationCanceledException)
+{
+    Console.WriteLine("Request canceled or timed out.");
+}
+```
 
 ---
 
@@ -468,10 +505,11 @@ public async Task<int> LoadResult(INetwork network)
 
 ## async/await
 
-- method marked `async` has to be `void`, return `Task` or `ValueTask`
-- returning `Task` or `ValueTask` is preferrable
+- method marked `async` should return `Task`, `Task<T>`, `ValueTask`, or `ValueTask<T>`
+- `async void` should be used only for event handlers
+- returning `Task` or `ValueTask` is preferable
 - `await` can be used only inside methods marked as `async`
-- if `Task` or `ValueTask` is not awaited the execution will continue
+- if `Task` or `ValueTask` is not awaited, execution continues immediately
 
 ```C#
 public async Task AddFriendButtonClicked() 
