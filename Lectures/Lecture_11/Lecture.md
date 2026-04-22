@@ -1,5 +1,5 @@
 ---
-title: ICS 13 - Cross-platform Development and Application Containerization
+title: ICS 11 - Cross-platform Development and Application Containerization
 css: _reveal-md/theme.css
 theme: simple
 separator: "^---$"
@@ -35,7 +35,7 @@ highlightTheme: "vs"
 ## .NET Implementations
 
 - Microsoft supported (current focus):
-  - .NET (5+ and later) (cross-platform) (previously .NET Core)
+  - .NET 5+ (cross-platform, previously .NET Core)
   - .NET Framework (Windows-only legacy compatibility target)
 
 - Current .NET application platforms:
@@ -59,7 +59,6 @@ highlightTheme: "vs"
 
 ## .NET Standard
 
-- A formal specification of .NET APIs that are available on multiple .NET implementations.
 - The motivation behind .NET Standard was to establish greater uniformity in the .NET ecosystem.
 - Standardized API coverage across implementations
 - *Interface* to program against
@@ -179,7 +178,7 @@ References:
 - Tool to check API compatibility during migrations
   - CLI tool
   - Visual Studio extension
-  - For new projects, prefer modern Roslyn/.NET analyzers in IDE and CI
+  - For new projects, prefer modern Roslyn/.NET analyzers in your IDE and CI pipelines
 
 ![](assets/img/portability-summary.jpg)
 
@@ -216,7 +215,7 @@ References:
 - Example: `linux-x64` can fall back to more generic `linux` when needed
 
 ```
-   linux-arm64    linux-arm32
+   linux-arm64    linux-x64
        |     \   /     |
        |     linux     |
        |       |       |
@@ -240,7 +239,7 @@ References:
   - A `.deps.json` file that includes all of the dependencies of the project.
   - A `.runtimeconfig.json` file that specifies the shared runtime that the application expects, as well as other configuration options for the runtime (for example, garbage collection type).
   - The *application's dependencies*, which are copied from the NuGet cache into the output folder
-- Implicit restore - restores NuGet packages, can be disabled with option `--no-restore` 
+- Implicit restore - restores NuGet packages; can be disabled with the `--no-restore` option 
 
 References:
 - [Arguments, options, ...](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish#arguments)
@@ -268,7 +267,7 @@ References:
   - *Platform-specific* executable
   - Control .NET version
   - Larger output
-  - `--sc|--self-contained [true|false]` argument, default is `true` if `-r|--runtime <RUNTIME_IDENTIFIER>` is specified
+  - `--sc|--self-contained [true|false]` argument. Default is `false` in .NET 8+ (it was `true` in older versions when a `-r|--runtime` was specified).
 
 +++
 
@@ -312,7 +311,7 @@ Rule of thumb:
 
 - Removal of unused code
 - Based on build time analysis
-- Dynamic runtime behavior not caught during build time can cause issues
+- Dynamic runtime behavior (e.g., Reflection) not caught during build time can cause issues
 
 ```
 <PropertyGroup>
@@ -535,7 +534,7 @@ Orchestration layers (Compose, Kubernetes) coordinate many containers across eng
 
 `Dockerfile` is a declarative recipe for building images with layering in mind.
 
-**Layering strategy** (least changed → most changed for cache efficiency):
+**Layering strategy** (least changed → most frequently changed for cache efficiency):
 ```
 ┌─────────────────────────────────────────┐  ← Layer 6: Build/publish
 │ Startup Command                         │
@@ -734,7 +733,7 @@ Commands:
 
 Use these small demos during class or self-study:
 - `assets/examples/01-hello-nginx`
-- `assets/examples/02-layer-caching-node`
+- `assets/examples/02-layer-caching-dotnet`
 - `assets/examples/03-compose-web-db`
 
 +++
@@ -760,7 +759,7 @@ Open `http://localhost:8081`.
 
 ### Demo 2: Layer Caching in Practice
 
-Path: `assets/examples/02-layer-caching-node`
+Path: `assets/examples/02-layer-caching-dotnet`
 
 Learning goal:
 - Understand Docker layer caching with a C# web app.
@@ -768,7 +767,7 @@ Learning goal:
 
 Run:
 ```bash
-cd assets/examples/02-layer-caching-node
+cd assets/examples/02-layer-caching-dotnet
 docker build -t ics-demo2 .
 docker run --rm -p 8082:8080 ics-demo2
 ```
